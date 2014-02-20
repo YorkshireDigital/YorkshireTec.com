@@ -1,0 +1,12 @@
+﻿body {
+    font-family: "ff-enzo-web", sans-serif;
+    font-weight: 300;
+}
+h1 {
+    font-size: 5em;
+    font-weight: 100;
+    text-align: center;
+}
+    h1 span {
+        font-weight: 700;
+    }
