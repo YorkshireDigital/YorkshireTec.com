@@ -10,3 +10,7 @@ h1 {
     h1 span {
         font-weight: 700;
     }
+
+.typekit-badge {
+    display: none !important;
+}
