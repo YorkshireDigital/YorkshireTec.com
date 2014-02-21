@@ -7,6 +7,7 @@ namespace YorkshireTec.Modules
         public HomeModule()
         {
             Get["/"] = _ => View["LandingPage"];
+            Get["/Logo"] = _ => View["Logo"];
         }
     }
 }
