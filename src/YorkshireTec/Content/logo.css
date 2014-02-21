@@ -15,8 +15,8 @@ header {
     header h1 {
         position: absolute; 
         bottom: 0; 
-        left: 0;
-        font-size: 5em;
+        left: 8px;
+        font-size: 5.1em;
         font-weight: 100;
         text-align: center;
         margin: 0;    
