@@ -77,6 +77,7 @@
     <Content Include="Content\Images\rough_diagonal.png" />
     <Content Include="Content\Images\Sheffield-City-Centre.jpg" />
     <Content Include="Content\Images\stripesblack.png" />
+    <Content Include="Content\logo.css" />
     <Content Include="Content\Scripts\supersized.3.2.7.min.js" />
     <Content Include="Content\Scripts\supersized.shutter.min.js" />
     <Content Include="Content\supersized.css" />
