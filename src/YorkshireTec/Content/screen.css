@@ -68,8 +68,11 @@ section {
         section.clear a {
             color: #fff;
         }
+
     section.blurb {
     }
+
+/* Conainter */
 
 .container {
     z-index: -100;
@@ -108,3 +111,12 @@ header a {
 
 ::selection { background: #43EDAB; color: #111; }
 ::-moz-selection { background: #43EDAB; color: #111; }
+
+/* MailChimp form */
+
+#mc_embed_signup {
+    border-radius: 0;
+}
+    #mc_embed_signup input {
+        border-radius: 0;
+    }
