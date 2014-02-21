@@ -83,7 +83,10 @@ section {
         section.clear a {
             color: #fff;
         }
-
+        
+        section.clear .icon {
+            color: #fff;
+        }
     section.blurb {
     }
 
