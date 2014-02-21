@@ -38,6 +38,21 @@ header {
             font-weight: 700;
         }
 
+/* Footer */
+
+footer {
+    background-color: #222;
+    color: #fff;
+    font-size: 1em;
+    padding: 20px 0;
+}
+    footer p {
+        text-align: center;
+    }
+        footer p span {
+            font-family: sans-serif;
+        }
+
 /* Sections */
 
 section {
