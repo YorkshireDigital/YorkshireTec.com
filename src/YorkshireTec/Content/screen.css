@@ -1,16 +1,140 @@
 ﻿body {
     font-family: "ff-enzo-web", sans-serif;
     font-weight: 300;
+    margin: 0;
 }
-h1 {
-    font-size: 5em;
-    font-weight: 100;
+h1 { }
+h2 {
+    font-size: 3em;
     text-align: center;
+    padding: 10px 0;
+    font-weight: 300;
 }
-    h1 span {
-        font-weight: 700;
+h3 {
+    font-size: 1.5em;
+    text-align: center;
+    padding: 10px 0;
+    font-weight: 600;
+}
+
+/* Header */
+
+header {
+    margin: 0;
+    line-height: 600px;
+}
+
+    header h1 {
+        font-size: 5em;
+        font-weight: 100;
+        text-align: center;
+        margin: 0;    
+        opacity:1;
+        filter:alpha(opacity=100);
+        color: #fff;
     }
+
+        header h1 span {
+            font-weight: 700;
+        }
+
+/* Footer */
+
+footer {
+    background-color: #222;
+    color: #fff;
+    font-size: 1em;
+    padding: 20px 0;
+}
+    footer p {
+        text-align: center;
+    }
+        footer p span {
+            font-family: sans-serif;
+        }
+
+/* Sections */
+
+section {
+    padding: 10px 5px;
+}
+    section.opaque {
+        background: url(../Content/Images/rough_diagonal.png);
+        color: #000;
+    }
+        section.opaque p {
+            padding: 0 10px;
+            margin: 15px 0;
+            text-align: justify;
+        }
+
+    section.clear {
+        background: transparent;
+        color: #fff;
+        font-weight: 300;
+    }
+        section.clear p {
+            padding: 20px;
+            margin: 15px 0;
+            background-color: #fff;
+            color: #000;
+        }
+
+        section.clear a {
+            color: #fff;
+        }
+        
+        section.clear .icon {
+            color: #fff;
+        }
+    section.blurb {
+    }
+
+/* Conainter */
+
+.container {
+    z-index: -100;
+    position: fixed;
+    margin: 0;
+    padding: 0;
+    background-image: url(../Content/Images/stripesblack.png);
+    background-repeat: repeat;
+    height: 100%;
+    width: 100%;
+}
+
+.center_div {
+    margin-left: auto;
+    margin-right: auto;
+    display: block !important;
+}
 
 .typekit-badge {
     display: none !important;
 }
+
+a {
+    text-decoration: none;
+}
+header a {
+    color: #fff;
+}
+    header a:hover {
+        color: #fff;
+    }
+
+.ui.grid {
+    margin: 0;
+}
+
+::selection { background: #43EDAB; color: #111; }
+::-moz-selection { background: #43EDAB; color: #111; }
+
+/* MailChimp form */
+
+#mc_embed_signup {
+    border-radius: 0;
+}
+    #mc_embed_signup input {
+        border-radius: 0;
+    }
