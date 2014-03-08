@@ -11,6 +11,9 @@
         .hidden {
             display: none;
         }
+        .event-container {
+            padding: 10px 0;
+        }
     </style>
 </head>
 <body>
@@ -25,9 +28,28 @@
                     <div class="ui positive button" id="tabCalendar">Calendar</div>
                     <div class="ui button" id="tabList">List</div>
                 </div>
-                <div id="calendar"></div>
-                <div id="list" class="hidden">
-                    sdfsdfsdf
+                <div class="event-container">
+                    <div id="calendar"></div>
+                    <div id="list" class="hidden">
+                        @Each.Events
+                        <div class="ui feed segment">
+                            <div class="event">
+                                <div class="label">
+                                    <img src="/images/event/avatar.jpg">
+                                </div>
+                                <div class="content">
+                                    <div class="date">
+                                        3 days ago
+                                    </div>
+                                    <div class="summary">
+                                        <h4>@Current.Title</h4>
+                                        @Current.Summary
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @EndEach
+                    </div>
                 </div>
             </div>
         </div>
