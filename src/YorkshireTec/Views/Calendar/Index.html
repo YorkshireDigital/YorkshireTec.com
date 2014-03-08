@@ -1,0 +1,80 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>YorkshireTec</title>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/1.6.4/fullcalendar.css" type="text/css" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/0.12.0/css/semantic.min.css" />
+    <link rel="stylesheet" href="../../Content/screen.css" />
+    <link rel="stylesheet" href="../../Content/supersized.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="../../Content/supersized.shutter.css" type="text/css" media="screen" />
+    <style type="text/css">
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container"></div>
+    <header>
+        <h1><a href="/" title="YorkshireTec">Yorkshire<span>Tec</span></a> - <span>Events</span></h1>
+    </header>
+    <section class="opaque blurb">
+        <div class="ui grid">
+            <div class="ten wide column center_div" id="about">
+                <div class="ui buttons">
+                    <div class="ui positive button" id="tabCalendar">Calendar</div>
+                    <div class="ui button" id="tabList">List</div>
+                </div>
+                <div id="calendar"></div>
+                <div id="list" class="hidden">
+                    sdfsdfsdf
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <p><span>&copy;</span> Yorkshire<b>Tec</b> 2014</p>
+    </footer>
+    <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="//use.typekit.net/omw7pfi.js"></script>
+    <script type="text/javascript">try { Typekit.load(); } catch (e) { }</script>
+    <script type="text/javascript" src="../../Content/scripts/supersized.3.2.7.min.js"></script>
+    <script type="text/javascript" src="../../Content/scripts/supersized.shutter.min.js"></script>
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/fullcalendar/1.6.4/fullcalendar.js"></script>
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/fullcalendar/1.6.4/gcal.js"></script>
+    <script type="text/javascript">
+
+        $(function () {
+            $.supersized({
+                slide_interval: 10000,
+                transition: 1,
+                transition_speed: 1800,
+                slide_links: 'blank',
+                slides: [
+                    { image: '../Content/Images/filter-hrd-leeds-skyline.jpg', title: 'Image Credit: Maria Kazvan', thumb: 'http://buildinternet.s3.amazonaws.com/projects/supersized/3.2/thumbs/kazvan-3.jpg' },
+                    { image: '../Content/Images/illuminating-york-15.jpg', title: 'Image Credit: Maria Kazvan', thumb: 'http://buildinternet.s3.amazonaws.com/projects/supersized/3.2/thumbs/kazvan-3.jpg' },
+                    { image: '../Content/Images/Sheffield-City-Centre.jpg', title: 'Image Credit: Maria Kazvan', thumb: 'http://buildinternet.s3.amazonaws.com/projects/supersized/3.2/thumbs/kazvan-3.jpg' }
+                ]
+            });
+            $(document).ready(function () {
+                $('#calendar').fullCalendar({
+                    events: 'https://www.google.com/calendar/feeds/info%40yorkshiretec.com/public/basic'
+                });
+            });
+            $(document).on('click', '#tabCalendar', function() {
+                $('#calendar').removeClass('hidden');
+                $('#list').addClass('hidden');
+                $('#tabCalendar').addClass('positive');
+                $('#tabList').removeClass('positive');
+            });
+            $(document).on('click', '#tabList', function () {
+                $('#calendar').addClass('hidden');
+                $('#list').removeClass('hidden');
+                $('#tabCalendar').removeClass('positive');
+                $('#tabList').addClass('positive');
+            });
+        });
+
+    </script>
+</body>
+</html>
