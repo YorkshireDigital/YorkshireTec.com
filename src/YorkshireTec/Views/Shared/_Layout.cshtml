@@ -1,0 +1,48 @@
+﻿@{
+    Layout = null;
+}
+@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<dynamic>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>YorkshireTec</title>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/0.12.0/css/semantic.min.css" />
+    <link rel="stylesheet" href="../../Content/screen.css" />
+    <link rel="stylesheet" href="../../Content/supersized.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="../../Content/supersized.shutter.css" type="text/css" media="screen" />
+    @RenderSection("Styles", false)
+</head>
+<body>
+    <div class="container"></div>
+    <header>
+        <h1><a href="/" title="YorkshireTec">Yorkshire<span>Tec</span></a></h1>
+    </header>
+    @RenderBody()
+    <footer>
+        <p><span>&copy;</span> Yorkshire<b>Tec</b> 2014</p>
+    </footer>
+    <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="//use.typekit.net/omw7pfi.js"></script>
+    <script type="text/javascript">try { Typekit.load(); } catch (e) { }</script>
+    <script type="text/javascript" src="../../Content/scripts/supersized.3.2.7.min.js"></script>
+    <script type="text/javascript" src="../../Content/scripts/supersized.shutter.min.js"></script>
+    <script type="text/javascript">
+
+        $(function () {
+            $.supersized({
+                slide_interval: 10000,
+                transition: 1,
+                transition_speed: 1800,
+                slide_links: 'blank',
+                slides: [
+                    { image: '../Content/Images/filter-hrd-leeds-skyline.jpg', title: 'Image Credit: Maria Kazvan', thumb: 'http://buildinternet.s3.amazonaws.com/projects/supersized/3.2/thumbs/kazvan-3.jpg' },
+                    { image: '../Content/Images/illuminating-york-15.jpg', title: 'Image Credit: Maria Kazvan', thumb: 'http://buildinternet.s3.amazonaws.com/projects/supersized/3.2/thumbs/kazvan-3.jpg' },
+                    { image: '../Content/Images/Sheffield-City-Centre.jpg', title: 'Image Credit: Maria Kazvan', thumb: 'http://buildinternet.s3.amazonaws.com/projects/supersized/3.2/thumbs/kazvan-3.jpg' }
+                ]
+            });
+        });
+
+    </script>
+    @RenderSection("Scripts", false)
+</body>
+</html>
