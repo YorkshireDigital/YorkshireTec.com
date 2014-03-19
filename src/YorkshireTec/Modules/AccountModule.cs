@@ -52,6 +52,13 @@ namespace YorkshireTec.Modules
                 model.Page.AddError("Log in attempt failed", "");
                 return Negotiate.WithModel(model).WithView("LogIn");
             };
+
+            Get["register"] = _ =>
+            {
+                var model = GetBaseModel(new AccountRegisterViewModel());
+                model.Page.Title = "Register";
+                return Negotiate.WithModel(model).WithView("Register");
+            };
         }
     }
 }

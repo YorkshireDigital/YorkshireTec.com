@@ -1,0 +1,185 @@
+﻿@{
+    Layout = "Shared/_Layout.cshtml";
+}
+@using YorkshireTec.Infrastructure
+@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<YorkshireTec.ViewModels.BaseViewModel<YorkshireTec.ViewModels.Account.AccountRegisterViewModel>>
+@section Scripts
+{
+    <script type="text/javascript">
+        $('.ui.form')
+            .form({
+                username: {
+                    identifier: 'username',
+                    rules: [
+                        {
+                            type: 'empty',
+                            prompt: 'Please enter your username'
+                        }
+                    ]
+                },
+                password: {
+                    identifier: 'password',
+                    rules: [
+                        {
+                            type: 'empty',
+                            prompt: 'Please enter your password'
+                        },
+                        {
+                            type: 'length[6]',
+                            prompt: 'Your password must be at least 6 characters'
+                        }
+                    ]
+                },
+                confirmPassword: {
+                    identifier: 'confirmPassword',
+                    rules: [
+                        {
+                            type: 'empty',
+                            prompt: 'Please enter your password'
+                        },
+                        {
+                            type: 'match[Password]',
+                            prompt: 'Passwords do not match'
+                        }
+                    ]
+                },
+                firstName: {
+                    identifier: 'firstName',
+                    rules: [
+                        {
+                            type: 'empty',
+                            prompt: 'Please enter your first name'
+                        }
+                    ]
+                },
+                lastName: {
+                    identifier: 'lastName',
+                    rules: [
+                        {
+                            type: 'empty',
+                            prompt: 'Please enter your last name'
+                        }
+                    ]
+                },
+                email: {
+                    identifier: 'email',
+                    rules: [
+                        {
+                            type: 'empty',
+                            prompt: 'Please enter your last name'
+                        },
+                        {
+                            type: 'email',
+                            prompt: 'Not a valid email'
+                        }
+                    ]
+                }
+            });
+    </script>
+}
+<section class="opaque blurb">
+    <div class="ui grid">
+        <div class="ten wide column center_div">
+            <div class="row">
+                <h2>Register</h2>
+                <h3>Already have an account? <a href="log-in">Log in</a></h3>
+                <div class="ui two column divided grid">
+                    <div class="row">
+                        <div class="column">
+                            <form method="POST" class="ui form segment">
+                                <div class="field">
+                                    <label>Username</label>
+                                    <div class="ui left labeled icon input">
+                                        <input type="text" placeholder="Username" name="username" value="@Model.ViewModel.Username">
+                                        <i class="user icon"></i>
+                                        <div class="ui corner label">
+                                            <i class="icon asterisk"></i>
+                                        </div>
+                                    </div>
+                                    @Html.ValidationMessageFor(Model.Page.Notifications, "Username")
+                                </div>
+                                <div class="field">
+                                    <label>Password</label>
+                                    <div class="ui left labeled icon input">
+                                        <input type="password" name="password" value="@Model.ViewModel.Password">
+                                        <i class="lock icon"></i>
+                                        <div class="ui corner label">
+                                            <i class="icon asterisk"></i>
+                                        </div>
+                                    </div>
+                                    @Html.ValidationMessageFor(Model.Page.Notifications, "Password")
+                                </div>
+                                <div class="field">
+                                    <label>Confirm Password</label>
+                                    <div class="ui left labeled icon input">
+                                        <input type="password" name="confirmPassword" value="@Model.ViewModel.ConfirmPassword">
+                                        <i class="lock icon"></i>
+                                        <div class="ui corner label">
+                                            <i class="icon asterisk"></i>
+                                        </div>
+                                    </div>
+                                    @Html.ValidationMessageFor(Model.Page.Notifications, "ConfirmPassword")
+                                </div>
+                                <div class="field">
+                                    <label>First Name</label>
+                                    <div class="ui left labeled icon input">
+                                        <input type="text" placeholder="Genghis" name="firstName" value="@Model.ViewModel.FirstName">
+                                        <i class="user icon"></i>
+                                        <div class="ui corner label">
+                                            <i class="icon asterisk"></i>
+                                        </div>
+                                    </div>
+                                    @Html.ValidationMessageFor(Model.Page.Notifications, "FirstName")
+                                </div>
+                                <div class="field">
+                                    <label>Last Name</label>
+                                    <div class="ui left labeled icon input">
+                                        <input type="text" placeholder="Khan" name="lastName" value="@Model.ViewModel.LastName">
+                                        <i class="user icon"></i>
+                                        <div class="ui corner label">
+                                            <i class="icon asterisk"></i>
+                                        </div>
+                                    </div>
+                                    @Html.ValidationMessageFor(Model.Page.Notifications, "LastName")
+                                </div>
+                                <div class="field">
+                                    <label>Email</label>
+                                    <div class="ui left labeled icon input">
+                                        <input type="text" placeholder="genghis.khan@sharklasers.com" name="email" value="@Model.ViewModel.Email">
+                                        <i class="user icon"></i>
+                                        <div class="ui corner label">
+                                            <i class="icon asterisk"></i>
+                                        </div>
+                                    </div>
+                                    @Html.ValidationMessageFor(Model.Page.Notifications, "Email")
+                                </div>
+                                @Html.ValidationSummary(Model.Page.Notifications)
+                                <input type="submit" class="ui blue submit button" value="Register" />
+                            </form>
+                        </div>
+                        <div class="column">
+                            <h3>Or register with one of these</h3>
+                            <div class="ui list">
+                                <div class="item">
+                                    <div class="fluid ui facebook button">
+                                        Facebook
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <div class="fluid ui twitter button">
+                                        Twitter
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <div class="fluid ui google plus button">
+                                        Google Plus
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -38,6 +38,7 @@
         <div class="ten wide column center_div">
             <div class="row">
                 <h2>Log In</h2>
+                <h3>Don't have an account? <a href="register">Register</a></h3>
                 <div class="ui two column divided grid">
                     <div class="row">
                         <div class="column">
@@ -69,9 +70,6 @@
                                         <input type="checkbox" name="RememberMe" checked="@Model.ViewModel.RememberMe">
                                         <label>Remember Me?</label>
                                     </div>
-                                </div>
-                                <div class="ui error message">
-                                    <div class="header">We noticed some issues</div>
                                 </div>
                                 @Html.ValidationSummary(Model.Page.Notifications)
                                 <input type="submit" class="ui blue submit button" value="Login" />
