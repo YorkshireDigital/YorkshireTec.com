@@ -1,8 +1,38 @@
 ﻿@{
     Layout = "Shared/_Layout.cshtml";
 }
+@using YorkshireTec.Infrastructure
 @inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<YorkshireTec.ViewModels.BaseViewModel<YorkshireTec.ViewModels.Account.AccountLogInViewModel>>
-
+@section Scripts
+{
+    <script type="text/javascript">
+        $('.ui.form')
+            .form({
+                username: {
+                    identifier: 'username',
+                    rules: [
+                        {
+                            type: 'empty',
+                            prompt: 'Please enter your username'
+                        }
+                    ]
+                },
+                password: {
+                    identifier: 'password',
+                    rules: [
+                        {
+                            type: 'empty',
+                            prompt: 'Please enter your password'
+                        },
+                        {
+                            type: 'length[6]',
+                            prompt: 'Your password must be at least 6 characters'
+                        }
+                    ]
+                }
+            });
+    </script>
+}
 <section class="opaque blurb">
     <div class="ui grid">
         <div class="ten wide column center_div">
@@ -15,22 +45,24 @@
                                 <div class="field">
                                     <label>Username</label>
                                     <div class="ui left labeled icon input">
-                                        <input type="text" placeholder="Username" name="Username" value="@Model.ViewModel.Username">
+                                        <input type="text" placeholder="Username" name="username" value="@Model.ViewModel.Username">
                                         <i class="user icon"></i>
                                         <div class="ui corner label">
                                             <i class="icon asterisk"></i>
                                         </div>
                                     </div>
+                                    @Html.ValidationMessageFor(Model.Page.Notifications, "Username")
                                 </div>
                                 <div class="field">
                                     <label>Password</label>
                                     <div class="ui left labeled icon input">
-                                        <input type="password" name="Password" value="@Model.ViewModel.Password">
+                                        <input type="password" name="password" value="@Model.ViewModel.Password">
                                         <i class="lock icon"></i>
                                         <div class="ui corner label">
                                             <i class="icon asterisk"></i>
                                         </div>
                                     </div>
+                                    @Html.ValidationMessageFor(Model.Page.Notifications, "Password")
                                 </div>
                                 <div class="field">
                                     <div class="ui slider checkbox">
@@ -41,6 +73,7 @@
                                 <div class="ui error message">
                                     <div class="header">We noticed some issues</div>
                                 </div>
+                                @Html.ValidationSummary(Model.Page.Notifications)
                                 <input type="submit" class="ui blue submit button" value="Login" />
                             </form>
                         </div>

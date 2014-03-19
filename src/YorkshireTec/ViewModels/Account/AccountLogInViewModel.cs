@@ -15,6 +15,7 @@
         {
             RuleFor(x => x.Username).NotEmpty();
             RuleFor(x => x.Password).NotEmpty();
+            RuleFor(x => x.Password.Length).GreaterThan(5);
         }
     }
 }

@@ -27,6 +27,9 @@ namespace YorkshireTec.Modules
                 var viewModel = this.Bind<AccountLogInViewModel>();
                 var result = this.Validate(viewModel);
 
+                var model = GetBaseModel(viewModel);
+                model.Page.Title = "Log In";
+
                 if (result.IsValid)
                 {
                     var userRepository = new UserRepository(documentSession);
@@ -42,9 +45,11 @@ namespace YorkshireTec.Modules
                         }
                     }
                 }
-
-                var model = GetBaseModel(viewModel);
-                model.Page.Title = "Log In";
+                else
+                {
+                    model.Page.AddErrors(result);
+                }
+                model.Page.AddError("Log in attempt failed", "");
                 return Negotiate.WithModel(model).WithView("LogIn");
             };
         }
