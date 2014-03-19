@@ -1,7 +1,7 @@
 ﻿@{
     Layout = "Shared/_Layout.cshtml";
 }
-@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<YorkshireTec.ViewModels.Home.LandingPageViewModel>
+@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<YorkshireTec.ViewModels.BaseViewModel<YorkshireTec.ViewModels.Home.LandingPageViewModel>>
 
     <section class="opaque blurb">
         <div class="ui grid">
@@ -19,7 +19,7 @@
         <div class="ui grid">
             <div class="eight wide column center_div" id="tweet_container">
                 <h2><a href="https://twitter.com/YorkshireTec" title="YorkshireTec on Twitter"><i class="twitter icon"></i></a></h2>
-                @foreach (var tweet in @Model.Tweets)
+                @foreach (var tweet in @Model.ViewModel.Tweets)
                 {
                     <h3>@tweet</h3>
                     <div class="ui horizontal icon divider">

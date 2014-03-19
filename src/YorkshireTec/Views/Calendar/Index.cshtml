@@ -1,7 +1,7 @@
 ﻿@{
     Layout = "Shared/_Layout.cshtml";
 }
-@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<YorkshireTec.ViewModels.Calendar.CalendarIndexViewModel>
+@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<YorkshireTec.ViewModels.BaseViewModel<YorkshireTec.ViewModels.Calendar.CalendarIndexViewModel>>
 @section Styles
 {
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/1.6.4/fullcalendar.css" type="text/css" />
@@ -64,7 +64,7 @@
             <div class="event-container">
                 <div id="calendar" class="ui feed segment"></div>
                 <div id="list" class="hidden">
-                    @foreach (var Event in Model.Events)
+                    @foreach (var Event in Model.ViewModel.Events)
                     {
                         <div class="ui feed segment">
                             <div class="event">

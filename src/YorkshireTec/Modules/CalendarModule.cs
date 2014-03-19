@@ -4,7 +4,7 @@ namespace YorkshireTec.Modules
     using Nancy;
     using YorkshireTec.ViewModels.Calendar;
 
-    public class CalendarModule : NancyModule
+    public class CalendarModule : BaseModule
     {
         public CalendarModule()
             : base("calendar")
@@ -12,10 +12,13 @@ namespace YorkshireTec.Modules
             const string calendarId = "info%40yorkshiretec.com";
             Get["/"] = _ =>
             {
+
                 var feed = XDocument.Load(string.Format("https://www.google.com/calendar/feeds/{0}/public/basic", calendarId));
 
-                var model = new CalendarIndexViewModel();
-                model.LoadFromAtomFeed(feed);
+                var viewModel = new CalendarIndexViewModel();
+                viewModel.LoadFromAtomFeed(feed);
+                var model = GetBaseModel(viewModel);
+                model.Page.Title = "Calendar";
 
                 return Negotiate.WithModel(model).WithView("Index");
             };

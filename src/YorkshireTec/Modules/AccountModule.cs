@@ -10,38 +10,41 @@ namespace YorkshireTec.Modules
     using YorkshireTec.Raven.Repositories;
     using YorkshireTec.ViewModels.Account;
 
-    public class AccountModule : NancyModule
+    public class AccountModule : BaseModule
     {
         public AccountModule(IDocumentSession documentSession)
             : base("account")
         {
             Get["/log-in"] = _ =>
             {
-                return Negotiate.WithModel(new AccountLogInViewModel()).WithView("LogIn");
+                var model = GetBaseModel(new AccountLogInViewModel());
+                model.Page.Title = "Log In";
+                return Negotiate.WithModel(model).WithView("LogIn");
             };
 
             Post["/log-in"] = _ =>
             {
-                var model = this.Bind<AccountLogInViewModel>();
-                var result = this.Validate(model);
+                var viewModel = this.Bind<AccountLogInViewModel>();
+                var result = this.Validate(viewModel);
 
                 if (result.IsValid)
                 {
                     var userRepository = new UserRepository(documentSession);
 
-                    var user = userRepository.GetUser(model.Username);
+                    var user = userRepository.GetUser(viewModel.Username);
 
                     if (user != null)
                     {
-                        if (Crypto.VerifyHashedPassword(user.Password, model.Password))
+                        if (Crypto.VerifyHashedPassword(user.Password, viewModel.Password))
                         {
-                            var expiry = model.RememberMe ? DateTime.Now.AddDays(7) : (DateTime?)null;
+                            var expiry = viewModel.RememberMe ? DateTime.Now.AddDays(7) : (DateTime?)null;
                             return this.LoginAndRedirect(user.Id, expiry, "~/");
                         }
                     }
                 }
 
-                model.Username = "FAIL";
+                var model = GetBaseModel(viewModel);
+                model.Page.Title = "Log In";
                 return Negotiate.WithModel(model).WithView("LogIn");
             };
         }

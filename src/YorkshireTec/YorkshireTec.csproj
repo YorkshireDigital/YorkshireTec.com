@@ -141,14 +141,19 @@
   <ItemGroup>
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="Modules\AccountModule.cs" />
+    <Compile Include="Modules\BaseModule.cs" />
     <Compile Include="Modules\CalendarModule.cs" />
     <Compile Include="Modules\HomeModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\Account\AccountLogInViewModel.cs" />
+    <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\Calendar\CalendarIndexViewModel.cs" />
     <Compile Include="ViewModels\Calendar\CalendarEventViewModel.cs" />
     <Compile Include="ViewModels\Home\LandingPageViewModel.cs" />
+    <Compile Include="ViewModels\NotificationModel.cs" />
+    <Compile Include="ViewModels\NotificationType.cs" />
+    <Compile Include="ViewModels\PageModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\YorkshireTec.Raven\YorkshireTec.Raven.csproj">
