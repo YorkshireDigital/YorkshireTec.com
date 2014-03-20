@@ -13,6 +13,16 @@
             this.documentSession = documentSession;
         }
 
+        public bool UsernameAvailable(string username)
+        {
+            return !documentSession.Query<User>().Any(x => x.Username == username);
+        }
+
+        public bool EmailAlreadyRegistered(string email)
+        {
+            return documentSession.Query<User>().Any(x => x.Email == email);
+        }
+
         public User GetUser(string username)
         {
             return documentSession.Query<User>().FirstOrDefault(x => x.Username == username);
@@ -23,10 +33,12 @@
             return documentSession.Query<User>().FirstOrDefault(x => x.Providers.Any(p => p.Name == providerName && p.Username == username));
         }
 
-        public void AddUser(User user)
+        public User AddUser(User user)
         {
             documentSession.Store(user);
             documentSession.SaveChanges();
+
+            return user;
         }
 
         public void LinkIdentity(Provider provider, User user)

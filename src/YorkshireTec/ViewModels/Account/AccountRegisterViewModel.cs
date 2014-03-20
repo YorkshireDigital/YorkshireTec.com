@@ -1,6 +1,8 @@
 ﻿namespace YorkshireTec.ViewModels.Account
 {
+    using System.Web.Helpers;
     using FluentValidation;
+    using YorkshireTec.Raven.Domain.Account;
 
     public class AccountRegisterViewModel
     {
@@ -10,6 +12,20 @@
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
+
+        public User ToUser()
+        {
+            return new User
+            {
+                Username = Username,
+                Password = Crypto.HashPassword(Password),
+                Email = Email,
+                IsAdmin = false,
+                IsAuthenticated = false,
+                FirstName = FirstName,
+                LastName = LastName
+            };
+        }
     }
 
     public class AccountRegisterViewModelValidator : AbstractValidator<AccountRegisterViewModel>
