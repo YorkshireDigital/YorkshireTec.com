@@ -64,7 +64,9 @@
                 ]
             });
             $('.ui.checkbox').checkbox();
-            $('.ui.error').focus();
+            if ($('.ui.error').length > 0) {
+                $(window).scrollTop($('.ui.error').position().top);
+            }
         });
     </script>
     @if (!string.IsNullOrEmpty(Model.Page.Title))
