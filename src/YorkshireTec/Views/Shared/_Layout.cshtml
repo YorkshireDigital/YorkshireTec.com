@@ -14,8 +14,27 @@
 </head>
 <body>
     <div class="container"></div>
+    <nav class="ui menu fixed teal" id="menu">
+        <a href="~/" class="item">Home</a>
+        <a href="~/calendar" class="item">Calendar</a>
+        @if (Model.Page.IsAuthenticated)
+        {
+            <span class="right floated text">
+                Signed in as <a href="/account" class="item">@Model.Page.FriendlyName</a>
+            </span>
+        }
+        else
+        {
+            <span class="right floated text item">
+                <a href="~/account/log-in">Log In</a>
+            </span>
+            <span class="right floated text item">
+                <a href="~/account/register">Register</a>
+            </span>
+        }
+    </nav>
     <header>
-        <h1><a href="/" title="YorkshireTec">Yorkshire<span>Tec</span></a></h1>
+        <h1><a href="/" title="YorkshireTec">Yorkshire<span>Digital</span></a></h1>
     </header>
     @RenderBody()
     <footer>
@@ -42,9 +61,19 @@
                 ]
             });
             $('.ui.checkbox').checkbox();
-        });
 
+
+        });
     </script>
+    @if (!string.IsNullOrEmpty(Model.Page.Title))
+    {
+        <script type="text/javascript">
+            $(function() {
+                $('#menu .item:contains(@Model.Page.Title)').addClass('active');
+            });
+        </script>
+    }
+
     @RenderSection("Scripts", false)
 </body>
 </html>

@@ -32,8 +32,9 @@ h3 {
 /* Header */
 
 header {
+    padding-top: 20px;
     margin: 0;
-    line-height: 600px;
+    line-height: 300px;
 }
 
     header h1 {
