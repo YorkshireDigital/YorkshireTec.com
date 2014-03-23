@@ -41,7 +41,7 @@ namespace YorkshireTec.Modules
                         if (Crypto.VerifyHashedPassword(user.Password, viewModel.Password))
                         {
                             var expiry = viewModel.RememberMe ? DateTime.Now.AddDays(7) : (DateTime?)null;
-                            return this.LoginAndRedirect(user.Id, expiry, "~/");
+                            return this.LoginAndRedirect(user.Id, expiry);
                         }
                     }
                 }

@@ -130,6 +130,8 @@
   <ItemGroup>
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="Infrastructure\HtmlExtensions.cs" />
+    <Compile Include="Infrastructure\UserIdentity.cs" />
+    <Compile Include="Infrastructure\UserMapper.cs" />
     <Compile Include="Modules\AccountModule.cs" />
     <Compile Include="Modules\BaseModule.cs" />
     <Compile Include="Modules\CalendarModule.cs" />

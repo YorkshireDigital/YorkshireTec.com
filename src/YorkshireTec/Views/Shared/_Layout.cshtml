@@ -19,8 +19,8 @@
         <a href="~/calendar" class="item">Calendar</a>
         @if (Model.Page.IsAuthenticated)
         {
-            <span class="right floated text">
-                Signed in as <a href="/account" class="item">@Model.Page.FriendlyName</a>
+            <span class="right floated text item">
+                <a href="/account" >@Model.Page.FriendlyName</a>
             </span>
         }
         else
@@ -61,8 +61,7 @@
                 ]
             });
             $('.ui.checkbox').checkbox();
-
-
+            $('.ui.error').focus();
         });
     </script>
     @if (!string.IsNullOrEmpty(Model.Page.Title))

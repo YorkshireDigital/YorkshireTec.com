@@ -17,5 +17,25 @@
         public string Picture { get; set; }
         public IList<Provider> Providers { get; set; }
         public bool IsAuthenticated { get; set; }
+
+        public string FriendlyName
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(FirstName) && string.IsNullOrEmpty(LastName))
+                {
+                    return Username;
+                }
+                if (string.IsNullOrEmpty(LastName))
+                {
+                    return FirstName;
+                }
+                if (string.IsNullOrEmpty(FirstName))
+                {
+                    return LastName;
+                }
+                return string.Format("{0} {1}", FirstName, LastName);
+            }
+        }
     }
 }

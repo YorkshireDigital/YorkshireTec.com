@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using Nancy;
+    using YorkshireTec.Infrastructure;
     using YorkshireTec.ViewModels;
 
     public class BaseModule : NancyModule
@@ -17,9 +18,8 @@
             {
                 IsAuthenticated = Context.CurrentUser != null,
                 TitleSuffix = "YorkshireTec",
-                //FriendlyName = context.CurrentUser != null ? ((UserIdentity)context.CurrentUser).FriendlyName : "",
-                //CurrentUser = context.CurrentUser != null ? ((UserIdentity)context.CurrentUser).UserId : "",
-                //ImageUrl = context.CurrentUser != null ? ((UserIdentity)context.CurrentUser).ImageUrl : "",
+                FriendlyName = Context.CurrentUser != null ? ((UserIdentity)Context.CurrentUser).FriendlyName : "",
+                CurrentUser = Context.CurrentUser != null ? ((UserIdentity)Context.CurrentUser).UserId : "",
                 Notifications = new List<NotificationModel>()
             };
 
