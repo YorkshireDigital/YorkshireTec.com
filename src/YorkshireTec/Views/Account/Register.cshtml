@@ -121,26 +121,15 @@
                                     @Html.ValidationMessageFor(Model.Page.Notifications, "ConfirmPassword")
                                 </div>
                                 <div class="field">
-                                    <label>First Name</label>
+                                    <label>Name</label>
                                     <div class="ui left labeled icon input">
-                                        <input type="text" placeholder="Genghis" name="firstName" value="@Model.ViewModel.FirstName">
+                                        <input type="text" placeholder="Joe Bloggs" name="name" value="@Model.ViewModel.Name">
                                         <i class="user icon"></i>
                                         <div class="ui corner label">
                                             <i class="icon asterisk"></i>
                                         </div>
                                     </div>
-                                    @Html.ValidationMessageFor(Model.Page.Notifications, "FirstName")
-                                </div>
-                                <div class="field">
-                                    <label>Last Name</label>
-                                    <div class="ui left labeled icon input">
-                                        <input type="text" placeholder="Khan" name="lastName" value="@Model.ViewModel.LastName">
-                                        <i class="user icon"></i>
-                                        <div class="ui corner label">
-                                            <i class="icon asterisk"></i>
-                                        </div>
-                                    </div>
-                                    @Html.ValidationMessageFor(Model.Page.Notifications, "LastName")
+                                    @Html.ValidationMessageFor(Model.Page.Notifications, "Name")
                                 </div>
                                 <div class="field">
                                     <label>Email</label>
@@ -161,19 +150,13 @@
                             <h3>Or register with one of these</h3>
                             <div class="ui list">
                                 <div class="item">
-                                    <div class="fluid ui facebook button">
-                                        Facebook
-                                    </div>
+                                    <a href="~/authentication/redirect/facebook" title="Facebook" class="fluid ui facebook button">Facebook</a>
                                 </div>
                                 <div class="item">
-                                    <div class="fluid ui twitter button">
-                                        Twitter
-                                    </div>
+                                    <a href="~/authentication/redirect/twitter" title="Twitter" class="fluid ui twitter button">Twitter</a>
                                 </div>
                                 <div class="item">
-                                    <div class="fluid ui google plus button">
-                                        Google Plus
-                                    </div>
+                                    <a href="~/authentication/redirect/google" title="Google Plus" class="fluid ui google plus button">Google Plus</a>
                                 </div>
                             </div>
                         </div>

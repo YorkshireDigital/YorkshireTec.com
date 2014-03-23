@@ -42,6 +42,12 @@
     <Reference Include="Raven.Database">
       <HintPath>..\packages\RavenDB.Database.2.5.2851\lib\net45\Raven.Database.dll</HintPath>
     </Reference>
+    <Reference Include="RestSharp">
+      <HintPath>..\packages\RestSharp.104.1\lib\net4\RestSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="SimpleAuthentication.Core">
+      <HintPath>..\packages\SimpleAuthentication.Core.0.3.9\lib\net40\SimpleAuthentication.Core.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />

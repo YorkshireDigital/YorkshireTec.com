@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using SimpleAuthentication.Core;
 
     public class User
     {
@@ -9,33 +10,35 @@
         public bool IsAdmin { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
+        public string Name { get; set; }
         public string Email { get; set; }
-        public string Gender { get; set; }
+        public GenderType Gender { get; set; }
         public string Locale { get; set; }
         public string Picture { get; set; }
         public IList<Provider> Providers { get; set; }
         public bool IsAuthenticated { get; set; }
 
-        public string FriendlyName
+        public User()
         {
-            get
+            Providers = new List<Provider>();
+        }
+
+        public static User FromAuthenticatedClient(IAuthenticatedClient authenticatedClient)
+        {
+            var newUser = new User
             {
-                if (string.IsNullOrEmpty(FirstName) && string.IsNullOrEmpty(LastName))
-                {
-                    return Username;
-                }
-                if (string.IsNullOrEmpty(LastName))
-                {
-                    return FirstName;
-                }
-                if (string.IsNullOrEmpty(FirstName))
-                {
-                    return LastName;
-                }
-                return string.Format("{0} {1}", FirstName, LastName);
-            }
+                Username = authenticatedClient.UserInformation.UserName,
+                Name = authenticatedClient.UserInformation.Name,
+                Email = authenticatedClient.UserInformation.Email,
+                Gender = GenderTypeHelpers.ToGenderType(authenticatedClient.UserInformation.Gender.ToString()),
+                Locale = authenticatedClient.UserInformation.Locale,
+                Picture = authenticatedClient.UserInformation.Picture,
+                IsAuthenticated = true
+            };
+            var accessToken = Provider.FromAuthenticatedClient(authenticatedClient);
+            newUser.Providers.Add(accessToken);
+
+            return newUser;
         }
     }
 }

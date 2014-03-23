@@ -52,7 +52,7 @@
         public void GetUser_ReturnsCorrectUser()
         {
             // Arrange
-            var user = new User { Username = "UnitTest", FirstName = "Unit", LastName = "Test", Email = "existing@email.com" };
+            var user = new User { Username = "UnitTest", Name = "Unit Test", Email = "existing@email.com" };
             DocumentSession.Store(user);
             DocumentSession.SaveChanges();
 
@@ -61,8 +61,7 @@
 
             // Assert
             result.Email.ShouldAllBeEquivalentTo(user.Email);
-            result.FirstName.ShouldAllBeEquivalentTo(user.FirstName);
-            result.LastName.ShouldAllBeEquivalentTo(user.LastName);
+            result.Name.ShouldAllBeEquivalentTo(user.Name);
             result.Username.ShouldAllBeEquivalentTo(user.Username);
         }
 
