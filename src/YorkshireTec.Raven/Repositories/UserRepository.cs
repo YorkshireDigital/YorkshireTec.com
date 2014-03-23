@@ -25,7 +25,7 @@
 
         public User GetUser(string username)
         {
-            return documentSession.Query<User>().FirstOrDefault(x => x.Username == username);
+            return documentSession.Query<User>().FirstOrDefault(x => x.Username == username || x.Email == username);
         }
 
         public User GetUserByIdentity(string providerName, string username)
