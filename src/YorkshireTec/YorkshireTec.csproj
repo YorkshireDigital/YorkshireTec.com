@@ -47,8 +47,12 @@
       <HintPath>..\packages\TweetSharp-Unofficial.2.3.1.2\lib\4.0\Hammock.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Microsoft.Owin">
+    <Reference Include="Microsoft.Owin, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.Owin.2.1.0\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.2.1.0\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
     </Reference>
     <Reference Include="Nancy">
       <HintPath>..\packages\Nancy.0.22.2\lib\net40\Nancy.dll</HintPath>
@@ -56,7 +60,8 @@
     <Reference Include="Nancy.Authentication.Forms">
       <HintPath>..\packages\Nancy.Authentication.Forms.0.22.2\lib\net40\Nancy.Authentication.Forms.dll</HintPath>
     </Reference>
-    <Reference Include="Nancy.Owin">
+    <Reference Include="Nancy.Owin, Version=0.22.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Nancy.Owin.0.22.2\lib\net40\Nancy.Owin.dll</HintPath>
     </Reference>
     <Reference Include="Nancy.ViewEngines.Razor, Version=0.22.2.0, Culture=neutral, processorArchitecture=MSIL">
