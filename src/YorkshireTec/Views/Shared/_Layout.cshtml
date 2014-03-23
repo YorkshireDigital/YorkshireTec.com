@@ -65,7 +65,7 @@
             });
             $('.ui.checkbox').checkbox();
             if ($('.ui.error').length > 0) {
-                $(window).scrollTop($('.ui.error').position().top);
+                $(window).scrollTop($('.ui.error').prev().position().top);
             }
         });
     </script>

@@ -1,5 +1,6 @@
 ﻿namespace YorkshireTec.ViewModels.Account
 {
+    using System.Text.RegularExpressions;
     using System.Web.Helpers;
     using FluentValidation;
     using YorkshireTec.Raven.Domain.Account;
@@ -33,6 +34,7 @@
         public AccountRegisterViewModelValidator()
         {
             RuleFor(x => x.Username).NotEmpty();
+            RuleFor(x => x.Username).Matches("^[a-z0-9]+$", RegexOptions.IgnoreCase).WithMessage("Username may only contain numbers and letters");
             RuleFor(x => x.Password).NotEmpty();
             RuleFor(x => x.Password.Length).GreaterThan(5);
             RuleFor(x => x.ConfirmPassword).Equal(x => x.Password);
