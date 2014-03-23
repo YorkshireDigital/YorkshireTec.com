@@ -53,6 +53,8 @@ namespace YorkshireTec.Modules
                 return Negotiate.WithModel(model).WithView("LogIn");
             };
 
+            Get["/log-out"] = _ => this.LogoutAndRedirect("~/");
+
             Get["/register"] = _ =>
             {
                 var model = GetBaseModel(new AccountRegisterViewModel());

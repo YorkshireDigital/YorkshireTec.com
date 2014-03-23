@@ -20,6 +20,9 @@
         @if (Model.Page.IsAuthenticated)
         {
             <span class="right floated text item">
+                <a href="/account/log-out" >Log Out</a>
+            </span>
+            <span class="right floated text item">
                 <a href="/account" >@Model.Page.FriendlyName</a>
             </span>
         }
