@@ -2,6 +2,7 @@ using Nancy;
 
 namespace YorkshireTec
 {
+    using System.Configuration;
     using global::Raven.Client;
     using Nancy.Authentication.Forms;
     using Nancy.Cryptography;
@@ -18,9 +19,17 @@ namespace YorkshireTec
         {
             base.ConfigureApplicationContainer(container);
 
-            var store = RavenSessionProvider.DocumentStore;
+            if (bool.Parse(ConfigurationManager.AppSettings["Raven_UseEmbedded"]))
+            {
+                var store = RavenSessionProvider.EmbeddableDocumentStore;
+                container.Register<IDocumentStore>(store);
+            }
+            else
+            {
+                var store = RavenSessionProvider.DocumentStore;
+                container.Register<IDocumentStore>(store);
+            }
 
-            container.Register<IDocumentStore>(store);
         }
 
         protected override void ConfigureRequestContainer(TinyIoCContainer container, NancyContext context)
