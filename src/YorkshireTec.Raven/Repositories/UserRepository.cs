@@ -1,5 +1,6 @@
 ﻿namespace YorkshireTec.Raven.Repositories
 {
+    using System;
     using System.Linq;
     using global::Raven.Client;
     using YorkshireTec.Raven.Domain.Account;
@@ -43,7 +44,19 @@
 
         public void LinkIdentity(Provider provider, User user)
         {
-            user.Providers.Add(provider);
+            if (user.Providers.Any(x => x.Name == provider.Name))
+            {
+                var existing = user.Providers.FirstOrDefault(x => x.Name == provider.Name && x.Username == provider.Username);
+                if (existing != null && existing.Expired)
+                {
+                    user.Providers.Remove(existing);
+                    user.Providers.Add(provider);
+                }
+            }
+            else
+            {
+                user.Providers.Add(provider);
+            }
             documentSession.SaveChanges();
         }
     }

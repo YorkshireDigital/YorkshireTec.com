@@ -11,6 +11,11 @@
         public DateTime ExpiresOn { get; set; }
         public string Username { get; set; }
 
+        public bool Expired
+        {
+            get { return ExpiresOn != new DateTime() && ExpiresOn < DateTime.Now; }
+        }
+
         public static Provider FromAuthenticatedClient(IAuthenticatedClient authenticatedClient)
         {
             return new Provider
