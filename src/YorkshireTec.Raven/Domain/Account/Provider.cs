@@ -24,7 +24,7 @@
                 PublicToken = authenticatedClient.AccessToken.PublicToken,
                 SecretToken = authenticatedClient.AccessToken.SecretToken,
                 ExpiresOn = authenticatedClient.AccessToken.ExpiresOn,
-                Username = authenticatedClient.UserInformation.Name
+                Username = authenticatedClient.UserInformation.UserName
             };
         }
     }
