@@ -6,12 +6,18 @@ namespace YorkshireTec
     using global::Raven.Client;
     using Nancy.Authentication.Forms;
     using Nancy.Cryptography;
+    using Nancy.Diagnostics;
     using Nancy.TinyIoc;
     using YorkshireTec.Infrastructure;
     using YorkshireTec.Raven;
 
     public class Bootstrapper : DefaultNancyBootstrapper
     {
+        protected override DiagnosticsConfiguration DiagnosticsConfiguration
+        {
+            get { return new DiagnosticsConfiguration { Password = ConfigurationManager.AppSettings["Nancy_Diagnostics"] }; }
+        }
+
         // The bootstrapper enables you to reconfigure the composition of the framework,
         // by overriding the various methods and properties.
         // For more information https://github.com/NancyFx/Nancy/wiki/Bootstrapper
