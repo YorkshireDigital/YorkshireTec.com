@@ -1,4 +1,4 @@
-﻿namespace YorkshireTec.ViewModels
+﻿namespace YorkshireTec.Infrastructure
 {
     using System.Collections.Generic;
     using Nancy.Validation;

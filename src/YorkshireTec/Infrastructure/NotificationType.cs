@@ -1,4 +1,4 @@
-﻿namespace YorkshireTec.ViewModels
+﻿namespace YorkshireTec.Infrastructure
 {
     public enum NotificationType
     {

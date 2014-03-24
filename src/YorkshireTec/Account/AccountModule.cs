@@ -1,4 +1,4 @@
-namespace YorkshireTec.Modules
+namespace YorkshireTec.Account
 {
     using System;
     using System.Web.Helpers;
@@ -7,8 +7,10 @@ namespace YorkshireTec.Modules
     using Nancy.Authentication.Forms;
     using Nancy.ModelBinding;
     using Nancy.Validation;
+    using YorkshireTec.Account.ViewModels;
+    using YorkshireTec.Infrastructure;
+    using YorkshireTec.Modules;
     using YorkshireTec.Raven.Repositories;
-    using YorkshireTec.ViewModels.Account;
 
     public class AccountModule : BaseModule
     {

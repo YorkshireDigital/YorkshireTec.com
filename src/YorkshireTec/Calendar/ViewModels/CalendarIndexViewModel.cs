@@ -1,4 +1,4 @@
-﻿namespace YorkshireTec.ViewModels.Calendar
+﻿namespace YorkshireTec.Calendar.ViewModels
 {
     using System.Collections.Generic;
     using System.Xml.Linq;

@@ -1,4 +1,4 @@
-﻿namespace YorkshireTec.ViewModels.Account
+﻿namespace YorkshireTec.Account.ViewModels
 {
     using FluentValidation;
 
