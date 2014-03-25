@@ -1,10 +1,12 @@
 ﻿using Microsoft.Owin;
-using Owin;
+using YorkshireTec.Infrastructure;
 
-[assembly: OwinStartup(typeof(YorkshireTec.Startup))]
+[assembly: OwinStartup(typeof(Startup))]
 
-namespace YorkshireTec
+namespace YorkshireTec.Infrastructure
 {
+    using Owin;
+
     public class Startup
     {
         public void Configuration(IAppBuilder app)

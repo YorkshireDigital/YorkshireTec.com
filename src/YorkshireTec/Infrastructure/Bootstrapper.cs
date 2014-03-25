@@ -1,14 +1,12 @@
-using Nancy;
-
-namespace YorkshireTec
+namespace YorkshireTec.Infrastructure
 {
     using System.Configuration;
     using global::Raven.Client;
+    using Nancy;
     using Nancy.Authentication.Forms;
     using Nancy.Cryptography;
     using Nancy.Diagnostics;
     using Nancy.TinyIoc;
-    using YorkshireTec.Infrastructure;
     using YorkshireTec.Raven;
 
     public class Bootstrapper : DefaultNancyBootstrapper
