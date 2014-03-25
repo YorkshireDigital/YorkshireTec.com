@@ -1,4 +1,4 @@
-﻿namespace YorkshireTec.ViewModels.Account
+﻿namespace YorkshireTec.Account.ViewModels
 {
     using System.Text.RegularExpressions;
     using System.Web.Helpers;

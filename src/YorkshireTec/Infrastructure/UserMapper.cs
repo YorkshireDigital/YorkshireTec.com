@@ -2,7 +2,6 @@
 
 namespace YorkshireTec.Infrastructure
 {
-    using System.Linq;
     using global::Raven.Client;
     using Nancy;
     using Nancy.Authentication.Forms;
