@@ -54,7 +54,7 @@ namespace YorkshireTec
         {
             base.RequestStartup(container, pipelines, context);
 
-            base.RequestStartup(container, pipelines, context);
+            StaticConfiguration.DisableErrorTraces = false;
 
             var cryptographyConfiguration = new CryptographyConfiguration(
                 new RijndaelEncryptionProvider(new PassphraseKeyGenerator("SuperSecretPass", new byte[] { 100, 111, 110, 116, 32, 109, 97, 107, 101, 32, 109, 101, 32, 108, 111, 103, 32, 105, 110, 32, 101, 97, 99, 104, 32, 116, 105, 109, 101, 32, 105, 32, 98, 117, 105, 108, 100, 33 })),
