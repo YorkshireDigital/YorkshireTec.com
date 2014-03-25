@@ -36,15 +36,7 @@ namespace YorkshireTec
                 container.Register<IDocumentStore>(store);
             }
 
-            Conventions.ViewLocationConventions.Add((viewName, model, context) =>
-            {
-                if (string.IsNullOrEmpty(context.ModulePath))
-                {
-                    return string.Concat("Home/Views/", viewName);
-                }
-                return string.Concat(context.ModulePath, "/Views/", viewName);
-            });
-
+            Conventions.ViewLocationConventions.Add((viewName, model, context) => string.Concat(context.ModuleName, "/Views/", viewName));
         }
 
         protected override void ConfigureRequestContainer(TinyIoCContainer container, NancyContext context)
