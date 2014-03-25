@@ -1,6 +1,7 @@
 ﻿@{
     Layout = "Shared/_Layout.cshtml";
 }
+@using Nancy.Helpers
 @inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<YorkshireTec.Infrastructure.BaseViewModel<YorkshireTec.Calendar.ViewModels.CalendarIndexViewModel>>
 @section Styles
 {
@@ -68,7 +69,7 @@
                                     </div>
                                     <div class="summary">
                                         <h4>@Event.Title</h4>
-                                        @Event.Summary
+                                        @Html.Raw(HttpUtility.HtmlDecode(@Event.Summary))
                                     </div>
                                 </div>
                             </div>
