@@ -1,8 +1,7 @@
-namespace YorkshireTec.Home
+namespace YorkshireTec.Modules
 {
     using System.Configuration;
-    using YorkshireTec.Home.ViewModels;
-    using YorkshireTec.Infrastructure;
+    using YorkshireTec.ViewModels.Home;
 
     public class HomeModule : BaseModule
     {

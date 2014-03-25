@@ -1,7 +1,9 @@
-﻿namespace YorkshireTec.Infrastructure
+﻿namespace YorkshireTec.Modules
 {
     using System.Collections.Generic;
     using Nancy;
+    using YorkshireTec.Infrastructure;
+    using YorkshireTec.ViewModels;
 
     public class BaseModule : NancyModule
     {

@@ -1,4 +1,4 @@
-﻿namespace YorkshireTec.Infrastructure
+﻿namespace YorkshireTec.ViewModels
 {
     public class BaseViewModel
     {

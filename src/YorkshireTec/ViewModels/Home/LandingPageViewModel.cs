@@ -1,4 +1,4 @@
-﻿namespace YorkshireTec.Home.ViewModels
+﻿namespace YorkshireTec.ViewModels.Home
 {
     using System.Collections.Generic;
     using TweetSharp;

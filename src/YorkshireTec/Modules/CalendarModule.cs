@@ -2,8 +2,7 @@ namespace YorkshireTec.Modules
 {
     using System.Xml.Linq;
     using Nancy;
-    using YorkshireTec.Calendar.ViewModels;
-    using YorkshireTec.Infrastructure;
+    using YorkshireTec.ViewModels.Calendar;
 
     public class CalendarModule : BaseModule
     {
