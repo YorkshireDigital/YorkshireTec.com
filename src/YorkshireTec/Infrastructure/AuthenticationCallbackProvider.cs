@@ -34,7 +34,7 @@
                 var userInfo = authenticatedClient.UserInformation;
                 var providerName = model.AuthenticatedClient.ProviderName;
 
-                var user = userRepository.GetUserByIdentity(providerName, userInfo.Id);
+                var user = userRepository.GetUserByIdentity(providerName, userInfo.UserName);
 
                 // User with that identity doesn't exist, check if a user is logged in
                 if (user == null)
