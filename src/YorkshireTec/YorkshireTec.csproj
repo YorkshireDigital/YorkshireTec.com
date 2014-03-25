@@ -129,6 +129,7 @@
     <Content Include="Account\Views\LogIn.cshtml" />
     <Content Include="Account\Views\Register.cshtml" />
     <Content Include="Account\Views\_Providers.cshtml" />
+    <Content Include="Account\Views\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -145,6 +146,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Account\ViewModels\AccountViewModel.cs" />
     <Compile Include="Infrastructure\Bootstrapper.cs" />
     <Compile Include="Infrastructure\AuthenticationCallbackProvider.cs" />
     <Compile Include="Infrastructure\HtmlExtensions.cs" />

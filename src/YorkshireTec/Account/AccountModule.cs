@@ -2,6 +2,7 @@ namespace YorkshireTec.Account
 {
     using System;
     using System.Web.Helpers;
+    using System.Web.UI;
     using global::Raven.Client;
     using Nancy;
     using Nancy.Authentication.Forms;
@@ -9,7 +10,6 @@ namespace YorkshireTec.Account
     using Nancy.Validation;
     using YorkshireTec.Account.ViewModels;
     using YorkshireTec.Infrastructure;
-    using YorkshireTec.Modules;
     using YorkshireTec.Raven.Repositories;
 
     public class AccountModule : BaseModule
@@ -17,6 +17,15 @@ namespace YorkshireTec.Account
         public AccountModule(IDocumentSession documentSession)
             : base("account")
         {
+            Get[""] = _ =>
+            {
+                var userRepository = new UserRepository(documentSession);
+                var model = GetBaseModel(new AccountViewModel());
+                var user = userRepository.GetUser(((UserIdentity)Context.CurrentUser).UserId);
+                model.Page.Title = "Account";
+                return Negotiate.WithModel(model).WithView("Index");
+            };
+
             Get["/log-in"] = _ =>
             {
                 var model = GetBaseModel(new AccountLogInViewModel());
