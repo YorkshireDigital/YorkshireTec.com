@@ -1,6 +1,7 @@
 namespace YorkshireTec.Infrastructure
 {
     using System.Configuration;
+    using System.Linq;
     using global::Raven.Client;
     using Nancy;
     using Nancy.Authentication.Forms;
@@ -35,6 +36,8 @@ namespace YorkshireTec.Infrastructure
             }
 
             Conventions.ViewLocationConventions.Add((viewName, model, context) => string.Concat(context.ModuleName, "/Views/", viewName));
+            Conventions.ViewLocationConventions.Add((viewName, model, context) => string.Concat(context.ModulePath, "/Views/", viewName));
+            Conventions.ViewLocationConventions.Add((viewName, model, context) => string.Concat(context.ModulePath.Split('/').First(), "/Views/", viewName));
         }
 
         protected override void ConfigureRequestContainer(TinyIoCContainer container, NancyContext context)

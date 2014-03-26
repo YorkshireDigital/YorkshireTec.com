@@ -146,13 +146,16 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Account\Modules\AccountLoginModule.cs" />
+    <Compile Include="Account\Modules\AccountLogOutModule.cs" />
+    <Compile Include="Account\Modules\AccountRegisterModule.cs" />
     <Compile Include="Account\ViewModels\AccountViewModel.cs" />
     <Compile Include="Infrastructure\Bootstrapper.cs" />
     <Compile Include="Infrastructure\AuthenticationCallbackProvider.cs" />
     <Compile Include="Infrastructure\HtmlExtensions.cs" />
     <Compile Include="Infrastructure\UserIdentity.cs" />
     <Compile Include="Infrastructure\UserMapper.cs" />
-    <Compile Include="Account\AccountModule.cs" />
+    <Compile Include="Account\Modules\AccountModule.cs" />
     <Compile Include="Infrastructure\BaseModule.cs" />
     <Compile Include="Calendar\CalendarModule.cs" />
     <Compile Include="Home\HomeModule.cs" />

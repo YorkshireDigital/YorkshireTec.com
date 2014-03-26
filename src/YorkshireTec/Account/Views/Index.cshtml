@@ -3,7 +3,7 @@
 }
 @using YorkshireTec.Infrastructure
 @inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<YorkshireTec.Infrastructure.BaseViewModel<YorkshireTec.Account.ViewModels.AccountViewModel>>
-              
+
 <section class="opaque blurb">
     <div class="ui grid">
         <div class="ten wide column center_div">
@@ -14,7 +14,7 @@
                         <label>Username</label>
                         <div class="ui left labeled icon input">
                             <input type="text" placeholder="Username" name="username" value="@Model.ViewModel.Username">
-                            <i class="user icon"></i>
+                            <i class="tag icon"></i>
                             <div class="ui corner label">
                                 <i class="icon asterisk"></i>
                             </div>
@@ -22,9 +22,13 @@
                         @Html.ValidationMessageFor(Model.Page.Notifications, "Username")
                     </div>
                     <div class="field">
-                        <label>Name</label>
+                        <label>Actual Name</label>
                         <div class="ui left labeled icon input">
                             <input type="text" placeholder="Name" name="name" value="@Model.ViewModel.Name">
+                            <i class="user icon"></i>
+                            <div class="ui corner label">
+                                <i class="icon asterisk"></i>
+                            </div>
                         </div>
                         @Html.ValidationMessageFor(Model.Page.Notifications, "Name")
                     </div>
@@ -32,31 +36,23 @@
                         <label>Email</label>
                         <div class="ui left labeled icon input">
                             <input type="text" placeholder="Email" name="email" value="@Model.ViewModel.Email">
-                            <i class="email icon"></i>
+                            <i class="mail icon"></i>
+                            <div class="ui corner label">
+                                <i class="icon asterisk"></i>
+                            </div>
                         </div>
                         @Html.ValidationMessageFor(Model.Page.Notifications, "Email")
                     </div>
                     <div class="field">
-                        <label>Gender</label>
-                        <div class="ui left labeled icon input">
-                            <input type="text" placeholder="Gender" name="gender" value="@Model.ViewModel.Gender">
-                        </div>
-                        @Html.ValidationMessageFor(Model.Page.Notifications, "Gender")
-                    </div>
-                    <div class="field">
-                        <label>Locale</label>
-                        <div class="ui left labeled icon input">
-                            <input type="text" placeholder="Locale" name="locale" value="@Model.ViewModel.Locale">
-                        </div>
-                        @Html.ValidationMessageFor(Model.Page.Notifications, "Locale")
-                    </div>
-                    <div class="field">
                         <label>Picture</label>
                         <div class="ui left labeled icon input">
-                            <img src="@Model.ViewModel.Picture" title="@Model.ViewModel.Username" width="300"/>
                             <input type="text" placeholder="Locale" name="locale" value="@Model.ViewModel.Picture">
+                            <i class="photo icon"></i>
                         </div>
                         @Html.ValidationMessageFor(Model.Page.Notifications, "Picture")
+                    </div>
+                    <div class="field">
+                        <img src="@Model.ViewModel.Picture" title="@Model.ViewModel.Username" />
                     </div>
                 </form>
             </div>
