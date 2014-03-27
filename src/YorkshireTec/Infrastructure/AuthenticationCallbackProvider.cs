@@ -41,7 +41,7 @@
                 if (loggedInUser != null)
                 {
                     // Has this account signed up before?
-                    if (user != null)
+                    if (user == null)
                     {
                         // No - Link the accounts
                         userRepository.LinkIdentity(Provider.FromAuthenticatedClient(authenticatedClient), loggedInUser);
