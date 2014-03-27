@@ -2,6 +2,8 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
+    using global::Raven.Abstractions.Extensions;
     using YorkshireTec.Raven.Domain.Account;
 
     public class AccountViewModel
@@ -12,7 +14,7 @@
         public string Name { get; set; }
         public string Email { get; set; }
         public string Picture { get; set; }
-        public IList<Provider> Providers { get; set; }
+        public ProviderListViewModel Providers { get; set; }
         public bool IsAuthenticated { get; set; }
 
         public AccountViewModel(User user)
@@ -23,7 +25,8 @@
             Name = user.Name;
             Email = user.Email;
             Picture = user.Picture;
-            Providers = user.Providers;
+            Providers = new ProviderListViewModel();
+            Providers.AddRange(user.Providers.Select(x => new ProviderViewModel(x)));
             IsAuthenticated = user.IsAuthenticated;
         }
     }

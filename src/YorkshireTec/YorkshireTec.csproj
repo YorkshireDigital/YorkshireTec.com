@@ -150,6 +150,8 @@
     <Compile Include="Account\Modules\AccountLogOutModule.cs" />
     <Compile Include="Account\Modules\AccountRegisterModule.cs" />
     <Compile Include="Account\ViewModels\AccountViewModel.cs" />
+    <Compile Include="Account\ViewModels\ProviderListViewModel.cs" />
+    <Compile Include="Account\ViewModels\ProviderViewModel.cs" />
     <Compile Include="Infrastructure\Bootstrapper.cs" />
     <Compile Include="Infrastructure\AuthenticationCallbackProvider.cs" />
     <Compile Include="Infrastructure\HtmlExtensions.cs" />
