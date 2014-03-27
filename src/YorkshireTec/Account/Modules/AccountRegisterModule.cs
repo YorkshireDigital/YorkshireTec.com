@@ -38,7 +38,7 @@
                         if (!userRepository.EmailAlreadyRegistered(viewModel.Email))
                         {
                             var user = userRepository.SaveUser(viewModel.ToUser());
-                            return this.LoginAndRedirect(user.Id, null, "~/");
+                            return this.LoginAndRedirect(user.Id, null, "~/account/welcome");
                         }
                         model.Page.AddError("This email is already registered", "Email");
                     }
