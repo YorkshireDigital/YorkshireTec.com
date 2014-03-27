@@ -16,13 +16,13 @@
 
         public bool UsernameAvailable(string username)
         {
-            return !documentSession.Query<User>().Any(x => x.Username != null && x.Username != username);
+            return !documentSession.Query<User>().Any(x => x.Username != null && x.Username == username);
         }
 
         public bool EmailAlreadyRegistered(string email)
         {
-            if (email == null) return false; 
-            return documentSession.Query<User>().Any(x => x.Email != null && x.Email != email);
+            if (email == null) return false;
+            return documentSession.Query<User>().Any(x => x.Email != null && x.Email == email);
         }
 
         public User GetUser(string username)
