@@ -34,7 +34,7 @@
             return documentSession.Query<User>().FirstOrDefault(x => x.Providers.Any(p => p.Name == providerName && p.Username == username));
         }
 
-        public User AddUser(User user)
+        public User SaveUser(User user)
         {
             documentSession.Store(user);
             documentSession.SaveChanges();
@@ -58,6 +58,11 @@
                 user.Providers.Add(provider);
             }
             documentSession.SaveChanges();
+        }
+
+        public User GetUserById(Guid id)
+        {
+            return documentSession.Load<User>(id);
         }
     }
 }

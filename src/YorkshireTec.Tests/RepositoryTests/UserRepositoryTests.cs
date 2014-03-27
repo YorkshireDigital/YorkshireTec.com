@@ -76,5 +76,44 @@
             // Assert
             result.Should().BeNull();
         }
+
+        [Test]
+        public void GetUserById_ReturnsCorrectUser()
+        {
+            // Arrange
+            var user = new User { Username = "UnitTest", Name = "Unit Test", Email = "existing@email.com" };
+            DocumentSession.Store(user);
+            DocumentSession.SaveChanges();
+
+            // Act
+            var result = userRepository.GetUserById(user.Id);
+
+            // Assert
+            result.Email.ShouldAllBeEquivalentTo(user.Email);
+            result.Name.ShouldAllBeEquivalentTo(user.Name);
+            result.Username.ShouldAllBeEquivalentTo(user.Username);
+        }
+
+
+
+        [Test]
+        public void UpdateUser_UpdatesTheUser()
+        {
+            // Arrange
+            var user = new User { Username = "UnitTest", Name = "Unit Test", Email = "existing@email.com" };
+            DocumentSession.Store(user);
+            DocumentSession.SaveChanges();
+            user.Username = "UnitTest2";
+            user.Name = "Jeff Test";
+            user.Email = "new@email.com";
+
+            // Act
+            var result = userRepository.SaveUser(user);
+
+            // Assert
+            result.Email.ShouldAllBeEquivalentTo(user.Email);
+            result.Name.ShouldAllBeEquivalentTo(user.Name);
+            result.Username.ShouldAllBeEquivalentTo(user.Username);
+        }
     }
 }

@@ -151,3 +151,8 @@ header a {
     #mc_embed_signup input {
         border-radius: 0;
     }
+
+/* Account */
+#profilePicture {
+    max-width: 200px;
+}

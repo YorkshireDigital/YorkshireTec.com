@@ -10,10 +10,11 @@
         <div class="ten wide column center_div">
             <div class="row">
                 <h2>Account Details</h2>
-                <div class="ui two column divided grid">
-                    <div class="row">
-                        <div class="column">
-                            <form method="POST" class="ui form segment">
+                <form method="POST" class="ui form segment">
+                    <div class="ui two column divided grid">
+                        <div class="row">
+                            <div class="column">
+                                <input type="hidden" name="Id" value="@Model.ViewModel.Id" />
                                 <div class="field">
                                     <label>Username</label>
                                     <div class="ui left labeled icon input">
@@ -50,53 +51,54 @@
                                 <div class="field">
                                     <label>Picture</label>
                                     <div class="ui left labeled icon input">
-                                        <input type="text" placeholder="Locale" name="locale" value="@Model.ViewModel.Picture">
+                                        <input type="text" placeholder="picture" name="picture" value="@Model.ViewModel.Picture">
                                         <i class="photo icon"></i>
                                     </div>
                                     @Html.ValidationMessageFor(Model.Page.Notifications, "Picture")
                                 </div>
                                 <div class="field">
-                                    <img src="@Model.ViewModel.Picture" title="@Model.ViewModel.Username" />
+                                    <img src="@Model.ViewModel.Picture" title="@Model.ViewModel.Username" id="profilePicture"/>
                                 </div>
-                            </form>
-                        </div>
-                        <div class="column">
-                            <h4>Linked Accounts</h4>
-                            <div class="ui list">
-                                @foreach (var provider in Model.ViewModel.Providers)
-                                {
-                                    <div class="item">
-                                        <span title="@provider.Name" class="fluid ui @provider.Name button">@@@provider.Username - @provider.Name</span>
-                                    </div>
-                                }
-                                @if (!Model.ViewModel.Providers.HasTwitter)
-{
-                                    <div class="item">
-                                        <a href="~/authentication/redirect/twitter" title="Twitter" class="fluid ui twitter button">Link to Twitter</a>
-                                    </div>
-                                }
-                                @if (!Model.ViewModel.Providers.HasFacebook)
-                                {
-                                    <div class="item">
-                                        <a href="~/authentication/redirect/facebook" title="Facebook" class="fluid ui facebook button">Link to Facebook</a>
-                                    </div>
-                                }
-                                @if (!Model.ViewModel.Providers.HasGoogle)
-                                {
-                                    <div class="item">
-                                        <a href="~/authentication/redirect/google" title="Google" class="fluid ui google plus button">Link to Google</a>
-                                    </div>
-                                }
-                                @if (!Model.ViewModel.Providers.HasLinkedIn)
-                                {
-                                    <div class="item">
-                                        <a href="~/authentication/redirect/linkedin" title="LinkedIn" class="fluid ui linkedin button">Link to LinkedIn</a>
-                                    </div>
-                                }
+                                <input type="submit" class="ui blue submit button" value="Update" />
+                            </div>
+                            <div class="column">
+                                <h4>Linked Accounts</h4>
+                                <div class="ui list">
+                                    @foreach (var provider in Model.ViewModel.Providers)
+                                    {
+                                        <div class="item">
+                                            <span title="@provider.Name" class="fluid ui @provider.Name button">@@@provider.Username - @provider.Name</span>
+                                        </div>
+                                    }
+                                    @if (!Model.ViewModel.Providers.HasTwitter)
+                                    {
+                                        <div class="item">
+                                            <a href="~/authentication/redirect/twitter" title="Twitter" class="fluid ui twitter button">Link to Twitter</a>
+                                        </div>
+                                    }
+                                    @if (!Model.ViewModel.Providers.HasFacebook)
+                                    {
+                                        <div class="item">
+                                            <a href="~/authentication/redirect/facebook" title="Facebook" class="fluid ui facebook button">Link to Facebook</a>
+                                        </div>
+                                    }
+                                    @if (!Model.ViewModel.Providers.HasGoogle)
+                                    {
+                                        <div class="item">
+                                            <a href="~/authentication/redirect/google" title="Google" class="fluid ui google plus button">Link to Google</a>
+                                        </div>
+                                    }
+                                    @if (!Model.ViewModel.Providers.HasLinkedIn)
+                                    {
+                                        <div class="item">
+                                            <a href="~/authentication/redirect/linkedin" title="LinkedIn" class="fluid ui linkedin button">Link to LinkedIn</a>
+                                        </div>
+                                    }
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
     </div>

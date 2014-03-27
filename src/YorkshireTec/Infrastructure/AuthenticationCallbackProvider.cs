@@ -63,7 +63,7 @@
                 }
                 // New user!! HOZZAAARRR!!!
                 // Register them
-                var newUser = userRepository.AddUser(User.FromAuthenticatedClient(authenticatedClient));
+                var newUser = userRepository.SaveUser(User.FromAuthenticatedClient(authenticatedClient));
                 // Log them in and forward them to the welcome page
                 return nancyModule.LoginAndRedirect(newUser.Id, null, "~/account/welcome");
             }
