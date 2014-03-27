@@ -35,20 +35,25 @@
                 var userInfo = authenticatedClient.UserInformation;
                 var providerName = model.AuthenticatedClient.ProviderName;
 
+                var user = userRepository.GetUserByIdentity(providerName, userInfo.UserName);
+
                 // Are they already logged in?
                 if (loggedInUser != null)
                 {
-                    // Link the accounts
-                    userRepository.LinkIdentity(Provider.FromAuthenticatedClient(authenticatedClient), loggedInUser);
-                    // Redirect to the account page
+                    // Has this account signed up before?
+                    if (user != null)
+                    {
+                        // No - Link the accounts
+                        userRepository.LinkIdentity(Provider.FromAuthenticatedClient(authenticatedClient), loggedInUser);
+                    }
+                    // Redirect back to the account page
                     return nancyModule.Response.AsRedirect("~/account");
                 }
-                // They aren't logged in
-                // Has this account signed up before?
-                var user = userRepository.GetUserByIdentity(providerName, userInfo.UserName);
+                // No one is logged in
+                // But already exist
                 if (user != null)
                 {
-                    // Log them in
+                    // Just log them in
                     return nancyModule.LoginAndRedirect(user.Id, null, returnUrl);
                 }
                 // We've not seen this user before!

@@ -27,12 +27,12 @@
         {
             var newUser = new User
             {
-                Username = authenticatedClient.UserInformation.UserName,
-                Name = authenticatedClient.UserInformation.Name,
-                Email = authenticatedClient.UserInformation.Email,
+                Username = authenticatedClient.UserInformation.UserName ?? string.Empty,
+                Name = authenticatedClient.UserInformation.Name ?? string.Empty,
+                Email = authenticatedClient.UserInformation.Email ?? string.Empty,
                 Gender = GenderTypeHelpers.ToGenderType(authenticatedClient.UserInformation.Gender.ToString()),
-                Locale = authenticatedClient.UserInformation.Locale,
-                Picture = authenticatedClient.UserInformation.Picture,
+                Locale = authenticatedClient.UserInformation.Locale ?? string.Empty,
+                Picture = authenticatedClient.UserInformation.Picture ?? string.Empty,
                 IsAuthenticated = true
             };
             var accessToken = Provider.FromAuthenticatedClient(authenticatedClient);

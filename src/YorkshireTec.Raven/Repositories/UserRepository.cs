@@ -16,18 +16,19 @@
 
         public bool UsernameAvailable(string username)
         {
-            return !documentSession.Query<User>().Any(x => String.Equals(x.Username, username, StringComparison.CurrentCultureIgnoreCase));
+            return !documentSession.Query<User>().Any(x => x.Username != null && x.Username != username);
         }
 
         public bool EmailAlreadyRegistered(string email)
         {
-            return documentSession.Query<User>().Any(x => String.Equals(x.Email, email, StringComparison.CurrentCultureIgnoreCase));
+            if (email == null) return false; 
+            return documentSession.Query<User>().Any(x => x.Email != null && x.Email != email);
         }
 
         public User GetUser(string username)
         {
-            return documentSession.Query<User>().FirstOrDefault(x => String.Equals(x.Username, username, StringComparison.CurrentCultureIgnoreCase) 
-                || String.Equals(x.Email, username, StringComparison.CurrentCultureIgnoreCase));
+            return documentSession.Query<User>().FirstOrDefault(x => x.Username != null && x.Username == username
+                || x.Email != null && x.Email == username);
         }
 
         public User GetUserByIdentity(string providerName, string username)
