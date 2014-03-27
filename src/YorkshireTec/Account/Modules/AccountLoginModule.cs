@@ -37,7 +37,7 @@
 
                     var user = userRepository.GetUser(viewModel.Username);
 
-                    if (user != null)
+                    if (user != null && user.Password != null)
                     {
                         if (Crypto.VerifyHashedPassword(user.Password, viewModel.Password))
                         {
