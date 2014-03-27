@@ -4,7 +4,6 @@
     using global::Raven.Client.Document;
     using global::Raven.Tests.Helpers;
     using NUnit.Framework;
-    using YorkshireTec.Raven;
 
     [TestFixture]
     public class BaseRavenFixture : RavenTestBase

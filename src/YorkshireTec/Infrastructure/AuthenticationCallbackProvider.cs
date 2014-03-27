@@ -1,11 +1,11 @@
 ﻿namespace YorkshireTec.Infrastructure
 {
+    using System.Text.RegularExpressions;
     using global::Raven.Client;
     using Nancy;
     using Nancy.Authentication.Forms;
     using Nancy.SimpleAuthentication;
     using System;
-    using SimpleAuthentication.Core.Exceptions;
     using YorkshireTec.Raven;
     using YorkshireTec.Raven.Domain.Account;
     using YorkshireTec.Raven.Repositories;
@@ -23,6 +23,7 @@
         public dynamic Process(NancyModule nancyModule, AuthenticateCallbackData model)
         {
             User loggedInUser = null;
+            var returnUrl = GetReturnUrl(model.ReturnUrl);
 
             if (nancyModule.Context.CurrentUser != null)
             {
@@ -34,57 +35,54 @@
                 var userInfo = authenticatedClient.UserInformation;
                 var providerName = model.AuthenticatedClient.ProviderName;
 
+                // Are they already logged in?
+                if (loggedInUser != null)
+                {
+                    // Link the accounts
+                    userRepository.LinkIdentity(Provider.FromAuthenticatedClient(authenticatedClient), loggedInUser);
+                    // Redirect to the account page
+                    return nancyModule.Response.AsRedirect("~/account");
+                }
+                // They aren't logged in
+                // Has this account signed up before?
                 var user = userRepository.GetUserByIdentity(providerName, userInfo.UserName);
-
-                // User with that identity doesn't exist, check if a user is logged in
-                if (user == null)
+                if (user != null)
                 {
-                    if (loggedInUser != null)
-                    {
-                        // User is logged in so link the Identity
-                        userRepository.LinkIdentity(Provider.FromAuthenticatedClient(authenticatedClient), loggedInUser);
-                        // As the user is already logged in then they must be on the accounts page
-                        return nancyModule.Response.AsRedirect("~/account/#identityProviders");
-                    }
-                    // No user is logged - check if they have registered before
-                    if (userRepository.EmailAlreadyRegistered(userInfo.Email))
-                    {
-                        // This email has been registered before so link to that account
-                        var existingUser = userRepository.GetUser(userInfo.Email);
-                        userRepository.LinkIdentity(Provider.FromAuthenticatedClient(authenticatedClient), existingUser);
-                        // Log the existing user in
-                        return nancyModule.LoginAndRedirect(existingUser.Id, null, model.ReturnUrl);
-                    }
-                    // Email hasn't been registered so create a new user
-                    var newUser = userRepository.AddUser(User.FromAuthenticatedClient(authenticatedClient));
-                    // Log the new user in
-                    return nancyModule.LoginAndRedirect(newUser.Id, null, model.ReturnUrl);
+                    // Log them in
+                    return nancyModule.LoginAndRedirect(user.Id, null, returnUrl);
                 }
-                if (loggedInUser == null)
+                // We've not seen this user before!
+                // Has the email signed up with another account?
+                if (userRepository.EmailAlreadyRegistered(userInfo.Email))
                 {
-                    // This account has already been registered so just need to log them in
-                    return nancyModule.LoginAndRedirect(user.Id, null, model.ReturnUrl);
+                    // Link the accounts
+                    var existingUser = userRepository.GetUser(userInfo.Email);
+                    userRepository.LinkIdentity(Provider.FromAuthenticatedClient(authenticatedClient), existingUser);
+                    // Log them in
+                    return nancyModule.LoginAndRedirect(existingUser.Id, null, returnUrl);
                 }
-                if (user != loggedInUser)
-                {
-                    // This provider has already been registered to a different user account. Kick Off!
-                    throw new AuthenticationException("This provider is already linked to another user account");
-                }
+                // New user!! HOZZAAARRR!!!
+                // Register them
+                var newUser = userRepository.AddUser(User.FromAuthenticatedClient(authenticatedClient));
+                // Log them in and forward them to the welcome page
+                return nancyModule.LoginAndRedirect(newUser.Id, null, "~/account/welcome");
             }
-            return GetResponse(nancyModule, model);
+            return 500;
+        }
+
+        public static string GetReturnUrl(string uriString)
+        {
+            if (!Uri.IsWellFormedUriString(uriString, UriKind.Absolute))
+            {
+                return "~/";
+            }
+            var matches = Regex.Matches(new Uri(uriString).Query, "returnUrl=([^;]+)");
+            return matches.Count > 0 ? string.Format("~/{0}", matches[0].Groups[1].Value.TrimStart('/')) : "~/";
         }
 
         public dynamic OnRedirectToAuthenticationProviderError(NancyModule nancyModule, string errorMessage)
         {
             throw new NotImplementedException();
-        }
-
-        private static Response GetResponse(INancyModule nancyModule, AuthenticateCallbackData model)
-        {
-            var response = model.ReturnUrl != null
-                ? nancyModule.Response.AsRedirect("~" + model.ReturnUrl)
-                : nancyModule.Response.AsRedirect("~");
-            return response;
         }
 
         public IDocumentSession DocumentSessionProvider { get; set; }

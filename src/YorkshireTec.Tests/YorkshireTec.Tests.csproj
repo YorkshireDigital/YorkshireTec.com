@@ -58,6 +58,12 @@
     <Reference Include="Microsoft.WindowsAzure.Storage">
       <HintPath>..\packages\WindowsAzure.Storage.3.1.0.0\lib\net40\Microsoft.WindowsAzure.Storage.dll</HintPath>
     </Reference>
+    <Reference Include="Nancy">
+      <HintPath>..\packages\Nancy.0.22.2\lib\net40\Nancy.dll</HintPath>
+    </Reference>
+    <Reference Include="Nancy.SimpleAuthentication">
+      <HintPath>..\packages\Nancy.SimpleAuthentication.0.3.12\lib\net40\Nancy.SimpleAuthentication.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Newtonsoft.Json.6.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -87,6 +93,13 @@
     <Reference Include="Raven.Tests.Helpers">
       <HintPath>..\packages\RavenDB.Tests.Helpers.2.5.2851\lib\net45\Raven.Tests.Helpers.dll</HintPath>
     </Reference>
+    <Reference Include="RestSharp">
+      <HintPath>..\packages\RestSharp.104.1\lib\net4\RestSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="SimpleAuthentication.Core, Version=0.3.9.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\SimpleAuthentication.Core.0.3.9\lib\net40\SimpleAuthentication.Core.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Data" />
@@ -111,6 +124,7 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="InfrastructureTests\AuthenticationCallbackProviderTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RepositoryTests\BaseRavenFixture.cs" />
     <Compile Include="RepositoryTests\UserRepositoryTests.cs" />
@@ -123,6 +137,10 @@
     <ProjectReference Include="..\YorkshireTec.Raven\YorkshireTec.Raven.csproj">
       <Project>{9B66F70E-4E93-4D76-AA02-F871085C22B1}</Project>
       <Name>YorkshireTec.Raven</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\YorkshireTec\YorkshireTec.csproj">
+      <Project>{0C73D291-C0E7-4D7A-9942-16E8619A7B00}</Project>
+      <Name>YorkshireTec</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>
