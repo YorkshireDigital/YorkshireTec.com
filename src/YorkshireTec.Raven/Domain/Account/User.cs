@@ -16,7 +16,8 @@
         public string Locale { get; set; }
         public string Picture { get; set; }
         public IList<Provider> Providers { get; set; }
-        public bool IsAuthenticated { get; set; }
+        public bool Validated { get; set; }
+        public bool OnMailingList { get; set; }
 
         public User()
         {
@@ -33,7 +34,7 @@
                 Gender = GenderTypeHelpers.ToGenderType(authenticatedClient.UserInformation.Gender.ToString()),
                 Locale = authenticatedClient.UserInformation.Locale ?? string.Empty,
                 Picture = authenticatedClient.UserInformation.Picture ?? string.Empty,
-                IsAuthenticated = true
+                Validated = true
             };
             var accessToken = Provider.FromAuthenticatedClient(authenticatedClient);
             newUser.Providers.Add(accessToken);

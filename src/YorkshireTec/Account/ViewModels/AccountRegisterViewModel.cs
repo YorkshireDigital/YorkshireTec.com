@@ -21,7 +21,7 @@
                 Password = Crypto.HashPassword(Password),
                 Email = Email,
                 IsAdmin = false,
-                IsAuthenticated = false,
+                Validated = false,
                 Name = Name
             };
         }

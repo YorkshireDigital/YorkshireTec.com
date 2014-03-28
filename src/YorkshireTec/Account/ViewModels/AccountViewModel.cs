@@ -15,7 +15,7 @@
         public string Email { get; set; }
         public string Picture { get; set; }
         public ProviderListViewModel Providers { get; set; }
-        public bool IsAuthenticated { get; set; }
+        public bool Validated { get; set; }
 
         public AccountViewModel()
         {
@@ -31,7 +31,7 @@
             Picture = user.Picture;
             Providers = new ProviderListViewModel();
             Providers.AddRange(user.Providers.Select(x => new ProviderViewModel(x)));
-            IsAuthenticated = user.IsAuthenticated;
+            Validated = user.Validated;
         }
     }
 
