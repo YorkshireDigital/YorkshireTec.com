@@ -22,7 +22,7 @@ namespace YorkshireTec.Infrastructure
         {
             var userRecord = documentSession.Load<User>(identifier);
 
-            return userRecord == null ? null : new UserIdentity { UserName = userRecord.Username, FriendlyName = userRecord.Name, UserId = userRecord.Id.ToString() };
+            return userRecord == null ? null : new UserIdentity { UserName = userRecord.Username, FriendlyName = userRecord.Name, UserId = userRecord.Id.ToString(), Email = userRecord.Email};
         }
     }
 }

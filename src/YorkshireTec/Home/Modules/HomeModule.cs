@@ -1,6 +1,7 @@
-namespace YorkshireTec.Home
+namespace YorkshireTec.Home.Modules
 {
     using System.Configuration;
+    using Nancy;
     using YorkshireTec.Home.ViewModels;
     using YorkshireTec.Infrastructure;
 
@@ -11,17 +12,18 @@ namespace YorkshireTec.Home
             Get["/"] = _ =>
             {
                 
-                string consumerKey = ConfigurationManager.AppSettings["consumerKey"];
-                string consumerSecret = ConfigurationManager.AppSettings["consumerSecret"];
-                string accessToken = ConfigurationManager.AppSettings["accessToken"];
-                string accessTokenSecret = ConfigurationManager.AppSettings["accessTokenSecret"];
+                var consumerKey = ConfigurationManager.AppSettings["consumerKey"];
+                var consumerSecret = ConfigurationManager.AppSettings["consumerSecret"];
+                var accessToken = ConfigurationManager.AppSettings["accessToken"];
+                var accessTokenSecret = ConfigurationManager.AppSettings["accessTokenSecret"];
 
                 var viewModel = new LandingPageViewModel(consumerKey, consumerSecret, accessToken, accessTokenSecret);
                 var model = GetBaseModel(viewModel);
 
                 model.Page.Title = "Home";
-                return View["LandingPage", model];
+                return Negotiate.WithModel(model).WithView("LandingPage");
             };
+
             Get["/Logo"] = _ => View["Logo"];
         }
     }

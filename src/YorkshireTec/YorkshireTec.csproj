@@ -130,6 +130,7 @@
     <Content Include="Account\Views\Register.cshtml" />
     <Content Include="Account\Views\_Providers.cshtml" />
     <Content Include="Account\Views\Index.cshtml" />
+    <Content Include="Account\Views\Welcome.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -149,9 +150,11 @@
     <Compile Include="Account\Modules\AccountLoginModule.cs" />
     <Compile Include="Account\Modules\AccountLogOutModule.cs" />
     <Compile Include="Account\Modules\AccountRegisterModule.cs" />
+    <Compile Include="Account\Modules\WelcomeModule.cs" />
     <Compile Include="Account\ViewModels\AccountViewModel.cs" />
     <Compile Include="Account\ViewModels\ProviderListViewModel.cs" />
     <Compile Include="Account\ViewModels\ProviderViewModel.cs" />
+    <Compile Include="Account\ViewModels\WelcomeViewModel.cs" />
     <Compile Include="Infrastructure\Bootstrapper.cs" />
     <Compile Include="Infrastructure\AuthenticationCallbackProvider.cs" />
     <Compile Include="Infrastructure\HtmlExtensions.cs" />
@@ -160,7 +163,7 @@
     <Compile Include="Account\Modules\AccountModule.cs" />
     <Compile Include="Infrastructure\BaseModule.cs" />
     <Compile Include="Calendar\CalendarModule.cs" />
-    <Compile Include="Home\HomeModule.cs" />
+    <Compile Include="Home\Modules\HomeModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Infrastructure\Startup.cs" />
     <Compile Include="Account\ViewModels\AccountLogInViewModel.cs" />

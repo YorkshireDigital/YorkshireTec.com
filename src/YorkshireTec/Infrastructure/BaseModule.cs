@@ -18,6 +18,7 @@
                 TitleSuffix = "YorkshireTec",
                 FriendlyName = Context.CurrentUser != null ? ((UserIdentity)Context.CurrentUser).FriendlyName : "",
                 CurrentUser = Context.CurrentUser != null ? ((UserIdentity)Context.CurrentUser).UserId : "",
+                Email = Context.CurrentUser != null ? ((UserIdentity)Context.CurrentUser).Email : "",
                 Notifications = new List<NotificationModel>()
             };
 
