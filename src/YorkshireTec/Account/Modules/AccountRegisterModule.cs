@@ -7,6 +7,7 @@
     using Nancy.Validation;
     using YorkshireTec.Account.ViewModels;
     using YorkshireTec.Infrastructure;
+    using YorkshireTec.Infrastructure.Helpers;
     using YorkshireTec.Raven.Repositories;
 
     public class AccountRegisterModule : BaseModule
@@ -37,6 +38,10 @@
                     {
                         if (!userRepository.EmailAlreadyRegistered(viewModel.Email))
                         {
+                            if (viewModel.MailingList)
+                            {
+                                MailChimpHelper.AddSubscriber(viewModel.Email, viewModel.Name, string.Empty, string.Empty);
+                            }
                             var user = userRepository.SaveUser(viewModel.ToUser());
                             return this.LoginAndRedirect(user.Id, null, "~/account/welcome");
                         }

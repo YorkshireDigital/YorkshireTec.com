@@ -12,6 +12,7 @@
         public string ConfirmPassword { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
+        public bool MailingList { get; set; }
 
         public User ToUser()
         {
@@ -22,7 +23,8 @@
                 Email = Email,
                 IsAdmin = false,
                 Validated = false,
-                Name = Name
+                Name = Name,
+                OnMailingList = MailingList
             };
         }
     }

@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using SimpleAuthentication.Core;
 
     public class User
@@ -22,6 +23,17 @@
         public User()
         {
             Providers = new List<Provider>();
+        }
+
+        public string Twitter
+        {
+            get
+            {
+                return 
+                    Providers.Any(x => x.Name == "twitter")
+                        ? string.Format("@{0}",Providers.First(x => x.Name == "twitter").Username)
+                        : string.Empty;
+            }
         }
 
         public static User FromAuthenticatedClient(IAuthenticatedClient authenticatedClient)

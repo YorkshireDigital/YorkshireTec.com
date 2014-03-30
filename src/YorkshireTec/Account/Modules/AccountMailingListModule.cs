@@ -1,16 +1,16 @@
 ﻿namespace YorkshireTec.Account.Modules
 {
-    using System.Configuration;
-    using MailChimp;
-    using MailChimp.Helper;
+    using global::Raven.Client;
     using Nancy.ModelBinding;
     using Nancy.Validation;
     using YorkshireTec.Account.ViewModels;
     using YorkshireTec.Infrastructure;
+    using YorkshireTec.Infrastructure.Helpers;
+    using YorkshireTec.Raven.Repositories;
 
     public class AccountMailingListModule : BaseModule
     {
-        public AccountMailingListModule()
+        public AccountMailingListModule(IDocumentSession documentSession)
             : base("account/mailinglist")
         {
             Post["/"] = _ =>
@@ -20,12 +20,22 @@
 
                 if (result.IsValid)
                 {
-                    var mc = new MailChimpManager(ConfigurationManager.AppSettings["MailChimp_ApiKey"]);
-                    var email = new EmailParameter
+                    var userRepository = new UserRepository(documentSession);
+                    var user = userRepository.GetUserById(viewModel.UserId);
+
+                    user.Email = viewModel.Email;
+                    user.OnMailingList = viewModel.JoinMailingList;
+                    if (viewModel.JoinMailingList)
                     {
-                        Email = viewModel.Email
-                    };
-                    var results = mc.Subscribe(ConfigurationManager.AppSettings["MailChimp_ListId"], email);
+                        MailChimpHelper.AddSubscriber(user.Email, user.Name, user.Twitter, string.Empty);
+                    }
+                    else
+                    {
+                        MailChimpHelper.Unsubscribe(user.Email, user.Name, user.Twitter, string.Empty);
+                    }
+
+                    
+                    userRepository.SaveUser(user);
                 }
                 return 200;
             };
