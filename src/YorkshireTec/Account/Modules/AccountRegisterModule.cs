@@ -43,6 +43,8 @@
                                 MailChimpHelper.AddSubscriber(viewModel.Email, viewModel.Name, string.Empty, string.Empty);
                             }
                             var user = userRepository.SaveUser(viewModel.ToUser());
+                            var updateText = string.Format("{0} just signed up at {1}. Go {0}!", user.Name, Context.Request.Url.SiteBase);
+                            SlackHelper.PostToSlack(new SlackUpdate { channel = "#general", icon_emoji = ":metal:", username = "New User", text = updateText });
                             return this.LoginAndRedirect(user.Id, null, "~/account/welcome");
                         }
                         model.Page.AddError("This email is already registered", "Email");
