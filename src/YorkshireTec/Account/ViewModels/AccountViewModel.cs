@@ -16,6 +16,7 @@
         public string Picture { get; set; }
         public ProviderListViewModel Providers { get; set; }
         public bool Validated { get; set; }
+        public bool OnMailingList { get; set; }
 
         public AccountViewModel()
         {
@@ -32,6 +33,7 @@
             Providers = new ProviderListViewModel();
             Providers.AddRange(user.Providers.Select(x => new ProviderViewModel(x)));
             Validated = user.Validated;
+            OnMailingList = user.OnMailingList;
         }
     }
 

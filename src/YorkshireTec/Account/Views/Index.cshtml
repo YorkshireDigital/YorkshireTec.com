@@ -14,7 +14,7 @@
                     <div class="ui two column divided grid">
                         <div class="row">
                             <div class="column">
-                                <input type="hidden" name="Id" value="@Model.ViewModel.Id" />
+                                <input type="hidden" name="Id" id="Id" value="@Model.ViewModel.Id" />
                                 <div class="field">
                                     <label>Username</label>
                                     <div class="ui left labeled icon input">
@@ -40,7 +40,7 @@
                                 <div class="field">
                                     <label>Email</label>
                                     <div class="ui left labeled icon input">
-                                        <input type="text" placeholder="Email" name="email" value="@Model.ViewModel.Email">
+                                        <input type="text" placeholder="Email" id="email" name="email" value="@Model.ViewModel.Email">
                                         <i class="mail icon"></i>
                                         <div class="ui corner label">
                                             <i class="icon asterisk"></i>
@@ -57,9 +57,21 @@
                                     @Html.ValidationMessageFor(Model.Page.Notifications, "Picture")
                                 </div>
                                 <div class="field">
-                                    <img src="@Model.ViewModel.Picture" title="@Model.ViewModel.Username" id="profilePicture"/>
+                                    <img src="@Model.ViewModel.Picture" title="@Model.ViewModel.Username" id="profilePicture" />
                                 </div>
-                                <input type="submit" class="ui blue submit button" value="Update" />
+                                <div class="field">
+                                    <input type="submit" class="fluid ui teal submit button" value="Update" />
+                                </div>
+                                <div class="field" id="mailingList">
+                                    @if (Model.ViewModel.OnMailingList)
+                                    {
+                                        <a id="unsubscribe" class="fluid ui red submit button">Unsubscribe from mailing list</a>
+                                    }
+                                    else
+                                    {
+                                        <a id="subscribe" class="fluid ui teal submit button">Subscribe to mailing list</a>
+                                    }
+                                </div>
                             </div>
                             <div class="column">
                                 <h4>Linked Accounts</h4>
@@ -103,3 +115,44 @@
         </div>
     </div>
 </section>
+@section Scripts
+{
+    <script type="text/javascript">
+        $(function () {
+            function subscribeToMailingList(subscribe) {
+                $('form').addClass('loading');
+                var userId = $('#Id').val();
+                var email = $('#email').val();
+
+                var request = $.ajax({
+                    url: "account/mailinglist",
+                    type: "POST",
+                    data: { userId: userId, email: email, joinMailingList: subscribe },
+                    dataType: "html"
+                });
+
+                request.done(function () {
+                    $('form').removeClass('loading');
+                    if (subscribe) {
+                        $("#mailingList").html("<a id='unsubscribe' class='fluid ui red submit button'>Unsubscribe from mailing list</a>");
+                    } else {
+                        $("#mailingList").html("<a id='subscribe' class='fluid ui teal submit button'>Subscribe to mailing list</a>");
+                    }
+                });
+
+                request.fail(function () {
+                    $('form').removeClass('loading');
+                    $('#mailingList').append('<div class="ui error message show "><div class="ui list divided"><div class="item">Uh oh! Looks like there was a problem.</div></div></div>');
+                });
+            };
+            $(document).on('click', '#subscribe', function () {
+                $('#joinMailingList').addClass('loading');
+                subscribeToMailingList(true);
+            });
+            $(document).on('click', '#unsubscribe', function () {
+                $('#joinMailingList').addClass('loading');
+                subscribeToMailingList(false);
+            });
+        });
+    </script>
+}
