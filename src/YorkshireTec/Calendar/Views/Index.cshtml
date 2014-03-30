@@ -1,0 +1,82 @@
+﻿@{
+    Layout = "Shared/_Layout.cshtml";
+}
+@using Nancy.Helpers
+@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<YorkshireTec.Infrastructure.BaseViewModel<YorkshireTec.Calendar.ViewModels.CalendarIndexViewModel>>
+@section Styles
+{
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/1.6.4/fullcalendar.css" type="text/css" />
+}
+@section Scripts
+{
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/fullcalendar/1.6.4/fullcalendar.js"></script>
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/fullcalendar/1.6.4/gcal.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $.supersized({
+                slide_interval: 10000,
+                transition: 1,
+                transition_speed: 1800,
+                slide_links: 'blank',
+                slides: [
+                    { image: '../Content/Images/filter-hrd-leeds-skyline.jpg', title: 'Image Credit: Maria Kazvan', thumb: 'http://buildinternet.s3.amazonaws.com/projects/supersized/3.2/thumbs/kazvan-3.jpg' },
+                    { image: '../Content/Images/illuminating-york-15.jpg', title: 'Image Credit: Maria Kazvan', thumb: 'http://buildinternet.s3.amazonaws.com/projects/supersized/3.2/thumbs/kazvan-3.jpg' },
+                    { image: '../Content/Images/Sheffield-City-Centre.jpg', title: 'Image Credit: Maria Kazvan', thumb: 'http://buildinternet.s3.amazonaws.com/projects/supersized/3.2/thumbs/kazvan-3.jpg' }
+                ]
+            });
+            $(document).ready(function () {
+                $('#calendar').fullCalendar({
+                    events: 'https://www.google.com/calendar/feeds/info%40yorkshiretec.com/public/basic'
+                });
+            });
+            $(document).on('click', '#tabCalendar', function () {
+                $('#calendar').removeClass('hidden');
+                $('#list').addClass('hidden');
+                $('#tabCalendar').addClass('positive');
+                $('#tabList').removeClass('positive');
+            });
+            $(document).on('click', '#tabList', function () {
+                $('#calendar').addClass('hidden');
+                $('#list').removeClass('hidden');
+                $('#tabCalendar').removeClass('positive');
+                $('#tabList').addClass('positive');
+            });
+        });
+
+    </script>
+}
+
+<section class="opaque blurb">
+    <div class="ui grid">
+        <div class="ten wide column center_div" id="about">
+            <div class="ui buttons">
+                <div class="ui positive button" id="tabCalendar">Calendar</div>
+                <div class="ui button" id="tabList">List</div>
+            </div>
+            <div class="event-container">
+                <div id="calendar" class="ui feed segment"></div>
+                <div id="list" class="hidden">
+                    @foreach (var Event in Model.ViewModel.Events)
+                    {
+                        <div class="ui feed segment">
+                            <div class="event">
+                                <div class="label">
+                                    <img src="/images/event/avatar.jpg">
+                                </div>
+                                <div class="content">
+                                    <div class="date">
+                                        3 days ago
+                                    </div>
+                                    <div class="summary">
+                                        <h4>@Event.Title</h4>
+                                        @Html.Raw(HttpUtility.HtmlDecode(@Event.Summary))
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
