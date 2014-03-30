@@ -150,6 +150,7 @@
     <Content Include="Account\Views\_Providers.cshtml" />
     <Content Include="Account\Views\Index.cshtml" />
     <Content Include="Account\Views\Welcome.cshtml" />
+    <None Include="Properties\PublishProfiles\WebDeploy.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
