@@ -1,0 +1,158 @@
+﻿@{
+    Layout = "Shared/_Layout.cshtml";
+}
+@using System.Linq
+@using YorkshireTec.Infrastructure
+@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<YorkshireTec.Infrastructure.BaseViewModel<YorkshireTec.Account.ViewModels.AccountViewModel>>
+
+<section class="opaque blurb">
+    <div class="ui grid">
+        <div class="ten wide column center_div">
+            <div class="row">
+                <h2>Account Details</h2>
+                <form method="POST" class="ui form segment">
+                    <div class="ui two column divided grid">
+                        <div class="row">
+                            <div class="column">
+                                <input type="hidden" name="Id" id="Id" value="@Model.ViewModel.Id" />
+                                <div class="field">
+                                    <label>Username</label>
+                                    <div class="ui left labeled icon input">
+                                        <input type="text" placeholder="Username" name="username" value="@Model.ViewModel.Username">
+                                        <i class="tag icon"></i>
+                                        <div class="ui corner label">
+                                            <i class="icon asterisk"></i>
+                                        </div>
+                                    </div>
+                                    @Html.ValidationMessageFor(Model.Page.Notifications, "Username")
+                                </div>
+                                <div class="field">
+                                    <label>Actual Name</label>
+                                    <div class="ui left labeled icon input">
+                                        <input type="text" placeholder="Name" name="name" value="@Model.ViewModel.Name">
+                                        <i class="user icon"></i>
+                                        <div class="ui corner label">
+                                            <i class="icon asterisk"></i>
+                                        </div>
+                                    </div>
+                                    @Html.ValidationMessageFor(Model.Page.Notifications, "Name")
+                                </div>
+                                <div class="field">
+                                    <label>Email</label>
+                                    <div class="ui left labeled icon input">
+                                        <input type="text" placeholder="Email" id="email" name="email" value="@Model.ViewModel.Email">
+                                        <i class="mail icon"></i>
+                                        <div class="ui corner label">
+                                            <i class="icon asterisk"></i>
+                                        </div>
+                                    </div>
+                                    @Html.ValidationMessageFor(Model.Page.Notifications, "Email")
+                                </div>
+                                <div class="field">
+                                    <label>Picture</label>
+                                    <div class="ui left labeled icon input">
+                                        <input type="text" placeholder="picture" name="picture" value="@Model.ViewModel.Picture">
+                                        <i class="photo icon"></i>
+                                    </div>
+                                    @Html.ValidationMessageFor(Model.Page.Notifications, "Picture")
+                                </div>
+                                <div class="field">
+                                    <img src="@Model.ViewModel.Picture" title="@Model.ViewModel.Username" id="profilePicture" />
+                                </div>
+                                <div class="field">
+                                    <input type="submit" class="fluid ui teal submit button" value="Update" />
+                                </div>
+                                <div class="field" id="mailingList">
+                                    @if (Model.ViewModel.OnMailingList)
+                                    {
+                                        <a id="unsubscribe" class="fluid ui red submit button">Unsubscribe from mailing list</a>
+                                    }
+                                    else
+                                    {
+                                        <a id="subscribe" class="fluid ui teal submit button">Subscribe to mailing list</a>
+                                    }
+                                </div>
+                            </div>
+                            <div class="column">
+                                <h4>Linked Accounts</h4>
+                                <div class="ui list">
+                                    @foreach (var provider in Model.ViewModel.Providers)
+                                    {
+                                        <div class="item">
+                                            <span title="@provider.Name" class="fluid ui @provider.Name button">@@@provider.Username - @provider.Name</span>
+                                        </div>
+                                    }
+                                    @if (!Model.ViewModel.Providers.HasTwitter)
+                                    {
+                                        <div class="item">
+                                            <a href="~/authentication/redirect/twitter" title="Twitter" class="fluid ui twitter button">Link to Twitter</a>
+                                        </div>
+                                    }
+                                    @if (!Model.ViewModel.Providers.HasFacebook)
+                                    {
+                                        <div class="item">
+                                            <a href="~/authentication/redirect/facebook" title="Facebook" class="fluid ui facebook button">Link to Facebook</a>
+                                        </div>
+                                    }
+                                    @if (!Model.ViewModel.Providers.HasGoogle)
+                                    {
+                                        <div class="item">
+                                            <a href="~/authentication/redirect/google" title="Google" class="fluid ui google plus button">Link to Google</a>
+                                        </div>
+                                    }
+                                    @if (!Model.ViewModel.Providers.HasLinkedIn)
+                                    {
+                                        <div class="item">
+                                            <a href="~/authentication/redirect/linkedin" title="LinkedIn" class="fluid ui linkedin button">Link to LinkedIn</a>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+@section Scripts
+{
+    <script type="text/javascript">
+        $(function () {
+            function subscribeToMailingList(subscribe) {
+                $('form').addClass('loading');
+                var userId = $('#Id').val();
+                var email = $('#email').val();
+
+                var request = $.ajax({
+                    url: "account/mailinglist",
+                    type: "POST",
+                    data: { userId: userId, email: email, joinMailingList: subscribe },
+                    dataType: "html"
+                });
+
+                request.done(function () {
+                    $('form').removeClass('loading');
+                    if (subscribe) {
+                        $("#mailingList").html("<a id='unsubscribe' class='fluid ui red submit button'>Unsubscribe from mailing list</a>");
+                    } else {
+                        $("#mailingList").html("<a id='subscribe' class='fluid ui teal submit button'>Subscribe to mailing list</a>");
+                    }
+                });
+
+                request.fail(function () {
+                    $('form').removeClass('loading');
+                    $('#mailingList').append('<div class="ui error message show "><div class="ui list divided"><div class="item">Uh oh! Looks like there was a problem.</div></div></div>');
+                });
+            };
+            $(document).on('click', '#subscribe', function () {
+                $('#joinMailingList').addClass('loading');
+                subscribeToMailingList(true);
+            });
+            $(document).on('click', '#unsubscribe', function () {
+                $('#joinMailingList').addClass('loading');
+                subscribeToMailingList(false);
+            });
+        });
+    </script>
+}

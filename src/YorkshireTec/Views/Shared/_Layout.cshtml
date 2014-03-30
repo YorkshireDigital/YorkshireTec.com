@@ -1,0 +1,87 @@
+﻿@{
+    Layout = null;
+}
+@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<YorkshireTec.Infrastructure.BaseViewModel>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>@Model.Page.Title | @Model.Page.TitleSuffix</title>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/0.12.0/css/semantic.min.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="../../Content/supersized.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="../../Content/supersized.shutter.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="../../Content/screen.css" type="text/css" media="screen" />
+    @RenderSection("Styles", false)
+</head>
+<body>
+    <div class="container"></div>
+    <nav class="ui pointing menu fixed teal" id="menu">
+        <a href="~/" class="item"><i class="home icon"></i> Home</a>
+        <a href="~/calendar" class="item"><i class="calendar icon"></i> Calendar</a>
+        <div class="right menu">
+            @if (Model.Page.IsAuthenticated)
+            {
+                <div class="ui dropdown item">
+                    @Model.Page.FriendlyName <i class="icon dropdown"></i>
+                    <div class="menu">
+                        <a href="/account" class="item"><i class="edit icon"></i> Edit Account</a>
+                        <a href="/account/log-out" class="item"><i class="sign out icon"></i> Sign Out</a>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <span class="item">
+                    <a href="~/account/log-in"><i class="sign in icon"></i> Log In</a>
+                </span>
+                <span class="item">
+                    <a href="~/account/register"><i class="add in icon"></i> Register</a>
+                </span>
+            }
+        </div>
+    </nav>
+    <header>
+        <h1><a href="/" title="YorkshireTec">Yorkshire<span>Digital</span></a></h1>
+    </header>
+    @RenderBody()
+    <footer>
+        <p><span>&copy;</span> Yorkshire<b>Tec</b> 2014</p>
+    </footer>
+    <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="//use.typekit.net/omw7pfi.js"></script>
+    <script type="text/javascript">try { Typekit.load(); } catch (e) { }</script>
+    <script type="text/javascript" src="../../Content/scripts/supersized.3.2.7.min.js"></script>
+    <script type="text/javascript" src="../../Content/scripts/supersized.shutter.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/0.12.0/javascript/semantic.min.js"></script>
+    <script type="text/javascript">
+
+        $(function () {
+            $.supersized({
+                slide_interval: 10000,
+                transition: 1,
+                transition_speed: 1800,
+                slide_links: 'blank',
+                slides: [
+                    { image: '../Content/Images/filter-hrd-leeds-skyline.jpg', title: 'Image Credit: Maria Kazvan', thumb: 'http://buildinternet.s3.amazonaws.com/projects/supersized/3.2/thumbs/kazvan-3.jpg' },
+                    { image: '../Content/Images/illuminating-york-15.jpg', title: 'Image Credit: Maria Kazvan', thumb: 'http://buildinternet.s3.amazonaws.com/projects/supersized/3.2/thumbs/kazvan-3.jpg' },
+                    { image: '../Content/Images/Sheffield-City-Centre.jpg', title: 'Image Credit: Maria Kazvan', thumb: 'http://buildinternet.s3.amazonaws.com/projects/supersized/3.2/thumbs/kazvan-3.jpg' }
+                ]
+            });
+            $('.ui.checkbox').checkbox();
+            if ($('.ui.error').length > 0) {
+                $(window).scrollTop($('.ui.error').prev().position().top);
+            }
+        });
+    </script>
+    @if (!string.IsNullOrEmpty(Model.Page.Title))
+    {
+        <script type="text/javascript">
+            $(function () {
+                $('.ui.dropdown').dropdown();
+                $('#menu .item:contains(@Model.Page.Title)').addClass('active');
+            });
+        </script>
+    }
+
+    @RenderSection("Scripts", false)
+</body>
+</html>

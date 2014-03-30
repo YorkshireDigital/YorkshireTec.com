@@ -17,11 +17,24 @@ h3 {
     font-weight: 600;
 }
 
+.hidden {
+    display: none;
+}
+
+.show {
+    display: block !important;
+}
+
+.event-container {
+    padding: 10px 0;
+}
+
 /* Header */
 
 header {
+    padding-top: 20px;
     margin: 0;
-    line-height: 600px;
+    line-height: 300px;
 }
 
     header h1 {
@@ -138,3 +151,8 @@ header a {
     #mc_embed_signup input {
         border-radius: 0;
     }
+
+/* Account */
+#profilePicture {
+    max-width: 200px;
+}
