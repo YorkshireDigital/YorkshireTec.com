@@ -5,6 +5,7 @@
     using System.Linq;
     using System.Text;
     using Nancy.ViewEngines.Razor;
+    using YorkshireTec.Infrastructure.Models;
 
     public static class HtmlExtensions
     {

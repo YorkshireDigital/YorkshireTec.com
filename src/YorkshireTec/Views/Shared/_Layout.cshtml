@@ -16,7 +16,10 @@
     <div class="container"></div>
     <nav class="ui pointing menu fixed teal" id="menu">
         <a href="~/" class="item"><i class="home icon"></i> Home</a>
-        <a href="~/calendar" class="item"><i class="calendar icon"></i> Calendar</a>
+        @if (Model.Features.Calendar)
+        {
+            <a href="~/calendar" class="item"><i class="calendar icon"></i> Calendar</a>
+        }
         <div class="right menu">
             @if (Model.Page.IsAuthenticated)
             {

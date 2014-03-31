@@ -179,9 +179,12 @@
     <Compile Include="Account\ViewModels\WelcomeViewModel.cs" />
     <Compile Include="Infrastructure\Bootstrapper.cs" />
     <Compile Include="Infrastructure\AuthenticationCallbackProvider.cs" />
+    <Compile Include="Infrastructure\SecurityHooks.cs" />
     <Compile Include="Infrastructure\Helpers\MailChimpHelper.cs" />
     <Compile Include="Infrastructure\Helpers\SlackHelper.cs" />
     <Compile Include="Infrastructure\HtmlExtensions.cs" />
+    <Compile Include="Infrastructure\Models\FeaturesModel.cs" />
+    <Compile Include="Infrastructure\NancyExtensions.cs" />
     <Compile Include="Infrastructure\UserIdentity.cs" />
     <Compile Include="Infrastructure\UserMapper.cs" />
     <Compile Include="Account\Modules\AccountModule.cs" />
@@ -196,9 +199,9 @@
     <Compile Include="Calendar\ViewModels\CalendarIndexViewModel.cs" />
     <Compile Include="Calendar\ViewModels\CalendarEventViewModel.cs" />
     <Compile Include="Home\ViewModels\LandingPageViewModel.cs" />
-    <Compile Include="Infrastructure\NotificationModel.cs" />
-    <Compile Include="Infrastructure\NotificationType.cs" />
-    <Compile Include="Infrastructure\PageModel.cs" />
+    <Compile Include="Infrastructure\Models\NotificationModel.cs" />
+    <Compile Include="Infrastructure\Models\NotificationType.cs" />
+    <Compile Include="Infrastructure\Models\PageModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\YorkshireTec.Raven\YorkshireTec.Raven.csproj">

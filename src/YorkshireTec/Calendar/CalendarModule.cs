@@ -10,6 +10,8 @@ namespace YorkshireTec.Modules
         public CalendarModule()
             : base("calendar")
         {
+            this.RequiresFeature("Calendar");
+
             const string calendarId = "info%40yorkshiretec.com";
             Get["/"] = _ =>
             {

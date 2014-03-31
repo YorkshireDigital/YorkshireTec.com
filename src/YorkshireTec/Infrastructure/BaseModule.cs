@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using Nancy;
+    using YorkshireTec.Infrastructure.Models;
 
     public class BaseModule : NancyModule
     {
