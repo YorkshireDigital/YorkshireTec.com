@@ -18,15 +18,9 @@
             bool enabled;
             bool.TryParse(ConfigurationManager.AppSettings[string.Format("Feature_{0}", feature)], out enabled);
 
-            return (ctx) =>
-            {
-                Response response = null;
-                if (!enabled)
-                {
-                    response = new Response { StatusCode = HttpStatusCode.NotFound };
-                }
-                return response;
-            };
+            return ctx => !enabled
+                ? new Response {StatusCode = HttpStatusCode.NotFound}
+                : null;
         }
     }
 }
