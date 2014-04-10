@@ -1,0 +1,67 @@
+/*	=IMPORTS
+--------------------------------------------------------------------*/
+@import "compass"; 				// Cut this down as required
+@import "compass/typography/vertical_rhythm";
+
+/* Partials */
+@import "partials/normalize"; 	// Edited version of Nicolas Galaghers Normalise
+@import "partials/base.scss";	// Global variables, global mixins & global styles such as clearfix
+@import "partials/typography";	// Global typographys settings such as hN header stack 
+@import "partials/buttons";		// Button variations
+@import "partials/navigation";	// Navigation such as global nav, sub nav and tabs etc
+
+/*  =BASE
+------------------------------------------------------------*/
+html {
+	background: #fff;
+	padding: 0;
+	margin: 0;
+}
+
+body {
+	height: 100%;
+}
+
+ul {
+	margin: 0 0 .75em 0;
+
+	ul {
+		margin: .375em 0 .375em 0;
+	}
+}
+
+/*  =LAYOUT
+--------------------------------------------------------------------*/
+%layout {
+    min-width: 300px;
+    padding: 0 2em;
+    margin: 0 auto;
+
+    @include breakpoint(single) {
+        padding: 0 1em;
+    }
+}
+
+.layout-constrained {
+	@extend %layout;
+}
+
+/*  =HEADER
+--------------------------------------------------------------------*/
+.header-page {
+	@extend .group;
+	padding: 1.5em 0;
+}
+
+/*  =ISLAND
+--------------------------------------------------------------------*/
+.island {
+	padding: .875em;
+	background: #ddd;
+}
+
+/*  =GENERAL UI ELEMENTS
+------------------------------------------------------------*/
+
+
+@import "partials/temp"; // Used for temporary styles throughout the project. This should ideally be empty in production environments
