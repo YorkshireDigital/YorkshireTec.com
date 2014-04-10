@@ -40,6 +40,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AjaxMin">
+      <HintPath>..\packages\AjaxMin.4.84.4790.14417\lib\net40\AjaxMin.dll</HintPath>
+    </Reference>
+    <Reference Include="Cassette">
+      <HintPath>..\packages\Cassette.2.4.1\lib\net40-client\Cassette.dll</HintPath>
+    </Reference>
+    <Reference Include="Cassette.Nancy">
+      <HintPath>..\packages\Cassette.Nancy.2.1.1\lib\net40\Cassette.Nancy.dll</HintPath>
+    </Reference>
     <Reference Include="FluentValidation, Version=5.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\FluentValidation.5.1.0.0\lib\Net40\FluentValidation.dll</HintPath>
@@ -83,6 +92,9 @@
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Newtonsoft.Json.6.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog">
+      <HintPath>..\packages\NLog.2.1.0\lib\net45\NLog.dll</HintPath>
     </Reference>
     <Reference Include="Owin">
       <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
@@ -131,14 +143,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bundle.txt" />
     <Content Include="Content\Images\filter-hrd-leeds-skyline.jpg" />
     <Content Include="Content\Images\illuminating-york-15.jpg" />
     <Content Include="Content\Images\rough_diagonal.png" />
     <Content Include="Content\Images\Sheffield-City-Centre.jpg" />
     <Content Include="Content\Images\stripesblack.png" />
     <Content Include="Content\logo.css" />
-    <Content Include="Content\Scripts\supersized.3.2.7.min.js" />
-    <Content Include="Content\Scripts\supersized.shutter.min.js" />
+    <Content Include="Scripts\supersized.3.2.7.min.js" />
+    <Content Include="Scripts\supersized.shutter.min.js" />
     <Content Include="Content\supersized.css" />
     <Content Include="Content\supersized.shutter.css" />
     <Content Include="packages.config" />
@@ -160,7 +173,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\screen.css" />
-    <Content Include="Content\Scripts\mailchimp.js" />
+    <Content Include="Scripts\mailchimp.js" />
     <Content Include="Home\Views\Logo.html" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -177,6 +190,7 @@
     <Compile Include="Account\ViewModels\ProviderListViewModel.cs" />
     <Compile Include="Account\ViewModels\ProviderViewModel.cs" />
     <Compile Include="Account\ViewModels\WelcomeViewModel.cs" />
+    <Compile Include="Infrastructure\CassetteConfiguration.cs" />
     <Compile Include="Infrastructure\Bootstrapper.cs" />
     <Compile Include="Infrastructure\AuthenticationCallbackProvider.cs" />
     <Compile Include="Infrastructure\SecurityHooks.cs" />

@@ -7,9 +7,14 @@
 <head>
     <title>@Model.Page.Title | @Model.Page.TitleSuffix</title>
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/0.12.0/css/semantic.min.css" type="text/css" media="screen" />
-    <link rel="stylesheet" href="../../Content/supersized.css" type="text/css" media="screen" />
-    <link rel="stylesheet" href="../../Content/supersized.shutter.css" type="text/css" media="screen" />
-    <link rel="stylesheet" href="../../Content/screen.css" type="text/css" media="screen" />
+    @using Cassette.Nancy
+
+    @{
+        Bundles.Reference("Content");
+        Bundles.Reference("Scripts");
+    }
+
+    @Bundles.RenderStylesheets()
     @RenderSection("Styles", false)
 </head>
 <body>
@@ -52,8 +57,7 @@
     <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
     <script type="text/javascript" src="//use.typekit.net/omw7pfi.js"></script>
     <script type="text/javascript">try { Typekit.load(); } catch (e) { }</script>
-    <script type="text/javascript" src="../../Content/scripts/supersized.3.2.7.min.js"></script>
-    <script type="text/javascript" src="../../Content/scripts/supersized.shutter.min.js"></script>
+    @Bundles.RenderScripts()
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/0.12.0/javascript/semantic.min.js"></script>
     <script type="text/javascript">
 
