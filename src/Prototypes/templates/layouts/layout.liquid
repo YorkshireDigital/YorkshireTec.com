@@ -9,18 +9,21 @@
         <title>{% block title %}Page Title{% endblock %} | Starter Project</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<!-- Font link from WebInk for now whilst testing the weights required -->
+        <link href="//fnt.webink.com/wfs/webink.css/?project=5E180D84-E650-44B5-A8F7-4993BF1784C4&fonts=E41D41D6-3F85-4399-435C-D18920CD4F9E:f=MetronicProSemiBold,2D94854F-075C-08AF-DC9E-73E30B03FF60:f=MetronicProAir,DC333C30-E2B6-4AA3-00E5-43889C6EF9C1:f=MetronicProRegular,62D00429-3487-0963-C122-41748BE2C419:f=MetronicPro-Bold,131A85FE-92D8-B0D4-BE5B-55624C9C82B4:f=MetronicProLight" rel="stylesheet" type="text/css"/>
+
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
         {{ "screen.css" | asset_url | stylesheet_tag }}
-        <link rel="stylesheet" href="http://basehold.it/24">
         {{ "modernizr-2.6.2.min.js" | asset_url | script_tag }}
     </head>
     <body>
-        <div class="layout-constrained">
-            {% include "header" %}
-            {% block content %}
 
-            {% endblock %}
-        </div>
+        {% comment %}{% include "header" %} {% endcomment %}
+        {% block content %}
+
+        {% endblock %}
+
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
     </body>

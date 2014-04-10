@@ -408,6 +408,7 @@ table {
 }
 
 /*  =TYPOGRAPHY
+	 Metronic weights to use: MetronicProAir, MetronicProLight, MetronicProRegular, MetronicProSemiBold, MetronicPro-Bold
 --------------------------------------------------------------------*/
 html {
   font: 500 1em/1.5 arial, sans-serif;
@@ -424,6 +425,7 @@ h4,
 .delta,
 h5,
 .epsilon {
+  font-family: MetronicProRegular;
   font-weight: 700;
   color: #444444;
 }
@@ -757,6 +759,21 @@ ul ul {
 --------------------------------------------------------------------*/
 .header-page {
   padding: 1.5em 0;
+}
+
+/*  =HERO BLOCK
+--------------------------------------------------------------------*/
+.hero-banner {
+  padding: 5em 0;
+  background: #F8F8F8;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+
+.logo-site {
+  display: block;
+  max-width: 360px;
+  margin: 0 auto 1em;
 }
 
 /*  =ISLAND

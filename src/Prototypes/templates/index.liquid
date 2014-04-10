@@ -1,21 +1,40 @@
 {% block title %}Intro Page{% endblock %} 
 {% block content %}
-	<h1>Welcome to the Mixture starter project</h1>
-	<h3>What is the starter project?</h3>
-	<p>
-		This project is not intended to be a fully fledged framework that is a silver bullet for creating UI's. It is simply a starting point to get up and running creating code that can be taken through to a production version further down the line.  
+	
+	
+	<section class="hero-banner">
+
+		<a href="#" class="logo-site" >
+			<img src="{{ "logo-yorkshiredigital.svg" | asset_url }}" alt="">
+		</a>
+
+		<!-- <h1>YorkshireDigital</h1> -->
+		<h1>Bringing Yorkshires digital community together</h1>
+
+	</section>
+	
+	<p class="intro">
+		Yorkshire's digital sceen is rapidly growing with meetups cropping up all over. 
 	</p>
-	<h3>The following have been created</h3>
-	<ul>
-		<li>A project structure has been setup that contains the following:
-			<ul>
-				<li>Base layout using HTML5 boilerplate</li>
-				<li>Sample header and navigation includes</li>
-				<li>Public style directory for Sass, CSS, images and fonts</li>
-				<li>Scripts folder with jQuery, Modernizr and a sample main.js file</li>
-			</ul>
-		</li>
-		<li>A 24px baseline grid has been setup including guides to tweak vertical rhythm</li>
-		<li>Primary Sass partials have been added to get the project underway</li>
-	</ul>
+	<p>
+		We are a group of like-minded individuals that are looking to bring the digital community in Yorkshire together with the aim to improve Yorkshire’s digital future.
+	</p>
+	<p>
+		Our goal is to create an infrastructure in which individuals, organisations and user groups of all skill sets can easily share knowledge, find new connections and help to educate.
+	</p>
+	<p>
+		We look to all areas of the digital community to get involved, this is an inclusive group looking to make a difference. 
+	</p>
+
+	<div class="sign-up">
+		<h1>Sign up</h1>
+		<div class="form-group">
+			<label for="firstName">First name</label>
+			<input type="text" id="firstName" />
+		</div>
+		<div class="form-group">
+			<label for="emailAddress">Email address</label>
+			<input type="text" id="emailAddress" />
+		</div>
+	</div>
 {% endblock %}

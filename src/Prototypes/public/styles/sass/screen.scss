@@ -20,6 +20,7 @@ html {
 
 body {
 	height: 100%;
+	//@include baseline-overlay();
 }
 
 ul {
@@ -52,6 +53,26 @@ ul {
 	@extend .group;
 	padding: 1.5em 0;
 }
+
+/*  =HERO BLOCK
+--------------------------------------------------------------------*/
+.hero-banner {
+	padding: 5em 0;
+	background: #F8F8F8;
+	text-align: center;
+	border-bottom: 1px solid #ddd;
+}
+
+.logo-site {
+	display: block;
+	max-width: 360px;
+	margin: 0 auto 1em;
+}
+
+.strapline {
+
+}
+
 
 /*  =ISLAND
 --------------------------------------------------------------------*/

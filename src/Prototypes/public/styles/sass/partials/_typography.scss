@@ -1,4 +1,5 @@
 /*  =TYPOGRAPHY
+	 Metronic weights to use: MetronicProAir, MetronicProLight, MetronicProRegular, MetronicProSemiBold, MetronicPro-Bold
 --------------------------------------------------------------------*/
 html {
     font: 500 1em/1.5 $font-general; // 24px baseline grid
@@ -15,6 +16,7 @@ h4,
 .delta, 
 h5,
 .epsilon {
+	font-family: MetronicProRegular;
     font-weight: 700;
     color: $accent-primary;
 

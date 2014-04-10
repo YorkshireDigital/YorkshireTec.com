@@ -72,6 +72,22 @@ $rhythm-unit-one: 1.5;                          // Single rhythm unit based on $
   }
 }
 
+// Baseline grid  overlay
+@mixin baseline-overlay($baseline-value: 24) {
+  
+	&:after {
+		position: absolute;
+		z-index: 1;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		pointer-events: none;
+		content: "";
+		background: url(http://basehold.it/i/#{$baseline-value}) 0 0 repeat; // 26px baseline 
+	}
+}
+
 /*  =GLOBAL USE STYLES
 --------------------------------------------------------------------*/
 // Micro clearfix with IE6+ support
