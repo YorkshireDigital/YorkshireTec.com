@@ -15,7 +15,9 @@ namespace YorkshireTec.Infrastructure
     {
         public Bootstrapper()
         {
-            CassetteNancyStartup.OptimizeOutput = true;
+            bool optimizeOutput;
+            bool.TryParse(ConfigurationManager.AppSettings["Cassette_OptimizeOutput"], out optimizeOutput);
+            CassetteNancyStartup.OptimizeOutput = optimizeOutput;
         }
 
         protected override DiagnosticsConfiguration DiagnosticsConfiguration
