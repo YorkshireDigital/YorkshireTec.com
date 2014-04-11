@@ -150,8 +150,8 @@
     <Content Include="Content\Images\Sheffield-City-Centre.jpg" />
     <Content Include="Content\Images\stripesblack.png" />
     <Content Include="Content\logo.css" />
-    <Content Include="Scripts\supersized.3.2.7.min.js" />
-    <Content Include="Scripts\supersized.shutter.min.js" />
+    <Content Include="Scripts\supersized\supersized.3.2.7.min.js" />
+    <Content Include="Scripts\supersized\supersized.shutter.min.js" />
     <Content Include="Content\supersized.css" />
     <Content Include="Content\supersized.shutter.css" />
     <Content Include="packages.config" />
@@ -173,7 +173,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\screen.css" />
-    <Content Include="Scripts\mailchimp.js" />
+    <Content Include="Scripts\mailchimp\mailchimp.js" />
     <Content Include="Home\Views\Logo.html" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>

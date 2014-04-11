@@ -12,7 +12,7 @@ namespace YorkshireTec.Infrastructure
         public void Configure(BundleCollection bundles)
         {
             bundles.AddPerSubDirectory<StylesheetBundle>("Content");
-            bundles.Add<ScriptBundle>("Scripts");
+            bundles.AddPerSubDirectory<ScriptBundle>("Scripts");
         }
     }
 }
