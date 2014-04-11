@@ -18,7 +18,7 @@
         public string Picture { get; set; }
         public IList<Provider> Providers { get; set; }
         public bool Validated { get; set; }
-        public bool OnMailingList { get; set; }
+        public MailingListState MailingListState { get; set; }
 
         public User()
         {
@@ -46,7 +46,8 @@
                 Gender = GenderTypeHelpers.ToGenderType(authenticatedClient.UserInformation.Gender.ToString()),
                 Locale = authenticatedClient.UserInformation.Locale ?? string.Empty,
                 Picture = authenticatedClient.UserInformation.Picture ?? string.Empty,
-                Validated = true
+                Validated = true,
+                MailingListState = MailingListState.Unsubscribed
             };
             var accessToken = Provider.FromAuthenticatedClient(authenticatedClient);
             newUser.Providers.Add(accessToken);

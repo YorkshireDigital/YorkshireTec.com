@@ -7,7 +7,6 @@
     {
         public Guid UserId { get; set; }
         public string Email { get; set; }
-        public bool JoinMailingList { get; set; }
     }
 
     public class MailingListViewModelValidator : AbstractValidator<MailingListViewModel>

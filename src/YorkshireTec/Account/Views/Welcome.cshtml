@@ -44,9 +44,9 @@
                 var email = $('#email').val();
 
                 var request = $.ajax({
-                    url: "mailinglist",
+                    url: "mailinglist/subscribe",
                     type: "POST",
-                    data: { userId: userId, email: email, joinMailingList: true },
+                    data: { userId: userId, email: email },
                     dataType: "html"
                 });
 

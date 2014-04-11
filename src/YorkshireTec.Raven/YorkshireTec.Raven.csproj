@@ -53,6 +53,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Domain\Account\MailingListState.cs" />
     <Compile Include="Domain\Account\Provider.cs" />
     <Compile Include="Domain\Account\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

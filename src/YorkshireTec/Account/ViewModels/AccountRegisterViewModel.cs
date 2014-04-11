@@ -24,7 +24,7 @@
                 IsAdmin = false,
                 Validated = false,
                 Name = Name,
-                OnMailingList = MailingList
+                MailingListState = MailingList ? MailingListState.PendingSubscribe : MailingListState.Unsubscribed
             };
         }
     }
