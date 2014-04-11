@@ -1,6 +1,8 @@
 ﻿namespace YorkshireTec.Account.Modules
 {
+    using System;
     using global::Raven.Client;
+    using Nancy;
     using Nancy.ModelBinding;
     using Nancy.Security;
     using Nancy.Validation;
@@ -55,8 +57,32 @@
                     MailChimpHelper.Unsubscribe(user.Email, user.Name, user.Twitter, string.Empty);
 
                     userRepository.SaveUser(user);
+
+                    return 200;
                 }
-                return 200;
+                return 500;
+            };
+
+            Get["/subscribed"] = _ =>
+            {
+                var userRepository = new UserRepository(documentSession);
+                var user = userRepository.GetUserById(new Guid(((UserIdentity)Context.CurrentUser).UserId));
+
+                var model = GetBaseModel(new SubscribedViewModel());
+                model.Page.Title = "Welcome";
+
+                return Negotiate.WithModel(model).WithView("Subscribed");
+            };
+
+            Get["/unsubscribed"] = _ =>
+            {
+                var userRepository = new UserRepository(documentSession);
+                var user = userRepository.GetUserById(new Guid(((UserIdentity)Context.CurrentUser).UserId));
+
+                var model = GetBaseModel(new UnsubscribedViewModel());
+                model.Page.Title = "Sorry";
+
+                return Negotiate.WithModel(model).WithView("Unsubscribed");
             };
         }
     }

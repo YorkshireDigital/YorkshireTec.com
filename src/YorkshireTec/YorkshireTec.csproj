@@ -163,6 +163,8 @@
     <Content Include="Account\Views\_Providers.cshtml" />
     <Content Include="Account\Views\Index.cshtml" />
     <Content Include="Account\Views\Welcome.cshtml" />
+    <Content Include="Account\Views\Subscribed.cshtml" />
+    <Content Include="Account\Views\Unsubscribed.cshtml" />
     <None Include="Properties\PublishProfiles\WebDeploy.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -189,6 +191,8 @@
     <Compile Include="Account\ViewModels\MailingListViewModel.cs" />
     <Compile Include="Account\ViewModels\ProviderListViewModel.cs" />
     <Compile Include="Account\ViewModels\ProviderViewModel.cs" />
+    <Compile Include="Account\ViewModels\SubscribedViewModel.cs" />
+    <Compile Include="Account\ViewModels\UnsubscribedViewModel.cs" />
     <Compile Include="Account\ViewModels\WelcomeViewModel.cs" />
     <Compile Include="Infrastructure\CassetteConfiguration.cs" />
     <Compile Include="Infrastructure\Bootstrapper.cs" />
