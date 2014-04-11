@@ -7,6 +7,7 @@ namespace YorkshireTec.Account.Modules
     using Nancy.Validation;
     using YorkshireTec.Account.ViewModels;
     using YorkshireTec.Infrastructure;
+    using YorkshireTec.Infrastructure.Models;
     using YorkshireTec.Raven.Repositories;
 
     public class AccountModule : BaseModule

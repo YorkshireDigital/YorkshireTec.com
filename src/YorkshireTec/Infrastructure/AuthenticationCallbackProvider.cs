@@ -71,7 +71,7 @@
                 // Register them
                 var newUser = userRepository.SaveUser(User.FromAuthenticatedClient(authenticatedClient));
                 var updateText = string.Format("{0} just signed up at {1}. Go {0}!", newUser.Name, nancyModule.Context.Request.Url.SiteBase);
-                SlackHelper.PostToSlack(new SlackUpdate { channel = "#general", icon_emoji = ":metal:", username = "New User", text = updateText });
+                SlackHelper.PostToSlack(new SlackUpdate { channel = "#website", icon_emoji = ":yorks:", username = "New User", text = updateText });
                 // Log them in and forward them to the welcome page
                 return nancyModule.LoginAndRedirect(newUser.Id, null, "~/account/welcome");
             }

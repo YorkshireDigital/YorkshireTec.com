@@ -2,6 +2,7 @@ namespace YorkshireTec.Infrastructure
 {
     using System.Configuration;
     using System.Linq;
+    using Cassette.Nancy;
     using global::Raven.Client;
     using Nancy;
     using Nancy.Authentication.Forms;
@@ -12,6 +13,13 @@ namespace YorkshireTec.Infrastructure
 
     public class Bootstrapper : DefaultNancyBootstrapper
     {
+        public Bootstrapper()
+        {
+            bool optimizeOutput;
+            bool.TryParse(ConfigurationManager.AppSettings["Cassette_OptimizeOutput"], out optimizeOutput);
+            CassetteNancyStartup.OptimizeOutput = optimizeOutput;
+        }
+
         protected override DiagnosticsConfiguration DiagnosticsConfiguration
         {
             get { return new DiagnosticsConfiguration { Password = ConfigurationManager.AppSettings["Nancy_Diagnostics"] }; }

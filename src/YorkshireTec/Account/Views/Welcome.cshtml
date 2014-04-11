@@ -2,7 +2,7 @@
     Layout = "Shared/_Layout.cshtml";
 }
 @using YorkshireTec.Infrastructure
-@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<YorkshireTec.Infrastructure.BaseViewModel<YorkshireTec.Account.ViewModels.WelcomeViewModel>>
+@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<BaseViewModel<YorkshireTec.Account.ViewModels.WelcomeViewModel>>
     
 <section class="opaque blurb">
     <div class="ui grid">
@@ -44,9 +44,9 @@
                 var email = $('#email').val();
 
                 var request = $.ajax({
-                    url: "mailinglist",
+                    url: "mailinglist/subscribe",
                     type: "POST",
-                    data: { userId: userId, email: email, joinMailingList: true },
+                    data: { userId: userId, email: email },
                     dataType: "html"
                 });
 

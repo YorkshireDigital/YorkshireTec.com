@@ -1,0 +1,17 @@
+// @mixin rhythm($property, $units, $border: "") {
+//   // Is there an unit defined? If not dont output anything
+//   @each $unit in $units {
+//     // Current value is a valid number and greater than 0
+//     @if $units != auto and $units != 0
+//     {
+//       // Add 'px' and 'rm' to the current value and store in
+//       // placeholder variables
+//       #{$property}: #{$unit * $rhythm-unit-one + em};
+//     }
+//     // Current value is 'auto' or 0
+//     @else
+//     {
+     
+//     }
+//   }
+// }

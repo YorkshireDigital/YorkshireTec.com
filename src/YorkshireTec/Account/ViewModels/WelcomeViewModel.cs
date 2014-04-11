@@ -1,14 +1,15 @@
 ﻿namespace YorkshireTec.Account.ViewModels
 {
     using System;
+    using YorkshireTec.Raven.Domain.Account;
 
     public class WelcomeViewModel
     {
-        public WelcomeViewModel(Raven.Domain.Account.User user)
+        public WelcomeViewModel(User user)
         {
             UserId = user.Id;
             Email = user.Email;
-            OnMailingList = user.OnMailingList;
+            OnMailingList = user.MailingListState == MailingListState.Subscribed || user.MailingListState == MailingListState.PendingSubscribe;
         }
 
         public Guid UserId { get; set; }

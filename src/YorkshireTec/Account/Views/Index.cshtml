@@ -1,9 +1,8 @@
 ﻿@{
     Layout = "Shared/_Layout.cshtml";
 }
-@using System.Linq
 @using YorkshireTec.Infrastructure
-@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<YorkshireTec.Infrastructure.BaseViewModel<YorkshireTec.Account.ViewModels.AccountViewModel>>
+@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<BaseViewModel<YorkshireTec.Account.ViewModels.AccountViewModel>>
 
 <section class="opaque blurb">
     <div class="ui grid">
@@ -63,14 +62,23 @@
                                     <input type="submit" class="fluid ui teal submit button" value="Update" />
                                 </div>
                                 <div class="field" id="mailingList">
-                                    @if (Model.ViewModel.OnMailingList)
-                                    {
-                                        <a id="unsubscribe" class="fluid ui red submit button">Unsubscribe from mailing list</a>
-                                    }
-                                    else
-                                    {
-                                        <a id="subscribe" class="fluid ui teal submit button">Subscribe to mailing list</a>
-                                    }
+                                    @{
+                                        switch (Model.ViewModel.MailingListState)
+                                        {
+                                            case 0:
+                                                <a id="subscribe" class="fluid ui teal submit button">Subscribe to mailing list</a>
+                                                break;
+                                            case 1:
+                                                <a id="subscribe" class="fluid ui orange submit button">Resend mailing list confirmation</a>
+                                                break;
+                                            case 2:
+                                                <a id="unsubscribe" class="fluid ui red submit button">Unsubscribe from mailing list</a>
+                                                break;
+                                            case 3:
+                                            <a id="unsubscribe" class="fluid ui orange submit button">Resend Unsubscribe mailing list confirmation</a>
+                                                break;
+                                        }
+}
                                 </div>
                             </div>
                             <div class="column">
@@ -120,37 +128,44 @@
     <script type="text/javascript">
         $(function () {
             function subscribeToMailingList(subscribe) {
-                $('form').addClass('loading');
+                $('.error').removeClass('error');
                 var userId = $('#Id').val();
                 var email = $('#email').val();
 
-                var request = $.ajax({
-                    url: "account/mailinglist",
-                    type: "POST",
-                    data: { userId: userId, email: email, joinMailingList: subscribe },
-                    dataType: "html"
-                });
+                if (email !== '') {
+                    var url = subscribe ? "account/mailinglist/subscribe" : "account/mailinglist/unsubscribe";
 
-                request.done(function () {
-                    $('form').removeClass('loading');
-                    if (subscribe) {
-                        $("#mailingList").html("<a id='unsubscribe' class='fluid ui red submit button'>Unsubscribe from mailing list</a>");
-                    } else {
-                        $("#mailingList").html("<a id='subscribe' class='fluid ui teal submit button'>Subscribe to mailing list</a>");
-                    }
-                });
+                    $('#joinMailingList').addClass('loading');
 
-                request.fail(function () {
-                    $('form').removeClass('loading');
-                    $('#mailingList').append('<div class="ui error message show "><div class="ui list divided"><div class="item">Uh oh! Looks like there was a problem.</div></div></div>');
-                });
+                    var request = $.ajax({
+                        url: url,
+                        type: "POST",
+                        data: { userId: userId, email: email },
+                        dataType: "html"
+                    });
+
+                    request.done(function () {
+                        $('form').removeClass('loading');
+                        if (subscribe) {
+                            $("#mailingList").html("<a id='subscribe' class='fluid ui orange submit button'>Resend mailing list confirmation</a>");
+                        } else {
+                            $("#mailingList").html("<a id='unsubscribe' class='fluid ui orange submit button'>Resend Unsubscribe mailing list confirmation</a>");
+                        }
+                    });
+
+                    request.fail(function () {
+                        $('form').removeClass('loading');
+                        $('#mailingList').append('<div class="ui error message show "><div class="ui list divided"><div class="item">Uh oh! Looks like there was a problem.</div></div></div>');
+                    });
+
+                } else {
+                    $('#email').closest('.field').addClass('error');
+                }
             };
             $(document).on('click', '#subscribe', function () {
-                $('#joinMailingList').addClass('loading');
                 subscribeToMailingList(true);
             });
             $(document).on('click', '#unsubscribe', function () {
-                $('#joinMailingList').addClass('loading');
                 subscribeToMailingList(false);
             });
         });
