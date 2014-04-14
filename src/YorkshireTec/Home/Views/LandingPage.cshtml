@@ -1,7 +1,10 @@
-﻿@{
-    Layout = "Shared/_Layout.cshtml";
-}
+﻿@using Cassette.Nancy
 @using Nancy.Helpers
+@{
+    Layout = "Shared/_Layout.cshtml";
+
+    Bundles.Reference("Scripts/mailchimp");
+}
 @inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<YorkshireTec.Infrastructure.BaseViewModel<YorkshireTec.Home.ViewModels.LandingPageViewModel>>
 
     <section class="opaque blurb">
@@ -83,7 +86,7 @@
                         <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="fluid ui button"></div>
                     </div>
                 </form>
-                <script type="text/javascript" src="../../Content/Scripts/mailchimp.js"></script>
+
                 <!--End mc_embed_signup-->
             </div>
         </div>
