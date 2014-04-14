@@ -1,0 +1,33 @@
+/*	=FORM GROUPING 
+--------------------------------------------------------------------*/
+.form-group {
+	@include rhythm(margin-bottom, .5);
+}
+
+.layout-stacked {
+
+	label,
+	.label {
+		@include rhythm(margin-bottom, .25);
+		display: block;
+	}
+}
+
+/*	=INPUTS
+--------------------------------------------------------------------*/
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="password"],
+input[type="number"],
+input[type="date"],
+select,
+textarea {
+	padding: .5em;
+	border: 1px solid #ccc;
+	border-radius: 0;
+
+	&:focus {
+		outline: 2px solid darken($accent-primary, 1%);
+	}
+}

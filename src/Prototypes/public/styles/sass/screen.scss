@@ -9,6 +9,7 @@
 @import "partials/typography";	// Global typographys settings such as hN header stack 
 @import "partials/buttons";		// Button variations
 @import "partials/navigation";	// Navigation such as global nav, sub nav and tabs etc
+@import "partials/forms";		// Global form styles
 
 /*  =BASE
 ------------------------------------------------------------*/
@@ -58,9 +59,15 @@ ul {
 --------------------------------------------------------------------*/
 .hero-banner {
 	padding: 5em 0;
-	background: #F8F8F8;
+	//background: #303c49;
+	background: url(../img/bg-homepage-banner.png) no-repeat;
+	background-size: cover;
+    background-position: 50% 50%;
 	text-align: center;
-	border-bottom: 1px solid #ddd;
+
+	h1 {
+		color: #fff;
+	}
 }
 
 .logo-site {
