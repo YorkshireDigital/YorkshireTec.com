@@ -13,6 +13,19 @@
 	}
 }
 
+.form-actions {
+	@include rhythm(margin-top, 1);
+}
+
+/*	=FORM TYPOGRAPHY
+--------------------------------------------------------------------*/
+.sub-label {
+	display: block;
+	padding: .5em 0;
+	color: #7E7E7E;
+	font-style: italic;
+}
+
 /*	=INPUTS
 --------------------------------------------------------------------*/
 input[type="text"],
@@ -30,4 +43,40 @@ textarea {
 	&:focus {
 		outline: 2px solid darken($accent-primary, 1%);
 	}
+}
+
+.input-xs {
+	width: 45px;
+}
+
+.input-s {
+	width: 80px;
+}
+
+.input-m {
+	width: 150px;
+}
+
+.input-l {
+	width: 203px;
+}
+
+.input-xl {
+	width: 350px;
+
+	@include breakpoint(viewport-s) {
+		width: 100%;
+	}
+}
+
+.input-xxl {
+	width: 253px * 2 + 10;
+}
+
+textarea.input-xxl  {
+	width: 370px;
+}
+
+.input-full {
+	width: 100%;
 }

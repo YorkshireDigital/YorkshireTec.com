@@ -16,7 +16,7 @@ h4,
 .delta, 
 h5,
 .epsilon {
-	font-family: MetronicProRegular;
+	font-family: MetronicProLight;
     font-weight: 700;
     color: $accent-primary;
 
@@ -74,6 +74,10 @@ h6,
     @include breakpoint(single) {
         margin-bottom: .5em;
     }
+}
+
+.intro {
+	@include font-size(1.25);
 }
 
 p,

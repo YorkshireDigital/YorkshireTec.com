@@ -14,6 +14,7 @@
 /*  =BASE
 ------------------------------------------------------------*/
 html {
+	height: 100%;
 	background: #fff;
 	padding: 0;
 	margin: 0;
@@ -21,6 +22,7 @@ html {
 
 body {
 	height: 100%;
+	background: #333;
 	//@include baseline-overlay();
 }
 
@@ -36,7 +38,7 @@ ul {
 --------------------------------------------------------------------*/
 %layout {
     min-width: 300px;
-    padding: 0 2em;
+    padding: 0 3em;
     margin: 0 auto;
 
     @include breakpoint(single) {
@@ -48,24 +50,21 @@ ul {
 	@extend %layout;
 }
 
-/*  =HEADER
---------------------------------------------------------------------*/
-.header-page {
-	@extend .group;
-	padding: 1.5em 0;
-}
-
 /*  =HERO BLOCK
 --------------------------------------------------------------------*/
-.hero-banner {
-	padding: 5em 0;
-	//background: #303c49;
+.home-banner {
+	height: 100%;
+	padding-top: 2em;
 	background: url(../img/bg-homepage-banner.png) no-repeat;
 	background-size: cover;
     background-position: 50% 50%;
-	text-align: center;
+}
 
-	h1 {
+.hero {
+	padding-right: 40%;
+	
+
+	h1, p {
 		color: #fff;
 	}
 }
@@ -73,11 +72,22 @@ ul {
 .logo-site {
 	display: block;
 	max-width: 360px;
-	margin: 0 auto 1em;
 }
 
 .strapline {
 
+}
+
+/*  =SIGN UP BLOCK
+--------------------------------------------------------------------*/
+.sign-up {
+	@include rhythm(padding, 2);
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	width: 35%;
+	background: rgba(255,255,255,1);
 }
 
 

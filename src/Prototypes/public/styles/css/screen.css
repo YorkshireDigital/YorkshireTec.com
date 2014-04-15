@@ -81,6 +81,13 @@ body {
   margin: 0;
 }
 
+/* apply a natural box layout model to all elements */
+*, *:before, *:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
 /* ==========================================================================
    Links
    ========================================================================== */
@@ -382,19 +389,18 @@ table {
 --------------------------------------------------------------------*/
 /*  =GLOBAL USE STYLES
 --------------------------------------------------------------------*/
-.group:before, .nav-primary ul:before, .header-page:before,
+.group:before, .nav-primary ul:before,
 .group:after,
-.nav-primary ul:after,
-.header-page:after {
+.nav-primary ul:after {
   content: "";
   display: table;
 }
 
-.group:after, .nav-primary ul:after, .header-page:after {
+.group:after, .nav-primary ul:after {
   clear: both;
 }
 
-.group, .nav-primary ul, .header-page {
+.group, .nav-primary ul {
   zoom: 1;
 }
 
@@ -425,7 +431,7 @@ h4,
 .delta,
 h5,
 .epsilon {
-  font-family: MetronicProRegular;
+  font-family: MetronicProLight;
   font-weight: 700;
   color: #b9306a;
 }
@@ -507,6 +513,11 @@ h6,
   .hero-title {
     margin-bottom: .5em;
   }
+}
+
+.intro {
+  font-size: 20px;
+  font-size: 1.25rem;
 }
 
 p,
@@ -735,6 +746,19 @@ a:hover {
   display: block;
 }
 
+.form-actions {
+  margin-top: 1.5em;
+}
+
+/*	=FORM TYPOGRAPHY
+--------------------------------------------------------------------*/
+.sub-label {
+  display: block;
+  padding: .5em 0;
+  color: #7E7E7E;
+  font-style: italic;
+}
+
 /*	=INPUTS
 --------------------------------------------------------------------*/
 input[type="text"],
@@ -760,9 +784,47 @@ textarea:focus {
   outline: 2px solid #b52f68;
 }
 
+.input-xs {
+  width: 45px;
+}
+
+.input-s {
+  width: 80px;
+}
+
+.input-m {
+  width: 150px;
+}
+
+.input-l {
+  width: 203px;
+}
+
+.input-xl {
+  width: 350px;
+}
+@media (max-width: 37.5em) {
+  .input-xl {
+    width: 100%;
+  }
+}
+
+.input-xxl {
+  width: 516px;
+}
+
+textarea.input-xxl {
+  width: 370px;
+}
+
+.input-full {
+  width: 100%;
+}
+
 /*  =BASE
 ------------------------------------------------------------*/
 html {
+  height: 100%;
   background: #fff;
   padding: 0;
   margin: 0;
@@ -770,6 +832,7 @@ html {
 
 body {
   height: 100%;
+  background: #333;
 }
 
 ul {
@@ -783,7 +846,7 @@ ul ul {
 --------------------------------------------------------------------*/
 .layout-constrained {
   min-width: 300px;
-  padding: 0 2em;
+  padding: 0 3em;
   margin: 0 auto;
 }
 @media (max-width: single) {
@@ -792,29 +855,38 @@ ul ul {
   }
 }
 
-/*  =HEADER
---------------------------------------------------------------------*/
-.header-page {
-  padding: 1.5em 0;
-}
-
 /*  =HERO BLOCK
 --------------------------------------------------------------------*/
-.hero-banner {
-  padding: 5em 0;
+.home-banner {
+  height: 100%;
+  padding-top: 2em;
   background: url(../img/bg-homepage-banner.png) no-repeat;
   background-size: cover;
   background-position: 50% 50%;
-  text-align: center;
 }
-.hero-banner h1 {
+
+.hero {
+  padding-right: 40%;
+}
+.hero h1, .hero p {
   color: #fff;
 }
 
 .logo-site {
   display: block;
   max-width: 360px;
-  margin: 0 auto 1em;
+}
+
+/*  =SIGN UP BLOCK
+--------------------------------------------------------------------*/
+.sign-up {
+  padding: 3em;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 35%;
+  background: white;
 }
 
 /*  =ISLAND
