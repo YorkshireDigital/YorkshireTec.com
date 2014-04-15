@@ -427,7 +427,7 @@ h5,
 .epsilon {
   font-family: MetronicProRegular;
   font-weight: 700;
-  color: #444444;
+  color: #b9306a;
 }
 h1 a,
 .alpha a,
@@ -439,7 +439,7 @@ h4 a,
 .delta a,
 h5 a,
 .epsilon a {
-  color: #444444;
+  color: #b9306a;
   text-decoration: none;
 }
 h1 a:hover,
@@ -515,7 +515,7 @@ pre {
 }
 
 a {
-  color: #444444;
+  color: #b9306a;
 }
 a:hover {
   text-decoration: none;
@@ -538,36 +538,36 @@ a:hover {
   cursor: pointer;
 }
 .btn:hover {
-  background: #303030;
+  background: #992857;
 }
 
 /*  =BUTTON STATE VARIANTS
 --------------------------------------------------------------------*/
 .btn--primary {
-  background: #444444;
-  border-color: #303030;
+  background: #b9306a;
+  border-color: #992857;
 }
 .btn--primary:hover, .btn--primary:focus {
-  background: #303030;
-  border-color: #303030;
+  background: #992857;
+  border-color: #992857;
 }
 
 .btn--secondary {
-  background: #757b85;
-  border-color: #62676f;
+  background: #303d4a;
+  border-color: #202931;
 }
 .btn--secondary:hover, .btn--secondary:focus {
-  background: #62676f;
-  border-color: #62676f;
+  background: #202931;
+  border-color: #202931;
 }
 
 .btn--tertiary {
-  background: #596d8d;
-  border-color: #495a74;
+  background: #0f767e;
+  border-color: #0b545a;
 }
 .btn--tertiary:hover, .btn--tertiary:focus {
-  background: #495a74;
-  border-color: #495a74;
+  background: #0b545a;
+  border-color: #0b545a;
 }
 
 .btn--positive {
@@ -644,7 +644,7 @@ a:hover {
   bottom: 0;
   width: 4em;
   cursor: pointer;
-  border: 1px solid #373737;
+  border: 1px solid #a52b5e;
 }
 .btn--multi .btn-drop:after {
   position: absolute;
@@ -709,7 +709,7 @@ a:hover {
   float: left;
 }
 .nav-primary .current a {
-  border: 1px solid #444444;
+  border: 1px solid #b9306a;
 }
 .nav-primary a {
   display: block;
@@ -721,6 +721,43 @@ a:hover {
 }
 .nav-primary a:hover {
   color: #565656;
+}
+
+/*	=FORM GROUPING 
+--------------------------------------------------------------------*/
+.form-group {
+  margin-bottom: 0.75em;
+}
+
+.layout-stacked label,
+.layout-stacked .label {
+  margin-bottom: 0.375em;
+  display: block;
+}
+
+/*	=INPUTS
+--------------------------------------------------------------------*/
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="password"],
+input[type="number"],
+input[type="date"],
+select,
+textarea {
+  padding: .5em;
+  border: 1px solid #ccc;
+  border-radius: 0;
+}
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="tel"]:focus,
+input[type="password"]:focus,
+input[type="number"]:focus,
+input[type="date"]:focus,
+select:focus,
+textarea:focus {
+  outline: 2px solid #b52f68;
 }
 
 /*  =BASE
@@ -765,9 +802,13 @@ ul ul {
 --------------------------------------------------------------------*/
 .hero-banner {
   padding: 5em 0;
-  background: #F8F8F8;
+  background: url(../img/bg-homepage-banner.png) no-repeat;
+  background-size: cover;
+  background-position: 50% 50%;
   text-align: center;
-  border-bottom: 1px solid #ddd;
+}
+.hero-banner h1 {
+  color: #fff;
 }
 
 .logo-site {
