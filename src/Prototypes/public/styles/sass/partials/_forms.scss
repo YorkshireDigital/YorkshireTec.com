@@ -1,7 +1,7 @@
 /*	=FORM GROUPING 
 --------------------------------------------------------------------*/
 .form-group {
-	@include rhythm(margin-bottom, .5);
+	@include rhythm(margin-bottom, .75);
 }
 
 .layout-stacked {
@@ -14,16 +14,19 @@
 }
 
 .form-actions {
-	@include rhythm(margin-top, 1);
+	margin-top: 1.5em;
 }
 
 /*	=FORM TYPOGRAPHY
 --------------------------------------------------------------------*/
-.sub-label {
+.sub-info {
+	@include font-size(.888);
+	font-family: "Alright Sans Light";
 	display: block;
-	padding: .5em 0;
+	padding: 1em 0;
 	color: #7E7E7E;
 	font-style: italic;
+	text-align: center;
 }
 
 /*	=INPUTS
@@ -36,7 +39,7 @@ input[type="number"],
 input[type="date"],
 select,
 textarea {
-	padding: .5em;
+	padding: .75em;
 	border: 1px solid #ccc;
 	border-radius: 0;
 

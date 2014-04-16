@@ -1,8 +1,46 @@
 /*  =TYPOGRAPHY
 	 Metronic weights to use: MetronicProAir, MetronicProLight, MetronicProRegular, MetronicProSemiBold, MetronicPro-Bold
+	 Alright Sans weights to use:
+
+	 .alrightsanslight {
+		font-family: "Alright Sans";
+		font-style: normal;
+		font-weight: normal;
+	}
+
+	.alrightsanslightitalic {
+		font-family: "Alright Sans Light";
+		font-style: italic;
+		font-weight: normal;
+	}
+
+	.alrightsansmedium {
+		font-family: "Alright Sans Medium";
+		font-style: normal;
+		font-weight: normal;
+	}
+
+	.alrightsansmediumitalic {
+		font-family: "Alright Sans Medium";
+		font-style: italic;
+		font-weight: normal;
+	}
+
+	.alrightsansregular {
+		font-family: "Alright Sans";
+		font-style: normal;
+		font-weight: normal;
+	}
+
+	.alrightsansregularitalic {
+		font-family: "Alright Sans";
+		font-style: italic;
+		font-weight: normal;
+	}
+
 --------------------------------------------------------------------*/
 html {
-    font: 500 1em/1.5 $font-general; // 24px baseline grid
+    font: 500 1.125em/1.5 $font-general; // 24px baseline grid
     color: #333;
 }
 
@@ -34,7 +72,7 @@ h1,
 .alpha {
     @include font-size(1.875); // 30px equivalent
     line-height: 1.2;
-    margin: 0 0 .4em 0;
+    margin: 0 0 1em 0;
 }
 
 h2,
@@ -82,7 +120,7 @@ h6,
 
 p,
 pre {
-    //margin: 0 0 .75em 0;
+    margin-top: 0;
     @include rhythm(margin-bottom, .5);
 }
 
