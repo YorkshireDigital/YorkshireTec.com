@@ -2,11 +2,13 @@
 @mixin button($btn-bg: $accent-primary) {
 	background: $btn-bg; 
 	border-color: darken( $btn-bg, 8% );
+	@include single-transition(background, .2s);
 
 	&:hover,
 	&:focus {
 		background: darken( $btn-bg, 8% );
 		border-color: darken( $btn-bg, 8% );
+		@include single-transition(background, .2s);
 	}
 }
 

@@ -1,45 +1,40 @@
-{% block title %}Intro Page{% endblock %} 
+{% block title %}Bringing Yorkshires digital community together{% endblock %} 
 {% block content %}
-	<section class="layout-constrained home-banner">
+	<section class="home-banner">
 		<img class="logo-site" src="{{ "logo-yorkshiredigital-reversed.svg" | asset_url }}" alt="">
 		<div class="hero">
 			<h1>Bringing Yorkshires digital community together</h1>
 			<p>
 				A hub for the growing digital community in Yorkshire, where individuals, organisations and user groups of all skill sets can easily see whats going on, find new connections and share knowledge.
 			</p>
-			<!-- <div class="feature-list">
-				<span class="icn feature-list__item">Event Calendar</span>
-				<span class="icn feature-list__item"></span>
-				<span class="icn feature-list__item"></span>
-			</div> -->
 			<p>
 				If you run a meetup in Yorkshire and would like to get involved  <a href="mailto:">let us know</a>.
 			</p>
 		</div>
-		<div class="sign-up layout-stacked">
-			<div class="newsletter">
-				<h2>Want to know more?</h2>
-				<p>Sign up to our newsletter and be the first to hear when we launch.</p>
-				<div class="form-group">
-					<label for="firstName">First name</label>
-					<input type="text" id="firstName" class="input-full" />
-				</div>
-				<div class="form-group">
-					<label for="emailAddress">Email address</label>
-					<input type="text" id="emailAddress" class="input-full" />
-				</div>
-				<div class="form-actions">
-					<button class="btn btn--primary btn--full">Sign up</button>
-				</div>
-				<span class="sub-info">Don't worry, we hate spam as much as you</span>
+	</section>
+	<section class="sign-up layout-stacked">
+		<div class="newsletter">
+			<h2>Want to know more?</h2>
+			<p>Sign up to our newsletter and be the first to hear when we launch.</p>
+			<div class="form-group">
+				<label for="firstName">First name</label>
+				<input type="text" id="firstName" class="input-full" />
 			</div>
-			<div class="is-hidden">
-				<h3>Great work!</h3>
-				<p>We will be up an running shortly, in the meantime if you want to check us out on Twitter and help spread the word we would appreciate it.</p>
+			<div class="form-group">
+				<label for="emailAddress">Email address</label>
+				<input type="text" id="emailAddress" class="input-full" />
 			</div>
-			<footer role="contentinfo">
-				<small>© 2014 YorkshireDigital</small>
-			</footer>			
+			<div class="form-actions">
+				<button class="btn btn--primary btn--full">Sign up</button>
+			</div>
+			<span class="sub-info">Don't worry, we hate spam as much as you</span>
 		</div>
+		<div class="is-hidden">
+			<h3>Great work!</h3>
+			<p>We will be up an running shortly, in the meantime if you want to check us out on Twitter and help spread the word we would appreciate it.</p>
+		</div>
+		<footer role="contentinfo">
+			<small>© 2014 YorkshireDigital</small>
+		</footer>			
 	</section>
 {% endblock %}

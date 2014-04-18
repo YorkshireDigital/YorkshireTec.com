@@ -24,7 +24,7 @@
 	font-family: "Alright Sans Light";
 	display: block;
 	padding: 1em 0;
-	color: #7E7E7E;
+	color: #737373;
 	font-style: italic;
 	text-align: center;
 }
@@ -82,4 +82,16 @@ textarea.input-xxl  {
 
 .input-full {
 	width: 100%;
+}
+
+/*	=DEVICE SPECIFIC
+--------------------------------------------------------------------*/
+input[type="text"],
+input[type="number"],
+input[type="email"],
+input[type="tel"],
+input[type="password"],
+textarea {
+	-webkit-appearance: none;	// Removes inner shadow in webkit
+	-moz-appearance: none; 		// Removes inner shadow in mobile firefox
 }

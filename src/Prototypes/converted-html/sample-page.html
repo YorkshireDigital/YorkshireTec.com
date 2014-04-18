@@ -6,7 +6,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>{% block title %}Page Title{% endblock %} | YorkshireDigital</title>
+        <title>Second Page | YorkshireDigital</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -17,15 +17,16 @@
         <link href="//cloud.webtype.com/css/0d8452cf-4a8c-468d-9685-d4377a593f29.css" rel="stylesheet" type="text/css" />
 
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-        {{ "screen.css" | asset_url | stylesheet_tag }}
-        {{ "modernizr-2.6.2.min.js" | asset_url | script_tag }}
+        <link href="public/styles/css/screen.min.css" rel="stylesheet" type="text/css" media="all"/>
+        <script src="public/scripts/vendor/modernizr-2.6.2.min.js"></script>
     </head>
     <body class="home">
 
-        {% comment %}{% include "header" %} {% endcomment %}
-        {% block content %}
+        
+        
+	<h1>Second Page</h1>
+	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum, possimus officia voluptatem minima velit dignissimos eveniet ratione labore eaque perspiciatis corrupti hic error rem nam ullam! Repellendus earum architecto nam.</p>
 
-        {% endblock %}
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>

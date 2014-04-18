@@ -18,6 +18,10 @@ html {
 	background: #fff;
 	padding: 0;
 	margin: 0;
+
+	@include breakpoint(viewport-s) {
+		height: auto;
+	}
 }
 
 body {
@@ -28,9 +32,9 @@ body {
 }
 
 .home {
-	background: url(../img/bg-homepage-banner.jpg) no-repeat;
+	background: #232e3a url(../img/bg-homepage-banner.jpg) no-repeat;
 	background-size: cover;
-    background-position: 100% 100%;
+    background-position: 50% 50%;
 }
 
 ul {
@@ -45,11 +49,11 @@ ul {
 --------------------------------------------------------------------*/
 %layout {
     min-width: 300px;
-    padding: 0 3em;
+    padding: 0 2em;
     margin: 0 auto;
 
     @include breakpoint(single) {
-        padding: 0 1em;
+        padding: 0 .5em;
     }
 }
 
@@ -60,19 +64,30 @@ ul {
 /*  =HERO BLOCK
 --------------------------------------------------------------------*/
 .home-banner {
-	height: 100%;
-	padding-top: 2em;
-	
+	padding: 2em;
+	overflow: hidden;
+
+	@include breakpoint(viewport-s) {
+		padding: 2em 1.5em;
+	}
 }
 
 .hero {
+	//max-width: 900px;
 	padding-right: 40%;
+
+	@include breakpoint(viewport-m) {
+		padding-right: 55%;
+	}
+
+	@include breakpoint(viewport-s) {
+		padding: 0;
+	}
 
 	h1 {
 		font-family: MetronicProAir;
 	}
 	
-
 	h1, p {
 		color: #fff;
 	}
@@ -81,10 +96,6 @@ ul {
 .logo-site {
 	display: block;
 	max-width: 300px;
-}
-
-.strapline {
-
 }
 
 .feature-list {
@@ -107,25 +118,30 @@ ul {
 	width: 35%;
 	padding: 7em 2.5em 2em 2.5em;
 	background: rgba(255,255,255,1);
-}
 
+	@include breakpoint(viewport-m) {
+		width: 50%;
+	}
 
-/*  =ICON BLOCK
-	 This will move into a partial before launch
---------------------------------------------------------------------*/
-.icn {
-	display: inline-block;
-	width: 150px;
-	height: 150px;
-	background: #fff;
+	@include breakpoint(viewport-s) {
+		width: 100%;
+		position: static;
+		padding: 2em 1.5em;
+	}
 }
 
 /*  =FOOTER
 --------------------------------------------------------------------*/
 footer[role="contentinfo"] {
+	padding-top: 1em;
 	margin-top: 2em;
+	border-top: 1px solid #ddd;
 	text-align: center;
-	//color: #ccc;
+	color: #949494;
+
+	@include breakpoint(viewport-s) {
+		margin-top: 1em;
+	}
 }
 
 /*  =GENERAL UI ELEMENTS
