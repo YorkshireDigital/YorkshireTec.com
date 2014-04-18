@@ -389,18 +389,19 @@ table {
 --------------------------------------------------------------------*/
 /*  =GLOBAL USE STYLES
 --------------------------------------------------------------------*/
-.group:before, .nav-primary ul:before,
+.group:before, .nav-primary ul:before, .feature-list:before,
 .group:after,
-.nav-primary ul:after {
+.nav-primary ul:after,
+.feature-list:after {
   content: "";
   display: table;
 }
 
-.group:after, .nav-primary ul:after {
+.group:after, .nav-primary ul:after, .feature-list:after {
   clear: both;
 }
 
-.group, .nav-primary ul {
+.group, .nav-primary ul, .feature-list {
   zoom: 1;
 }
 
@@ -503,7 +504,7 @@ h1,
 .alpha {
   font-size: 30px;
   font-size: 1.875rem;
-  line-height: 1.2;
+  line-height: 1.3;
   margin: 0 0 1em 0;
 }
 
@@ -824,7 +825,7 @@ input[type="number"]:focus,
 input[type="date"]:focus,
 select:focus,
 textarea:focus {
-  outline: 2px solid #b52f68;
+  outline: 2px solid #0e7279;
 }
 
 .input-xs {
@@ -874,8 +875,15 @@ html {
 }
 
 body {
+  position: relative;
   height: 100%;
   background: #333;
+}
+
+.home {
+  background: url(../img/bg-homepage-banner.jpg) no-repeat;
+  background-size: cover;
+  background-position: 100% 100%;
 }
 
 ul {
@@ -903,13 +911,13 @@ ul ul {
 .home-banner {
   height: 100%;
   padding-top: 2em;
-  background: url(../img/bg-homepage-banner.jpg) no-repeat;
-  background-size: cover;
-  background-position: 100% 100%;
 }
 
 .hero {
   padding-right: 40%;
+}
+.hero h1 {
+  font-family: MetronicProAir;
 }
 .hero h1, .hero p {
   color: #fff;
@@ -917,11 +925,16 @@ ul ul {
 
 .logo-site {
   display: block;
-  max-width: 360px;
+  max-width: 300px;
 }
 
-.features {
+.feature-list {
   margin: 2em 0;
+}
+
+.feature-list__item {
+  float: left;
+  margin-right: 2em;
 }
 
 /*  =SIGN UP BLOCK
@@ -944,10 +957,6 @@ ul ul {
   width: 150px;
   height: 150px;
   background: #fff;
-}
-
-.icn--home {
-  margin-right: 2em;
 }
 
 /*  =FOOTER

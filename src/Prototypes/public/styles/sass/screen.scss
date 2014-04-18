@@ -21,9 +21,16 @@ html {
 }
 
 body {
+	position: relative;
 	height: 100%;
 	background: #333;
 	//@include baseline-overlay();
+}
+
+.home {
+	background: url(../img/bg-homepage-banner.jpg) no-repeat;
+	background-size: cover;
+    background-position: 100% 100%;
 }
 
 ul {
@@ -55,13 +62,15 @@ ul {
 .home-banner {
 	height: 100%;
 	padding-top: 2em;
-	background: url(../img/bg-homepage-banner.jpg) no-repeat;
-	background-size: cover;
-    background-position: 100% 100%;
+	
 }
 
 .hero {
 	padding-right: 40%;
+
+	h1 {
+		font-family: MetronicProAir;
+	}
 	
 
 	h1, p {
@@ -71,15 +80,21 @@ ul {
 
 .logo-site {
 	display: block;
-	max-width: 360px;
+	max-width: 300px;
 }
 
 .strapline {
 
 }
 
-.features {
+.feature-list {
 	margin: 2em 0;
+	@extend .group;
+}
+
+.feature-list__item {
+	float: left;
+	margin-right: 2em;
 }
 
 /*  =SIGN UP BLOCK
@@ -103,10 +118,6 @@ ul {
 	width: 150px;
 	height: 150px;
 	background: #fff;
-}
-
-.icn--home {
-	margin-right: 2em;
 }
 
 /*  =FOOTER
