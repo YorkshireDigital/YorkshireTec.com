@@ -37,7 +37,7 @@
 		</div>
 	</section>
 	<section class="sign-up layout-stacked">
-		<div class="newsletter">
+		<div class="js-pre-sign-up">
 			<h2>Want to know more?</h2>
 			<p>Sign up to our newsletter and be the first to hear when we launch.</p>
 			<div class="form-group">
@@ -46,16 +46,24 @@
 			</div>
 			<div class="form-group">
 				<label for="emailAddress">Email address</label>
-				<input type="text" id="emailAddress" class="input-full" />
+				<input type="text" id="emailAddress" class="input-full input-validation-error" />
+				<span class="sub-label field-validation-error">Please enter a valid email address</span>
 			</div>
 			<div class="form-actions">
-				<button class="btn btn--primary btn--full">Sign up</button>
+				<button class="btn btn--primary btn--full js-sign-up-btn" type="button">Sign up</button>
 			</div>
 			<span class="sub-info">Don't worry, we hate spam as much as you</span>
 		</div>
-		<div class="is-hidden">
-			<h3>Great work!</h3>
-			<p>We will be up an running shortly, in the meantime if you want to check us out on Twitter and help spread the word we would appreciate it.</p>
+		<div class="js-post-sign-up is-hidden">
+			<h3>Great, almost there</h3>
+			<p>You will receive an email shortly to confirm this subscription.</p>
+			<p>We will be launching soon, follow us on <a href="https://twitter.com/YorkshireTec">Twitter</a> in the meantime to keep up to date with the latest new and events.</p>
+			<hr />
+			<div class="island">
+				<h3>Help us spread the word</h3>
+				<p>Let people know about YorkshireDigital and help us to grow the community.</p>
+				<button class="btn btn--full btn--primary">Copy link</button>
+			</div>
 		</div>
 		<footer role="contentinfo">
 			<small>© 2014 YorkshireDigital</small>
@@ -65,5 +73,6 @@
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
+        <script src="public/scripts/main.min.js"></script>
     </body>
 </html>

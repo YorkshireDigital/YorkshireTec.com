@@ -708,7 +708,7 @@ a:hover {
 }
 
 .btn--m {
-  padding: 1em 1.5em;
+  padding: .75em 1.25em;
 }
 
 .btn--l {
@@ -844,7 +844,7 @@ a:hover {
   margin-top: 1.5em;
 }
 
-/*	=FORM TYPOGRAPHY
+/*	=FORM LABELS
 --------------------------------------------------------------------*/
 .sub-info {
   font-size: 14.208px;
@@ -857,7 +857,11 @@ a:hover {
   text-align: center;
 }
 
-/*	=INPUTS
+.sub-label {
+  color: #b93d3d;
+}
+
+/*	=INPUT STYLES & SIZES
 --------------------------------------------------------------------*/
 input[type="text"],
 input[type="email"],
@@ -917,6 +921,20 @@ textarea.input-xxl {
 
 .input-full {
   width: 100%;
+}
+
+/*	=VALIDATION
+--------------------------------------------------------------------*/
+.input-validation-error {
+  background: #f6e5e5;
+  border-color: #b93d3d !important;
+  border-width: 2px !important;
+}
+
+.field-validation-error {
+  width: auto;
+  display: inline-block;
+  padding: .5em 0;
 }
 
 /*	=DEVICE SPECIFIC
@@ -990,7 +1008,7 @@ ul ul {
 }
 
 .hero {
-  padding-right: 40%;
+  padding-right: 45%;
 }
 @media (max-width: 56.25em) {
   .hero {
@@ -1030,7 +1048,8 @@ ul ul {
   top: 0;
   right: 0;
   bottom: 0;
-  width: 35%;
+  width: 40%;
+  max-width: 550px;
   padding: 7em 2.5em 2em 2.5em;
   background: white;
 }
@@ -1051,18 +1070,25 @@ ul ul {
 --------------------------------------------------------------------*/
 footer[role="contentinfo"] {
   padding-top: 1em;
-  margin-top: 2em;
+  margin-top: 3em;
   border-top: 1px solid #ddd;
   text-align: center;
   color: #949494;
 }
 @media (max-width: 37.5em) {
   footer[role="contentinfo"] {
-    margin-top: 1em;
+    margin-top: 1.5em;
   }
 }
 
 /*  =GENERAL UI ELEMENTS
 ------------------------------------------------------------*/
+hr {
+  height: 1px;
+  margin: 1em 0;
+  background: #DDD;
+  border: 0;
+}
+
 /*	=PLACE YOUR TEMPORARY STYLES BELOW HERE
 ------------------------------------------------------------*/
