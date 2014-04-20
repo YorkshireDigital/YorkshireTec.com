@@ -74,7 +74,7 @@ ul {
 
 .hero {
 	//max-width: 900px;
-	padding-right: 40%;
+	padding-right: 45%;
 
 	@include breakpoint(viewport-m) {
 		padding-right: 55%;
@@ -115,7 +115,8 @@ ul {
 	top: 0;
 	right: 0;
 	bottom: 0;
-	width: 35%;
+	width: 40%;
+	max-width: 550px;
 	padding: 7em 2.5em 2em 2.5em;
 	background: rgba(255,255,255,1);
 
@@ -134,13 +135,13 @@ ul {
 --------------------------------------------------------------------*/
 footer[role="contentinfo"] {
 	padding-top: 1em;
-	margin-top: 2em;
+	margin-top: 3em;
 	border-top: 1px solid #ddd;
 	text-align: center;
 	color: #949494;
 
 	@include breakpoint(viewport-s) {
-		margin-top: 1em;
+		margin-top: 1.5em;
 	}
 }
 
