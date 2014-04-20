@@ -146,6 +146,11 @@ footer[role="contentinfo"] {
 
 /*  =GENERAL UI ELEMENTS
 ------------------------------------------------------------*/
-
+hr {
+	height: 1px;
+	margin: 1em 0;
+	background: #DDD;
+	border: 0;
+}
 
 @import "partials/temp"; // Used for temporary styles throughout the project. This should ideally be empty in production environments

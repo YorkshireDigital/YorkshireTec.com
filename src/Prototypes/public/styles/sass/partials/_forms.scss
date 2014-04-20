@@ -17,7 +17,7 @@
 	margin-top: 1.5em;
 }
 
-/*	=FORM TYPOGRAPHY
+/*	=FORM LABELS
 --------------------------------------------------------------------*/
 .sub-info {
 	@include font-size(.888);
@@ -29,7 +29,11 @@
 	text-align: center;
 }
 
-/*	=INPUTS
+.sub-label {
+	color: $accent-negative;
+}
+
+/*	=INPUT STYLES & SIZES
 --------------------------------------------------------------------*/
 input[type="text"],
 input[type="email"],
@@ -82,6 +86,20 @@ textarea.input-xxl  {
 
 .input-full {
 	width: 100%;
+}
+
+/*	=VALIDATION
+--------------------------------------------------------------------*/
+.input-validation-error {
+	background: lighten($accent-negative, 45%);
+	border-color: $accent-negative !important;
+	border-width: 2px !important;
+}
+
+.field-validation-error {
+	width: auto;
+	display: inline-block;
+	padding: .5em 0;
 }
 
 /*	=DEVICE SPECIFIC
