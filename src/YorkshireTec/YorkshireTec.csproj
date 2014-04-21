@@ -146,9 +146,8 @@
     <None Include=".bin\compass.bat" />
     <Content Include="Content\css\screen.css" />
     <Content Include="Content\img\bg-homepage-banner.jpg" />
-    <Content Include="Content\img\bg-homepage-banner.png" />
+    <Content Include="Content\img\logo-yorkshiredigital-reversed.png" />
     <Content Include="Content\img\logo-yorkshiredigital-reversed.svg" />
-    <Content Include="Content\img\logo-yorkshiredigital.svg" />
     <Content Include="favicon.ico" />
     <Content Include="packages.config" />
     <Content Include="Home\Views\Index.cshtml" />
@@ -161,6 +160,18 @@
     <Content Include="Account\Views\Welcome.cshtml" />
     <Content Include="Account\Views\Subscribed.cshtml" />
     <Content Include="Account\Views\Unsubscribed.cshtml" />
+    <Content Include="Content\fonts\2AB2F4_0_0.eot" />
+    <Content Include="Content\fonts\2AB2F4_0_0.ttf" />
+    <Content Include="Content\fonts\2AB2F4_0_0.woff" />
+    <Content Include="Content\fonts\2AB2F4_1_0.eot" />
+    <Content Include="Content\fonts\2AB2F4_1_0.ttf" />
+    <Content Include="Content\fonts\2AB2F4_1_0.woff" />
+    <Content Include="Content\fonts\2AB2F4_2_0.eot" />
+    <Content Include="Content\fonts\2AB2F4_2_0.ttf" />
+    <Content Include="Content\fonts\2AB2F4_2_0.woff" />
+    <Content Include="Content\fonts\2AB2F4_3_0.eot" />
+    <Content Include="Content\fonts\2AB2F4_3_0.ttf" />
+    <Content Include="Content\fonts\2AB2F4_3_0.woff" />
     <None Include="Properties\PublishProfiles\WebDeploy.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

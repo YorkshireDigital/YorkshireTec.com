@@ -85,7 +85,7 @@ ul {
 	}
 
 	h1 {
-		font-family: MetronicProAir;
+		font-family: MetronicProRegular;
 	}
 	
 	h1, p {
@@ -94,8 +94,14 @@ ul {
 }
 
 .logo-site {
-	display: block;
 	max-width: 300px;
+	height: 177px;
+	margin-bottom: 1.5em;
+	background: url(../img/logo-yorkshiredigital-reversed.svg) 0 0 no-repeat;
+
+	.no-svg & {
+		background-image: url(../img/logo-yorkshiredigital-reversed.png);
+	}
 }
 
 .feature-list {
