@@ -171,6 +171,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bundle.txt" />
+    <None Include=".bin\compass.bat" />
+    <None Include="Content\screen.scss" />
     <Content Include="packages.config" />
     <Content Include="Home\Views\Index.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
