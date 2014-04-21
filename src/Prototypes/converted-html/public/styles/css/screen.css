@@ -470,8 +470,8 @@ h4,
 .delta,
 h5,
 .epsilon {
-  font-family: MetronicProLight;
-  font-weight: 700;
+  font-family: MetronicProSemiBold;
+  font-weight: 500;
   color: #b9306a;
 }
 h1 a,
@@ -584,6 +584,30 @@ a {
 }
 a:hover {
   text-decoration: none;
+}
+
+.alrightsanslight {
+  font-family: "Alright Sans";
+  font-style: normal;
+  font-weight: normal;
+}
+
+.alrightsanslightitalic {
+  font-family: "Alright Sans Light";
+  font-style: italic;
+  font-weight: normal;
+}
+
+.alrightsansregular {
+  font-family: "Alright Sans";
+  font-style: normal;
+  font-weight: normal;
+}
+
+.alrightsansregularitalic {
+  font-family: "Alright Sans";
+  font-style: italic;
+  font-weight: normal;
 }
 
 .btn {
