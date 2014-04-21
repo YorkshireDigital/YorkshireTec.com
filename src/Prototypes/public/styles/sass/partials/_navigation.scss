@@ -1,0 +1,35 @@
+/*	=NAVIGATION
+--------------------------------------------------------------------*/
+// Primary navigation for the app
+.nav-primary {
+
+	ul {
+		@extend .group;
+		padding: 0;
+		margin: 0;
+		list-style-type: none;
+	}
+
+	li {
+		float: left;
+	}
+
+	.current {
+		a {
+			border: 1px solid $accent-primary;
+		}
+	}
+
+	a {
+		display: block;
+		padding: .6875em 1em;
+		border: 1px solid transparent;
+		text-decoration: none;
+		text-align: center;
+		color: #636363;
+
+		&:hover {
+			color: darken(#636363, 5%);
+		}
+	}
+}

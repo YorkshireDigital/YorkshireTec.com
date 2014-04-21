@@ -1,0 +1,115 @@
+/*	=FORM GROUPING 
+--------------------------------------------------------------------*/
+.form-group {
+	@include rhythm(margin-bottom, .75);
+}
+
+.layout-stacked {
+
+	label,
+	.label {
+		@include rhythm(margin-bottom, .25);
+		display: block;
+	}
+}
+
+.form-actions {
+	margin-top: 1.5em;
+}
+
+/*	=FORM LABELS
+--------------------------------------------------------------------*/
+.sub-info {
+	@include font-size(.888);
+	font-family: "Alright Sans Light";
+	display: block;
+	padding: 1em 0;
+	color: #737373;
+	font-style: italic;
+	text-align: center;
+}
+
+.sub-label {
+	color: $accent-negative;
+}
+
+/*	=INPUT STYLES & SIZES
+--------------------------------------------------------------------*/
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="password"],
+input[type="number"],
+input[type="date"],
+select,
+textarea {
+	padding: .75em;
+	border: 1px solid #ccc;
+	border-radius: 0;
+
+	&:focus {
+		outline: 2px solid darken($accent-tertiary, 1%);
+	}
+}
+
+.input-xs {
+	width: 45px;
+}
+
+.input-s {
+	width: 80px;
+}
+
+.input-m {
+	width: 150px;
+}
+
+.input-l {
+	width: 203px;
+}
+
+.input-xl {
+	width: 350px;
+
+	@include breakpoint(viewport-s) {
+		width: 100%;
+	}
+}
+
+.input-xxl {
+	width: 253px * 2 + 10;
+}
+
+textarea.input-xxl  {
+	width: 370px;
+}
+
+.input-full {
+	width: 100%;
+}
+
+/*	=VALIDATION
+--------------------------------------------------------------------*/
+.input-validation-error {
+	background: lighten($accent-negative, 45%);
+	border-color: $accent-negative !important;
+	border-width: 2px !important;
+}
+
+.field-validation-error {
+	width: auto;
+	display: inline-block;
+	padding-top: .5em;
+}
+
+/*	=DEVICE SPECIFIC
+--------------------------------------------------------------------*/
+input[type="text"],
+input[type="number"],
+input[type="email"],
+input[type="tel"],
+input[type="password"],
+textarea {
+	-webkit-appearance: none;	// Removes inner shadow in webkit
+	-moz-appearance: none; 		// Removes inner shadow in mobile firefox
+}
