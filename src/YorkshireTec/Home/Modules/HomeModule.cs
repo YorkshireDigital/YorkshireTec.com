@@ -13,7 +13,7 @@ namespace YorkshireTec.Home.Modules
                 var viewModel = new IndexViewModel();
                 var model = GetBaseModel(viewModel);
 
-                model.Page.Title = "Home";
+                model.Page.Title = "Bringing Yorkshires digital community together";
                 return Negotiate.WithModel(model).WithView("Index");
             };
         }
