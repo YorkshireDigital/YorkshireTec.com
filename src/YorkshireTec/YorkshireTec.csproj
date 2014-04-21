@@ -144,16 +144,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bundle.txt" />
-    <Content Include="Content\Images\filter-hrd-leeds-skyline.jpg" />
-    <Content Include="Content\Images\illuminating-york-15.jpg" />
-    <Content Include="Content\Images\rough_diagonal.png" />
-    <Content Include="Content\Images\Sheffield-City-Centre.jpg" />
-    <Content Include="Content\Images\stripesblack.png" />
-    <Content Include="Content\logo.css" />
-    <Content Include="Scripts\supersized\supersized.3.2.7.min.js" />
-    <Content Include="Scripts\supersized\supersized.shutter.min.js" />
-    <Content Include="Content\supersized.css" />
-    <Content Include="Content\supersized.shutter.css" />
     <Content Include="packages.config" />
     <Content Include="Home\Views\Index.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
@@ -174,7 +164,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\screen.css" />
     <Content Include="Scripts\mailchimp\mailchimp.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -226,7 +215,9 @@
       <Name>YorkshireTec.Raven</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Content\Images\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
