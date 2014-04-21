@@ -2,18 +2,20 @@
 @mixin button($btn-bg: $accent-primary) {
 	background: $btn-bg; 
 	border-color: darken( $btn-bg, 8% );
+	@include single-transition(background, .2s);
 
 	&:hover,
 	&:focus {
 		background: darken( $btn-bg, 8% );
 		border-color: darken( $btn-bg, 8% );
+		@include single-transition(background, .2s);
 	}
 }
 
 .btn {
 	@include border-radius(3px);
 	display: inline-block;
-	font-weight: 700;
+	font-family: MetronicProRegular;
 	text-decoration: none;
 	text-align: center;
 	color: #fff;
@@ -63,7 +65,7 @@
 }
 
 .btn--m {
-	padding: 1em 1.5em;
+	padding: .75em 1.25em;
 }
 
 .btn--l {

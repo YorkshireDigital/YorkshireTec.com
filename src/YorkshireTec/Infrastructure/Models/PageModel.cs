@@ -7,6 +7,7 @@
     {
         public string TitleSuffix { get; set; }
         public string Title { get; set; }
+        public string CurrentNav { get; set; }
         public bool IsAuthenticated { get; set; }
         public string FriendlyName { get; set; }
         public string CurrentUser { get; set; }
