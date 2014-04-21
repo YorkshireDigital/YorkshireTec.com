@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /*	=IMPORTS
 --------------------------------------------------------------------*/
 /* Partials */
@@ -15,6 +16,7 @@
 /**
  * Correct `block` display not defined in IE 8/9.
  */
+@import url("//hello.myfonts.net/count/2ab2f4");
 article,
 aside,
 details,
@@ -414,46 +416,62 @@ table {
   left: -9999px;
 }
 
-/*  =TYPOGRAPHY
-	 Metronic weights to use: MetronicProAir, MetronicProLight, MetronicProRegular, MetronicProSemiBold, MetronicPro-Bold
-	 Alright Sans weights to use:
+/*	=METRONIC PRO WEBFONT LICENCING AND LINKS
+--------------------------------------------------------------------*/
+/**
+ * @license
+ * MyFonts Webfont Build ID 2798324, 2014-04-21T13:45:17-0400
+ * 
+ * The fonts listed in this notice are subject to the End User License
+ * Agreement(s) entered into by the website owner. All other parties are 
+ * explicitly restricted from using the Licensed Webfonts(s).
+ * 
+ * You may obtain a valid license at the URLs below.
+ * 
+ * Webfont: Metronic Pro Air by Mostardesign
+ * URL: http://www.myfonts.com/fonts/mostardesign/metronic-pro/air/
+ * 
+ * Webfont: Metronic Pro Light by Mostardesign
+ * URL: http://www.myfonts.com/fonts/mostardesign/metronic-pro/light/
+ * 
+ * Webfont: Metronic Pro Regular by Mostardesign
+ * URL: http://www.myfonts.com/fonts/mostardesign/metronic-pro/regular/
+ * 
+ * Webfont: Metronic Pro SemiBold by Mostardesign
+ * URL: http://www.myfonts.com/fonts/mostardesign/metronic-pro/semibold/
+ * 
+ * License: http://www.myfonts.com/viewlicense?type=web&buildid=2798324
+ * Licensed pageviews: 100,000
+ * Webfonts copyright: Copyright (c) Olivier Gourvat - Mostardesign Studio, 2013. All rights reserved.
+ * 
+ * © 2014 MyFonts Inc
+*/
+/* @import must be at top of file, otherwise CSS will not work */
+@font-face {
+  font-family: 'MetronicProAir';
+  src: url("../fonts/2AB2F4_0_0.eot");
+  src: url("../fonts/2AB2F4_0_0.eot?#iefix") format("embedded-opentype"), url("../fonts/2AB2F4_0_0.woff") format("woff"), url("../fonts/2AB2F4_0_0.ttf") format("truetype");
+}
 
-	 .alrightsanslight {
-		font-family: "Alright Sans";
-		font-style: normal;
-		font-weight: normal;
-	}
+@font-face {
+  font-family: 'MetronicProLight';
+  src: url("../fonts/2AB2F4_1_0.eot");
+  src: url("../fonts/2AB2F4_1_0.eot?#iefix") format("embedded-opentype"), url("../fonts/2AB2F4_1_0.woff") format("woff"), url("../fonts/2AB2F4_1_0.ttf") format("truetype");
+}
 
-	.alrightsanslightitalic {
-		font-family: "Alright Sans Light";
-		font-style: italic;
-		font-weight: normal;
-	}
+@font-face {
+  font-family: 'MetronicProRegular';
+  src: url("../fonts/2AB2F4_2_0.eot");
+  src: url("../fonts/2AB2F4_2_0.eot?#iefix") format("embedded-opentype"), url("../fonts/2AB2F4_2_0.woff") format("woff"), url("../fonts/2AB2F4_2_0.ttf") format("truetype");
+}
 
-	.alrightsansmedium {
-		font-family: "Alright Sans Medium";
-		font-style: normal;
-		font-weight: normal;
-	}
+@font-face {
+  font-family: 'MetronicProSemiBold';
+  src: url("../fonts/2AB2F4_3_0.eot");
+  src: url("../fonts/2AB2F4_3_0.eot?#iefix") format("embedded-opentype"), url("../fonts/2AB2F4_3_0.woff") format("woff"), url("../fonts/2AB2F4_3_0.ttf") format("truetype");
+}
 
-	.alrightsansmediumitalic {
-		font-family: "Alright Sans Medium";
-		font-style: italic;
-		font-weight: normal;
-	}
-
-	.alrightsansregular {
-		font-family: "Alright Sans";
-		font-style: normal;
-		font-weight: normal;
-	}
-
-	.alrightsansregularitalic {
-		font-family: "Alright Sans";
-		font-style: italic;
-		font-weight: normal;
-	}
-
+/*	=BASE TYPOGRAPHY
 --------------------------------------------------------------------*/
 html {
   font: 500 1.125em/1.5 "Alright Sans", arial, sans-serif;
@@ -587,7 +605,7 @@ a:hover {
 }
 
 .alrightsanslight {
-  font-family: "Alright Sans";
+  font-family: "Alright Sans Light";
   font-style: normal;
   font-weight: normal;
 }
@@ -1073,7 +1091,7 @@ ul ul {
   right: 0;
   bottom: 0;
   width: 40%;
-  max-width: 550px;
+  max-width: 600px;
   padding: 7em 2.5em 2em 2.5em;
   background: white;
 }
