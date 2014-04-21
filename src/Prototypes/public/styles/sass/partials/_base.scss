@@ -1,0 +1,116 @@
+/*  =GLOBAL VARIABLES
+--------------------------------------------------------------------*/
+// Emphasis colour values
+$accent-primary: #b9306a;                          // Primary accent such as headers
+$accent-secondary: #303d4a;                     // Secondary accent such as secondary call to actions
+$accent-tertiary: #0f767e;                      // 
+$accent-quaternary: #D19C02;                    // 
+$accent-positive: #29A25E;                      // Use for positive action backgrounds such as selecting actions
+$accent-negative: #B93D3D;                      // Use for negative action backgrounds such as delete actions
+$accent-neutral: #C08211;                       // Use for neutral backgrounds such as an information notification that requires no action
+
+$font-general: "Alright Sans", arial, sans-serif;               // Standard fontstack for the site     
+
+// Baseline spacing values
+$base-font-size: 16;                            // Pixel value for the base font size
+$base-line-height: 24;                          // Baseline value, all margins and padding should total as a multiple of this
+
+// Vertical rhythm calculation values
+$primary-border-width: 1 / $base-font-size ;    // Used as a value to subract the containers border from vertical rhythm
+$rhythm-unit-one: 1.5;                          // Single rhythm unit based on $base-line-height
+
+/*  =GLOBAL MIXINS
+--------------------------------------------------------------------*/
+//Set margin or padding properties that have vertical rhythm units 1 rhythm unit = 24px
+@mixin rhythm($property, $unit: 0, $border: "") {
+  // Is there an unit defined? If not dont output anything
+  @if $unit == 0 {
+  }
+  // Add the property to the selector and the specified value e.g. 1 padding unit 
+  @else if $border == "" {
+    #{$property}: $unit * $rhythm-unit-one + em;
+  }
+  // Does the container have a border? If so remove the width of the border from the property value
+  @else if $border == "has-border" {
+    #{$property}: ($unit * $rhythm-unit-one) - $primary-border-width + em;
+  }
+}
+
+@mixin breakpoint($point) {
+  @if $point == viewport-xl {
+    @media (max-width: 100em)     { @content; }  // 1600px
+  }
+  @else if $point == viewport-l {
+    @media (max-width: 75em)      { @content; }  // 1200px
+  }
+  @else if $point == viewport-m {
+    @media (max-width: 56.25em)   { @content; }  // 900px
+  }
+  @else if $point == viewport-s {
+    @media (max-width: 37.5em)    { @content; }  // 600px
+  }
+   @else if $point == viewport-xs {
+    @media (max-width: 18.75em)   { @content; }  // 300px
+  }
+  @else if $point == $point { // Option to use custom breakpoints should the content require
+    @media (max-width: $point)    { @content; }
+  }
+}
+
+// Give pixel values for older browsers
+@mixin font-size($sizeValue: 1.6) {
+  font-size: ($sizeValue * 16) + px;
+  font-size: $sizeValue + rem;
+}
+
+// Image sprite background position mixin with png fallback for older browsers
+@mixin image-sprite($sprite-x-position, $sprite-y-position) {
+  background-position: $sprite-x-position $sprite-y-position;
+
+  .no-svg & {
+    background-image: url(../img/sprite-global.png);
+  }
+}
+
+// Baseline grid  overlay
+@mixin baseline-overlay($baseline-value: 24) {
+  
+	&:after {
+		position: absolute;
+		z-index: 1;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		pointer-events: none;
+		content: "";
+		background: url(http://basehold.it/i/#{$baseline-value}) 0 0 repeat; // 26px baseline 
+	}
+}
+
+/*  =GLOBAL USE STYLES
+--------------------------------------------------------------------*/
+// Micro clearfix with IE6+ support
+.group:before,
+.group:after {
+    content: "";
+    display: table;
+} 
+
+.group:after {
+  clear: both;
+}
+
+.group {
+  zoom: 1; // For IE 6/7 (trigger hasLayout)
+}
+
+// General states
+.is-hidden {
+  display: none !important;
+}
+
+.is-off-screen {
+  position: absolute;
+  left: -9999px;
+}

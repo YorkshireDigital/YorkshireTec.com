@@ -1,0 +1,87 @@
+﻿@{
+    Layout = "Shared/_Layout.cshtml";
+}
+@using YorkshireTec.Infrastructure
+@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<BaseViewModel<YorkshireTec.Account.ViewModels.AccountLogInViewModel>>
+@section Scripts
+{
+    <script type="text/javascript">
+        $('.ui.form')
+            .form({
+                username: {
+                    identifier: 'username',
+                    rules: [
+                        {
+                            type: 'empty',
+                            prompt: 'Please enter your username'
+                        }
+                    ]
+                },
+                password: {
+                    identifier: 'password',
+                    rules: [
+                        {
+                            type: 'empty',
+                            prompt: 'Please enter your password'
+                        },
+                        {
+                            type: 'length[6]',
+                            prompt: 'Your password must be at least 6 characters'
+                        }
+                    ]
+                }
+            });
+    </script>
+}
+<section class="opaque blurb">
+    <div class="ui grid">
+        <div class="ten wide column center_div">
+            <div class="row">
+                <h2>Log In</h2>
+                <h3>Don't have an account? <a href="register">Register</a></h3>
+                <div class="ui two column divided grid">
+                    <div class="row">
+                        <div class="column">
+                            <form method="POST" class="ui form segment">
+                                <div class="field">
+                                    <label>Username or Email</label>
+                                    <div class="ui left labeled icon input">
+                                        <input type="text" placeholder="Username" name="username" value="@Model.ViewModel.Username">
+                                        <i class="user icon"></i>
+                                        <div class="ui corner label">
+                                            <i class="icon asterisk"></i>
+                                        </div>
+                                    </div>
+                                    @Html.ValidationMessageFor(Model.Page.Notifications, "Username")
+                                </div>
+                                <div class="field">
+                                    <label>Password</label>
+                                    <div class="ui left labeled icon input">
+                                        <input type="password" name="password" value="@Model.ViewModel.Password">
+                                        <i class="lock icon"></i>
+                                        <div class="ui corner label">
+                                            <i class="icon asterisk"></i>
+                                        </div>
+                                    </div>
+                                    @Html.ValidationMessageFor(Model.Page.Notifications, "Password")
+                                </div>
+                                <div class="field">
+                                    <div class="ui slider checkbox">
+                                        <input type="checkbox" name="RememberMe" checked="@Model.ViewModel.RememberMe">
+                                        <label>Remember Me?</label>
+                                    </div>
+                                </div>
+                                @Html.ValidationSummary(Model.Page.Notifications)
+                                <input type="submit" class="ui blue submit button" value="Login" />
+                            </form>
+                        </div>
+                        <div class="column">
+                            <h3>Or log in with one of these</h3>
+                            @Html.Partial("_Providers")
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
