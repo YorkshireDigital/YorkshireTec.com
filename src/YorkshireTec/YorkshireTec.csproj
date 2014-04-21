@@ -155,7 +155,7 @@
     <Content Include="Content\supersized.css" />
     <Content Include="Content\supersized.shutter.css" />
     <Content Include="packages.config" />
-    <Content Include="Home\Views\LandingPage.cshtml" />
+    <Content Include="Home\Views\Index.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Calendar\Views\Index.cshtml" />
     <Content Include="Account\Views\LogIn.cshtml" />
@@ -176,7 +176,6 @@
   <ItemGroup>
     <Content Include="Content\screen.css" />
     <Content Include="Scripts\mailchimp\mailchimp.js" />
-    <Content Include="Home\Views\Logo.html" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -216,7 +215,7 @@
     <Compile Include="Infrastructure\BaseViewModel.cs" />
     <Compile Include="Calendar\ViewModels\CalendarIndexViewModel.cs" />
     <Compile Include="Calendar\ViewModels\CalendarEventViewModel.cs" />
-    <Compile Include="Home\ViewModels\LandingPageViewModel.cs" />
+    <Compile Include="Home\ViewModels\IndexViewModel.cs" />
     <Compile Include="Infrastructure\Models\NotificationModel.cs" />
     <Compile Include="Infrastructure\Models\NotificationType.cs" />
     <Compile Include="Infrastructure\Models\PageModel.cs" />

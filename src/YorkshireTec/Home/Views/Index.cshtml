@@ -1,0 +1,8 @@
+﻿@using Cassette.Nancy
+@using Nancy.Helpers
+@{
+    Layout = "Shared/_Layout.cshtml";
+
+    Bundles.Reference("Scripts/mailchimp");
+}
+@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<YorkshireTec.Infrastructure.BaseViewModel<YorkshireTec.Home.ViewModels.IndexViewModel>>
