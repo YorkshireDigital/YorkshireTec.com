@@ -149,6 +149,7 @@
     <Content Include="Content\img\bg-homepage-banner.png" />
     <Content Include="Content\img\logo-yorkshiredigital-reversed.svg" />
     <Content Include="Content\img\logo-yorkshiredigital.svg" />
+    <Content Include="favicon.ico" />
     <Content Include="packages.config" />
     <Content Include="Home\Views\Index.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
