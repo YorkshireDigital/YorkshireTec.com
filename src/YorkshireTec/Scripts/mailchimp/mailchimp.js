@@ -130,6 +130,7 @@ function mce_success_cb(resp) {
     $('#mce-error-response').hide();
     if (resp.result == "success") {
         $('#mce-' + resp.result + '-response').show();
+        $('#mce-' + resp.result + '-response').removeClass('is-hidden');
         $('#mc-embedded-subscribe-form').each(function () {
             this.reset();
         });
