@@ -57,6 +57,13 @@
         <div class="island">
             <h3>Help us spread the word</h3>
             <p>Let people know about YorkshireDigital and help us to grow the community.</p>
+
+            <button class="btn btn--full btn--primary" id="copy-link">Copy link</button>
+            <div class="form-group is-hidden" id="copy-input">
+                <input type="text" value="http://bit.ly/yorksdigital" onclick="this.setSelectionRange(0, this.value.length)" class="input-full field" />
+            </div>
+        </div>
+        <div class="island">
             <!-- AddThis Button BEGIN -->
             <div class="addthis_toolbox addthis_default_style addthis_32x32_style">
                 <a class="addthis_button_preferred_1"></a>
@@ -73,3 +80,16 @@
         <small>© 2014 YorkshireDigital</small>
     </footer>
 </section>
+
+@section Scripts
+{
+    <script type="text/javascript">
+        $(function() {
+            $('#copy-link').click(function() {
+                $('#copy-link').addClass('is-hidden');
+                $('#copy-input').removeClass('is-hidden');
+                $('#copy-input').click();
+            });
+        });
+    </script>
+}
