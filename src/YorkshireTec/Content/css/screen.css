@@ -488,7 +488,7 @@ h4,
 .delta,
 h5,
 .epsilon {
-  font-family: MetronicProSemiBold;
+  font-family: MetronicProRegular;
   font-weight: 500;
   color: #b9306a;
 }
@@ -1063,15 +1063,20 @@ ul ul {
   }
 }
 .hero h1 {
-  font-family: MetronicProAir;
+  font-family: MetronicProRegular;
 }
 .hero h1, .hero p {
   color: #fff;
 }
 
 .logo-site {
-  display: block;
   max-width: 300px;
+  height: 177px;
+  margin-bottom: 1.5em;
+  background: url(../img/logo-yorkshiredigital-reversed.svg) 0 0 no-repeat;
+}
+.no-svg .logo-site {
+  background-image: url(../img/logo-yorkshiredigital-reversed.png);
 }
 
 .feature-list {
