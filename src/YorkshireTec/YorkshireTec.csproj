@@ -143,19 +143,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\bundle.txt" />
-    <Content Include="Content\Images\filter-hrd-leeds-skyline.jpg" />
-    <Content Include="Content\Images\illuminating-york-15.jpg" />
-    <Content Include="Content\Images\rough_diagonal.png" />
-    <Content Include="Content\Images\Sheffield-City-Centre.jpg" />
-    <Content Include="Content\Images\stripesblack.png" />
-    <Content Include="Content\logo.css" />
-    <Content Include="Scripts\supersized\supersized.3.2.7.min.js" />
-    <Content Include="Scripts\supersized\supersized.shutter.min.js" />
-    <Content Include="Content\supersized.css" />
-    <Content Include="Content\supersized.shutter.css" />
+    <None Include=".bin\compass.bat" />
+    <Content Include="Content\css\screen.css" />
+    <Content Include="Content\img\bg-homepage-banner.jpg" />
+    <Content Include="Content\img\bg-homepage-banner.png" />
+    <Content Include="Content\img\logo-yorkshiredigital-reversed.svg" />
+    <Content Include="Content\img\logo-yorkshiredigital.svg" />
     <Content Include="packages.config" />
-    <Content Include="Home\Views\LandingPage.cshtml" />
+    <Content Include="Home\Views\Index.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Calendar\Views\Index.cshtml" />
     <Content Include="Account\Views\LogIn.cshtml" />
@@ -172,11 +167,11 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+    <Content Include="Views\_Header.cshtml" />
+    <Content Include="Views\_Navigation.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\screen.css" />
     <Content Include="Scripts\mailchimp\mailchimp.js" />
-    <Content Include="Home\Views\Logo.html" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -216,7 +211,7 @@
     <Compile Include="Infrastructure\BaseViewModel.cs" />
     <Compile Include="Calendar\ViewModels\CalendarIndexViewModel.cs" />
     <Compile Include="Calendar\ViewModels\CalendarEventViewModel.cs" />
-    <Compile Include="Home\ViewModels\LandingPageViewModel.cs" />
+    <Compile Include="Home\ViewModels\IndexViewModel.cs" />
     <Compile Include="Infrastructure\Models\NotificationModel.cs" />
     <Compile Include="Infrastructure\Models\NotificationType.cs" />
     <Compile Include="Infrastructure\Models\PageModel.cs" />

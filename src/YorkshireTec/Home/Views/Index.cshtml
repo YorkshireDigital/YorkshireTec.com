@@ -1,0 +1,83 @@
+﻿@using Cassette.Nancy
+@{
+    Layout = "Shared/_Layout.cshtml";
+
+    Bundles.Reference("Scripts/mailchimp");
+}
+@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<YorkshireTec.Infrastructure.BaseViewModel<YorkshireTec.Home.ViewModels.IndexViewModel>>
+<section class="home-banner">
+    <img class="logo-site" src="../../Content/img/logo-yorkshiredigital-reversed.svg" alt="">
+    <div class="hero">
+        <h1>Bringing Yorkshires digital community together</h1>
+        <p>
+            A hub for the growing digital community in Yorkshire, where individuals, organisations and user groups of all skill sets can easily see whats going on, find new connections and share knowledge.
+        </p>
+        <p>
+            If you run a meetup in Yorkshire and would like to get involved  <a href="mailto:">let us know</a>.
+        </p>
+    </div>
+</section>
+<section class="sign-up layout-stacked">
+    <!-- Begin MailChimp Signup Form -->
+    <div id="mc_embed_signup">
+        <form action="http://yorkshiretec.us3.list-manage2.com/subscribe/post?u=e91ce15c242d895864a05d39e&amp;id=2e2faa57fb" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+            <div id="mc_embed_signup">
+                <h2>Want to know more?</h2>
+                <p>Sign up to our newsletter and be the first to hear when we launch.</p>
+                <div class="mc-field-group form-group">
+                    <label for="mce-EMAIL">
+                        Email Address
+                    </label>
+                    <input type="email" value="" name="EMAIL" class="required email input-full field" id="mce-EMAIL">
+                </div>
+                <div class="mc-field-group form-group">
+                    <label for="mce-NAME">
+                        Name
+                    </label>
+                    <input type="text" value="" name="NAME" class="required input-full field" id="mce-NAME">
+                </div>
+                <div id="mce-responses" class="clear">
+                    <div class="response sub-label field-validation-error" id="mce-error-response" style="display:none"></div>
+                    <div class="response" style="display:none"></div>
+                </div>
+                <!-- bot trap -->
+                <div style="position: absolute; left: -5000px;">
+                    <input type="text" name="b_e91ce15c242d895864a05d39e_2e2faa57fb" value="">
+                </div>
+                <div class="clear">
+                    <input type="submit" value="Sign up" name="subscribe" id="mc-embedded-subscribe" class="btn btn--primary btn--full js-sign-up-btn" />
+                </div>
+            </div>
+        </form>
+    </div>
+    <!--End mc_embed_signup-->
+    @*<div class="js-pre-sign-up">
+        <div class="form-group">
+            <label for="firstName">Name</label>
+            <input type="text" id="firstName" class="input-full" />
+        </div>
+        <div class="form-group">
+            <label for="emailAddress">Email address</label>
+            <input type="text" id="emailAddress" class="input-full input-validation-error" />
+            <span class="sub-label field-validation-error">Please enter a valid email address</span>
+        </div>
+        <div class="form-actions">
+            <button class="btn btn--primary btn--full js-sign-up-btn" type="button">Sign up</button>
+        </div>
+        <span class="sub-info">Don't worry, we hate spam as much as you</span>
+    </div>*@
+    <div id="mce-success-response" class="js-post-sign-up is-hidden">
+        <h3>Great, almost there</h3>
+        <p>You will receive an email shortly to confirm this subscription.</p>
+        <p>We will be launching soon, follow us on <a href="https://twitter.com/YorkshireTec">Twitter</a> in the meantime to keep up to date with the latest new and events.</p>
+        <hr />
+        <div class="island">
+            <h3>Help us spread the word</h3>
+            <p>Let people know about YorkshireDigital and help us to grow the community.</p>
+            <button class="btn btn--full btn--primary">Copy link</button>
+        </div>
+    </div>
+    <footer role="contentinfo">
+        <small>© 2014 YorkshireDigital</small>
+    </footer>
+</section>

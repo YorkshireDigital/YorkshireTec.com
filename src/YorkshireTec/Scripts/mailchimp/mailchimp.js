@@ -50,18 +50,18 @@ function mce_preload_check() {
 function mce_init_form() {
     jQuery(document).ready(function ($) {
         var options = {
-            errorClass: 'ui red pointing above ui label inline_error',
-            errorElement: 'div',
+            errorClass: 'sub-label field-validation-error',
+            errorElement: 'span',
             onkeyup: function() {},
             onfocusout: function() {},
             onblur: function() {},
             highlight: function(element) {
-                $(element).closest(".field").addClass("error");
-                $(".inline_error", $(element).closest(".field")).remove();
+                $(element).closest(".field").addClass("input-validation-error");
+                $(".field-validation-error", $(element).closest(".form-group")).remove();
             },
             unhighlight: function (element) {
-                $(element).closest(".field").removeClass("error");
-                $(".inline_error", $(element).closest(".field")).remove();
+                $(element).closest(".field").removeClass("input-validation-error");
+                $(".field-validation-error", $(element).closest(".form-group")).remove();
             }
         };
         var mce_validator = $("#mc-embedded-subscribe-form").validate(options);
@@ -123,8 +123,6 @@ function mce_init_form() {
             success: mce_success_cb
         };
         $('#mc-embedded-subscribe-form').ajaxForm(options);
-
-
     });
 }
 function mce_success_cb(resp) {
@@ -132,10 +130,10 @@ function mce_success_cb(resp) {
     $('#mce-error-response').hide();
     if (resp.result == "success") {
         $('#mce-' + resp.result + '-response').show();
-        $('#mce-' + resp.result + '-response').html(resp.msg);
         $('#mc-embedded-subscribe-form').each(function () {
             this.reset();
         });
+        $('#mc_embed_signup').hide();
     } else {
         var index = -1;
         var msg;
