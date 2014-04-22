@@ -146,9 +146,8 @@
     <None Include=".bin\compass.bat" />
     <Content Include="Content\css\screen.css" />
     <Content Include="Content\img\bg-homepage-banner.jpg" />
-    <Content Include="Content\img\bg-homepage-banner.png" />
+    <Content Include="Content\img\logo-yorkshiredigital-reversed.png" />
     <Content Include="Content\img\logo-yorkshiredigital-reversed.svg" />
-    <Content Include="Content\img\logo-yorkshiredigital.svg" />
     <Content Include="favicon.ico" />
     <Content Include="packages.config" />
     <Content Include="Home\Views\Index.cshtml" />
