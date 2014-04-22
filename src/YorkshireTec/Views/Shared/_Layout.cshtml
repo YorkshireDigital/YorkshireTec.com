@@ -33,12 +33,12 @@
     @RenderSection("Styles", false)
 </head>
     <body class="home">
+        <script src="https://code.jquery.com/jquery-1.10.2.min.js" type="text/javascript"></script>
         @*@Html.Partial("_Header")*@
 
         @RenderBody()
     
 
-    <script src="https://code.jquery.com/jquery-1.10.2.min.js" type="text/javascript"></script>
     @Bundles.RenderScripts()
     <script type="text/javascript">
         $(function () {

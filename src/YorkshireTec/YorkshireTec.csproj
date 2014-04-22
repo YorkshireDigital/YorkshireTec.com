@@ -172,6 +172,8 @@
     <Content Include="Content\fonts\2AB2F4_3_0.eot" />
     <Content Include="Content\fonts\2AB2F4_3_0.ttf" />
     <Content Include="Content\fonts\2AB2F4_3_0.woff" />
+    <Content Include="Views\_MailingListConfirmation.cshtml" />
+    <Content Include="MailingList\Views\Confirmation.cshtml" />
     <None Include="Properties\PublishProfiles\WebDeploy.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -201,6 +203,7 @@
     <Compile Include="Account\ViewModels\SubscribedViewModel.cs" />
     <Compile Include="Account\ViewModels\UnsubscribedViewModel.cs" />
     <Compile Include="Account\ViewModels\WelcomeViewModel.cs" />
+    <Compile Include="MailingList\Modules\ConfirmationModule.cs" />
     <Compile Include="Infrastructure\CassetteConfiguration.cs" />
     <Compile Include="Infrastructure\Bootstrapper.cs" />
     <Compile Include="Infrastructure\AuthenticationCallbackProvider.cs" />
@@ -216,6 +219,7 @@
     <Compile Include="Infrastructure\BaseModule.cs" />
     <Compile Include="Calendar\CalendarModule.cs" />
     <Compile Include="Home\Modules\HomeModule.cs" />
+    <Compile Include="MailingList\ViewModels\IndexViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Infrastructure\Startup.cs" />
     <Compile Include="Account\ViewModels\AccountLogInViewModel.cs" />
