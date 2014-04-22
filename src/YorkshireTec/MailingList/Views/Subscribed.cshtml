@@ -1,0 +1,19 @@
+﻿@using Cassette.Nancy
+@{
+    Layout = "Shared/_LandingPageLayout.cshtml";
+
+    Bundles.Reference("Scripts/mailchimp");
+}
+@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<YorkshireTec.Infrastructure.BaseViewModel<YorkshireTec.MailingList.ViewModels.IndexViewModel>>
+<section class="sign-up layout-stacked">
+    <div class="js-post-sign-up">
+        <h3>Subscription Confirmed</h3>
+        <p>Thank you for subscribing.</p>
+        <p>We will be launching soon, follow us on <a href="https://twitter.com/intent/user?screen_name=YorksDigital" target="_blank">Twitter</a> in the meantime to keep up to date with the latest new and events.</p>
+        <hr />
+        @Html.Partial("_SpreadTheWord")
+    </div>
+    <footer role="contentinfo">
+        <small>© 2014 YorkshireDigital</small>
+    </footer>
+</section>
