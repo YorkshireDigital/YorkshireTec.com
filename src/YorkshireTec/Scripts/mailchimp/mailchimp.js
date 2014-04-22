@@ -158,6 +158,10 @@ function mce_success_cb(resp) {
         }
         try {
             if (index == -1) {
+                if (msg.indexOf('Too many subscribe attempts for this email address.') > -1) {
+                    msg = 'Too many subscribe attempts for this email address. Please try again later or try from another device.';
+                }
+
                 $('#mce-' + resp.result + '-response').show();
                 $('#mce-' + resp.result + '-response').html(msg);
             } else {
