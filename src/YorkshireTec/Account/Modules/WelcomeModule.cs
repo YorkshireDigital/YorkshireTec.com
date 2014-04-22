@@ -14,6 +14,7 @@ namespace YorkshireTec.Account.Modules
         public WelcomeModule(IDocumentSession documentSession)
             : base("Account/Welcome")
         {
+            this.RequiresFeature("Account");
             this.RequiresAuthentication();
 
             Get["/"] = _ =>

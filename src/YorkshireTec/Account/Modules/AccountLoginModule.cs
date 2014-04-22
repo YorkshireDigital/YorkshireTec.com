@@ -16,6 +16,7 @@
         public AccountLoginModule(IDocumentSession documentSession)
             : base("account/log-in")
         {
+            this.RequiresFeature("Account");
             Get["/"] = _ =>
             {
                 var model = GetBaseModel(new AccountLogInViewModel());

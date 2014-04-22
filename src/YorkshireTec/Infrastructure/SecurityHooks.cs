@@ -16,7 +16,7 @@
         public static Func<NancyContext, Response> RequiresFeature(string feature)
         {
             bool enabled;
-            bool.TryParse(ConfigurationManager.AppSettings[string.Format("Feature_{0}", feature)], out enabled);
+            bool.TryParse(ConfigurationManager.AppSettings[string.Format("Feature:{0}", feature)], out enabled);
 
             return ctx => !enabled
                 ? new Response {StatusCode = HttpStatusCode.NotFound}
