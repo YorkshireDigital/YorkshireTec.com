@@ -27,9 +27,11 @@
 <script type="text/javascript">
     $(function () {
         $('#copy-link').click(function () {
-            $('#copy-link').closest('.form-group').addClass('is-hidden');
+            $(this).closest('.form-group').addClass('is-hidden');
             $('#copy-input').removeClass('is-hidden');
             $('#copy-input').click();
+
+            $('#copy-input input').get(0).setSelectionRange(0, $('#copy-input input').val().length);
         });
     });
 </script>
