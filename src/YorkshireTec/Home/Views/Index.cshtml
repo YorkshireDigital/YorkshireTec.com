@@ -1,22 +1,10 @@
 ﻿@using Cassette.Nancy
 @{
-    Layout = "Shared/_Layout.cshtml";
+    Layout = "Shared/_LandingPageLayout.cshtml";
 
     Bundles.Reference("Scripts/mailchimp");
 }
 @inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<YorkshireTec.Infrastructure.BaseViewModel<YorkshireTec.Home.ViewModels.IndexViewModel>>
-<section class="home-banner">
-    <img class="logo-site" src="../../Content/img/logo-yorkshiredigital-reversed.svg" alt="">
-    <div class="hero">
-        <h1>Bringing Yorkshires digital community together</h1>
-        <p>
-            A hub for the growing digital community in Yorkshire, where individuals, organisations and user groups of all skill sets can easily see whats going on, find new connections and share knowledge.
-        </p>
-        <p>
-            If you run a meetup in Yorkshire and would like to get involved  <a href="mailto:info@yorkshiredigital.com">let us know</a>.
-        </p>
-    </div>
-</section>
 <section class="sign-up layout-stacked">
     <!-- Begin MailChimp Signup Form -->
     <form action="https://yorkshiretec.us3.list-manage2.com/subscribe/post?u=e91ce15c242d895864a05d39e&amp;id=2e2faa57fb" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>

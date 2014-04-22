@@ -175,6 +175,7 @@
     <Content Include="Views\_MailingListConfirmation.cshtml" />
     <Content Include="MailingList\Views\Confirmation.cshtml" />
     <None Include="Properties\PublishProfiles\WebDeploy.pubxml" />
+    <Content Include="Views\Shared\_LandingPageLayout.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
