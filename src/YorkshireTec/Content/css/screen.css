@@ -994,8 +994,6 @@ textarea {
 /*  =BASE
 ------------------------------------------------------------*/
 html {
-  height: 100%;
-  background: #fff;
   padding: 0;
   margin: 0;
 }
@@ -1006,15 +1004,34 @@ html {
 }
 
 body {
-  position: relative;
-  height: 100%;
-  background: #333;
+  background: #2b2f39;
 }
 
 .home {
-  background: #232e3a url(../img/bg-homepage-banner.jpg) no-repeat;
+  background: #232e3a url(../img/bg-homepage-banner-2.jpg) no-repeat;
   background-size: cover;
   background-position: 50% 50%;
+}
+.home:after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 40%;
+  max-width: 600px;
+  content: "";
+  background: #fff;
+  z-index: -1;
+}
+@media (max-width: 37.5em) {
+  .home:after {
+    display: none;
+  }
+}
+@media (max-width: 56.25em) {
+  .home:after {
+    width: 50%;
+  }
 }
 
 ul {
@@ -1040,32 +1057,26 @@ ul ul {
 /*  =HERO BLOCK
 --------------------------------------------------------------------*/
 .home-banner {
+  float: left;
+  width: 60%;
   padding: 2em;
-  overflow: hidden;
+}
+@media (max-width: 56.25em) {
+  .home-banner {
+    width: 50%;
+  }
 }
 @media (max-width: 37.5em) {
   .home-banner {
     padding: 2em 1.5em;
+    width: 100%;
   }
 }
 
 .hero {
-  padding-right: 45%;
+  max-width: 750px;
 }
-@media (max-width: 56.25em) {
-  .hero {
-    padding-right: 55%;
-  }
-}
-@media (max-width: 37.5em) {
-  .hero {
-    padding: 0;
-  }
-}
-.hero h1 {
-  font-family: MetronicProRegular;
-}
-.hero h1, .hero p {
+.hero h1, .hero p, .hero a {
   color: #fff;
 }
 
@@ -1073,7 +1084,7 @@ ul ul {
   max-width: 300px;
   height: 177px;
   margin-bottom: 1.5em;
-  background: url(../img/logo-yorkshiredigital-reversed.svg) 0 0 no-repeat;
+  background: url(../img/logo-yorkshiredigital-reversed.svg) 0 100% no-repeat;
 }
 .no-svg .logo-site {
   background-image: url(../img/logo-yorkshiredigital-reversed.png);
@@ -1091,13 +1102,10 @@ ul ul {
 /*  =SIGN UP BLOCK
 --------------------------------------------------------------------*/
 .sign-up {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
+  float: right;
   width: 40%;
   max-width: 600px;
-  padding: 7em 2.5em 2em 2.5em;
+  padding: 9.75em 2.5em 2em 2.5em;
   background: white;
 }
 @media (max-width: 56.25em) {
