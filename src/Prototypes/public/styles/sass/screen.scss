@@ -14,8 +14,7 @@
 /*  =BASE
 ------------------------------------------------------------*/
 html {
-	height: 100%;
-	background: #fff;
+	//height: 100%;
 	padding: 0;
 	margin: 0;
 
@@ -25,16 +24,35 @@ html {
 }
 
 body {
-	position: relative;
-	height: 100%;
-	background: #333;
+	//height: 100%;
+	background: #2b2f39;
 	//@include baseline-overlay();
 }
 
 .home {
-	background: #232e3a url(../img/bg-homepage-banner.jpg) no-repeat;
+	background: #232e3a url(../img/bg-homepage-banner-2.jpg) no-repeat;
 	background-size: cover;
     background-position: 50% 50%;
+
+    &:after {
+    	position: absolute;
+    	top: 0;
+    	right: 0;
+    	bottom: 0;
+    	width: 40%;
+    	max-width: 600px;
+		content: "";
+    	background: #fff;
+		z-index: -1;
+
+		@include breakpoint(viewport-s) {
+			display: none;
+		}
+
+		@include breakpoint(viewport-m) {
+			width: 50%;
+		}
+    }
 }
 
 ul {
@@ -64,31 +82,24 @@ ul {
 /*  =HERO BLOCK
 --------------------------------------------------------------------*/
 .home-banner {
+	float: left;
+	width: 60%;
 	padding: 2em;
-	overflow: hidden;
+
+	@include breakpoint(viewport-m) {
+		width: 50%;
+	}
 
 	@include breakpoint(viewport-s) {
 		padding: 2em 1.5em;
+		width: 100%;
 	}
 }
 
 .hero {
-	//max-width: 900px;
-	padding-right: 45%;
-
-	@include breakpoint(viewport-m) {
-		padding-right: 55%;
-	}
-
-	@include breakpoint(viewport-s) {
-		padding: 0;
-	}
-
-	h1 {
-		font-family: MetronicProRegular;
-	}
+	max-width: 750px;
 	
-	h1, p {
+	h1, p, a {
 		color: #fff;
 	}
 }
@@ -97,7 +108,7 @@ ul {
 	max-width: 300px;
 	height: 177px;
 	margin-bottom: 1.5em;
-	background: url(../img/logo-yorkshiredigital-reversed.svg) 0 0 no-repeat;
+	background: url(../img/logo-yorkshiredigital-reversed.svg) 0 100% no-repeat;
 
 	.no-svg & {
 		background-image: url(../img/logo-yorkshiredigital-reversed.png);
@@ -117,13 +128,10 @@ ul {
 /*  =SIGN UP BLOCK
 --------------------------------------------------------------------*/
 .sign-up {
-	position: absolute;
-	top: 0;
-	right: 0;
-	bottom: 0;
+	float: right;
 	width: 40%;
 	max-width: 600px;
-	padding: 7em 2.5em 2em 2.5em;
+	padding: 9.75em 2.5em 2em 2.5em;
 	background: rgba(255,255,255,1);
 
 	@include breakpoint(viewport-m) {
