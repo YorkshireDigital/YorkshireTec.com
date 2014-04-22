@@ -1,8 +1,9 @@
-﻿namespace YorkshireTec.Infrastructure.Helpers
+﻿using MailChimp;
+using MailChimp.Helper;
+
+namespace YorkshireTec.Infrastructure.Helpers
 {
     using System.Configuration;
-    using MailChimp;
-    using MailChimp.Helper;
 
     public class MailChimpHelper
     {

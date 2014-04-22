@@ -134,7 +134,7 @@ function mce_success_cb(resp) {
         $('#mc-embedded-subscribe-form').each(function () {
             this.reset();
         });
-        $('#mc_embed_signup').hide();
+        $('#mc-embedded-subscribe-form').hide();
     } else {
         var index = -1;
         var msg;

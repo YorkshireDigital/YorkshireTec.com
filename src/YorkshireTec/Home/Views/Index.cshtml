@@ -1,22 +1,10 @@
 ﻿@using Cassette.Nancy
 @{
-    Layout = "Shared/_Layout.cshtml";
+    Layout = "Shared/_LandingPageLayout.cshtml";
 
     Bundles.Reference("Scripts/mailchimp");
 }
 @inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<YorkshireTec.Infrastructure.BaseViewModel<YorkshireTec.Home.ViewModels.IndexViewModel>>
-<section class="home-banner">
-    <img class="logo-site" src="../../Content/img/logo-yorkshiredigital-reversed.svg" alt="">
-    <div class="hero">
-        <h1>Bringing Yorkshires digital community together</h1>
-        <p>
-            A hub for the growing digital community in Yorkshire, where individuals, organisations and user groups of all skill sets can easily see whats going on, find new connections and share knowledge.
-        </p>
-        <p>
-            If you run a meetup in Yorkshire and would like to get involved  <a href="mailto:info@yorkshiredigital.com">let us know</a>.
-        </p>
-    </div>
-</section>
 <section class="sign-up layout-stacked">
     <!-- Begin MailChimp Signup Form -->
     <form action="https://yorkshiretec.us3.list-manage2.com/subscribe/post?u=e91ce15c242d895864a05d39e&amp;id=2e2faa57fb" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
@@ -50,47 +38,9 @@
     </form>
     <!--End mc_embed_signup-->
     <div id="mce-success-response" class="js-post-sign-up is-hidden">
-        <h3>Great, almost there</h3>
-        <p>You will receive an email shortly to confirm this subscription.</p>
-        <p>We will be launching soon, follow us on <a href="https://twitter.com/intent/user?screen_name=YorksDigital" target="_blank">Twitter</a> in the meantime to keep up to date with the latest new and events.</p>
-        <hr />
-        <div class="island">
-            <h3>Help us spread the word</h3>
-            <p>Let people know about YorkshireDigital and help us to grow the community.</p>
-            <div class="form-group">
-                <button class="btn btn--full btn--primary" id="copy-link">Copy link</button>
-            </div>
-            <div class="form-group is-hidden" id="copy-input">
-                <input type="text" value="http://bit.ly/yorksdigital" onclick="this.setSelectionRange(0, this.value.length)" class="input-full field" />
-            </div>
-            </div>
-        <div class="island">
-            <!-- AddThis Button BEGIN -->
-            <div class="addthis_toolbox addthis_default_style addthis_32x32_style">
-                <a class="addthis_button_preferred_1"></a>
-                <a class="addthis_button_preferred_2"></a>
-                <a class="addthis_button_preferred_3"></a>
-                <a class="addthis_button_compact"></a>
-            </div>
-            <script type="text/javascript">var addthis_config = { "data_track_addressbar": true };</script>
-            <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5355881f634ab83a"></script>
-            <!-- AddThis Button END -->
-        </div>
+        @Html.Partial("_MailingListConfirmation")
     </div>
     <footer role="contentinfo">
         <small>© 2014 YorkshireDigital</small>
     </footer>
 </section>
-
-@section Scripts
-{
-    <script type="text/javascript">
-        $(function() {
-            $('#copy-link').click(function() {
-                $('#copy-link').closest('.form-group').addClass('is-hidden');
-                $('#copy-input').removeClass('is-hidden');
-                $('#copy-input').click();
-            });
-        });
-    </script>
-}
