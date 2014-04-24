@@ -391,19 +391,18 @@ table {
 --------------------------------------------------------------------*/
 /*  =GLOBAL USE STYLES
 --------------------------------------------------------------------*/
-.group:before, .nav-primary ul:before, .feature-list:before,
+.group:before, .nav-primary ul:before,
 .group:after,
-.nav-primary ul:after,
-.feature-list:after {
+.nav-primary ul:after {
   content: "";
   display: table;
 }
 
-.group:after, .nav-primary ul:after, .feature-list:after {
+.group:after, .nav-primary ul:after {
   clear: both;
 }
 
-.group, .nav-primary ul, .feature-list {
+.group, .nav-primary ul {
   zoom: 1;
 }
 
@@ -997,20 +996,17 @@ html {
   padding: 0;
   margin: 0;
 }
-@media (max-width: 37.5em) {
-  html {
-    height: auto;
-  }
-}
 
 body {
   background: #2b2f39;
 }
 
 .home {
-  background: #232e3a url(../img/bg-homepage-banner-2.jpg) no-repeat;
+  background: #232e3a url(../img/bg-homepage-banner.jpg) fixed no-repeat;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
   background-size: cover;
-  background-position: 50% 50%;
 }
 .home:after {
   position: absolute;
@@ -1032,13 +1028,6 @@ body {
   .home:after {
     width: 50%;
   }
-}
-
-ul {
-  margin: 0 0 .75em 0;
-}
-ul ul {
-  margin: .375em 0 .375em 0;
 }
 
 /*  =LAYOUT
@@ -1090,15 +1079,6 @@ ul ul {
   background-image: url(../img/logo-yorkshiredigital-reversed.png);
 }
 
-.feature-list {
-  margin: 2em 0;
-}
-
-.feature-list__item {
-  float: left;
-  margin-right: 2em;
-}
-
 /*  =SIGN UP BLOCK
 --------------------------------------------------------------------*/
 .sign-up {
@@ -1128,7 +1108,7 @@ footer[role="contentinfo"] {
   margin-top: 3em;
   border-top: 1px solid #ddd;
   text-align: center;
-  color: #949494;
+  color: #767676;
 }
 @media (max-width: 37.5em) {
   footer[role="contentinfo"] {
