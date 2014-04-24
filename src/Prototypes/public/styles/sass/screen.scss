@@ -14,25 +14,21 @@
 /*  =BASE
 ------------------------------------------------------------*/
 html {
-	//height: 100%;
 	padding: 0;
 	margin: 0;
-
-	@include breakpoint(viewport-s) {
-		height: auto;
-	}
 }
 
 body {
-	//height: 100%;
 	background: #2b2f39;
 	//@include baseline-overlay();
 }
 
 .home {
-	background: #232e3a url(../img/bg-homepage-banner-2.jpg) no-repeat;
-	background-size: cover;
-    background-position: 50% 50%;
+	background: #232e3a url(../img/bg-homepage-banner.jpg) fixed no-repeat;
+	-webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
 
     &:after {
     	position: absolute;
@@ -53,14 +49,6 @@ body {
 			width: 50%;
 		}
     }
-}
-
-ul {
-	margin: 0 0 .75em 0;
-
-	ul {
-		margin: .375em 0 .375em 0;
-	}
 }
 
 /*  =LAYOUT
@@ -115,16 +103,6 @@ ul {
 	}
 }
 
-.feature-list {
-	margin: 2em 0;
-	@extend .group;
-}
-
-.feature-list__item {
-	float: left;
-	margin-right: 2em;
-}
-
 /*  =SIGN UP BLOCK
 --------------------------------------------------------------------*/
 .sign-up {
@@ -152,7 +130,7 @@ footer[role="contentinfo"] {
 	margin-top: 3em;
 	border-top: 1px solid #ddd;
 	text-align: center;
-	color: #949494;
+	color: #767676;
 
 	@include breakpoint(viewport-s) {
 		margin-top: 1.5em;
