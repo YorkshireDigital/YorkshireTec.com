@@ -15,6 +15,7 @@ namespace YorkshireTec.Account.Modules
         public AccountModule(IDocumentSession documentSession)
             : base("account")
         {
+            this.RequiresFeature("Account");
             this.RequiresAuthentication();
             Get[""] = _ =>
             {

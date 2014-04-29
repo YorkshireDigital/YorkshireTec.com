@@ -16,7 +16,7 @@
             model.Page = new PageModel
             {
                 IsAuthenticated = Context.CurrentUser != null,
-                TitleSuffix = "YorkshireTec",
+                TitleSuffix = "YorkshireDigital",
                 FriendlyName = Context.CurrentUser != null ? ((UserIdentity)Context.CurrentUser).FriendlyName : "",
                 CurrentUser = Context.CurrentUser != null ? ((UserIdentity)Context.CurrentUser).UserId : "",
                 Email = Context.CurrentUser != null ? ((UserIdentity)Context.CurrentUser).Email : "",

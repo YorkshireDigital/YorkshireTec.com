@@ -17,6 +17,7 @@
         public AccountMailingListModule(IDocumentSession documentSession)
             : base("account/mailinglist")
         {
+            this.RequiresFeature("Account");
             this.RequiresAuthentication();
 
             Post["/subscribe"] = _ =>

@@ -15,6 +15,7 @@
         public AccountRegisterModule(IDocumentSession documentSession)
             : base("account/register")
         {
+            this.RequiresFeature("Account");
             Get["/"] = _ =>
             {
                 var model = GetBaseModel(new AccountRegisterViewModel());

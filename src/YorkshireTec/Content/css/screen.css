@@ -391,19 +391,18 @@ table {
 --------------------------------------------------------------------*/
 /*  =GLOBAL USE STYLES
 --------------------------------------------------------------------*/
-.group:before, .nav-primary ul:before, .feature-list:before,
+.group:before, .nav-primary ul:before,
 .group:after,
-.nav-primary ul:after,
-.feature-list:after {
+.nav-primary ul:after {
   content: "";
   display: table;
 }
 
-.group:after, .nav-primary ul:after, .feature-list:after {
+.group:after, .nav-primary ul:after {
   clear: both;
 }
 
-.group, .nav-primary ul, .feature-list {
+.group, .nav-primary ul {
   zoom: 1;
 }
 
@@ -994,34 +993,41 @@ textarea {
 /*  =BASE
 ------------------------------------------------------------*/
 html {
-  height: 100%;
-  background: #fff;
   padding: 0;
   margin: 0;
 }
-@media (max-width: 37.5em) {
-  html {
-    height: auto;
-  }
-}
 
 body {
-  position: relative;
-  height: 100%;
-  background: #333;
+  background: #2b2f39;
 }
 
 .home {
-  background: #232e3a url(../img/bg-homepage-banner.jpg) no-repeat;
+  background: #232e3a url(../img/bg-homepage-banner.jpg) fixed no-repeat;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
   background-size: cover;
-  background-position: 50% 50%;
 }
-
-ul {
-  margin: 0 0 .75em 0;
+.home:after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 40%;
+  max-width: 600px;
+  content: "";
+  background: #fff;
+  z-index: -1;
 }
-ul ul {
-  margin: .375em 0 .375em 0;
+@media (max-width: 37.5em) {
+  .home:after {
+    display: none;
+  }
+}
+@media (max-width: 56.25em) {
+  .home:after {
+    width: 50%;
+  }
 }
 
 /*  =LAYOUT
@@ -1040,32 +1046,26 @@ ul ul {
 /*  =HERO BLOCK
 --------------------------------------------------------------------*/
 .home-banner {
+  float: left;
+  width: 60%;
   padding: 2em;
-  overflow: hidden;
+}
+@media (max-width: 56.25em) {
+  .home-banner {
+    width: 50%;
+  }
 }
 @media (max-width: 37.5em) {
   .home-banner {
     padding: 2em 1.5em;
+    width: 100%;
   }
 }
 
 .hero {
-  padding-right: 45%;
+  max-width: 750px;
 }
-@media (max-width: 56.25em) {
-  .hero {
-    padding-right: 55%;
-  }
-}
-@media (max-width: 37.5em) {
-  .hero {
-    padding: 0;
-  }
-}
-.hero h1 {
-  font-family: MetronicProRegular;
-}
-.hero h1, .hero p {
+.hero h1, .hero p, .hero a {
   color: #fff;
 }
 
@@ -1073,31 +1073,19 @@ ul ul {
   max-width: 300px;
   height: 177px;
   margin-bottom: 1.5em;
-  background: url(../img/logo-yorkshiredigital-reversed.svg) 0 0 no-repeat;
+  background: url(../img/logo-yorkshiredigital-reversed.svg) 0 100% no-repeat;
 }
 .no-svg .logo-site {
   background-image: url(../img/logo-yorkshiredigital-reversed.png);
 }
 
-.feature-list {
-  margin: 2em 0;
-}
-
-.feature-list__item {
-  float: left;
-  margin-right: 2em;
-}
-
 /*  =SIGN UP BLOCK
 --------------------------------------------------------------------*/
 .sign-up {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
+  float: right;
   width: 40%;
   max-width: 600px;
-  padding: 7em 2.5em 2em 2.5em;
+  padding: 9.75em 2.5em 2em 2.5em;
   background: white;
 }
 @media (max-width: 56.25em) {
@@ -1120,7 +1108,7 @@ footer[role="contentinfo"] {
   margin-top: 3em;
   border-top: 1px solid #ddd;
   text-align: center;
-  color: #949494;
+  color: #767676;
 }
 @media (max-width: 37.5em) {
   footer[role="contentinfo"] {

@@ -8,6 +8,7 @@
         public AccountLogOutModule()
             : base("account/log-out")
         {
+            this.RequiresFeature("Account");
             Get["/"] = _ => this.LogoutAndRedirect("~/");
         }
     }

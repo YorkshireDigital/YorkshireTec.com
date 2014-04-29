@@ -1,0 +1,33 @@
+﻿<div class="island">
+    <h3>Help us spread the word</h3>
+    <p>Let people know about YorkshireDigital and help us to grow the community.</p>
+    <div class="form-group">
+        <button class="btn btn--full btn--primary" id="copy-link">Copy link</button>
+    </div>
+    <div class="form-group is-hidden" id="copy-input">
+        <input type="text" value="http://bit.ly/yorksdigital" onclick="this.setSelectionRange(0, this.value.length)" class="input-full field" />
+    </div>
+</div>
+<div class="island">
+    <!-- AddThis Button BEGIN -->
+    <div class="addthis_toolbox addthis_default_style addthis_32x32_style">
+        <a class="addthis_button_preferred_1"></a>
+        <a class="addthis_button_preferred_2"></a>
+        <a class="addthis_button_preferred_3"></a>
+        <a class="addthis_button_compact"></a>
+    </div>
+    <script type="text/javascript">var addthis_config = { "data_track_addressbar": true };</script>
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5355881f634ab83a"></script>
+    <!-- AddThis Button END -->
+</div>
+<script type="text/javascript">
+    $(function () {
+        $('#copy-link').click(function () {
+            $(this).closest('.form-group').addClass('is-hidden');
+            $('#copy-input').removeClass('is-hidden');
+            $('#copy-input').click();
+
+            $('#copy-input input').get(0).setSelectionRange(0, $('#copy-input input').val().length);
+        });
+    });
+</script>
