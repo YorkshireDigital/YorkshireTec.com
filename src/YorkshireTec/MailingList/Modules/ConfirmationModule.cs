@@ -1,13 +1,14 @@
 ﻿namespace YorkshireTec.MailingList.Modules
 {
     using Nancy;
+    using NHibernate;
     using YorkshireTec.Infrastructure;
     using YorkshireTec.MailingList.ViewModels;
     
     public class ConfirmationModule : BaseModule
     {
-        public ConfirmationModule()
-            : base("MailingList/Confirmation")
+        public ConfirmationModule(ISessionFactory sessionFactory)
+            : base(sessionFactory, "MailingList/Confirmation")
         {
             Get["/"] = _ =>
             {

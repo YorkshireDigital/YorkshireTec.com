@@ -1,13 +1,14 @@
 ﻿namespace YorkshireTec.MailingList.Modules
 {
     using Nancy;
+    using NHibernate;
     using YorkshireTec.Infrastructure;
     using YorkshireTec.MailingList.ViewModels;
 
     public class SubscribedModule : BaseModule
     {
-        public SubscribedModule()
-            : base("MailingList/Subscribed")
+        public SubscribedModule(ISessionFactory sessionFactory)
+            : base(sessionFactory, "MailingList/Subscribed")
         {
             Get["/"] = _ =>
             {

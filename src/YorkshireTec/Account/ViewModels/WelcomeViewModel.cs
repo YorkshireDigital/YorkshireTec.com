@@ -1,7 +1,8 @@
 ﻿namespace YorkshireTec.Account.ViewModels
 {
     using System;
-    using YorkshireTec.Raven.Domain.Account;
+    using YorkshireTec.Data.Domain.Account;
+    using YorkshireTec.Data.Domain.Account.Enums;
 
     public class WelcomeViewModel
     {

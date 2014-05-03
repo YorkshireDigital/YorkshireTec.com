@@ -2,19 +2,19 @@
 {
     using System;
     using System.Web.Helpers;
-    using global::Raven.Client;
     using Nancy;
     using Nancy.Authentication.Forms;
     using Nancy.ModelBinding;
     using Nancy.Validation;
+    using NHibernate;
     using YorkshireTec.Account.ViewModels;
+    using YorkshireTec.Data.Services;
     using YorkshireTec.Infrastructure;
-    using YorkshireTec.Raven.Repositories;
 
     public class AccountLoginModule : BaseModule
     {
-        public AccountLoginModule(IDocumentSession documentSession)
-            : base("account/log-in")
+        public AccountLoginModule(ISessionFactory sessionFactory)
+            : base(sessionFactory, "account/log-in")
         {
             this.RequiresFeature("Account");
             Get["/"] = _ =>
@@ -34,9 +34,9 @@
 
                 if (result.IsValid)
                 {
-                    var userRepository = new UserRepository(documentSession);
+                    var userService = new UserService(RequestSession);
 
-                    var user = userRepository.GetUser(viewModel.Username);
+                    var user = userService.GetUser(viewModel.Username);
 
                     if (user != null && user.Password != null)
                     {

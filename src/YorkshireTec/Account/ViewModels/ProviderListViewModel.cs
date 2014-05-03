@@ -1,9 +1,9 @@
 ﻿namespace YorkshireTec.Account.ViewModels
 {
-    using System.Collections.ObjectModel;
+    using System.Collections.Generic;
     using System.Linq;
 
-    public class ProviderListViewModel : Collection<ProviderViewModel>
+    public class ProviderListViewModel : List<ProviderViewModel>
     {
         public bool HasTwitter
         {

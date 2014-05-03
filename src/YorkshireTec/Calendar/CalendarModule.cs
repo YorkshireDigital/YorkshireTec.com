@@ -1,14 +1,15 @@
-namespace YorkshireTec.Modules
+namespace YorkshireTec.Calendar
 {
     using System.Xml.Linq;
     using Nancy;
+    using NHibernate;
     using YorkshireTec.Calendar.ViewModels;
     using YorkshireTec.Infrastructure;
 
     public class CalendarModule : BaseModule
     {
-        public CalendarModule()
-            : base("calendar")
+        public CalendarModule(ISessionFactory sessionFactory)
+            : base(sessionFactory, "calendar")
         {
             this.RequiresFeature("Calendar");
 

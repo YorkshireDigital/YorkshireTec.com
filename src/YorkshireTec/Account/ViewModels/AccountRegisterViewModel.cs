@@ -3,7 +3,8 @@
     using System.Text.RegularExpressions;
     using System.Web.Helpers;
     using FluentValidation;
-    using YorkshireTec.Raven.Domain.Account;
+    using YorkshireTec.Data.Domain.Account;
+    using YorkshireTec.Data.Domain.Account.Enums;
 
     public class AccountRegisterViewModel
     {

@@ -1,26 +1,25 @@
-using Nancy;
-
 namespace YorkshireTec.Account.Modules
 {
     using System;
-    using global::Raven.Client;
+    using Nancy;
     using Nancy.Security;
+    using NHibernate;
     using YorkshireTec.Account.ViewModels;
+    using YorkshireTec.Data.Services;
     using YorkshireTec.Infrastructure;
-    using YorkshireTec.Raven.Repositories;
 
     public class WelcomeModule : BaseModule
     {
-        public WelcomeModule(IDocumentSession documentSession)
-            : base("Account/Welcome")
+        public WelcomeModule(ISessionFactory sessionFactory)
+            : base(sessionFactory, "Account/Welcome")
         {
             this.RequiresFeature("Account");
             this.RequiresAuthentication();
 
             Get["/"] = _ =>
             {
-                var userRepository = new UserRepository(documentSession);
-                var user = userRepository.GetUserById(new Guid(((UserIdentity)Context.CurrentUser).UserId));
+                var userSession = new UserService(RequestSession);
+                var user = userSession.GetUserById(new Guid(((UserIdentity)Context.CurrentUser).UserId));
 
                 var model = GetBaseModel(new WelcomeViewModel(user));
                 model.Page.Title = "Welcome";

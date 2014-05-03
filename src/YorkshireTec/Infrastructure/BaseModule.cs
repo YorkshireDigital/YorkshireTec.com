@@ -2,10 +2,13 @@
 {
     using System.Collections.Generic;
     using Nancy;
+    using NHibernate;
     using YorkshireTec.Infrastructure.Models;
 
     public class BaseModule : NancyModule
     {
+        internal ISession RequestSession;
+
         protected BaseViewModel<TModel> GetBaseModel<TModel>(TModel model)
         {
             return GetBaseModel(new BaseViewModel<TModel>(model));
@@ -30,9 +33,10 @@
         {
         }
 
-        public BaseModule(string modulePath)
+        public BaseModule(ISessionFactory sessionFactory, string modulePath)
             : base(modulePath)
         {
+            RequestSession = sessionFactory.GetCurrentSession();
         }
     }
 }
