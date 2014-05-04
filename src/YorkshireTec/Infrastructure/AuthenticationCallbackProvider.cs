@@ -17,7 +17,7 @@
 
         public AuthenticationCallbackProvider()
         {
-            var sessionFactory = NHibernateSessionFactoryProvider.BuildSessionFactory(ConfigurationManager.AppSettings["ConnectionString"]);
+            var sessionFactory = NHibernateSessionFactoryProvider.BuildSessionFactory(ConfigurationManager.ConnectionStrings["Database"].ConnectionString);
             var requestSession = sessionFactory.OpenSession();
             userService = new UserService(requestSession);
         }
