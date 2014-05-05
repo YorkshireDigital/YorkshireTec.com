@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<parameters>
+  <parameter name="consumerKey" defaultValue="logs">
+    <parameterEntry kind="XmlFile" scope="\\web.config$" match="/configuration/appSettings/add[@key='consumerKey']/@value" />
+  </parameter>
+  <parameter name="consumerSecret" defaultValue="logs">
+    <parameterEntry kind="XmlFile" scope="\\web.config$" match="/configuration/appSettings/add[@key='consumerSecret']/@value" />
+  </parameter>
+  <parameter name="accessToken" defaultValue="logs">
+    <parameterEntry kind="XmlFile" scope="\\web.config$" match="/configuration/appSettings/add[@key='accessToken']/@value" />
+  </parameter>
+  <parameter name="accessTokenSecret" defaultValue="logs">
+    <parameterEntry kind="XmlFile" scope="\\web.config$" match="/configuration/appSettings/add[@key='accessTokenSecret']/@value" />
+  </parameter>
+  <parameter name="MailChimp_ApiKey" defaultValue="logs">
+    <parameterEntry kind="XmlFile" scope="\\web.config$" match="/configuration/appSettings/add[@key='MailChimp_ApiKey']/@value" />
+  </parameter>
+  <parameter name="MailChimp_ListId" defaultValue="logs">
+    <parameterEntry kind="XmlFile" scope="\\web.config$" match="/configuration/appSettings/add[@key='MailChimp_ListId']/@value" />
+  </parameter>
+  <parameter name="Slack_Enabled" defaultValue="logs">
+    <parameterEntry kind="XmlFile" scope="\\web.config$" match="/configuration/appSettings/add[@key='Slack_Enabled']/@value" />
+  </parameter>
+  <parameter name="Slack_ApiKey" defaultValue="logs">
+    <parameterEntry kind="XmlFile" scope="\\web.config$" match="/configuration/appSettings/add[@key='Slack_ApiKey']/@value" />
+  </parameter>
+  <parameter name="Slack_Project" defaultValue="logs">
+    <parameterEntry kind="XmlFile" scope="\\web.config$" match="/configuration/appSettings/add[@key='Slack_Project']/@value" />
+  </parameter>
+  <parameter name="Nancy_Diagnostics" defaultValue="logs">
+    <parameterEntry kind="XmlFile" scope="\\web.config$" match="/configuration/appSettings/add[@key='Nancy_Diagnostics']/@value" />
+  </parameter>
+  <parameter name="Cassette_OptimizeOutput" defaultValue="logs">
+    <parameterEntry kind="XmlFile" scope="\\web.config$" match="/configuration/appSettings/add[@key='Cassette_OptimizeOutput']/@value" />
+  </parameter>
+  <parameter name="Feature_Calendar" defaultValue="logs">
+    <parameterEntry kind="XmlFile" scope="\\web.config$" match="/configuration/appSettings/add[@key='Feature_Calendar']/@value" />
+  </parameter>
+  <parameter name="Feature_Account" defaultValue="logs">
+    <parameterEntry kind="XmlFile" scope="\\web.config$" match="/configuration/appSettings/add[@key='Feature_Account']/@value" />
+  </parameter>
+  <parameter name="Database" defaultValue="logs">
+    <parameterEntry kind="XmlFile" scope="\\web.config$" match="/configuration/connectionStrings/add[@key='Database']/@connectionString" />
+  </parameter>
+</parameters>
