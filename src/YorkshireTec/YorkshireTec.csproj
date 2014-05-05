@@ -154,6 +154,7 @@
     <Content Include="favicon.ico" />
     <Content Include="packages.config" />
     <Content Include="Home\Views\Index.cshtml" />
+    <Content Include="Parameters.xml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Calendar\Views\Index.cshtml" />
     <Content Include="Account\Views\LogIn.cshtml" />
