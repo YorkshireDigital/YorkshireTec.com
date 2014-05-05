@@ -34,10 +34,10 @@
     <parameterEntry kind="XmlFile" scope="\\web.config$" match="/configuration/appSettings/add[@key='Cassette_OptimizeOutput']/@value" />
   </parameter>
   <parameter name="Feature_Calendar" defaultValue="logs">
-    <parameterEntry kind="XmlFile" scope="\\web.config$" match="/configuration/appSettings/add[@key='Feature_Calendar']/@value" />
+    <parameterEntry kind="XmlFile" scope="\\web.config$" match="/configuration/appSettings/add[@key='Feature:Calendar']/@value" />
   </parameter>
   <parameter name="Feature_Account" defaultValue="logs">
-    <parameterEntry kind="XmlFile" scope="\\web.config$" match="/configuration/appSettings/add[@key='Feature_Account']/@value" />
+    <parameterEntry kind="XmlFile" scope="\\web.config$" match="/configuration/appSettings/add[@key='Feature:Account']/@value" />
   </parameter>
   <parameter name="Database" defaultValue="logs">
     <parameterEntry kind="XmlFile" scope="\\web.config$" match="/configuration/connectionStrings/add[@key='Database']/@connectionString" />
