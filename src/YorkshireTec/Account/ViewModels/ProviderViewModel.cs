@@ -1,6 +1,6 @@
 ﻿namespace YorkshireTec.Account.ViewModels
 {
-    using YorkshireTec.Raven.Domain.Account;
+    using YorkshireTec.Data.Domain.Account;
 
     public class ProviderViewModel
     {

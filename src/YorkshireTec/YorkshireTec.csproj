@@ -56,6 +56,9 @@
     <Reference Include="Hammock">
       <HintPath>..\packages\TweetSharp-Unofficial.2.3.1.2\lib\4.0\Hammock.dll</HintPath>
     </Reference>
+    <Reference Include="Iesi.Collections">
+      <HintPath>..\packages\Iesi.Collections.3.2.0.4000\lib\Net35\Iesi.Collections.dll</HintPath>
+    </Reference>
     <Reference Include="MailChimp, Version=1.0.0.4, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\MailChimp.NET.1.1.0.1\lib\net40\MailChimp.dll</HintPath>
@@ -68,6 +71,10 @@
     <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.3.0.0-beta1\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data, Version=6.9.0.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\MySql.Data.6.9.0-alpha1\lib\net45\MySql.Data.dll</HintPath>
     </Reference>
     <Reference Include="Nancy">
       <HintPath>..\packages\Nancy.0.22.2\lib\net40\Nancy.dll</HintPath>
@@ -93,19 +100,14 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Newtonsoft.Json.6.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="NHibernate">
+      <HintPath>..\packages\NHibernate.3.3.1.4000\lib\Net35\NHibernate.dll</HintPath>
+    </Reference>
     <Reference Include="NLog">
       <HintPath>..\packages\NLog.2.1.0\lib\net45\NLog.dll</HintPath>
     </Reference>
     <Reference Include="Owin">
       <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
-    </Reference>
-    <Reference Include="Raven.Abstractions, Version=2.5.0.0, Culture=neutral, PublicKeyToken=37f41c7f99471593, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\RavenDB.Client.2.5.2865-Unstable\lib\net45\Raven.Abstractions.dll</HintPath>
-    </Reference>
-    <Reference Include="Raven.Client.Lightweight, Version=2.5.0.0, Culture=neutral, PublicKeyToken=37f41c7f99471593, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\RavenDB.Client.2.5.2865-Unstable\lib\net45\Raven.Client.Lightweight.dll</HintPath>
     </Reference>
     <Reference Include="RestSharp, Version=104.4.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -152,6 +154,7 @@
     <Content Include="favicon.ico" />
     <Content Include="packages.config" />
     <Content Include="Home\Views\Index.cshtml" />
+    <Content Include="Parameters.xml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Calendar\Views\Index.cshtml" />
     <Content Include="Account\Views\LogIn.cshtml" />
@@ -238,9 +241,9 @@
     <Compile Include="Infrastructure\Models\PageModel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\YorkshireTec.Raven\YorkshireTec.Raven.csproj">
-      <Project>{9B66F70E-4E93-4D76-AA02-F871085C22B1}</Project>
-      <Name>YorkshireTec.Raven</Name>
+    <ProjectReference Include="..\YorkshireTec.Data\YorkshireTec.Data.csproj">
+      <Project>{DE2ABF67-373C-41A8-83E0-D9B522221157}</Project>
+      <Name>YorkshireTec.Data</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

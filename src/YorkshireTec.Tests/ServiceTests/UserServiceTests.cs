@@ -1,19 +1,18 @@
-﻿namespace YorkshireTec.Tests.RepositoryTests
+﻿namespace YorkshireTec.Tests.ServiceTests
 {
     using FluentAssertions;
     using NUnit.Framework;
-    using YorkshireTec.Raven.Domain.Account;
-    using YorkshireTec.Raven.Repositories;
+    using YorkshireTec.Data.Domain.Account;
+    using YorkshireTec.Data.Services;
 
-    [TestFixture]
-    public class UserRepositoryTests : BaseRavenFixture
+    public class UserServiceTests : InMemoryFixtureBase
     {
-        private UserRepository userRepository;
+        private UserService service;
 
         [SetUp]
         public void SetUp()
         {
-            userRepository = new UserRepository(DocumentSession);
+            service = new UserService(Session);
         }
 
         [TestCase("userA", false)]
@@ -22,11 +21,10 @@
         {
             // Arrange
             var user = new User { Username = "userA" };
-            DocumentSession.Store(user);
-            DocumentSession.SaveChanges();
+            Session.SaveOrUpdate(user);
 
             // Act
-            var result = userRepository.UsernameAvailable(username);
+            var result = service.UsernameAvailable(username);
 
             // Assert
             result.ShouldBeEquivalentTo(expectedResult);
@@ -38,11 +36,10 @@
         {
             // Arrange
             var user = new User { Email = "existing@email.com" };
-            DocumentSession.Store(user);
-            DocumentSession.SaveChanges();
+            Session.SaveOrUpdate(user);
 
             // Act
-            var result = userRepository.EmailAlreadyRegistered(email);
+            var result = service.EmailAlreadyRegistered(email);
 
             // Assert
             result.ShouldBeEquivalentTo(expectedResult);
@@ -53,11 +50,10 @@
         {
             // Arrange
             var user = new User { Username = "UnitTest", Name = "Unit Test", Email = "existing@email.com" };
-            DocumentSession.Store(user);
-            DocumentSession.SaveChanges();
+            Session.SaveOrUpdate(user);
 
             // Act
-            var result = userRepository.GetUser("UnitTest");
+            var result = service.GetUser("UnitTest");
 
             // Assert
             result.Email.ShouldAllBeEquivalentTo(user.Email);
@@ -71,7 +67,7 @@
             // Arrange
 
             // Act
-            var result = userRepository.GetUser("UnitTest");
+            var result = service.GetUser("UnitTest");
 
             // Assert
             result.Should().BeNull();
@@ -82,11 +78,10 @@
         {
             // Arrange
             var user = new User { Username = "UnitTest", Name = "Unit Test", Email = "existing@email.com" };
-            DocumentSession.Store(user);
-            DocumentSession.SaveChanges();
+            Session.SaveOrUpdate(user);
 
             // Act
-            var result = userRepository.GetUserById(user.Id);
+            var result = service.GetUserById(user.Id);
 
             // Assert
             result.Email.ShouldAllBeEquivalentTo(user.Email);
@@ -101,14 +96,13 @@
         {
             // Arrange
             var user = new User { Username = "UnitTest", Name = "Unit Test", Email = "existing@email.com" };
-            DocumentSession.Store(user);
-            DocumentSession.SaveChanges();
+            Session.SaveOrUpdate(user);
             user.Username = "UnitTest2";
             user.Name = "Jeff Test";
             user.Email = "new@email.com";
 
             // Act
-            var result = userRepository.SaveUser(user);
+            var result = service.SaveUser(user);
 
             // Assert
             result.Email.ShouldAllBeEquivalentTo(user.Email);

@@ -1,24 +1,25 @@
 ﻿namespace YorkshireTec.Infrastructure
 {
+    using System.Configuration;
     using System.Text.RegularExpressions;
-    using global::Raven.Client;
     using Nancy;
     using Nancy.Authentication.Forms;
     using Nancy.SimpleAuthentication;
     using System;
+    using YorkshireTec.Data.Domain.Account;
+    using YorkshireTec.Data.NHibernate;
+    using YorkshireTec.Data.Services;
     using YorkshireTec.Infrastructure.Helpers;
-    using YorkshireTec.Raven;
-    using YorkshireTec.Raven.Domain.Account;
-    using YorkshireTec.Raven.Repositories;
 
     public class AuthenticationCallbackProvider : IAuthenticationCallbackProvider
     {
-        private readonly UserRepository userRepository;
+        private readonly UserService userService;
 
         public AuthenticationCallbackProvider()
         {
-            var store = RavenSessionProvider.DocumentStore;
-            userRepository = new UserRepository(store.OpenSession());
+            var sessionFactory = NHibernateSessionFactoryProvider.BuildSessionFactory(ConfigurationManager.ConnectionStrings["Database"].ConnectionString);
+            var requestSession = sessionFactory.OpenSession();
+            userService = new UserService(requestSession);
         }
 
         public dynamic Process(NancyModule nancyModule, AuthenticateCallbackData model)
@@ -28,7 +29,7 @@
 
             if (nancyModule.Context.CurrentUser != null)
             {
-                loggedInUser = userRepository.GetUser(nancyModule.Context.CurrentUser.UserName);
+                loggedInUser = userService.GetUser(nancyModule.Context.CurrentUser.UserName);
             }
             if (model.Exception == null)
             {
@@ -36,7 +37,7 @@
                 var userInfo = authenticatedClient.UserInformation;
                 var providerName = model.AuthenticatedClient.ProviderName;
 
-                var user = userRepository.GetUserByIdentity(providerName, userInfo.UserName);
+                var user = userService.GetUserByIdentity(providerName, userInfo.UserName);
 
                 // Are they already logged in?
                 if (loggedInUser != null)
@@ -45,7 +46,7 @@
                     if (user == null)
                     {
                         // No - Link the accounts
-                        userRepository.LinkIdentity(Provider.FromAuthenticatedClient(authenticatedClient), loggedInUser);
+                        userService.LinkIdentity(Provider.FromAuthenticatedClient(authenticatedClient), loggedInUser);
                     }
                     // Redirect back to the account page
                     return nancyModule.Response.AsRedirect("~/account");
@@ -59,17 +60,17 @@
                 }
                 // We've not seen this user before!
                 // Has the email signed up with another account?
-                if (userRepository.EmailAlreadyRegistered(userInfo.Email))
+                if (userService.EmailAlreadyRegistered(userInfo.Email))
                 {
                     // Link the accounts
-                    var existingUser = userRepository.GetUser(userInfo.Email);
-                    userRepository.LinkIdentity(Provider.FromAuthenticatedClient(authenticatedClient), existingUser);
+                    var existingUser = userService.GetUser(userInfo.Email);
+                    userService.LinkIdentity(Provider.FromAuthenticatedClient(authenticatedClient), existingUser);
                     // Log them in
                     return nancyModule.LoginAndRedirect(existingUser.Id, null, returnUrl);
                 }
                 // New user!! HOZZAAARRR!!!
                 // Register them
-                var newUser = userRepository.SaveUser(User.FromAuthenticatedClient(authenticatedClient));
+                var newUser = userService.SaveUser(User.FromAuthenticatedClient(authenticatedClient));
                 var updateText = string.Format("{0} just signed up at {1}. Go {0}!", newUser.Name, nancyModule.Context.Request.Url.SiteBase);
                 SlackHelper.PostToSlack(new SlackUpdate { channel = "#website", icon_emoji = ":yorks:", username = "New User", text = updateText });
                 // Log them in and forward them to the welcome page
@@ -92,7 +93,5 @@
         {
             throw new NotImplementedException();
         }
-
-        public IDocumentSession DocumentSessionProvider { get; set; }
     }
 }

@@ -1,26 +1,27 @@
 namespace YorkshireTec.Account.Modules
 {
-    using global::Raven.Client;
     using Nancy;
     using Nancy.ModelBinding;
     using Nancy.Security;
     using Nancy.Validation;
+    using NHibernate;
     using YorkshireTec.Account.ViewModels;
+    using YorkshireTec.Data.Services;
     using YorkshireTec.Infrastructure;
     using YorkshireTec.Infrastructure.Models;
-    using YorkshireTec.Raven.Repositories;
 
     public class AccountModule : BaseModule
     {
-        public AccountModule(IDocumentSession documentSession)
-            : base("account")
+        public AccountModule(ISessionFactory sessionFactory)
+            : base(sessionFactory, "account")
         {
             this.RequiresFeature("Account");
             this.RequiresAuthentication();
+
             Get[""] = _ =>
             {
-                var userRepository = new UserRepository(documentSession);
-                var user = userRepository.GetUser(Context.CurrentUser.UserName);
+                var userSession = new UserService(RequestSession);
+                var user = userSession.GetUser(Context.CurrentUser.UserName);
                 var model = GetBaseModel(new AccountViewModel(user));
                 model.Page.Title = "Account";
                 return Negotiate.WithModel(model).WithView("Index");
@@ -35,12 +36,12 @@ namespace YorkshireTec.Account.Modules
                 var model = GetBaseModel(viewModel);
                 if (result.IsValid)
                 {
-                    var userRepository = new UserRepository(documentSession);
-                    var user = userRepository.GetUserById(viewModel.Id);
+                    var userSession = new UserService(RequestSession);
+                    var user = userSession.GetUserById(viewModel.Id);
 
                     if (user.Username != viewModel.Username)
                     {
-                        var existing = userRepository.GetUser(viewModel.Username);
+                        var existing = userSession.GetUser(viewModel.Username);
                         if (existing != null)
                         {
                             model.Page.AddError("Username is already taken", "Username");
@@ -48,7 +49,7 @@ namespace YorkshireTec.Account.Modules
                     }
                     if (user.Email != viewModel.Email)
                     {
-                        var existing = userRepository.GetUser(viewModel.Email);
+                        var existing = userSession.GetUser(viewModel.Email);
                         if (existing != null)
                         {
                             model.Page.AddError("Email is already registered", "Email");
@@ -60,7 +61,7 @@ namespace YorkshireTec.Account.Modules
                     user.Email = viewModel.Email;
                     user.Picture = viewModel.Picture;
 
-                    userRepository.SaveUser(user);
+                    userSession.SaveUser(user);
                     model.Page.Notifications.Add(new NotificationModel("Details Updated", "", NotificationType.Success));
 
                     model = GetBaseModel(new AccountViewModel(user));

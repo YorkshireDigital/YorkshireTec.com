@@ -2,25 +2,24 @@
 
 namespace YorkshireTec.Infrastructure
 {
-    using global::Raven.Client;
     using Nancy;
     using Nancy.Authentication.Forms;
     using Nancy.Security;
-    using YorkshireTec.Raven.Domain.Account;
+    using NHibernate;
+    using YorkshireTec.Data.Domain.Account;
 
     public class UserMapper : IUserMapper
     {
-        private readonly IDocumentSession documentSession;
+        private readonly ISession session;
 
-        public UserMapper(IDocumentSession documentSession)
+        public UserMapper(ISessionFactory sessionFactory)
         {
-            this.documentSession = documentSession;
-
+            session = sessionFactory.GetCurrentSession();
         }
 
         public IUserIdentity GetUserFromIdentifier(Guid identifier, NancyContext context)
         {
-            var userRecord = documentSession.Load<User>(identifier);
+            var userRecord = session.Get<User>(identifier);
 
             return userRecord == null ? null : new UserIdentity { UserName = userRecord.Username, FriendlyName = userRecord.Name, UserId = userRecord.Id.ToString(), Email = userRecord.Email};
         }

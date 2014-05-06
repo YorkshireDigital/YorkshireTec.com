@@ -3,8 +3,7 @@
     using System;
     using System.Linq;
     using FluentValidation;
-    using global::Raven.Abstractions.Extensions;
-    using YorkshireTec.Raven.Domain.Account;
+    using YorkshireTec.Data.Domain.Account;
 
     public class AccountViewModel
     {

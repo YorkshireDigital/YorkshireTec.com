@@ -1,19 +1,19 @@
 ﻿namespace YorkshireTec.Account.Modules
 {
-    using global::Raven.Client;
     using Nancy;
     using Nancy.Authentication.Forms;
     using Nancy.ModelBinding;
     using Nancy.Validation;
+    using NHibernate;
     using YorkshireTec.Account.ViewModels;
+    using YorkshireTec.Data.Services;
     using YorkshireTec.Infrastructure;
     using YorkshireTec.Infrastructure.Helpers;
-    using YorkshireTec.Raven.Repositories;
 
     public class AccountRegisterModule : BaseModule
     {
-        public AccountRegisterModule(IDocumentSession documentSession)
-            : base("account/register")
+        public AccountRegisterModule(ISessionFactory sessionFactory)
+            : base(sessionFactory, "account/register")
         {
             this.RequiresFeature("Account");
             Get["/"] = _ =>
@@ -33,17 +33,17 @@
 
                 if (result.IsValid)
                 {
-                    var userRepository = new UserRepository(documentSession);
+                    var userService = new UserService(RequestSession);
 
-                    if (userRepository.UsernameAvailable(viewModel.Username))
+                    if (userService.UsernameAvailable(viewModel.Username))
                     {
-                        if (!userRepository.EmailAlreadyRegistered(viewModel.Email))
+                        if (!userService.EmailAlreadyRegistered(viewModel.Email))
                         {
                             if (viewModel.MailingList)
                             {
                                 MailChimpHelper.AddSubscriber(viewModel.Email, viewModel.Name, string.Empty, string.Empty);
                             }
-                            var user = userRepository.SaveUser(viewModel.ToUser());
+                            var user = userService.SaveUser(viewModel.ToUser());
                             var updateText = string.Format("{0} just signed up at {1}. Go {0}!", user.Name, Context.Request.Url.SiteBase);
                             SlackHelper.PostToSlack(new SlackUpdate { channel = "#website", icon_emoji = ":yorks:", username = "New User", text = updateText });
                             return this.LoginAndRedirect(user.Id, null, "~/account/welcome");

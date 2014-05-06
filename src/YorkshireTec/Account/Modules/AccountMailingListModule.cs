@@ -1,21 +1,21 @@
 ﻿namespace YorkshireTec.Account.Modules
 {
     using System;
-    using global::Raven.Client;
     using Nancy;
     using Nancy.ModelBinding;
     using Nancy.Security;
     using Nancy.Validation;
+    using NHibernate;
     using YorkshireTec.Account.ViewModels;
+    using YorkshireTec.Data.Domain.Account.Enums;
+    using YorkshireTec.Data.Services;
     using YorkshireTec.Infrastructure;
     using YorkshireTec.Infrastructure.Helpers;
-    using YorkshireTec.Raven.Domain.Account;
-    using YorkshireTec.Raven.Repositories;
 
     public class AccountMailingListModule : BaseModule
     {
-        public AccountMailingListModule(IDocumentSession documentSession)
-            : base("account/mailinglist")
+        public AccountMailingListModule(ISessionFactory sessionFactory)
+            : base(sessionFactory, "account/mailinglist")
         {
             this.RequiresFeature("Account");
             this.RequiresAuthentication();
@@ -27,15 +27,15 @@
 
                 if (result.IsValid)
                 {
-                    var userRepository = new UserRepository(documentSession);
-                    var user = userRepository.GetUserById(viewModel.UserId);
+                    var userService = new UserService(RequestSession);
+                    var user = userService.GetUserById(viewModel.UserId);
 
                     user.Email = viewModel.Email;
                     user.MailingListState = MailingListState.PendingSubscribe;
                     
                     MailChimpHelper.AddSubscriber(user.Email, user.Name, user.Twitter, string.Empty);
 
-                    userRepository.SaveUser(user);
+                    userService.SaveUser(user);
 
                     return 200;
                 }
@@ -49,15 +49,15 @@
 
                 if (result.IsValid)
                 {
-                    var userRepository = new UserRepository(documentSession);
-                    var user = userRepository.GetUserById(viewModel.UserId);
+                    var userService = new UserService(RequestSession);
+                    var user = userService.GetUserById(viewModel.UserId);
 
                     user.Email = viewModel.Email;
                     user.MailingListState = MailingListState.PendingUnsubscribe;
                    
                     MailChimpHelper.Unsubscribe(user.Email, user.Name, user.Twitter, string.Empty);
 
-                    userRepository.SaveUser(user);
+                    userService.SaveUser(user);
 
                     return 200;
                 }
@@ -66,8 +66,8 @@
 
             Get["/subscribed"] = _ =>
             {
-                var userRepository = new UserRepository(documentSession);
-                var user = userRepository.GetUserById(new Guid(((UserIdentity)Context.CurrentUser).UserId));
+                var userService = new UserService(RequestSession);
+                userService.GetUserById(new Guid(((UserIdentity)Context.CurrentUser).UserId));
 
                 var model = GetBaseModel(new SubscribedViewModel());
                 model.Page.Title = "Welcome";
@@ -77,8 +77,8 @@
 
             Get["/unsubscribed"] = _ =>
             {
-                var userRepository = new UserRepository(documentSession);
-                var user = userRepository.GetUserById(new Guid(((UserIdentity)Context.CurrentUser).UserId));
+                var userService = new UserService(RequestSession);
+                userService.GetUserById(new Guid(((UserIdentity)Context.CurrentUser).UserId));
 
                 var model = GetBaseModel(new UnsubscribedViewModel());
                 model.Page.Title = "Sorry";
