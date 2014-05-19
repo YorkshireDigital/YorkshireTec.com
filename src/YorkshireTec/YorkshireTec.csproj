@@ -187,6 +187,7 @@
     <None Include="Properties\PublishProfiles\WebDeploy.pubxml" />
     <Content Include="Views\Shared\_LandingPageLayout.cshtml" />
     <Content Include="Views\_SpreadTheWord.cshtml" />
+    <Content Include="Views\_MailChimpSignupForm.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -13,7 +13,10 @@
             @*<p>@campaign.SentOn.ToString("D")</p>*@
             <hr />
         }
-        @Html.Partial("_SpreadTheWord")
+        @Html.Partial("_MailChimpSignUpForm")
+        <div id="mce-success-response" class="js-post-sign-up is-hidden">
+            @Html.Partial("_MailingListConfirmation")
+        </div>
     </div>
     <footer role="contentinfo">
         <small>© 2014 YorkshireDigital</small>
