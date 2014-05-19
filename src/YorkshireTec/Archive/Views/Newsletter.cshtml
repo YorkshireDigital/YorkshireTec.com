@@ -1,0 +1,21 @@
+﻿@{
+    Layout = "/Shared/_LandingPageLayout.cshtml";
+}
+@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<YorkshireTec.Infrastructure.BaseViewModel<YorkshireTec.Archive.ViewModels.ArchiveNewsletterViewModel>>
+
+<section class="sign-up layout-stacked">
+    <div class="js-post-sign-up">
+        <h2>Archive</h2>
+        <p>If you've missed any of our news letters you can catch up here:</p>
+        @foreach (var campaign in Model.ViewModel.Archives)
+        {
+            <p><a href="@campaign.Link" target="_blank" title="@campaign.Title">@campaign.Title</a></p>
+            @*<p>@campaign.SentOn.ToString("D")</p>*@
+            <hr />
+        }
+        @Html.Partial("_SpreadTheWord")
+    </div>
+    <footer role="contentinfo">
+        <small>© 2014 YorkshireDigital</small>
+    </footer>
+</section>

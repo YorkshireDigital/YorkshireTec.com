@@ -152,9 +152,13 @@
     <Content Include="Content\img\logo-yorkshiredigital-reversed.png" />
     <Content Include="Content\img\logo-yorkshiredigital-reversed.svg" />
     <Content Include="favicon.ico" />
-    <Content Include="packages.config" />
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Home\Views\Index.cshtml" />
-    <Content Include="Parameters.xml" />
+    <Content Include="Parameters.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Calendar\Views\Index.cshtml" />
     <Content Include="Account\Views\LogIn.cshtml" />
@@ -179,6 +183,7 @@
     <Content Include="Views\_MailingListConfirmation.cshtml" />
     <Content Include="MailingList\Views\Confirmation.cshtml" />
     <Content Include="MailingList\Views\Subscribed.cshtml" />
+    <Content Include="Archive\Views\Newsletter.cshtml" />
     <None Include="Properties\PublishProfiles\WebDeploy.pubxml" />
     <Content Include="Views\Shared\_LandingPageLayout.cshtml" />
     <Content Include="Views\_SpreadTheWord.cshtml" />
@@ -210,6 +215,8 @@
     <Compile Include="Account\ViewModels\SubscribedViewModel.cs" />
     <Compile Include="Account\ViewModels\UnsubscribedViewModel.cs" />
     <Compile Include="Account\ViewModels\WelcomeViewModel.cs" />
+    <Compile Include="Archive\Modules\ArchiveNewsletterModule.cs" />
+    <Compile Include="Archive\ViewModels\ArchiveNewsletterViewModel.cs" />
     <Compile Include="MailingList\Modules\ConfirmationModule.cs" />
     <Compile Include="Infrastructure\CassetteConfiguration.cs" />
     <Compile Include="Infrastructure\Bootstrapper.cs" />
