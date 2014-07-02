@@ -1,9 +1,11 @@
-﻿using MailChimp;
-using MailChimp.Helper;
-
-namespace YorkshireTec.Infrastructure.Helpers
+﻿namespace YorkshireTec.Infrastructure.Helpers
 {
+    using System;
+    using System.Collections.Generic;
     using System.Configuration;
+    using System.Linq;
+    using MailChimp;
+    using MailChimp.Helper;
 
     public class MailChimpHelper
     {
@@ -29,5 +31,32 @@ namespace YorkshireTec.Infrastructure.Helpers
             };
             var results = mailChimp.Unsubscribe(ConfigurationManager.AppSettings["MailChimp_ListId"], emailParam);
         }
+
+        public static List<MailChimpCampaign> GetPastCampaigns()
+        {
+            var mailChimp = new MailChimpManager(ApiKey);
+
+            var result = mailChimp.GetCampaigns();
+
+            DateTime sentTime;
+            var archives = result.Data.Where(x => DateTime.TryParse(x.SendTime, out sentTime))
+                .OrderByDescending(x => DateTime.Parse(x.SendTime))
+                .Select(campaign => new MailChimpCampaign
+                {
+                    Title = campaign.Title,
+                    Link = campaign.ArchiveUrl,
+                    SentOn = DateTime.Parse(campaign.SendTime)
+                })
+                .ToList();
+
+            return archives;
+        }
+    }
+
+    public class MailChimpCampaign
+    {
+        public string Title { get; set; }
+        public string Link { get; set; }
+        public DateTime SentOn { get; set; }
     }
 }
