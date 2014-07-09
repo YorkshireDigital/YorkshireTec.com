@@ -25,6 +25,7 @@
             var sessionFactory = GetInMemoryConfiguration()
                 .ExposeConfiguration(cfg =>
                 {
+                    new SchemaUpdate(cfg).Execute(false, true);
                     config = cfg;
                 })
                 .BuildSessionFactory();
@@ -45,7 +46,8 @@
         {
             return Fluently.Configure()
                 .Database(SQLiteConfiguration.Standard.InMemory())
-                .Mappings(m => m.AutoMappings.Add(CreateAutomappings));
+                .Mappings(m => m.AutoMappings.Add(CreateAutomappings))
+                .CurrentSessionContext<CallSessionContext>();
         }
 
         private static AutoPersistenceModel CreateAutomappings()

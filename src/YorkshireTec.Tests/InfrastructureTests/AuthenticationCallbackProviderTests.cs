@@ -2,7 +2,7 @@
 {
     using FluentAssertions;
     using NUnit.Framework;
-    using YorkshireTec.Infrastructure;
+    using YorkshireTec.Api.Infrastructure;
 
     [TestFixture]
     public class AuthenticationCallbackProviderTests
