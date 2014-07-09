@@ -11,7 +11,7 @@ namespace YorkshireTec.Api.Infrastructure
     {
         public void Configure(BundleCollection bundles)
         {
-            bundles.AddPerSubDirectory<StylesheetBundle>("Content");
+            bundles.AddPerSubDirectory<StylesheetBundle>("Styles");
             bundles.AddPerSubDirectory<ScriptBundle>("Scripts");
         }
     }

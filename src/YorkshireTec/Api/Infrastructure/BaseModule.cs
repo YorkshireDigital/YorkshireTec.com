@@ -34,7 +34,7 @@
         }
 
         public BaseModule(ISessionFactory sessionFactory, string modulePath)
-            : base(modulePath)
+            : base(string.Format("/api/{0}", modulePath))
         {
             RequestSession = sessionFactory.GetCurrentSession();
         }

@@ -162,11 +162,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include=".bin\compass.bat" />
-    <Content Include="Content\css\screen.css" />
-    <Content Include="Content\img\bg-homepage-banner.jpg" />
-    <Content Include="Content\img\logo-yorkshiredigital-reversed-block.svg" />
-    <Content Include="Content\img\logo-yorkshiredigital-reversed.png" />
-    <Content Include="Content\img\logo-yorkshiredigital-reversed.svg" />
+    <Content Include="Styles\css\screen.css" />
+    <Content Include="Styles\img\bg-homepage-banner.jpg" />
+    <Content Include="Styles\img\logo-yorkshiredigital-reversed-block.svg" />
+    <Content Include="Styles\img\logo-yorkshiredigital-reversed.png" />
+    <Content Include="Styles\img\logo-yorkshiredigital-reversed.svg" />
     <Content Include="favicon.ico" />
     <Content Include="packages.config">
       <SubType>Designer</SubType>
@@ -184,18 +184,18 @@
     <Content Include="Api\Account\Views\Welcome.cshtml" />
     <Content Include="Api\Account\Views\Subscribed.cshtml" />
     <Content Include="Api\Account\Views\Unsubscribed.cshtml" />
-    <Content Include="Content\fonts\2AB2F4_0_0.eot" />
-    <Content Include="Content\fonts\2AB2F4_0_0.ttf" />
-    <Content Include="Content\fonts\2AB2F4_0_0.woff" />
-    <Content Include="Content\fonts\2AB2F4_1_0.eot" />
-    <Content Include="Content\fonts\2AB2F4_1_0.ttf" />
-    <Content Include="Content\fonts\2AB2F4_1_0.woff" />
-    <Content Include="Content\fonts\2AB2F4_2_0.eot" />
-    <Content Include="Content\fonts\2AB2F4_2_0.ttf" />
-    <Content Include="Content\fonts\2AB2F4_2_0.woff" />
-    <Content Include="Content\fonts\2AB2F4_3_0.eot" />
-    <Content Include="Content\fonts\2AB2F4_3_0.ttf" />
-    <Content Include="Content\fonts\2AB2F4_3_0.woff" />
+    <Content Include="Styles\fonts\2AB2F4_0_0.eot" />
+    <Content Include="Styles\fonts\2AB2F4_0_0.ttf" />
+    <Content Include="Styles\fonts\2AB2F4_0_0.woff" />
+    <Content Include="Styles\fonts\2AB2F4_1_0.eot" />
+    <Content Include="Styles\fonts\2AB2F4_1_0.ttf" />
+    <Content Include="Styles\fonts\2AB2F4_1_0.woff" />
+    <Content Include="Styles\fonts\2AB2F4_2_0.eot" />
+    <Content Include="Styles\fonts\2AB2F4_2_0.ttf" />
+    <Content Include="Styles\fonts\2AB2F4_2_0.woff" />
+    <Content Include="Styles\fonts\2AB2F4_3_0.eot" />
+    <Content Include="Styles\fonts\2AB2F4_3_0.ttf" />
+    <Content Include="Styles\fonts\2AB2F4_3_0.woff" />
     <Content Include="Views\_MailingListConfirmation.cshtml" />
     <Content Include="Api\MailingList\Views\Confirmation.cshtml" />
     <Content Include="Api\MailingList\Views\Subscribed.cshtml" />
@@ -271,7 +271,9 @@
       <Name>YorkshireTec.Data</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Pages\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
