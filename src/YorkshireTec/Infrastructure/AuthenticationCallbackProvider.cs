@@ -1,4 +1,6 @@
-﻿namespace YorkshireTec.Infrastructure
+﻿using NHibernate;
+
+namespace YorkshireTec.Infrastructure
 {
     using System.Configuration;
     using System.Text.RegularExpressions;
@@ -17,7 +19,19 @@
 
         public AuthenticationCallbackProvider()
         {
-            var sessionFactory = NHibernateSessionFactoryProvider.BuildSessionFactory(ConfigurationManager.ConnectionStrings["Database"].ConnectionString);
+            ISessionFactory sessionFactory;
+
+            var inMemoryDb = bool.Parse(ConfigurationManager.AppSettings["Database:InMemory"]);
+            if (inMemoryDb)
+            {
+                NHibernate.Cfg.Configuration configuration;
+                sessionFactory = NHibernateSessionFactoryProvider.BuildInMemorySessionFactory(out configuration);
+            }
+            else
+            {
+                sessionFactory = NHibernateSessionFactoryProvider.BuildSessionFactory(ConfigurationManager.ConnectionStrings["Database"].ConnectionString);
+            }
+            
             var requestSession = sessionFactory.OpenSession();
             userService = new UserService(requestSession);
         }

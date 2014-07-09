@@ -34,9 +34,19 @@ namespace YorkshireTec.Infrastructure
         {
             base.ConfigureApplicationContainer(container);
 
-            container.Register(
-                NHibernateSessionFactoryProvider.BuildSessionFactory(
-                    ConfigurationManager.ConnectionStrings["Database"].ConnectionString));
+            var inMemoryDb = bool.Parse(ConfigurationManager.AppSettings["Database:InMemory"]);
+
+            if (inMemoryDb)
+            {
+                NHibernate.Cfg.Configuration configuration;
+                container.Register(NHibernateSessionFactoryProvider.BuildInMemorySessionFactory(out configuration));
+            }
+            else
+            {
+                container.Register(
+                    NHibernateSessionFactoryProvider.BuildSessionFactory(
+                        ConfigurationManager.ConnectionStrings["Database"].ConnectionString));
+            }
 
             Conventions.ViewLocationConventions.Add((viewName, model, context) => string.Concat(context.ModuleName, "/Views/", viewName));
             Conventions.ViewLocationConventions.Add((viewName, model, context) => string.Concat(context.ModulePath, "/Views/", viewName));
