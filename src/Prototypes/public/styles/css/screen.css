@@ -1,4 +1,4 @@
-@charset "UTF-8";
+@charset "CP850";
 /*	=IMPORTS
 --------------------------------------------------------------------*/
 /* Partials */
@@ -998,42 +998,14 @@ html {
 }
 
 body {
-  background: #2b2f39;
-}
-
-.home {
-  background: #232e3a url(../img/bg-homepage-banner.jpg) fixed no-repeat;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-}
-.home:after {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  width: 40%;
-  max-width: 600px;
-  content: "";
   background: #fff;
-  z-index: -1;
-}
-@media (max-width: 37.5em) {
-  .home:after {
-    display: none;
-  }
-}
-@media (max-width: 56.25em) {
-  .home:after {
-    width: 50%;
-  }
 }
 
 /*  =LAYOUT
 --------------------------------------------------------------------*/
 .layout-constrained {
   min-width: 300px;
+  max-width: 960px;
   padding: 0 2em;
   margin: 0 auto;
 }
@@ -1045,30 +1017,6 @@ body {
 
 /*  =HERO BLOCK
 --------------------------------------------------------------------*/
-.home-banner {
-  float: left;
-  width: 60%;
-  padding: 2em;
-}
-@media (max-width: 56.25em) {
-  .home-banner {
-    width: 50%;
-  }
-}
-@media (max-width: 37.5em) {
-  .home-banner {
-    padding: 2em 1.5em;
-    width: 100%;
-  }
-}
-
-.hero {
-  max-width: 750px;
-}
-.hero h1, .hero p, .hero a {
-  color: #fff;
-}
-
 .logo-site {
   max-width: 300px;
   height: 177px;
