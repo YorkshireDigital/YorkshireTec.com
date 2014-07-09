@@ -1,0 +1,27 @@
+﻿@using Cassette.Nancy
+@{
+    Layout = "Shared/_Layout.cshtml";
+
+    Bundles.Reference("Scripts/mailchimp");
+}
+@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<YorkshireTec.Api.Infrastructure.BaseViewModel<YorkshireTec.Api.Home.ViewModels.IndexViewModel>>
+<section class="home-banner">
+    <div class="logo-site">
+    </div>
+    <div class="hero">
+        <h1>Calendar</h1>
+        <p>
+            Calendar will be here
+        </p>
+        <p>
+            If you run a meetup in Yorkshire and would like to get involved  <a href="mailto:info@yorkshiredigital.com">let us know</a>.
+        </p>
+    </div>
+</section>
+<section class="sign-up layout-stacked">
+    @Html.Partial("_MailChimpSignUpForm")
+    <div id="mce-success-response" class="js-post-sign-up is-hidden">
+        @Html.Partial("_MailingListConfirmation")
+    </div>
+    @Html.Partial("_CopyrightFooter")
+</section>

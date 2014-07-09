@@ -200,6 +200,7 @@
     <Content Include="Api\MailingList\Views\Confirmation.cshtml" />
     <Content Include="Api\MailingList\Views\Subscribed.cshtml" />
     <Content Include="Api\Archive\Views\Newsletter.cshtml" />
+    <Content Include="Api\Home\Views\Calendar.cshtml" />
     <None Include="Properties\PublishProfiles\WebDeploy.pubxml" />
     <Content Include="Views\Shared\_LandingPageLayout.cshtml" />
     <Content Include="Views\_SpreadTheWord.cshtml" />

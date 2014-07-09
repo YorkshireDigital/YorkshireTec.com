@@ -16,6 +16,17 @@ namespace YorkshireTec.Api.Home.Modules
                 model.Page.Title = "Bringing Yorkshires digital community together";
                 return Negotiate.WithModel(model).WithView("Index");
             };
+
+            Get["/calendar"] = _ =>
+            {
+                this.RequiresFeature("Calendar");
+
+                var viewModel = new IndexViewModel();
+                var model = GetBaseModel(viewModel);
+
+                model.Page.Title = "Calendar will be on this page";
+                return Negotiate.WithModel(model).WithView("Calendar");
+            };
         }
     }
 }
