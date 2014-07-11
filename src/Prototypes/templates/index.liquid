@@ -63,15 +63,18 @@
 	
 	<script type="text/template" id="template-calendar">
 		<div class="clndr-controls">
-			<div class="clndr-previous-button">&lsaquo;</div>
-			<div class="month"><%= month %></div>
-			<div class="clndr-next-button">&rsaquo;</div>
+			<div class="clndr-previous-button clndr-controls__nav">&lsaquo;</div>
+			<h1 class="month"><%= month %></h1>
+			<div class="clndr-next-button clndr-controls__nav">&rsaquo;</div>
 		</div>
 		<div class="clndr-grid">
 			<div class="days-of-the-week">
+				<header class="clndr-header">
 				<% _.each(daysOfTheWeek, function(day) { %>
 				<div class="header-day"><%= day %></div>
 				<% }); %>
+				</header>
+
 				<div class="days">
 					<% _.each(days, function(day) { %>
 					<div class="<%= day.classes %>"><%= day.day %><%= day.events %></div>

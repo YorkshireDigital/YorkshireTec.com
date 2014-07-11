@@ -990,6 +990,36 @@ textarea {
   -moz-appearance: none;
 }
 
+/*	=CALENDAR
+--------------------------------------------------------------------*/
+.clndr-controls__nav {
+  display: inline-block;
+}
+
+.clndr-header {
+  overflow: hidden;
+  border-bottom: 1px solid #ddd;
+}
+
+.header-day {
+  width: 14.2857%;
+  float: left;
+  padding: 1em 0;
+  text-align: center;
+}
+
+.day {
+  width: 14.2857%;
+  float: left;
+  padding: 1% 0;
+  text-align: center;
+}
+
+.last-month,
+.next-month {
+  color: #AFAFAF;
+}
+
 /*  =BASE
 ------------------------------------------------------------*/
 html {
