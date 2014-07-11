@@ -1,3 +1,4 @@
+{% model "events.json" %}
 {% block title %}Bringing Yorkshires digital community together{% endblock %} 
 {% block content %}
 	<div class="logo-site">
@@ -12,17 +13,81 @@
 		</p>
 	</div>
 
-	<section class="calendar">
-		<h1>Calendar goes here</h1>
+	<section>
+		<h1>Whats on</h1>
+
+		<div class="calendar">
+			
+		</div>
 
 	</section>
 
 
-	
+
 {% endblock %}
 
 {% block pageScripts %} 
+
+  	<script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>
 	{{ "moment-2.5.1.js" | asset_url | script_tag }}
-	{{ "underscore.js" | asset_url | script_tag }}
 	{{ "clndr.js" | asset_url | script_tag }}
+
+	<script type="text/javascript">
+
+	$(function() {
+	  var thisMonth = moment().format('YYYY-MM');
+
+	  var eventArray = [
+	    { startDate: thisMonth + '-10', endDate: thisMonth + '-14', title: 'Multi-Day Event', description: 'sufisuefh' },
+	    { startDate: thisMonth + '-21', endDate: thisMonth + '-23', title: 'Another Multi-Day Event', description: 'sufisuefh' }
+	  ];
+
+
+		var calendar = $('.calendar').clndr({
+	    template: $('#template-calendar').html(),
+	    events: eventArray,
+	    multiDayEvents: {
+	      startDate: 'startDate',
+	      endDate: 'endDate'
+	    },
+	    startWithMonth: moment().add('month', 1),
+	    clickEvents: {
+	      click: function(target) {
+	        console.log(target);
+	      }
+	    },
+	    forceSixRows: true
+	  });
+	});
+	</script>
+	
+	<script type="text/template" id="template-calendar">
+		<div class="clndr-controls">
+			<div class="clndr-previous-button">&lsaquo;</div>
+			<div class="month"><%= month %></div>
+			<div class="clndr-next-button">&rsaquo;</div>
+		</div>
+		<div class="clndr-grid">
+			<div class="days-of-the-week">
+				<% _.each(daysOfTheWeek, function(day) { %>
+				<div class="header-day"><%= day %></div>
+				<% }); %>
+				<div class="days">
+					<% _.each(days, function(day) { %>
+					<div class="<%= day.classes %>"><%= day.day %><%= day.events %></div>
+					<% }); %>
+				</div>
+			</div>
+		</div>
+		<div class="event-listing">
+		  <div class="event-listing-title">EVENTS THIS MONTH</div>
+		  <% _.each(eventsThisMonth, function(event) { %>
+		      <div class="event-item">
+		        <div class="event-item-name"><%= event.title %></div>
+		        <div class="event-item-location"><%= event.description %></div>
+		      </div>
+		    <% }); %>
+		</div>
+		<div class="clndr-today-button">Today</div>
+	</script>
 {% endblock %}
