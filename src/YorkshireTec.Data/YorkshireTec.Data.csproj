@@ -63,8 +63,14 @@
     <Compile Include="Domain\Account\Enums\MailingListState.cs" />
     <Compile Include="Domain\Account\Provider.cs" />
     <Compile Include="Domain\Account\User.cs" />
+    <Compile Include="Domain\Events\Category.cs" />
+    <Compile Include="Domain\Events\Enums\SocialLinkType.cs" />
+    <Compile Include="Domain\Events\Event.cs" />
+    <Compile Include="Domain\Events\SocialLink.cs" />
+    <Compile Include="Domain\Events\Tag.cs" />
     <Compile Include="NHibernate\AutomappingConfiguration.cs" />
     <Compile Include="NHibernate\CascadeConvention.cs" />
+    <Compile Include="NHibernate\MappingOverride\EventMappingOverride.cs" />
     <Compile Include="NHibernate\NHibernateSessionFactoryProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\UserService.cs" />
