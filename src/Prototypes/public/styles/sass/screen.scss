@@ -28,12 +28,12 @@ body {
 --------------------------------------------------------------------*/
 %layout {
     min-width: 300px;
-    max-width: 960px;
+    max-width: 1200px;
     padding: 0 2em;
-    margin: 0 auto;
+    margin: 0 auto; 
 
-    @include breakpoint(single) {
-        padding: 0 .5em;
+    @include breakpoint(viewport-s) {
+        padding: 0 1em;
     }
 }
 

@@ -43,7 +43,9 @@
 			startDate: "{{ event.startDate }}",
 			endDate: "{{ event.endDate }}",
 			title: "{{ event.title }}",
+			shortTitle: "{{ event.shortTitle }}",
 			description: "{{ event.description }}", 
+			brandingAccent: "{{ event.brandingAccent }}"
 		},
 		{% endfor %}
 		];
@@ -90,16 +92,21 @@
 
 				<div class="days">
 					<% _.each(days, function(day) { %>
-					<div class="<%= day.classes %>"><%= day.day %>
+					<div class="<%= day.classes %>">
+					<span class="day-label"><%= day.day %></span>
 					<% _.each(day.events, function(event) { %>
-						<span class="title"><%= event.title %></span>
-						<span class="description"><%= event.title %></span>
+						<div class="calendar-event" style="background: <%= event.brandingAccent %>">
+							<span class="calendar-event__short-title"><%= event.shortTitle %></span>
+							<span class="calendar-event__title"><%= event.title %></span>
+							<span class="calendar-event__description"><%= event.title %></span>
+						</div>
 					<% }); %>
 					</div>
 					<% }); %>
 				</div>
 			</div>
 		</div>
+		
 		<div class="event-listing">
 		  <div class="event-listing-title">EVENTS THIS MONTH</div>
 		  <% _.each(eventsThisMonth, function(event) { %>
@@ -110,6 +117,7 @@
 		      </div>
 		    <% }); %>
 		</div>
+		
 		<div class="clndr-today-button">Today</div>
 	</script>
 {% endblock %}

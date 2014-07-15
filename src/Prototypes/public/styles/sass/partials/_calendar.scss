@@ -6,7 +6,6 @@
 
 .clndr-controls {
 
-
 }
 
 .clndr-controls__nav {
@@ -19,25 +18,100 @@
 
 .clndr-header {
 	overflow: hidden;
-	border-bottom: 1px solid #ddd;
+	border-bottom: 1px solid #F1F1F1;
 }
 
 .header-day {
 	width: 14.2857%;
 	float: left;
-	padding: 1em 0;
-	text-align: center;
+	padding: 1%;
+
+	@include breakpoint(viewport-s) {
+		padding: 0;
+		text-align: center;
+	}
+}
+
+.days {
+	@extend .group;
+	border: solid #F1F1F1;
+	border-width: 0 0 0 1px;
+
+	@include breakpoint(viewport-s) {
+		border-width: 0;
+	}
 }
 
 .day {
 	width: 14.2857%;
+	height: 6em;
 	float: left;
-	padding: 1% 0;
-	text-align: center;
+	padding: 1%;
+	border: solid #F1F1F1;
+	border-width: 0 1px 1px 0;
+
+	@include breakpoint(viewport-s) {
+		height: 3em;
+		text-align: center;
+		border-width: 0 0 1px 0;
+	}
+}
+
+.day-label {
+	display: block;
+}
+
+.today {
+	background: $accent-primary;
 }
 
 .last-month,
 .next-month {
 	color: #AFAFAF;
+	background: #F8F8F8;
+}
+
+.event-listing {
+	display: none;
+
+	@include breakpoint(viewport-l) {
+		display: block;
+	}
+}
+
+
+.calendar-event {
+	padding: 0 5%;
+	min-width: 8px;
+	min-height: 8px;
+	color: #fff;
+	background: #5A9BA0;
+	@include border-radius(10px);
+
+	@include breakpoint(viewport-s) {
+		display: inline-block;
+	}
+}
+
+.calendar-event__short-title {
+	display: none;
+	@include font-size(.8);
+
+	@include breakpoint(viewport-s) {
+		
+	}
+}
+
+.calendar-event__title {
+
+	@include font-size(.8);
+
+	@include breakpoint(viewport-m) {
+		display: none;
+	}
+}
+
+.calendar-event__description {
+	display: none;
 }
 

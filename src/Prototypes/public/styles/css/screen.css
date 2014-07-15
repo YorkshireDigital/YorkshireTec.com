@@ -391,18 +391,19 @@ table {
 --------------------------------------------------------------------*/
 /*  =GLOBAL USE STYLES
 --------------------------------------------------------------------*/
-.group:before, .nav-primary ul:before,
+.group:before, .nav-primary ul:before, .days:before,
 .group:after,
-.nav-primary ul:after {
+.nav-primary ul:after,
+.days:after {
   content: "";
   display: table;
 }
 
-.group:after, .nav-primary ul:after {
+.group:after, .nav-primary ul:after, .days:after {
   clear: both;
 }
 
-.group, .nav-primary ul {
+.group, .nav-primary ul, .days {
   zoom: 1;
 }
 
@@ -998,26 +999,106 @@ textarea {
 
 .clndr-header {
   overflow: hidden;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #F1F1F1;
 }
 
 .header-day {
   width: 14.2857%;
   float: left;
-  padding: 1em 0;
-  text-align: center;
+  padding: 1%;
+}
+@media (max-width: 37.5em) {
+  .header-day {
+    padding: 0;
+    text-align: center;
+  }
+}
+
+.days {
+  border: solid #F1F1F1;
+  border-width: 0 0 0 1px;
+}
+@media (max-width: 37.5em) {
+  .days {
+    border-width: 0;
+  }
 }
 
 .day {
   width: 14.2857%;
+  height: 6em;
   float: left;
-  padding: 1% 0;
-  text-align: center;
+  padding: 1%;
+  border: solid #F1F1F1;
+  border-width: 0 1px 1px 0;
+}
+@media (max-width: 37.5em) {
+  .day {
+    height: 3em;
+    text-align: center;
+    border-width: 0 0 1px 0;
+  }
+}
+
+.day-label {
+  display: block;
+}
+
+.today {
+  background: #b9306a;
 }
 
 .last-month,
 .next-month {
   color: #AFAFAF;
+  background: #F8F8F8;
+}
+
+.event-listing {
+  display: none;
+}
+@media (max-width: 75em) {
+  .event-listing {
+    display: block;
+  }
+}
+
+.calendar-event {
+  padding: 0 5%;
+  min-width: 8px;
+  min-height: 8px;
+  color: #fff;
+  background: #5A9BA0;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  border-radius: 10px;
+}
+@media (max-width: 37.5em) {
+  .calendar-event {
+    display: inline-block;
+  }
+}
+
+.calendar-event__short-title {
+  display: none;
+  font-size: 12.8px;
+  font-size: 0.8rem;
+}
+
+.calendar-event__title {
+  font-size: 12.8px;
+  font-size: 0.8rem;
+}
+@media (max-width: 56.25em) {
+  .calendar-event__title {
+    display: none;
+  }
+}
+
+.calendar-event__description {
+  display: none;
 }
 
 /*  =BASE
@@ -1035,13 +1116,13 @@ body {
 --------------------------------------------------------------------*/
 .layout-constrained {
   min-width: 300px;
-  max-width: 960px;
+  max-width: 1200px;
   padding: 0 2em;
   margin: 0 auto;
 }
-@media (max-width: single) {
+@media (max-width: 37.5em) {
   .layout-constrained {
-    padding: 0 .5em;
+    padding: 0 1em;
   }
 }
 
