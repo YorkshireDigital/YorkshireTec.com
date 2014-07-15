@@ -57,5 +57,40 @@
             events.Count().ShouldBeEquivalentTo(1);
             events.First().Title.ShouldBeEquivalentTo(myEvent.Title);
         }
+
+        [Test]
+        public void EventService_Get_ReturnsEvent()
+        {
+            // Arrange
+            var myEvent = new Event
+            {
+                Title = string.Format("Test Event {0}", DateTime.Now.ToString("yyyyMMddhhmmssss")),
+            };
+            Session.Save(myEvent);
+
+            // Act
+            var result = service.Get(myEvent.Id);
+
+            // Assert
+            result.Title.ShouldBeEquivalentTo(myEvent.Title);
+        }
+
+        [Test]
+        public void EventService_Delete_RemovesEvent()
+        {
+            // Arrange
+            var myEvent = new Event
+            {
+                Title = string.Format("Test Event {0}", DateTime.Now.ToString("yyyyMMddhhmmssss")),
+            };
+            Session.Save(myEvent);
+
+            // Act
+            service.Delete(myEvent);
+            var events = Session.Query<Event>().Select(x => x);
+
+            // Assert
+            events.Count().ShouldBeEquivalentTo(0);
+        }
     }
 }

@@ -16,5 +16,15 @@
         {
             session.SaveOrUpdate(myEvent);
         }
+
+        public Event Get(int id)
+        {
+            return session.Get<Event>(id);
+        }
+
+        public void Delete(Event eventToDelete)
+        {
+            session.Delete(eventToDelete);
+        }
     }
 }
