@@ -100,6 +100,7 @@
   <ItemGroup>
     <Compile Include="Helpers\InMemorySessionFactoryProvider.cs" />
     <Compile Include="InfrastructureTests\AuthenticationCallbackProviderTests.cs" />
+    <Compile Include="ServiceTests\EventServiceTests.cs" />
     <Compile Include="ServiceTests\InMemoryFixtureBase.cs" />
     <Compile Include="ServiceTests\InMemorySetUpFixture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

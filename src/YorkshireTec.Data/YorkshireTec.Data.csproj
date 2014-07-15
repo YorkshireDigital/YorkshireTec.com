@@ -73,6 +73,7 @@
     <Compile Include="NHibernate\MappingOverride\EventMappingOverride.cs" />
     <Compile Include="NHibernate\NHibernateSessionFactoryProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\EventService.cs" />
     <Compile Include="Services\UserService.cs" />
   </ItemGroup>
   <ItemGroup>
