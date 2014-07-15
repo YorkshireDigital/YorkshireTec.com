@@ -176,7 +176,6 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Api\Calendar\Views\Index.cshtml" />
     <Content Include="Api\Account\Views\LogIn.cshtml" />
     <Content Include="Api\Account\Views\Register.cshtml" />
     <Content Include="Api\Account\Views\_Providers.cshtml" />
@@ -250,7 +249,7 @@
     <Compile Include="Api\Infrastructure\UserMapper.cs" />
     <Compile Include="Api\Account\Modules\AccountModule.cs" />
     <Compile Include="Api\Infrastructure\BaseModule.cs" />
-    <Compile Include="Api\Calendar\Modules\CalendarModule.cs" />
+    <Compile Include="Api\Events\Modules\EventsModule.cs" />
     <Compile Include="Api\Home\Modules\HomeModule.cs" />
     <Compile Include="Api\MailingList\Modules\SubscribedModule.cs" />
     <Compile Include="Api\MailingList\ViewModels\IndexViewModel.cs" />
@@ -259,8 +258,6 @@
     <Compile Include="Api\Account\ViewModels\AccountLogInViewModel.cs" />
     <Compile Include="Api\Account\ViewModels\AccountRegisterViewModel.cs" />
     <Compile Include="Api\Infrastructure\BaseViewModel.cs" />
-    <Compile Include="Api\Calendar\ViewModels\CalendarIndexViewModel.cs" />
-    <Compile Include="Api\Calendar\ViewModels\CalendarEventViewModel.cs" />
     <Compile Include="Api\Home\ViewModels\IndexViewModel.cs" />
     <Compile Include="Api\Infrastructure\Models\NotificationModel.cs" />
     <Compile Include="Api\Infrastructure\Models\NotificationType.cs" />
@@ -273,6 +270,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Api\Events\ViewModels\" />
+    <Folder Include="Api\Events\Views\" />
     <Folder Include="Pages\" />
   </ItemGroup>
   <PropertyGroup>
