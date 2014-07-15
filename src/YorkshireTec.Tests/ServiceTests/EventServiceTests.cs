@@ -3,7 +3,6 @@
     using System;
     using System.Linq;
     using FluentAssertions;
-    using Nancy.Session;
     using NHibernate.Linq;
     using NUnit.Framework;
     using YorkshireTec.Data.Domain.Events;
@@ -91,6 +90,27 @@
 
             // Assert
             events.Count().ShouldBeEquivalentTo(0);
+        }
+
+        [Test]
+        public void EventService_GetWithinRange_ReturnsExpectedEvents()
+        {
+            // Arrange
+            for (int i = 1; i < 4; i++)
+            {
+                var event1 = new Event
+                {
+                    Title = string.Format("Test Event {0} {1}", i, DateTime.Now.ToString("yyyyMMddhhmmssss")),
+                    Start = DateTime.Now.AddDays(i * 10)
+                };
+                Session.Save(event1);
+            }
+
+            // Act
+            var result = service.GetWithinRange(DateTime.Now, DateTime.Now.AddDays(25));
+
+            // Assert
+            result.Count().ShouldBeEquivalentTo(2);
         }
     }
 }

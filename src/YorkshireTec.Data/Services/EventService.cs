@@ -1,6 +1,10 @@
 ﻿namespace YorkshireTec.Data.Services
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
     using global::NHibernate;
+    using global::NHibernate.Linq;
     using YorkshireTec.Data.Domain.Events;
 
     public class EventService
@@ -25,6 +29,11 @@
         public void Delete(Event eventToDelete)
         {
             session.Delete(eventToDelete);
+        }
+
+        public List<Event> GetWithinRange(DateTime from, DateTime to)
+        {
+            return session.Query<Event>().Where(x => x.Start >= from && x.Start <= to).ToList();
         }
     }
 }
