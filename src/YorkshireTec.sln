@@ -18,6 +18,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YorkshireTec.Data", "Yorksh
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YorkshireDigital.Api", "YorkshireDigital.Api\YorkshireDigital.Api.csproj", "{16A213D9-3B08-4C73-956E-C2C067B871E0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YorkshireDigital.Web", "YorkshireDigital.Web\YorkshireDigital.Web.csproj", "{F03B7743-8F5E-4BD8-84D3-45F6272C7D28}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -40,6 +42,10 @@ Global
 		{16A213D9-3B08-4C73-956E-C2C067B871E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{16A213D9-3B08-4C73-956E-C2C067B871E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{16A213D9-3B08-4C73-956E-C2C067B871E0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F03B7743-8F5E-4BD8-84D3-45F6272C7D28}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F03B7743-8F5E-4BD8-84D3-45F6272C7D28}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F03B7743-8F5E-4BD8-84D3-45F6272C7D28}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F03B7743-8F5E-4BD8-84D3-45F6272C7D28}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
