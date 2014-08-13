@@ -110,7 +110,8 @@ $rhythm-unit-one: 1.5;                          // Single rhythm unit based on $
   display: none !important;
 }
 
-.is-off-screen {
+.is-offscreen {
   position: absolute;
+  top: -9999px;
   left: -9999px;
 }

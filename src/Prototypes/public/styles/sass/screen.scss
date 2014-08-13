@@ -38,19 +38,30 @@ body {
 }
 
 .layout-constrained {
-	@extend %layout;
+	@extend %layout; 
+}
+
+.clndr {
+	margin-bottom: 2em;	
 }
 
 /*  =HERO BLOCK
 --------------------------------------------------------------------*/
-.hero {
+.site-header {
+	padding: 2em 0;
+	margin-bottom: 2em;
+	background: #ddd;
+	text-align: center;
+}
 
+.hero {
+ 
 }
 
 .logo-site {
 	max-width: 300px;
 	height: 177px;
-	margin-bottom: 1.5em;
+	margin: 0 auto 1.5em;
 	background: url(../img/logo-yorkshiredigital-reversed.svg) 0 100% no-repeat;
 
 	.no-svg & {

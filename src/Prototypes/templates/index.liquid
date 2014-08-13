@@ -1,26 +1,36 @@
 {% model "events.json" %}
 {% block title %}Bringing Yorkshires digital community together{% endblock %} 
 {% block content %}
-	<div class="logo-site">
-	</div>
-	<div class="hero">
-		<h1>Bringing Yorkshire's digital community together</h1>
-		<p>
-			A hub for the growing digital community in Yorkshire, where individuals, organisations and user groups of all skill sets can easily see whats going on, find new connections and share knowledge.
-		</p>
-		<p>
-			If you run a meetup in Yorkshire and would like to get involved  <a href="mailto:info@yorkshiredigital.com">let us know</a>.
-		</p>
-	</div>
 
-	<section>
-		<h1>Whats on</h1>
+	<header class="site-header">
+		<div class="layout-constrained">
+			<div class="logo-site">
+			</div>
+			<div class="hero">
+				<h1>Bringing Yorkshire's digital community together</h1>
+				<p>
+					A hub for the growing digital community in Yorkshire, where individuals, organisations and user groups of all skill sets can easily see whats going on, find new connections and share knowledge.
+				</p>
+				<p>
+					If you run a meetup in Yorkshire and would like to get involved  <a href="mailto:info@yorkshiredigital.com">let us know</a>.
+				</p>
+			</div>
+		</div>
+	</header>
+	
+
+	<section class="layout-constrained">
 
 		<div class="calendar">
 			
 		</div>
 
 	</section>
+
+	<footer class="site-footer" role="contentinfo">
+		<small>© 2014 YorkshireDigital</small>
+		<small>Hosted by <a href="http://www.brightbox.com" target="_blank">Brightbox</a> in Yorkshire</small>
+	</footer>
 
 
 
@@ -64,23 +74,42 @@
 	      }
 	    },
 	    daysOfTheWeek: [
-	    '<span class="header-day-sm">S</span><span class="header-day-md">Sun</span><span class="header-day-lg">Sunday</span>',
-	    '<span class="header-day-sm">M</span><span class="header-day-md">Mon</span><span class="header-day-lg">Monday</span>',
-	    '<span class="header-day-sm">T</span><span class="header-day-md">Tue</span><span class="header-day-lg">Tuesday</span>',
-	    '<span class="header-day-sm">W</span><span class="header-day-md">Wed</span><span class="header-day-lg">Wednesday</span>',
-	    '<span class="header-day-sm">T</span><span class="header-day-md">Thu</span><span class="header-day-lg">Thursday</span>',
-	    '<span class="header-day-sm">F</span><span class="header-day-md">Fri</span><span class="header-day-lg">Friday</span>',
-	    '<span class="header-day-sm">S</span><span class="header-day-md">Sat</span><span class="header-day-lg">Saturday</span>'],
+	    '<span class="header-day__sm">S</span><span class="header-day__md">Sun</span><span class="header-day__lg">Sunday</span>',
+	    '<span class="header-day__sm">M</span><span class="header-day__md">Mon</span><span class="header-day__lg">Monday</span>',
+	    '<span class="header-day__sm">T</span><span class="header-day__md">Tue</span><span class="header-day__lg">Tuesday</span>',
+	    '<span class="header-day__sm">W</span><span class="header-day__md">Wed</span><span class="header-day__lg">Wednesday</span>',
+	    '<span class="header-day__sm">T</span><span class="header-day__md">Thu</span><span class="header-day__lg">Thursday</span>',
+	    '<span class="header-day__sm">F</span><span class="header-day__md">Fri</span><span class="header-day__lg">Friday</span>',
+	    '<span class="header-day__sm">S</span><span class="header-day__md">Sat</span><span class="header-day__lg">Saturday</span>'],
 	    forceSixRows: true
 	  });
 	});
 	</script>
+
+	
 	
 	<script type="text/template" id="template-calendar">
 		<div class="clndr-controls">
 			<div class="clndr-previous-button clndr-controls__nav">&lsaquo;</div>
-			<h1 class="month"><%= month %></h1>
+			<h1 class="month">Events in <%= month %></h1>
 			<div class="clndr-next-button clndr-controls__nav">&rsaquo;</div>
+			<label class="is-offscreen" for="interestFilter">Filter by interest</label>
+			<select class="clndr-contols__filter" name="" id="interestFilter">
+				<option value="">All interests</option>
+				<option value="">Design</option>
+				<option value="">Development</option>
+				<option value="">Marketing</option>
+			</select>
+			<label class="is-offscreen" for="locationFilter">Filter by location</label>
+			<select class="clndr-contols__filter" name="" id="locationFilter">
+				<option value="">All locations</option>
+				<option value="">Huddersfield</option>
+				<option value="">Leeds</option>
+				<option value="">Scarborough</option>
+				<option value="">Sheffield</option>
+				<option value="">York</option>
+			</select>
+
 		</div>
 		<div class="clndr-grid">
 			<div class="days-of-the-week">

@@ -1,31 +1,40 @@
 {
 	"events": [
 	    { 
-	    	"startDate": "07-10-2014", 
-	    	"endDate": "07-13-2014", 
+	    	"startDate": "08-10-2014", 
+	    	"endDate": "08-13-2014", 
 	    	"title": "Hey!Stac",
 	    	"shortTitle": "HS",
 	    	"description": "Talking design, business and tech.",
 	    	"location": "11 - 15 Hunslet Road, Leeds, West Yorkshire, LS10 1JQ",
-	    	"brandingAccent": "#1b7988"
+	    	"brandingAccent": "#fe6f53"
 	    },
 	    { 
-	    	"startDate": "07-21-2014", 
-	    	"endDate": "07-23-2014", 
+	    	"startDate": "08-21-2014", 
+	    	"endDate": "08-23-2014", 
 	    	"title": "NUX Leeds", 
 	    	"shortTitle": "NUX",
 	    	"description": "Yorkshire Digital Conference",
 	    	"location": "11 - 15 Hunslet Road, Leeds, West Yorkshire, LS10 1JQ",
-	    	"brandingAccent": "#688b0a"
+	    	"brandingAccent": "#1AAA2B"
 	    },
 	    { 
-	    	"startDate": "07-8-2014", 
-	    	"endDate": "07-8-2014", 
+	    	"startDate": "08-8-2014", 
+	    	"endDate": "08-8-2014", 
 	    	"title": "Leeds Data Thing", 
 	    	"shortTitle": "LDT",
 	    	"description": "Yorkshire Digital Conference",
 	    	"location": "11 - 15 Hunslet Road, Leeds, West Yorkshire, LS10 1JQ",
 	    	"brandingAccent": "#cd007b"
+	    },
+	    { 
+	    	"startDate": "08-08-2014", 
+	    	"endDate": "08-08-2014", 
+	    	"title": "NUX Leeds", 
+	    	"shortTitle": "NUX",
+	    	"description": "Yorkshire Digital Conference",
+	    	"location": "11 - 15 Hunslet Road, Leeds, West Yorkshire, LS10 1JQ",
+	    	"brandingAccent": "#1AAA2B"
 	    }
 	  ]
 }

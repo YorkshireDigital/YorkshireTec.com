@@ -411,8 +411,9 @@ table {
   display: none !important;
 }
 
-.is-off-screen {
+.is-offscreen {
   position: absolute;
+  top: -9999px;
   left: -9999px;
 }
 
@@ -913,7 +914,7 @@ input[type="number"],
 input[type="date"],
 select,
 textarea {
-  padding: .75em;
+  padding: .5em;
   border: 1px solid #ccc;
   border-radius: 0;
 }
@@ -993,8 +994,33 @@ textarea {
 
 /*	=CALENDAR
 --------------------------------------------------------------------*/
-.clndr-controls__nav {
+.clndr-controls .month {
+  width: 40%;
   display: inline-block;
+  text-align: center;
+}
+
+.clndr-controls__nav {
+  font-size: 28.8px;
+  font-size: 1.8rem;
+  -webkit-border-radius: 2em;
+  -moz-border-radius: 2em;
+  -ms-border-radius: 2em;
+  -o-border-radius: 2em;
+  border-radius: 2em;
+  display: inline-block;
+  width: 1.5em;
+  height: 1.5em;
+  text-align: center;
+  font-weight: 700;
+  cursor: pointer;
+  background: #ccc;
+  color: #fff;
+}
+
+.clndr-contols__filter {
+  float: right;
+  margin-left: .5em;
 }
 
 .clndr-header {
@@ -1011,6 +1037,38 @@ textarea {
   .header-day {
     padding: 0;
     text-align: center;
+  }
+}
+
+.header-day__sm {
+  display: none;
+}
+@media (max-width: 37.5em) {
+  .header-day__sm {
+    display: block;
+  }
+}
+
+.header-day__md {
+  display: none;
+}
+@media (max-width: 56.25em) {
+  .header-day__md {
+    display: block;
+  }
+}
+@media (max-width: 37.5em) {
+  .header-day__md {
+    display: none;
+  }
+}
+
+.header-day__lg {
+  display: block;
+}
+@media (max-width: 56.25em) {
+  .header-day__lg {
+    display: none;
   }
 }
 
@@ -1045,7 +1103,16 @@ textarea {
 }
 
 .today {
-  background: #b9306a;
+  position: relative;
+}
+.today:after {
+  position: absolute;
+  top: -1px;
+  right: -1px;
+  bottom: -1px;
+  left: -1px;
+  content: "";
+  border: 1px solid #AAA;
 }
 
 .last-month,
@@ -1064,16 +1131,18 @@ textarea {
 }
 
 .calendar-event {
-  padding: 0 5%;
-  min-width: 8px;
-  min-height: 8px;
-  color: #fff;
-  background: #5A9BA0;
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
   -ms-border-radius: 10px;
   -o-border-radius: 10px;
   border-radius: 10px;
+  min-width: 8px;
+  min-height: 8px;
+  margin-bottom: .125em;
+  padding: 0 5%;
+  color: #fff;
+  text-align: center;
+  background: #5A9BA0;
 }
 @media (max-width: 37.5em) {
   .calendar-event {
@@ -1126,12 +1195,23 @@ body {
   }
 }
 
+.clndr {
+  margin-bottom: 2em;
+}
+
 /*  =HERO BLOCK
 --------------------------------------------------------------------*/
+.site-header {
+  padding: 2em 0;
+  margin-bottom: 2em;
+  background: #ddd;
+  text-align: center;
+}
+
 .logo-site {
   max-width: 300px;
   height: 177px;
-  margin-bottom: 1.5em;
+  margin: 0 auto 1.5em;
   background: url(../img/logo-yorkshiredigital-reversed.svg) 0 100% no-repeat;
 }
 .no-svg .logo-site {

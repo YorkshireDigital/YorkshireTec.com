@@ -6,14 +6,34 @@
 
 .clndr-controls {
 
+	.month {
+		width: 40%;
+		display: inline-block;
+		text-align: center;
+	}
+
 }
 
 .clndr-controls__nav {
+	@include font-size(1.8);
+	@include border-radius(2em);
 	display: inline-block;
+	width: 1.5em;
+	height: 1.5em;
+	text-align: center;
+	font-weight: 700;
+	cursor: pointer;
+	background: #ccc;
+	color: #fff;
+}
+
+.clndr-contols__filter {
+	float: right;
+	margin-left: .5em;
 }
 
 .clndr-grid {
-
+	
 }
 
 .clndr-header {
@@ -29,6 +49,36 @@
 	@include breakpoint(viewport-s) {
 		padding: 0;
 		text-align: center;
+	}
+}
+
+.header-day__sm {
+	display: none;
+
+	@include breakpoint(viewport-s) {
+		display: block;
+	}
+}
+
+.header-day__md {
+	display: none; 
+
+
+
+	@include breakpoint(viewport-m) {
+		display: block;
+	}
+
+	@include breakpoint(viewport-s) {
+		display: none;
+	}
+}
+
+.header-day__lg {
+	display: block;
+
+	@include breakpoint(viewport-m) {
+		display: none;
 	}
 }
 
@@ -62,7 +112,17 @@
 }
 
 .today {
-	background: $accent-primary;
+	position: relative;
+
+	&:after {
+		position: absolute;
+		top: -1px;
+		right: -1px;
+		bottom: -1px;
+		left: -1px;
+		content: "";
+		border: 1px solid #AAA;
+	}
 }
 
 .last-month,
@@ -81,12 +141,15 @@
 
 
 .calendar-event {
-	padding: 0 5%;
+	@include border-radius(10px);
 	min-width: 8px;
 	min-height: 8px;
+	margin-bottom: .125em;
+	padding: 0 5%;
 	color: #fff;
-	background: #5A9BA0;
-	@include border-radius(10px);
+	text-align: center;
+	background: #5A9BA0; 
+	
 
 	@include breakpoint(viewport-s) {
 		display: inline-block;
