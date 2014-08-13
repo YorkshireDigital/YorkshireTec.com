@@ -80,8 +80,12 @@
   <ItemGroup>
     <Content Include="Index.html" />
     <Content Include="Scripts\app\app.js" />
+    <Content Include="Scripts\app\config.js" />
     <Content Include="Scripts\app\controllers\homecontroller.js" />
+    <Content Include="Scripts\app\controllers\mailinglistcontroller.js" />
+    <Content Include="Scripts\app\services\mailinglist\mailinglistservice.js" />
     <Content Include="Scripts\app\views\home\Home.html" />
+    <Content Include="Scripts\app\views\mailinglist\Archive.html" />
     <Content Include="Scripts\app\views\shared\404.html" />
     <Content Include="Scripts\app\views\shared\Error.html" />
     <Content Include="Scripts\lib\angular-animate.js" />

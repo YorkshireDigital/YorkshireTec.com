@@ -2,7 +2,8 @@
     'use strict';
 
     window.app = angular.module('yorkshireDigitalApp', [
-        'ngRoute'
+        'ngRoute',
+        'ngResource'
     ]);
 
     app.config([
@@ -13,8 +14,11 @@
 
             $routeProvider
                 .when('/', { templateUrl: '/Scripts/app/views/home/Home.html', controller: 'homeController' })
+                .when('/Archive/Newsletter', { templateUrl: '/Scripts/app/views/mailinglist/Archive.html', controller: 'mailinglistController' })
                 .when('/Error', { templateUrl: '/Scripts/app/views/shared/Error.html' })
                 .when('/404', { templateUrl: '/Scripts/app/views/shared/404.html' })
+
+
                 .otherwise({
                     redirectTo: '/404'
                 });
