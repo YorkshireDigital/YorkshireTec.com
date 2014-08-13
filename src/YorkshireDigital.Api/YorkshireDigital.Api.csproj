@@ -108,6 +108,8 @@
     <Compile Include="Infrastructure\NancyExtensions.cs" />
     <Compile Include="Infrastructure\SecurityHooks.cs" />
     <Compile Include="Infrastructure\Startup.cs" />
+    <Compile Include="MailingList\Modules\ArchiveNewsletterModule.cs" />
+    <Compile Include="MailingList\ViewModels\ArchiveNewsletterViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -116,6 +118,7 @@
       <Name>YorkshireTec.Data</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
