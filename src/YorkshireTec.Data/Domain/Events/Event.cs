@@ -10,6 +10,8 @@
         public virtual string Title { get; set; }
         public virtual string ShortDescription { get; set; }
         public virtual string LongDescription { get; set; }
+        public virtual string Website { get; set; }
+        public virtual string Colour { get; set; }
         public virtual byte[] Logo { get; set; }
         public virtual DateTime Start { get; set; }
         public virtual DateTime End { get; set; }

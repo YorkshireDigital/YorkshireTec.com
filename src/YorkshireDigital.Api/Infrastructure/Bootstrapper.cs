@@ -89,7 +89,10 @@ namespace YorkshireDigital.Api.Infrastructure
             if (!CurrentSessionContext.HasBind(sessionFactory)) return null;
 
             var requestSession = sessionFactory.GetCurrentSession();
-            requestSession.Transaction.Commit();
+            if (requestSession.Transaction.IsActive)
+            {
+                requestSession.Transaction.Commit();
+            }
             CurrentSessionContext.Unbind(sessionFactory);
             requestSession.Dispose();
             return null;
