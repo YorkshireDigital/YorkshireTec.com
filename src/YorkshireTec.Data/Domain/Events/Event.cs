@@ -18,8 +18,8 @@
         public virtual byte[] Photo { get; set; }
         // TODO: Categories
         public virtual IList<Category> Categories { get; set; }
-        // TODO: Tags
-        public virtual IList<Tag> Tags { get; set; }
+        // TODO: Interests
+        public virtual IList<Interest> Interests { get; set; }
         // TODO: Social Links
         public virtual IList<SocialLink> SocialLinks { get; set; }
         // TODO: Contact Details

@@ -2,7 +2,7 @@
 {
     using System.Collections.Generic;
 
-    public class Tag
+    public class Interest
     {
         public virtual int Id { get; set; }
         public virtual string Name { get; set; }
