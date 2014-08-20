@@ -45,7 +45,7 @@ select,
 textarea {
 	padding: .5em;
 	border: 1px solid #ccc;
-	border-radius: 0;
+	@include border-radius(3px);
 
 	&:focus {
 		outline: 2px solid darken($accent-tertiary, 1%);

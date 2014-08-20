@@ -1,5 +1,9 @@
 /*	=CALENDAR
 --------------------------------------------------------------------*/
+.calendar {
+	position: relative;
+}
+
 .clndr {
 	
 }
@@ -23,13 +27,17 @@
 	text-align: center;
 	font-weight: 700;
 	cursor: pointer;
-	background: #ccc;
+	background: #0e7279;
 	color: #fff;
+
+	&:hover {
+		background: darken(#0e7279, 5%);
+	}
 }
 
 .clndr-contols__filter {
 	float: right;
-	margin-left: .5em;
+	margin-left: 1em;
 }
 
 .clndr-grid {
@@ -148,11 +156,37 @@
 	padding: 0 5%;
 	color: #fff;
 	text-align: center;
-	background: #5A9BA0; 
+	background: #5A9BA0;
+	cursor: pointer;
 	
 
 	@include breakpoint(viewport-s) {
 		display: inline-block;
+	}
+}
+
+.calendar-event__full-details {
+	display: none;
+}
+
+.calendar-event--expanded {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 100;
+	padding: 2em;
+	background: #fff !important;
+
+	.calendar-event__title {
+		@include font-size(2);
+		color: #333;
+	}
+
+	.calendar-event__full-details {
+		display: block;
+		color: #333;
 	}
 }
 
@@ -172,9 +206,5 @@
 	@include breakpoint(viewport-m) {
 		display: none;
 	}
-}
-
-.calendar-event__description {
-	display: none;
 }
 

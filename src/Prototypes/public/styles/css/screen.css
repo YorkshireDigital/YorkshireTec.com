@@ -916,7 +916,11 @@ select,
 textarea {
   padding: .5em;
   border: 1px solid #ccc;
-  border-radius: 0;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px;
 }
 input[type="text"]:focus,
 input[type="email"]:focus,
@@ -994,6 +998,10 @@ textarea {
 
 /*	=CALENDAR
 --------------------------------------------------------------------*/
+.calendar {
+  position: relative;
+}
+
 .clndr-controls .month {
   width: 40%;
   display: inline-block;
@@ -1014,13 +1022,16 @@ textarea {
   text-align: center;
   font-weight: 700;
   cursor: pointer;
-  background: #ccc;
+  background: #0e7279;
   color: #fff;
+}
+.clndr-controls__nav:hover {
+  background: #0b5c62;
 }
 
 .clndr-contols__filter {
   float: right;
-  margin-left: .5em;
+  margin-left: 1em;
 }
 
 .clndr-header {
@@ -1143,11 +1154,36 @@ textarea {
   color: #fff;
   text-align: center;
   background: #5A9BA0;
+  cursor: pointer;
 }
 @media (max-width: 37.5em) {
   .calendar-event {
     display: inline-block;
   }
+}
+
+.calendar-event__full-details {
+  display: none;
+}
+
+.calendar-event--expanded {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 100;
+  padding: 2em;
+  background: #fff !important;
+}
+.calendar-event--expanded .calendar-event__title {
+  font-size: 32px;
+  font-size: 2rem;
+  color: #333;
+}
+.calendar-event--expanded .calendar-event__full-details {
+  display: block;
+  color: #333;
 }
 
 .calendar-event__short-title {
@@ -1166,8 +1202,15 @@ textarea {
   }
 }
 
-.calendar-event__description {
-  display: none;
+.island {
+  padding: 1em;
+}
+
+.island--horizontal-break {
+  margin: 1.5em 0;
+  border: solid #ddd;
+  border-width: 2px 0;
+  text-align: center;
 }
 
 /*  =BASE
@@ -1202,16 +1245,30 @@ body {
 /*  =HERO BLOCK
 --------------------------------------------------------------------*/
 .site-header {
-  padding: 2em 0;
+  padding: 3.5em 0 3em;
   margin-bottom: 2em;
-  background: #ddd;
-  text-align: center;
+  background: #b9306a;
+  border-bottom: 3px solid #A02257;
+}
+
+.hero {
+  margin-left: 30%;
+  color: #fff;
+}
+.hero h1 {
+  color: #fff;
+}
+.hero p {
+  font-size: 20px;
+  font-size: 1.25rem;
 }
 
 .logo-site {
+  float: left;
+  width: 25%;
   max-width: 300px;
   height: 177px;
-  margin: 0 auto 1.5em;
+  margin: 0 3em 1.5em 0;
   background: url(../img/logo-yorkshiredigital-reversed.svg) 0 100% no-repeat;
 }
 .no-svg .logo-site {

@@ -11,6 +11,7 @@
 @import "partials/navigation";	// Navigation such as global nav, sub nav and tabs etc
 @import "partials/forms";		// Global form styles
 @import "partials/calendar";	// Calendar styles
+@import "partials/island";		// Block based layout elements
 
 /*  =BASE
 ------------------------------------------------------------*/
@@ -48,22 +49,33 @@ body {
 /*  =HERO BLOCK
 --------------------------------------------------------------------*/
 .site-header {
-	padding: 2em 0;
+	padding: 3.5em 0 3em;
 	margin-bottom: 2em;
-	background: #ddd;
-	text-align: center;
+	background: #b9306a;
+	border-bottom: 3px solid #A02257;
 }
 
 .hero {
- 
+ 	margin-left: 30%;
+	color: #fff;
+
+	h1 {
+		color: #fff;
+	}
+
+	p {
+		@include font-size(1.25);
+	}
 }
 
 .logo-site {
+	float: left;
+	width: 25%;
 	max-width: 300px;
 	height: 177px;
-	margin: 0 auto 1.5em;
+	margin: 0 3em 1.5em 0;
 	background: url(../img/logo-yorkshiredigital-reversed.svg) 0 100% no-repeat;
-
+	
 	.no-svg & {
 		background-image: url(../img/logo-yorkshiredigital-reversed.png);
 	}

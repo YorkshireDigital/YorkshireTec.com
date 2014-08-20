@@ -9,10 +9,7 @@
 			<div class="hero">
 				<h1>Bringing Yorkshire's digital community together</h1>
 				<p>
-					A hub for the growing digital community in Yorkshire, where individuals, organisations and user groups of all skill sets can easily see whats going on, find new connections and share knowledge.
-				</p>
-				<p>
-					If you run a meetup in Yorkshire and would like to get involved  <a href="mailto:info@yorkshiredigital.com">let us know</a>.
+					YorkshireDigital is a hub for the growing digital community in Yorkshire, where individuals, organisations and user groups of all skill sets can easily see whats going on, find new connections and share knowledge.
 				</p>
 			</div>
 		</div>
@@ -23,6 +20,12 @@
 
 		<div class="calendar">
 			
+		</div>
+
+		<div class="island island--horizontal-break">
+			<p>
+				Do you run a meetup in Yorkshire and would like to get involved? <a href="mailto:info@yorkshiredigital.com">let us know</a>.
+			</p>
 		</div>
 
 	</section>
@@ -43,6 +46,19 @@
 	{{ "clndr.js" | asset_url | script_tag }}
 
 	<script type="text/javascript">
+
+	$(document).ready(function() {
+	  
+		// Lyndens JS to replace!
+		$(document).on('click', '.calendar-event', function() {
+			$(this).toggleClass('calendar-event--expanded');
+		});
+
+	});
+
+	
+
+
 
 	$(function() {
 	  var thisMonth = moment().format('YYYY-MM');
@@ -93,6 +109,7 @@
 			<div class="clndr-previous-button clndr-controls__nav">&lsaquo;</div>
 			<h1 class="month">Events in <%= month %></h1>
 			<div class="clndr-next-button clndr-controls__nav">&rsaquo;</div>
+			<!--<div class="clndr-today-button">Today</div>-->
 			<label class="is-offscreen" for="interestFilter">Filter by interest</label>
 			<select class="clndr-contols__filter" name="" id="interestFilter">
 				<option value="">All interests</option>
@@ -127,7 +144,10 @@
 						<div class="calendar-event" style="background: <%= event.brandingAccent %>">
 							<span class="calendar-event__short-title"><%= event.shortTitle %></span>
 							<span class="calendar-event__title"><%= event.title %></span>
-							<span class="calendar-event__description"><%= event.title %></span>
+							<div class="calendar-event__full-details"> 
+								<span class="calendar-event__description"><%= event.description %></span>
+								<span class="calendar-event__location"><%= event.location %></span>
+							</div>
 						</div>
 					<% }); %>
 					</div>
@@ -147,6 +167,6 @@
 		    <% }); %>
 		</div>
 		
-		<div class="clndr-today-button">Today</div>
+		
 	</script>
 {% endblock %}
