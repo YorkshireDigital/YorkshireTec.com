@@ -70,6 +70,7 @@
 			endDate: "{{ event.endDate }}",
 			title: "{{ event.title }}",
 			shortTitle: "{{ event.shortTitle }}",
+			strapline: "{{ event.strapline }}",
 			description: "{{ event.description }}", 
 			brandingAccent: "{{ event.brandingAccent }}"
 		},
@@ -145,7 +146,8 @@
 							<span class="calendar-event__short-title"><%= event.shortTitle %></span>
 							<span class="calendar-event__title"><%= event.title %></span>
 							<div class="calendar-event__full-details"> 
-								<span class="calendar-event__description"><%= event.description %></span>
+								<span class="calendar-event__strapline"><%= event.strapline %></span>
+								<div class="calendar-event__description"><%= event.description %></div>
 								<span class="calendar-event__location"><%= event.location %></span>
 							</div>
 						</div>

@@ -180,8 +180,14 @@
 	background: #fff !important;
 
 	.calendar-event__title {
-		@include font-size(2);
+		@include font-size(3);
+		font-family: MetronicProRegular;
 		color: #333;
+	}
+
+	.calendar-event__strapline {
+		@include font-size(1.6);
+		color: $accent-tertiary;
 	}
 
 	.calendar-event__full-details {

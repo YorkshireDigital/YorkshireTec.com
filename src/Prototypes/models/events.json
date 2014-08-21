@@ -5,7 +5,8 @@
 	    	"endDate": "08-13-2014", 
 	    	"title": "Hey!Stac",
 	    	"shortTitle": "HS",
-	    	"description": "Talking design, business and tech.",
+	    	"strapline": "Talking design, business and tech",
+	    	"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus debitis nihil necessitatibus fugit veniam quos, unde distinctio similique tempore voluptatem rem dicta officia quas repudiandae quaerat numquam, dolores minus. Odit.",
 	    	"location": "11 - 15 Hunslet Road, Leeds, West Yorkshire, LS10 1JQ",
 	    	"brandingAccent": "#fe6f53"
 	    },
@@ -14,7 +15,8 @@
 	    	"endDate": "08-23-2014", 
 	    	"title": "NUX Leeds", 
 	    	"shortTitle": "NUX",
-	    	"description": "Yorkshire Digital Conference",
+	    	"strapline": "An informal community for people interested in UX in the North of England",
+	    	"description": "an informal community for people interested in usability, HCI, information design and all aspects of the user experience in the North of England.",
 	    	"location": "11 - 15 Hunslet Road, Leeds, West Yorkshire, LS10 1JQ",
 	    	"brandingAccent": "#1AAA2B"
 	    },
@@ -23,18 +25,10 @@
 	    	"endDate": "08-8-2014", 
 	    	"title": "Leeds Data Thing", 
 	    	"shortTitle": "LDT",
+	    	"strapline": "An informal community for people interested in UX in the North of England",
 	    	"description": "Yorkshire Digital Conference",
 	    	"location": "11 - 15 Hunslet Road, Leeds, West Yorkshire, LS10 1JQ",
 	    	"brandingAccent": "#cd007b"
-	    },
-	    { 
-	    	"startDate": "08-08-2014", 
-	    	"endDate": "08-08-2014", 
-	    	"title": "NUX Leeds", 
-	    	"shortTitle": "NUX",
-	    	"description": "Yorkshire Digital Conference",
-	    	"location": "11 - 15 Hunslet Road, Leeds, West Yorkshire, LS10 1JQ",
-	    	"brandingAccent": "#1AAA2B"
 	    }
 	  ]
 }

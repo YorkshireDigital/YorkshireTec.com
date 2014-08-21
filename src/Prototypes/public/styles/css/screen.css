@@ -476,7 +476,7 @@ table {
 --------------------------------------------------------------------*/
 html {
   font: 500 1.125em/1.5 "Alright Sans Light", arial, sans-serif;
-  color: #333;
+  color: #303d4a;
 }
 
 h1,
@@ -491,7 +491,7 @@ h5,
 .epsilon {
   font-family: MetronicProRegular;
   font-weight: 500;
-  color: #b9306a;
+  color: #303d4a;
 }
 h1 a,
 .alpha a,
@@ -1177,9 +1177,15 @@ textarea {
   background: #fff !important;
 }
 .calendar-event--expanded .calendar-event__title {
-  font-size: 32px;
-  font-size: 2rem;
+  font-size: 48px;
+  font-size: 3rem;
+  font-family: MetronicProRegular;
   color: #333;
+}
+.calendar-event--expanded .calendar-event__strapline {
+  font-size: 25.6px;
+  font-size: 1.6rem;
+  color: #0f767e;
 }
 .calendar-event--expanded .calendar-event__full-details {
   display: block;
