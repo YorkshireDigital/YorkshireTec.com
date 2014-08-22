@@ -9,7 +9,10 @@
 
         public BaseModule()
         {
-            Get["/Test"] = _ => "Success";
+            Get["/"] = _ => HttpStatusCode.ImATeapot;
+            Post["/"] = _ => HttpStatusCode.ImATeapot;
+            Put["/"] = _ => HttpStatusCode.ImATeapot;
+            Delete["/"] = _ => HttpStatusCode.ImATeapot;
         }
 
 
