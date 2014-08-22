@@ -22,18 +22,18 @@ namespace YorkshireDigital.Api.Events.Modules
             {
                 if (p.id == null)
                 {
-                    return Negotiate.WithStatusCode(404);
+                    return Negotiate.WithStatusCode(HttpStatusCode.NotFound);
                 }
 
                 var returnValue = service.Get((int)p.id);
 
                 if (returnValue == null)
                 {
-                    return Negotiate.WithStatusCode(404);
+                    return Negotiate.WithStatusCode(HttpStatusCode.NotFound);
                 }
 
                 return Negotiate.WithModel(returnValue)
-                    .WithStatusCode(200);
+                    .WithStatusCode(HttpStatusCode.OK);
             };
 
             Post["/"] = _ =>
@@ -42,12 +42,12 @@ namespace YorkshireDigital.Api.Events.Modules
 
                 service.Save(Mapper.DynamicMap<Event>(newEvent));
 
-                return HttpStatusCode.Created;
+                return Negotiate.WithStatusCode(HttpStatusCode.Created);
             };
 
-            Put["/"] = _ => "Hello!";
+            Put["/"] = _ => HttpStatusCode.ImATeapot;
 
-            Delete["/{id}"] = p => "Hello!";
+            Delete["/{id}"] = p => HttpStatusCode.ImATeapot;
         }
     }
 }
