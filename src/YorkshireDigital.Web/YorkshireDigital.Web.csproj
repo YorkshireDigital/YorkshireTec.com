@@ -59,6 +59,8 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Scripts\app\controllers\eventscontroller.js" />
+    <Content Include="Scripts\app\services\events\calendarservice.js" />
     <Content Include="Scripts\lib\version.json" />
     <Content Include="Scripts\lib\errors.json" />
     <Content Include="Scripts\lib\angular-touch.min.js.map" />

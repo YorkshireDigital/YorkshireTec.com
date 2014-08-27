@@ -14,7 +14,7 @@ namespace YorkshireDigital.Api.Events.Modules
     public class EventsModule : BaseModule
     {
         public EventsModule(ISessionFactory sessionFactory)
-            : base(sessionFactory, "/events/")
+            : base(sessionFactory, "/events")
         {
             var service = new EventService(RequestSession);
 
@@ -25,14 +25,16 @@ namespace YorkshireDigital.Api.Events.Modules
                     return Negotiate.WithStatusCode(HttpStatusCode.NotFound);
                 }
 
-                var returnValue = service.Get((int)p.id);
+                var model = service.Get((int)p.id);
 
-                if (returnValue == null)
+                if (model == null)
                 {
                     return Negotiate.WithStatusCode(HttpStatusCode.NotFound);
                 }
 
-                return Negotiate.WithModel(returnValue)
+                var viewModel = Mapper.DynamicMap<EventViewModel>(model);
+
+                return Negotiate.WithModel(viewModel)
                     .WithStatusCode(HttpStatusCode.OK);
             };
 
