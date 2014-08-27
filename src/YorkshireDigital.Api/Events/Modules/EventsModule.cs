@@ -18,14 +18,18 @@ namespace YorkshireDigital.Api.Events.Modules
         {
             var service = new EventService(RequestSession);
 
-            Get["/{id}"] = p =>
+            Get["/{id?}"] = p =>
             {
                 if (p.id == null)
                 {
                     return Negotiate.WithStatusCode(HttpStatusCode.NotFound);
                 }
 
-                var model = service.Get((int)p.id);
+                int id;
+                if(!int.TryParse(p.id, out id))
+                    return Negotiate.WithStatusCode(HttpStatusCode.NotFound);
+
+                var model = service.Get(id);
 
                 if (model == null)
                 {
