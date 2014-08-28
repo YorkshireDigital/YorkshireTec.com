@@ -1,9 +1,7 @@
-using Nancy;
-
 namespace YorkshireDigital.Api.Events.Modules
 {
-    using System;
     using AutoMapper;
+    using Nancy;
     using Nancy.ModelBinding;
     using NHibernate;
     using YorkshireDigital.Api.Events.ViewModels;
