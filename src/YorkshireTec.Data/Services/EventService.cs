@@ -40,6 +40,12 @@
         {
             var query = session.Query<Event>();
 
+            if (from.HasValue)
+            {
+                query = query.Where(x => x.Start >= from.Value);
+            }
+
+
             return query.ToList();
         }
     }
