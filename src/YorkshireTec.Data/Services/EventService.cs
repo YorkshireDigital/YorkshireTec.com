@@ -52,7 +52,10 @@
             {
                 query = query.Where(x => x.Interests.Any(i => interests.Contains(i.Name)));
             }
-
+            if (locations.Any())
+            {
+                query = query.Where(x => locations.Contains(x.Location));
+            }
 
             return query.ToList();
         }
