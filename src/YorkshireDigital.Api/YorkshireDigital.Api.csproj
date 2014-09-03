@@ -107,7 +107,9 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Events\Modules\CalendarModule.cs" />
     <Compile Include="Events\Modules\EventsModule.cs" />
+    <Compile Include="Events\ViewModels\CalendarSearchModel.cs" />
     <Compile Include="Events\ViewModels\EventViewModel.cs" />
     <Compile Include="Infrastructure\Bootstrapper.cs" />
     <Compile Include="Infrastructure\BaseModule.cs" />

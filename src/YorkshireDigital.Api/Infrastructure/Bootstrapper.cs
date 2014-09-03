@@ -9,6 +9,7 @@ namespace YorkshireDigital.Api.Infrastructure
     using NHibernate;
     using NHibernate.Context;
     using YorkshireTec.Data.NHibernate;
+    using YorkshireTec.Data.Services;
 
     public class Bootstrapper : DefaultNancyBootstrapper
     {
@@ -79,6 +80,8 @@ namespace YorkshireDigital.Api.Infrastructure
             var requestSession = sessionFactory.OpenSession();
             CurrentSessionContext.Bind(requestSession);
             requestSession.BeginTransaction();
+
+            container.Register<IEventService>(new EventService(requestSession));
 
             return null;
         }

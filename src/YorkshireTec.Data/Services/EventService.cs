@@ -7,7 +7,7 @@
     using global::NHibernate.Linq;
     using YorkshireTec.Data.Domain.Events;
 
-    public class EventService
+    public class EventService : IEventService
     {
         private readonly ISession session;
 
@@ -48,11 +48,11 @@
             {
                 query = query.Where(x => x.Start <= to.Value);
             }
-            if (interests.Any())
+            if (interests != null && interests.Any())
             {
                 query = query.Where(x => x.Interests.Any(i => interests.Contains(i.Name)));
             }
-            if (locations.Any())
+            if (locations != null && locations.Any())
             {
                 query = query.Where(x => locations.Contains(x.Location));
             }

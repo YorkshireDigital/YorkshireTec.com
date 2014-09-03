@@ -70,7 +70,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApiViewFactory.cs" />
     <Compile Include="ModuleTests\BaseModuleTests.cs" />
+    <Compile Include="ModuleTests\CalendarModuleTests.cs" />
     <Compile Include="ModuleTests\EventsModuleTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
