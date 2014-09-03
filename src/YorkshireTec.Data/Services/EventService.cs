@@ -44,6 +44,10 @@
             {
                 query = query.Where(x => x.Start >= from.Value);
             }
+            if (to.HasValue)
+            {
+                query = query.Where(x => x.Start <= to.Value);
+            }
 
 
             return query.ToList();

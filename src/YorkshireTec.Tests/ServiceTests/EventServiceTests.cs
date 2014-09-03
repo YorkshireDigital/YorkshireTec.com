@@ -141,5 +141,20 @@
             result.Count().ShouldBeEquivalentTo(1);
             result[0].Title.ShouldAllBeEquivalentTo("Event 2");
         }
+
+        [Test]
+        public void EventService_Query_with_filtered_to_returns_filtered_events()
+        {
+            // Arrange
+            Session.Save(new Event { Title = "Event 1", Start = DateTime.Today.AddDays(1) });
+            Session.Save(new Event { Title = "Event 2", Start = DateTime.Today.AddDays(2) });
+
+            // Act
+            var result = service.Query(null, DateTime.Now.AddDays(1), new string[0], new string[0], null, null);
+
+            // Assert
+            result.Count().ShouldBeEquivalentTo(1);
+            result[0].Title.ShouldAllBeEquivalentTo("Event 1");
+        }
     }
 }
