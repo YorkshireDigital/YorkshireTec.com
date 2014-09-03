@@ -35,5 +35,12 @@
         {
             return session.Query<Event>().Where(x => x.Start >= from && x.Start <= to).ToList();
         }
+
+        public List<Event> Query(DateTime? from, DateTime? to, string[] interests, string[] locations, int? skip, int? take)
+        {
+            var query = session.Query<Event>();
+
+            return query.ToList();
+        }
     }
 }

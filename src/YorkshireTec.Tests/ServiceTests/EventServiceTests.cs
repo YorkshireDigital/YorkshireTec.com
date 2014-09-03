@@ -112,5 +112,19 @@
             // Assert
             result.Count().ShouldBeEquivalentTo(2);
         }
+
+        [Test]
+        public void EventService_Query_with_no_constraints_returns_all_events()
+        {
+            // Arrange
+            Session.Save(new Event {Title = "Event 1", Start = DateTime.Now.AddDays(1)});
+            Session.Save(new Event {Title = "Event 2", Start = DateTime.Now.AddDays(2)});
+
+            // Act
+            var result = service.Query(null, null, new string[0], new string[0], null, null);
+
+            // Assert
+            result.Count().ShouldBeEquivalentTo(2);
+        }
     }
 }
