@@ -302,5 +302,22 @@
             // Assert
             result.Count().ShouldBeEquivalentTo(10);
         }
+
+        [Test]
+        public void EventService_Query_with_skip_only_returns_events_after_skip()
+        {
+            // Arrange
+            for (int i = 0; i < 100; i++)
+            {
+                Session.Save(new Event { Id = i });
+            }
+
+            // Act
+            var result = service.Query(null, null, new string[0], new string[0], 25, null);
+
+            // Assert
+            result.Count().ShouldBeEquivalentTo(75);
+            result[0].Id.ShouldBeEquivalentTo(26);
+        }
     }
 }

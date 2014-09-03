@@ -56,7 +56,10 @@
             {
                 query = query.Where(x => locations.Contains(x.Location));
             }
-
+            if (skip.HasValue)
+            {
+                query = query.Skip(skip.Value);
+            }
             if (take.HasValue)
             {
                 query = query.Take(take.Value);
