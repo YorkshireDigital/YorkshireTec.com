@@ -270,5 +270,37 @@
             result[0].Id.ShouldBeEquivalentTo(1);
             result[1].Id.ShouldBeEquivalentTo(3);
         }
+
+        [Test]
+        public void EventService_Query_with_take_only_returns_specified_amount()
+        {
+            // Arrange
+            for (int i = 0; i < 100; i++)
+            {
+                Session.Save(new Event { Id = i });
+            }
+
+            // Act
+            var result = service.Query(null, null, new string[0], new string[0], null, 25);
+
+            // Assert
+            result.Count().ShouldBeEquivalentTo(25);
+        }
+
+        [Test]
+        public void EventService_Query_with_take_only_returns_all_if_less_than_take_value()
+        {
+            // Arrange
+            for (int i = 0; i < 10; i++)
+            {
+                Session.Save(new Event { Id = i });
+            }
+
+            // Act
+            var result = service.Query(null, null, new string[0], new string[0], null, 25);
+
+            // Assert
+            result.Count().ShouldBeEquivalentTo(10);
+        }
     }
 }

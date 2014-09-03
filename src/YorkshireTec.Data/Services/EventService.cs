@@ -57,6 +57,11 @@
                 query = query.Where(x => locations.Contains(x.Location));
             }
 
+            if (take.HasValue)
+            {
+                query = query.Take(take.Value);
+            }
+
             return query.ToList();
         }
     }
