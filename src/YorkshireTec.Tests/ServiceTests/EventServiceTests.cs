@@ -241,5 +241,34 @@
             result.Count().ShouldBeEquivalentTo(1);
             result[0].Id.ShouldBeEquivalentTo(expectedId);
         }
+
+        [Test]
+        public void EventService_Query_with_multiple_locations_returns_all_locations()
+        {
+            // Arrange
+            Session.Save(new Event
+            {
+                Id = 1,
+                Location = "Leeds"
+            });
+            Session.Save(new Event
+            {
+                Id = 2,
+                Location = "Sheffield"
+            });
+            Session.Save(new Event
+            {
+                Id = 3,
+                Location = "Hull"
+            });
+
+            // Act
+            var result = service.Query(null, null, new string[0], new[] { "Leeds", "Hull" }, null, null);
+
+            // Assert
+            result.Count().ShouldBeEquivalentTo(2);
+            result[0].Id.ShouldBeEquivalentTo(1);
+            result[1].Id.ShouldBeEquivalentTo(3);
+        }
     }
 }
