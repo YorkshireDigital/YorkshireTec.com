@@ -48,6 +48,10 @@
             {
                 query = query.Where(x => x.Start <= to.Value);
             }
+            if (interests.Any())
+            {
+                query = query.Where(x => x.Interests.Any(i => interests.Contains(i.Name)));
+            }
 
 
             return query.ToList();
