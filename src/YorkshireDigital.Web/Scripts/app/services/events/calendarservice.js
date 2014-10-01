@@ -5,8 +5,8 @@
             return baseUrl + resourceUrl;
         };
         return {
-            Events: $resource(buildUrl('events'), null, {
-                'query': { method: 'GET', isArray: false },
+            Events: $resource(buildUrl('events/calendar'), null, {
+                'query': { method: 'GET', isArray: true },
             })
         };
     }

@@ -2,10 +2,14 @@
     'use strict';
 
     window.app
-        .controller('homeController', ['$scope', homeController]);
+        .controller('homeController', ['$scope', 'calendarService', homeController]);
 
-    function homeController($scope) {
+    function homeController($scope, calendarService) {
         $scope.title = 'homeController';
+
+        calendarService.Events.query(function (events) {
+            $scope.events = events;
+        });
 
         init();
 
