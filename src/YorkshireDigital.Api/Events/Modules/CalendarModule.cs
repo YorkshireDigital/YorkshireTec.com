@@ -1,9 +1,10 @@
 namespace YorkshireDigital.Api.Events.Modules
 {
+    using System;
+    using System.Globalization;
     using System.Linq;
     using AutoMapper;
     using Nancy;
-    using Nancy.ModelBinding;
     using NHibernate;
     using YorkshireDigital.Api.Events.ViewModels;
     using YorkshireDigital.Api.Infrastructure;
@@ -16,14 +17,22 @@ namespace YorkshireDigital.Api.Events.Modules
         {
             Get["/"] = _ =>
             {
-                var searchOptions = this.Bind<CalendarSearchModel>();
+                dynamic errorResponse;
+                CalendarSearchModel model;
+                if (!BindAndValidateModel(out model, out errorResponse)) return errorResponse;
 
-                var events = service.Query( searchOptions.From, 
-                                            searchOptions.To, 
-                                            searchOptions.Interests, 
-                                            searchOptions.Locations,
-                                            searchOptions.Skip, 
-                                            searchOptions.Take);
+                DateTime? from = null;
+                if (!string.IsNullOrEmpty(model.From))
+                {
+                    from = DateTime.ParseExact(model.From, "dd/MM/yyyy", CultureInfo.CurrentCulture);
+                }
+
+                var events = service.Query(from,
+                                            model.To,
+                                            model.Interests,
+                                            model.Locations,
+                                            model.Skip,
+                                            model.Take);
 
                 var viewModel = events.Select(Mapper.DynamicMap<EventViewModel>).ToList();
 

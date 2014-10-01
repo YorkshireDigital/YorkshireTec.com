@@ -46,6 +46,9 @@
     <Reference Include="AutoMapper.Net4">
       <HintPath>..\packages\AutoMapper.3.2.1\lib\net40\AutoMapper.Net4.dll</HintPath>
     </Reference>
+    <Reference Include="FluentValidation">
+      <HintPath>..\packages\FluentValidation.5.4.0.0\lib\Net40\FluentValidation.dll</HintPath>
+    </Reference>
     <Reference Include="Iesi.Collections">
       <HintPath>..\packages\Iesi.Collections.3.2.0.4000\lib\Net35\Iesi.Collections.dll</HintPath>
     </Reference>
@@ -64,6 +67,10 @@
     </Reference>
     <Reference Include="Nancy.Owin">
       <HintPath>..\packages\Nancy.Owin.0.23.2\lib\net40\Nancy.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Nancy.Validation.FluentValidation, Version=0.22.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Nancy.Validation.FluentValidation.0.23.2\lib\net40\Nancy.Validation.FluentValidation.dll</HintPath>
     </Reference>
     <Reference Include="NHibernate">
       <HintPath>..\packages\NHibernate.3.3.1.4000\lib\Net35\NHibernate.dll</HintPath>
@@ -109,12 +116,15 @@
   <ItemGroup>
     <Compile Include="Events\Modules\CalendarModule.cs" />
     <Compile Include="Events\Modules\EventsModule.cs" />
+    <Compile Include="Events\Validation\CalendarSearchModelValidator.cs" />
     <Compile Include="Events\ViewModels\CalendarSearchModel.cs" />
     <Compile Include="Events\ViewModels\EventViewModel.cs" />
     <Compile Include="Infrastructure\Bootstrapper.cs" />
     <Compile Include="Infrastructure\BaseModule.cs" />
     <Compile Include="Infrastructure\Helpers\MailChimpHelper.cs" />
     <Compile Include="Infrastructure\Helpers\SlackHelper.cs" />
+    <Compile Include="Infrastructure\Models\ErrorViewModel.cs" />
+    <Compile Include="Infrastructure\Models\FieldErrorViewModel.cs" />
     <Compile Include="Infrastructure\NancyExtensions.cs" />
     <Compile Include="Infrastructure\SecurityHooks.cs" />
     <Compile Include="Infrastructure\Startup.cs" />

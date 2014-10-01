@@ -2,14 +2,20 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using FakeItEasy;
     using FluentAssertions;
+    using FluentValidation;
     using Nancy;
     using Nancy.Testing;
+    using Nancy.Validation;
+    using Nancy.Validation.FluentValidation;
     using NHibernate;
     using NUnit.Framework;
     using YorkshireDigital.Api.Events.Modules;
+    using YorkshireDigital.Api.Events.Validation;
     using YorkshireDigital.Api.Events.ViewModels;
+    using YorkshireDigital.Api.Infrastructure.Models;
     using YorkshireTec.Data.Domain.Events;
     using YorkshireTec.Data.Services;
 
@@ -41,12 +47,20 @@
 
             #endregion
 
+            var adapterFactory = A.Fake<IFluentAdapterFactory>();
+            var validators = new IValidator[] { new CalendarSearchModelValidator() };
+
+            var factory = new FluentValidationValidatorFactory(adapterFactory, validators);
+
+            var valiadtorLocator = new DefaultValidatorLocator(new List<IModelValidatorFactory> { factory });
+            
             _browser = new Browser(with =>
             {
                 with.Module<CalendarModule>();
                 with.ViewFactory<ApiViewFactory>();
                 with.Dependency(sessionFactory);
                 with.Dependency(service);
+                with.ModelValidatorLocator(valiadtorLocator);
             });
         }
 
@@ -80,6 +94,73 @@
             
             // Asset
             model.Count.ShouldBeEquivalentTo(100);
+        }
+
+        [Test]
+        public void Get_request_with_filter_from_valid_should_return_the_viewmodel()
+        {
+            // Arrange
+            for (int i = 0; i < 100; i++)
+            {
+                _eventList.Add(new Event { Id = i });
+            }
+            // Act
+            var result = _browser.Get("/events/calendar", with =>
+            {
+                with.HttpRequest();
+                with.FormValue("from", "31/01/2014");
+            });
+            var model = result.GetModel<List<EventViewModel>>();
+
+            // Asset
+            model.Count.ShouldBeEquivalentTo(100);
+        }
+
+        [Test]
+        public void Get_request_with_filter_from_invalid_date_should_return_400()
+        {
+            // Arrange
+            for (int i = 0; i < 100; i++)
+            {
+                _eventList.Add(new Event { Id = i });
+            }
+            // Act
+            var result = _browser.Get("/events/calendar", with =>
+            {
+                with.HttpRequest();
+                with.FormValue("from", "01/31/2014");
+            });
+            var model = result.GetModel<ErrorViewModel>();
+
+            // Asset
+            result.StatusCode.ShouldBeEquivalentTo(HttpStatusCode.BadRequest);
+            model.Errors.Count().ShouldBeEquivalentTo(1);
+            model.Errors[0].Name.ShouldBeEquivalentTo("From");
+            model.Errors[0].Errors.Count().ShouldBeEquivalentTo(1);
+            model.Errors[0].Errors[0].ShouldBeEquivalentTo("From date is not a valid date. Please supply a date in the format dd/MM/yyyy");
+        }
+        [Test]
+        public void Get_request_with_filter_from_invalid_input_should_return_400()
+        {
+            // Arrange
+            for (int i = 0; i < 100; i++)
+            {
+                _eventList.Add(new Event { Id = i });
+            }
+            // Act
+            var result = _browser.Get("/events/calendar", with =>
+            {
+                with.HttpRequest();
+                with.FormValue("from", "INVALID");
+            });
+            var model = result.GetModel<ErrorViewModel>();
+
+            // Asset
+            result.StatusCode.ShouldBeEquivalentTo(HttpStatusCode.BadRequest);
+            model.Errors.Count().ShouldBeEquivalentTo(1);
+            model.Errors[0].Name.ShouldBeEquivalentTo("From");
+            model.Errors[0].Errors.Count().ShouldBeEquivalentTo(1);
+            model.Errors[0].Errors[0].ShouldBeEquivalentTo("From date is not a valid date. Please supply a date in the format dd/MM/yyyy");
         }
     }
 }
