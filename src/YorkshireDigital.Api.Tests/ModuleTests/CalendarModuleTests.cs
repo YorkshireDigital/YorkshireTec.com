@@ -96,6 +96,8 @@
             model.Count.ShouldBeEquivalentTo(100);
         }
 
+        #region From
+
         [Test]
         public void Get_request_with_filter_from_valid_should_return_the_viewmodel()
         {
@@ -162,5 +164,77 @@
             model.Errors[0].Errors.Count().ShouldBeEquivalentTo(1);
             model.Errors[0].Errors[0].ShouldBeEquivalentTo("From date is not a valid date. Please supply a date in the format dd/MM/yyyy");
         }
+
+        #endregion
+
+        #region To
+        [Test]
+        public void Get_request_with_filter_to_valid_should_return_the_viewmodel()
+        {
+            // Arrange
+            for (int i = 0; i < 100; i++)
+            {
+                _eventList.Add(new Event { Id = i });
+            }
+            // Act
+            var result = _browser.Get("/events/calendar", with =>
+            {
+                with.HttpRequest();
+                with.FormValue("to", "31/01/2014");
+            });
+            var model = result.GetModel<List<EventViewModel>>();
+
+            // Asset
+            model.Count.ShouldBeEquivalentTo(100);
+        }
+
+        [Test]
+        public void Get_request_with_filter_to_invalid_date_should_return_400()
+        {
+            // Arrange
+            for (int i = 0; i < 100; i++)
+            {
+                _eventList.Add(new Event { Id = i });
+            }
+            // Act
+            var result = _browser.Get("/events/calendar", with =>
+            {
+                with.HttpRequest();
+                with.FormValue("to", "01/31/2014");
+            });
+            var model = result.GetModel<ErrorViewModel>();
+
+            // Asset
+            result.StatusCode.ShouldBeEquivalentTo(HttpStatusCode.BadRequest);
+            model.Errors.Count().ShouldBeEquivalentTo(1);
+            model.Errors[0].Name.ShouldBeEquivalentTo("To");
+            model.Errors[0].Errors.Count().ShouldBeEquivalentTo(1);
+            model.Errors[0].Errors[0].ShouldBeEquivalentTo("To date is not a valid date. Please supply a date in the format dd/MM/yyyy");
+        }
+        [Test]
+        public void Get_request_with_filter_to_invalid_input_should_return_400()
+        {
+            // Arrange
+            for (int i = 0; i < 100; i++)
+            {
+                _eventList.Add(new Event { Id = i });
+            }
+            // Act
+            var result = _browser.Get("/events/calendar", with =>
+            {
+                with.HttpRequest();
+                with.FormValue("to", "INVALID");
+            });
+            var model = result.GetModel<ErrorViewModel>();
+
+            // Asset
+            result.StatusCode.ShouldBeEquivalentTo(HttpStatusCode.BadRequest);
+            model.Errors.Count().ShouldBeEquivalentTo(1);
+            model.Errors[0].Name.ShouldBeEquivalentTo("To");
+            model.Errors[0].Errors.Count().ShouldBeEquivalentTo(1);
+            model.Errors[0].Errors[0].ShouldBeEquivalentTo("To date is not a valid date. Please supply a date in the format dd/MM/yyyy");
+        }
+
+        #endregion
     }
 }

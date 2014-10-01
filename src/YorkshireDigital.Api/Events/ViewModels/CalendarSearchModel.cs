@@ -5,7 +5,7 @@
     public class CalendarSearchModel
     {
         public string From { get; set; }
-        public DateTime? To { get; set; }
+        public string To { get; set; }
         public string[] Interests { get; set; }
         public string[] Locations { get; set; }
         public int? Skip { get; set; }

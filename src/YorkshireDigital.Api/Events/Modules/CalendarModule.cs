@@ -26,9 +26,14 @@ namespace YorkshireDigital.Api.Events.Modules
                 {
                     from = DateTime.ParseExact(model.From, "dd/MM/yyyy", CultureInfo.CurrentCulture);
                 }
+                DateTime? to = null;
+                if (!string.IsNullOrEmpty(model.To))
+                {
+                    to = DateTime.ParseExact(model.To, "dd/MM/yyyy", CultureInfo.CurrentCulture);
+                }
 
                 var events = service.Query(from,
-                                            model.To,
+                                            to,
                                             model.Interests,
                                             model.Locations,
                                             model.Skip,
