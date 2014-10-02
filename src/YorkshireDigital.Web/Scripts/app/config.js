@@ -1,4 +1,4 @@
 ﻿var config = {
     "apiurl": "http://localhost:61140/",
-    "weburl": "http://localhost:8080/"
+    "weburl": "http://localhost:5566/"
 }

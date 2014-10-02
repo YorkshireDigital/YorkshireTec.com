@@ -17,6 +17,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YorkshireTec.Data", "YorkshireTec.Data\YorkshireTec.Data.csproj", "{DE2ABF67-373C-41A8-83E0-D9B522221157}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YorkshireDigital.Api", "YorkshireDigital.Api\YorkshireDigital.Api.csproj", "{16A213D9-3B08-4C73-956E-C2C067B871E0}"
+	ProjectSection(ProjectDependencies) = postProject
+		{F03B7743-8F5E-4BD8-84D3-45F6272C7D28} = {F03B7743-8F5E-4BD8-84D3-45F6272C7D28}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YorkshireDigital.Web", "YorkshireDigital.Web\YorkshireDigital.Web.csproj", "{F03B7743-8F5E-4BD8-84D3-45F6272C7D28}"
 EndProject
