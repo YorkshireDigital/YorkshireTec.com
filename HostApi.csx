@@ -8,53 +8,28 @@
 #r "D:\Code\GitHub\YorkshireTec.com\src\YorkshireDigital.Web\bin\Owin.dll"
 #r "D:\Code\GitHub\YorkshireTec.com\src\YorkshireDigital.Web\bin\YorkshireDigital.Web.dll"
 
+using System;
 using System.Diagnostics;
 using System.Configuration;
 using Microsoft.Owin.Hosting;
+using YorkshireDigital.Api.Infrastructure;
 
-Require<Bau>()
+    // get the name of the assembly
+    var exeAssembly = typeof(YorkshireDigital.Api.Startup).Assembly.FullName;
+    var webconfig = typeof(YorkshireDigital.Api.Startup).Assembly.Location + ".config";
+    Console.WriteLine(webconfig);
+    // setup - there you put the path to the config file
+    var setup = new AppDomainSetup
+    {
+        ApplicationBase = Environment.CurrentDirectory,
+        ConfigurationFile = webconfig
+    };
 
-.Task("default").DependsOn("browse")
+    // create the app domain
+    var appDomain = AppDomain.CreateDomain("Web AppDomain", null, setup);
 
-.Task("browse")
-	.DependsOn("host")
-	.Do(() => Console.WriteLine("browse"))
+    // call the startup method - something like alternative main()
+    WebApp.Start<YorkshireDigital.Api.Startup>("http://+:61140");
 
-.Task("host")
-	.DependsOn("api", "web")
-	.Do(() => {
-		Process.Start("http://localhost:5566");
-		Console.WriteLine("Press any key to exit");
-		Console.Read();
-	})
-
-.Task("api").Do(() =>
-{
-	//ConfigurationManager.OpenExeConfiguration("src\\YorkshireDigital.Api\\bin\\YorkshireDigital.Api.exe");
-	WebApp.Start<YorkshireDigital.Api.Startup>("http://+:61140");
-})
-.Task("web").Do(() =>
-{
-	//ConfigurationManager.OpenExeConfiguration("src\\YorkshireDigital.Api\\bin\\YorkshireDigital.Api.exe");
-	WebApp.Start<YorkshireDigital.Web.Startup>("http://+:5566");
-})
-
-/*.Exec("api").Do(exec => {
-    exec.Command = "src\\YorkshireDigital.Api\\bin\\YorkshireDigital.Api.exe";
-    exec.WorkingDirectory = "src\\YorkshireDigital.Api\\bin";
-})*/
-
-/*.Exec("web").Do(exec => {
-    exec.Command = "src\\YorkshireDigitial.Web.Start\\bin\\Release\\YorkshireDigitial.Web.Start.exe";
-    exec.WorkingDirectory = "src\\YorkshireDigitial.Web.Start\\bin\\Release\\";
-})*/
-
-.MSBuild("build").Do(msb =>
-{
-	Console.WriteLine("Building");
-    msb.MSBuildVersion = "net45";
-    msb.Solution = "src/YorkshireTec.sln";
-    msb.Targets = new[] { "Clean", "Build" };
-    msb.Properties = new { Configuration = "Release" };
-})
-.Run();
+    // in the end, unload the domain
+    AppDomain.Unload(appDomain);

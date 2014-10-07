@@ -143,7 +143,6 @@
     <Compile Include="Infrastructure\Startup.cs" />
     <Compile Include="MailingList\Modules\ArchiveNewsletterModule.cs" />
     <Compile Include="MailingList\ViewModels\ArchiveNewsletterViewModel.cs" />
-    <Compile Include="Infrastructure\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
