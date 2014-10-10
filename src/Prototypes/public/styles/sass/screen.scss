@@ -34,7 +34,7 @@ body {
     margin: 0 auto; 
 
     @include breakpoint(viewport-s) {
-        padding: 0 1em;
+        padding: 0 .5em;
     }
 }
 

@@ -1,8 +1,8 @@
 {
 	"events": [
 	    { 
-	    	"startDate": "08-10-2014", 
-	    	"endDate": "08-13-2014", 
+	    	"startDate": "10-10-2014", 
+	    	"endDate": "10-13-2014", 
 	    	"title": "Hey!Stac",
 	    	"shortTitle": "HS",
 	    	"strapline": "Talking design, business and tech",
@@ -11,8 +11,8 @@
 	    	"brandingAccent": "#fe6f53"
 	    },
 	    { 
-	    	"startDate": "08-21-2014", 
-	    	"endDate": "08-23-2014", 
+	    	"startDate": "10-21-2014", 
+	    	"endDate": "10-23-2014", 
 	    	"title": "NUX Leeds", 
 	    	"shortTitle": "NUX",
 	    	"strapline": "An informal community for people interested in UX in the North of England",
@@ -21,8 +21,8 @@
 	    	"brandingAccent": "#1AAA2B"
 	    },
 	    { 
-	    	"startDate": "08-8-2014", 
-	    	"endDate": "08-8-2014", 
+	    	"startDate": "10-8-2014", 
+	    	"endDate": "10-8-2014", 
 	    	"title": "Leeds Data Thing", 
 	    	"shortTitle": "LDT",
 	    	"strapline": "An informal community for people interested in UX in the North of England",

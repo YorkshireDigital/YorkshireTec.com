@@ -115,3 +115,11 @@ $rhythm-unit-one: 1.5;                          // Single rhythm unit based on $
   top: -9999px;
   left: -9999px;
 }
+
+@include breakpoint(viewport-s) {
+
+	.viewport-s--hidden {
+		//display: none;
+	}
+
+}

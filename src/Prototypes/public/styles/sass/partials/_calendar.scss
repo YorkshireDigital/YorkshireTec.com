@@ -9,10 +9,15 @@
 }
 
 .clndr-controls {
+	margin-top: 1.5em;
+}
+
+.clndr-nav {
+	position: relative;
+	margin-bottom: 1em;
+	padding-top: .25em;
 
 	.month {
-		width: 40%;
-		display: inline-block;
 		text-align: center;
 	}
 
@@ -21,23 +26,46 @@
 .clndr-controls__nav {
 	@include font-size(1.8);
 	@include border-radius(2em);
-	display: inline-block;
+	position: absolute;
+	top: 0;
+	display: block;
 	width: 1.5em;
 	height: 1.5em;
 	text-align: center;
 	font-weight: 700;
 	cursor: pointer;
-	background: #0e7279;
-	color: #fff;
+	color: #505776;
+	border: 2px solid #505776;
 
 	&:hover {
-		background: darken(#0e7279, 5%);
+
+		border-color:  darken($accent-tertiary, 10%);
 	}
+
+}
+
+.clndr-previous-button {
+	left: 0;
+}
+
+.clndr-next-button {
+	right: 0;
+}
+
+
+.clndr-filters {
+	@extend .group;
+	margin-bottom: 1em;
 }
 
 .clndr-contols__filter {
-	float: right;
-	margin-left: 1em;
+	float: left;
+	width: 49%;
+	margin-right: 1%;
+
+	&:last-of-type {
+		margin: 0 0 0 1%;
+	}
 }
 
 .clndr-grid {
@@ -50,6 +78,7 @@
 }
 
 .header-day {
+	@extend .alrightsansregular;
 	width: 14.2857%;
 	float: left;
 	padding: 1%;
@@ -92,7 +121,7 @@
 
 .days {
 	@extend .group;
-	border: solid #F1F1F1;
+	border: solid #E9E9E9;
 	border-width: 0 0 0 1px;
 
 	@include breakpoint(viewport-s) {
@@ -105,7 +134,7 @@
 	height: 6em;
 	float: left;
 	padding: 1%;
-	border: solid #F1F1F1;
+	border: solid #E9E9E9;
 	border-width: 0 1px 1px 0;
 
 	@include breakpoint(viewport-s) {
@@ -117,26 +146,27 @@
 
 .day-label {
 	display: block;
+	@extend .alrightsansregular;
 }
 
 .today {
-	position: relative;
-
-	&:after {
-		position: absolute;
-		top: -1px;
-		right: -1px;
-		bottom: -1px;
-		left: -1px;
-		content: "";
-		border: 1px solid #AAA;
+	background: #F7F7F7;
+	
+	.day-label {
+		color: $accent-tertiary;
 	}
+
 }
 
 .last-month,
 .next-month {
-	color: #AFAFAF;
-	background: #F8F8F8;
+	
+	color: #D4D4D4;
+	background: #F9F9F9;
+
+	.day-label {
+		@extend .alrightsanslight;
+	}
 }
 
 .event-listing {
@@ -149,7 +179,7 @@
 
 
 .calendar-event {
-	@include border-radius(10px);
+	@include border-radius(3px);
 	min-width: 8px;
 	min-height: 8px;
 	margin-bottom: .125em;
@@ -178,6 +208,8 @@
 	z-index: 100;
 	padding: 2em;
 	background: #fff !important;
+	border: 2px solid #ddd;
+	border-radius: 0;
 
 	.calendar-event__title {
 		@include font-size(3);

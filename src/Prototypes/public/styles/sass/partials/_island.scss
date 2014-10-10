@@ -7,4 +7,9 @@
 	border: solid #ddd;
 	border-width: 2px 0;
 	text-align: center;
+
+	p:last-child {
+		margin: 0;
+	}
+	
 }

@@ -18,13 +18,18 @@
 
 	<section class="layout-constrained">
 
+		<h1>Hey, there's 13 events this month throughout Yorkshire!</h1>
+		<p>
+			The meetup scene is booming in the region and its only getting better! See all the upcoming events below, please <a href="mailto:info@yorkshiredigital.com">let us know</a> if you run or know events that are not listed.
+		</p>
+
 		<div class="calendar">
 			
 		</div>
 
 		<div class="island island--horizontal-break">
 			<p>
-				Do you run a meetup in Yorkshire and would like to get involved? <a href="mailto:info@yorkshiredigital.com">let us know</a>.
+				Do you run or know of any meetups/events in Yorkshire we have not listed? <a href="mailto:info@yorkshiredigital.com">let us know</a>.
 			</p>
 		</div>
 
@@ -106,27 +111,38 @@
 	
 	
 	<script type="text/template" id="template-calendar">
+
 		<div class="clndr-controls">
-			<div class="clndr-previous-button clndr-controls__nav">&lsaquo;</div>
-			<h1 class="month">Events in <%= month %></h1>
-			<div class="clndr-next-button clndr-controls__nav">&rsaquo;</div>
-			<!--<div class="clndr-today-button">Today</div>-->
-			<label class="is-offscreen" for="interestFilter">Filter by interest</label>
-			<select class="clndr-contols__filter" name="" id="interestFilter">
-				<option value="">All interests</option>
-				<option value="">Design</option>
-				<option value="">Development</option>
-				<option value="">Marketing</option>
-			</select>
-			<label class="is-offscreen" for="locationFilter">Filter by location</label>
-			<select class="clndr-contols__filter" name="" id="locationFilter">
-				<option value="">All locations</option>
-				<option value="">Huddersfield</option>
-				<option value="">Leeds</option>
-				<option value="">Scarborough</option>
-				<option value="">Sheffield</option>
-				<option value="">York</option>
-			</select>
+
+			<div class="clndr-nav">
+				<div class="clndr-previous-button clndr-controls__nav">&lsaquo;</div>
+				<h2 class="month"><%= month %> <span class="viewport-s--hidden">Events</span></h2>
+				<div class="clndr-next-button clndr-controls__nav">&rsaquo;</div>
+				<!--<div class="clndr-today-button">Today</div>-->
+			</div>
+			
+			<div class="clndr-filters">
+				<label class="is-offscreen" for="interestFilter">Filter by interest</label>
+				<div class="clndr-contols__filter select-custom">
+					<select class="" name="" id="interestFilter">
+						<option value="">All interests</option>
+						<option value="">Design</option>
+						<option value="">Development</option>
+						<option value="">Marketing</option>
+					</select>
+				</div>
+				<label class="is-offscreen" for="locationFilter">Filter by location</label>
+				<div class="clndr-contols__filter select-custom">
+					<select class="" name="" id="locationFilter">
+						<option value="">All locations</option>
+						<option value="">Huddersfield</option>
+						<option value="">Leeds</option>
+						<option value="">Scarborough</option>
+						<option value="">Sheffield</option>
+						<option value="">York</option>
+					</select>
+				</div>
+			</div>
 
 		</div>
 		<div class="clndr-grid">
