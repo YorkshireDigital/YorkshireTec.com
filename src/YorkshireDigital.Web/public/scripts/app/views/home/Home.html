@@ -30,23 +30,29 @@
 			<div class="clndr-filters">
 				<label class="is-offscreen" for="interestFilter">Filter by interest</label>
 				<div class="clndr-contols__filter select-custom">
-					<select class="" name="" id="interestFilter">
+					<select ng-model="selectedInterest" ng-options="interest for interest in interests">
+					    <option value="0">All interests</option>
+					</select>
+					<!-- <select class="" name="" id="interestFilter">
 						<option value="">All interests</option>
 						<option value="">Design</option>
 						<option value="">Development</option>
 						<option value="">Marketing</option>
-					</select>
+					</select> -->
 				</div>
 				<label class="is-offscreen" for="locationFilter">Filter by location</label>
 				<div class="clndr-contols__filter select-custom">
-					<select class="" name="" id="locationFilter">
+					<select ng-model="selectedLocation" ng-options="event.location for event in events | unique:'location'">
+					    <option value="0">All locations</option>
+					</select>
+					<!-- <select class="" name="" id="locationFilter">
 						<option value="">All locations</option>
 						<option value="">Huddersfield</option>
 						<option value="">Leeds</option>
 						<option value="">Scarborough</option>
 						<option value="">Sheffield</option>
 						<option value="">York</option>
-					</select>
+					</select> -->
 				</div>
 			</div>
 		</div>

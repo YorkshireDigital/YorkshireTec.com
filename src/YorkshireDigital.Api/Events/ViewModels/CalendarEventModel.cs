@@ -12,6 +12,7 @@
         public string Start { get; set; }
         public string End { get; set; }
         public string Location { get; set; }
+        public string[] Interests { get; set; }
         public decimal Price { get; set; }
     }
 }

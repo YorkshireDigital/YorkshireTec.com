@@ -4,7 +4,8 @@
     window.app = angular.module('yorkshireDigitalApp', [
         'ngRoute',
         'ngResource',
-        'tien.clndr'
+        'tien.clndr',
+        'ui.utils'
     ]);
 
     app.config([
