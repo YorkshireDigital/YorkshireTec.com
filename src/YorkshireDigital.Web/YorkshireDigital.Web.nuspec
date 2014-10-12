@@ -11,12 +11,8 @@
     <language>en-GB</language>
     <projectUrl>http://www.yorkshiredigital.com/</projectUrl>
     <licenseUrl>http://www.yorkshiredigital.com/license</licenseUrl>
-    
-    <files>
-      <file src="Index.html" />
-      <file src="public\**\*.*" />
-      <file src="Web.config" />
-    </files>
-
   </metadata>
+  <files>
+    <file src="**\*.*" />
+  </files>
 </package>
