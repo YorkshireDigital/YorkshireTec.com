@@ -30,29 +30,15 @@
 			<div class="clndr-filters">
 				<label class="is-offscreen" for="interestFilter">Filter by interest</label>
 				<div class="clndr-contols__filter select-custom">
-					<select ng-model="selectedInterest" ng-options="interest for interest in interests">
+					<select ng-model="search.interests" ng-options="interest for interest in interests">
 					    <option value="0">All interests</option>
 					</select>
-					<!-- <select class="" name="" id="interestFilter">
-						<option value="">All interests</option>
-						<option value="">Design</option>
-						<option value="">Development</option>
-						<option value="">Marketing</option>
-					</select> -->
 				</div>
 				<label class="is-offscreen" for="locationFilter">Filter by location</label>
 				<div class="clndr-contols__filter select-custom">
-					<select ng-model="selectedLocation" ng-options="event.location for event in events | unique:'location'">
+					<select ng-model="search.location" ng-options="event.location for event in events | unique:'location'">
 					    <option value="0">All locations</option>
 					</select>
-					<!-- <select class="" name="" id="locationFilter">
-						<option value="">All locations</option>
-						<option value="">Huddersfield</option>
-						<option value="">Leeds</option>
-						<option value="">Scarborough</option>
-						<option value="">Sheffield</option>
-						<option value="">York</option>
-					</select> -->
 				</div>
 			</div>
 		</div>
@@ -64,7 +50,7 @@
 				<div class="days">
 					<div class="{{ day.classes }}" ng-repeat="day in days">
 						<span class="day-label">{{day.day}}</span>
-						<div class="calendar-event" style="background: {{ event.colour }} " ng-repeat="event in day.events">
+						<div class="calendar-event" style="background: {{ event.colour }} " ng-repeat="event in day.events | filter:search">
 							<span class="calendar-event__short-title">{{ event.shortTitle }}</span>
 							<span class="calendar-event__title">{{ event.title }}</span>
 							<div class="calendar-event__full-details">
