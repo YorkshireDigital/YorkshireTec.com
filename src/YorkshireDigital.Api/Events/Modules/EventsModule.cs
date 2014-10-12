@@ -34,7 +34,7 @@ namespace YorkshireDigital.Api.Events.Modules
                     return Negotiate.WithStatusCode(HttpStatusCode.NotFound);
                 }
 
-                var viewModel = Mapper.DynamicMap<EventViewModel>(model);
+                var viewModel = Mapper.DynamicMap<CalendarEventModel>(model);
 
                 return Negotiate.WithModel(viewModel)
                     .WithStatusCode(HttpStatusCode.OK);
@@ -42,7 +42,7 @@ namespace YorkshireDigital.Api.Events.Modules
 
             Post["/"] = _ =>
             {
-                var newEvent = this.Bind<EventViewModel>();
+                var newEvent = this.Bind<CalendarEventModel>();
 
                 service.Save(Mapper.DynamicMap<Event>(newEvent));
 

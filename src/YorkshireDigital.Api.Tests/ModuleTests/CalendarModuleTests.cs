@@ -90,7 +90,7 @@
             }
             // Act
             var result = _browser.Get("/events/calendar", with => with.HttpRequest());
-            var model = result.GetModel<List<EventViewModel>>();
+            var model = result.GetModel<List<CalendarEventModel>>();
             
             // Asset
             model.Count.ShouldBeEquivalentTo(100);
@@ -112,7 +112,7 @@
                 with.HttpRequest();
                 with.FormValue("from", "31/01/2014");
             });
-            var model = result.GetModel<List<EventViewModel>>();
+            var model = result.GetModel<List<CalendarEventModel>>();
 
             // Asset
             model.Count.ShouldBeEquivalentTo(100);
@@ -182,7 +182,7 @@
                 with.HttpRequest();
                 with.FormValue("to", "31/01/2014");
             });
-            var model = result.GetModel<List<EventViewModel>>();
+            var model = result.GetModel<List<CalendarEventModel>>();
 
             // Asset
             model.Count.ShouldBeEquivalentTo(100);

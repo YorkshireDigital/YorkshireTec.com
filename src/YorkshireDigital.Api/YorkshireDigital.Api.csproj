@@ -139,7 +139,7 @@
     <Compile Include="Events\Modules\EventsModule.cs" />
     <Compile Include="Events\Validation\CalendarSearchModelValidator.cs" />
     <Compile Include="Events\ViewModels\CalendarSearchModel.cs" />
-    <Compile Include="Events\ViewModels\EventViewModel.cs" />
+    <Compile Include="Events\ViewModels\CalendarEventModel.cs" />
     <Compile Include="Infrastructure\Bootstrapper.cs" />
     <Compile Include="Infrastructure\BaseModule.cs" />
     <Compile Include="Infrastructure\Helpers\MailChimpHelper.cs" />

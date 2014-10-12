@@ -8,6 +8,7 @@ namespace YorkshireDigital.Api.Events.Modules
     using NHibernate;
     using YorkshireDigital.Api.Events.ViewModels;
     using YorkshireDigital.Api.Infrastructure;
+    using YorkshireTec.Data.Domain.Events;
     using YorkshireTec.Data.Services;
 
     public class CalendarModule : BaseModule
@@ -39,7 +40,12 @@ namespace YorkshireDigital.Api.Events.Modules
                                             model.Skip,
                                             model.Take);
 
-                var viewModel = events.Select(Mapper.DynamicMap<EventViewModel>).ToList();
+                Mapper.CreateMap<Event, CalendarEventModel>()
+                    .ForMember(dest => dest.Start, opt => opt.MapFrom(src => src.Start.ToString("MM-dd-yyyy")))
+                    .ForMember(dest => dest.End, opt => opt.MapFrom(src => src.End.ToString("MM-dd-yyyy")));
+
+
+                var viewModel = events.Select(Mapper.DynamicMap<CalendarEventModel>).ToList();
 
                 return Negotiate.WithModel(viewModel)
                     .WithStatusCode(HttpStatusCode.OK);
