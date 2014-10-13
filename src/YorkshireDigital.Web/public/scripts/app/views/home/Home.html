@@ -30,15 +30,15 @@
 			<div class="clndr-filters">
 				<label class="is-offscreen" for="interestFilter">Filter by interest</label>
 				<div class="clndr-contols__filter select-custom">
-					<select ng-model="search.interests" ng-options="interest for interest in interests">
-					    <option value="0">All interests</option>
-					</select>
+                    <select ng-model="search.interests" ng-options="interest for interest in interests">
+                        <option value="" selected>All interests</option>
+                    </select>
 				</div>
 				<label class="is-offscreen" for="locationFilter">Filter by location</label>
 				<div class="clndr-contols__filter select-custom">
-					<select ng-model="search.location" ng-options="event.location for event in events | unique:'location'">
-					    <option value="0">All locations</option>
-					</select>
+                    <select ng-model="search.location" ng-options="location for location in locations">
+                        <option value="" selected>All locations</option>
+                    </select>
 				</div>
 			</div>
 		</div>
@@ -50,15 +50,15 @@
 				<div class="days">
 					<div class="{{ day.classes }}" ng-repeat="day in days">
 						<span class="day-label">{{day.day}}</span>
-						<div class="calendar-event" style="background: {{ event.colour }} " ng-repeat="event in day.events | filter:search">
-							<span class="calendar-event__short-title">{{ event.shortTitle }}</span>
-							<span class="calendar-event__title">{{ event.title }}</span>
-							<div class="calendar-event__full-details">
-								<span class="calendar-event__strapline">{{event.shortDescription}}</span>
-								<div class="calendar-event__description">{{event.longDescription}}</div>
-								<span class="calendar-event__location">{{event.location}}</span>
-							</div>
-						</div>
+                        <div class="calendar-event" style="background: {{ event.colour }} " ng-repeat="event in day.events | calendarFilter:search">
+                            <span class="calendar-event__short-title">{{ event.shortTitle }}</span>
+                            <span class="calendar-event__title">{{ event.title }}</span>
+                            <div class="calendar-event__full-details">
+                                <span class="calendar-event__strapline">{{event.shortDescription}}</span>
+                                <div class="calendar-event__description">{{event.longDescription}}</div>
+                                <span class="calendar-event__location">{{event.location}}</span>
+                            </div>
+                        </div>
 					</div>
 				</div>
 			</div>
