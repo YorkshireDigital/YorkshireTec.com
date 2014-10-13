@@ -45,7 +45,9 @@
 		<div class="clndr-grid">
 			<div class="days-of-the-week">
 				<header class="clndr-header">
-					<div class="header-day" ng-repeat="dayOfTheWeek in daysOfTheWeek track by $index">{{ dayOfTheWeek }}</div>
+					<div class="header-day" ng-repeat="dayOfTheWeek in daysOfTheWeek track by $index">
+						<span ng-bind-html="to_trusted(dayOfTheWeek)"></span>
+					</div>
 				</header>
 				<div class="days">
 					<div class="{{ day.classes }}" ng-repeat="day in days">

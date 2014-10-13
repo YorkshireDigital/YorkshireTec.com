@@ -2,10 +2,14 @@
     'use strict';
 
     window.app
-        .controller('homeController', ['$scope', 'calendarService', homeController]);
+        .controller('homeController', ['$scope', '$sce', 'calendarService', homeController]);
 
-    function homeController($scope, calendarService) {
+    function homeController($scope, $sce, calendarService) {
         $scope.title = 'homeController';
+
+        $scope.to_trusted = function(html_code) {
+            return $sce.trustAsHtml(html_code);
+        }
 
         calendarService.Events.query(function (events) {
             $scope.events = events;
