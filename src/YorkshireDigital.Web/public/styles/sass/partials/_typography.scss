@@ -74,7 +74,7 @@ h1,
 .alpha {
     @include font-size(1.875); // 30px equivalent
     line-height: 1.3;
-    margin: 0 0 .4em 0;
+    margin: 0 0 .5em 0;
 
     @include breakpoint(viewport-s) {
 		@include font-size(1.625);
@@ -140,6 +140,36 @@ a {
     &:hover {
         text-decoration: none;
     }
+}
+
+/*  =HYPER SIZING
+--------------------------------------------------------------------*/
+
+.tera {
+	@include font-size(1.625);
+
+	@include breakpoint(viewport-s) {
+		@include font-size(1.25);
+	}
+}
+
+.giga {
+	@include font-size(1.25);
+}
+
+.mega {
+	@include font-size(1.125);
+}
+
+/*  =SUB SIZING
+--------------------------------------------------------------------*/
+
+.milli {
+	@include font-size(.9);
+}
+
+.micro {
+	@include font-size(.75);
 }
 
 

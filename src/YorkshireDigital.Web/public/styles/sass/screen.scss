@@ -46,40 +46,85 @@ body {
 	margin-bottom: 2em;	
 }
 
-/*  =HERO BLOCK
+/*  =HEADER
 --------------------------------------------------------------------*/
+
 .site-header {
-	padding: 3.5em 0 3em;
-	margin-bottom: 2em;
-	background: #b9306a;
-	border-bottom: 3px solid #A02257;
-}
+	padding-top: 1em;
+	padding-bottom: 1em;
 
-.hero {
- 	margin-left: 30%;
-	color: #fff;
-
-	h1 {
-		color: #fff;
+	@include breakpoint(viewport-s) {
+		text-align: center;
 	}
 
-	p {
-		@include font-size(1.25);
-	}
 }
+
+	.site-header__contact {
+		float: right;
+		line-height: 3.4;
+
+		@include breakpoint(viewport-s) {
+			float: none;
+			line-height: 1.5;
+			margin-bottom: 1em;
+		}
+
+		a {
+			color: #394047;
+			text-decoration: none;
+
+			&:hover {
+				text-decoration: underline;
+			}
+		}
+	}
 
 .logo-site {
-	float: left;
-	width: 25%;
-	max-width: 300px;
-	height: 177px;
-	margin: 0 3em 1.5em 0;
-	background: url(../img/logo-yorkshiredigital-reversed.svg) 0 100% no-repeat;
+	display: inline-block;
+	width: 230px;
+	height: 60px;
+	background: url(../img/sprite-global.svg) 0 0 no-repeat;
 	
 	.no-svg & {
 		background-image: url(../img/logo-yorkshiredigital-reversed.png);
 	}
 }
+
+
+/*  =HERO BLOCK
+--------------------------------------------------------------------*/
+
+.hero {
+	padding: 3.5em 0;
+	margin-bottom: 2em;
+	background: #b9306a url(../img/bg-homepage-hero.jpg) 0 0 no-repeat;
+	background-size: cover;
+	border-bottom: 4px solid #A02257;
+	color: #fff;
+
+	@include breakpoint(viewport-s) {
+		padding: 1.5em 0;
+		margin-bottom: 1.5em;
+		text-align: center;
+	}
+
+	.hero__title {
+		color: #fff;
+	}
+
+	.hero__intro {
+		max-width: 35em;
+		margin: 0;
+		@include font-size(1.25);
+
+		@include breakpoint(viewport-s) {
+			@include font-size(1);
+		}
+
+	}
+
+}
+
 
 /*  =SIGN UP BLOCK
 --------------------------------------------------------------------*/
@@ -123,5 +168,14 @@ hr {
 	background: #DDD;
 	border: 0;
 }
+
+.inline-items {
+
+}
+
+	.inline-items__item {
+		margin-right: 1em;
+		vertical-align: middle;
+	}
 
 @import "partials/temp"; // Used for temporary styles throughout the project. This should ideally be empty in production environments
