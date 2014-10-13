@@ -1,4 +1,4 @@
 ﻿var config = {
-    "apiurl": "http://localhost:61140/",
+    "apiurl": "http://dev.yorkshiredigital.com/Api/",
     "weburl": "http://localhost:5566/"
 }
