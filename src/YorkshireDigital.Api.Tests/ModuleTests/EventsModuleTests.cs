@@ -1,5 +1,6 @@
 ﻿namespace YorkshireDigital.Api.Tests.ModuleTests
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using FakeItEasy;
@@ -42,7 +43,7 @@
         public void Get_request_with_valid_id_should_return_200()
         {
             // Arrange
-            _eventList.Add(new Event { Id = 1 });
+            _eventList.Add(new Event { Id = 1, Interests = new Interest[0], Start = DateTime.Now, End = DateTime.Now });
 
             // Act
             var result = _browser.Get("/events/1", with =>
