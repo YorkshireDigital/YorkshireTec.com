@@ -11,8 +11,6 @@
             return $sce.trustAsHtml(html_code);
         };
 
-        var now = moment();
-
         var to = moment().date(1).add(2, 'M').format('DD/MM/YYYY');
 
         var from = moment().date(1).subtract(1, 'M').format('DD/MM/YYYY');
