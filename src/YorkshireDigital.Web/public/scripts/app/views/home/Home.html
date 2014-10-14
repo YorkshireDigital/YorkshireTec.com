@@ -29,11 +29,11 @@
 	<tien-clndr class="calendar" tien-clndr-object="clndr" tien-clndr-events="events">
 		<div class="clndr-controls">
 			<div class="clndr-nav">
-				<div class="clndr-previous-button clndr-controls__nav" ng-click="clndr.back()">&lsaquo;</div>
+                <div class="clndr-previous-button clndr-controls__nav" ng-click="clndrPreviousMonth()">&lsaquo;</div>
 				<h2 class="month">
 					{{ month }} <span class="viewport-s--hidden">Events</span>
 				</h2>
-				<div class="clndr-next-button clndr-controls__nav" ng-click="clndr.forward()">&rsaquo;</div>
+                <div class="clndr-next-button clndr-controls__nav" ng-click="clndrNextMonth()">&rsaquo;</div>
 				<!--<div class="clndr-today-button">Today</div>-->
 			</div>
 			
