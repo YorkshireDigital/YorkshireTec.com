@@ -13,14 +13,18 @@
         $scope.clndrNextMonth = function() {
             console.log('clndrNextMonth');
             $scope.clndr.forward();
-            $scope.loadEvents(moment($scope.clndr.month._d), function (events) {
+            var from = moment($scope.clndr.month._d).date(1).add(1, 'M').format('DD/MM/YYYY');
+            var to = moment($scope.clndr.month._d).date(1).add(2, 'M').format('DD/MM/YYYY');
+            $scope.loadEvents(from, to, function (events) {
                 $scope.addNewEvents(events);
             });
         };
         $scope.clndrPreviousMonth = function() {
             console.log('clndrPreviousMonth');
             $scope.clndr.back();
-            $scope.loadEvents(moment($scope.clndr.month._d), function (events) {
+            var from = moment($scope.clndr.month._d).date(1).subtract(1, 'M').format('DD/MM/YYYY');
+            var to = moment($scope.clndr.month._d).date(1).format('DD/MM/YYYY');
+            $scope.loadEvents(from, to, function (events) {
                 $scope.addNewEvents(events);
             });
         };
@@ -42,10 +46,7 @@
             $scope.clndr.addEvents(newEvents);
             return newEvents;
         };
-        $scope.loadEvents = function (month, callback) {
-            var from = month.date(1).subtract(1, 'M').format('DD/MM/YYYY');
-            var to = month.date(1).add(3, 'M').format('DD/MM/YYYY');
-
+        $scope.loadEvents = function (from, to, callback) {
             calendarService.Events.query({ from: from, to: to }, callback);
         };
 
@@ -70,7 +71,11 @@
             };
         };
 
-        $scope.loadEvents(moment(), function (events) {
+
+        var from = moment().date(1).subtract(1, 'M').format('DD/MM/YYYY');
+        var to = moment().date(1).add(2, 'M').format('DD/MM/YYYY');
+
+        $scope.loadEvents(from, to, function (events) {
             $scope.events = events;
             $scope.populateFilters(events);
         });
