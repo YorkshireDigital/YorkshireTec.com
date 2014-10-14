@@ -9,9 +9,15 @@
 
         $scope.to_trusted = function(html_code) {
             return $sce.trustAsHtml(html_code);
-        }
+        };
 
-        calendarService.Events.query(function (events) {
+        var now = moment();
+
+        var to = moment().date(1).add(2, 'M').format('DD/MM/YYYY');
+
+        var from = moment().date(1).subtract(1, 'M').format('DD/MM/YYYY');
+
+        calendarService.Events.query({from: from, to: to}, function (events) {
             $scope.events = events;
             var interests = [];
             var locations = [];
