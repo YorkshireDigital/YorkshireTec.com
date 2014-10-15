@@ -16,6 +16,7 @@
 
             $routeProvider
                 .when('/', { templateUrl: '/public/views/home/Home.html', controller: 'homeController' })
+                .when('/event/:eventName?', { templateUrl: '/public/views/home/Home.html', controller: 'homeController' })
                 .when('/Archive/Newsletter', { templateUrl: '/public/views/mailinglist/Archive.html', controller: 'mailinglistController' })
                 .when('/Error', { templateUrl: '/public/views/shared/Error.html' })
                 .when('/404', { templateUrl: '/public/views/shared/404.html' })

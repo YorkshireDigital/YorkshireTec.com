@@ -16,7 +16,7 @@
     "templateDefaultPage": "index",
     "type": "simple",
     "useCompass": true,
-    "simpleModePartnerServer": null,
+    "simpleModePartnerServer": "http://localhost:7331/",
     "simpleModeFileTypes": null,
     "modelSource": null,
     "domain": null,
