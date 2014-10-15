@@ -92,6 +92,11 @@
 	</div>
 </section>
 <footer class="site-footer" role="contentinfo">
-	<small>© 2014 YorkshireDigital</small>
-	<small>Hosted by <a href="http://www.brightbox.com" target="_blank">Brightbox</a> in Yorkshire</small>
+    <small>© 2014 YorkshireDigital</small>
+    <small>Hosted by <a href="http://www.brightbox.com" target="_blank">Brightbox</a> in Yorkshire</small>
 </footer>
+<script type="text/javascript">
+    $(document).on('click', '.calendar-event', function () {
+        $(this).toggleClass('calendar-event--expanded');
+    });
+</script>
