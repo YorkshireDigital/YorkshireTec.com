@@ -15,11 +15,10 @@
             $httpProvider.defaults.useXDomain = true;
 
             $routeProvider
-                .when('/', { templateUrl: '/public/scripts/app/views/home/Home.html', controller: 'homeController' })
-                .when('/Archive/Newsletter', { templateUrl: '/public/scripts/app/views/mailinglist/Archive.html', controller: 'mailinglistController' })
-                .when('/Error', { templateUrl: '/public/scripts/app/views/shared/Error.html' })
-                .when('/404', { templateUrl: '/public/scripts/app/views/shared/404.html' })
-
+                .when('/', { templateUrl: '/public/views/home/Home.html', controller: 'homeController' })
+                .when('/Archive/Newsletter', { templateUrl: '/public/views/mailinglist/Archive.html', controller: 'mailinglistController' })
+                .when('/Error', { templateUrl: '/public/views/shared/Error.html' })
+                .when('/404', { templateUrl: '/public/views/shared/404.html' })
 
                 .otherwise({
                     redirectTo: '/404'
