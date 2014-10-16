@@ -1,9 +1,9 @@
 ﻿(function () {
     'use strict';
 
-    window.app.controller('homeController', ['$scope', '$sce', 'calendarService', '$routeParams', homeController]);
+    window.app.controller('homeController', ['$scope', '$sce', 'calendarService', '$routeParams', '$location', homeController]);
 
-    function homeController($scope, $sce, calendarService, $routeParams) {
+    function homeController($scope, $sce, calendarService, $routeParams, $location) {
 
         init();
 
@@ -64,6 +64,7 @@
             $scope.loadEvent = function (eventName) {
                 calendarService.Events.get({ eventId: eventName }, function(activeEvent) {
                     $scope.activeEvent = activeEvent;
+                    $location.path('/event/' + activeEvent.id, false);
                 });
             };
             $scope.loadEvents = function (from, to, callback) {
