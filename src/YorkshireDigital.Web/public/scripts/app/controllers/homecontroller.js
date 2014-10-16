@@ -10,9 +10,7 @@
         $scope.title = 'homeController';
 
         if ($routeParams.eventName) {
-            $scope.loadEvent($routeParams.eventName, function(activeEvent) {
-                $scope.activeEvent = activeEvent;
-            });
+            $scope.loadEvent($routeParams.eventName);
         }
 
         var from = moment().date(1).subtract(1, 'M').format('DD/MM/YYYY');
@@ -63,8 +61,10 @@
                 $scope.clndr.addEvents(newEvents);
                 return newEvents;
             };
-            $scope.loadEvent = function (eventName, callback) {
-                calendarService.Events.get({ eventId: eventName }, callback);
+            $scope.loadEvent = function (eventName) {
+                calendarService.Events.get({ eventId: eventName }, function(activeEvent) {
+                    $scope.activeEvent = activeEvent;
+                });
             };
             $scope.loadEvents = function (from, to, callback) {
                 calendarService.Calendar.query({ from: from, to: to }, callback);

@@ -26,10 +26,16 @@
 	<p>
 	The meetup scene is booming in the region and its only getting better! See all the upcoming events below, please <a href="mailto:info@yorkshiredigital.com">let us know</a> if you run or know events that are not listed.
 	</p>
-    <div >
-        <h2>
-            Event - {{ $scope.activeEvent.title }}
-        </h2>
+    <div ng-if="activeEvent">
+        <h2>{{ activeEvent.title }}</h2>
+        <div>
+            <span class="calendar-event__strapline">{{activeEvent.shortDescription}}</span>
+            <div class="calendar-event__description">{{activeEvent.longDescription}}</div>
+            <span class="calendar-event__location">{{activeEvent.location}}</span>
+            <span class="calendar-event__start">{{activeEvent.start}}</span>
+            <span class="calendar-event__end">{{activeEvent.end}}</span>
+            <a href="{{ activeEvent.website }}" class="calendar-event__website">{{activeEvent.website}}</span>
+        </div>
     </div>
     <tien-clndr class="calendar" tien-clndr-object="clndr" tien-clndr-events="events">
         <div class="clndr-controls">
@@ -67,7 +73,7 @@
                 <div class="days">
                     <div class="{{ day.classes }}" ng-repeat="day in days">
                         <span class="day-label">{{day.day}}</span>
-                        <div class="calendar-event" style="background: {{ event.colour }} " ng-repeat="event in day.events | calendarFilter:search">
+                        <div class="calendar-event" style="background: {{ event.colour }} " ng-repeat="event in day.events | calendarFilter:search" data-id="{{ event.id }}" ng-click="loadEvent(event.id)">
                             <span class="calendar-event__short-title">{{ event.shortTitle }}</span>
                             <span class="calendar-event__title">{{ event.title }}</span>
                             <div class="calendar-event__full-details">
@@ -102,6 +108,8 @@
 </footer>
 <script type="text/javascript">
     $(document).on('click', '.calendar-event', function () {
-        $(this).toggleClass('calendar-event--expanded');
+        // var id = $(this).data(id);
+        // $scope.loadEvent(id);
+        //$(this).toggleClass('calendar-event--expanded');
     });
 </script>
