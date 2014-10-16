@@ -14,7 +14,7 @@
             $httpProvider.defaults.useXDomain = true;
             delete $httpProvider.defaults.headers.common['X-Requested-With'];
             $httpProvider.defaults.useXDomain = true;
-            $urlRouterProvider.deferIntercept();
+            //$urlRouterProvider.deferIntercept();
 
             $routeProvider
                 .when('/', { templateUrl: '/public/views/home/Home.html', controller: 'homeController' })
@@ -38,7 +38,6 @@
                 var lastRoute = $route.current;
                 var un = $rootScope.$on('$locationChangeSuccess', function () {
                     $route.current = lastRoute;
-                    un();
                 });
             }
             return original.apply($location, [path]);
