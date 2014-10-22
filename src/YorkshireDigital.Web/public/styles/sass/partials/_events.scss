@@ -1,0 +1,57 @@
+/*	=EVENT STYLES
+--------------------------------------------------------------------*/
+
+.event-modal {
+	position: fixed;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	z-index: 100;
+	width: 100%;
+	background: #fff;
+	overflow-y: auto;
+}
+
+	.event-modal__close {
+		position: absolute;
+		top: 2em;
+		right: 2em;
+		color: #fff;
+	}
+
+	.event__hero {
+		padding: 6em 0;
+		color: #fff;
+	}
+
+	.event__title,
+	.event__strapline {
+		color: #fff;
+	}
+
+	.event__time {
+		@include font-size(1.4);
+		float: right;
+	}
+
+	.event__body {
+		padding-top: 1.5em;
+	}
+
+	.event__detail {
+		margin-bottom: 2em;
+		//border-bottom: 1px solid #ddd;
+	}
+
+	.event__overview {
+		max-width: 50%;
+	}
+
+	.event__contact {
+		float: right;
+		width: 40%;
+		padding-left: 3em;
+		border-left: 1px solid #ddd;
+	}
+
+

@@ -12,6 +12,7 @@
 @import "partials/forms";		// Global form styles
 @import "partials/calendar";	// Calendar styles
 @import "partials/island";		// Block based layout elements
+@import "partials/events";		// Event level styles
  
 /*  =BASE
 ------------------------------------------------------------*/
@@ -101,11 +102,11 @@ body {
 	background-size: cover;
 	border-bottom: 4px solid #A02257;
 	color: #fff;
+	text-align: center;
 
 	@include breakpoint(viewport-s) {
 		padding: 1.5em 0;
 		margin-bottom: 1.5em;
-		text-align: center;
 	}
 
 	.hero__title {
@@ -114,7 +115,7 @@ body {
 
 	.hero__intro {
 		max-width: 35em;
-		margin: 0;
+		margin: 0 auto;
 		@include font-size(1.25);
 
 		@include breakpoint(viewport-s) {

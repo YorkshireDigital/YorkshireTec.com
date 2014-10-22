@@ -33,3 +33,36 @@
 		}
 	}
 }
+
+
+.nav-tabs {
+	margin-bottom: 2em;
+	border-bottom: 1px solid #ddd;
+}
+
+.tab-list {
+	margin: 0 0 -1px;
+	padding: 0;
+	list-style-type: none;
+}
+
+	.tab-list__item {
+		display: inline-block;
+	}
+
+	.tab-list__link {
+		display: block;
+		padding: .75em 1em;
+	}
+
+	.tab-list__item--current {
+		border-bottom: 1px solid $accent-tertiary;
+	}
+
+.tab-pane {
+	display: none;
+}
+
+.tab-pane--current {
+	display: block;
+}
