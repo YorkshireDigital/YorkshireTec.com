@@ -486,7 +486,7 @@ h4,
 .delta,
 h5,
 .epsilon {
-  font-family: MetronicProRegular;
+  font-family: "MetronicProRegular", sans-serif;
   font-weight: 500;
   color: #50575D;
 }
@@ -868,6 +868,28 @@ a:hover {
   background: #646464;
 }
 
+/*  =ICON BASE
+--------------------------------------------------------------------*/
+[class^="icn-"],
+[class*="icn-"] {
+  background-size: 100%;
+}
+
+.icn-s {
+  width: 20px;
+  height: 20px;
+}
+
+.icn-m {
+  width: 40px;
+  height: 40px;
+}
+
+.icn-l {
+  width: 60px;
+  height: 60px;
+}
+
 /*	=NAVIGATION
 --------------------------------------------------------------------*/
 .nav-primary ul {
@@ -906,11 +928,19 @@ a:hover {
 
 .tab-list__item {
   display: inline-block;
+  border: solid transparent;
+  border-width: 0 0 1px 0;
+}
+.tab-list__item:hover {
+  border-color: grey;
 }
 
 .tab-list__link {
   display: block;
   padding: .75em 1em;
+}
+.tab-list__link:hover {
+  text-decoration: none;
 }
 
 .tab-list__item--current {
@@ -1367,6 +1397,10 @@ textarea {
 
 /*	=EVENT STYLES
 --------------------------------------------------------------------*/
+.no-scroll {
+  overflow: hidden;
+}
+
 .event-modal {
   position: fixed;
   top: 0;
@@ -1395,6 +1429,11 @@ textarea {
   color: #fff;
 }
 
+.event__strapline {
+  font-family: "MetronicProAir", sans-serif;
+  font-weight: 400;
+}
+
 .event__time {
   font-size: 22.4px;
   font-size: 1.4rem;
@@ -1403,10 +1442,6 @@ textarea {
 
 .event__body {
   padding-top: 1.5em;
-}
-
-.event__detail {
-  margin-bottom: 2em;
 }
 
 .event__overview {

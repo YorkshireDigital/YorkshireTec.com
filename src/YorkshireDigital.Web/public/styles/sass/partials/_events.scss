@@ -1,6 +1,10 @@
 /*	=EVENT STYLES
 --------------------------------------------------------------------*/
 
+.no-scroll {
+	overflow: hidden; // Hide the overflow on body to remove double scroll bars 
+}
+
 .event-modal {
 	position: fixed;
 	top: 0;
@@ -29,6 +33,11 @@
 		color: #fff;
 	}
 
+	.event__strapline {
+		font-family: "MetronicProAir", sans-serif;
+		font-weight: 400;
+	}
+
 	.event__time {
 		@include font-size(1.4);
 		float: right;
@@ -36,11 +45,6 @@
 
 	.event__body {
 		padding-top: 1.5em;
-	}
-
-	.event__detail {
-		margin-bottom: 2em;
-		//border-bottom: 1px solid #ddd;
 	}
 
 	.event__overview {
@@ -53,5 +57,3 @@
 		padding-left: 3em;
 		border-left: 1px solid #ddd;
 	}
-
-

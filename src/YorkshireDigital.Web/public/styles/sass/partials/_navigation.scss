@@ -48,11 +48,23 @@
 
 	.tab-list__item {
 		display: inline-block;
+		border: solid transparent;
+		border-width: 0 0 1px 0;
+
+		&:hover {
+			border-color: grey;
+		}
+
 	}
 
 	.tab-list__link {
 		display: block;
 		padding: .75em 1em;
+
+		&:hover {
+			text-decoration: none;
+		}
+
 	}
 
 	.tab-list__item--current {
