@@ -67,6 +67,10 @@
                     $location.path('/event/' + activeEvent.id, false);
                 });
             };
+            $scope.closeEvent = function () {
+                $scope.activeEvent = null;
+                $location.path('/', false);
+            };
             $scope.loadEvents = function (from, to, callback) {
                 calendarService.Calendar.query({ from: from, to: to }, callback);
             };
