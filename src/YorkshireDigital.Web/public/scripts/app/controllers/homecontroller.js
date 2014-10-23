@@ -65,7 +65,13 @@
                 calendarService.Events.get({ eventId: eventName }, function(activeEvent) {
                     $scope.activeEvent = activeEvent;
                     $location.path('/event/' + activeEvent.id, false);
+                    $('body').addClass('no-scroll');
                 });
+            };
+            $scope.closeEvent = function () {
+                $scope.activeEvent = null;
+                $location.path('/', false);
+                $('body').removeClass('no-scroll');
             };
             $scope.loadEvents = function (from, to, callback) {
                 calendarService.Calendar.query({ from: from, to: to }, callback);
