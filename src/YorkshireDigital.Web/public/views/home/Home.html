@@ -161,7 +161,7 @@
 		
         <div class="event-listing">
             <div class="event-listing-title">EVENTS THIS MONTH</div>
-            <div class="event-item" ng-repeat="event in eventsThisMonth">
+            <div class="event-item" ng-repeat="event in events | clndrCurrentMonthFilter:clndr">
                 <div class="event-item-name">{{ event.title }}</div>
                 <div class="event-item-location">{{ event.description }}</div>
                 <div class="event-item-date">{{ event.startDate }}</div>
