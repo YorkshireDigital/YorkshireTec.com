@@ -31,11 +31,11 @@
 		<a href="#" class="event-modal__close" ng-click="closeEvent()">Close</a>
 
 		<article class="event">
-	    	<header class="event__hero" style="background: #fe6f53;">
+	    	<header class="event__hero" style="background: {{activeEvent.colour}};">
 	    		<div class="layout-constrained">
-	    			<span class="event__time">7pm, 28th October <!-- {{activeEvent.start}} --></span>
+	    			<span class="event__time"> {{ activeEvent.startFormat }}</span>
 	    			<h1 class="event__title">{{ activeEvent.title }}</h1>
-	    			<h2 class="event__strapline">{{activeEvent.shortDescription}}Talking business, design and technology</h2>
+	    			<h2 class="event__strapline">{{activeEvent.shortDescription}}</h2>
 
 					<!--
 		            <span class="event__end">{{activeEvent.end}}</span>
@@ -57,13 +57,13 @@
 	        			<div class="tab-pane tab-pane--current">
 	        				<aside class="event__contact">
 			        			<h3>Where</h3>
-			        			<p class="calendar-event__location">The Belgrave, 1A Cross Belgrave St, Leeds, West Yorkshire LS2 8JP <!--{{activeEvent.location}}--></p>
+			        			<p class="calendar-event__location">{{ activeEvent.location }}<!-- The Belgrave, 1A Cross Belgrave St, Leeds, West Yorkshire LS2 8JP --></p>
 								<h3>Contact</h3>
 								<p>
 									<a href="https://twitter.com/hey_stac">@hey_stac</a><br />
 									<a href="http://hey.wearestac.com/">hey.wearestac.com</a>
 								</p>
-			        			<a href="{{ activeEvent.website }}" class="calendar-event__website">{{activeEvent.website}}</a>
+			        			<a href="{{ activeEvent.website }}" class="calendar-event__website">{{ activeEvent.website }}</a>
 			        		</aside>
 				            
 				            <div class="event__overview">

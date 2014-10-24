@@ -25,15 +25,15 @@ namespace YorkshireDigital.Api.Events.Modules
                     return Negotiate.WithStatusCode(HttpStatusCode.NotFound);
                 }
 
-                var model = service.Get(id);
+                Event model = service.Get(id);
 
                 if (model == null)
                 {
                     return Negotiate.WithStatusCode(HttpStatusCode.NotFound);
                 }
 
-                CalendarEventModel viewModel = Mapper.DynamicMap<CalendarEventModel>(model);
-
+                var viewModel = Mapper.DynamicMap<CalendarEventModel>(model);
+                viewModel.StartFormat = model.Start.ToString("h:mmtt, dddd dd MMMM");
                 return Negotiate.WithModel(viewModel)
                     .WithStatusCode(HttpStatusCode.OK);
             };
