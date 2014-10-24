@@ -22,11 +22,6 @@
 </section>
 
 <section class="layout-constrained">
-	<h2>Hey, there's 13 events this month throughout Yorkshire!</h2>
-	<p>
-	See all the upcoming events below, please <a href="mailto:info@yorkshiredigital.com">let us know</a> if you run or know events that are not listed.
-	</p>
-    
     <section ng-if="activeEvent" class="event-modal">
 		<a href="#" class="event-modal__close" ng-click="closeEvent()">Close</a>
 
@@ -35,7 +30,7 @@
 	    		<div class="layout-constrained">
 	    			<span class="event__time"> {{ activeEvent.startFormat }}</span>
 	    			<h1 class="event__title">{{ activeEvent.title }}</h1>
-	    			<h2 class="event__strapline">{{activeEvent.shortDescription}}</h2>
+	    			<h2 class="event__strapline">{{ activeEvent.shortDescription }}</h2>
 
 					<!--
 		            <span class="event__end">{{activeEvent.end}}</span>
@@ -111,6 +106,10 @@
     </section>
 
     <tien-clndr class="calendar" tien-clndr-object="clndr" tien-clndr-events="events">
+		<h2>Hey, there's {{ (events | clndrCurrentMonthFilter:clndr).length }} events this month throughout Yorkshire!</h2>
+		<p>
+		See all the upcoming events below, please <a href="mailto:info@yorkshiredigital.com">let us know</a> if you run or know events that are not listed.
+		</p>
         <div class="clndr-controls">
             <div class="clndr-nav">
                 <div class="clndr-previous-button clndr-controls__nav" ng-click="clndrPreviousMonth()">&lsaquo;</div>
