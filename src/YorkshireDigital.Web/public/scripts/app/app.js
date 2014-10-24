@@ -40,7 +40,7 @@
                     $route.current = lastRoute;
                 });
             }
-            return original.apply($location, [path]);
+        	return original.apply($location, [ path ]);
         };
     }])
 })();

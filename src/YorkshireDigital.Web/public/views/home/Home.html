@@ -22,20 +22,15 @@
 </section>
 
 <section class="layout-constrained">
-	<h2>Hey, there's 13 events this month throughout Yorkshire!</h2>
-	<p>
-	See all the upcoming events below, please <a href="mailto:info@yorkshiredigital.com">let us know</a> if you run or know events that are not listed.
-	</p>
-    
     <section ng-if="activeEvent" class="event-modal">
 		<a href="#" class="event-modal__close" ng-click="closeEvent()">Close</a>
 
 		<article class="event">
-	    	<header class="event__hero" style="background: #fe6f53;">
+	    	<header class="event__hero" style="background: {{activeEvent.colour}};">
 	    		<div class="layout-constrained">
-	    			<span class="event__time">7pm, 28th October <!-- {{activeEvent.start}} --></span>
+	    			<span class="event__time"> {{ activeEvent.startFormat }}</span>
 	    			<h1 class="event__title">{{ activeEvent.title }}</h1>
-	    			<h2 class="event__strapline">{{activeEvent.shortDescription}}Talking business, design and technology</h2>
+	    			<h2 class="event__strapline">{{ activeEvent.shortDescription }}</h2>
 
 					<!--
 		            <span class="event__end">{{activeEvent.end}}</span>
@@ -48,22 +43,22 @@
 					
 					<nav class="nav-tabs">
 						<ul class="tab-list">
-							<li class="tab-list__item tab-list__item--current"><a href="#" class="tab-list__link">This Event</a></li>
-							<li class="tab-list__item"><a href="#" class="tab-list__link">About Hey</a></li>
-							<li class="tab-list__item"><a href="#" class="tab-list__link">Past Events</a></li>
+							<li class="tab-list__item tab-list__item--current"><a for="#tab-event" class="tab-list__link">This Event</a></li>
+							<li class="tab-list__item"><a for="#tab-about" class="tab-list__link">About Hey</a></li>
+							<li class="tab-list__item"><a class="tab-list__link">Past Events</a></li>
 						</ul>
 					</nav>
 	        		<div class="tab-panes">
-	        			<div class="tab-pane tab-pane--current">
+	        			<div id="tab-event" class="tab-pane tab-pane--current">
 	        				<aside class="event__contact">
 			        			<h3>Where</h3>
-			        			<p class="calendar-event__location">The Belgrave, 1A Cross Belgrave St, Leeds, West Yorkshire LS2 8JP <!--{{activeEvent.location}}--></p>
+			        			<p class="calendar-event__location">{{ activeEvent.location }}<!-- The Belgrave, 1A Cross Belgrave St, Leeds, West Yorkshire LS2 8JP --></p>
 								<h3>Contact</h3>
 								<p>
 									<a href="https://twitter.com/hey_stac">@hey_stac</a><br />
 									<a href="http://hey.wearestac.com/">hey.wearestac.com</a>
 								</p>
-			        			<a href="{{ activeEvent.website }}" class="calendar-event__website">{{activeEvent.website}}</a>
+			        			<a href="{{ activeEvent.website }}" class="calendar-event__website">{{ activeEvent.website }}</a>
 			        		</aside>
 				            
 				            <div class="event__overview">
@@ -89,7 +84,7 @@
 				            </div>
 	        			</div>
 
-	        			<div class="tab-pane">
+	        			<div id="tab-about" class="tab-pane">
 	        				<h3>About Hey</h3>
 							<p>
 								Run by Josh Nesbitt, Hey has been going for 2 years, in this time they have covered lorem ipsum dolor sit amet.
@@ -111,6 +106,10 @@
     </section>
 
     <tien-clndr class="calendar" tien-clndr-object="clndr" tien-clndr-events="events">
+		<h2>Hey, there's {{ (events | clndrCurrentMonthFilter:clndr).length }} events this month throughout Yorkshire!</h2>
+		<p>
+		See all the upcoming events below, please <a href="mailto:info@yorkshiredigital.com">let us know</a> if you run or know events that are not listed.
+		</p>
         <div class="clndr-controls">
             <div class="clndr-nav">
                 <div class="clndr-previous-button clndr-controls__nav" ng-click="clndrPreviousMonth()">&lsaquo;</div>
@@ -146,7 +145,7 @@
                 <div class="days">
                     <div class="{{ day.classes }}" ng-repeat="day in days">
                         <span class="day-label">{{day.day}}</span>
-                        <div class="calendar-event" style="background: {{ event.colour }} " ng-repeat="event in day.events | calendarFilter:search" data-id="{{ event.id }}" ng-click="loadEvent(event.id)">
+                        <div class="calendar-event" style="background: {{ event.colour }} " ng-repeat="event in day.events | calendarFilter:search" data-id="{{ event.uniqueName }}" ng-click="loadEvent(event.uniqueName)">
                             <span class="calendar-event__short-title">{{ event.shortTitle }}</span>
                             <span class="calendar-event__title">{{ event.title }}</span>
                             <div class="calendar-event__full-details">
@@ -162,7 +161,7 @@
 		
         <div class="event-listing">
             <div class="event-listing-title">EVENTS THIS MONTH</div>
-            <div class="event-item" ng-repeat="event in eventsThisMonth">
+            <div class="event-item" ng-repeat="event in events | clndrCurrentMonthFilter:clndr">
                 <div class="event-item-name">{{ event.title }}</div>
                 <div class="event-item-location">{{ event.description }}</div>
                 <div class="event-item-date">{{ event.startDate }}</div>
@@ -180,9 +179,13 @@
     <small>Hosted by <a href="http://www.brightbox.com" target="_blank">Brightbox</a> in Yorkshire</small>
 </footer>
 <script type="text/javascript">
-    $(document).on('click', '.calendar-event', function () {
-        // var id = $(this).data(id);
-        // $scope.loadEvent(id);
-        //$(this).toggleClass('calendar-event--expanded');
+    $(document).on('click', '.tab-list__link', function (e) {
+    	e.preventDefault();
+        $(this).parents('.tab-list__item').siblings().removeClass('tab-list__item--current')
+        $(this).parents('.tab-list__item').addClass('tab-list__item--current')
+
+        var $tab = $($(this).attr('for'));
+        $tab.siblings().removeClass('tab-pane--current');
+        $tab.addClass('tab-pane--current');
     });
 </script>

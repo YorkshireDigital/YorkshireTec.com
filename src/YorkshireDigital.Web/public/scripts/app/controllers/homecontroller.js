@@ -64,7 +64,7 @@
             $scope.loadEvent = function (eventName) {
                 calendarService.Events.get({ eventId: eventName }, function(activeEvent) {
                     $scope.activeEvent = activeEvent;
-                    $location.path('/event/' + activeEvent.id, false);
+                    $location.path('/event/' + activeEvent.uniqueName, false);
                     $('body').addClass('no-scroll');
                 });
             };

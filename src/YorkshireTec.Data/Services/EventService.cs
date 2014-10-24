@@ -21,9 +21,9 @@
             session.SaveOrUpdate(myEvent);
         }
 
-        public Event Get(int id)
+        public Event Get(string uniqueName)
         {
-            return session.Get<Event>(id);
+            return session.Get<Event>(uniqueName);
         }
 
         public void Delete(Event eventToDelete)
