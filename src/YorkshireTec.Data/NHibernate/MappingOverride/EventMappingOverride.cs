@@ -10,7 +10,7 @@ namespace YorkshireTec.Data.NHibernate.MappingOverride
     {
         public void Override(AutoMapping<Event> mapping)
         {
-            mapping.Id(x => x.UniqueName);
+            mapping.Id(x => x.UniqueName).UniqueKey("UniqueName");
             mapping.Map(x => x.Logo).CustomType<BinaryBlobType>();
             mapping.Map(x => x.Photo).CustomType<BinaryBlobType>();
             mapping.HasManyToMany(x => x.Categories);

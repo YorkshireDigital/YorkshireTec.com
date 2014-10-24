@@ -86,7 +86,7 @@
             // Arrange
             for (int i = 0; i < 100; i++)
             {
-                _eventList.Add(new Event { Id = i, Interests = new Interest[0], Start = DateTime.Now, End = DateTime.Now });
+                _eventList.Add(new Event { UniqueName = i.ToString(), Interests = new Interest[0], Start = DateTime.Now, End = DateTime.Now });
             }
             // Act
             var result = _browser.Get("/events/calendar", with => with.HttpRequest());
@@ -104,7 +104,7 @@
             // Arrange
             for (int i = 0; i < 100; i++)
             {
-                _eventList.Add(new Event { Id = i, Interests = new Interest[0], Start = DateTime.Now, End = DateTime.Now});
+                _eventList.Add(new Event { UniqueName = i.ToString(), Interests = new Interest[0], Start = DateTime.Now, End = DateTime.Now });
             }
             // Act
             var result = _browser.Get("/events/calendar", with =>
@@ -124,7 +124,7 @@
             // Arrange
             for (int i = 0; i < 100; i++)
             {
-                _eventList.Add(new Event { Id = i });
+                _eventList.Add(new Event { UniqueName = i.ToString() });
             }
             // Act
             var result = _browser.Get("/events/calendar", with =>
@@ -147,7 +147,7 @@
             // Arrange
             for (int i = 0; i < 100; i++)
             {
-                _eventList.Add(new Event { Id = i });
+                _eventList.Add(new Event { UniqueName = i.ToString() });
             }
             // Act
             var result = _browser.Get("/events/calendar", with =>
@@ -174,7 +174,7 @@
             // Arrange
             for (int i = 0; i < 100; i++)
             {
-                _eventList.Add(new Event { Id = i, Interests = new Interest[0], Start = DateTime.Now, End = DateTime.Now });
+                _eventList.Add(new Event { UniqueName = i.ToString(), Interests = new Interest[0], Start = DateTime.Now, End = DateTime.Now });
             }
             // Act
             var result = _browser.Get("/events/calendar", with =>
@@ -194,7 +194,7 @@
             // Arrange
             for (int i = 0; i < 100; i++)
             {
-                _eventList.Add(new Event { Id = i });
+                _eventList.Add(new Event { UniqueName = i.ToString() });
             }
             // Act
             var result = _browser.Get("/events/calendar", with =>
@@ -217,7 +217,7 @@
             // Arrange
             for (int i = 0; i < 100; i++)
             {
-                _eventList.Add(new Event { Id = i });
+                _eventList.Add(new Event { UniqueName = i.ToString() });
             }
             // Act
             var result = _browser.Get("/events/calendar", with =>

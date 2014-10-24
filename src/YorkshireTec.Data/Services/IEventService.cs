@@ -7,7 +7,7 @@
     public interface IEventService
     {
         void Save(Event myEvent);
-        Event Get(int id);
+        Event Get(string uniqueName);
         void Delete(Event eventToDelete);
         List<Event> GetWithinRange(DateTime from, DateTime to);
         List<Event> Query(DateTime? from, DateTime? to, string[] interests, string[] locations, int? skip, int? take);

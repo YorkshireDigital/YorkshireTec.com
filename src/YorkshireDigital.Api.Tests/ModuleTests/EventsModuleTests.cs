@@ -27,7 +27,7 @@
             A.CallTo(() => session.SaveOrUpdate(A<Event>.Ignored))
                 .Invokes((Event entity) => _eventList.Add(entity));
             A.CallTo(() => session.Get<Event>(A<object>.Ignored))
-                .ReturnsLazily((object id) => _eventList.FirstOrDefault(x => x.Id == int.Parse(id.ToString())));
+                .ReturnsLazily((object id) => _eventList.FirstOrDefault(x => x.UniqueName == id.ToString()));
 
             var sessionFactory = A.Fake<ISessionFactory>();
             A.CallTo(() => sessionFactory.GetCurrentSession()).Returns(session);
@@ -43,7 +43,7 @@
         public void Get_request_with_valid_id_should_return_200()
         {
             // Arrange
-            _eventList.Add(new Event { Id = 1, Interests = new Interest[0], Start = DateTime.Now, End = DateTime.Now });
+            _eventList.Add(new Event { UniqueName = "1", Interests = new Interest[0], Start = DateTime.Now, End = DateTime.Now });
 
             // Act
             var result = _browser.Get("/events/1", with =>

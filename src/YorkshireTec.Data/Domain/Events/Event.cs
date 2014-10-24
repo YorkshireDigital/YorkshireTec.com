@@ -5,7 +5,6 @@
 
     public class Event
     {
-        public virtual int Id { get; set; }
         public virtual string UniqueName { get; set; }
         public virtual string Title { get; set; }
         public virtual string ShortDescription { get; set; }

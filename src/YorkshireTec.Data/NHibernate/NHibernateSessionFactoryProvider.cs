@@ -9,6 +9,8 @@
     using global::NHibernate.Context;
     using global::NHibernate.Tool.hbm2ddl;
     using YorkshireTec.Data.Domain.Account;
+    using YorkshireTec.Data.Domain.Events;
+    using YorkshireTec.Data.NHibernate.MappingOverride;
 
     public class NHibernateSessionFactoryProvider
     {
@@ -56,6 +58,7 @@
                 // Automapping overrides
                 .Override<User>(map => map.IgnoreProperty(x => x.Twitter))
                 .Override<Provider>(map => map.IgnoreProperty(x => x.Expired))
+                .Override<Event>(map =>  map.Id(x => x.UniqueName))
                 .Conventions.Add<CascadeConvention>()
                 .Conventions.Add(ForeignKey.EndsWith("Id"));
         }
