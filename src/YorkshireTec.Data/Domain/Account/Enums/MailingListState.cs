@@ -1,4 +1,4 @@
-﻿namespace YorkshireTec.Data.Domain.Account.Enums
+﻿namespace YorkshireDigital.Data.Domain.Account.Enums
 {
     public enum MailingListState
     {

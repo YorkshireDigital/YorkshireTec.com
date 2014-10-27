@@ -8,8 +8,8 @@ namespace YorkshireDigital.Api.Infrastructure
     using Nancy.TinyIoc;
     using NHibernate;
     using NHibernate.Context;
-    using YorkshireTec.Data.NHibernate;
-    using YorkshireTec.Data.Services;
+    using YorkshireDigital.Data.NHibernate;
+    using YorkshireDigital.Data.Services;
 
     public class Bootstrapper : DefaultNancyBootstrapper
     {

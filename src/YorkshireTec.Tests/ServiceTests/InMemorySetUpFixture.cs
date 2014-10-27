@@ -1,7 +1,7 @@
-﻿namespace YorkshireTec.Tests.ServiceTests
+﻿namespace YorkshireDigital.Data.Tests.ServiceTests
 {
     using NUnit.Framework;
-    using YorkshireTec.Tests.Helpers;
+    using YorkshireDigital.Data.Tests.Helpers;
 
     [SetUpFixture]
     public class InMemorySetUpFixture

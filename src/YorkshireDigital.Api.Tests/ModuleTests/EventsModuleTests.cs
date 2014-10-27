@@ -10,7 +10,7 @@
     using NHibernate;
     using NUnit.Framework;
     using YorkshireDigital.Api.Events.Modules;
-    using YorkshireTec.Data.Domain.Events;
+    using YorkshireDigital.Data.Domain.Events;
 
     [TestFixture]
     public class EventsModuleTests

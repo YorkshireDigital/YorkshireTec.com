@@ -1,7 +1,7 @@
-﻿namespace YorkshireTec.Data.Domain.Organisations
+﻿namespace YorkshireDigital.Data.Domain.Organisations
 {
     using System.Collections.Generic;
-    using YorkshireTec.Data.Domain.Events;
+    using YorkshireDigital.Data.Domain.Events;
 
     public class Organisation
     {

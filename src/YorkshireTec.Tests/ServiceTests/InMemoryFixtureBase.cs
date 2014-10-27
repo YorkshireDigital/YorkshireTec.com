@@ -1,8 +1,10 @@
-﻿namespace YorkshireTec.Tests.ServiceTests
+﻿using ISession = NHibernate.ISession;
+using ITransaction = NHibernate.ITransaction;
+
+namespace YorkshireDigital.Data.Tests.ServiceTests
 {
-    using NHibernate;
     using NUnit.Framework;
-    using YorkshireTec.Tests.Helpers;
+    using YorkshireDigital.Data.Tests.Helpers;
 
     public class InMemoryFixtureBase
     {

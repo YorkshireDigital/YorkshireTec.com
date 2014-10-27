@@ -264,9 +264,9 @@
     <Compile Include="Api\Infrastructure\Models\PageModel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\YorkshireTec.Data\YorkshireTec.Data.csproj">
+    <ProjectReference Include="..\YorkshireTec.Data\YorkshireDigital.Data.csproj">
       <Project>{DE2ABF67-373C-41A8-83E0-D9B522221157}</Project>
-      <Name>YorkshireTec.Data</Name>
+      <Name>YorkshireDigital.Data</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

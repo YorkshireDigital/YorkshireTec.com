@@ -16,8 +16,8 @@
     using YorkshireDigital.Api.Events.Validation;
     using YorkshireDigital.Api.Events.ViewModels;
     using YorkshireDigital.Api.Infrastructure.Models;
-    using YorkshireTec.Data.Domain.Events;
-    using YorkshireTec.Data.Services;
+    using YorkshireDigital.Data.Domain.Events;
+    using YorkshireDigital.Data.Services;
 
     [TestFixture]
     public class CalendarModuleTests

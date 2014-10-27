@@ -106,9 +106,9 @@
       <Project>{16A213D9-3B08-4C73-956E-C2C067B871E0}</Project>
       <Name>YorkshireDigital.Api</Name>
     </ProjectReference>
-    <ProjectReference Include="..\YorkshireTec.Data\YorkshireTec.Data.csproj">
+    <ProjectReference Include="..\YorkshireTec.Data\YorkshireDigital.Data.csproj">
       <Project>{DE2ABF67-373C-41A8-83E0-D9B522221157}</Project>
-      <Name>YorkshireTec.Data</Name>
+      <Name>YorkshireDigital.Data</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

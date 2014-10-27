@@ -4,9 +4,9 @@ namespace YorkshireTec.Api.Account.Modules
     using Nancy;
     using Nancy.Security;
     using NHibernate;
+    using YorkshireDigital.Data.Services;
     using YorkshireTec.Api.Account.ViewModels;
     using YorkshireTec.Api.Infrastructure;
-    using YorkshireTec.Data.Services;
 
     public class WelcomeModule : BaseModule
     {

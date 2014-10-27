@@ -1,11 +1,12 @@
-﻿namespace YorkshireTec.Data.Services
+﻿using ISession = NHibernate.ISession;
+using LinqExtensionMethods = NHibernate.Linq.LinqExtensionMethods;
+
+namespace YorkshireDigital.Data.Services
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using global::NHibernate;
-    using global::NHibernate.Linq;
-    using YorkshireTec.Data.Domain.Events;
+    using YorkshireDigital.Data.Domain.Events;
 
     public class EventService : IEventService
     {
@@ -33,12 +34,12 @@
 
         public List<Event> GetWithinRange(DateTime from, DateTime to)
         {
-            return session.Query<Event>().Where(x => x.Start >= from && x.Start <= to).ToList();
+            return LinqExtensionMethods.Query<Event>(session).Where(x => x.Start >= from && x.Start <= to).ToList();
         }
 
         public List<Event> Query(DateTime? from, DateTime? to, string[] interests, string[] locations, int? skip, int? take)
         {
-            var query = session.Query<Event>();
+            var query = LinqExtensionMethods.Query<Event>(session);
 
             if (from.HasValue)
             {

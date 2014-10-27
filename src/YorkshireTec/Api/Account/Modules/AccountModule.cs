@@ -5,10 +5,10 @@ namespace YorkshireTec.Api.Account.Modules
     using Nancy.Security;
     using Nancy.Validation;
     using NHibernate;
+    using YorkshireDigital.Data.Services;
     using YorkshireTec.Api.Account.ViewModels;
     using YorkshireTec.Api.Infrastructure;
     using YorkshireTec.Api.Infrastructure.Models;
-    using YorkshireTec.Data.Services;
 
     public class AccountModule : BaseModule
     {

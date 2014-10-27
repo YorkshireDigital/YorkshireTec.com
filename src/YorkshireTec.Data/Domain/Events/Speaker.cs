@@ -1,4 +1,4 @@
-﻿namespace YorkshireTec.Data.Domain.Events
+﻿namespace YorkshireDigital.Data.Domain.Events
 {
     public class EventTalk
     {

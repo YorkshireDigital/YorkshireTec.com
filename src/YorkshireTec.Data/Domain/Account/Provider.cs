@@ -1,4 +1,4 @@
-﻿namespace YorkshireTec.Data.Domain.Account
+﻿namespace YorkshireDigital.Data.Domain.Account
 {
     using System;
     using SimpleAuthentication.Core;

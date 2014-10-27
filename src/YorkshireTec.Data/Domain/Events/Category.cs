@@ -1,4 +1,4 @@
-﻿namespace YorkshireTec.Data.Domain.Events
+﻿namespace YorkshireDigital.Data.Domain.Events
 {
     using System.Collections.Generic;
 

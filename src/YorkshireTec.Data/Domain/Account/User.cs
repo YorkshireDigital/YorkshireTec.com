@@ -1,10 +1,10 @@
-﻿namespace YorkshireTec.Data.Domain.Account
+﻿namespace YorkshireDigital.Data.Domain.Account
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using SimpleAuthentication.Core;
-    using YorkshireTec.Data.Domain.Account.Enums;
+    using YorkshireDigital.Data.Domain.Account.Enums;
 
     public class User
     {

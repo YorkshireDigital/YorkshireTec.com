@@ -1,8 +1,8 @@
 ﻿namespace YorkshireTec.Api.Account.ViewModels
 {
     using System;
-    using YorkshireTec.Data.Domain.Account;
-    using YorkshireTec.Data.Domain.Account.Enums;
+    using YorkshireDigital.Data.Domain.Account;
+    using YorkshireDigital.Data.Domain.Account.Enums;
 
     public class WelcomeViewModel
     {

@@ -1,8 +1,8 @@
-﻿namespace YorkshireTec.Data.Services
+﻿namespace YorkshireDigital.Data.Services
 {
     using System;
     using System.Collections.Generic;
-    using YorkshireTec.Data.Domain.Events;
+    using YorkshireDigital.Data.Domain.Events;
 
     public interface IEventService
     {

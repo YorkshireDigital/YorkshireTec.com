@@ -1,9 +1,11 @@
-﻿namespace YorkshireTec.Tests.Helpers
+﻿using Configuration = NHibernate.Cfg.Configuration;
+using ISession = NHibernate.ISession;
+using ISessionFactory = NHibernate.ISessionFactory;
+using SchemaExport = NHibernate.Tool.hbm2ddl.SchemaExport;
+
+namespace YorkshireDigital.Data.Tests.Helpers
 {
     using NHibernate;
-    using NHibernate.Cfg;
-    using NHibernate.Tool.hbm2ddl;
-    using YorkshireTec.Data.NHibernate;
 
     public class InMemorySessionFactoryProvider
     {

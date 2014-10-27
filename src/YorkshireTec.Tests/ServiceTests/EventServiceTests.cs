@@ -1,14 +1,14 @@
-﻿namespace YorkshireTec.Tests.ServiceTests
+﻿using LinqExtensionMethods = NHibernate.Linq.LinqExtensionMethods;
+
+namespace YorkshireDigital.Data.Tests.ServiceTests
 {
     using System;
     using System.Collections.Generic;
-    using System.Data.Entity.ModelConfiguration.Configuration;
     using System.Linq;
     using FluentAssertions;
-    using NHibernate.Linq;
     using NUnit.Framework;
-    using YorkshireTec.Data.Domain.Events;
-    using YorkshireTec.Data.Services;
+    using YorkshireDigital.Data.Domain.Events;
+    using YorkshireDigital.Data.Services;
 
     [TestFixture]
     public class EventServiceTests : InMemoryFixtureBase
@@ -33,7 +33,7 @@
 
             // Act
             service.Save(myEvent);
-            var events = Session.Query<Event>().Select(x => x);
+            var events = LinqExtensionMethods.Query<Event>(Session).Select(x => x);
 
             // Assert
             events.Count().ShouldBeEquivalentTo(1);
@@ -54,7 +54,7 @@
 
             // Act
             service.Save(myEvent);
-            var events = Session.Query<Event>().Select(x => x);
+            var events = LinqExtensionMethods.Query<Event>(Session).Select(x => x);
 
             // Assert
             events.Count().ShouldBeEquivalentTo(1);
@@ -92,7 +92,7 @@
 
             // Act
             service.Delete(myEvent);
-            var events = Session.Query<Event>().Select(x => x);
+            var events = LinqExtensionMethods.Query<Event>(Session).Select(x => x);
 
             // Assert
             events.Count().ShouldBeEquivalentTo(0);

@@ -6,8 +6,8 @@
     <ProjectGuid>{3AAEE183-2234-422D-9DA4-C16A524FBB61}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>YorkshireTec.Tests</RootNamespace>
-    <AssemblyName>YorkshireTec.Tests</AssemblyName>
+    <RootNamespace>YorkshireDigital.Data.Tests</RootNamespace>
+    <AssemblyName>YorkshireDigital.Data.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -129,9 +129,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\YorkshireTec.Data\YorkshireTec.Data.csproj">
+    <ProjectReference Include="..\YorkshireTec.Data\YorkshireDigital.Data.csproj">
       <Project>{DE2ABF67-373C-41A8-83E0-D9B522221157}</Project>
-      <Name>YorkshireTec.Data</Name>
+      <Name>YorkshireDigital.Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\YorkshireTec\YorkshireTec.csproj">
       <Project>{0C73D291-C0E7-4D7A-9942-16E8619A7B00}</Project>

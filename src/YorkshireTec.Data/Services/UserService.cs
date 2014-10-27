@@ -1,10 +1,11 @@
-﻿namespace YorkshireTec.Data.Services
+﻿using ISession = NHibernate.ISession;
+using LinqExtensionMethods = NHibernate.Linq.LinqExtensionMethods;
+
+namespace YorkshireDigital.Data.Services
 {
     using System;
     using System.Linq;
-    using global::NHibernate;
-    using global::NHibernate.Linq;
-    using YorkshireTec.Data.Domain.Account;
+    using YorkshireDigital.Data.Domain.Account;
 
     public class UserService
     {
@@ -17,25 +18,25 @@
 
         public bool UsernameAvailable(string username)
         {
-            return !session.Query<User>().Any(x => x.Username != null && x.Username == username);
+            return !LinqExtensionMethods.Query<User>(session).Any(x => x.Username != null && x.Username == username);
         }
 
         public bool EmailAlreadyRegistered(string email)
         {
             if (email == null) return false;
 
-            return session.Query<User>().Any(x => x.Email != null && x.Email == email);
+            return LinqExtensionMethods.Query<User>(session).Any(x => x.Email != null && x.Email == email);
         }
 
         public User GetUser(string username)
         {
-            return session.Query<User>().FirstOrDefault(x => x.Username != null && x.Username == username
+            return LinqExtensionMethods.Query<User>(session).FirstOrDefault(x => x.Username != null && x.Username == username
                 || x.Email != null && x.Email == username);
         }
 
         public User GetUserByIdentity(string providerName, string username)
         {
-            return session.Query<User>().FirstOrDefault(x => x.Providers.Any(p => p.Name == providerName && p.Username == username));
+            return LinqExtensionMethods.Query<User>(session).FirstOrDefault(x => x.Providers.Any(p => p.Name == providerName && p.Username == username));
         }
 
         public User SaveUser(User user)

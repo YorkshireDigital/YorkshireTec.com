@@ -6,8 +6,8 @@ namespace YorkshireDigital.Api.Events.Modules
     using NHibernate;
     using YorkshireDigital.Api.Events.ViewModels;
     using YorkshireDigital.Api.Infrastructure;
-    using YorkshireTec.Data.Domain.Events;
-    using YorkshireTec.Data.Services;
+    using YorkshireDigital.Data.Domain.Events;
+    using YorkshireDigital.Data.Services;
 
     public class EventsModule : BaseModule
     {

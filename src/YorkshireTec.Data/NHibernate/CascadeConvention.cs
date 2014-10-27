@@ -1,4 +1,4 @@
-﻿namespace YorkshireTec.Data.NHibernate
+﻿namespace YorkshireDigital.Data.NHibernate
 {
     using FluentNHibernate.Conventions;
     using FluentNHibernate.Conventions.Instances;

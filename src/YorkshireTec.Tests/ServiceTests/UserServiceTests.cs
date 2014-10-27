@@ -1,9 +1,9 @@
-﻿namespace YorkshireTec.Tests.ServiceTests
+﻿namespace YorkshireDigital.Data.Tests.ServiceTests
 {
     using FluentAssertions;
     using NUnit.Framework;
-    using YorkshireTec.Data.Domain.Account;
-    using YorkshireTec.Data.Services;
+    using YorkshireDigital.Data.Domain.Account;
+    using YorkshireDigital.Data.Services;
 
     public class UserServiceTests : InMemoryFixtureBase
     {

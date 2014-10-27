@@ -1,16 +1,16 @@
-﻿namespace YorkshireTec.Data.NHibernate
+﻿using CallSessionContext = NHibernate.Context.CallSessionContext;
+using Configuration = NHibernate.Cfg.Configuration;
+using ISessionFactory = NHibernate.ISessionFactory;
+using SchemaUpdate = NHibernate.Tool.hbm2ddl.SchemaUpdate;
+
+namespace YorkshireDigital.Data.NHibernate
 {
     using FluentNHibernate.Automapping;
     using FluentNHibernate.Cfg;
     using FluentNHibernate.Cfg.Db;
     using FluentNHibernate.Conventions.Helpers;
-    using global::NHibernate;
-    using global::NHibernate.Cfg;
-    using global::NHibernate.Context;
-    using global::NHibernate.Tool.hbm2ddl;
-    using YorkshireTec.Data.Domain.Account;
-    using YorkshireTec.Data.Domain.Events;
-    using YorkshireTec.Data.NHibernate.MappingOverride;
+    using YorkshireDigital.Data.Domain.Account;
+    using YorkshireDigital.Data.Domain.Events;
 
     public class NHibernateSessionFactoryProvider
     {

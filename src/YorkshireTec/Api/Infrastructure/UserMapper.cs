@@ -5,7 +5,7 @@
     using Nancy.Authentication.Forms;
     using Nancy.Security;
     using NHibernate;
-    using YorkshireTec.Data.Domain.Account;
+    using YorkshireDigital.Data.Domain.Account;
 
     public class UserMapper : IUserMapper
     {

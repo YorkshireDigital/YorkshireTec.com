@@ -1,8 +1,8 @@
-﻿namespace YorkshireTec.Data.Domain.Events
+﻿namespace YorkshireDigital.Data.Domain.Events
 {
     using System;
     using System.Collections.Generic;
-    using YorkshireTec.Data.Domain.Organisations;
+    using YorkshireDigital.Data.Domain.Organisations;
 
     public class Event
     {

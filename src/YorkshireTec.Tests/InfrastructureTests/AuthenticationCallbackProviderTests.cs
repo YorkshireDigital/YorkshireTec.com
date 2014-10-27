@@ -1,4 +1,4 @@
-﻿namespace YorkshireTec.Tests.InfrastructureTests
+﻿namespace YorkshireDigital.Data.Tests.InfrastructureTests
 {
     using FluentAssertions;
     using NUnit.Framework;

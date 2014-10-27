@@ -12,9 +12,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{EB44B8
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YorkshireTec.Tests", "YorkshireTec.Tests\YorkshireTec.Tests.csproj", "{3AAEE183-2234-422D-9DA4-C16A524FBB61}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YorkshireDigital.Data.Tests", "YorkshireTec.Tests\YorkshireDigital.Data.Tests.csproj", "{3AAEE183-2234-422D-9DA4-C16A524FBB61}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YorkshireTec.Data", "YorkshireTec.Data\YorkshireTec.Data.csproj", "{DE2ABF67-373C-41A8-83E0-D9B522221157}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YorkshireDigital.Data", "YorkshireTec.Data\YorkshireDigital.Data.csproj", "{DE2ABF67-373C-41A8-83E0-D9B522221157}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YorkshireDigital.Api", "YorkshireDigital.Api\YorkshireDigital.Api.csproj", "{16A213D9-3B08-4C73-956E-C2C067B871E0}"
 EndProject
@@ -22,7 +22,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{C5B3EDAD
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YorkshireDigital.Api.Tests", "YorkshireDigital.Api.Tests\YorkshireDigital.Api.Tests.csproj", "{4FA8843B-F27B-4632-9B6D-5D7359D77072}"
 EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "YorkshireDigital.Web", "http://localhost:8080", "{CA46E7F7-A10B-4367-B515-FA29DE12F56F}"
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "WebSite1", "http://localhost:8080", "{CA46E7F7-A10B-4367-B515-FA29DE12F56F}"
 	ProjectSection(WebsiteProperties) = preProject
 		UseIISExpress = "true"
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.5"
@@ -104,6 +104,7 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{3AAEE183-2234-422D-9DA4-C16A524FBB61} = {C5B3EDAD-DCDF-4368-8C3C-A2E5BEDC4773}
 		{4FA8843B-F27B-4632-9B6D-5D7359D77072} = {C5B3EDAD-DCDF-4368-8C3C-A2E5BEDC4773}
 	EndGlobalSection
 EndGlobal
