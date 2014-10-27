@@ -82,10 +82,12 @@
     <Compile Include="Domain\Account\Provider.cs" />
     <Compile Include="Domain\Account\User.cs" />
     <Compile Include="Domain\Events\Category.cs" />
-    <Compile Include="Domain\Events\Enums\SocialLinkType.cs" />
     <Compile Include="Domain\Events\Event.cs" />
-    <Compile Include="Domain\Events\SocialLink.cs" />
     <Compile Include="Domain\Events\Interest.cs" />
+    <Compile Include="Domain\Events\Speaker.cs" />
+    <Compile Include="Domain\Organisations\ContactLink.cs" />
+    <Compile Include="Domain\Organisations\Enums\ContactLinkType.cs" />
+    <Compile Include="Domain\Organisations\Organisation.cs" />
     <Compile Include="NHibernate\AutomappingConfiguration.cs" />
     <Compile Include="NHibernate\CascadeConvention.cs" />
     <Compile Include="NHibernate\MappingOverride\EventMappingOverride.cs" />
