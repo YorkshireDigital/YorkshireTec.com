@@ -22,16 +22,87 @@
 </section>
 
 <section class="layout-constrained">
-	<h2>Hey, there's 13 events this month throughout Yorkshire!</h2>
-	<p>
-	The meetup scene is booming in the region and its only getting better! See all the upcoming events below, please <a href="mailto:info@yorkshiredigital.com">let us know</a> if you run or know events that are not listed.
-	</p>
-    <div >
-        <h2>
-            Event - {{ $scope.activeEvent.title }}
-        </h2>
-    </div>
+    <section ng-if="activeEvent" class="modal">
+		<a href="#" class="modal__close icn-m icn_close" ng-click="closeEvent()"><span class="icn__content">Close</span></a>
+
+		<article class="event">
+	    	<header class="event__hero" style="background: {{activeEvent.colour}};">
+	    		<div class="layout-constrained">
+	    			<span class="event__time"> {{ activeEvent.startFormat }}</span>
+	    			<h1 class="event__title">{{ activeEvent.title }}</h1>
+	    			<h2 class="event__strapline">{{ activeEvent.shortDescription }}</h2>
+	    		</div>
+	    	</header>
+	        
+	        <div class="event__body">
+	        	<div class="layout-constrained">
+					
+					<nav class="nav-tabs">
+						<ul class="tab-list">
+							<li class="tab-list__item tab-list__item--current"><a href="#" for="#tab-event" class="tab-list__link">This Event</a></li>
+							<li class="tab-list__item"><a href="#" for="#tab-about" class="tab-list__link">About Hey</a></li>
+							<li class="tab-list__item"><a  href="#" class="tab-list__link">Past Events</a></li>
+						</ul>
+					</nav>
+	        		<div class="tab-panes">
+	        			<div id="tab-event" class="tab-pane tab-pane--current">
+	        				<aside class="tab-pane__secondary">
+			        			<h3>Where</h3>
+			        			<p class="calendar-event__location">{{ activeEvent.location }}<!-- The Belgrave, 1A Cross Belgrave St, Leeds, West Yorkshire LS2 8JP --></p>
+								<h3>Contact</h3>
+								<p>
+									<a href="https://twitter.com/hey_stac">@hey_stac</a><br />
+									<a href="http://hey.wearestac.com/">hey.wearestac.com</a>
+								</p>
+			        			<a href="{{ activeEvent.website }}" class="calendar-event__website">{{ activeEvent.website }}</a>
+			        		</aside>
+				            
+				            <div class="tab-pane__primary">
+			            		{{activeEvent.longDescription}}	
+			            		<h3>Speakers</h3>
+			            		<h4><a href="#">Chris Garrett</a></h4>
+			            		<p>
+			            			Having run a Digital Product agency for 3 years before Beatroot, the difficulties of building a senior and talented team in the North West were something Chris knew all too well. With a determination to avoid the dreaded “Recruitment Consultant”, Beatroot adopted a number of processes and tools to effectively bootstrap their team building, ultimately building their own “Developer Cerebro". Chris's talk focuses on Beatroot's approach, the findings that came as a result and how they’re using this insight going forward.
+			            		</p>
+			            		<h4><a href="#">Tom Hudson</a></h4>
+			            		<p>
+			            			Languages like Java and PHP compile to bytecode that runs on a 'virtual machine'. Tom walks us through building a simple one from the ground up to illustrate how they work.
+			            		</p>
+			            		<h4><a href="#">YorkshireDigital</a></h4>
+			            		<p>
+			            			Dan Manton covers how the hub has grown and what’s next for YorkshireDigital. He will also be making an announcement that he hopes will add value to the community.
+			            		</p>
+				            </div>
+
+	        			</div>
+
+	        			<div id="tab-about" class="tab-pane">
+	        				<div class="tab-pane__primary">
+		        				<h3>About Hey</h3>
+								<p>
+									Run by Josh Nesbitt, Hey has been going for 2 years, in this time they have covered lorem ipsum dolor sit amet.
+								</p>
+								<p>
+									Integer sodales mollis ex vel congue. Fusce facilisis ultrices sem in porttitor. Nam interdum eget arcu et consectetur. Aenean bibendum sodales ex vitae lacinia. Phasellus erat arcu, pulvinar et fringilla in, vehicula eget nulla. Pellentesque ultricies est vel magna ultricies suscipit. Proin laoreet massa quis rhoncus ornare. Sed dapibus ultrices urna, eget semper odio tempor quis. Donec augue leo, volutpat vel lacus ac, rhoncus ornare quam. Praesent sed lectus interdum urna pharetra maximus.
+								</p>
+							</div>
+	        			</div>
+
+	        		</div> 
+		            
+		        </div>
+	        </div>
+
+		</article>
+    </section>
+
     <tien-clndr class="calendar" tien-clndr-object="clndr" tien-clndr-events="events">
+		<div class="section-intro">
+			<h2>Hey, there's {{ (events | clndrCurrentMonthFilter:clndr).length }} events this month throughout Yorkshire!</h2>
+			<p>
+				See all the upcoming events below, please <a href="mailto:info@yorkshiredigital.com">let us know</a> if you run or know events that are not listed.
+			</p>
+		</div>
         <div class="clndr-controls">
             <div class="clndr-nav">
                 <div class="clndr-previous-button clndr-controls__nav" ng-click="clndrPreviousMonth()">&lsaquo;</div>
@@ -67,7 +138,7 @@
                 <div class="days">
                     <div class="{{ day.classes }}" ng-repeat="day in days">
                         <span class="day-label">{{day.day}}</span>
-                        <div class="calendar-event" style="background: {{ event.colour }} " ng-repeat="event in day.events | calendarFilter:search">
+                        <div class="calendar-event" style="background: {{ event.colour }} " ng-repeat="event in day.events | calendarFilter:search" data-id="{{ event.uniqueName }}" ng-click="loadEvent(event.uniqueName)">
                             <span class="calendar-event__short-title">{{ event.shortTitle }}</span>
                             <span class="calendar-event__title">{{ event.title }}</span>
                             <div class="calendar-event__full-details">
@@ -83,7 +154,7 @@
 		
         <div class="event-listing">
             <div class="event-listing-title">EVENTS THIS MONTH</div>
-            <div class="event-item" ng-repeat="event in eventsThisMonth">
+            <div class="event-item" ng-repeat="event in events | clndrCurrentMonthFilter:clndr">
                 <div class="event-item-name">{{ event.title }}</div>
                 <div class="event-item-location">{{ event.description }}</div>
                 <div class="event-item-date">{{ event.startDate }}</div>
@@ -101,7 +172,13 @@
     <small>Hosted by <a href="http://www.brightbox.com" target="_blank">Brightbox</a> in Yorkshire</small>
 </footer>
 <script type="text/javascript">
-    $(document).on('click', '.calendar-event', function () {
-        $(this).toggleClass('calendar-event--expanded');
+    $(document).on('click', '.tab-list__link', function (e) {
+    	e.preventDefault();
+        $(this).parents('.tab-list__item').siblings().removeClass('tab-list__item--current')
+        $(this).parents('.tab-list__item').addClass('tab-list__item--current')
+
+        var $tab = $($(this).attr('for'));
+        $tab.siblings().removeClass('tab-pane--current');
+        $tab.addClass('tab-pane--current');
     });
 </script>

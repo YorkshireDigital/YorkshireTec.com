@@ -1,3 +1,14 @@
+/*
+*
+*	These styles have been created from personal experience and also influenced by a 
+*	range of great minds from the web. Using a BEM methodology a hat tip has to go to 
+*	Harry Robberts (@csswizardry) for some of his great work on Inuit and general 
+*	blog posts. Normalize by Nicholas Galagher is utilized to help us get browsers 
+*	playing nice.
+*
+*/
+
+
 /*	=IMPORTS
 --------------------------------------------------------------------*/
 @import "compass"; 				// Cut this down as required
@@ -8,11 +19,15 @@
 @import "partials/base.scss";	// Global variables, global mixins & global styles such as clearfix
 @import "partials/typography";	// Global typographys settings such as hN header stack 
 @import "partials/buttons";		// Button variations
+@import "partials/icons";		// Base icon styles
 @import "partials/navigation";	// Navigation such as global nav, sub nav and tabs etc
 @import "partials/forms";		// Global form styles
 @import "partials/calendar";	// Calendar styles
 @import "partials/island";		// Block based layout elements
+@import "partials/events";		// Event level styles
+@import "partials/modal";		// Modal styles
  
+
 /*  =BASE
 ------------------------------------------------------------*/
 html {
@@ -24,6 +39,7 @@ body {
 	background: #fff;
 	//@include baseline-overlay();
 }
+
 
 /*  =LAYOUT
 --------------------------------------------------------------------*/
@@ -45,6 +61,7 @@ body {
 .clndr {
 	margin-bottom: 2em;	
 }
+
 
 /*  =HEADER
 --------------------------------------------------------------------*/
@@ -95,26 +112,30 @@ body {
 --------------------------------------------------------------------*/
 
 .hero {
-	padding: 3.5em 0;
-	margin-bottom: 2em;
+	padding: 5em 0 3em;
+	margin-bottom: 2.5em;
 	background: #b9306a url(../img/bg-homepage-hero.jpg) 0 0 no-repeat;
 	background-size: cover;
 	border-bottom: 4px solid #A02257;
 	color: #fff;
+	text-align: center;
 
 	@include breakpoint(viewport-s) {
-		padding: 1.5em 0;
+		padding: 2.5em 0 1em;
 		margin-bottom: 1.5em;
-		text-align: center;
 	}
 
+}
+
 	.hero__title {
+		@extend .mega;
 		color: #fff;
 	}
 
 	.hero__intro {
+		@extend .mega;
 		max-width: 35em;
-		margin: 0;
+		margin: 0 auto;
 		@include font-size(1.25);
 
 		@include breakpoint(viewport-s) {
@@ -123,6 +144,17 @@ body {
 
 	}
 
+
+/*  =INTRO BLOCKS
+--------------------------------------------------------------------*/
+
+.section-intro {
+	text-align: center;
+
+	h1, h2 {
+		margin-bottom: .25em;
+	}
+	
 }
 
 
@@ -144,7 +176,9 @@ body {
 		position: static;
 		padding: 2em 1.5em;
 	}
+
 }
+
 
 /*  =FOOTER
 --------------------------------------------------------------------*/
@@ -158,7 +192,9 @@ footer[role="contentinfo"] {
 	@include breakpoint(viewport-s) {
 		margin-top: 1.5em;
 	}
+
 }
+
 
 /*  =GENERAL UI ELEMENTS
 ------------------------------------------------------------*/
@@ -174,8 +210,13 @@ hr {
 }
 
 	.inline-items__item {
-		margin-right: 1em;
+		margin-left: 1.5em;
 		vertical-align: middle;
+
+		&:first-child {
+			margin-left: 0;
+		}
 	}
+
 
 @import "partials/temp"; // Used for temporary styles throughout the project. This should ideally be empty in production environments

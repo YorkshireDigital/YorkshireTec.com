@@ -1,18 +1,16 @@
 ﻿(function () {
     'use strict';
 
-    window.app.controller('homeController', ['$scope', '$sce', 'calendarService', '$routeParams', homeController]);
+    window.app.controller('homeController', ['$scope', '$sce', 'calendarService', '$routeParams', '$location', homeController]);
 
-    function homeController($scope, $sce, calendarService, $routeParams) {
+    function homeController($scope, $sce, calendarService, $routeParams, $location) {
 
         init();
 
         $scope.title = 'homeController';
 
         if ($routeParams.eventName) {
-            $scope.loadEvent($routeParams.eventName, function(activeEvent) {
-                $scope.activeEvent = activeEvent;
-            });
+            $scope.loadEvent($routeParams.eventName);
         }
 
         var from = moment().date(1).subtract(1, 'M').format('DD/MM/YYYY');
@@ -63,8 +61,17 @@
                 $scope.clndr.addEvents(newEvents);
                 return newEvents;
             };
-            $scope.loadEvent = function (eventName, callback) {
-                calendarService.Events.get({ eventId: eventName }, callback);
+            $scope.loadEvent = function (eventName) {
+                calendarService.Events.get({ eventId: eventName }, function(activeEvent) {
+                    $scope.activeEvent = activeEvent;
+                    $location.path('/event/' + activeEvent.uniqueName, false);
+                    $('body').addClass('no-scroll');
+                });
+            };
+            $scope.closeEvent = function () {
+                $scope.activeEvent = null;
+                $location.path('/', false);
+                $('body').removeClass('no-scroll');
             };
             $scope.loadEvents = function (from, to, callback) {
                 calendarService.Calendar.query({ from: from, to: to }, callback);

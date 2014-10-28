@@ -112,3 +112,4 @@ UpgradeLog*.XML
 
 # Mac files
 .DS_Store
+src/YorkshireDigital.Web/.pid

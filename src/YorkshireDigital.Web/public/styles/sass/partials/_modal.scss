@@ -1,0 +1,30 @@
+/*	=MODAL
+--------------------------------------------------------------------*/
+
+.no-scroll {
+	overflow: hidden; // Hide the overflow on body to remove double scroll bars 
+}
+
+.modal {
+	position: fixed;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	z-index: 100;
+	width: 100%;
+	background: #fff;
+	overflow-y: auto;
+}
+
+	.modal__close {
+		position: absolute;
+		top: 2em;
+		right: 2em;
+		color: #fff;
+		opacity: .8;
+
+		&:hover {
+			opacity: 1;
+		}
+
+	}

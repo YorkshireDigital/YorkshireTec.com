@@ -18,16 +18,14 @@ namespace YorkshireDigital.Api.Events.Modules
 
             Get["/{id?}"] = p =>
             {
-                if (p.id == null)
+                var id = p.id;
+
+                if (string.IsNullOrEmpty(id))
                 {
                     return Negotiate.WithStatusCode(HttpStatusCode.NotFound);
                 }
 
-                int id;
-                if(!int.TryParse(p.id, out id))
-                    return Negotiate.WithStatusCode(HttpStatusCode.NotFound);
-
-                var model = service.Get(id);
+                Event model = service.Get(id);
 
                 if (model == null)
                 {
@@ -35,7 +33,7 @@ namespace YorkshireDigital.Api.Events.Modules
                 }
 
                 var viewModel = Mapper.DynamicMap<CalendarEventModel>(model);
-
+                viewModel.StartFormat = model.Start.ToString("h:mmtt, dddd dd MMMM");
                 return Negotiate.WithModel(viewModel)
                     .WithStatusCode(HttpStatusCode.OK);
             };

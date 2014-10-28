@@ -1,0 +1,51 @@
+/*	=EVENT STYLES
+--------------------------------------------------------------------*/
+
+.event__hero {
+	padding: 9em 0 2em;
+	color: #fff;
+}
+
+.event__title,
+.event__strapline {
+	max-width: 20em;
+	color: #fff;
+}
+
+.event__title {
+	@extend .tera;
+}
+
+.event__strapline {
+	@extend .alpha;
+	max-width: 26em;
+	font-family: "MetronicProAir", sans-serif;
+	font-weight: 400;
+}
+
+.event__time {
+	@include font-size(1.4);
+	line-height: 2;
+	float: right;
+
+	@include breakpoint(viewport-s) {
+		float: none;
+		display: block;
+		text-align: center;
+	}
+}
+
+.event__body {
+	padding-top: 1em;
+}
+
+.tab-pane__primary {
+	max-width: 50%;
+}
+
+.tab-pane__secondary {
+	float: right;
+	width: 40%;
+	padding-left: 3em;
+	border-left: 1px solid #ddd;
+}
