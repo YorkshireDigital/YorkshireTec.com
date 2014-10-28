@@ -1,6 +1,14 @@
 /*  =ICON BASE
 --------------------------------------------------------------------*/
 
+.icn {
+	display: inline-block;
+}
+
+.icn__content {
+	@extend .is-offscreen ;
+}
+
 [class^="icn-"],
 [class*="icn-"] {
 	background-size: 100%;
