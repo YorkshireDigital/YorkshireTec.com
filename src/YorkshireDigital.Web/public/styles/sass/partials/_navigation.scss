@@ -35,24 +35,41 @@
 }
 
 
+
 .nav-tabs {
 	margin-bottom: 2em;
 	border-bottom: 1px solid #ddd;
 }
 
 .tab-list {
-	margin: 0 0 -1px;
+	margin: 0;
 	padding: 0;
 	list-style-type: none;
 }
 
 	.tab-list__item {
 		display: inline-block;
+		border: solid transparent;
+		border-width: 0 0 1px 0;
+
+		&:hover {
+			border-color: grey;
+		}
+
 	}
 
 	.tab-list__link {
+		@extend .gamma;
 		display: block;
-		padding: .75em 1em;
+		padding: .75em;
+		margin: 0;
+		font-family: MetronicProRegular, arial, sans-serif;
+		color: #525252;
+
+		&:hover {
+			text-decoration: none;
+		}
+
 	}
 
 	.tab-list__item--current {
@@ -66,3 +83,4 @@
 .tab-pane--current {
 	display: block;
 }
+

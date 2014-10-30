@@ -1,57 +1,51 @@
 /*	=EVENT STYLES
 --------------------------------------------------------------------*/
 
-.event-modal {
-	position: fixed;
-	top: 0;
-	left: 0;
-	bottom: 0;
-	z-index: 100;
-	width: 100%;
-	background: #fff;
-	overflow-y: auto;
+.event__hero {
+	padding: 9em 0 2em;
+	color: #fff;
 }
 
-	.event-modal__close {
-		position: absolute;
-		top: 2em;
-		right: 2em;
-		color: #fff;
+.event__title,
+.event__strapline {
+	max-width: 20em;
+	color: #fff;
+}
+
+.event__title {
+	@extend .tera;
+}
+
+.event__strapline {
+	@extend .alpha;
+	max-width: 26em;
+	font-family: "MetronicProAir", sans-serif;
+	font-weight: 400;
+}
+
+.event__time {
+	@include font-size(1.4);
+	line-height: 2;
+	float: right;
+
+	@include breakpoint(viewport-s) {
+		float: none;
+		display: block;
+		text-align: center;
 	}
+}
 
-	.event__hero {
-		padding: 6em 0;
-		color: #fff;
-	}
+.event__body {
+	padding-top: 1em;
+}
 
-	.event__title,
-	.event__strapline {
-		color: #fff;
-	}
+.tab-pane__primary {
+	max-width: 50%;
+}
 
-	.event__time {
-		@include font-size(1.4);
-		float: right;
-	}
-
-	.event__body {
-		padding-top: 1.5em;
-	}
-
-	.event__detail {
-		margin-bottom: 2em;
-		//border-bottom: 1px solid #ddd;
-	}
-
-	.event__overview {
-		max-width: 50%;
-	}
-
-	.event__contact {
-		float: right;
-		width: 40%;
-		padding-left: 3em;
-		border-left: 1px solid #ddd;
-	}
-
-
+.tab-pane__secondary {
+	float: right;
+	width: 40%;
+	padding-left: 3em;
+	border-left: 1px solid #ddd;
+}
