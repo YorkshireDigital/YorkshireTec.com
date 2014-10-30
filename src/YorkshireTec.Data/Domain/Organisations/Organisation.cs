@@ -14,5 +14,6 @@
         public virtual IList<Event> Events { get; set; }
         public virtual byte[] Logo { get; set; }
         public virtual byte[] Photo { get; set; }
+        public virtual string Website { get; set; }
     }
 }

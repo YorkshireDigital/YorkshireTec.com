@@ -32,8 +32,8 @@ namespace YorkshireDigital.Api.Events.Modules
                     return Negotiate.WithStatusCode(HttpStatusCode.NotFound);
                 }
 
-                var viewModel = Mapper.DynamicMap<CalendarEventModel>(model);
-                viewModel.StartFormat = model.Start.ToString("h:mmtt, dddd dd MMMM");
+                var viewModel = new EventDetailsModel(model);
+
                 return Negotiate.WithModel(viewModel)
                     .WithStatusCode(HttpStatusCode.OK);
             };

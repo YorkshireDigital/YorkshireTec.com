@@ -1,7 +1,5 @@
 ﻿namespace YorkshireDigital.Api.Events.ViewModels
 {
-    using System;
-
     public class CalendarSearchModel
     {
         public string From { get; set; }

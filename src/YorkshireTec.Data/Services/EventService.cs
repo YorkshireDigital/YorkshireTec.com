@@ -1,11 +1,10 @@
-﻿using ISession = NHibernate.ISession;
-using LinqExtensionMethods = NHibernate.Linq.LinqExtensionMethods;
-
-namespace YorkshireDigital.Data.Services
+﻿namespace YorkshireDigital.Data.Services
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using global::NHibernate;
+    using global::NHibernate.Linq;
     using YorkshireDigital.Data.Domain.Events;
 
     public class EventService : IEventService
@@ -24,7 +23,10 @@ namespace YorkshireDigital.Data.Services
 
         public Event Get(string uniqueName)
         {
-            return session.Get<Event>(uniqueName);
+            return session.Query<Event>()
+                .Where(x => x.UniqueName == uniqueName)
+                .Fetch(x => x.Organisation)
+                .SingleOrDefault();
         }
 
         public void Delete(Event eventToDelete)
