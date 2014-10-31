@@ -40,7 +40,7 @@
 					<nav class="nav-tabs">
 						<ul class="tab-list">
 							<li class="tab-list__item tab-list__item--current"><a for="#tab-event" class="tab-list__link">This Event</a></li>
-                            <li class="tab-list__item" ng-show="{{activeEvent.about.length > 0}}"><a for="#tab-about" class="tab-list__link">About {{activeEvent.title}}</a></li>
+                            <li class="tab-list__item" ng-show="{{activeEvent.about.length > 0}}"><a for="#tab-about" class="tab-list__link">About {{activeEvent.organiser}}</a></li>
                             <!--li class="tab-list__item" ng-show="{{activeEvent.pastEvents}}"><a href="#" class="tab-list__link">Past Events</a></li-->
 						</ul>
 					</nav>
@@ -79,7 +79,7 @@
 
                         <div id="tab-about" class="tab-pane" ng-show="{{activeEvent.about.length > 0}}">
                             <div class="tab-pane__primary">
-                                <h3>About {{activeEvent.title}}</h3>
+                                <h3>About {{activeEvent.organiser}}</h3>
                                 <p>
                                     {{activeEvent.about}}
                                 </p>

@@ -17,16 +17,18 @@
         public TalkDetailModel[] Talks { get; set; }
         public string About { get; set; }
         public string Headline { get; set; }
+        public string Organiser { get; set; }
 
         public EventDetailsModel(Event e)
         {
-            UniqueName = e.UniqueName;
+            Organiser = e.Organisation.Name;
             Title = e.Title;
             Synopsis = e.Synopsis;
             Colour = e.Organisation.Colour;
             Start = e.Start.ToString("yyyy-MM-dd");
             StartFormat = e.Start.ToString("h:mmtt, dddd dd MMMM");
             Location = e.Location;
+            UniqueName = e.UniqueName;
             ContactLinks = e.Organisation.ContactLinks.Select(x => new ContactLinkModel(x)).ToArray();
             Website = e.Organisation.Website;
             Headline = e.Organisation.Headline;
