@@ -43,7 +43,8 @@ namespace YorkshireDigital.Api.Events.Modules
                 Mapper.CreateMap<Event, CalendarEventModel>()
                     .ForMember(dest => dest.Start, opt => opt.MapFrom(src => src.Start.ToString("MM-dd-yyyy")))
                     .ForMember(dest => dest.End, opt => opt.MapFrom(src => src.End.ToString("MM-dd-yyyy")))
-                    .ForMember(dest => dest.Interests, opt => opt.MapFrom(src => src.Interests.Select(x => x.Name).Distinct().ToArray()));
+                    .ForMember(dest => dest.Interests, opt => opt.MapFrom(src => src.Interests.Select(x => x.Name).Distinct().ToArray()))
+                    .ForMember(dest => dest.Colour, opt => opt.MapFrom(src => src.Organisation.Colour));
 
                 var viewModel = events.Select(Mapper.DynamicMap<CalendarEventModel>).ToList();
 

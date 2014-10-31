@@ -30,7 +30,7 @@
 	    		<div class="layout-constrained">
 	    			<span class="event__time"> {{ activeEvent.startFormat }}</span>
 	    			<h1 class="event__title">{{ activeEvent.title }}</h1>
-	    			<h2 class="event__strapline">{{ activeEvent.shortDescription }}</h2>
+	    			<h2 class="event__strapline">{{ activeEvent.headline }}</h2>
 	    		</div>
 	    	</header>
 	        
@@ -58,7 +58,7 @@
 			        		</aside>
 				            
 				            <div class="tab-pane__primary">
-			            		{{activeEvent.longDescription}}	
+			            		{{activeEvent.synopsis}}	
 			            		<h3>Speakers</h3>
 			            		<h4><a href="#">Chris Garrett</a></h4>
 			            		<p>
