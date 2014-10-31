@@ -5,6 +5,7 @@ using SchemaUpdate = NHibernate.Tool.hbm2ddl.SchemaUpdate;
 
 namespace YorkshireDigital.Data.NHibernate
 {
+    using System;
     using FluentNHibernate.Automapping;
     using FluentNHibernate.Cfg;
     using FluentNHibernate.Cfg.Db;
@@ -56,9 +57,9 @@ namespace YorkshireDigital.Data.NHibernate
         {
             return AutoMap.AssemblyOf<NHibernateSessionFactoryProvider>(new AutomappingConfiguration())
                 // Automapping overrides
+                .UseOverridesFromAssemblyOf<NHibernateSessionFactoryProvider>()
                 .Override<User>(map => map.IgnoreProperty(x => x.Twitter))
                 .Override<Provider>(map => map.IgnoreProperty(x => x.Expired))
-                .Override<Event>(map =>  map.Id(x => x.UniqueName))
                 .Conventions.Add<CascadeConvention>()
                 .Conventions.Add(ForeignKey.EndsWith("Id"));
         }

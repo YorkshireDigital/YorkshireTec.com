@@ -2,7 +2,7 @@
 {
     public class EventTalk
     {
-        public virtual string Id { get; set; }
+        public virtual int Id { get; set; }
         public virtual string Title { get; set; }
         public virtual string Synopsis { get; set; }
         public virtual string Speaker { get; set; }

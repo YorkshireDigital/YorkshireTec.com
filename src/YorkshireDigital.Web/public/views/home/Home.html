@@ -58,20 +58,25 @@
 			        		</aside>
 				            
 				            <div class="tab-pane__primary">
-			            		{{activeEvent.synopsis}}	
-			            		<h3>Speakers</h3>
-			            		<h4><a href="#">Chris Garrett</a></h4>
-			            		<p>
-			            			Having run a Digital Product agency for 3 years before Beatroot, the difficulties of building a senior and talented team in the North West were something Chris knew all too well. With a determination to avoid the dreaded “Recruitment Consultant”, Beatroot adopted a number of processes and tools to effectively bootstrap their team building, ultimately building their own “Developer Cerebro". Chris's talk focuses on Beatroot's approach, the findings that came as a result and how they’re using this insight going forward.
-			            		</p>
-			            		<h4><a href="#">Tom Hudson</a></h4>
-			            		<p>
-			            			Languages like Java and PHP compile to bytecode that runs on a 'virtual machine'. Tom walks us through building a simple one from the ground up to illustrate how they work.
-			            		</p>
-			            		<h4><a href="#">YorkshireDigital</a></h4>
-			            		<p>
-			            			Dan Manton covers how the hub has grown and what’s next for YorkshireDigital. He will also be making an announcement that he hopes will add value to the community.
-			            		</p>
+				                {{activeEvent.synopsis}}
+                                
+				                <div id="event-talks" ng-if="activeEvent.talks">
+				                    <h3>Speakers</h3>
+				                    <div class="event-talk" ng-repeat="talk in activeEvent.talks">
+                                        <h4 ng-if="talk.speakerLink">
+                                            <a href="{{talk.speakerLink}}" target="_blank" title="{{talk.speaker}}">{{talk.speaker}}</a>
+                                        </h4>
+                                        <h4 ng-if="!talk.speakerLink">
+                                            {{talk.speaker}}
+                                        </h4>
+				                        <h5 ng-if="talk.title">
+                                            {{talk.title}}
+				                        </h5>
+				                        <p ng-if="talk.synopsis">
+				                            {{talk.synopsis}}
+				                        </p>
+				                    </div>
+				                </div>
 				            </div>
 
 	        			</div>
