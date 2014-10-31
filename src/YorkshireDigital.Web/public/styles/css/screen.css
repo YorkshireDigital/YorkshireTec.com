@@ -455,7 +455,7 @@ table {
  * Licensed pageviews: 100,000
  * Webfonts copyright: Copyright (c) Olivier Gourvat - Mostardesign Studio, 2013. All rights reserved.
  * 
- * © 2014 MyFonts Inc
+ * ┬® 2014 MyFonts Inc
 */
 /* @import must be at top of file, otherwise CSS will not work */
 @font-face {
@@ -1356,6 +1356,11 @@ textarea {
   }
 }
 
+.calendar-event--short {
+  display: inline-block !important;
+  margin-right: 1px;
+}
+
 .calendar-event__full-details {
   display: none;
 }
@@ -1377,6 +1382,10 @@ textarea {
   font-size: 3rem;
   font-family: MetronicProRegular;
   color: #333;
+}
+.calendar-event--expanded .calendar-event__title .calendar-event__title--short {
+  width: 45%;
+  display: inline-block;
 }
 .calendar-event--expanded .calendar-event__strapline {
   font-size: 25.6px;
