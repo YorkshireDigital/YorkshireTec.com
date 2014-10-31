@@ -39,9 +39,9 @@
 					
 					<nav class="nav-tabs">
 						<ul class="tab-list">
-							<li class="tab-list__item tab-list__item--current"><a href="#" for="#tab-event" class="tab-list__link">This Event</a></li>
-							<li class="tab-list__item"><a href="#" for="#tab-about" class="tab-list__link">About Hey</a></li>
-							<li class="tab-list__item"><a  href="#" class="tab-list__link">Past Events</a></li>
+							<li class="tab-list__item tab-list__item--current"><a for="#tab-event" class="tab-list__link">This Event</a></li>
+                            <li class="tab-list__item" ng-show="{{activeEvent.about.length > 0}}"><a for="#tab-about" class="tab-list__link">About {{activeEvent.title}}</a></li>
+                            <!--li class="tab-list__item" ng-show="{{activeEvent.pastEvents}}"><a href="#" class="tab-list__link">Past Events</a></li-->
 						</ul>
 					</nav>
 	        		<div class="tab-panes">
@@ -50,10 +50,6 @@
 			        			<h3>Where</h3>
 			        			<p class="calendar-event__location">{{ activeEvent.location }}<!-- The Belgrave, 1A Cross Belgrave St, Leeds, West Yorkshire LS2 8JP --></p>
 								<h3>Contact</h3>
-								<p>
-									<a href="https://twitter.com/hey_stac">@hey_stac</a><br />
-									<a href="http://hey.wearestac.com/">hey.wearestac.com</a>
-								</p>
 			        			<a href="{{ activeEvent.website }}" class="calendar-event__website">{{ activeEvent.website }}</a>
 			        		</aside>
 				            
@@ -81,17 +77,14 @@
 
 	        			</div>
 
-	        			<div id="tab-about" class="tab-pane">
-	        				<div class="tab-pane__primary">
-		        				<h3>About Hey</h3>
-								<p>
-									Run by Josh Nesbitt, Hey has been going for 2 years, in this time they have covered lorem ipsum dolor sit amet.
-								</p>
-								<p>
-									Integer sodales mollis ex vel congue. Fusce facilisis ultrices sem in porttitor. Nam interdum eget arcu et consectetur. Aenean bibendum sodales ex vitae lacinia. Phasellus erat arcu, pulvinar et fringilla in, vehicula eget nulla. Pellentesque ultricies est vel magna ultricies suscipit. Proin laoreet massa quis rhoncus ornare. Sed dapibus ultrices urna, eget semper odio tempor quis. Donec augue leo, volutpat vel lacus ac, rhoncus ornare quam. Praesent sed lectus interdum urna pharetra maximus.
-								</p>
-							</div>
-	        			</div>
+                        <div id="tab-about" class="tab-pane" ng-show="{{activeEvent.about.length > 0}}">
+                            <div class="tab-pane__primary">
+                                <h3>About {{activeEvent.title}}</h3>
+                                <p>
+                                    {{activeEvent.about}}
+                                </p>
+                            </div>
+                        </div>
 
 	        		</div> 
 		            
