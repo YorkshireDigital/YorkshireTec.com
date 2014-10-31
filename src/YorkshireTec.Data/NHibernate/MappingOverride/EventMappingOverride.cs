@@ -10,8 +10,16 @@ namespace YorkshireDigital.Data.NHibernate.MappingOverride
     {
         public void Override(AutoMapping<Event> mapping)
         {
-            mapping.Id(x => x.UniqueName).UniqueKey("UniqueName");
-            mapping.Map(x => x.Photo).CustomType<BinaryBlobType>();
+            mapping.Id(x => x.UniqueName)
+                .UniqueKey("UniqueName");
+            mapping.Map(x => x.Photo)
+                .CustomType<BinaryBlobType>();
+            mapping.Map(x => x.Title)
+                .CustomSqlType("varchar(1000)")
+                .Length(1000);
+            mapping.Map(x => x.Synopsis)
+                .CustomSqlType("varchar(10000)")
+                .Length(10000);
             mapping.HasManyToMany(x => x.Categories);
         }
     }
