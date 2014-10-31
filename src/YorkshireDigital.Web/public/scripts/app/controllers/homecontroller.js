@@ -85,8 +85,8 @@
                             interests.push(events[i].interests[j]);
                         }
                     }
-                    if ($.inArray(events[i].location, locations) === -1) {
-                        locations.push(events[i].location);
+                    if ($.inArray(events[i].region, locations) === -1) {
+                        locations.push(events[i].region);
                     }
                 };
                 $scope.interests = interests;

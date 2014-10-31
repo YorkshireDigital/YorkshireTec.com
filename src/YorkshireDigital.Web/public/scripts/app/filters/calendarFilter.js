@@ -3,7 +3,7 @@
         var result = [];
         for (var i = 0; i < events.length; i++) {
             var include = true;
-            if (filter.location && events[i].location != filter.location) {
+            if (filter.location && events[i].region != filter.location) {
                 include = false;
             }
             if (filter.interests && events[i].interests.indexOf(filter.interests) == -1) {

@@ -10,7 +10,7 @@
         public string Colour { get; set; }
         public string Start { get; set; }
         public string End { get; set; }
-        public string Location { get; set; }
+        public string Region { get; set; }
         public string[] Interests { get; set; }
     }
 }
