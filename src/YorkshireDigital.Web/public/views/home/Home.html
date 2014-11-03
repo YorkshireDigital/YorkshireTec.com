@@ -5,8 +5,8 @@
 	    	<header class="event__hero" style="background: {{activeEvent.colour}};">
 	    		<div class="layout-constrained">
                     <span class="event__time" ng-bind-html="activeEvent.startFormat"></span>
-	    			<h1 class="event__title">{{ activeEvent.title }}</h1>
-	    			<h2 class="event__strapline">{{ activeEvent.headline }}</h2>
+	    			<h1 class="event__title">{{ activeEvent.organiser }}</h1>
+	    			<h2 class="event__strapline">{{ activeEvent.title }}</h2>
 	    		</div>
 	    	</header>
 	        
@@ -55,7 +55,7 @@
 
                         <div id="tab-about" class="tab-pane" ng-show="{{activeEvent.about.length > 0}}">
                             <div class="tab-pane__primary">
-                                <h3>About {{activeEvent.organiser}}</h3>
+                                <h3>{{ activeEvent.headline }}</h3>
                                 <p>
                                     {{activeEvent.about}}
                                 </p>
