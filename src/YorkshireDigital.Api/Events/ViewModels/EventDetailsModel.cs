@@ -30,7 +30,9 @@
             Location = e.Location;
             UniqueName = e.UniqueName;
             ContactLinks = e.Organisation.ContactLinks.Select(x => new ContactLinkModel(x)).ToArray();
-            Website = e.Organisation.Website;
+            Website = e.Organisation.Website.IndexOf("http://", System.StringComparison.Ordinal) == -1
+                        ? string.Format("http://{0}", e.Organisation.Website)
+                        : e.Organisation.Website; ;
             Headline = e.Organisation.Headline;
             About = e.Organisation.About;
             Talks = e.Talks.Select(x => new TalkDetailModel(x)).ToArray();

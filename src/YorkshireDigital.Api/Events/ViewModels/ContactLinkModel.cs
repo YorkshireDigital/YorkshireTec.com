@@ -17,7 +17,9 @@
                     Link = string.Format("mailto:{0}", link.Value);
                     break;
                 case ContactLinkType.Link:
-                    Link = link.Value;
+                    Link = link.Value.IndexOf("http://", System.StringComparison.Ordinal) == -1
+                        ? string.Format("http://{0}", link.Value)
+                        : link.Value;
                     break;
             }
         }
