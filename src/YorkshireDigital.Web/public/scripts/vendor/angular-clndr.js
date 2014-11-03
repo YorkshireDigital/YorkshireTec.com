@@ -33,7 +33,6 @@
           };
           return $scope.clndr = angular.element("<div/>").clndr({
             render: render,
-            startWithMonth: moment().format('YYYY-MM'),
             forceSixRows: true,
             multiDayEvents: {
                 startDate: 'start',
