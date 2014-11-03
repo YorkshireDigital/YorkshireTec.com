@@ -62,6 +62,7 @@
             $scope.loadEvent = function (eventName) {
                 calendarService.Events.get({ eventId: eventName }, function(activeEvent) {
                     $scope.activeEvent = activeEvent;
+                    $scope.activeEvent.startFormat = $sce.trustAsHtml(activeEvent.startFormat);
                     $location.path('/event/' + activeEvent.uniqueName, false);
                     $('body').addClass('no-scroll');
                 });

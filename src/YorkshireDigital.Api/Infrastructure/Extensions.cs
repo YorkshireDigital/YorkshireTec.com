@@ -14,7 +14,7 @@
         
         public static string ToLyndensFancyFormat(this DateTime date)
         {
-            return string.Format("{0}{1} {2}{3} {4}", date.ToString("h:mm"), date.ToString("tt").ToLower(),
+            return string.Format("{0}{1} {2}<sup>{3}</sup> {4}", date.ToString("h:mm"), date.ToString("tt").ToLower(),
                 date.ToString("dddd, d"), date.DateSuffix(), date.ToString("MMMM"));
         }
     }
