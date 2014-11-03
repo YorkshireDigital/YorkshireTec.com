@@ -19,33 +19,23 @@
 }
 
 .event__title {
-	@extend .tera;
-
-	@include breakpoint(viewport-s) {
-		@include font-size(1.6);
-	}
-
+	@extend .kilo;
 }
 
 .event__strapline {
-	@extend .alpha;
+	@extend .beta;
 	max-width: 26em;
 	font-family: "MetronicProAir", sans-serif;
 	font-weight: 400;
-
-	@include breakpoint(viewport-s) {
-		@include font-size(1.2);
-	}
-
 }
 
 .event__time {
-	@include font-size(1.4);
+	@include font-size($h2-size);
 	line-height: 2;
 	float: right;
 
 	@include breakpoint(viewport-s) {
-		@include font-size(1.2);
+		@include font-size($h3-size);
 		display: block;
 		float: none;
 	}

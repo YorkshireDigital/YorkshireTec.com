@@ -50,7 +50,7 @@ body {
     margin: 0 auto; 
 
     @include breakpoint(viewport-s) {
-        padding: 0 .5em;
+        padding: 0 1em;
     }
 }
 
@@ -128,18 +128,17 @@ body {
 }
 
 	.hero__title {
-		@extend .mega;
+		@extend .kilo;
 		color: #fff;
 	}
 
 	.hero__intro {
-		@extend .mega;
 		max-width: 35em;
 		margin: 0 auto;
-		@include font-size(1.25);
+		@include font-size($h3-size);
 
 		@include breakpoint(viewport-s) {
-			@include font-size(1);
+			@include font-size($h4-size);
 		}
 
 	}

@@ -34,4 +34,9 @@
 			opacity: 1;
 		}
 
+		@include breakpoint(viewport-s) {
+			top: 1em;
+			right: 1em;
+		}
+
 	}
