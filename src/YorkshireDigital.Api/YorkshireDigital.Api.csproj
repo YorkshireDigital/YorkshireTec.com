@@ -145,6 +145,7 @@
     <Compile Include="Events\ViewModels\TalkDetailModel.cs" />
     <Compile Include="Infrastructure\Bootstrapper.cs" />
     <Compile Include="Infrastructure\BaseModule.cs" />
+    <Compile Include="Infrastructure\Extensions.cs" />
     <Compile Include="Infrastructure\Helpers\MailChimpHelper.cs" />
     <Compile Include="Infrastructure\Helpers\SlackHelper.cs" />
     <Compile Include="Infrastructure\Models\ErrorViewModel.cs" />

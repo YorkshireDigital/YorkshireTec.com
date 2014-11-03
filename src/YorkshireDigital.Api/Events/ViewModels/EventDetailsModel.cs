@@ -1,6 +1,7 @@
 ﻿namespace YorkshireDigital.Api.Events.ViewModels
 {
     using System.Linq;
+    using YorkshireDigital.Api.Infrastructure;
     using YorkshireDigital.Data.Domain.Events;
 
     public class EventDetailsModel
@@ -26,7 +27,7 @@
             Synopsis = e.Synopsis;
             Colour = e.Organisation.Colour;
             Start = e.Start.ToString("yyyy-MM-dd");
-            StartFormat = e.Start.ToString("h:mmtt, dddd dd MMMM");
+            StartFormat = e.Start.ToLyndensFancyFormat();
             Location = e.Location;
             UniqueName = e.UniqueName;
             ContactLinks = e.Organisation.ContactLinks.Select(x => new ContactLinkModel(x)).ToArray();
