@@ -1011,6 +1011,10 @@ a:hover {
   border-bottom: 1px solid #ddd;
 }
 
+.tab-panes {
+  margin-bottom: 2em;
+}
+
 .tab-list {
   margin: 0;
   padding: 0;
@@ -1069,10 +1073,10 @@ a:hover {
 /*	=FORM LABELS
 --------------------------------------------------------------------*/
 .sub-info {
-  font-size: 0.888px;
-  font-size: 0.0555rem;
-  line-height: 27.02703;
-  font-family: "Alright Sans Light";
+  font-size: 14px;
+  font-size: 0.875rem;
+  line-height: 1.71429;
+  font-family: "Alright Sans Light", arial, sans-serif;
   display: block;
   padding: 1em 0;
   color: #737373;
@@ -1245,6 +1249,31 @@ input[type="password"],
 textarea {
   -webkit-appearance: none;
   -moz-appearance: none;
+}
+
+.alrightsanslight, .last-month .day-label,
+.next-month .day-label {
+  font-family: "Alright Sans Light";
+  font-style: normal;
+  font-weight: normal;
+}
+
+.alrightsanslightitalic {
+  font-family: "Alright Sans Light";
+  font-style: italic;
+  font-weight: normal;
+}
+
+.alrightsansregular, select, .header-day, .day-label {
+  font-family: "Alright Sans";
+  font-style: normal;
+  font-weight: normal;
+}
+
+.alrightsansregularitalic {
+  font-family: "Alright Sans";
+  font-style: italic;
+  font-weight: normal;
 }
 
 /*	=CALENDAR
@@ -1555,9 +1584,12 @@ textarea {
 .no-scroll {
   overflow: hidden;
 }
+.no-scroll .page-content {
+  display: none;
+}
 
 .modal {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   bottom: 0;
@@ -1731,7 +1763,7 @@ body {
 --------------------------------------------------------------------*/
 footer[role="contentinfo"] {
   padding-top: 1em;
-  margin-top: 3em;
+  margin: 3em 0;
   border-top: 1px solid #ddd;
   text-align: center;
   color: #767676;

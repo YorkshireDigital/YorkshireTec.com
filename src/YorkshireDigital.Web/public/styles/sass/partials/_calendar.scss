@@ -1,3 +1,28 @@
+.alrightsanslight {
+  font-family: "Alright Sans Light";
+  font-style: normal;
+  font-weight: normal;
+}
+
+.alrightsanslightitalic {
+  font-family: "Alright Sans Light";
+  font-style: italic;
+  font-weight: normal;
+}
+
+.alrightsansregular {
+  font-family: "Alright Sans";
+  font-style: normal;
+  font-weight: normal;
+}
+
+.alrightsansregularitalic {
+  font-family: "Alright Sans";
+  font-style: italic;
+  font-weight: normal;
+}
+
+
 /*	=CALENDAR
 --------------------------------------------------------------------*/
 .calendar {
@@ -38,7 +63,6 @@
 	border: 2px solid #505776;
 
 	&:hover {
-
 		border-color:  darken($accent-tertiary, 10%);
 	}
 
@@ -79,6 +103,7 @@
 
 .header-day {
 	@extend .alrightsansregular;
+
 	width: 14.2857%;
 	float: left;
 	padding: 1%;

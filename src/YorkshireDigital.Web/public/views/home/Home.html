@@ -70,115 +70,120 @@
 		</article>
     </section>
 
-<header class="site-header">
-	<div class="layout-constrained">
-		
-		<div class="site-header__contact inline-items">
-			<a href="http://www.twitter.com/yorksdigital" class="inline-items__item">@YorksDigital</a>
-			<a href="mailto:info@yorkshiredigital.com" class="inline-items__item">info@yorkshiredigital.com</a>
+<div class="page-content">
+	
+	<header class="site-header">
+		<div class="layout-constrained">
+			
+			<div class="site-header__contact inline-items">
+				<a href="http://www.twitter.com/yorksdigital" class="inline-items__item">@YorksDigital</a>
+				<a href="mailto:info@yorkshiredigital.com" class="inline-items__item">info@yorkshiredigital.com</a>
+			</div>
+			
+			<div class="logo-site">
+			</div>
+			
 		</div>
-		
-		<div class="logo-site">
-		</div>
-		
-	</div>
-</header>
+	</header>
 
-<section class="hero">
-	<div class="layout-constrained">
-		<h1 class="hero__title">Bringing Yorkshire's Digital Community Together</h1>
-		<p class="hero__intro">
-		A hub for Yorkshire’s digital community, to see whats going on, find new connections and share knowledge.
-		</p>
-	</div>
-</section>
-
-<section class="layout-constrained">
-    
-
-    <tien-clndr class="calendar" tien-clndr-object="clndr" tien-clndr-events="events">
-		<div class="section-intro">
-			<h2>Hey, there's {{ (events | clndrCurrentMonthFilter:clndr).length }} events this month throughout Yorkshire!</h2>
-			<p>
-				See all the upcoming events below, please <a href="mailto:info@yorkshiredigital.com">let us know</a> if you run or know events that are not listed.
+	<section class="hero">
+		<div class="layout-constrained">
+			<h1 class="hero__title">Bringing Yorkshire's Digital Community Together</h1>
+			<p class="hero__intro">
+			A hub for Yorkshire’s digital community, to see whats going on, find new connections and share knowledge.
 			</p>
 		</div>
-        <div class="clndr-controls">
-            <div class="clndr-nav">
-                <div class="clndr-previous-button clndr-controls__nav" ng-click="clndrPreviousMonth()">&lsaquo;</div>
-                <h2 class="month">
-                    {{ month }} <span class="viewport-s--hidden">Events</span>
-                </h2>
-                <div class="clndr-next-button clndr-controls__nav" ng-click="clndrNextMonth()">&rsaquo;</div>
-                <!--<div class="clndr-today-button">Today</div>-->
-            </div>
+	</section>
+
+	<section class="layout-constrained">
+	    
+
+	    <tien-clndr class="calendar" tien-clndr-object="clndr" tien-clndr-events="events">
+			<div class="section-intro">
+				<h2>Hey, there's {{ (events | clndrCurrentMonthFilter:clndr).length }} events this month throughout Yorkshire!</h2>
+				<p>
+					See all the upcoming events below, please <a href="mailto:info@yorkshiredigital.com">let us know</a> if you run or know events that are not listed.
+				</p>
+			</div>
+	        <div class="clndr-controls">
+	            <div class="clndr-nav">
+	                <div class="clndr-previous-button clndr-controls__nav" ng-click="clndrPreviousMonth()">&lsaquo;</div>
+	                <h2 class="month">
+	                    {{ month }} <span class="viewport-s--hidden">Events</span>
+	                </h2>
+	                <div class="clndr-next-button clndr-controls__nav" ng-click="clndrNextMonth()">&rsaquo;</div>
+	                <!--<div class="clndr-today-button">Today</div>-->
+	            </div>
+				
+	            <div class="clndr-filters">
+	                <label class="is-offscreen" for="interestFilter">Filter by interest</label>
+	                <div class="clndr-contols__filter select-custom">
+	                    <select ng-model="search.interests" ng-options="interest for interest in interests">
+	                        <option value="" selected>All interests</option>
+	                    </select>
+	                </div>
+	                <label class="is-offscreen" for="locationFilter">Filter by location</label>
+	                <div class="clndr-contols__filter select-custom">
+	                    <select ng-model="search.location" ng-options="location for location in locations">
+	                        <option value="" selected>All locations</option>
+	                    </select>
+	                </div>
+	            </div>
+	        </div>
+	        <div class="clndr-grid">
+	            <div class="days-of-the-week">
+	                <header class="clndr-header">
+	                    <div class="header-day" ng-repeat="dayOfTheWeek in daysOfTheWeek track by $index">
+	                        <span ng-bind-html="to_trusted(dayOfTheWeek)"></span>
+	                    </div>
+	                </header>
+	                <div class="days">
+	                    <div class="{{ day.classes }}" ng-repeat="day in days">
+	                        <span class="day-label">{{day.day}}</span>
+	                        <div class="calendar-event" style="background: {{ event.colour }}" ng-repeat="event in day.events | calendarFilter:search" data-id="{{ event.uniqueName }}" ng-click="loadEvent(event.uniqueName)" ng-if="(day.events | calendarFilter:search).length < 4">
+	                            <span class="calendar-event__short-title">{{ event.shortTitle }}</span>
+	                            <span class="calendar-event__title" ng-if="event.title.length < 12">
+	                                {{ event.title }}
+	                            </span>
+	                            <span class="calendar-event__title" ng-if="event.title.length > 11">
+	                                {{ event.shortTitle }}
+	                            </span>
+	                        </div>
+	                        <div class="calendar-event calendar-event--short" style="background: {{ event.colour }}" ng-repeat="event in day.events | calendarFilter:search" data-id="{{ event.uniqueName }}" ng-click="loadEvent(event.uniqueName)" ng-if="(day.events | calendarFilter:search).length > 3">
+	                            <span class="calendar-event__short-title">{{ event.shortTitle }}</span>
+	                            <span class="calendar-event__title">
+	                                {{ event.shortTitle }}
+	                            </span>
+	                        </div>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
 			
-            <div class="clndr-filters">
-                <label class="is-offscreen" for="interestFilter">Filter by interest</label>
-                <div class="clndr-contols__filter select-custom">
-                    <select ng-model="search.interests" ng-options="interest for interest in interests">
-                        <option value="" selected>All interests</option>
-                    </select>
-                </div>
-                <label class="is-offscreen" for="locationFilter">Filter by location</label>
-                <div class="clndr-contols__filter select-custom">
-                    <select ng-model="search.location" ng-options="location for location in locations">
-                        <option value="" selected>All locations</option>
-                    </select>
-                </div>
-            </div>
-        </div>
-        <div class="clndr-grid">
-            <div class="days-of-the-week">
-                <header class="clndr-header">
-                    <div class="header-day" ng-repeat="dayOfTheWeek in daysOfTheWeek track by $index">
-                        <span ng-bind-html="to_trusted(dayOfTheWeek)"></span>
-                    </div>
-                </header>
-                <div class="days">
-                    <div class="{{ day.classes }}" ng-repeat="day in days">
-                        <span class="day-label">{{day.day}}</span>
-                        <div class="calendar-event" style="background: {{ event.colour }}" ng-repeat="event in day.events | calendarFilter:search" data-id="{{ event.uniqueName }}" ng-click="loadEvent(event.uniqueName)" ng-if="(day.events | calendarFilter:search).length < 4">
-                            <span class="calendar-event__short-title">{{ event.shortTitle }}</span>
-                            <span class="calendar-event__title" ng-if="event.title.length < 12">
-                                {{ event.title }}
-                            </span>
-                            <span class="calendar-event__title" ng-if="event.title.length > 11">
-                                {{ event.shortTitle }}
-                            </span>
-                        </div>
-                        <div class="calendar-event calendar-event--short" style="background: {{ event.colour }}" ng-repeat="event in day.events | calendarFilter:search" data-id="{{ event.uniqueName }}" ng-click="loadEvent(event.uniqueName)" ng-if="(day.events | calendarFilter:search).length > 3">
-                            <span class="calendar-event__short-title">{{ event.shortTitle }}</span>
-                            <span class="calendar-event__title">
-                                {{ event.shortTitle }}
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-		
-        <!-- 
-		Implement when we bring in the list view
-        <div class="event-listing">
-            <div class="event-listing-title">EVENTS THIS MONTH</div>
-            <div class="event-item" ng-repeat="event in events | clndrCurrentMonthFilter:clndr">
-                <div class="event-item-name">{{ event.title }}</div>
-                <div class="event-item-location">{{ event.description }}</div>
-                <div class="event-item-date">{{ event.startDate }}</div>
-            </div>
-        </div> -->
-    </tien-clndr>
-	<div class="island island--horizontal-break">
-		<p>
-		Do you run or know of any meetups/events in Yorkshire we have not listed? <a href="mailto:info@yorkshiredigital.com">let us know</a>.
-		</p>
-	</div>
-</section>
-<footer class="site-footer" role="contentinfo">
-    <small>© 2014 YorkshireDigital</small>
-    <small>Hosted by <a href="http://www.brightbox.com" target="_blank">Brightbox</a> in Yorkshire</small>
-</footer>
+	        <!-- 
+			Implement when we bring in the list view
+	        <div class="event-listing">
+	            <div class="event-listing-title">EVENTS THIS MONTH</div>
+	            <div class="event-item" ng-repeat="event in events | clndrCurrentMonthFilter:clndr">
+	                <div class="event-item-name">{{ event.title }}</div>
+	                <div class="event-item-location">{{ event.description }}</div>
+	                <div class="event-item-date">{{ event.startDate }}</div>
+	            </div>
+	        </div> -->
+	    </tien-clndr>
+		<div class="island island--horizontal-break">
+			<p>
+			Do you run or know of any meetups/events in Yorkshire we have not listed? <a href="mailto:info@yorkshiredigital.com">let us know</a>.
+			</p>
+		</div>
+	</section>
+	<footer class="site-footer" role="contentinfo">
+	    <small>© 2014 YorkshireDigital</small>
+	    <small>Hosted by <a href="http://www.brightbox.com" target="_blank">Brightbox</a> in Yorkshire</small>
+	</footer>
+
+</div>
+
 <script type="text/javascript">
     $(document).on('click', '.tab-list__link', function (e) {
     	e.preventDefault();

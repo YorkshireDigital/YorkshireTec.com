@@ -12,7 +12,6 @@
 /*	=IMPORTS
 --------------------------------------------------------------------*/
 @import "compass"; 				// Cut this down as required
-@import "compass/typography/vertical_rhythm";
 
 /* Partials */
 @import "partials/normalize"; 	// Edited version of Nicolas Galaghers Normalise
@@ -26,7 +25,7 @@
 @import "partials/island";		// Block based layout elements
 @import "partials/events";		// Event level styles
 @import "partials/modal";		// Modal styles
- 
+
 
 /*  =BASE
 ------------------------------------------------------------*/
@@ -183,7 +182,7 @@ body {
 --------------------------------------------------------------------*/
 footer[role="contentinfo"] {
 	padding-top: 1em;
-	margin-top: 3em;
+	margin: 3em 0;
 	border-top: 1px solid #ddd;
 	text-align: center;
 	color: #767676;
