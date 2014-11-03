@@ -26,7 +26,6 @@
                 return $sce.trustAsHtml(html_code);
             };
             $scope.clndrNextMonth = function () {
-                console.log('clndrNextMonth');
                 $scope.clndr.forward();
                 var from = moment($scope.clndr.month._d).date(1).add(1, 'M').format('DD/MM/YYYY');
                 var to = moment($scope.clndr.month._d).date(1).add(2, 'M').format('DD/MM/YYYY');
@@ -35,7 +34,6 @@
                 });
             };
             $scope.clndrPreviousMonth = function () {
-                console.log('clndrPreviousMonth');
                 $scope.clndr.back();
                 var from = moment($scope.clndr.month._d).date(1).subtract(1, 'M').format('DD/MM/YYYY');
                 var to = moment($scope.clndr.month._d).date(1).format('DD/MM/YYYY');
