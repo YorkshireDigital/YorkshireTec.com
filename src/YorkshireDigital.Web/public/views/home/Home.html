@@ -1,28 +1,4 @@
-﻿<header class="site-header">
-	<div class="layout-constrained">
-		
-		<div class="site-header__contact inline-items">
-			<a href="http://www.twitter.com/yorksdigital" class="inline-items__item">@YorksDigital</a>
-			<a href="mailto:info@yorkshiredigital.com" class="inline-items__item">info@yorkshiredigital.com</a>
-		</div>
-		
-		<div class="logo-site">
-		</div>
-		
-	</div>
-</header>
-
-<section class="hero">
-	<div class="layout-constrained">
-		<h1 class="hero__title">Bringing Yorkshire's Digital Community Together</h1>
-		<p class="hero__intro">
-		A hub for Yorkshire’s digital community, to see whats going on, find new connections and share knowledge.
-		</p>
-	</div>
-</section>
-
-<section class="layout-constrained">
-    <section ng-if="activeEvent" class="modal">
+﻿<section ng-if="activeEvent" class="modal">
 		<a href="#" class="modal__close icn-m icn_close" ng-click="closeEvent()"><span class="icn__content">Close</span></a>
 
 		<article class="event">
@@ -93,6 +69,32 @@
 
 		</article>
     </section>
+
+<header class="site-header">
+	<div class="layout-constrained">
+		
+		<div class="site-header__contact inline-items">
+			<a href="http://www.twitter.com/yorksdigital" class="inline-items__item">@YorksDigital</a>
+			<a href="mailto:info@yorkshiredigital.com" class="inline-items__item">info@yorkshiredigital.com</a>
+		</div>
+		
+		<div class="logo-site">
+		</div>
+		
+	</div>
+</header>
+
+<section class="hero">
+	<div class="layout-constrained">
+		<h1 class="hero__title">Bringing Yorkshire's Digital Community Together</h1>
+		<p class="hero__intro">
+		A hub for Yorkshire’s digital community, to see whats going on, find new connections and share knowledge.
+		</p>
+	</div>
+</section>
+
+<section class="layout-constrained">
+    
 
     <tien-clndr class="calendar" tien-clndr-object="clndr" tien-clndr-events="events">
 		<div class="section-intro">

@@ -455,7 +455,7 @@ table {
  * Licensed pageviews: 100,000
  * Webfonts copyright: Copyright (c) Olivier Gourvat - Mostardesign Studio, 2013. All rights reserved.
  * 
- * ┬® 2014 MyFonts Inc
+ * © 2014 MyFonts Inc
 */
 /* @import must be at top of file, otherwise CSS will not work */
 @font-face {
@@ -1482,7 +1482,7 @@ textarea {
 }
 
 .modal {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   bottom: 0;

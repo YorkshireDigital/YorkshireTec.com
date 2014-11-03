@@ -31,7 +31,7 @@
     "routes": null,
     "customRuby": false,
     "customRubyPath": null,
-    "remoteDebugPort": 0,
+    "remoteDebugPort": 8081,
     "optimiseImages": true,
     "password": null,
     "ignoreDir": [
