@@ -6,7 +6,7 @@
 }
 
 .modal {
-	position: absolute;
+	position: fixed;
 	top: 0;
 	left: 0;
 	bottom: 0;
@@ -14,6 +14,13 @@
 	width: 100%;
 	background: #fff;
 	overflow-y: auto;
+
+	// Temp fix for the iOS scrolling bug
+	-webkit-transform:translateZ(1px);
+      -moz-transform:translateZ(1px);
+      -o-transform:translateZ(1px);
+      transform:translateZ(1px);
+	 -webkit-overflow-scrolling: touch;
 }
 
 	.modal__close {

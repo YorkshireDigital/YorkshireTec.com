@@ -961,6 +961,7 @@ a:hover {
   margin: 0;
   font-family: MetronicProRegular, arial, sans-serif;
   color: #525252;
+  cursor: pointer;
 }
 .tab-list__link:hover {
   text-decoration: none;
@@ -1432,6 +1433,12 @@ textarea {
 .event__hero {
   padding: 9em 0 2em;
   color: #fff;
+  background: #b9306a;
+}
+@media (max-width: 37.5em) {
+  .event__hero {
+    padding: 5em 0 2em;
+  }
 }
 
 .event__title,
@@ -1440,10 +1447,23 @@ textarea {
   color: #fff;
 }
 
+@media (max-width: 37.5em) {
+  .event__title {
+    font-size: 25.6px;
+    font-size: 1.6rem;
+  }
+}
+
 .event__strapline {
   max-width: 26em;
   font-family: "MetronicProAir", sans-serif;
   font-weight: 400;
+}
+@media (max-width: 37.5em) {
+  .event__strapline {
+    font-size: 19.2px;
+    font-size: 1.2rem;
+  }
 }
 
 .event__time {
@@ -1454,9 +1474,10 @@ textarea {
 }
 @media (max-width: 37.5em) {
   .event__time {
-    float: none;
+    font-size: 19.2px;
+    font-size: 1.2rem;
     display: block;
-    text-align: center;
+    float: none;
   }
 }
 
@@ -1467,12 +1488,27 @@ textarea {
 .tab-pane__primary {
   max-width: 50%;
 }
+@media (max-width: 37.5em) {
+  .tab-pane__primary {
+    max-width: 100%;
+  }
+}
 
 .tab-pane__secondary {
   float: right;
   width: 40%;
   padding-left: 3em;
-  border-left: 1px solid #ddd;
+  border: solid #ddd;
+  border-width: 0 0 0 1px;
+}
+@media (max-width: 37.5em) {
+  .tab-pane__secondary {
+    float: none;
+    width: 100%;
+    padding: 0 0 2em 0;
+    margin-bottom: 2em;
+    border-width: 0 0 1px 0;
+  }
 }
 
 /*	=MODAL
@@ -1482,7 +1518,7 @@ textarea {
 }
 
 .modal {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   bottom: 0;
@@ -1490,6 +1526,11 @@ textarea {
   width: 100%;
   background: #fff;
   overflow-y: auto;
+  -webkit-transform: translateZ(1px);
+  -moz-transform: translateZ(1px);
+  -o-transform: translateZ(1px);
+  transform: translateZ(1px);
+  -webkit-overflow-scrolling: touch;
 }
 
 .modal__close {
