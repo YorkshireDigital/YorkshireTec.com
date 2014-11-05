@@ -398,6 +398,8 @@ table {
 --------------------------------------------------------------------*/
 /*  =GLOBAL MIXINS
 --------------------------------------------------------------------*/
+/* =FONT SIZES
+--------------------------------------------------------------------*/
 /*  =GLOBAL USE STYLES
 --------------------------------------------------------------------*/
 .group:before, .nav-primary ul:before, .clndr-filters:before, .days:before,
@@ -485,8 +487,8 @@ html {
   color: #303d4a;
 }
 
-h1, .alpha, .event__strapline,
-h2, .beta,
+h1, .alpha,
+h2, .beta, .event__strapline,
 h3, .gamma, .tab-list__link,
 h4, .delta,
 h5, .epsilon {
@@ -494,69 +496,119 @@ h5, .epsilon {
   font-weight: 500;
   color: #50575D;
 }
-h1 a, .alpha a, .event__strapline a,
-h2 a, .beta a,
+h1 a, .alpha a,
+h2 a, .beta a, .event__strapline a,
 h3 a, .gamma a, .tab-list__link a,
 h4 a, .delta a,
 h5 a, .epsilon a {
   color: #b9306a;
   text-decoration: none;
 }
-h1 a:hover, .alpha a:hover, .event__strapline a:hover,
-h2 a:hover, .beta a:hover,
+h1 a:hover, .alpha a:hover,
+h2 a:hover, .beta a:hover, .event__strapline a:hover,
 h3 a:hover, .gamma a:hover, .tab-list__link a:hover,
 h4 a:hover, .delta a:hover,
 h5 a:hover, .epsilon a:hover {
   text-decoration: underline;
 }
 
-h1, .alpha, .event__strapline {
+h1, .alpha {
   font-size: 30px;
   font-size: 1.875rem;
+  line-height: 1.6;
   line-height: 1.4;
   margin: 0 0 .25em 0;
 }
-@media (max-width: 37.5em) {
-  h1, .alpha, .event__strapline {
+@media (max-width: 56.25em) {
+  h1, .alpha {
     font-size: 26px;
     font-size: 1.625rem;
+    line-height: 1.84615;
+  }
+}
+@media (max-width: 37.5em) {
+  h1, .alpha {
+    font-size: 20px;
+    font-size: 1.25rem;
+    line-height: 1.2;
   }
 }
 
-h2, .beta {
+h2, .beta, .event__strapline {
   font-size: 26px;
   font-size: 1.625rem;
+  line-height: 1.84615;
   margin: 0 0 .3846em 0;
 }
-@media (max-width: 37.5em) {
-  h2, .beta {
+@media (max-width: 56.25em) {
+  h2, .beta, .event__strapline {
     font-size: 20px;
     font-size: 1.25rem;
+    line-height: 1.2;
+  }
+}
+@media (max-width: 37.5em) {
+  h2, .beta, .event__strapline {
+    font-size: 18px;
+    font-size: 1.125rem;
+    line-height: 1.33333;
   }
 }
 
 h3, .gamma, .tab-list__link {
   font-size: 20px;
   font-size: 1.25rem;
+  line-height: 1.2;
   margin: 0 0 .3em 0;
+}
+@media (max-width: 56.25em) {
+  h3, .gamma, .tab-list__link {
+    font-size: 18px;
+    font-size: 1.125rem;
+    line-height: 1.33333;
+  }
+}
+@media (max-width: 37.5em) {
+  h3, .gamma, .tab-list__link {
+    font-size: 16px;
+    font-size: 1rem;
+    line-height: 1.5;
+  }
 }
 
 h4, .delta {
   font-size: 18px;
   font-size: 1.125rem;
+  line-height: 1.33333;
   margin: 0 0 .5em 0;
+}
+@media (max-width: 56.25em) {
+  h4, .delta {
+    font-size: 16px;
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+}
+@media (max-width: 37.5em) {
+  h4, .delta {
+    font-size: 14px;
+    font-size: 0.875rem;
+    line-height: 1.71429;
+  }
 }
 
 h5, .epsilon {
   font-size: 16px;
   font-size: 1rem;
+  line-height: 1.5;
   font-weight: 600;
   margin: 0 0 .5em 0;
 }
 
 h6, .zeta {
-  font-size: 16px;
-  font-size: 1rem;
+  font-size: 14px;
+  font-size: 0.875rem;
+  line-height: 1.71429;
   margin: 0 0 .5em 0;
 }
 
@@ -571,8 +623,9 @@ h6, .zeta {
 }
 
 .intro {
-  font-size: 20px;
-  font-size: 1.25rem;
+  font-size: 1.25px;
+  font-size: 0.07813rem;
+  line-height: 19.2;
 }
 
 p,
@@ -591,67 +644,84 @@ a:hover {
 
 /*  =HYPER SIZING
 --------------------------------------------------------------------*/
-.tera, .event__title {
+.giga {
   font-size: 44px;
   font-size: 2.75rem;
+  line-height: 1.09091;
+}
+@media (max-width: 56.25em) {
+  .giga {
+    font-size: 40px;
+    font-size: 2.5rem;
+    line-height: 1.2;
+  }
 }
 @media (max-width: 37.5em) {
-  .tera, .event__title {
-    font-size: 20px;
-    font-size: 1.25rem;
-  }
-}
-@media (max-width: 56.25em) {
-  .tera, .event__title {
-    font-size: 20px;
-    font-size: 1.25rem;
-  }
-}
-
-.giga {
-  font-size: 40px;
-  font-size: 2.5rem;
-}
-@media (max-width: 56.25em) {
   .giga {
     font-size: 34px;
     font-size: 2.125rem;
-  }
-}
-@media (max-width: 37.5em) {
-  .giga {
-    font-size: 30px;
-    font-size: 1.875rem;
+    line-height: 1.41176;
   }
 }
 
-.mega, .hero__title, .hero__intro {
-  font-size: 34px;
-  font-size: 2.125rem;
+.mega {
+  font-size: 40px;
+  font-size: 2.5rem;
+  line-height: 1.2;
 }
 @media (max-width: 56.25em) {
-  .mega, .hero__title, .hero__intro {
-    font-size: 30px;
-    font-size: 1.875rem;
+  .mega {
+    font-size: 34px;
+    font-size: 2.125rem;
+    line-height: 1.41176;
   }
 }
 @media (max-width: 37.5em) {
-  .mega, .hero__title, .hero__intro {
+  .mega {
+    font-size: 30px;
+    font-size: 1.875rem;
+    line-height: 1.6;
+  }
+}
+
+.kilo, .event__title, .hero__title {
+  font-size: 34px;
+  font-size: 2.125rem;
+  line-height: 1.41176;
+}
+@media (max-width: 56.25em) {
+  .kilo, .event__title, .hero__title {
+    font-size: 30px;
+    font-size: 1.875rem;
+    line-height: 1.6;
+  }
+}
+@media (max-width: 37.5em) {
+  .kilo, .event__title, .hero__title {
     font-size: 26px;
     font-size: 1.625rem;
+    line-height: 1.84615;
   }
 }
 
 /*  =SUB SIZING
 --------------------------------------------------------------------*/
 .milli {
-  font-size: 14.4px;
-  font-size: 0.9rem;
+  font-size: 14px;
+  font-size: 0.875rem;
+  line-height: 1.71429;
 }
 
 .micro {
   font-size: 12px;
   font-size: 0.75rem;
+  line-height: 2;
+}
+
+.nano {
+  font-size: 10px;
+  font-size: 0.625rem;
+  line-height: 2.4;
 }
 
 .alrightsanslight, .last-month .day-label,
@@ -787,8 +857,9 @@ a:hover {
 /*  =BUTTON SIZE VARIANTS
 --------------------------------------------------------------------*/
 .btn--xs {
-  font-size: 16px;
-  font-size: 1rem;
+  font-size: 1px;
+  font-size: 0.0625rem;
+  line-height: 24;
   font-weight: 500;
   padding: 0 .5em;
 }
@@ -940,6 +1011,10 @@ a:hover {
   border-bottom: 1px solid #ddd;
 }
 
+.tab-panes {
+  margin-bottom: 2em;
+}
+
 .tab-list {
   margin: 0;
   padding: 0;
@@ -998,9 +1073,10 @@ a:hover {
 /*	=FORM LABELS
 --------------------------------------------------------------------*/
 .sub-info {
-  font-size: 14.208px;
-  font-size: 0.888rem;
-  font-family: "Alright Sans Light";
+  font-size: 14px;
+  font-size: 0.875rem;
+  line-height: 1.71429;
+  font-family: "Alright Sans Light", arial, sans-serif;
   display: block;
   padding: 1em 0;
   color: #737373;
@@ -1175,6 +1251,31 @@ textarea {
   -moz-appearance: none;
 }
 
+.alrightsanslight, .last-month .day-label,
+.next-month .day-label {
+  font-family: "Alright Sans Light";
+  font-style: normal;
+  font-weight: normal;
+}
+
+.alrightsanslightitalic {
+  font-family: "Alright Sans Light";
+  font-style: italic;
+  font-weight: normal;
+}
+
+.alrightsansregular, select, .header-day, .day-label {
+  font-family: "Alright Sans";
+  font-style: normal;
+  font-weight: normal;
+}
+
+.alrightsansregularitalic {
+  font-family: "Alright Sans";
+  font-style: italic;
+  font-weight: normal;
+}
+
 /*	=CALENDAR
 --------------------------------------------------------------------*/
 .calendar {
@@ -1195,8 +1296,8 @@ textarea {
 }
 
 .clndr-controls__nav {
-  font-size: 28.8px;
-  font-size: 1.8rem;
+  font-size: 26px;
+  font-size: 1.625rem;
   -moz-border-radius: 2em;
   -webkit-border-radius: 2em;
   border-radius: 2em;
@@ -1297,7 +1398,7 @@ textarea {
 
 .day {
   width: 14.2857%;
-  height: 7em;
+  height: 6.75em;
   float: left;
   padding: 1%;
   border: solid #E9E9E9;
@@ -1338,9 +1439,9 @@ textarea {
 }
 
 .calendar-event {
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
   min-width: 8px;
   min-height: 8px;
   margin-bottom: .125em;
@@ -1362,51 +1463,29 @@ textarea {
   margin-right: 1px;
 }
 
-.calendar-event__full-details {
+.event-item {
   display: none;
-}
-
-.calendar-event--expanded {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 100;
-  padding: 2em;
-  background: #fff !important;
-  border: 2px solid #ddd;
-  border-radius: 0;
-}
-.calendar-event--expanded .calendar-event__title {
-  font-size: 48px;
-  font-size: 3rem;
-  font-family: MetronicProRegular;
-  color: #333;
-}
-.calendar-event--expanded .calendar-event__title .calendar-event__title--short {
-  width: 45%;
-  display: inline-block;
-}
-.calendar-event--expanded .calendar-event__strapline {
-  font-size: 25.6px;
-  font-size: 1.6rem;
-  color: #0f767e;
-}
-.calendar-event--expanded .calendar-event__full-details {
-  display: block;
-  color: #333;
 }
 
 .calendar-event__short-title {
   display: none;
-  font-size: 12.8px;
-  font-size: 0.8rem;
+  font-size: 10px;
+  font-size: 0.625rem;
+}
+@media (max-width: 56.25em) {
+  .calendar-event__short-title {
+    display: inline-block;
+  }
+}
+@media (max-width: 37.5em) {
+  .calendar-event__short-title {
+    display: none;
+  }
 }
 
 .calendar-event__title {
-  font-size: 12.8px;
-  font-size: 0.8rem;
+  font-size: 12px;
+  font-size: 0.75rem;
 }
 @media (max-width: 56.25em) {
   .calendar-event__title {
@@ -1447,35 +1526,24 @@ textarea {
   color: #fff;
 }
 
-@media (max-width: 37.5em) {
-  .event__title {
-    font-size: 25.6px;
-    font-size: 1.6rem;
-  }
-}
-
 .event__strapline {
   max-width: 26em;
   font-family: "MetronicProAir", sans-serif;
   font-weight: 400;
 }
-@media (max-width: 37.5em) {
-  .event__strapline {
-    font-size: 19.2px;
-    font-size: 1.2rem;
-  }
-}
 
 .event__time {
-  font-size: 22.4px;
-  font-size: 1.4rem;
+  font-size: 26px;
+  font-size: 1.625rem;
+  line-height: 1.84615;
   line-height: 2;
   float: right;
 }
 @media (max-width: 37.5em) {
   .event__time {
-    font-size: 19.2px;
-    font-size: 1.2rem;
+    font-size: 20px;
+    font-size: 1.25rem;
+    line-height: 1.2;
     display: block;
     float: none;
   }
@@ -1516,9 +1584,12 @@ textarea {
 .no-scroll {
   overflow: hidden;
 }
+.no-scroll .page-content {
+  display: none;
+}
 
 .modal {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   bottom: 0;
@@ -1543,6 +1614,12 @@ textarea {
 .modal__close:hover {
   opacity: 1;
 }
+@media (max-width: 37.5em) {
+  .modal__close {
+    top: 1em;
+    right: 1em;
+  }
+}
 
 /*  =BASE
 ------------------------------------------------------------*/
@@ -1565,7 +1642,7 @@ body {
 }
 @media (max-width: 37.5em) {
   .layout-constrained {
-    padding: 0 .5em;
+    padding: 0 1em;
   }
 }
 
@@ -1641,11 +1718,13 @@ body {
   margin: 0 auto;
   font-size: 20px;
   font-size: 1.25rem;
+  line-height: 1.2;
 }
 @media (max-width: 37.5em) {
   .hero__intro {
-    font-size: 16px;
-    font-size: 1rem;
+    font-size: 18px;
+    font-size: 1.125rem;
+    line-height: 1.33333;
   }
 }
 
@@ -1684,7 +1763,7 @@ body {
 --------------------------------------------------------------------*/
 footer[role="contentinfo"] {
   padding-top: 1em;
-  margin-top: 3em;
+  margin: 3em 0;
   border-top: 1px solid #ddd;
   text-align: center;
   color: #767676;

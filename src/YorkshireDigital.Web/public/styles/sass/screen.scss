@@ -12,7 +12,6 @@
 /*	=IMPORTS
 --------------------------------------------------------------------*/
 @import "compass"; 				// Cut this down as required
-@import "compass/typography/vertical_rhythm";
 
 /* Partials */
 @import "partials/normalize"; 	// Edited version of Nicolas Galaghers Normalise
@@ -26,7 +25,7 @@
 @import "partials/island";		// Block based layout elements
 @import "partials/events";		// Event level styles
 @import "partials/modal";		// Modal styles
- 
+
 
 /*  =BASE
 ------------------------------------------------------------*/
@@ -50,7 +49,7 @@ body {
     margin: 0 auto; 
 
     @include breakpoint(viewport-s) {
-        padding: 0 .5em;
+        padding: 0 1em;
     }
 }
 
@@ -128,18 +127,17 @@ body {
 }
 
 	.hero__title {
-		@extend .mega;
+		@extend .kilo;
 		color: #fff;
 	}
 
 	.hero__intro {
-		@extend .mega;
 		max-width: 35em;
 		margin: 0 auto;
-		@include font-size(1.25);
+		@include font-size($h3-size);
 
 		@include breakpoint(viewport-s) {
-			@include font-size(1);
+			@include font-size($h4-size);
 		}
 
 	}
@@ -184,7 +182,7 @@ body {
 --------------------------------------------------------------------*/
 footer[role="contentinfo"] {
 	padding-top: 1em;
-	margin-top: 3em;
+	margin: 3em 0;
 	border-top: 1px solid #ddd;
 	text-align: center;
 	color: #767676;

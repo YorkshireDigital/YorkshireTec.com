@@ -20,8 +20,8 @@
 /*	=FORM LABELS
 --------------------------------------------------------------------*/
 .sub-info {
-	@include font-size(.888);
-	font-family: "Alright Sans Light";
+	@include font-size($milli-size);
+	font-family: "Alright Sans Light", arial, sans-serif;
 	display: block;
 	padding: 1em 0;
 	color: #737373;

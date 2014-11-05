@@ -3,10 +3,15 @@
 
 .no-scroll {
 	overflow: hidden; // Hide the overflow on body to remove double scroll bars 
+
+	.page-content {
+		display: none; // Hide the page content when the modal is active. Fix for iOS scrolling
+	}
+
 }
 
 .modal {
-	position: fixed;
+	position: absolute;
 	top: 0;
 	left: 0;
 	bottom: 0;
@@ -32,6 +37,11 @@
 
 		&:hover {
 			opacity: 1;
+		}
+
+		@include breakpoint(viewport-s) {
+			top: 1em;
+			right: 1em;
 		}
 
 	}

@@ -8,4 +8,6 @@ A hub for the growing digital community in Yorkshire, where individuals, organis
 
 This is the code for the website http://www.yorkshiredigital.com
 
-[![Build status](https://ci.appveyor.com/api/projects/status/3b5vkl8kcqam7txs)](https://ci.appveyor.com/project/MacsDickinson/yorkshiretec-com)
+[![Team City Build](http://team.macsdickinson.com:8888/app/rest/builds/buildType:YorkshireDigital_MainBuild/statusIcon)](http://team.macsdickinson.com:8888/app/rest/builds/buildType:YorkshireDigital_MainBuild/statusIcon) Build
+
+[![Team City Deployment](http://team.macsdickinson.com:8888/app/rest/builds/buildType:YorkshireDigital_Deploy/statusIcon)](http://team.macsdickinson.com:8888/app/rest/builds/buildType:YorkshireDigital_Deploy/statusIcon) Deployment Build

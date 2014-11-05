@@ -66,41 +66,69 @@ h5, .epsilon {
 }
 
 h1, .alpha {
-    @include font-size(1.875); // 30px equivalent
+    @include font-size($h1-size); // 30px equivalent
     line-height: 1.4;
     margin: 0 0 .25em 0;
 
-    @include breakpoint(viewport-s) {
-		@include font-size(1.625);
+    @include breakpoint(viewport-m) {
+		@include font-size($h2-size);
 	}
+
+	@include breakpoint(viewport-s) {
+		@include font-size($h3-size);
+	}
+
 }
 
 h2, .beta {
-    @include font-size(1.625); // 26px equivalent
+    @include font-size($h2-size); // 26px equivalent
     margin: 0 0 .3846em 0;
 
-    @include breakpoint(viewport-s) {
-		@include font-size(1.25);
+    @include breakpoint(viewport-m) {
+		@include font-size($h3-size);
 	}
+
+	@include breakpoint(viewport-s) {
+		@include font-size($h4-size);
+	}
+
 }
 
 h3, .gamma {
-    @include font-size(1.25); // 20px equivalent
+    @include font-size($h3-size); // 20px equivalent
     margin: 0 0 .3em 0;
+
+    @include breakpoint(viewport-m) {
+		@include font-size($h4-size);
+	}
+
+	@include breakpoint(viewport-s) {
+		@include font-size($h5-size);
+	}
+
 }
 
 h4, .delta {
-    @include font-size(1.125); // 18px equivalent
+    @include font-size($h4-size); // 18px equivalent
     margin: 0 0 .5em 0;
+
+    @include breakpoint(viewport-m) {
+		@include font-size($h5-size);
+	}
+
+	@include breakpoint(viewport-s) {
+		@include font-size($h6-size);
+	}
+
 }
 
 h5, .epsilon {
-    @include font-size(1); // 16px equivalent
+    @include font-size($h5-size); // 16px equivalent
     font-weight: 600;
     margin: 0 0 .5em 0;
 }
 h6, .zeta {
-    @include font-size(1);
+    @include font-size($h6-size);
     margin: 0 0 .5em 0;
 }
 
@@ -137,41 +165,41 @@ a {
 /*  =HYPER SIZING
 --------------------------------------------------------------------*/
 
-.tera {
-	@include font-size(2.75);			// 44px equivalent
-
-	@include breakpoint(viewport-s) {
-		@include font-size(1.25);		// 40px equivalent
-	}
-
-	@include breakpoint(viewport-m) {
-		@include font-size(1.25);		// 40px equivalent
-	}
-
-}
-
 .giga {
-	@include font-size(2.5);			// 40px equivalent
+	@include font-size($giga-size);
 
 	@include breakpoint(viewport-m) {
-		@include font-size(2.125);		// 34px equivalent
+		@include font-size($mega-size);
 	}
 
 	@include breakpoint(viewport-s) {
-		@include font-size(1.875);			// 30px equivalent
+		@include font-size($kilo-size);
 	}
 
 }
 
 .mega {
-	@include font-size(2.125);			// 34px equivalent
+	@include font-size($mega-size);
 
 	@include breakpoint(viewport-m) {
-		@include font-size(1.875);		// 30px equivalent
+		@include font-size($kilo-size);
 	}
 
 	@include breakpoint(viewport-s) {
-		@include font-size(1.625);		// 26px equivalent
+		@include font-size($h1-size);
+	}
+
+}
+
+.kilo {
+	@include font-size($kilo-size);
+
+	@include breakpoint(viewport-m) {
+		@include font-size($h1-size);
+	}
+
+	@include breakpoint(viewport-s) {
+		@include font-size($h2-size);
 	}
 
 }
@@ -180,11 +208,15 @@ a {
 --------------------------------------------------------------------*/
 
 .milli {
-	@include font-size(.9);
+	@include font-size($milli-size);
 }
 
 .micro {
-	@include font-size(.75);
+	@include font-size($micro-size);
+}
+
+.nano {
+	@include font-size($nano-size);
 }
 
 
