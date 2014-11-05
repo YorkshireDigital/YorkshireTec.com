@@ -6,7 +6,8 @@
         'ngResource',
         'tien.clndr',
         'ui.utils',
-        'ui.router'
+        'ui.router',
+        'Mac'
     ]);
 
     app.config([

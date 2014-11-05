@@ -16,32 +16,36 @@
         var from = moment().date(1).subtract(1, 'M').format('DD/MM/YYYY');
         var to = moment().date(1).add(2, 'M').format('DD/MM/YYYY');
 
+        if (config.isBeta) {
+            $scope.beta = true;
+        }
+
         $scope.loadEvents(from, to, function (events) {
             $scope.events = events;
             $scope.populateFilters(events);
         });
 
         function init() {
-            $scope.to_trusted = function (html_code) {
+            $scope.to_trusted = function(html_code) {
                 return $sce.trustAsHtml(html_code);
             };
-            $scope.clndrNextMonth = function () {
+            $scope.clndrNextMonth = function() {
                 $scope.clndr.forward();
                 var from = moment($scope.clndr.month._d).date(1).add(1, 'M').format('DD/MM/YYYY');
                 var to = moment($scope.clndr.month._d).date(1).add(2, 'M').format('DD/MM/YYYY');
-                $scope.loadEvents(from, to, function (events) {
+                $scope.loadEvents(from, to, function(events) {
                     $scope.addNewEvents(events);
                 });
             };
-            $scope.clndrPreviousMonth = function () {
+            $scope.clndrPreviousMonth = function() {
                 $scope.clndr.back();
                 var from = moment($scope.clndr.month._d).date(1).subtract(1, 'M').format('DD/MM/YYYY');
                 var to = moment($scope.clndr.month._d).date(1).format('DD/MM/YYYY');
-                $scope.loadEvents(from, to, function (events) {
+                $scope.loadEvents(from, to, function(events) {
                     $scope.addNewEvents(events);
                 });
             };
-            $scope.addNewEvents = function (events) {
+            $scope.addNewEvents = function(events) {
                 var newEvents = [];
                 for (var e = events.length - 1; e >= 0; e--) {
                     var found = false;
@@ -59,7 +63,7 @@
                 $scope.clndr.addEvents(newEvents);
                 return newEvents;
             };
-            $scope.loadEvent = function (eventName) {
+            $scope.loadEvent = function(eventName) {
                 calendarService.Events.get({ eventId: eventName }, function(activeEvent) {
                     $scope.activeEvent = activeEvent;
                     $scope.activeEvent.startFormat = $sce.trustAsHtml(activeEvent.startFormat);
@@ -67,15 +71,15 @@
                     $('body').addClass('no-scroll');
                 });
             };
-            $scope.closeEvent = function () {
+            $scope.closeEvent = function() {
                 $scope.activeEvent = null;
                 $location.path('/', false);
                 $('body').removeClass('no-scroll');
             };
-            $scope.loadEvents = function (from, to, callback) {
+            $scope.loadEvents = function(from, to, callback) {
                 calendarService.Calendar.query({ from: from, to: to }, callback);
             };
-            $scope.populateFilters = function (events) {
+            $scope.populateFilters = function(events) {
                 var interests = $scope.interests || [];
                 var locations = $scope.locations || [];
                 for (var i = events.length - 1; i >= 0; i--) {
@@ -94,6 +98,13 @@
                     interests: '',
                     location: ''
                 };
+            };
+            $scope.raiseOnTrello = function() {
+                // Do stuff to raise on trello
+            };
+            $scope.raiseOnSlack = function () {
+                $('#raise-on-trello').hide();
+                $('#raise-on-slack').show();
             };
         };
     }
