@@ -26,11 +26,20 @@
 	</script>
 	<noscript><link href="/public/styles/icons.fallback.css" rel="stylesheet"></noscript>
     <style type="text/css">
-        .beta {
+        .beta-banner {
             margin: 0;
             padding: 10px;
             background-color: red;
-            text-align: center;
+        }
+        .feedback-modal {
+            padding: 10px;
+        }
+        a.btn {
+            color: #fff;
+        }
+        a:hover {
+            cursor: pointer;
+            text-decoration: none;
         }
     </style>
 </head>
@@ -58,5 +67,6 @@
     <script type="text/javascript" src="/public/scripts/app/controllers/mailinglistcontroller.js"></script>
     <script type="text/javascript" src="/public/scripts/app/services/mailinglist/mailinglistservice.js"></script>
     <script type="text/javascript" src="/public/scripts/app/services/events/calendarservice.js"></script>
+    <script type="text/javascript" src="/public/scripts/app/services/utilities/feedbackService.js"></script>
 </body>
 </html>

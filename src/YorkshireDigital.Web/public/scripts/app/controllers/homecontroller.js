@@ -1,9 +1,9 @@
 ﻿(function () {
     'use strict';
 
-    window.app.controller('homeController', ['$scope', '$sce', 'calendarService', '$routeParams', '$location', homeController]);
+    window.app.controller('homeController', ['$scope', '$sce', 'calendarService', 'feedbackService', '$routeParams', '$location', homeController]);
 
-    function homeController($scope, $sce, calendarService, $routeParams, $location) {
+    function homeController($scope, $sce, calendarService, feedbackService, $routeParams, $location) {
 
         init();
 
@@ -18,6 +18,7 @@
 
         if (config.isBeta) {
             $scope.beta = true;
+            $scope.reportedIssue = { site: document.URL };
         }
 
         $scope.loadEvents(from, to, function (events) {
@@ -99,12 +100,34 @@
                     location: ''
                 };
             };
-            $scope.raiseOnTrello = function() {
-                // Do stuff to raise on trello
+            $scope.showTrelloForm = function () {
+                $('#raise-on-slack').slideUp();
+                $('#raise-on-trello').slideDown();
             };
-            $scope.raiseOnSlack = function () {
-                $('#raise-on-trello').hide();
-                $('#raise-on-slack').show();
+            $scope.showSlackForm = function () {
+                $('#raise-on-trello').slideUp();
+                $('#raise-on-slack').slideDown();
+            };
+            $scope.raiseOnSlack = function (issue) {
+                $('#js-slack-feedback').empty();
+                var valid = true;
+                if (!issue.name) {
+                    $('#js-slack-feedback').append($('<li />', { text: "Please provide your name" }));
+                    valid = false;
+                }
+                if (!issue.contact) {
+                    $('#js-slack-feedback').append($('<li />', { text: "Please provide contact details" }));
+                    valid = false;
+                }
+                if (!issue.details) {
+                    $('#js-slack-feedback').append($('<li />', { text: "Please provide details of the issue" }));
+                    valid = false;
+                }
+                if (valid) {        
+                    feedbackService.Raise.save(issue, function() {
+                        
+                    });
+                }
             };
         };
     }

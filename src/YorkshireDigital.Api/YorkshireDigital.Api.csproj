@@ -143,6 +143,8 @@
     <Compile Include="Events\ViewModels\ContactLinkModel.cs" />
     <Compile Include="Events\ViewModels\EventDetailsModel.cs" />
     <Compile Include="Events\ViewModels\TalkDetailModel.cs" />
+    <Compile Include="Feedback\Models\FeedbackPostModel.cs" />
+    <Compile Include="Feedback\Modules\FeedbackModule.cs" />
     <Compile Include="Infrastructure\Bootstrapper.cs" />
     <Compile Include="Infrastructure\BaseModule.cs" />
     <Compile Include="Infrastructure\Extensions.cs" />

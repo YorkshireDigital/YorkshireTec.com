@@ -1,40 +1,40 @@
 ﻿
-<div class="beta" id="beta-banner" ng-if="beta">
+<div class="beta-banner" id="beta-banner" ng-if="beta">
     <div class="layout-constrained">
         <h1 class="hero__title">This is the beta version of the site, stability is not gauranteed.</h1>
         <p class="hero__intro">If you're lucky enough to have found an issue you can tell us about it <a class="js-modalInput" mac-modal="raise-issue">here</a>.</p>
     </div>
     <mac-modal id="raise-issue" mac-modal-keyboard>
-        <h2>Sorry to hear this!</h2>
-        <p>
-            Sometimes things go wrong, that's why we've tried to make it as easy as possible for you to tell us about it.
-        </p>
-        <div id="raise-on-trello">
-            <div class="clear">
-                <input type="submit" value="Raise the issue on Trello" id="authorize-trello" class="btn btn--primary btn--full js-auth-trello">
+        <div class="feedback-modal">
+            <h2>Sorry to hear this!</h2>
+            <p>Sometimes things go wrong, that's why we've tried to make it as easy as possible for you to tell us about it.</p>
+            <div id="raise-on-trello">
+                <a href="https://trello.com/c/zokl9MEa/2-new-issues" target="_blank" id="authorize-trello" class="btn btn--primary btn--full">Raise the issue on Trello</a>
+                <span class="sub-info">Not got a Trello account? Don't worry, you can contact us directly <a ng-click="showSlackForm()">here</a>.</span>
             </div>
-            <span class="sub-info">Not got a Trello account? Don't worry, you can contact us directly <a ng-click="raiseOnSlack()">here</a>.</span>
-        </div>
-        <div id="raise-on-slack" style="display: none;">
-            <div class="form-group">
-                <label for="name">
-                    Name
-                </label>
-                <input type="text" placeholder="Joe Bloggs" name="name" class="input-full field" id="name">
+            <div id="raise-on-slack" style="display: none;">
+                <div class="form-group">
+                    <label for="raise-on-slack-name">
+                        Name
+                    </label>
+                    <input type="text" placeholder="Joe Bloggs" data-ng-model="reportedIssue.name" class="input-full field" id="raise-on-slack-name">
+                </div>
+                <div class="form-group">
+                    <label for="raise-on-slack-contact">
+                        Contact
+                    </label>
+                    <input type="text" placeholder="Email or @Twitter" data-ng-model="reportedIssue.contact" class="input-full field" id="raise-on-slack-contact">
+                </div>
+                <div class="form-group">
+                    <label for="raise-on-slack-details">
+                        Details
+                    </label>
+                    <textarea id="raise-on-slack-details" class="input-full field" data-ng-model="reportedIssue.details" placeholder="Tell us about the issue."></textarea>
+                </div>
+                <ul id="js-slack-feedback"></ul>
+                <input type="submit" value="Submit" class="btn btn--primary btn--full" ng-click="raiseOnSlack(reportedIssue)">
+                <span class="sub-info">Alternatively, you can raise this on our Trello board <a ng-click="showTrelloForm()">here</a>.</span>
             </div>
-            <div class="form-group">
-                <label for="contact">
-                    Contact
-                </label>
-                <input type="text" placeholder="Email or @Twitter" name="name" class="input-full field" id="contact">
-            </div>
-            <div class="form-group">
-                <label for="details">
-                    Details
-                </label>
-                <textarea id="details" class="input-full field" placeholder="Tell us about the issue."></textarea>
-            </div>
-            <input type="submit" value="Submit" id="authorize-trello" class="btn btn--primary btn--full js-auth-trello">
         </div>
     </mac-modal>
 </div>
