@@ -178,27 +178,24 @@
                     </header>
                     <div class="days">
                         <div class="{{ day.classes }}" ng-class="{day__many: (day.events | calendarFilter:search).length > 3}" ng-repeat="day in days">
-                            <span class="day-label">{{day.day}}</span>
-                            <span class="day-name">{{ formatDay(day.date, 'ddd') }}</span>
-                            <div class="calendar-event" ng-class="{event__long: event.title.length > 11}" style="background: {{ event.colour }}" ng-repeat="event in day.events | calendarFilter:search" data-id="{{ event.uniqueName }}" ng-click="loadEvent(event.uniqueName)">
-                                <span class="calendar-event__short-title">{{ event.shortTitle }}</span>
-                                <span class="calendar-event__title">{{ event.title }}</span>
+                        	
+                        	<div class="day-label">
+                        		<span class="day-label__name">{{ formatDay(day.date, 'ddd') }}</span>
+                            	<span class="day-label__number">{{day.day}}</span>
+                        	</div><!--
+                            
+                            --><div class="events-list">
+	                            <div class="calendar-event" ng-class="{event__long: event.title.length > 11}" style="background: {{ event.colour }}" ng-repeat="event in day.events | calendarFilter:search" data-id="{{ event.uniqueName }}" ng-click="loadEvent(event.uniqueName)">
+	                                <span class="calendar-event__short-title">{{ event.shortTitle }}</span>
+	                                <span class="calendar-event__title">{{ event.title }}</span>
+	                            </div>
                             </div>
+
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!--
-            Implement when we bring in the list view
-            <div class="event-listing">
-                <div class="event-listing-title">EVENTS THIS MONTH</div>
-                <div class="event-item" ng-repeat="event in events | clndrCurrentMonthFilter:clndr">
-                    <div class="event-item-name">{{ event.title }}</div>
-                    <div class="event-item-location">{{ event.description }}</div>
-                    <div class="event-item-date">{{ event.startDate }}</div>
-                </div>
-            </div> -->
         </tien-clndr>
         <div class="island island--horizontal-break">
             <p>

@@ -724,8 +724,7 @@ a:hover {
   line-height: 2.4;
 }
 
-.alrightsanslight, .last-month .day-label,
-.next-month .day-label {
+.alrightsanslight {
   font-family: "Alright Sans Light";
   font-style: normal;
   font-weight: normal;
@@ -737,7 +736,7 @@ a:hover {
   font-weight: normal;
 }
 
-.alrightsansregular, select, .header-day, .day-label {
+.alrightsansregular, select {
   font-family: "Alright Sans";
   font-style: normal;
   font-weight: normal;
@@ -1256,31 +1255,6 @@ textarea {
   -moz-appearance: none;
 }
 
-.alrightsanslight, .last-month .day-label,
-.next-month .day-label {
-  font-family: "Alright Sans Light";
-  font-style: normal;
-  font-weight: normal;
-}
-
-.alrightsanslightitalic {
-  font-family: "Alright Sans Light";
-  font-style: italic;
-  font-weight: normal;
-}
-
-.alrightsansregular, select, .header-day, .day-label {
-  font-family: "Alright Sans";
-  font-style: normal;
-  font-weight: normal;
-}
-
-.alrightsansregularitalic {
-  font-family: "Alright Sans";
-  font-style: italic;
-  font-weight: normal;
-}
-
 /*	=CALENDAR
 --------------------------------------------------------------------*/
 .calendar {
@@ -1396,6 +1370,8 @@ textarea {
   }
 }
 
+/*	=DAYS
+--------------------------------------------------------------------*/
 .days {
   border: solid #E9E9E9;
   border-width: 0 0 0 1px;
@@ -1418,6 +1394,7 @@ textarea {
   .day {
     float: none;
     width: 100%;
+    padding: 2%;
     height: auto;
     border-width: 0 0 1px 0;
   }
@@ -1425,11 +1402,42 @@ textarea {
 
 .day-label {
   display: block;
+  vertical-align: top;
 }
 @media (max-width: 37.5em) {
   .day-label {
+    width: 20%;
     display: inline-block;
-    margin-right: 1em;
+  }
+}
+
+.day-label__name {
+  display: none;
+  width: 60%;
+  min-width: 2.5em;
+  color: #999;
+  font-size: 12px;
+  font-size: 0.75rem;
+  line-height: 2;
+}
+@media (max-width: 37.5em) {
+  .day-label__name {
+    display: inline-block;
+  }
+}
+
+.day-label__number {
+  display: inline-block;
+  width: 20%;
+}
+
+/*	=EVENTS
+--------------------------------------------------------------------*/
+@media (max-width: 37.5em) {
+  .events-list {
+    width: 80%;
+    display: inline-block;
+    padding-left: 1em;
   }
 }
 
@@ -1452,19 +1460,10 @@ textarea {
   }
 }
 
-.event-listing {
-  display: none;
-}
-@media (max-width: 75em) {
-  .event-listing {
-    display: block;
-  }
-}
-
 .calendar-event {
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  border-radius: 5px;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
   margin-bottom: .125em;
   padding: 0 5%;
   color: #fff;
@@ -1475,8 +1474,9 @@ textarea {
 }
 @media (max-width: 37.5em) {
   .calendar-event {
-    display: inline-block;
-    margin-right: 1em;
+    display: block;
+    line-height: 2.5;
+    margin-bottom: .25em;
   }
 }
 
