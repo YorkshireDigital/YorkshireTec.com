@@ -18,6 +18,7 @@
 	padding-top: .25em;
 
 	.month {
+		line-height: 2;
 		text-align: center;
 	}
 
@@ -161,6 +162,7 @@
 
 	@include breakpoint(viewport-s) {
 		width: 20%;
+		max-width: 4em;
 		display: inline-block;
 	}
 
@@ -209,13 +211,14 @@
 
 .last-month,
 .next-month {
-	
 	color: #D4D4D4;
 	background: #F9F9F9;
-
+	
+	// Hide the days outside of the current month
 	@include breakpoint(viewport-s) {
 		display: none;
 	}
+
 }
 
 
@@ -226,23 +229,23 @@
 	padding: 0 5%;
 	color: #fff;
 	text-align: center;
-	line-height: 1.25;
+	line-height: 1.5;
 	background: #5A9BA0;
 	cursor: pointer;
+	@include font-size($micro-size, false);
 
 	@include breakpoint(viewport-s) {
 		display: block;
 		line-height: 2.5;
 		margin-bottom: .25em;
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+
 	}
 
 }
-
-.calendar-event--short {
-    display: inline-block !important;
-    margin-right: 1px;
-}
-
 
 // Not sure where these have come from, need to investigate
 .event-item {
@@ -253,30 +256,68 @@
 
 .calendar-event__short-title {
 	display: none;
-	@include font-size($nano-size, false);
-
-	@include breakpoint(viewport-m) {
-		display: inline-block;
-
-	}
-
-	@include breakpoint(viewport-s) {
-		display: none;
-	}
-
 }
 
 .calendar-event__title {
-
-	@include font-size($micro-size, false);
-
-	@include breakpoint(viewport-m) {
-		display: none;
-	}
 
 	@include breakpoint(viewport-s) {
 		display: block;
 	}
 
 }
+
+
+
+.day__many {
+
+	.calendar-event {
+		display: inline-block;
+		margin-right: .25em;
+
+		@include breakpoint(viewport-s) {
+			display: block;
+		}
+
+	}
+
+	.calendar-event__title {
+		display: none;
+
+		@include breakpoint(viewport-s) {
+			display: block;
+		}
+
+	}
+
+
+	.calendar-event__short-title  {
+		display: block;
+
+		@include breakpoint(viewport-s) {
+			display: none;
+		}
+
+	}
+
+}
+
+@include breakpoint(viewport-m) {
+
+	.calendar-event__title {
+		display: none;
+	}
+
+	.calendar-event__short-title  {
+		display: block;
+	}
+
+	.event-long {
+
+		
+
+	}
+
+}
+
+
 

@@ -519,7 +519,7 @@ h1, .alpha {
   line-height: 1.4;
   margin: 0 0 .25em 0;
 }
-@media (max-width: 56.25em) {
+@media (max-width: 65.625em) {
   h1, .alpha {
     font-size: 26px;
     font-size: 1.625rem;
@@ -540,7 +540,7 @@ h2, .beta, .event__strapline {
   line-height: 1.84615;
   margin: 0 0 .3846em 0;
 }
-@media (max-width: 56.25em) {
+@media (max-width: 65.625em) {
   h2, .beta, .event__strapline {
     font-size: 20px;
     font-size: 1.25rem;
@@ -561,7 +561,7 @@ h3, .gamma, .tab-list__link {
   line-height: 1.2;
   margin: 0 0 .3em 0;
 }
-@media (max-width: 56.25em) {
+@media (max-width: 65.625em) {
   h3, .gamma, .tab-list__link {
     font-size: 18px;
     font-size: 1.125rem;
@@ -582,7 +582,7 @@ h4, .delta {
   line-height: 1.33333;
   margin: 0 0 .5em 0;
 }
-@media (max-width: 56.25em) {
+@media (max-width: 65.625em) {
   h4, .delta {
     font-size: 16px;
     font-size: 1rem;
@@ -649,7 +649,7 @@ a:hover {
   font-size: 2.75rem;
   line-height: 1.09091;
 }
-@media (max-width: 56.25em) {
+@media (max-width: 65.625em) {
   .giga {
     font-size: 40px;
     font-size: 2.5rem;
@@ -669,7 +669,7 @@ a:hover {
   font-size: 2.5rem;
   line-height: 1.2;
 }
-@media (max-width: 56.25em) {
+@media (max-width: 65.625em) {
   .mega {
     font-size: 34px;
     font-size: 2.125rem;
@@ -689,7 +689,7 @@ a:hover {
   font-size: 2.125rem;
   line-height: 1.41176;
 }
-@media (max-width: 56.25em) {
+@media (max-width: 65.625em) {
   .kilo, .event__title, .hero__title {
     font-size: 30px;
     font-size: 1.875rem;
@@ -736,7 +736,7 @@ a:hover {
   font-weight: normal;
 }
 
-.alrightsansregular, select {
+.alrightsansregular {
   font-family: "Alright Sans";
   font-style: normal;
   font-weight: normal;
@@ -1271,6 +1271,7 @@ textarea {
   padding-top: .25em;
 }
 .clndr-nav .month {
+  line-height: 2;
   text-align: center;
 }
 
@@ -1350,7 +1351,7 @@ textarea {
 .header-day__md {
   display: none;
 }
-@media (max-width: 56.25em) {
+@media (max-width: 65.625em) {
   .header-day__md {
     display: block;
   }
@@ -1364,7 +1365,7 @@ textarea {
 .header-day__lg {
   display: block;
 }
-@media (max-width: 56.25em) {
+@media (max-width: 65.625em) {
   .header-day__lg {
     display: none;
   }
@@ -1407,6 +1408,7 @@ textarea {
 @media (max-width: 37.5em) {
   .day-label {
     width: 20%;
+    max-width: 4em;
     display: inline-block;
   }
 }
@@ -1468,9 +1470,11 @@ textarea {
   padding: 0 5%;
   color: #fff;
   text-align: center;
-  line-height: 1.25;
+  line-height: 1.5;
   background: #5A9BA0;
   cursor: pointer;
+  font-size: 12px;
+  font-size: 0.75rem;
 }
 @media (max-width: 37.5em) {
   .calendar-event {
@@ -1478,11 +1482,9 @@ textarea {
     line-height: 2.5;
     margin-bottom: .25em;
   }
-}
-
-.calendar-event--short {
-  display: inline-block !important;
-  margin-right: 1px;
+  .calendar-event:last-child {
+    margin-bottom: 0;
+  }
 }
 
 .event-item {
@@ -1491,35 +1493,49 @@ textarea {
 
 .calendar-event__short-title {
   display: none;
-  font-size: 10px;
-  font-size: 0.625rem;
-}
-@media (max-width: 56.25em) {
-  .calendar-event__short-title {
-    display: inline-block;
-  }
-}
-@media (max-width: 37.5em) {
-  .calendar-event__short-title {
-    display: none;
-  }
 }
 
-.calendar-event__title {
-  font-size: 12px;
-  font-size: 0.75rem;
-}
-@media (max-width: 56.25em) {
-  .calendar-event__title {
-    display: none;
-  }
-}
 @media (max-width: 37.5em) {
   .calendar-event__title {
     display: block;
   }
 }
 
+.day__many .calendar-event {
+  display: inline-block;
+  margin-right: .25em;
+}
+@media (max-width: 37.5em) {
+  .day__many .calendar-event {
+    display: block;
+  }
+}
+.day__many .calendar-event__title {
+  display: none;
+}
+@media (max-width: 37.5em) {
+  .day__many .calendar-event__title {
+    display: block;
+  }
+}
+.day__many .calendar-event__short-title {
+  display: block;
+}
+@media (max-width: 37.5em) {
+  .day__many .calendar-event__short-title {
+    display: none;
+  }
+}
+
+@media (max-width: 65.625em) {
+  .calendar-event__title {
+    display: none;
+  }
+
+  .calendar-event__short-title {
+    display: block;
+  }
+}
 .island {
   padding: 1em;
 }
@@ -1813,7 +1829,7 @@ body {
   padding: 9.75em 2.5em 2em 2.5em;
   background: white;
 }
-@media (max-width: 56.25em) {
+@media (max-width: 65.625em) {
   .sign-up {
     width: 50%;
   }
