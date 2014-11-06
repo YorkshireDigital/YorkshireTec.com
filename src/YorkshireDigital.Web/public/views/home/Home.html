@@ -179,7 +179,7 @@
                     <div class="days">
                         <div class="{{ day.classes }}" ng-class="{day__many: (day.events | calendarFilter:search).length > 3}" ng-repeat="day in days">
                             <span class="day-label">{{day.day}}</span>
-                            <!--<span class="day-name">{{day}}</span>-->
+                            <span class="day-name">{{ formatDay(day.date, 'ddd') }}</span>
                             <div class="calendar-event" ng-class="{event__long: event.title.length > 11}" style="background: {{ event.colour }}" ng-repeat="event in day.events | calendarFilter:search" data-id="{{ event.uniqueName }}" ng-click="loadEvent(event.uniqueName)">
                                 <span class="calendar-event__short-title">{{ event.shortTitle }}</span>
                                 <span class="calendar-event__title">{{ event.title }}</span>

@@ -132,6 +132,9 @@
                     $('.beta-banner h1').focus();
                 }
             };
+            $scope.formatDay = function (date, format) {
+                return moment(date).format(format)
+            };
         };
     }
 })();
