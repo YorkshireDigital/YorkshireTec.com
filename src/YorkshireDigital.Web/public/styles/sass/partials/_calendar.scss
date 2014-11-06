@@ -99,6 +99,10 @@
 .clndr-header {
 	overflow: hidden;
 	border-bottom: 1px solid #F1F1F1;
+
+	@include breakpoint(viewport-s) {
+		display: none;
+	}
 }
 
 .header-day {
@@ -163,8 +167,9 @@
 	border-width: 0 1px 1px 0;
 
 	@include breakpoint(viewport-s) {
-		height: 3em;
-		text-align: center;
+		float: none;
+		width: 100%;
+		height: auto;
 		border-width: 0 0 1px 0;
 	}
 }
@@ -172,6 +177,11 @@
 .day-label {
 	display: block;
 	@extend .alrightsansregular;
+
+	@include breakpoint(viewport-s) {
+		display: inline-block;
+		margin-right: 1em;
+	}
 }
 
 .today {
@@ -192,6 +202,10 @@
 	.day-label {
 		@extend .alrightsanslight;
 	}
+
+	@include breakpoint(viewport-s) {
+		display: none;
+	}
 }
 
 .event-listing {
@@ -205,8 +219,6 @@
 // Calendar event placed on the calendar grid
 .calendar-event {
 	@include border-radius(5px);
-	min-width: 8px;
-	min-height: 8px;
 	margin-bottom: .125em;
 	padding: 0 5%;
 	color: #fff;
@@ -214,10 +226,10 @@
 	line-height: 1.25;
 	background: #5A9BA0;
 	cursor: pointer;
-	
 
 	@include breakpoint(viewport-s) {
 		display: inline-block;
+		margin-right: 1em;
 	}
 
 }
@@ -226,10 +238,6 @@
     display: inline-block !important;
     margin-right: 1px;
 }
-
-// .calendar-event__full-details {
-// 	display: none;
-// }
 
 
 // Not sure where these have come from, need to investigate
@@ -261,5 +269,10 @@
 	@include breakpoint(viewport-m) {
 		display: none;
 	}
+
+	@include breakpoint(viewport-s) {
+		display: block;
+	}
+
 }
 
