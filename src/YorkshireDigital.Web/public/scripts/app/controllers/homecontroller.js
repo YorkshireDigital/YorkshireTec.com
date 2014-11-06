@@ -1,12 +1,13 @@
 ﻿(function () {
     'use strict';
 
-    window.app.controller('homeController', ['$scope', '$sce', 'calendarService', 'feedbackService', '$routeParams', '$location', homeController]);
+    window.app.controller('homeController', ['$scope', '$sce', 'calendarService', 'feedbackService', 'modal', '$routeParams', '$location', homeController]);
 
-    function homeController($scope, $sce, calendarService, feedbackService, $routeParams, $location) {
+    function homeController($scope, $sce, calendarService, feedbackService, modal, $routeParams, $location) {
 
         init();
 
+        $scope.modal = modal;
         $scope.title = 'homeController';
 
         if ($routeParams.eventName) {
@@ -124,9 +125,11 @@
                     valid = false;
                 }
                 if (valid) {        
-                    feedbackService.Raise.save(issue, function() {
-                        
-                    });
+                    feedbackService.Raise.save(issue);
+                    $scope.modal.hide();
+
+                    $('.beta-banner h1').text('Thank you for your feedback ' + issue.name + '. We\'ll be in touch soon.');
+                    $('.beta-banner h1').focus();
                 }
             };
         };
