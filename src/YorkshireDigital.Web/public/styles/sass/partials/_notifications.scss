@@ -1,0 +1,51 @@
+/*	=NOTIFICATIONS
+--------------------------------------------------------------------*/
+
+.notification {
+	padding: .75em 1em;
+	text-align: center;
+	color: #fff;
+
+	.btn {
+		margin-left: 1em;
+	}
+
+}
+
+.notification--global {
+
+}
+
+
+/*	=STATES
+--------------------------------------------------------------------*/
+
+.notification--info {
+	color: #CDD4DB;
+	background: #435260;
+
+	a {
+		color: #fff;
+		text-decoration: underline;
+	}
+
+}
+
+
+/*	=CONTENT
+--------------------------------------------------------------------*/
+
+	.notification__title {
+		@include font-size($milli-size);
+		line-height: 1;
+	}
+
+	.notification__body {
+		@include font-size($milli-size);
+		
+		p:last-child {
+			margin: 0;
+		}
+
+	}
+

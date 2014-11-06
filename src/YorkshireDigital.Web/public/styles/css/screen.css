@@ -854,13 +854,18 @@ a:hover {
   transition: background 0.2s;
 }
 
+.btn--hollow {
+  background: transparent;
+}
+.btn--hollow:hover {
+  background: transparent;
+}
+
 /*  =BUTTON SIZE VARIANTS
 --------------------------------------------------------------------*/
 .btn--xs {
-  font-size: 1px;
-  font-size: 0.0625rem;
-  line-height: 24;
-  font-weight: 500;
+  font-family: "Alright Sans Light", arial, sans-serif;
+  font-weight: 300;
   padding: 0 .5em;
 }
 
@@ -1641,6 +1646,46 @@ textarea {
     top: 1em;
     right: 1em;
   }
+}
+
+/*	=NOTIFICATIONS
+--------------------------------------------------------------------*/
+.notification {
+  padding: .75em 1em;
+  text-align: center;
+  color: #fff;
+}
+.notification .btn {
+  margin-left: 1em;
+}
+
+/*	=STATES
+--------------------------------------------------------------------*/
+.notification--info {
+  color: #CDD4DB;
+  background: #435260;
+}
+.notification--info a {
+  color: #fff;
+  text-decoration: underline;
+}
+
+/*	=CONTENT
+--------------------------------------------------------------------*/
+.notification__title {
+  font-size: 14px;
+  font-size: 0.875rem;
+  line-height: 1.71429;
+  line-height: 1;
+}
+
+.notification__body {
+  font-size: 14px;
+  font-size: 0.875rem;
+  line-height: 1.71429;
+}
+.notification__body p:last-child {
+  margin: 0;
 }
 
 /*  =BASE

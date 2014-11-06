@@ -11,20 +11,21 @@
 
 /*	=IMPORTS
 --------------------------------------------------------------------*/
-@import "compass"; 				// Cut this down as required
+@import "compass"; 						// Cut this down as required
 
 /* Partials */
-@import "partials/normalize"; 	// Edited version of Nicolas Galaghers Normalise
-@import "partials/base.scss";	// Global variables, global mixins & global styles such as clearfix
-@import "partials/typography";	// Global typographys settings such as hN header stack 
-@import "partials/buttons";		// Button variations
-@import "partials/icons";		// Base icon styles
-@import "partials/navigation";	// Navigation such as global nav, sub nav and tabs etc
-@import "partials/forms";		// Global form styles
-@import "partials/calendar";	// Calendar styles
-@import "partials/island";		// Block based layout elements
-@import "partials/events";		// Event level styles
-@import "partials/modal";		// Modal styles
+@import "partials/normalize"; 			// Edited version of Nicolas Galaghers Normalise
+@import "partials/base.scss";			// Global variables, global mixins & global styles such as clearfix
+@import "partials/typography";			// Global typographys settings such as hN header stack 
+@import "partials/buttons";				// Button variations
+@import "partials/icons";				// Base icon styles
+@import "partials/navigation";			// Navigation such as global nav, sub nav and tabs etc
+@import "partials/forms";				// Global form styles
+@import "partials/calendar";			// Calendar styles
+@import "partials/island";				// Block based layout elements
+@import "partials/events";				// Event level styles
+@import "partials/modal";				// Modal styles
+@import "partials/notifications";		// Modal styles
 
 
 /*  =BASE

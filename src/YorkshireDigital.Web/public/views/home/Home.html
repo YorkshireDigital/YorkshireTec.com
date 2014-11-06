@@ -1,8 +1,7 @@
 ﻿
-<div class="beta-banner" id="beta-banner" ng-if="beta">
+<div class="notification notification--info notification--global" id="beta-banner" ng-if="beta">
     <div class="layout-constrained">
-        <h1 class="hero__title">This is the beta version of the site, stability is not gauranteed.</h1>
-        <p class="hero__intro">If you're lucky enough to have found an issue you can tell us about it <a class="js-modalInput" mac-modal="raise-issue">here</a>.</p>
+        <span class="notification__title">Welcome to the beta, we may have hidden a few bugs! Found one? <a class="js-modalInput" mac-modal="raise-issue">Let us know</a></span>
     </div>
     <mac-modal id="raise-issue" mac-modal-keyboard>
         <div class="feedback-modal">

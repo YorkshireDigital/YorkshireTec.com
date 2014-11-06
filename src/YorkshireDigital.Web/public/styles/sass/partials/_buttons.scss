@@ -51,11 +51,21 @@
 	@include button($accent-negative);
 }
 
+.btn--hollow {
+	background: transparent;
+
+	&:hover {
+		background: transparent;
+	}
+	
+}
+
 /*  =BUTTON SIZE VARIANTS
 --------------------------------------------------------------------*/
 .btn--xs {
-	@include font-size(1);
-	font-weight: 500;
+	//@include font-size(1);
+	font-family: $font-general;
+	font-weight: 300;
 	padding: 0 .5em;
 }
 
