@@ -19,10 +19,12 @@
         public string About { get; set; }
         public string Headline { get; set; }
         public string Organiser { get; set; }
+        public string OrganiserShortName { get; set; }
 
         public EventDetailsModel(Event e)
         {
             Organiser = e.Organisation.Name;
+            OrganiserShortName = e.Organisation.ShortName;
             Title = e.Title;
             Synopsis = e.Synopsis;
             Colour = e.Organisation.Colour;

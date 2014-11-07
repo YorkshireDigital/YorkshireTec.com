@@ -59,7 +59,13 @@
                 <nav class="nav-tabs">
                     <ul class="tab-list">
                         <li class="tab-list__item tab-list__item--current"><a for="#tab-event" class="tab-list__link">This Event</a></li>
-                        <li class="tab-list__item" ng-show="{{activeEvent.about.length > 0}}"><a for="#tab-about" class="tab-list__link">About {{activeEvent.organiser}}</a></li>
+                        <li class="tab-list__item" ng-show="{{activeEvent.about.length > 0}}">
+                            <a for="#tab-about" class="tab-list__link">
+                                About
+                                <span class="tab-list__link__short-title">{{activeEvent.organiser}}</span>
+                                <span class="tab-list__link__title">{{activeEvent.organiserShortName}}</span>
+                            </a>
+                        </li>
                         <!--li class="tab-list__item" ng-show="{{activeEvent.pastEvents}}"><a href="#" class="tab-list__link">Past Events</a></li-->
                     </ul>
                 </nav>
@@ -69,7 +75,8 @@
                             <h3>Where</h3>
                             <p class="calendar-event__location">{{ activeEvent.location }}</p>
                             <h3>Contact</h3>
-                            <a href="{{ activeEvent.website }}" class="calendar-event__website" target="_blapnk">{{ activeEvent.website }}</a>
+                            <a href="{{ activeEvent.website }}" class="calendar-event__website" targe
+                               t="_blapnk">{{ activeEvent.website }}</a>
                         </aside>
 
                         <div class="tab-pane__primary">
