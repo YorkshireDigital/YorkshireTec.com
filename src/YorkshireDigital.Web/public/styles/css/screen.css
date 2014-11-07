@@ -1548,6 +1548,7 @@ textarea {
   .day__many .calendar-event {
     float: none;
     display: block;
+    width: 100%;
   }
 }
 .day__many .calendar-event__short-title {
