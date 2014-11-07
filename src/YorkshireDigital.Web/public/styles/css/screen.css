@@ -1032,6 +1032,7 @@ a:hover {
 
 .tab-list__item {
   display: inline-block;
+  margin-bottom: -1px;
   border: solid transparent;
   border-width: 0 0 1px 0;
 }
@@ -1063,13 +1064,13 @@ a:hover {
   display: block;
 }
 
-.tab-list__link__short-title {
+.tab-list__link__title-short {
   display: none;
 }
 
 @media (max-width: 37.5em) {
-  .tab-list__link__short-title {
-    display: block;
+  .tab-list__link__title-short {
+    display: inline-block;
   }
 
   .tab-list__link__title {
@@ -1692,7 +1693,7 @@ textarea {
 /*	=NOTIFICATIONS
 --------------------------------------------------------------------*/
 .notification {
-  padding: .75em 1em;
+  padding: .75em 0;
   text-align: center;
   color: #fff;
 }
@@ -1937,6 +1938,7 @@ footer[role="contentinfo"] {
 .feedback-panel {
   max-width: 450px;
   margin: 0 auto;
+  padding-top: 3em;
 }
 .feedback-panel h2 {
   color: #fff;
