@@ -53,6 +53,7 @@
 
 	.tab-list__item {
 		display: inline-block;
+		margin-bottom: -1px;
 		border: solid transparent;
 		border-width: 0 0 1px 0;
 
@@ -91,14 +92,14 @@
 
 
 // Responsive tab titles 
-.tab-list__link__short-title {
+.tab-list__link__title-short {
 	display: none;
 }
 
 @include breakpoint(viewport-s) {
 
-	.tab-list__link__short-title {
-		display: block;
+	.tab-list__link__title-short {
+		display: inline-block;
 	}
 
 	.tab-list__link__title {

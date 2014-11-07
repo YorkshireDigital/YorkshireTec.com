@@ -1032,6 +1032,7 @@ a:hover {
 
 .tab-list__item {
   display: inline-block;
+  margin-bottom: -1px;
   border: solid transparent;
   border-width: 0 0 1px 0;
 }
@@ -1063,13 +1064,13 @@ a:hover {
   display: block;
 }
 
-.tab-list__link__short-title {
+.tab-list__link__title-short {
   display: none;
 }
 
 @media (max-width: 37.5em) {
-  .tab-list__link__short-title {
-    display: block;
+  .tab-list__link__title-short {
+    display: inline-block;
   }
 
   .tab-list__link__title {
@@ -1456,7 +1457,7 @@ textarea {
 --------------------------------------------------------------------*/
 @media (max-width: 37.5em) {
   .events-list {
-    width: 80%;
+    width: 75%;
     display: inline-block;
     padding-left: 1em;
   }
@@ -1513,36 +1514,15 @@ textarea {
 .calendar-event__short-title {
   display: none;
 }
+@media (max-width: 37.5em) {
+  .calendar-event__short-title {
+    display: none !important;
+  }
+}
 
 @media (max-width: 37.5em) {
   .calendar-event__title {
-    display: block;
-  }
-}
-
-.day__many .calendar-event {
-  display: inline-block;
-  margin-right: .25em;
-}
-@media (max-width: 37.5em) {
-  .day__many .calendar-event {
-    display: block;
-  }
-}
-.day__many .calendar-event__title {
-  display: none;
-}
-@media (max-width: 37.5em) {
-  .day__many .calendar-event__title {
-    display: block;
-  }
-}
-.day__many .calendar-event__short-title {
-  display: block;
-}
-@media (max-width: 37.5em) {
-  .day__many .calendar-event__short-title {
-    display: none;
+    display: block !important;
   }
 }
 
@@ -1555,6 +1535,32 @@ textarea {
     display: block;
   }
 }
+.day__many .calendar-event {
+  display: inline-block;
+  margin-right: .25em;
+}
+@media (max-width: 37.5em) {
+  .day__many .calendar-event {
+    display: block;
+  }
+}
+.day__many .calendar-event__short-title {
+  display: block;
+}
+@media (max-width: 37.5em) {
+  .day__many .calendar-event__short-title {
+    display: none;
+  }
+}
+.day__many .calendar-event__title {
+  display: none;
+}
+@media (max-width: 37.5em) {
+  .day__many .calendar-event__title {
+    display: block !important;
+  }
+}
+
 .island {
   padding: 1em;
 }
@@ -1692,7 +1698,7 @@ textarea {
 /*	=NOTIFICATIONS
 --------------------------------------------------------------------*/
 .notification {
-  padding: .75em 1em;
+  padding: .75em 0;
   text-align: center;
   color: #fff;
 }
@@ -1937,6 +1943,7 @@ footer[role="contentinfo"] {
 .feedback-panel {
   max-width: 450px;
   margin: 0 auto;
+  padding-top: 3em;
 }
 .feedback-panel h2 {
   color: #fff;
