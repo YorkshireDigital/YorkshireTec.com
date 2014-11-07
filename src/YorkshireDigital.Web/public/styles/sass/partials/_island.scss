@@ -3,10 +3,11 @@
 }
 
 .island--horizontal-break {
-	margin: 1.5em 0;
+	@extend .group;
+	margin: 2em 0 0;
+	padding-top: 2em;
 	border: solid #ddd;
 	border-width: 2px 0;
-	text-align: center;
 
 	p:last-child {
 		margin: 0;

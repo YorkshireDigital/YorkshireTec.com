@@ -402,20 +402,21 @@ table {
 --------------------------------------------------------------------*/
 /*  =GLOBAL USE STYLES
 --------------------------------------------------------------------*/
-.group:before, .nav-primary ul:before, .clndr-filters:before, .days:before,
+.group:before, .nav-primary ul:before, .clndr-filters:before, .days:before, .island--horizontal-break:before,
 .group:after,
 .nav-primary ul:after,
 .clndr-filters:after,
-.days:after {
+.days:after,
+.island--horizontal-break:after {
   content: "";
   display: table;
 }
 
-.group:after, .nav-primary ul:after, .clndr-filters:after, .days:after {
+.group:after, .nav-primary ul:after, .clndr-filters:after, .days:after, .island--horizontal-break:after {
   clear: both;
 }
 
-.group, .nav-primary ul, .clndr-filters, .days {
+.group, .nav-primary ul, .clndr-filters, .days, .island--horizontal-break {
   zoom: 1;
 }
 
@@ -1546,10 +1547,10 @@ textarea {
 }
 
 .island--horizontal-break {
-  margin: 1.5em 0;
+  margin: 2em 0 0;
+  padding-top: 2em;
   border: solid #ddd;
   border-width: 2px 0;
-  text-align: center;
 }
 .island--horizontal-break p:last-child {
   margin: 0;
@@ -1735,6 +1736,16 @@ body {
   margin-bottom: 2em;
 }
 
+.panel-one {
+  float: left;
+  width: 45%;
+}
+
+.panel-two {
+  float: right;
+  width: 45%;
+}
+
 /*  =HEADER
 --------------------------------------------------------------------*/
 .site-header {
@@ -1847,9 +1858,7 @@ body {
 /*  =FOOTER
 --------------------------------------------------------------------*/
 footer[role="contentinfo"] {
-  padding-top: 1em;
-  margin: 3em 0;
-  border-top: 1px solid #ddd;
+  margin: 2em 0;
   text-align: center;
   color: #767676;
 }
