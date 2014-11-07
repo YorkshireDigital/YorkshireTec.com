@@ -195,8 +195,27 @@ footer[role="contentinfo"] {
 }
 
 
+/*  =FEEDBACK PANEL
+	 Ths needs to be refactored when its not midnight!
+--------------------------------------------------------------------*/
+
+.feedback-panel {
+	max-width: 450px;
+	margin: 0 auto;
+
+	h2 {
+		color: #fff;
+	}
+
+	.sub-info {
+		color: #CDD4DB;
+	}
+
+}
+
+
 /*  =GENERAL UI ELEMENTS
-------------------------------------------------------------*/
+--------------------------------------------------------------------*/
 hr {
 	height: 1px;
 	margin: 1em 0;

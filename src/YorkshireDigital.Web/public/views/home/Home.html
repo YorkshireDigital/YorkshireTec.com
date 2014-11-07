@@ -2,16 +2,16 @@
 <div class="notification notification--info notification--global" id="beta-banner" ng-if="beta">
     <div class="layout-constrained">
         <span class="notification__title">Welcome to the beta, we may have hidden a few bugs! Found one? <a class="js-modalInput" mac-modal="raise-issue">Let us know</a></span>
-    </div>
-    <mac-modal id="raise-issue" mac-modal-keyboard>
-        <div class="feedback-modal">
-            <h2>Sorry to hear this!</h2>
+
+		<div class="feedback-panel">
+			
+			<h2>Congratulations, you found one!</h2>
             <p>Sometimes things go wrong, that's why we've tried to make it as easy as possible for you to tell us about it.</p>
             <div id="raise-on-trello">
-                <a href="https://trello.com/c/zokl9MEa/2-new-issues" target="_blank" id="authorize-trello" class="btn btn--primary btn--full">Raise the issue on Trello</a>
-                <span class="sub-info">Not got a Trello account? Don't worry, you can contact us directly <a ng-click="showSlackForm()">here</a>.</span>
+                <a href="https://trello.com/c/zokl9MEa/2-new-issues" target="_blank" id="authorize-trello" class="btn btn--primary">Raise the issue on Trello</a>
+                <span class="sub-info">Not got a Trello account? <a ng-click="showSlackForm()">Contact us directly</a>.</span>
             </div>
-            <div id="raise-on-slack" style="display: none;">
+            <div id="raise-on-slack" class="layout-stacked" style="display: none;">
                 <div class="form-group">
                     <label for="raise-on-slack-name">
                         Name
@@ -32,10 +32,18 @@
                 </div>
                 <ul id="js-slack-feedback"></ul>
                 <input type="submit" value="Submit" class="btn btn--primary btn--full" ng-click="raiseOnSlack(reportedIssue)">
-                <span class="sub-info">Alternatively, you can raise this on our Trello board <a ng-click="showTrelloForm()">here</a>.</span>
+                <span class="sub-info">Alternatively, you can <a ng-click="showTrelloForm()">raise a Trello card</a>.</span>
             </div>
-        </div>
-    </mac-modal>
+
+		</div>
+
+
+    </div>
+   
+       
+            
+        
+   
 </div>
 
 <section ng-if="activeEvent" class="modal">
