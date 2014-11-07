@@ -101,6 +101,14 @@
                     location: ''
                 };
             };
+            $scope.showFeedbackPanel = function () {
+                $('.notification__title').fadeOut();
+                $('.feedback-panel').slideDown();
+            };
+            $scope.hideFeedbackPanel = function () {
+                $('.notification__title').fadeIn();
+                $('.feedback-panel').slideUp();
+            };
             $scope.showTrelloForm = function () {
                 $('#raise-on-slack').slideUp();
                 $('#raise-on-trello').slideDown();
@@ -128,12 +136,20 @@
                     feedbackService.Raise.save(issue);
                     $scope.modal.hide();
 
-                    $('.beta-banner h1').text('Thank you for your feedback ' + issue.name + '. We\'ll be in touch soon.');
-                    $('.beta-banner h1').focus();
+                    $('.notification__title').after('<span class="notification__feedback">Thank you for your feedback ' + issue.name + '. We\'ll be in touch soon.</span>');
+
+                    $('.feedback-panel').slideUp();
+
+                    setTimeout(function () {
+                        $('.notification__feedback').fadeOut(1000);
+                        setTimeout(function () {
+                            $('.notification__title').fadeIn();
+                        }, 1000);
+                    }, 2000);
                 }
             };
             $scope.formatDay = function (date, format) {
-                return moment(date).format(format)
+                return moment(date).format(format);
             };
         };
     }
