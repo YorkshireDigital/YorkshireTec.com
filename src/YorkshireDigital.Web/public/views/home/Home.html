@@ -180,6 +180,12 @@
                 </div>
             </div>
             <div class="clndr-grid loading-item">
+                <div class="loading-item__overlay">
+                    <div class="loading-item__feedback">
+                        <h3>Loading Events</h3>
+                        <p>Almost there!</p>
+                    </div>
+                </div>
                 <div class="days-of-the-week">
                     <header class="clndr-header">
                         <div class="header-day" ng-repeat="dayOfTheWeek in daysOfTheWeek track by $index">
@@ -188,19 +194,17 @@
                     </header>
                     <div class="days">
                         <div class="{{ day.classes }}" ng-class="{day__many: (day.events | calendarFilter:search).length > 3}" ng-repeat="day in days">
-                        	
-                        	<div class="day-label">
-                        		<span class="day-label__name">{{ formatDay(day.date, 'ddd') }}</span>
-                            	<span class="day-label__number">{{day.day}}</span>
-                        	</div><!--
-                            
-                            --><div class="events-list">
-	                            <div class="calendar-event" ng-class="{event__long: event.title.length > 11}" style="background: {{ event.colour }}" ng-repeat="event in day.events | calendarFilter:search" data-id="{{ event.uniqueName }}" ng-click="loadEvent(event.uniqueName)">
-	                                <span class="calendar-event__short-title">{{ event.shortTitle }}</span>
-	                                <span class="calendar-event__title">{{ event.title }}</span>
-	                            </div>
-                            </div>
 
+                            <div class="day-label">
+                                <span class="day-label__name">{{ formatDay(day.date, 'ddd') }}</span>
+                                <span class="day-label__number">{{day.day}}</span>
+                            </div>
+                            <div class="events-list">
+                                <div class="calendar-event" ng-attr-id="{{ event.uniqueName }}" ng-class="{event__long: event.title.length > 11}" style="background: {{ event.colour }}" ng-repeat="event in day.events | calendarFilter:search" ng-click="loadEvent(event.uniqueName)">
+                                    <span class="calendar-event__short-title">{{ event.shortTitle }}</span>
+                                    <span class="calendar-event__title">{{ event.title }}</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -212,12 +216,12 @@
                 <!-- Begin MailChimp Signup Form -->
                 <form action="https://yorkshiredigital.us3.list-manage.com/subscribe/post?u=e91ce15c242d895864a05d39e&amp;id=2e2faa57fb" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate autocomplete="off">
                     <div id="mc_embed_signup">
-                        <h3>Sign up to our newsletter</h3>`
+                        <h3>Sign up to our newsletter</h3>
                         <div class="mc-field-group form-group">
                             <label for="mce-NAME" class="is-offscreen">
                                 First name
                             </label>
-                            <input type="text" placeholder="First name" value="" name="NAME" class="required input-full field" id="mce-NAME" >
+                            <input type="text" placeholder="First name" value="" name="NAME" class="required input-full field" id="mce-NAME">
                         </div>
                         <div class="mc-field-group form-group">
                             <label for="mce-EMAIL" class="is-offscreen">
@@ -276,19 +280,19 @@
                     </script>
                 </div>
             </div>
-            
-            <div class="panel-two">
-			
-				<h3>Know an event we've not got?</h3>
-        		<p>
-	                If you run or know of any meetups/events in Yorkshire we have not listed, please <a href="mailto:info@yorkshiredigital.com">let us know</a>.
-	            </p>
 
-			</div>
+            <div class="panel-two">
+
+                <h3>Know an event we've not got?</h3>
+                <p>
+                    If you run or know of any meetups/events in Yorkshire we have not listed, please <a href="mailto:info@yorkshiredigital.com">let us know</a>.
+                </p>
+
+            </div>
 
         </div>
 
-		
+
 
     </section>
 	<footer class="site-footer" role="contentinfo">

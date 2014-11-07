@@ -1457,7 +1457,7 @@ textarea {
 --------------------------------------------------------------------*/
 @media (max-width: 37.5em) {
   .events-list {
-    width: 80%;
+    width: 75%;
     display: inline-block;
     padding-left: 1em;
   }
@@ -1514,36 +1514,15 @@ textarea {
 .calendar-event__short-title {
   display: none;
 }
+@media (max-width: 37.5em) {
+  .calendar-event__short-title {
+    display: none !important;
+  }
+}
 
 @media (max-width: 37.5em) {
   .calendar-event__title {
-    display: block;
-  }
-}
-
-.day__many .calendar-event {
-  display: inline-block;
-  margin-right: .25em;
-}
-@media (max-width: 37.5em) {
-  .day__many .calendar-event {
-    display: block;
-  }
-}
-.day__many .calendar-event__title {
-  display: none;
-}
-@media (max-width: 37.5em) {
-  .day__many .calendar-event__title {
-    display: block;
-  }
-}
-.day__many .calendar-event__short-title {
-  display: block;
-}
-@media (max-width: 37.5em) {
-  .day__many .calendar-event__short-title {
-    display: none;
+    display: block !important;
   }
 }
 
@@ -1556,6 +1535,32 @@ textarea {
     display: block;
   }
 }
+.day__many .calendar-event {
+  display: inline-block;
+  margin-right: .25em;
+}
+@media (max-width: 37.5em) {
+  .day__many .calendar-event {
+    display: block;
+  }
+}
+.day__many .calendar-event__short-title {
+  display: block;
+}
+@media (max-width: 37.5em) {
+  .day__many .calendar-event__short-title {
+    display: none;
+  }
+}
+.day__many .calendar-event__title {
+  display: none;
+}
+@media (max-width: 37.5em) {
+  .day__many .calendar-event__title {
+    display: block !important;
+  }
+}
+
 .island {
   padding: 1em;
 }

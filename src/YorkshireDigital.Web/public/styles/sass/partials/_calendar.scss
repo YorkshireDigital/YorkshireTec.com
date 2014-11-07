@@ -193,7 +193,7 @@
 .events-list {
 
 	@include breakpoint(viewport-s) {
-		width: 80%;
+		width: 75%;
 		display: inline-block;
 		padding-left: 1em;
 	}
@@ -256,47 +256,17 @@
 
 .calendar-event__short-title {
 	display: none;
+
+	@include breakpoint(viewport-s) {
+		display: none !important;
+	}
+
 }
 
 .calendar-event__title {
 
 	@include breakpoint(viewport-s) {
-		display: block;
-	}
-
-}
-
-
-
-.day__many {
-
-	.calendar-event {
-		display: inline-block;
-		margin-right: .25em;
-
-		@include breakpoint(viewport-s) {
-			display: block;
-		}
-
-	}
-
-	.calendar-event__title {
-		display: none;
-
-		@include breakpoint(viewport-s) {
-			display: block;
-		}
-
-	}
-
-
-	.calendar-event__short-title  {
-		display: block;
-
-		@include breakpoint(viewport-s) {
-			display: none;
-		}
-
+		display: block !important;
 	}
 
 }
@@ -311,13 +281,45 @@
 		display: block;
 	}
 
-	.event-long {
 
-		
+}
+
+.day__many {
+
+	.calendar-event {
+		display: inline-block;
+		margin-right: .25em;
+
+		@include breakpoint(viewport-s) {
+			display: block;
+		}
+
+	}
+
+	
+
+
+	.calendar-event__short-title  {
+		display: block;
+
+		@include breakpoint(viewport-s) {
+			display: none;
+		}
+
+	}
+
+	.calendar-event__title {
+		display: none;
+
+		@include breakpoint(viewport-s) {
+			display: block !important;
+		}
 
 	}
 
 }
+
+
 
 
 
