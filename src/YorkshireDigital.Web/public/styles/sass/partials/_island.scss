@@ -12,5 +12,10 @@
 	p:last-child {
 		margin: 0;
 	}
+
+	@include breakpoint(viewport-s) {
+		padding-right: 0;
+		padding-left: 0;
+	}
 	
 }

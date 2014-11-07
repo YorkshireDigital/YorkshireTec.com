@@ -65,12 +65,22 @@ body {
 
 .panel-one {
 	float: left;
-	width: 45%;
 }
 
 .panel-two {
 	float: right;
+}
+
+.panel-one,
+.panel-two {
 	width: 45%;
+
+	@include breakpoint(viewport-s) {
+		width: 100%;
+		float: none;
+		margin-bottom: 1em;
+	}
+
 }
 
 
