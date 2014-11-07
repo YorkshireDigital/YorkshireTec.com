@@ -47,7 +47,7 @@ $rhythm-unit-one: 1.5;                          // Single rhythm unit based on $
     @media (max-width: 65.625em)   { @content; }  // 1050px
   }
   @else if $point == viewport-s {
-    @media (max-width: 37.5em)    { @content; }  // 600px
+    @media (max-width: 43.75em)    { @content; }  // 700px
   }
    @else if $point == viewport-xs {
     @media (max-width: 18.75em)   { @content; }  // 300px

@@ -193,7 +193,7 @@
 .events-list {
 
 	@include breakpoint(viewport-s) {
-		width: 75%;
+		width: 77%;
 		display: inline-block;
 		padding-left: 1em;
 	}
@@ -287,17 +287,21 @@
 .day__many {
 
 	.calendar-event {
-		display: inline-block;
+		float: left;
+		width: 49%;
 		margin-right: .25em;
+		margin-right: 2%;
+
+		&:nth-child(even) {
+			margin-right: 0;
+		}
 
 		@include breakpoint(viewport-s) {
+			float: none;
 			display: block;
 		}
 
 	}
-
-	
-
 
 	.calendar-event__short-title  {
 		display: block;

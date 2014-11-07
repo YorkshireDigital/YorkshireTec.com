@@ -527,7 +527,7 @@ h1, .alpha {
     line-height: 1.84615;
   }
 }
-@media (max-width: 37.5em) {
+@media (max-width: 43.75em) {
   h1, .alpha {
     font-size: 20px;
     font-size: 1.25rem;
@@ -548,7 +548,7 @@ h2, .beta, .event__strapline {
     line-height: 1.2;
   }
 }
-@media (max-width: 37.5em) {
+@media (max-width: 43.75em) {
   h2, .beta, .event__strapline {
     font-size: 18px;
     font-size: 1.125rem;
@@ -569,7 +569,7 @@ h3, .gamma, .tab-list__link {
     line-height: 1.33333;
   }
 }
-@media (max-width: 37.5em) {
+@media (max-width: 43.75em) {
   h3, .gamma, .tab-list__link {
     font-size: 16px;
     font-size: 1rem;
@@ -590,7 +590,7 @@ h4, .delta {
     line-height: 1.5;
   }
 }
-@media (max-width: 37.5em) {
+@media (max-width: 43.75em) {
   h4, .delta {
     font-size: 14px;
     font-size: 0.875rem;
@@ -658,7 +658,7 @@ a:hover {
     line-height: 1.2;
   }
 }
-@media (max-width: 37.5em) {
+@media (max-width: 43.75em) {
   .giga {
     font-size: 34px;
     font-size: 2.125rem;
@@ -678,7 +678,7 @@ a:hover {
     line-height: 1.41176;
   }
 }
-@media (max-width: 37.5em) {
+@media (max-width: 43.75em) {
   .mega {
     font-size: 30px;
     font-size: 1.875rem;
@@ -698,7 +698,7 @@ a:hover {
     line-height: 1.6;
   }
 }
-@media (max-width: 37.5em) {
+@media (max-width: 43.75em) {
   .kilo, .event__title, .hero__title {
     font-size: 26px;
     font-size: 1.625rem;
@@ -1068,7 +1068,7 @@ a:hover {
   display: none;
 }
 
-@media (max-width: 37.5em) {
+@media (max-width: 43.75em) {
   .tab-list__link__title-short {
     display: inline-block;
   }
@@ -1158,7 +1158,7 @@ textarea:focus {
 .input-xl {
   width: 350px;
 }
-@media (max-width: 37.5em) {
+@media (max-width: 43.75em) {
   .input-xl {
     width: 100%;
   }
@@ -1341,7 +1341,7 @@ textarea {
   overflow: hidden;
   border-bottom: 1px solid #F1F1F1;
 }
-@media (max-width: 37.5em) {
+@media (max-width: 43.75em) {
   .clndr-header {
     display: none;
   }
@@ -1352,7 +1352,7 @@ textarea {
   float: left;
   padding: 1%;
 }
-@media (max-width: 37.5em) {
+@media (max-width: 43.75em) {
   .header-day {
     padding: 0;
     text-align: center;
@@ -1362,7 +1362,7 @@ textarea {
 .header-day__sm {
   display: none;
 }
-@media (max-width: 37.5em) {
+@media (max-width: 43.75em) {
   .header-day__sm {
     display: block;
   }
@@ -1376,7 +1376,7 @@ textarea {
     display: block;
   }
 }
-@media (max-width: 37.5em) {
+@media (max-width: 43.75em) {
   .header-day__md {
     display: none;
   }
@@ -1397,7 +1397,7 @@ textarea {
   border: solid #E9E9E9;
   border-width: 0 0 0 1px;
 }
-@media (max-width: 37.5em) {
+@media (max-width: 43.75em) {
   .days {
     border-width: 0;
   }
@@ -1411,7 +1411,7 @@ textarea {
   border: solid #E9E9E9;
   border-width: 0 1px 1px 0;
 }
-@media (max-width: 37.5em) {
+@media (max-width: 43.75em) {
   .day {
     float: none;
     width: 100%;
@@ -1425,7 +1425,7 @@ textarea {
   display: block;
   vertical-align: top;
 }
-@media (max-width: 37.5em) {
+@media (max-width: 43.75em) {
   .day-label {
     width: 20%;
     max-width: 4em;
@@ -1442,7 +1442,7 @@ textarea {
   font-size: 0.75rem;
   line-height: 2;
 }
-@media (max-width: 37.5em) {
+@media (max-width: 43.75em) {
   .day-label__name {
     display: inline-block;
   }
@@ -1455,9 +1455,9 @@ textarea {
 
 /*	=EVENTS
 --------------------------------------------------------------------*/
-@media (max-width: 37.5em) {
+@media (max-width: 43.75em) {
   .events-list {
-    width: 75%;
+    width: 77%;
     display: inline-block;
     padding-left: 1em;
   }
@@ -1475,7 +1475,7 @@ textarea {
   color: #D4D4D4;
   background: #F9F9F9;
 }
-@media (max-width: 37.5em) {
+@media (max-width: 43.75em) {
   .last-month,
   .next-month {
     display: none;
@@ -1496,7 +1496,7 @@ textarea {
   font-size: 12px;
   font-size: 0.75rem;
 }
-@media (max-width: 37.5em) {
+@media (max-width: 43.75em) {
   .calendar-event {
     display: block;
     line-height: 2.5;
@@ -1514,13 +1514,13 @@ textarea {
 .calendar-event__short-title {
   display: none;
 }
-@media (max-width: 37.5em) {
+@media (max-width: 43.75em) {
   .calendar-event__short-title {
     display: none !important;
   }
 }
 
-@media (max-width: 37.5em) {
+@media (max-width: 43.75em) {
   .calendar-event__title {
     display: block !important;
   }
@@ -1536,18 +1536,24 @@ textarea {
   }
 }
 .day__many .calendar-event {
-  display: inline-block;
+  float: left;
+  width: 49%;
   margin-right: .25em;
+  margin-right: 2%;
 }
-@media (max-width: 37.5em) {
+.day__many .calendar-event:nth-child(even) {
+  margin-right: 0;
+}
+@media (max-width: 43.75em) {
   .day__many .calendar-event {
+    float: none;
     display: block;
   }
 }
 .day__many .calendar-event__short-title {
   display: block;
 }
-@media (max-width: 37.5em) {
+@media (max-width: 43.75em) {
   .day__many .calendar-event__short-title {
     display: none;
   }
@@ -1555,7 +1561,7 @@ textarea {
 .day__many .calendar-event__title {
   display: none;
 }
-@media (max-width: 37.5em) {
+@media (max-width: 43.75em) {
   .day__many .calendar-event__title {
     display: block !important;
   }
@@ -1574,7 +1580,7 @@ textarea {
 .island--horizontal-break p:last-child {
   margin: 0;
 }
-@media (max-width: 37.5em) {
+@media (max-width: 43.75em) {
   .island--horizontal-break {
     padding-right: 0;
     padding-left: 0;
@@ -1588,7 +1594,7 @@ textarea {
   color: #fff;
   background: #b9306a;
 }
-@media (max-width: 37.5em) {
+@media (max-width: 43.75em) {
   .event__hero {
     padding: 5em 0 2em;
   }
@@ -1613,7 +1619,7 @@ textarea {
   line-height: 2;
   float: right;
 }
-@media (max-width: 37.5em) {
+@media (max-width: 43.75em) {
   .event__time {
     font-size: 20px;
     font-size: 1.25rem;
@@ -1630,7 +1636,7 @@ textarea {
 .tab-pane__primary {
   max-width: 50%;
 }
-@media (max-width: 37.5em) {
+@media (max-width: 43.75em) {
   .tab-pane__primary {
     max-width: 100%;
   }
@@ -1643,7 +1649,7 @@ textarea {
   border: solid #ddd;
   border-width: 0 0 0 1px;
 }
-@media (max-width: 37.5em) {
+@media (max-width: 43.75em) {
   .tab-pane__secondary {
     float: none;
     width: 100%;
@@ -1688,7 +1694,7 @@ textarea {
 .modal__close:hover {
   opacity: 1;
 }
-@media (max-width: 37.5em) {
+@media (max-width: 43.75em) {
   .modal__close {
     top: 1em;
     right: 1em;
@@ -1759,7 +1765,7 @@ textarea {
 .loading-item__feedback h3 {
   color: #b9306a;
 }
-@media (max-width: 37.5em) {
+@media (max-width: 43.75em) {
   .loading-item__feedback {
     top: 5%;
   }
@@ -1784,7 +1790,7 @@ body {
   padding: 0 2em;
   margin: 0 auto;
 }
-@media (max-width: 37.5em) {
+@media (max-width: 43.75em) {
   .layout-constrained {
     padding: 0 1em;
   }
@@ -1806,7 +1812,7 @@ body {
 .panel-two {
   width: 45%;
 }
-@media (max-width: 37.5em) {
+@media (max-width: 43.75em) {
   .panel-one,
   .panel-two {
     width: 100%;
@@ -1821,7 +1827,7 @@ body {
   padding-top: 1em;
   padding-bottom: 1em;
 }
-@media (max-width: 37.5em) {
+@media (max-width: 43.75em) {
   .site-header {
     text-align: center;
   }
@@ -1831,7 +1837,7 @@ body {
   float: right;
   line-height: 3.4;
 }
-@media (max-width: 37.5em) {
+@media (max-width: 43.75em) {
   .site-header__contact {
     float: none;
     line-height: 1.5;
@@ -1867,7 +1873,7 @@ body {
   color: #fff;
   text-align: center;
 }
-@media (max-width: 37.5em) {
+@media (max-width: 43.75em) {
   .hero {
     padding: 2.5em 0 1em;
     margin-bottom: 1.5em;
@@ -1885,7 +1891,7 @@ body {
   font-size: 1.25rem;
   line-height: 1.2;
 }
-@media (max-width: 37.5em) {
+@media (max-width: 43.75em) {
   .hero__intro {
     font-size: 18px;
     font-size: 1.125rem;
@@ -1916,7 +1922,7 @@ body {
     width: 50%;
   }
 }
-@media (max-width: 37.5em) {
+@media (max-width: 43.75em) {
   .sign-up {
     width: 100%;
     position: static;
@@ -1931,7 +1937,7 @@ footer[role="contentinfo"] {
   text-align: center;
   color: #767676;
 }
-@media (max-width: 37.5em) {
+@media (max-width: 43.75em) {
   footer[role="contentinfo"] {
     margin-top: 1.5em;
   }
