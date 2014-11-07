@@ -27,6 +27,10 @@
 	&:hover {
 		background: darken($accent-primary, 8%);
 	}
+
+	&:link {
+		text-decoration: none;
+	}
 }
 
 /*  =BUTTON STATE VARIANTS
@@ -57,7 +61,7 @@
 	&:hover {
 		background: transparent;
 	}
-	
+
 }
 
 /*  =BUTTON SIZE VARIANTS

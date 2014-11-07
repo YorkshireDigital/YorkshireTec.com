@@ -640,6 +640,7 @@ a {
 }
 a:hover {
   text-decoration: underline;
+  cursor: pointer;
 }
 
 /*  =HYPER SIZING
@@ -764,6 +765,9 @@ a:hover {
 }
 .btn:hover {
   background: #992857;
+}
+.btn:link {
+  text-decoration: none;
 }
 
 /*  =BUTTON STATE VARIANTS
@@ -1068,6 +1072,7 @@ a:hover {
 .layout-stacked .label {
   margin-bottom: 0.375em;
   display: block;
+  text-align: left;
 }
 
 .form-actions {
@@ -1671,9 +1676,6 @@ textarea {
   text-align: center;
   color: #fff;
 }
-.notification .btn {
-  margin-left: 1em;
-}
 
 /*	=STATES
 --------------------------------------------------------------------*/
@@ -1857,8 +1859,22 @@ footer[role="contentinfo"] {
   }
 }
 
+/*  =FEEDBACK PANEL
+	 Ths needs to be refactored when its not midnight!
+--------------------------------------------------------------------*/
+.feedback-panel {
+  max-width: 450px;
+  margin: 0 auto;
+}
+.feedback-panel h2 {
+  color: #fff;
+}
+.feedback-panel .sub-info {
+  color: #CDD4DB;
+}
+
 /*  =GENERAL UI ELEMENTS
-------------------------------------------------------------*/
+--------------------------------------------------------------------*/
 hr {
   height: 1px;
   margin: 1em 0;
