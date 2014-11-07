@@ -25,6 +25,9 @@
         $scope.loadEvents(from, to, function (events) {
             $scope.events = events;
             $scope.populateFilters(events);
+
+            $('.clndr-grid').removeClass('loading-item');
+            $('.loading-item__overlay').hide();
         });
 
         function init() {
