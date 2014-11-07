@@ -89,3 +89,21 @@
 	display: block;
 }
 
+
+// Responsive tab titles 
+.tab-list__link__short-title {
+	display: none;
+}
+
+@include breakpoint(viewport-s) {
+
+	.tab-list__link__short-title {
+		display: block;
+	}
+
+	.tab-list__link__title {
+		display: none;
+	}
+
+}
+

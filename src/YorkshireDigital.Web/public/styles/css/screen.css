@@ -1063,6 +1063,19 @@ a:hover {
   display: block;
 }
 
+.tab-list__link__short-title {
+  display: none;
+}
+
+@media (max-width: 37.5em) {
+  .tab-list__link__short-title {
+    display: block;
+  }
+
+  .tab-list__link__title {
+    display: none;
+  }
+}
 /*	=FORM GROUPING 
 --------------------------------------------------------------------*/
 .form-group {
@@ -1711,6 +1724,39 @@ textarea {
 }
 .notification__body p:last-child {
   margin: 0;
+}
+
+/*	=LOADING
+--------------------------------------------------------------------*/
+.loading-item {
+  position: relative;
+}
+
+.loading-item__overlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid #ddd;
+}
+
+.loading-item__feedback {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -77px;
+  margin-top: -37px;
+  text-align: center;
+}
+.loading-item__feedback h3 {
+  color: #b9306a;
+}
+@media (max-width: 37.5em) {
+  .loading-item__feedback {
+    top: 5%;
+  }
 }
 
 /*  =BASE
