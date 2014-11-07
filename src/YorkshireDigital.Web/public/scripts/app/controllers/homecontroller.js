@@ -76,10 +76,13 @@
                     $('body').addClass('no-scroll');
                 });
             };
-            $scope.closeEvent = function() {
+            $scope.closeEvent = function () {
+                var elementId = $scope.activeEvent.uniqueName;
                 $scope.activeEvent = null;
                 $location.path('/', false);
                 $('body').removeClass('no-scroll');
+                var top = $('#' + elementId).position().top;
+                $(window).scrollTop(top);
             };
             $scope.loadEvents = function(from, to, callback) {
                 calendarService.Calendar.query({ from: from, to: to }, callback);
