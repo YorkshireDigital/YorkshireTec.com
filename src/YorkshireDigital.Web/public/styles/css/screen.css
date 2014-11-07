@@ -1555,6 +1555,12 @@ textarea {
 .island--horizontal-break p:last-child {
   margin: 0;
 }
+@media (max-width: 37.5em) {
+  .island--horizontal-break {
+    padding-right: 0;
+    padding-left: 0;
+  }
+}
 
 /*	=EVENT STYLES
 --------------------------------------------------------------------*/
@@ -1738,12 +1744,23 @@ body {
 
 .panel-one {
   float: left;
-  width: 45%;
 }
 
 .panel-two {
   float: right;
+}
+
+.panel-one,
+.panel-two {
   width: 45%;
+}
+@media (max-width: 37.5em) {
+  .panel-one,
+  .panel-two {
+    width: 100%;
+    float: none;
+    margin-bottom: 1em;
+  }
 }
 
 /*  =HEADER
