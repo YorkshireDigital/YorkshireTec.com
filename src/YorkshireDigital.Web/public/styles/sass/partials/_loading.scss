@@ -1,7 +1,7 @@
 /*	=LOADING
 --------------------------------------------------------------------*/
 
-.loading-item {
+.loading__item {
 	position: relative;
 }
 
@@ -13,6 +13,10 @@
 	left: 0;
 	background: rgba(255,255,255,.95);
 	border: 1px solid #ddd;
+
+	.hide {
+		display: none;
+	}
 }
 
 .loading-item__feedback {

@@ -4,33 +4,32 @@
     window.app.controller('homeController', ['$scope', '$sce', 'calendarService', 'feedbackService', 'modal', '$routeParams', '$location', homeController]);
 
     function homeController($scope, $sce, calendarService, feedbackService, modal, $routeParams, $location) {
+        if (!$scope.events) {
+            init();
 
-        init();
+            var from = moment().date(1).subtract(1, 'M').format('DD/MM/YYYY');
+            var to = moment().date(1).add(2, 'M').format('DD/MM/YYYY');
 
-        $scope.modal = modal;
-        $scope.title = 'homeController';
+            $scope.loadEvents(from, to, function (events) {
+                $scope.events = events;
+                $scope.populateFilters(events);
+            });
+        }
 
         if ($routeParams.eventName) {
             $scope.loadEvent($routeParams.eventName);
         }
-
-        var from = moment().date(1).subtract(1, 'M').format('DD/MM/YYYY');
-        var to = moment().date(1).add(2, 'M').format('DD/MM/YYYY');
-
-        if (config.isBeta) {
-            $scope.beta = true;
-            $scope.reportedIssue = { site: document.URL };
+        else {
+            $scope.closeEvent();
         }
 
-        $scope.loadEvents(from, to, function (events) {
-            $scope.events = events;
-            $scope.populateFilters(events);
-
-            $('.clndr-grid').removeClass('loading-item');
-            $('.loading-item__overlay').hide();
-        });
-
         function init() {
+
+            if (config.isBeta) {
+                $scope.beta = true;
+                $scope.reportedIssue = { site: document.URL };
+            }
+
             $scope.to_trusted = function(html_code) {
                 return $sce.trustAsHtml(html_code);
             };
@@ -68,6 +67,9 @@
                 $scope.clndr.addEvents(newEvents);
                 return newEvents;
             };
+            $scope.goToEvent = function(eventName) {
+                $location.path('event/'+eventName);
+            };
             $scope.loadEvent = function(eventName) {
                 calendarService.Events.get({ eventId: eventName }, function(activeEvent) {
                     $scope.activeEvent = activeEvent;
@@ -76,13 +78,17 @@
                     $('body').addClass('no-scroll');
                 });
             };
-            $scope.closeEvent = function () {
-                var elementId = $scope.activeEvent.uniqueName;
-                $scope.activeEvent = null;
-                $location.path('/', false);
-                $('body').removeClass('no-scroll');
+            $scope.focusOnEvent = function(elementId) {
                 var top = $('#' + elementId).position().top;
                 $(window).scrollTop(top);
+            };
+            $scope.closeEvent = function () {
+                if ($scope.activeEvent) {
+                    $scope.closedEvent = $scope.activeEvent.uniqueName;
+                };
+                $scope.activeEvent = null;
+                $location.path('/');
+                $('body').removeClass('no-scroll');
             };
             $scope.loadEvents = function(from, to, callback) {
                 calendarService.Calendar.query({ from: from, to: to }, callback);

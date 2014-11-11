@@ -179,8 +179,8 @@
                     </div>
                 </div>
             </div>
-            <div class="clndr-grid loading-item">
-                <div class="loading-item__overlay">
+            <div class="clndr-grid" ng-class="{loading__item: !events}">
+                <div class="loading-item__overlay" ng-class="{hide: events}">
                     <div class="loading-item__feedback">
                         <h3>Loading Events</h3>
                         <p>Almost there!</p>
@@ -200,7 +200,7 @@
                                 <span class="day-label__number">{{day.day}}</span>
                             </div>
                             <div class="events-list">
-                                <div class="calendar-event" ng-attr-id="{{ event.uniqueName }}" ng-class="{event__long: event.title.length > 11}" style="background: {{ event.colour }}" ng-repeat="event in day.events | calendarFilter:search" ng-click="loadEvent(event.uniqueName)">
+                                <div class="calendar-event" ng-attr-id="{{ event.uniqueName }}" ng-class="{event__long: event.title.length > 11}" style="background: {{ event.colour }}" ng-repeat="event in day.events | calendarFilter:search" ng-click="goToEvent(event.uniqueName)">
                                     <span class="calendar-event__short-title">{{ event.shortTitle }}</span>
                                     <span class="calendar-event__title">{{ event.title }}</span>
                                 </div>
