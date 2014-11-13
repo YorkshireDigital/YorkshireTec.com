@@ -19,7 +19,7 @@
         if ($routeParams.eventName) {
             $scope.loadEvent($routeParams.eventName);
         }
-        else {
+        else if ($scope.activeEvent){
             $scope.closeEvent();
         }
 
@@ -68,13 +68,13 @@
                 return newEvents;
             };
             $scope.goToEvent = function(eventName) {
-                $location.path('event/'+eventName);
+                $location.path('event/'+eventName, false);
+                $scope.loadEvent(eventName);
             };
             $scope.loadEvent = function(eventName) {
                 calendarService.Events.get({ eventId: eventName }, function(activeEvent) {
                     $scope.activeEvent = activeEvent;
                     $scope.activeEvent.startFormat = $sce.trustAsHtml(activeEvent.startFormat);
-                    $location.path('/event/' + activeEvent.uniqueName, false);
                     $('body').addClass('no-scroll');
                 });
             };
@@ -87,7 +87,7 @@
                     $scope.closedEvent = $scope.activeEvent.uniqueName;
                 };
                 $scope.activeEvent = null;
-                $location.path('/');
+                $location.path('/', false);
                 $('body').removeClass('no-scroll');
             };
             $scope.loadEvents = function(from, to, callback) {
