@@ -69,6 +69,7 @@
             };
             $scope.goToEvent = function(eventName) {
                 $location.path('event/'+eventName, false);
+                $scope.scrollTop = $(window).scrollTop();
                 $scope.loadEvent(eventName);
             };
             $scope.loadEvent = function(eventName) {
@@ -78,10 +79,6 @@
                     $('body').addClass('no-scroll');
                 });
             };
-            $scope.focusOnEvent = function(elementId) {
-                var top = $('#' + elementId).position().top;
-                $(window).scrollTop(top);
-            };
             $scope.closeEvent = function () {
                 if ($scope.activeEvent) {
                     $scope.closedEvent = $scope.activeEvent.uniqueName;
@@ -89,6 +86,10 @@
                 $scope.activeEvent = null;
                 $location.path('/', false);
                 $('body').removeClass('no-scroll');
+                if ($scope.scrollTop) {
+                    $(window).scrollTop($scope.scrollTop);
+                    $scope.scrollTop = null;
+                };
             };
             $scope.loadEvents = function(from, to, callback) {
                 calendarService.Calendar.query({ from: from, to: to }, callback);
