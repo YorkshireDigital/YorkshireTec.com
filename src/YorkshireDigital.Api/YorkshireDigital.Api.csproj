@@ -153,6 +153,7 @@
     <Compile Include="Infrastructure\Models\ErrorViewModel.cs" />
     <Compile Include="Infrastructure\Models\FieldErrorViewModel.cs" />
     <Compile Include="Infrastructure\NancyExtensions.cs" />
+    <Compile Include="Infrastructure\Responses\SitemapResponse.cs" />
     <Compile Include="Infrastructure\SecurityHooks.cs" />
     <Compile Include="Infrastructure\Startup.cs" />
     <Compile Include="MailingList\Modules\ArchiveNewsletterModule.cs" />
