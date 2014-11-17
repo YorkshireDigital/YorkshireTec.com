@@ -127,6 +127,7 @@
       <DependentUpon>Web.config</DependentUpon>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <Content Include="YorkshireDigital.Api.nuspec" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Web.config">

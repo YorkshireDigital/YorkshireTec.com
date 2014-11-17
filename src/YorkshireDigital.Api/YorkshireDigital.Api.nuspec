@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+  For more info on this file format visit http://docs.nuget.org/docs/reference/nuspec-reference.
+-->
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>YorkshireDigital.Api</id>
+    <version>1.2.3</version>
+    <authors>Macs Dickinson</authors>
+    <description>Api for www.yorkshiredigital.com</description>
+    <language>en-GB</language>
+    <projectUrl>http://www.yorkshiredigital.com/</projectUrl>
+    <licenseUrl>http://www.yorkshiredigital.com/license</licenseUrl>
+  </metadata>
+  <files>
+    <file src="**\*.*" />
+  </files>
+</package>
