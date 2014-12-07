@@ -1,0 +1,78 @@
+﻿<section class="modal">
+    <a href="#" class="modal__close icn-m icn_close" ng-click="closeEvent()"><span class="icn__content">Close</span></a>
+
+    <article class="event">
+        <header class="event__hero" style="background: {{activeEvent.colour}};">
+            <div class="layout-constrained">
+                <span class="event__time" ng-bind-html="activeEvent.startFormat"></span>
+                <h1 class="event__title">{{ activeEvent.organiser }}</h1>
+                <h2 class="event__strapline">{{ activeEvent.title }}</h2>
+            </div>
+        </header>
+
+        <div class="event__body">
+            <div class="layout-constrained">
+
+                <nav class="nav-tabs">
+                    <ul class="tab-list">
+                        <li class="tab-list__item tab-list__item--current"><a for="#tab-event" class="tab-list__link">This Event</a></li>
+                        <li class="tab-list__item" ng-show="{{activeEvent.about.length > 0}}">
+                            <a for="#tab-about" class="tab-list__link">
+                                About
+                                <span class="tab-list__link__title">{{activeEvent.organiser}}</span>
+                                <span class="tab-list__link__title-short">{{activeEvent.organiserShortName}}</span>
+                            </a>
+                        </li>
+                        <!--li class="tab-list__item" ng-show="{{activeEvent.pastEvents}}"><a href="#" class="tab-list__link">Past Events</a></li-->
+                    </ul>
+                </nav>
+                <div class="tab-panes">
+                    <div id="tab-event" class="tab-pane tab-pane--current">
+                        <aside class="tab-pane__secondary">
+                            <h3>Where</h3>
+                            <p class="calendar-event__location">{{ activeEvent.location }}</p>
+                            <h3>Contact</h3>
+                            <a href="{{ activeEvent.website }}" class="calendar-event__website" targe
+                               t="_blapnk">{{ activeEvent.website }}</a>
+                        </aside>
+
+                        <div class="tab-pane__primary">
+                            {{activeEvent.synopsis}}
+
+                            <div id="event-talks" ng-if="activeEvent.talks">
+                                <h3>Speakers</h3>
+                                <div class="event-talk" ng-repeat="talk in activeEvent.talks">
+                                    <h4 ng-if="talk.speakerLink">
+                                        <a href="{{talk.speakerLink}}" target="_blank" title="{{talk.speaker}}">{{talk.speaker}}</a>
+                                    </h4>
+                                    <h4 ng-if="!talk.speakerLink">
+                                        {{talk.speaker}}
+                                    </h4>
+                                    <h5 ng-if="talk.title">
+                                        {{talk.title}}
+                                    </h5>
+                                    <p ng-if="talk.synopsis">
+                                        {{talk.synopsis}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div id="tab-about" class="tab-pane" ng-show="{{activeEvent.about.length > 0}}">
+                        <div class="tab-pane__primary">
+                            <h3>{{ activeEvent.headline }}</h3>
+                            <p>
+                                {{activeEvent.about}}
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+    </article>
+</section>

@@ -1,0 +1,110 @@
+/*	=NAVIGATION
+--------------------------------------------------------------------*/
+// Primary navigation for the app
+.nav-primary {
+
+	ul {
+		@extend .group;
+		padding: 0;
+		margin: 0;
+		list-style-type: none;
+	}
+
+	li {
+		float: left;
+	}
+
+	.current {
+		a {
+			border: 1px solid $accent-primary;
+		}
+	}
+
+	a {
+		display: block;
+		padding: .6875em 1em;
+		border: 1px solid transparent;
+		text-decoration: none;
+		text-align: center;
+		color: #636363;
+
+		&:hover {
+			color: darken(#636363, 5%);
+		}
+	}
+}
+
+
+
+.nav-tabs {
+	margin-bottom: 2em;
+	border-bottom: 1px solid #ddd;
+}
+
+.tab-panes {
+	margin-bottom: 2em;
+}
+
+.tab-list {
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+}
+
+	.tab-list__item {
+		display: inline-block;
+		margin-bottom: -1px;
+		border: solid transparent;
+		border-width: 0 0 1px 0;
+
+		&:hover {
+			border-color: grey;
+		}
+
+	}
+
+	.tab-list__link {
+		@extend .gamma;
+		display: block;
+		padding: .75em;
+		margin: 0;
+		font-family: MetronicProRegular, arial, sans-serif;
+		color: #525252;
+		cursor: pointer;
+
+		&:hover {
+			text-decoration: none;
+		}
+
+	}
+
+	.tab-list__item--current {
+		border-bottom: 1px solid $accent-tertiary;
+	}
+
+.tab-pane {
+	display: none;
+}
+
+.tab-pane--current {
+	display: block;
+}
+
+
+// Responsive tab titles 
+.tab-list__link__title-short {
+	display: none;
+}
+
+@include breakpoint(viewport-s) {
+
+	.tab-list__link__title-short {
+		display: inline-block;
+	}
+
+	.tab-list__link__title {
+		display: none;
+	}
+
+}
+

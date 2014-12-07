@@ -4,6 +4,7 @@ namespace YorkshireDigital.Api.Infrastructure
     using System.Linq;
     using Nancy;
     using Nancy.Bootstrapper;
+    using Nancy.Conventions;
     using Nancy.Diagnostics;
     using Nancy.TinyIoc;
     using NHibernate;
@@ -28,6 +29,13 @@ namespace YorkshireDigital.Api.Infrastructure
             container.Register(
                 NHibernateSessionFactoryProvider.BuildSessionFactory(
                     ConfigurationManager.ConnectionStrings["Database"].ConnectionString));
+
+            Conventions.ViewLocationConventions.Add((viewName, model, context) => string.Concat(context.ModuleName, "/Views/", viewName));
+            Conventions.ViewLocationConventions.Add((viewName, model, context) => string.Concat(context.ModulePath, "/Views/", viewName));
+            Conventions.ViewLocationConventions.Add((viewName, model, context) => string.Concat(context.ModulePath.Split('/').First(), "/Views/", viewName));
+
+            Conventions.StaticContentsConventions.Add(StaticContentConventionBuilder.AddDirectory("public")
+        );
         }
 
         protected override void ConfigureRequestContainer(TinyIoCContainer container, NancyContext context)

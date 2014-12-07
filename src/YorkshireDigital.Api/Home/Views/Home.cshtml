@@ -1,0 +1,198 @@
+﻿@{
+    Layout = "/Shared/_Layout.cshtml";
+}
+@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<dynamic>
+
+<div class="page-content">
+
+    <header class="site-header">
+        <div class="layout-constrained">
+
+            <div class="site-header__contact inline-items">
+                <a href="http://www.twitter.com/yorksdigital" class="inline-items__item">&commat;YorksDigital</a>
+                <a href="mailto:info@yorkshiredigital.com" class="inline-items__item">info@yorkshiredigital.com</a>
+            </div>
+
+            <div class="logo-site">
+            </div>
+
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="layout-constrained">
+            <h1 class="hero__title">Bringing Yorkshire's Digital Community Together</h1>
+            <p class="hero__intro">
+                A hub for Yorkshire’s digital community, to see whats going on, find new connections and share knowledge.
+            </p>
+        </div>
+    </section>
+
+    <section class="layout-constrained">
+
+        <tien-clndr class="calendar" tien-clndr-object="clndr" tien-clndr-events="events">
+            <div class="section-intro">
+                <h2>Hey, there's {{ (events | clndrCurrentMonthFilter:clndr).length }} events this month throughout Yorkshire!</h2>
+                <p>
+                    See all the upcoming events below, please <a href="mailto:info@yorkshiredigital.com">let us know</a> if you run or know events that are not listed.
+                </p>
+            </div>
+            <div class="clndr-controls">
+                <div class="clndr-nav">
+                    <div class="clndr-previous-button clndr-controls__nav" ng-click="clndrPreviousMonth()">&lsaquo;</div>
+                    <h2 class="month">
+                        {{ month }} <span class="viewport-s--hidden">Events</span>
+                    </h2>
+                    <div class="clndr-next-button clndr-controls__nav" ng-click="clndrNextMonth()">&rsaquo;</div>
+                    <!--<div class="clndr-today-button">Today</div>-->
+                </div>
+
+                <div class="clndr-filters">
+                    <label class="is-offscreen" for="interestFilter">Filter by interest</label>
+                    <div class="clndr-contols__filter select-custom">
+                        <select ng-model="search.interests" ng-options="interest for interest in interests">
+                            <option value="" selected>All interests</option>
+                        </select>
+                    </div>
+                    <label class="is-offscreen" for="locationFilter">Filter by location</label>
+                    <div class="clndr-contols__filter select-custom">
+                        <select ng-model="search.location" ng-options="location for location in locations">
+                            <option value="" selected>All locations</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="clndr-grid" ng-class="{loading__item: !events}">
+                <div class="loading-item__overlay" ng-class="{hide: events}">
+                    <div class="loading-item__feedback">
+                        <h3>Loading Events</h3>
+                        <p>Almost there!</p>
+                    </div>
+                </div>
+                <div class="days-of-the-week">
+                    <header class="clndr-header">
+                        <div class="header-day" ng-repeat="dayOfTheWeek in daysOfTheWeek track by $index">
+                            <span ng-bind-html="to_trusted(dayOfTheWeek)"></span>
+                        </div>
+                    </header>
+                    <div class="days">
+                        <div class="{{ day.classes }}" ng-class="{day__many: (day.events | calendarFilter:search).length > 3}" ng-repeat="day in days">
+
+                            <div class="day-label">
+                                <span class="day-label__name">{{ formatDay(day.date, 'ddd') }}</span>
+                                <span class="day-label__number">{{day.day}}</span>
+                            </div>
+                            <div class="events-list">
+                                <div class="calendar-event" ng-attr-id="{{ event.uniqueName }}" ng-class="{event__long: event.title.length > 11}" style="background: {{ event.colour }}" ng-repeat="event in day.events | calendarFilter:search" ng-click="goToEvent(event.uniqueName)">
+                                    <span class="calendar-event__short-title">{{ event.shortTitle }}</span>
+                                    <span class="calendar-event__title">{{ event.title }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </tien-clndr>
+        <div class="island island--horizontal-break">
+            <div class="panel-one">
+                <!-- Begin MailChimp Signup Form -->
+                <form action="https://yorkshiredigital.us3.list-manage.com/subscribe/post?u=e91ce15c242d895864a05d39e&amp;id=2e2faa57fb" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate autocomplete="off">
+                    <div id="mc_embed_signup">
+                        <h3>Sign up to our newsletter</h3>
+                        <div class="mc-field-group form-group">
+                            <label for="mce-NAME" class="is-offscreen">
+                                First name
+                            </label>
+                            <input type="text" placeholder="First name" value="" name="NAME" class="required input-full field" id="mce-NAME">
+                        </div>
+                        <div class="mc-field-group form-group">
+                            <label for="mce-EMAIL" class="is-offscreen">
+                                Email address
+                            </label>
+                            <input type="email" placeholder="Email address" value="" name="EMAIL" class="required email input-full field" id="mce-EMAIL">
+                        </div>
+                        <div id="mce-responses" class="clear">
+                            <div class="response sub-label field-validation-error" id="mce-error-response" style="display:none"></div>
+                            <div class="response" style="display:none"></div>
+                        </div>
+                        <!-- bot trap -->
+                        <div style="position: absolute; left: -5000px;">
+                            <input type="text" name="b_e91ce15c242d895864a05d39e_2e2faa57fb" value="">
+                        </div>
+                        <div class="clear">
+                            <input type="submit" value="Sign up" name="subscribe" id="mc-embedded-subscribe" class="btn btn--primary btn--full js-sign-up-btn">
+                        </div>
+                        <span class="sub-info">Don't worry, we hate spam as much as you</span>
+                    </div>
+                </form>
+                <!--End mc_embed_signup-->
+                <div id="mce-success-response" style="display: none;">
+                    <div class="island">
+                        <h3>Help us spread the word</h3>
+                        <p>Let people know about YorkshireDigital and help us to grow the community.</p>
+                        <div class="form-group">
+                            <button class="btn btn--full btn--primary" id="copy-link">Copy link</button>
+                        </div>
+                        <div class="form-group is-hidden" id="copy-input">
+                            <input type="text" value="http://www.yorkshiredigital.com/" onclick="this.setSelectionRange(0, this.value.length)" class="input-full field" />
+                        </div>
+                    </div>
+                    <div class="island">
+                        <!-- AddThis Button BEGIN -->
+                        <div class="addthis_toolbox addthis_default_style addthis_32x32_style">
+                            <a class="addthis_button_preferred_1"></a>
+                            <a class="addthis_button_preferred_2"></a>
+                            <a class="addthis_button_preferred_3"></a>
+                            <a class="addthis_button_compact"></a>
+                        </div>
+                        <script type="text/javascript">var addthis_config = { "data_track_addressbar": true };</script>
+                        <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5355881f634ab83a"></script>
+                        <!-- AddThis Button END -->
+                    </div>
+                    <script type="text/javascript">
+                        $(function () {
+                            $('#copy-link').click(function () {
+                                $(this).closest('.form-group').addClass('is-hidden');
+                                $('#copy-input').removeClass('is-hidden');
+                                $('#copy-input').click();
+
+                                $('#copy-input input').get(0).setSelectionRange(0, $('#copy-input input').val().length);
+                            });
+                        });
+                    </script>
+                </div>
+            </div>
+
+            <div class="panel-two">
+
+                <h3>Know an event we've not got?</h3>
+                <p>
+                    If you run or know of any meetups/events in Yorkshire we have not listed, please <a href="mailto:info@yorkshiredigital.com">let us know</a>.
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+    </section>
+    <footer class="site-footer" role="contentinfo">
+        <small>© 2014 YorkshireDigital</small>
+        <small>Hosted by <a href="http://www.brightbox.com" target="_blank">Brightbox</a> in Yorkshire</small>
+    </footer>
+
+</div>
+
+<script type="text/javascript">
+    $(document).on('click', '.tab-list__link', function (e) {
+        e.preventDefault();
+        $(this).parents('.tab-list__item').siblings().removeClass('tab-list__item--current')
+        $(this).parents('.tab-list__item').addClass('tab-list__item--current')
+
+        var $tab = $($(this).attr('for'));
+        $tab.siblings().removeClass('tab-pane--current');
+        $tab.addClass('tab-pane--current');
+    });
+</script>

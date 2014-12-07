@@ -1,0 +1,47 @@
+/*	=MODAL
+--------------------------------------------------------------------*/
+
+.no-scroll {
+	overflow: hidden; // Hide the overflow on body to remove double scroll bars 
+
+	.page-content {
+		display: none; // Hide the page content when the modal is active. Fix for iOS scrolling
+	}
+
+}
+
+.modal {
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	z-index: 100;
+	width: 100%;
+	background: #fff;
+	overflow-y: auto;
+
+	// Temp fix for the iOS scrolling bug
+	-webkit-transform:translateZ(1px);
+      -moz-transform:translateZ(1px);
+      -o-transform:translateZ(1px);
+      transform:translateZ(1px);
+	 -webkit-overflow-scrolling: touch;
+}
+
+	.modal__close {
+		position: absolute;
+		top: 2em;
+		right: 2em;
+		color: #fff;
+		opacity: .8;
+
+		&:hover {
+			opacity: 1;
+		}
+
+		@include breakpoint(viewport-s) {
+			top: 1em;
+			right: 1em;
+		}
+
+	}

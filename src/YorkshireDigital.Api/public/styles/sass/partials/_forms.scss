@@ -1,0 +1,194 @@
+/*	=FORM GROUPING 
+--------------------------------------------------------------------*/
+.form-group {
+	@include rhythm(margin-bottom, .75);
+}
+
+.layout-stacked {
+
+	label,
+	.label {
+		@include rhythm(margin-bottom, .25);
+		display: block;
+		text-align: left;
+	}
+}
+
+.form-actions {
+	margin-top: 1.5em;
+}
+
+/*	=FORM LABELS
+--------------------------------------------------------------------*/
+.sub-info {
+	@include font-size($milli-size);
+	font-family: "Alright Sans Light", arial, sans-serif;
+	display: block;
+	padding: 1em 0;
+	color: #737373;
+	font-style: italic;
+	text-align: center;
+}
+
+.sub-label {
+	color: $accent-negative;
+}
+
+/*	=INPUT STYLES & SIZES
+--------------------------------------------------------------------*/
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="password"],
+input[type="number"],
+input[type="date"],
+select,
+textarea {
+	padding: .5em;
+	border: 1px solid #ccc;
+	@include border-radius(3px);
+
+	&:focus {
+		outline: 2px solid darken($accent-tertiary, 1%);
+	}
+}
+
+.input-xs {
+	width: 45px;
+}
+
+.input-s {
+	width: 80px;
+}
+
+.input-m {
+	width: 150px;
+}
+
+.input-l {
+	width: 203px;
+}
+
+.input-xl {
+	width: 350px;
+
+	@include breakpoint(viewport-s) {
+		width: 100%;
+	}
+}
+
+.input-xxl {
+	width: 253px * 2 + 10;
+}
+
+textarea.input-xxl  {
+	width: 370px;
+}
+
+.input-full {
+	width: 100%;
+}
+
+
+/*	=SELECT STYLE
+--------------------------------------------------------------------*/
+
+select {
+	/* Make sure the select is wider than the container so we can clip the arrow */
+	width:110%;
+	max-width:110%;
+	min-width:110%;
+	/* Remove select styling */
+	appearance: none;
+	-webkit-appearance: none;
+	/* Ugly Firefox way of doing it */
+	-moz-appearance: window;
+	text-indent: 0.01px;
+	text-overflow: "";
+	background:none;
+	border: none;
+	color: #b9306a;
+	outline: none;
+	/* Padding works surpringly well */
+	padding: .4em 19% .4em .4em;
+	line-height:1.2;
+	margin:.2em;
+}
+
+/* This hides native dropdown button arrow in IE */
+select::-ms-expand {
+	display: none;
+}
+
+/* Focus style */
+select:focus {
+	outline: none;
+	box-shadow: 0 0 3px 3px rgba(180,222,250, .85);
+}
+
+/* This hides focus around selected option in FF */
+select:-moz-focusring {
+	color: transparent;
+	text-shadow: 0 0 0 #000;
+}
+
+
+
+ /* These are just demo button-y styles, style as you like */
+.select-custom {
+	position: relative;
+	display:block;
+	overflow:hidden;
+	width:100%;
+	max-width:100%;
+	border: 1px solid #505776;
+	background: #fff; /* Old browsers */
+	@include border-radius(3px);
+
+	&:after {
+		background: none;
+		color: #666;
+		content: "\25BC";
+		font-size: .7em;
+		padding:0;
+		position: absolute;
+		right: .8em;
+		top: 1em;
+		bottom: .3em;
+		z-index: 1;
+		/* This hack makes the select behind the arrow clickable in some browsers */
+		pointer-events:none;
+	}
+
+	&:hover {
+		border:1px solid #888;
+	}
+
+}
+
+
+/*	=VALIDATION
+--------------------------------------------------------------------*/
+.input-validation-error {
+	background: lighten($accent-negative, 45%);
+	border-color: $accent-negative !important;
+	border-width: 2px !important;
+}
+
+.field-validation-error {
+	width: auto;
+	display: inline-block;
+	padding-top: .5em;
+}
+
+/*	=DEVICE SPECIFIC
+--------------------------------------------------------------------*/
+input[type="text"],
+input[type="number"],
+input[type="email"],
+input[type="tel"],
+input[type="password"],
+textarea {
+	-webkit-appearance: none;	// Removes inner shadow in webkit
+	-moz-appearance: none; 		// Removes inner shadow in mobile firefox
+}

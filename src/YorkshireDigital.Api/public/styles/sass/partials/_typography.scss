@@ -1,0 +1,246 @@
+/*	=METRONIC PRO WEBFONT LICENCING AND LINKS
+--------------------------------------------------------------------*/
+
+/**
+ * @license
+ * MyFonts Webfont Build ID 2798324, 2014-04-21T13:45:17-0400
+ * 
+ * The fonts listed in this notice are subject to the End User License
+ * Agreement(s) entered into by the website owner. All other parties are 
+ * explicitly restricted from using the Licensed Webfonts(s).
+ * 
+ * You may obtain a valid license at the URLs below.
+ * 
+ * Webfont: Metronic Pro Air by Mostardesign
+ * URL: http://www.myfonts.com/fonts/mostardesign/metronic-pro/air/
+ * 
+ * Webfont: Metronic Pro Light by Mostardesign
+ * URL: http://www.myfonts.com/fonts/mostardesign/metronic-pro/light/
+ * 
+ * Webfont: Metronic Pro Regular by Mostardesign
+ * URL: http://www.myfonts.com/fonts/mostardesign/metronic-pro/regular/
+ * 
+ * Webfont: Metronic Pro SemiBold by Mostardesign
+ * URL: http://www.myfonts.com/fonts/mostardesign/metronic-pro/semibold/
+ * 
+ * License: http://www.myfonts.com/viewlicense?type=web&buildid=2798324
+ * Licensed pageviews: 100,000
+ * Webfonts copyright: Copyright (c) Olivier Gourvat - Mostardesign Studio, 2013. All rights reserved.
+ * 
+ * © 2014 MyFonts Inc
+*/
+
+/* @import must be at top of file, otherwise CSS will not work */
+@import url("//hello.myfonts.net/count/2ab2f4");
+  
+@font-face {font-family: 'MetronicProAir';src: url('../fonts/2AB2F4_0_0.eot');src: url('../fonts/2AB2F4_0_0.eot?#iefix') format('embedded-opentype'),url('../fonts/2AB2F4_0_0.woff') format('woff'),url('../fonts/2AB2F4_0_0.ttf') format('truetype');}
+@font-face {font-family: 'MetronicProLight';src: url('../fonts/2AB2F4_1_0.eot');src: url('../fonts/2AB2F4_1_0.eot?#iefix') format('embedded-opentype'),url('../fonts/2AB2F4_1_0.woff') format('woff'),url('../fonts/2AB2F4_1_0.ttf') format('truetype');}
+@font-face {font-family: 'MetronicProRegular';src: url('../fonts/2AB2F4_2_0.eot');src: url('../fonts/2AB2F4_2_0.eot?#iefix') format('embedded-opentype'),url('../fonts/2AB2F4_2_0.woff') format('woff'),url('../fonts/2AB2F4_2_0.ttf') format('truetype');}
+@font-face {font-family: 'MetronicProSemiBold';src: url('../fonts/2AB2F4_3_0.eot');src: url('../fonts/2AB2F4_3_0.eot?#iefix') format('embedded-opentype'),url('../fonts/2AB2F4_3_0.woff') format('woff'),url('../fonts/2AB2F4_3_0.ttf') format('truetype');}
+
+/*	=BASE TYPOGRAPHY
+--------------------------------------------------------------------*/
+
+html {
+    font: 500 1.125em/1.5 $font-general; // 24px baseline grid
+    color: #303d4a;
+}
+
+h1, .alpha,
+h2, .beta,
+h3, .gamma,
+h4, .delta, 
+h5, .epsilon {
+	font-family: "MetronicProRegular", sans-serif;
+    font-weight: 500;
+    color: #50575D;
+
+    a {
+        color: $accent-primary;
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+
+h1, .alpha {
+    @include font-size($h1-size); // 30px equivalent
+    line-height: 1.4;
+    margin: 0 0 .25em 0;
+
+    @include breakpoint(viewport-m) {
+		@include font-size($h2-size);
+	}
+
+	@include breakpoint(viewport-s) {
+		@include font-size($h3-size);
+	}
+
+}
+
+h2, .beta {
+    @include font-size($h2-size); // 26px equivalent
+    margin: 0 0 .3846em 0;
+
+    @include breakpoint(viewport-m) {
+		@include font-size($h3-size);
+	}
+
+	@include breakpoint(viewport-s) {
+		@include font-size($h4-size);
+	}
+
+}
+
+h3, .gamma {
+    @include font-size($h3-size); // 20px equivalent
+    margin: 0 0 .3em 0;
+
+    @include breakpoint(viewport-m) {
+		@include font-size($h4-size);
+	}
+
+	@include breakpoint(viewport-s) {
+		@include font-size($h5-size);
+	}
+
+}
+
+h4, .delta {
+    @include font-size($h4-size); // 18px equivalent
+    margin: 0 0 .5em 0;
+
+    @include breakpoint(viewport-m) {
+		@include font-size($h5-size);
+	}
+
+	@include breakpoint(viewport-s) {
+		@include font-size($h6-size);
+	}
+
+}
+
+h5, .epsilon {
+    @include font-size($h5-size); // 16px equivalent
+    font-weight: 600;
+    margin: 0 0 .5em 0;
+}
+h6, .zeta {
+    @include font-size($h6-size);
+    margin: 0 0 .5em 0;
+}
+
+.hero-title {
+    text-align: center;
+    margin-bottom: .8928em;
+
+    @include breakpoint(single) {
+        margin-bottom: .5em;
+    }
+
+}
+
+.intro {
+	@include font-size(1.25);
+}
+
+p,
+pre {
+    margin-top: 0;
+    @include rhythm(margin-bottom, .5);
+}
+
+a {
+    color: $accent-tertiary;
+    text-decoration: none;
+
+    &:hover {
+        text-decoration: underline;
+        cursor: pointer;
+    }
+
+}
+
+/*  =HYPER SIZING
+--------------------------------------------------------------------*/
+
+.giga {
+	@include font-size($giga-size);
+
+	@include breakpoint(viewport-m) {
+		@include font-size($mega-size);
+	}
+
+	@include breakpoint(viewport-s) {
+		@include font-size($kilo-size);
+	}
+
+}
+
+.mega {
+	@include font-size($mega-size);
+
+	@include breakpoint(viewport-m) {
+		@include font-size($kilo-size);
+	}
+
+	@include breakpoint(viewport-s) {
+		@include font-size($h1-size);
+	}
+
+}
+
+.kilo {
+	@include font-size($kilo-size);
+
+	@include breakpoint(viewport-m) {
+		@include font-size($h1-size);
+	}
+
+	@include breakpoint(viewport-s) {
+		@include font-size($h2-size);
+	}
+
+}
+
+/*  =SUB SIZING
+--------------------------------------------------------------------*/
+
+.milli {
+	@include font-size($milli-size);
+}
+
+.micro {
+	@include font-size($micro-size);
+}
+
+.nano {
+	@include font-size($nano-size);
+}
+
+
+.alrightsanslight {
+  font-family: "Alright Sans Light";
+  font-style: normal;
+  font-weight: normal;
+}
+
+.alrightsanslightitalic {
+  font-family: "Alright Sans Light";
+  font-style: italic;
+  font-weight: normal;
+}
+
+.alrightsansregular {
+  font-family: "Alright Sans";
+  font-style: normal;
+  font-weight: normal;
+}
+
+.alrightsansregularitalic {
+  font-family: "Alright Sans";
+  font-style: italic;
+  font-weight: normal;
+}

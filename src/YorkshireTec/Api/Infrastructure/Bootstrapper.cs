@@ -47,7 +47,6 @@ namespace YorkshireTec.Api.Infrastructure
                     NHibernateSessionFactoryProvider.BuildSessionFactory(
                         ConfigurationManager.ConnectionStrings["Database"].ConnectionString));
             }
-
             Conventions.ViewLocationConventions.Add((viewName, model, context) => string.Concat("Api/", context.ModuleName, "/Views/", viewName));
             Conventions.ViewLocationConventions.Add((viewName, model, context) => string.Concat("Api/", context.ModulePath, "/Views/", viewName));
             Conventions.ViewLocationConventions.Add((viewName, model, context) => string.Concat("Api/", context.ModulePath.Split('/').First(), "/Views/", viewName));

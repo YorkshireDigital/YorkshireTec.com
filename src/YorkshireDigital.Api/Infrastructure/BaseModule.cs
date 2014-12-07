@@ -19,11 +19,6 @@
 
             var service = new EventService(RequestSession);
 
-            Get["/"] = _ => HttpStatusCode.ImATeapot;
-            Post["/"] = _ => HttpStatusCode.ImATeapot;
-            Put["/"] = _ => HttpStatusCode.ImATeapot;
-            Delete["/"] = _ => HttpStatusCode.ImATeapot;
-
             Get["/sitemap"] = _ =>
             {
                 var events = service.GetWithinRange(DateTime.MinValue, DateTime.MaxValue);
