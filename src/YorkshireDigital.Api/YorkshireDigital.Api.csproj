@@ -135,6 +135,7 @@
     <Content Include="public\scripts\app\filters\clndrCurrentMonthFilter.js" />
     <Content Include="public\scripts\app\filters\clndrCurrentMonthFilter.min.js" />
     <Content Include="public\scripts\app\pages\betaBanner.js" />
+    <Content Include="public\scripts\app\pages\eventsCalendar.js" />
     <Content Include="public\scripts\app\services\events\calendarservice.js" />
     <Content Include="public\scripts\app\services\events\calendarservice.min.js" />
     <Content Include="public\scripts\app\services\mailinglist\mailinglistservice.js" />
@@ -735,6 +736,9 @@
     <Content Include="public\scripts\vendor\i18n\angular-locale_zu.min.js" />
     <Content Include="public\scripts\vendor\jquery-1.10.2.min.js" />
     <Content Include="Home\Views\_EventDetails.cshtml" />
+    <Content Include="public\scripts\app\services\utilities\feedbackService.min.js.map">
+      <DependentUpon>feedbackService.min.js</DependentUpon>
+    </Content>
     <None Include="public\scripts\vendor\jquery-2.1.1.intellisense.js" />
     <Content Include="public\scripts\vendor\jquery-2.1.1.intellisense.min.js" />
     <Content Include="public\scripts\vendor\jquery-2.1.1.js" />
@@ -916,6 +920,7 @@
     <Content Include="public\styles\sass\partials\_typography.scss" />
     <Content Include="public\styles\sass\screen.scss" />
     <Content Include="Views\Shared\_BetaBanner.cshtml" />
+    <Content Include="Views\Shared\_EventsCalendar.cshtml" />
     <None Include="Web.Alpha.config">
       <DependentUpon>Web.config</DependentUpon>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
