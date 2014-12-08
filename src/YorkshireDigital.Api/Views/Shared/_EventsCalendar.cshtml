@@ -1,0 +1,73 @@
+﻿<div class="events-calendar">
+
+</div>
+<script type="text/template" id="template-calendar">
+    <div class="section-intro">
+        <h2>Hey, there're <%= eventsThisMonth.length %> events this month throughout Yorkshire!</h2> @*{{ (events | clndrCurrentMonthFilter:clndr).length }}*@
+        <p>
+            See all the upcoming events below, please <a href="mailto:info@yorkshiredigital.com">let us know</a> if you run or know events that are not listed.
+        </p>
+    </div>
+    <div class="clndr-controls">
+        <div class="clndr-nav">
+            <div class="clndr-previous-button clndr-controls__nav" ng-click="clndrPreviousMonth()">&lsaquo;</div>
+            <h2 class="month">
+                <%= month %> <span class="viewport-s--hidden">Events</span>
+            </h2>
+            <div class="clndr-next-button clndr-controls__nav" ng-click="clndrNextMonth()">&rsaquo;</div>
+            <!--<div class="clndr-today-button">Today</div>-->
+        </div>
+
+        <div class="clndr-filters">
+            <label class="is-offscreen" for="interestFilter">Filter by interest</label>
+            <div class="clndr-contols__filter select-custom">
+                <select ng-model="search.interests" ng-options="interest for interest in interests">
+                    <option value="" selected>All interests</option>
+                </select>
+            </div>
+            <label class="is-offscreen" for="locationFilter">Filter by location</label>
+            <div class="clndr-contols__filter select-custom">
+                <select ng-model="search.location" ng-options="location for location in locations">
+                    <option value="" selected>All locations</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="clndr-grid" class="loading__item">
+        <div class="loading-item__overlay hide">
+            <div class="loading-item__feedback">
+                <h3>Loading Events</h3>
+                <p>Almost there!</p>
+            </div>
+        </div>
+        <div class="days-of-the-week">
+            <header class="clndr-header">
+                <% _.each(daysOfTheWeek, function(day) { %>
+                <div class="header-day">
+                    <%= day %>
+                </div>
+                <% }); %>
+            </header>
+            <div class="days">
+                <% _.each(days, function(day) { %>
+
+                <div class="<%= day.classes %>">@* day__many: (day.events | calendarFilter:search).length > 3 *@
+                    <div class="day-label">
+                        <span class="day-label__name"><%= moment(day.date).format('ddd') %></span>
+                        <span class="day-label__number"><%= day.day %></span>
+                    </div>
+                    <div class="events-list">
+                        <% _.each(day.events, function(event) { %>
+                        <div class="calendar-event" id="<%= event.uniqueName %>" @* event__long if event.title.length > 11 *@
+                             style="background: <%= event.colour %>;" >
+                            <span class="calendar-event__short-title"><%= event.shortTitle %></span>
+                            <span class="calendar-event__title"><%= event.title %></span>
+                        </div>
+                        <% }); %>
+                    </div>
+                </div>
+                    <% }); %>
+                </div>
+        </div>
+    </div>
+</script>

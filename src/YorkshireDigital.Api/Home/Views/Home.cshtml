@@ -29,71 +29,9 @@
     </section>
 
     <section class="layout-constrained">
+        
+        @Html.Partial("Shared/_EventsCalendar")
 
-        <tien-clndr class="calendar" tien-clndr-object="clndr" tien-clndr-events="events">
-            <div class="section-intro">
-                <h2>Hey, there's {{ (events | clndrCurrentMonthFilter:clndr).length }} events this month throughout Yorkshire!</h2>
-                <p>
-                    See all the upcoming events below, please <a href="mailto:info@yorkshiredigital.com">let us know</a> if you run or know events that are not listed.
-                </p>
-            </div>
-            <div class="clndr-controls">
-                <div class="clndr-nav">
-                    <div class="clndr-previous-button clndr-controls__nav" ng-click="clndrPreviousMonth()">&lsaquo;</div>
-                    <h2 class="month">
-                        {{ month }} <span class="viewport-s--hidden">Events</span>
-                    </h2>
-                    <div class="clndr-next-button clndr-controls__nav" ng-click="clndrNextMonth()">&rsaquo;</div>
-                    <!--<div class="clndr-today-button">Today</div>-->
-                </div>
-
-                <div class="clndr-filters">
-                    <label class="is-offscreen" for="interestFilter">Filter by interest</label>
-                    <div class="clndr-contols__filter select-custom">
-                        <select ng-model="search.interests" ng-options="interest for interest in interests">
-                            <option value="" selected>All interests</option>
-                        </select>
-                    </div>
-                    <label class="is-offscreen" for="locationFilter">Filter by location</label>
-                    <div class="clndr-contols__filter select-custom">
-                        <select ng-model="search.location" ng-options="location for location in locations">
-                            <option value="" selected>All locations</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-            <div class="clndr-grid" ng-class="{loading__item: !events}">
-                <div class="loading-item__overlay" ng-class="{hide: events}">
-                    <div class="loading-item__feedback">
-                        <h3>Loading Events</h3>
-                        <p>Almost there!</p>
-                    </div>
-                </div>
-                <div class="days-of-the-week">
-                    <header class="clndr-header">
-                        <div class="header-day" ng-repeat="dayOfTheWeek in daysOfTheWeek track by $index">
-                            <span ng-bind-html="to_trusted(dayOfTheWeek)"></span>
-                        </div>
-                    </header>
-                    <div class="days">
-                        <div class="{{ day.classes }}" ng-class="{day__many: (day.events | calendarFilter:search).length > 3}" ng-repeat="day in days">
-
-                            <div class="day-label">
-                                <span class="day-label__name">{{ formatDay(day.date, 'ddd') }}</span>
-                                <span class="day-label__number">{{day.day}}</span>
-                            </div>
-                            <div class="events-list">
-                                <div class="calendar-event" ng-attr-id="{{ event.uniqueName }}" ng-class="{event__long: event.title.length > 11}" style="background: {{ event.colour }}" ng-repeat="event in day.events | calendarFilter:search" ng-click="goToEvent(event.uniqueName)">
-                                    <span class="calendar-event__short-title">{{ event.shortTitle }}</span>
-                                    <span class="calendar-event__title">{{ event.title }}</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </tien-clndr>
         <div class="island island--horizontal-break">
             <div class="panel-one">
                 <!-- Begin MailChimp Signup Form -->
@@ -185,14 +123,18 @@
 
 </div>
 
-<script type="text/javascript">
-    $(document).on('click', '.tab-list__link', function (e) {
-        e.preventDefault();
-        $(this).parents('.tab-list__item').siblings().removeClass('tab-list__item--current')
-        $(this).parents('.tab-list__item').addClass('tab-list__item--current')
+@section Scripts
+{    
+    <script type="text/javascript">
+        $(document).on('click', '.tab-list__link', function (e) {
+            e.preventDefault();
+            $(this).parents('.tab-list__item').siblings().removeClass('tab-list__item--current');
+            $(this).parents('.tab-list__item').addClass('tab-list__item--current');
 
-        var $tab = $($(this).attr('for'));
-        $tab.siblings().removeClass('tab-pane--current');
-        $tab.addClass('tab-pane--current');
-    });
-</script>
+            var $tab = $($(this).attr('for'));
+            $tab.siblings().removeClass('tab-pane--current');
+            $tab.addClass('tab-pane--current');
+        });
+    </script>tr
+    <script type="text/javascript" src="/public/scripts/app/pages/eventsCalendar.js"></script>
+}

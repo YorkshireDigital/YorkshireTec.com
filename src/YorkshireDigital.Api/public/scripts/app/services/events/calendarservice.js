@@ -1,5 +1,4 @@
-﻿app.factory('calendarService', [
-    '$http', '$resource', function ($http, $resource) {
+﻿var calendarService = function ($http, $resource) {
         var baseUrl = config.apiurl;
         var buildUrl = function (resourceUrl) {
             return baseUrl + resourceUrl;
@@ -20,5 +19,4 @@
                 'query': { method: 'GET', isArray: true }
             })
         };
-    }
-]);
+    };
