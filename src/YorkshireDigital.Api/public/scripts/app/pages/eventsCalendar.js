@@ -1,15 +1,25 @@
 ﻿(function () {
-    var clndr;
-
     $(function () {
         initialiseClndr();
-        $(document).on('click', '.js-clndrNextMonth', function() {
-            console.log('js-clndrNextMonth');
-            clndrNextMonth();
-        });
+        $(document).on('click', '.js-clndrNextMonth', clndrNextMonth);
         $(document).on('click', '.js-clndrPreviousMonth', clndrPreviousMonth);
+        $(document).on('change', '.js-filter-location', updateFilters);
+        $(document).on('change', '.js-filter-interests', updateFilters);
     });
+
+    var clndr;
+    var interests;
+    var locations;
+    var search = {
+        interest: "",
+        location: ""
+    }
+    var unfilteredEvents;
+
     var initialiseClndr = function () {
+        interests = [];
+        locations = [];
+        unfilteredEvents = [];
         var from = moment().date(1).subtract(1, 'M').format('DD/MM/YYYY');
         var to = moment().date(1).add(2, 'M').format('DD/MM/YYYY');
         $('#calendar-month').text(moment().format('MMMM'));
@@ -25,8 +35,9 @@
                     to: to
                 }
             })
-            .done(function(events) {
-                populateClndr(events);
+            .done(function (events) {
+                var newEvents = addNewEvents(events);
+                populateClndr(newEvents);
             });
     };
     var renderClndr = function(month) {
@@ -51,11 +62,13 @@
         });
     };
     var populateClndr = function (events, emptyCalendar) {
+        console.log('begin update:     ' + moment().format('h:mm:ss'));
         if (emptyCalendar) {
-            clndr.setEvents(events);
+            clndr.setEvents(filterEvents(events));
         } else {
-            addNewEvents(events);
+            clndr.addEvents(filterEvents(events));
         }
+        console.log('completed update: ' + moment().format('h:mm:ss'));
         var month = clndr.month;
         var eventsThisMonth = _.filter(clndr.eventsThisMonth, function (event) {
             return filterEventsByMonth(event, month);
@@ -66,20 +79,14 @@
         $('.clndr-grid').removeClass('loading__item');
     };
     var addNewEvents = function (events) {
-        var newEvents = [];
-        for (var e = events.length - 1; e >= 0; e--) {
-            var found = false;
-            for (var k = 0; k < clndr.eventsThisMonth.length; k++) {
-                if (events[e].uniqueName == clndr.eventsThisMonth[k].uniqueName) {
-                    found = true;
-                }
-            }
-            if (found === false) {
-                newEvents.push(events[e]);
-            }
-        };
-        //$scope.populateFilters(newEvents);
-        clndr.addEvents(newEvents);
+        var newEvents = _.filter(events, function (newEvent) {
+            return _.every(unfilteredEvents, function(evt) {
+                return evt.uniqueName !== newEvent.uniqueName;
+            });
+        });
+
+        unfilteredEvents = _.union(unfilteredEvents, newEvents);
+        populateFilters(newEvents);
         return newEvents;
     };
     var filterEventsByMonth = function (event, currentMonth) {
@@ -98,5 +105,62 @@
         var from = moment(clndr.month._d).date(1).subtract(1, 'M').format('DD/MM/YYYY');
         var to = moment(clndr.month._d).date(1).format('DD/MM/YYYY');
         loadEvents(from, to);
+    };
+    var populateFilters = function (events) {
+        _.each(events, function(e) {
+            interests = _.union(interests, e.interests);
+            locations = _.union(locations, [e.region]);
+        });
+
+        interests = interests.sort();
+        locations = locations.sort();
+
+        _.each(interests, function (interest) {
+            if ($('option[value="'+interest+'"]', '.js-filter-interests').length === 0) {
+                $('.js-filter-interests').append($('<option/>', {
+                    value: interest,
+                    text: interest
+                }));
+            }
+        });
+
+        _.each(locations, function (location) {
+            if ($('option[value="' + location + '"]', '.js-filter-location').length === 0) {
+                $('.js-filter-location').append($('<option/>', {
+                    value: location,
+                    text: location
+                }));
+            }
+        });
+    };
+    var updateFilters = function () {
+        search = {
+            interest: $(".js-filter-interests option:selected").val(),
+            location: $(".js-filter-location option:selected").val()
+        };
+
+        var filteredEvents = filterEvents(unfilteredEvents);
+
+        populateClndr(filteredEvents, true);
+    };
+    var filterEvents = function(eventsToFilter) {
+        var filteredEvents = eventsToFilter;
+        filteredEvents = _.filter(filteredEvents, function (evt) {
+            var match = true;
+            if (search.interest !== "") {
+                if (!_.any(evt.interests, function (interest) {
+                    return interest === search.interest;
+                })) {
+                    match = false;
+                }
+            }
+            if (search.location !== "") {
+                if (evt.region !== search.location) {
+                    match = false;
+                }
+            }
+            return match;
+        });
+        return filteredEvents;
     };
 }());

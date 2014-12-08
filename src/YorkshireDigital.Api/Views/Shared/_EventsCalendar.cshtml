@@ -18,13 +18,13 @@
     <div class="clndr-filters">
         <label class="is-offscreen" for="interestFilter">Filter by interest</label>
         <div class="clndr-contols__filter select-custom">
-            <select ng-model="search.interests" ng-options="interest for interest in interests">
+            <select class="js-filter-interests">
                 <option value="" selected>All interests</option>
             </select>
         </div>
         <label class="is-offscreen" for="locationFilter">Filter by location</label>
         <div class="clndr-contols__filter select-custom">
-            <select ng-model="search.location" ng-options="location for location in locations">
+            <select class="js-filter-location">
                 <option value="" selected>All locations</option>
             </select>
         </div>
@@ -52,7 +52,7 @@
         </header>
         <div class="days">
             <% _.each(days, function(day) { %>
-            
+
             <div class="<%= day.classes %> <% if (day.events.length > 3){ %>day__many<% } %>">
                 <div class="day-label">
                     <span class="day-label__name"><%= moment(day.date).format('ddd') %></span>
