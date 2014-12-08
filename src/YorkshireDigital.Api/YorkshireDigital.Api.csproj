@@ -921,6 +921,7 @@
     <Content Include="public\styles\sass\screen.scss" />
     <Content Include="Views\Shared\_BetaBanner.cshtml" />
     <Content Include="Views\Shared\_EventsCalendar.cshtml" />
+    <Content Include="Views\Shared\_MailChimpSignup.cshtml" />
     <None Include="Web.Alpha.config">
       <DependentUpon>Web.config</DependentUpon>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
