@@ -52,16 +52,15 @@
         </header>
         <div class="days">
             <% _.each(days, function(day) { %>
-
-            <div class="<%= day.classes %>">
-                @* day__many: (day.events | calendarFilter:search).length > 3 *@
+            
+            <div class="<%= day.classes %> <% if (day.events.length > 3){ %>day__many<% } %>">
                 <div class="day-label">
                     <span class="day-label__name"><%= moment(day.date).format('ddd') %></span>
                     <span class="day-label__number"><%= day.day %></span>
                 </div>
                 <div class="events-list">
                     <% _.each(day.events, function(event) { %>
-                    <div class="calendar-event" id="<%= event.uniqueName %>" @* event__long if event.title.length > 11 *@
+                    <div class="calendar-event <% if (event.title.length > 11){ %>event__long<% } %>" id="<%= event.uniqueName %>"
                          style="background: <%= event.colour %>;">
                         <span class="calendar-event__short-title"><%= event.shortTitle %></span>
                         <span class="calendar-event__title"><%= event.title %></span>
