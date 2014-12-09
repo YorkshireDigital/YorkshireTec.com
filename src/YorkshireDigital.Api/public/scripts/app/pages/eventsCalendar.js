@@ -10,10 +10,7 @@
     var clndr;
     var interests;
     var locations;
-    //var search = {
-    //    interest: "",
-    //    location: ""
-    //}
+    var clndrData;
     var unfilteredEvents;
 
     var initialiseClndr = function () {
@@ -40,6 +37,15 @@
                 populateClndr(newEvents);
             });
     };
+    var render = function (data) {
+        clndrData = data;
+        var template = _.template($('#template-calendar').html());
+        return template(data);
+    };
+    var softRender = function() {
+        var template = _.template($('#template-calendar').html());
+        $('.clndr').html(template(clndrData));
+    }
     var renderClndr = function(month) {
         clndr=  $('.events-calendar').clndr({
             template: $('#template-calendar').html(),
@@ -59,18 +65,8 @@
                 '<span class="header-day__sm">F</span><span class="header-day__md">Fri</span><span class="header-day__lg">Friday</span>',
                 '<span class="header-day__sm">S</span><span class="header-day__md">Sat</span><span class="header-day__lg">Saturday</span>'
             ],
-            render: function(data) {
-                var template = _.template($('#template-calendar').html());
-                return template(data);
-            }
+            render: render
         });
-    };
-    var refreshClndr = function () {
-        showLoading();
-        setTimeout(function() {
-            clndr.render();
-            hideLoading();
-        }, 0);
     };
     var populateClndr = function (events) {
         console.log('begin update:     ' + moment().format('h:mm:ss'));
@@ -148,33 +144,6 @@
         });
     };
     var updateFilters = function () {
-        //search = {
-        //    interest: $(".js-filter-interests option:selected").val(),
-        //    location: $(".js-filter-location option:selected").val()
-        //};
-
-        //var filteredEvents = filterEvents(unfilteredEvents);
-
-        refreshClndr();
+        softRender();
     };
-    //var filterEvents = function(eventsToFilter) {
-    //    var filteredEvents = eventsToFilter;
-    //    filteredEvents = _.filter(filteredEvents, function (evt) {
-    //        var match = true;
-    //        if (search.interest !== "") {
-    //            if (!_.any(evt.interests, function (interest) {
-    //                return interest === search.interest;
-    //            })) {
-    //                match = false;
-    //            }
-    //        }
-    //        if (search.location !== "") {
-    //            if (evt.region !== search.location) {
-    //                match = false;
-    //            }
-    //        }
-    //        return match;
-    //    });
-    //    return filteredEvents;
-    //};
 }());
