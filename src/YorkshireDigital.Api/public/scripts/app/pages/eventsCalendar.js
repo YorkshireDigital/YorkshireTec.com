@@ -10,10 +10,10 @@
     var clndr;
     var interests;
     var locations;
-    var search = {
-        interest: "",
-        location: ""
-    }
+    //var search = {
+    //    interest: "",
+    //    location: ""
+    //}
     var unfilteredEvents;
 
     var initialiseClndr = function () {
@@ -58,16 +58,23 @@
                 '<span class="header-day__sm">T</span><span class="header-day__md">Thu</span><span class="header-day__lg">Thursday</span>',
                 '<span class="header-day__sm">F</span><span class="header-day__md">Fri</span><span class="header-day__lg">Friday</span>',
                 '<span class="header-day__sm">S</span><span class="header-day__md">Sat</span><span class="header-day__lg">Saturday</span>'
-            ]
+            ],
+            render: function(data) {
+                var template = _.template($('#template-calendar').html());
+                return template(data);
+            }
         });
     };
-    var populateClndr = function (events, emptyCalendar) {
+    var refreshClndr = function () {
+        showLoading();
+        setTimeout(function() {
+            clndr.render();
+            hideLoading();
+        }, 0);
+    };
+    var populateClndr = function (events) {
         console.log('begin update:     ' + moment().format('h:mm:ss'));
-        if (emptyCalendar) {
-            clndr.setEvents(filterEvents(events));
-        } else {
-            clndr.addEvents(filterEvents(events));
-        }
+        clndr.addEvents(events);
         console.log('completed update: ' + moment().format('h:mm:ss'));
         var month = clndr.month;
         var eventsThisMonth = _.filter(clndr.eventsThisMonth, function (event) {
@@ -75,6 +82,13 @@
         });
         $('#event-count').text(eventsThisMonth.length);
         $('#calendar-month').text(month.format('MMMM'));
+        hideLoading();
+    };
+    var showLoading = function() {
+        $('.loading-item__overlay').removeClass('hide');
+        $('.clndr-grid').addClass('loading__item');
+    };
+    var hideLoading = function() {
         $('.loading-item__overlay').addClass('hide');
         $('.clndr-grid').removeClass('loading__item');
     };
@@ -134,33 +148,33 @@
         });
     };
     var updateFilters = function () {
-        search = {
-            interest: $(".js-filter-interests option:selected").val(),
-            location: $(".js-filter-location option:selected").val()
-        };
+        //search = {
+        //    interest: $(".js-filter-interests option:selected").val(),
+        //    location: $(".js-filter-location option:selected").val()
+        //};
 
-        var filteredEvents = filterEvents(unfilteredEvents);
+        //var filteredEvents = filterEvents(unfilteredEvents);
 
-        populateClndr(filteredEvents, true);
+        refreshClndr();
     };
-    var filterEvents = function(eventsToFilter) {
-        var filteredEvents = eventsToFilter;
-        filteredEvents = _.filter(filteredEvents, function (evt) {
-            var match = true;
-            if (search.interest !== "") {
-                if (!_.any(evt.interests, function (interest) {
-                    return interest === search.interest;
-                })) {
-                    match = false;
-                }
-            }
-            if (search.location !== "") {
-                if (evt.region !== search.location) {
-                    match = false;
-                }
-            }
-            return match;
-        });
-        return filteredEvents;
-    };
+    //var filterEvents = function(eventsToFilter) {
+    //    var filteredEvents = eventsToFilter;
+    //    filteredEvents = _.filter(filteredEvents, function (evt) {
+    //        var match = true;
+    //        if (search.interest !== "") {
+    //            if (!_.any(evt.interests, function (interest) {
+    //                return interest === search.interest;
+    //            })) {
+    //                match = false;
+    //            }
+    //        }
+    //        if (search.location !== "") {
+    //            if (evt.region !== search.location) {
+    //                match = false;
+    //            }
+    //        }
+    //        return match;
+    //    });
+    //    return filteredEvents;
+    //};
 }());

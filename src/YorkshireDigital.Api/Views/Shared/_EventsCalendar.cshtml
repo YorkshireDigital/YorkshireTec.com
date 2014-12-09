@@ -52,22 +52,40 @@
         </header>
         <div class="days">
             <% _.each(days, function(day) { %>
-
-            <div class="<%= day.classes %> <% if (day.events.length > 3){ %>day__many<% } %>">
-                <div class="day-label">
-                    <span class="day-label__name"><%= moment(day.date).format('ddd') %></span>
-                    <span class="day-label__number"><%= day.day %></span>
-                </div>
-                <div class="events-list">
-                    <% _.each(day.events, function(event) { %>
-                    <div class="calendar-event <% if (event.title.length > 11){ %>event__long<% } %>" id="<%= event.uniqueName %>"
-                         style="background: <%= event.colour %>;">
-                        <span class="calendar-event__short-title"><%= event.shortTitle %></span>
-                        <span class="calendar-event__title"><%= event.title %></span>
+                <div class="<%= day.classes %> <% if (day.events.length > 3){ %>day__many<% } %>">
+                    <div class="day-label">
+                        <span class="day-label__name"><%= moment(day.date).format('ddd') %></span>
+                        <span class="day-label__number"><%= day.day %></span>
                     </div>
-                    <% }); %>
+                    <div class="events-list">
+                        <% _.each(_.filter(day.events, function (evt) {
+                            search = {
+                                interest: $(".js-filter-interests option:selected").val(),
+                                location: $(".js-filter-location option:selected").val()
+                            }
+                            var match = true;
+                            if (search.interest !== "") {
+                                if (!_.any(evt.interests, function (interest) {
+                                    return interest === search.interest;
+                                })) {
+                                    match = false;
+                                }
+                            }
+                            if (search.location !== "") {
+                                if (evt.region !== search.location) {
+                                    match = false;
+                                }
+                            }
+                            return match;
+                        }), function(event) { %>
+                        <div class="calendar-event <% if (event.title.length > 11){ %>event__long<% } %>" id="<%= event.uniqueName %>"
+                             style="background: <%= event.colour %>;">
+                            <span class="calendar-event__short-title"><%= event.shortTitle %></span>
+                            <span class="calendar-event__title"><%= event.title %></span>
+                        </div>
+                        <% }); %>
+                    </div>
                 </div>
-            </div>
             <% }); %>
         </div>
     </div>
