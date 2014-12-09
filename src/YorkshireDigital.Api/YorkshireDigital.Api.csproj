@@ -739,6 +739,7 @@
     <Content Include="public\scripts\app\services\utilities\feedbackService.min.js.map">
       <DependentUpon>feedbackService.min.js</DependentUpon>
     </Content>
+    <Content Include="Event\Views\Event.cshtml" />
     <None Include="public\scripts\vendor\jquery-2.1.1.intellisense.js" />
     <Content Include="public\scripts\vendor\jquery-2.1.1.intellisense.min.js" />
     <Content Include="public\scripts\vendor\jquery-2.1.1.js" />
@@ -955,6 +956,7 @@
     <Compile Include="Events\ViewModels\ContactLinkModel.cs" />
     <Compile Include="Events\ViewModels\EventDetailsModel.cs" />
     <Compile Include="Events\ViewModels\TalkDetailModel.cs" />
+    <Compile Include="Event\Modules\EventModule.cs" />
     <Compile Include="Feedback\Models\FeedbackPostModel.cs" />
     <Compile Include="Feedback\Modules\FeedbackModule.cs" />
     <Compile Include="Home\Modules\HomeModule.cs" />
