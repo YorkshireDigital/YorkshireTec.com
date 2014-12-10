@@ -5,9 +5,20 @@
         $(document).on('click', '.js-clndrPreviousMonth', clndrPreviousMonth);
         $(document).on('change', '.js-filter-location', updateFilters);
         $(document).on('change', '.js-filter-interests', updateFilters);
-        $(document).on('click', '.calendar-event', loadEvent);
-        $(document).on('click', '.js-event__close', closeEvent);
+        $(document).on('click', '.calendar-event', clickLoadEvent);
+        $(document).on('click', '.js-event__close', clickCloseEvent);
 
+        window.onpopstate = function (e) {
+            if (e.state) {
+                var path = e.state.path;
+                if (path.indexOf('event') > 0) {
+                    var id = path.substr(path.indexOf('event/') + 6, path.length);
+                    loadEvent(id);
+                } else {
+                    closeEvent();
+                }
+            }
+        };
     });
 
     var clndr;
@@ -151,10 +162,14 @@
     var updateFilters = function () {
         softRender();
     };
-    var loadEvent = function (event) {
+    var clickLoadEvent = function (event) {
         scrollTop = $(window).scrollTop();
         event.preventDefault();
         var id = $(this).data('id');
+        var title = $('.calendar-event__title', this).text();
+        loadEvent(id, title, true);
+    }
+    var loadEvent = function (id, title, updateLoc) {
         if ($('#' + id).length > 0) {
             $('#' + id).removeClass('hide');
             $('body').addClass('no-scroll');
@@ -170,18 +185,33 @@
             .done(function (html) {
                 $('.page-content').after(html);
                 $('body').addClass('no-scroll');
+
+                if (updateLoc) {
+                    
+                }
+                updateLocation(title+ ' : YorkshireDigital', '/event/' + id);
             });
         }
     };
-    var closeEvent = function () {
+    var clickCloseEvent = function() {
+        closeEvent(true);
+    }
+    var closeEvent = function (updateLoc) {
         event.preventDefault();
         $('body').removeClass('no-scroll');
-        var id = $(this).data('id');
-        $('#' + id).addClass('hide');
+        $('.modal').addClass('hide');
 
         if (scrollTop) {
             $(window).scrollTop(scrollTop);
             scrollTop = null;
         };
+
+        if (updateLoc) {
+            updateLocation('YorkshireDigital', '/');
+        }
+    };
+    var updateLocation = function(pageTitle, path) {
+        document.title = pageTitle;
+        window.history.pushState({ "html": document.documentElement.innerHTML, "pageTitle": pageTitle, "path": path }, "", path);
     };
 }());
