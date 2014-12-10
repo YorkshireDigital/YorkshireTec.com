@@ -135,6 +135,7 @@
     <Content Include="public\scripts\app\filters\clndrCurrentMonthFilter.js" />
     <Content Include="public\scripts\app\filters\clndrCurrentMonthFilter.min.js" />
     <Content Include="public\scripts\app\pages\betaBanner.js" />
+    <Content Include="public\scripts\app\pages\event.js" />
     <Content Include="public\scripts\app\pages\eventsCalendar.js" />
     <Content Include="public\scripts\app\services\events\calendarservice.js" />
     <Content Include="public\scripts\app\services\events\calendarservice.min.js" />

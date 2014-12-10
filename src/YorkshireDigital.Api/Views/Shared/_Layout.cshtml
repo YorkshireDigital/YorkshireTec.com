@@ -39,6 +39,7 @@
     <body id="home">
         
         @Html.Partial("Shared/_BetaBanner")
+        @RenderBody()
         <!-- JavaScript Includes -->
 
         <script type="text/javascript" src='/public/scripts/fastclick.min.js'></script>
@@ -63,7 +64,6 @@
             var addthis_config = addthis_config || {};
             addthis_config.data_track_addressbar = false;
         </script>
-        @RenderBody()
         @RenderSection("Scripts", false)
     </body>
 </html>
