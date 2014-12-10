@@ -941,6 +941,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <Content Include="YorkshireDigital.Api.nuspec" />
+    <Content Include="Event\Views\_Event.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Web.config">

@@ -5,6 +5,9 @@
         $(document).on('click', '.js-clndrPreviousMonth', clndrPreviousMonth);
         $(document).on('change', '.js-filter-location', updateFilters);
         $(document).on('change', '.js-filter-interests', updateFilters);
+        $(document).on('click', '.calendar-event', loadEvent);
+        $(document).on('click', '.js-event__close', closeEvent);
+
     });
 
     var clndr;
@@ -12,6 +15,7 @@
     var locations;
     var clndrData;
     var unfilteredEvents;
+    var scrollTop;
 
     var initialiseClndr = function () {
         interests = [];
@@ -23,15 +27,16 @@
         renderClndr([], moment());
         loadEvents(from, to);
     };
-    var loadEvents = function(from, to) {
+    var loadEvents = function (from, to) {
+        //Add to event service
         $.ajax({
-                url: "/events/calendar",
-                type: "GET",
-                data: {
-                    from: from,
-                    to: to
-                }
-            })
+            url: "/events/calendar",
+            type: "GET",
+            data: {
+                from: from,
+                to: to
+            }
+        })
             .done(function (events) {
                 var newEvents = addNewEvents(events);
                 populateClndr(newEvents);
@@ -42,12 +47,12 @@
         var template = _.template($('#template-calendar').html());
         return template(data);
     };
-    var softRender = function() {
+    var softRender = function () {
         var template = _.template($('#template-calendar').html());
         $('.clndr').html(template(clndrData));
     }
-    var renderClndr = function(month) {
-        clndr=  $('.events-calendar').clndr({
+    var renderClndr = function (month) {
+        clndr = $('.events-calendar').clndr({
             template: $('#template-calendar').html(),
             forceSixRows: true,
             events: [],
@@ -80,17 +85,17 @@
         $('#calendar-month').text(month.format('MMMM'));
         hideLoading();
     };
-    var showLoading = function() {
+    var showLoading = function () {
         $('.loading-item__overlay').removeClass('hide');
         $('.clndr-grid').addClass('loading__item');
     };
-    var hideLoading = function() {
+    var hideLoading = function () {
         $('.loading-item__overlay').addClass('hide');
         $('.clndr-grid').removeClass('loading__item');
     };
     var addNewEvents = function (events) {
         var newEvents = _.filter(events, function (newEvent) {
-            return _.every(unfilteredEvents, function(evt) {
+            return _.every(unfilteredEvents, function (evt) {
                 return evt.uniqueName !== newEvent.uniqueName;
             });
         });
@@ -117,7 +122,7 @@
         loadEvents(from, to);
     };
     var populateFilters = function (events) {
-        _.each(events, function(e) {
+        _.each(events, function (e) {
             interests = _.union(interests, e.interests);
             locations = _.union(locations, [e.region]);
         });
@@ -126,7 +131,7 @@
         locations = locations.sort();
 
         _.each(interests, function (interest) {
-            if ($('option[value="'+interest+'"]', '.js-filter-interests').length === 0) {
+            if ($('option[value="' + interest + '"]', '.js-filter-interests').length === 0) {
                 $('.js-filter-interests').append($('<option/>', {
                     value: interest,
                     text: interest
@@ -145,5 +150,38 @@
     };
     var updateFilters = function () {
         softRender();
+    };
+    var loadEvent = function (event) {
+        scrollTop = $(window).scrollTop();
+        event.preventDefault();
+        var id = $(this).data('id');
+        if ($('#' + id).length > 0) {
+            $('#' + id).removeClass('hide');
+            $('body').addClass('no-scroll');
+        } else {
+            $.ajax({
+                url: '/event/' + id,
+                type: 'GET',
+                headers: {
+                    Accept: "text/html; charset=utf-8"
+                },
+                data: { partial: true }
+            })
+            .done(function (html) {
+                $('.page-content').after(html);
+                $('body').addClass('no-scroll');
+            });
+        }
+    };
+    var closeEvent = function () {
+        event.preventDefault();
+        $('body').removeClass('no-scroll');
+        var id = $(this).data('id');
+        $('#' + id).addClass('hide');
+
+        if (scrollTop) {
+            $(window).scrollTop(scrollTop);
+            scrollTop = null;
+        };
     };
 }());

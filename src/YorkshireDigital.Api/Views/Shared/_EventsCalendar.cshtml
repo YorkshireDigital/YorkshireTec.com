@@ -80,7 +80,7 @@
                 </div>
                 <div class="events-list">
                     <% _.each(day.filteredEvents, function(event) { %>
-                    <div class="calendar-event<% if (event.title.length > 11){ %> event__long<% } %>" id="<%= event.uniqueName %>"
+                    <div class="calendar-event<% if (event.title.length > 11){ %> event__long<% } %>" data-id="<%= event.uniqueName %>"
                          style="background: <%= event.colour %>;">
                         <a href="/event/<%= event.uniqueName %>">
                             <span class="calendar-event__short-title"><%= event.shortTitle %></span>
