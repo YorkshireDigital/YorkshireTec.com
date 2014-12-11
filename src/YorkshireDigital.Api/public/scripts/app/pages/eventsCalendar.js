@@ -32,25 +32,27 @@
         interests = [];
         locations = [];
         unfilteredEvents = [];
-        var from = moment().date(1).subtract(1, 'M').format('DD/MM/YYYY');
+        var from = moment().date(1).subtract(2, 'M').format('DD/MM/YYYY');
         var to = moment().date(1).add(2, 'M').format('DD/MM/YYYY');
         $('#calendar-month').text(moment().format('MMMM'));
         renderClndr([], moment());
         loadEvents(from, to);
     };
-    var loadEvents = function (from, to) {
+    var loadEvents = function(from, to) {
         //Add to event service
         $.ajax({
-            url: "/events/calendar",
-            type: "GET",
-            data: {
-                from: from,
-                to: to
-            }
-        })
-            .done(function (events) {
+                url: "/events/calendar",
+                type: "GET",
+                data: {
+                    from: from,
+                    to: to
+                }
+            })
+            .done(function(events) {
                 var newEvents = addNewEvents(events);
-                populateClndr(newEvents);
+                if (newEvents.length > 0) {
+                    populateClndr(newEvents);
+                }
             });
     };
     var render = function (data) {
@@ -85,9 +87,7 @@
         });
     };
     var populateClndr = function (events) {
-        console.log('begin update:     ' + moment().format('h:mm:ss'));
         clndr.addEvents(events);
-        console.log('completed update: ' + moment().format('h:mm:ss'));
         var month = clndr.month;
         var eventsThisMonth = _.filter(clndr.eventsThisMonth, function (event) {
             return filterEventsByMonth(event, month);
@@ -128,8 +128,8 @@
     var clndrPreviousMonth = function () {
         clndr.back();
         $('#calendar-month').text(clndr.month.format('MMMM'));
-        var from = moment(clndr.month._d).date(1).subtract(1, 'M').format('DD/MM/YYYY');
-        var to = moment(clndr.month._d).date(1).format('DD/MM/YYYY');
+        var from = moment(clndr.month._d).date(1).subtract(2, 'M').format('DD/MM/YYYY');
+        var to = moment(clndr.month._d).date(1).subtract(1, 'M').format('DD/MM/YYYY');
         loadEvents(from, to);
     };
     var populateFilters = function (events) {
