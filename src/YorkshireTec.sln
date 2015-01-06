@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30723.0
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YorkshireTec", "YorkshireTec\YorkshireTec.csproj", "{0C73D291-C0E7-4D7A-9942-16E8619A7B00}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YorkshireTec.Old", "YorkshireTec\YorkshireTec.Old.csproj", "{0C73D291-C0E7-4D7A-9942-16E8619A7B00}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{EB44B85D-D275-4BD3-9761-C45C786E0FD7}"
 	ProjectSection(SolutionItems) = preProject
@@ -12,36 +12,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{EB44B8
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YorkshireDigital.Data.Tests", "YorkshireTec.Tests\YorkshireDigital.Data.Tests.csproj", "{3AAEE183-2234-422D-9DA4-C16A524FBB61}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YorkshireDigital.Data.Tests", "YorkshireDigital.Data.Tests\YorkshireDigital.Data.Tests.csproj", "{3AAEE183-2234-422D-9DA4-C16A524FBB61}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YorkshireDigital.Data", "YorkshireTec.Data\YorkshireDigital.Data.csproj", "{DE2ABF67-373C-41A8-83E0-D9B522221157}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YorkshireDigital.Data", "YorkshireDigital.Data\YorkshireDigital.Data.csproj", "{DE2ABF67-373C-41A8-83E0-D9B522221157}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YorkshireDigital.Api", "YorkshireDigital.Api\YorkshireDigital.Api.csproj", "{16A213D9-3B08-4C73-956E-C2C067B871E0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YorkshireDigital.Web", "YorkshireDigital.Web\YorkshireDigital.Web.csproj", "{16A213D9-3B08-4C73-956E-C2C067B871E0}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{C5B3EDAD-DCDF-4368-8C3C-A2E5BEDC4773}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YorkshireDigital.Api.Tests", "YorkshireDigital.Api.Tests\YorkshireDigital.Api.Tests.csproj", "{4FA8843B-F27B-4632-9B6D-5D7359D77072}"
-EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "WebSite1", "http://localhost:8080", "{CA46E7F7-A10B-4367-B515-FA29DE12F56F}"
-	ProjectSection(WebsiteProperties) = preProject
-		UseIISExpress = "true"
-		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.5"
-		Debug.AspNetCompiler.VirtualPath = "/localhost_8080"
-		Debug.AspNetCompiler.PhysicalPath = "YorkshireDigital.Web\"
-		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_8080\"
-		Debug.AspNetCompiler.Updateable = "true"
-		Debug.AspNetCompiler.ForceOverwrite = "true"
-		Debug.AspNetCompiler.FixedNames = "false"
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.VirtualPath = "/localhost_8080"
-		Release.AspNetCompiler.PhysicalPath = "YorkshireDigital.Web\"
-		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_8080\"
-		Release.AspNetCompiler.Updateable = "true"
-		Release.AspNetCompiler.ForceOverwrite = "true"
-		Release.AspNetCompiler.FixedNames = "false"
-		Release.AspNetCompiler.Debug = "False"
-		SlnRelativePath = "YorkshireDigital.Web\"
-	EndProjectSection
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YorkshireDigital.Web.Tests", "YorkshireDigital.Web.Tests\YorkshireDigital.Web.Tests.csproj", "{4FA8843B-F27B-4632-9B6D-5D7359D77072}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -91,14 +70,6 @@ Global
 		{4FA8843B-F27B-4632-9B6D-5D7359D77072}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4FA8843B-F27B-4632-9B6D-5D7359D77072}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4FA8843B-F27B-4632-9B6D-5D7359D77072}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CA46E7F7-A10B-4367-B515-FA29DE12F56F}.Alpha|Any CPU.ActiveCfg = Debug|Any CPU
-		{CA46E7F7-A10B-4367-B515-FA29DE12F56F}.Alpha|Any CPU.Build.0 = Debug|Any CPU
-		{CA46E7F7-A10B-4367-B515-FA29DE12F56F}.Beta|Any CPU.ActiveCfg = Debug|Any CPU
-		{CA46E7F7-A10B-4367-B515-FA29DE12F56F}.Beta|Any CPU.Build.0 = Debug|Any CPU
-		{CA46E7F7-A10B-4367-B515-FA29DE12F56F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CA46E7F7-A10B-4367-B515-FA29DE12F56F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CA46E7F7-A10B-4367-B515-FA29DE12F56F}.Release|Any CPU.ActiveCfg = Debug|Any CPU
-		{CA46E7F7-A10B-4367-B515-FA29DE12F56F}.Release|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

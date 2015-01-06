@@ -1,0 +1,11 @@
+﻿@{
+    Layout = "/Shared/_Layout.cshtml";
+}
+@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<YorkshireDigital.Web.Events.ViewModels.EventDetailsModel>
+
+@Html.Partial("_Event", Model);
+
+@section Scripts
+{
+    <script type="text/javascript" src="/public/scripts/app/pages/event.js"></script>
+}
