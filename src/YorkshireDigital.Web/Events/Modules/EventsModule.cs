@@ -1,8 +1,10 @@
 namespace YorkshireDigital.Web.Events.Modules
 {
+    using System;
+    using System.Globalization;
+    using System.Linq;
     using AutoMapper;
     using Nancy;
-    using Nancy.ModelBinding;
     using NHibernate;
     using YorkshireDigital.Web.Events.ViewModels;
     using YorkshireDigital.Web.Infrastructure;
@@ -11,45 +13,41 @@ namespace YorkshireDigital.Web.Events.Modules
 
     public class EventsModule : BaseModule
     {
-        public EventsModule(ISessionFactory sessionFactory)
+        public EventsModule(ISessionFactory sessionFactory, IEventService service)
             : base(sessionFactory, "/events")
         {
-            var service = new EventService(RequestSession);
-
-            Get["/{id?}"] = p =>
+            Get["/"] = _ =>
             {
-                var id = p.id;
+                dynamic errorResponse;
+                CalendarSearchModel model;
+                if (!BindAndValidateModel(out model, out errorResponse)) return errorResponse;
 
-                if (string.IsNullOrEmpty(id))
+                DateTime? from = null;
+                if (!string.IsNullOrEmpty(model.From))
                 {
-                    return Negotiate.WithStatusCode(HttpStatusCode.NotFound);
+                    from = DateTime.ParseExact(model.From, "dd/MM/yyyy", CultureInfo.CurrentCulture);
+                }
+                DateTime? to = null;
+                if (!string.IsNullOrEmpty(model.To))
+                {
+                    to = DateTime.ParseExact(model.To, "dd/MM/yyyy", CultureInfo.CurrentCulture);
                 }
 
-                Event model = service.Get(id);
+                var events = service.Query(from, to, model.Interests, model.Locations, model.Skip, model.Take);
 
-                if (model == null)
-                {
-                    return Negotiate.WithStatusCode(HttpStatusCode.NotFound);
-                }
+                Mapper.CreateMap<Event, CalendarEventModel>()
+                    .ForMember(dest => dest.Start, opt => opt.MapFrom(src => src.Start.ToString("yyyy-MM-dd")))
+                    .ForMember(dest => dest.End, opt => opt.MapFrom(src => src.End.ToString("yyyy-MM-dd")))
+                    .ForMember(dest => dest.Interests, opt => opt.MapFrom(src => src.Interests.Select(x => x.Name).Distinct().ToArray()))
+                    .ForMember(dest => dest.Colour, opt => opt.MapFrom(src => src.Organisation.Colour))
+                    .ForMember(dest => dest.Title, opt => opt.MapFrom(src => src.Organisation.Name))
+                    .ForMember(dest => dest.ShortTitle, opt => opt.MapFrom(src => src.Organisation.ShortName));
 
-                var viewModel = new EventDetailsModel(model);
+                var viewModel = events.Select(Mapper.DynamicMap<CalendarEventModel>).ToList();
 
                 return Negotiate.WithModel(viewModel)
                     .WithStatusCode(HttpStatusCode.OK);
             };
-
-            Post["/"] = _ =>
-            {
-                var newEvent = this.Bind<CalendarEventModel>();
-
-                service.Save(Mapper.DynamicMap<Event>(newEvent));
-
-                return Negotiate.WithStatusCode(HttpStatusCode.Created);
-            };
-
-            Put["/"] = _ => HttpStatusCode.ImATeapot;
-
-            Delete["/{id}"] = p => HttpStatusCode.ImATeapot;
         }
     }
 }

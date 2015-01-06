@@ -2,6 +2,7 @@ namespace YorkshireDigital.Web.Infrastructure
 {
     using System.Configuration;
     using System.Linq;
+    using Humanizer;
     using Nancy;
     using Nancy.Bootstrapper;
     using Nancy.Conventions;
@@ -31,6 +32,7 @@ namespace YorkshireDigital.Web.Infrastructure
                     ConfigurationManager.ConnectionStrings["Database"].ConnectionString));
 
             Conventions.ViewLocationConventions.Add((viewName, model, context) => string.Concat(context.ModuleName, "/Views/", viewName));
+            Conventions.ViewLocationConventions.Add((viewName, model, context) => string.Concat(context.ModuleName.Pluralize(false), "/Views/", viewName));
             Conventions.ViewLocationConventions.Add((viewName, model, context) => string.Concat(context.ModulePath, "/Views/", viewName));
             Conventions.ViewLocationConventions.Add((viewName, model, context) => string.Concat(context.ModulePath.Split('/').First(), "/Views/", viewName));
 

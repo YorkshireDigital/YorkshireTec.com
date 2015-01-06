@@ -35,7 +35,7 @@
 
             _browser = new Browser(with =>
             {
-                with.Module<EventsModule>();
+                with.Module<EventModule>();
                 with.Dependency(sessionFactory);
             });
         }

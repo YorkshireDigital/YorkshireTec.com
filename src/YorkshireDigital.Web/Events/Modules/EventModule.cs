@@ -1,13 +1,12 @@
-using YorkshireDigital.Web.Infrastructure;
-
-namespace YorkshireDigital.Web.Event.Modules
+namespace YorkshireDigital.Web.Events.Modules
 {
     using Nancy;
+    using Nancy.Responses;
     using NHibernate;
-    using NHibernate.Criterion;
-    using YorkshireDigital.Web.Events.ViewModels;
     using YorkshireDigital.Data.Domain.Events;
     using YorkshireDigital.Data.Services;
+    using YorkshireDigital.Web.Events.ViewModels;
+    using YorkshireDigital.Web.Infrastructure;
 
     public class EventModule : BaseModule
     {

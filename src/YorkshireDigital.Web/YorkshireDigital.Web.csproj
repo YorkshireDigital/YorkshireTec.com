@@ -49,6 +49,9 @@
     <Reference Include="FluentValidation">
       <HintPath>..\packages\FluentValidation.5.4.0.0\lib\Net40\FluentValidation.dll</HintPath>
     </Reference>
+    <Reference Include="Humanizer">
+      <HintPath>..\packages\Humanizer.1.32.0\lib\portable-win+net40+sl50+wp8+wpa81\Humanizer.dll</HintPath>
+    </Reference>
     <Reference Include="Iesi.Collections">
       <HintPath>..\packages\Iesi.Collections.3.2.0.4000\lib\Net35\Iesi.Collections.dll</HintPath>
     </Reference>
@@ -740,7 +743,7 @@
     <Content Include="public\scripts\app\services\utilities\feedbackService.min.js.map">
       <DependentUpon>feedbackService.min.js</DependentUpon>
     </Content>
-    <Content Include="Event\Views\Event.cshtml" />
+    <Content Include="Events\Views\Event.cshtml" />
     <None Include="public\scripts\vendor\jquery-2.1.1.intellisense.js" />
     <Content Include="public\scripts\vendor\jquery-2.1.1.intellisense.min.js" />
     <Content Include="public\scripts\vendor\jquery-2.1.1.js" />
@@ -941,7 +944,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <Content Include="YorkshireDigital.Web.nuspec" />
-    <Content Include="Event\Views\_Event.cshtml" />
+    <Content Include="Events\Views\_Event.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Web.config">
@@ -950,7 +953,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Events\Modules\CalendarModule.cs" />
     <Compile Include="Events\Modules\EventsModule.cs" />
     <Compile Include="Events\Validation\CalendarSearchModelValidator.cs" />
     <Compile Include="Events\ViewModels\CalendarSearchModel.cs" />
@@ -958,7 +960,7 @@
     <Compile Include="Events\ViewModels\ContactLinkModel.cs" />
     <Compile Include="Events\ViewModels\EventDetailsModel.cs" />
     <Compile Include="Events\ViewModels\TalkDetailModel.cs" />
-    <Compile Include="Event\Modules\EventModule.cs" />
+    <Compile Include="Events\Modules\EventModule.cs" />
     <Compile Include="Feedback\Models\FeedbackPostModel.cs" />
     <Compile Include="Feedback\Modules\FeedbackModule.cs" />
     <Compile Include="Home\Modules\HomeModule.cs" />

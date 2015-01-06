@@ -56,7 +56,7 @@
             
             _browser = new Browser(with =>
             {
-                with.Module<CalendarModule>();
+                with.Module<EventsModule>();
                 with.ViewFactory<ApiViewFactory>();
                 with.Dependency(sessionFactory);
                 with.Dependency(service);

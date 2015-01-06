@@ -41,7 +41,7 @@
     var loadEvents = function(from, to) {
         //Add to event service
         $.ajax({
-                url: "/events/calendar",
+                url: "/events",
                 type: "GET",
                 data: {
                     from: from,
