@@ -29,7 +29,7 @@
             foreach (var item in model)
             {
                 xDocument.Root.Add(new XElement(blank + "url",
-                                    new XElement(blank + "loc", "http://www.yorkshiredigital.com/" + item.UniqueName),
+                                    new XElement(blank + "loc", "http://www.yorkshiredigital.com/event/" + item.UniqueName),
                     // TODO: Add LastModified to Event
                                     new XElement(blank + "lastmod", DateTime.Now.ToString("yyyy-MM-dd")),
                                     new XElement(blank + "changefreq", "weekly"),
