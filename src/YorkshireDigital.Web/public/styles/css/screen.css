@@ -1520,6 +1520,14 @@ textarea {
 .calendar-event__short-title {
   display: none;
 }
+
+.event__long .calendar-event__short-title {
+  display: block;
+}
+.event__long .calendar-event__title {
+  display: none;
+}
+
 @media (max-width: 43.75em) {
   .calendar-event__short-title {
     display: none !important;

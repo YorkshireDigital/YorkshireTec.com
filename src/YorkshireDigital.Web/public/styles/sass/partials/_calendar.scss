@@ -256,7 +256,14 @@
 	display: none;
 }
 
-
+.event__long {
+    .calendar-event__short-title {
+        display: block;
+    }
+    .calendar-event__title {
+        display: none;
+    }
+}
 
 .calendar-event__short-title {
 	display: none;
