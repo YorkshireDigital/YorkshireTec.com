@@ -1,4 +1,4 @@
-@charset "UTF-8";
+﻿@charset "UTF-8";
 /*
 *
 *	These styles have been created from personal experience and also influenced by a 
@@ -1496,6 +1496,12 @@ textarea {
   font-size: 12px;
   font-size: 0.75rem;
 }
+
+.calendar-event a {
+    color: #fff;
+    text-decoration: none;
+}
+
 @media (max-width: 43.75em) {
   .calendar-event {
     display: block;
