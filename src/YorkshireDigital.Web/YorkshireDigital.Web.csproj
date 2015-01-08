@@ -58,6 +58,9 @@
     <Reference Include="MailChimp">
       <HintPath>..\packages\MailChimp.NET.1.1.0.1\lib\net40\MailChimp.dll</HintPath>
     </Reference>
+    <Reference Include="MarkdownSharp">
+      <HintPath>..\packages\MarkdownSharp.1.13.0.0\lib\35\MarkdownSharp.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Owin, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -134,7 +137,6 @@
     <Content Include="public\scripts\vendor\clndr.js" />
     <Content Include="public\scripts\vendor\clndr.min.js" />
     <Content Include="public\scripts\vendor\jquery-1.10.2.min.js" />
-    <Content Include="Home\Views\_EventDetails.cshtml" />
     <Content Include="Events\Views\Event.cshtml" />
     <None Include="public\scripts\vendor\jquery-2.1.1.intellisense.js" />
     <Content Include="public\scripts\vendor\jquery-2.1.1.intellisense.min.js" />
@@ -153,8 +155,6 @@
     <Content Include="public\styles\css\icons.data.svg.min.css" />
     <Content Include="public\styles\css\icons.fallback.css" />
     <Content Include="public\styles\css\icons.fallback.min.css" />
-    <Content Include="public\styles\css\macgyver.css" />
-    <Content Include="public\styles\css\macgyver.min.css" />
     <Content Include="public\styles\css\screen.css" />
     <Content Include="public\styles\css\screen.min.css" />
     <Content Include="public\styles\img\bg-homepage-banner.jpg" />

@@ -9,7 +9,7 @@
             Speaker = talk.Speaker;
             SpeakerLink = talk.Link;
             Title = talk.Title;
-            Synopsis = talk.Synopsis;
+            Synopsis = new MarkdownSharp.Markdown().Transform(talk.Synopsis);
         }
 
         public string Speaker { get; set; }

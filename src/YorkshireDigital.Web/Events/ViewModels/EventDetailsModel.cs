@@ -26,7 +26,7 @@
             Organiser = e.Organisation.Name;
             OrganiserShortName = e.Organisation.ShortName;
             Title = e.Title;
-            Synopsis = e.Synopsis;
+            Synopsis = new MarkdownSharp.Markdown().Transform(e.Synopsis);
             Colour = e.Organisation.Colour;
             Start = e.Start.ToString("yyyy-MM-dd");
             StartFormat = e.Start.ToLyndensFancyFormat();
@@ -37,7 +37,7 @@
                         ? string.Format("http://{0}", e.Organisation.Website)
                         : e.Organisation.Website; ;
             Headline = e.Organisation.Headline;
-            About = e.Organisation.About;
+            About = new MarkdownSharp.Markdown().Transform(e.Organisation.About);
             Talks = e.Talks.Select(x => new TalkDetailModel(x)).ToArray();
         }
     }
