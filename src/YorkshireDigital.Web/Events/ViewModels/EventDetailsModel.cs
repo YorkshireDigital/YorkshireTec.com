@@ -3,6 +3,7 @@
     using System.Linq;
     using YorkshireDigital.Web.Infrastructure;
     using YorkshireDigital.Data.Domain.Events;
+    using YorkshireDigital.Web.Infrastructure.Helpers;
 
     public class EventDetailsModel
     {
@@ -26,7 +27,7 @@
             Organiser = e.Organisation.Name;
             OrganiserShortName = e.Organisation.ShortName;
             Title = e.Title;
-            Synopsis = new MarkdownSharp.Markdown().Transform(e.Synopsis);
+            Synopsis = e.Synopsis.MarkdownToHtml();
             Colour = e.Organisation.Colour;
             Start = e.Start.ToString("yyyy-MM-dd");
             StartFormat = e.Start.ToLyndensFancyFormat();
@@ -37,7 +38,7 @@
                         ? string.Format("http://{0}", e.Organisation.Website)
                         : e.Organisation.Website; ;
             Headline = e.Organisation.Headline;
-            About = new MarkdownSharp.Markdown().Transform(e.Organisation.About);
+            About = e.Organisation.About.MarkdownToHtml();
             Talks = e.Talks.Select(x => new TalkDetailModel(x)).ToArray();
         }
     }
