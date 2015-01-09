@@ -7,7 +7,7 @@
     <article class="event">
         <header class="event__hero" style="background: @Model.Colour;">
             <div class="layout-constrained">
-                <span class="event__time" ng-bind-html="activeEvent.startFormat"></span>
+                <span class="event__time">@Html.Raw(Model.StartFormat)</span>
                 <h1 class="event__title">@Model.Organiser</h1>
                 <h2 class="event__strapline">@Model.Title</h2>
             </div>
