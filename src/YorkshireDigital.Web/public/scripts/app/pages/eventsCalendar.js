@@ -183,13 +183,10 @@
                 data: { partial: true }
             })
             .done(function (html) {
+                updateLocation(title + ' : YorkshireDigital', '/event/' + id);
+
                 $('.page-content').after(html);
                 $('body').addClass('no-scroll');
-
-                if (updateLoc) {
-                    
-                }
-                updateLocation(title+ ' : YorkshireDigital', '/event/' + id);
             });
         }
     };

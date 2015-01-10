@@ -62,14 +62,14 @@
             var $tab = $($(this).attr('for'));
             $tab.siblings().removeClass('tab-pane--current');
             $tab.addClass('tab-pane--current');
+        });
 
-            $('#copy-link').click(function () {
-                $(this).closest('.form-group').addClass('is-hidden');
-                $('#copy-input').removeClass('is-hidden');
-                $('#copy-input').click();
+        $(document).on('click', '#copy-link', function () {
+            $(this).closest('.form-group').addClass('is-hidden');
+            $('#copy-input').removeClass('is-hidden');
+            $('#copy-input').click();
 
-                $('#copy-input input').get(0).setSelectionRange(0, $('#copy-input input').val().length);
-            });
+            $('#copy-input input').get(0).setSelectionRange(0, $('#copy-input input').val().length);
         });
     </script>
     <script type="text/javascript" src="/public/scripts/app/pages/eventsCalendar.js"></script>
