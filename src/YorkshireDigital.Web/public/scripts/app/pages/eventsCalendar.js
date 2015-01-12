@@ -88,14 +88,18 @@
     };
     var populateClndr = function (events) {
         clndr.addEvents(events);
+        updateMonthLabels();
+        hideLoading();
+    };
+    var updateMonthLabels = function ()
+    {
         var month = clndr.month;
         var eventsThisMonth = _.filter(clndr.eventsThisMonth, function (event) {
             return filterEventsByMonth(event, month);
         });
         $('#event-count').text(eventsThisMonth.length);
         $('#calendar-month').text(month.format('MMMM'));
-        hideLoading();
-    };
+    }
     var showLoading = function () {
         $('.loading-item__overlay').removeClass('is-hidden');
         $('.clndr-grid').addClass('loading__item');
@@ -120,14 +124,14 @@
     };
     var clndrNextMonth = function () {
         clndr.forward();
-        $('#calendar-month').text(clndr.month.format('MMMM'));
+        updateMonthLabels();
         var from = moment(clndr.month._d).date(1).add(1, 'M').format('DD/MM/YYYY');
         var to = moment(clndr.month._d).date(1).add(2, 'M').format('DD/MM/YYYY');
         loadEvents(from, to);
     };
     var clndrPreviousMonth = function () {
         clndr.back();
-        $('#calendar-month').text(clndr.month.format('MMMM'));
+        updateMonthLabels();
         var from = moment(clndr.month._d).date(1).subtract(2, 'M').format('DD/MM/YYYY');
         var to = moment(clndr.month._d).date(1).subtract(1, 'M').format('DD/MM/YYYY');
         loadEvents(from, to);

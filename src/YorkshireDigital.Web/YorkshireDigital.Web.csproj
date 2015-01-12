@@ -141,7 +141,9 @@
     <Content Include="public\scripts\main.js" />
     <Content Include="public\scripts\main.min.js" />
     <Content Include="public\scripts\vendor\clndr.js" />
-    <Content Include="public\scripts\vendor\clndr.min.js" />
+    <Content Include="public\scripts\vendor\clndr.min.js">
+      <DependentUpon>clndr.js</DependentUpon>
+    </Content>
     <Content Include="public\scripts\vendor\jquery-1.10.2.min.js" />
     <Content Include="Events\Views\Event.cshtml" />
     <Content Include="public\scripts\vendor\clndr.min.js.map">
@@ -154,8 +156,10 @@
     <Content Include="public\scripts\vendor\mailchimp.js" />
     <Content Include="public\scripts\vendor\mailchimp.min.js" />
     <Content Include="public\scripts\vendor\modernizr-2.6.2.min.js" />
-    <Content Include="public\scripts\vendor\moment-2.5.1.js" />
-    <Content Include="public\scripts\vendor\moment-2.5.1.min.js" />
+    <Content Include="public\scripts\vendor\moment-2.9.0.js" />
+    <Content Include="public\scripts\vendor\moment-2.9.0.min.js">
+      <DependentUpon>moment-2.9.0.js</DependentUpon>
+    </Content>
     <Content Include="public\scripts\vendor\underscore.js" />
     <Content Include="public\scripts\vendor\underscore.min.js" />
     <Content Include="public\styles\css\icons.data.png.css" />
@@ -299,6 +303,9 @@
     <Content Include="Views\Shared\_BetaBanner.cshtml" />
     <Content Include="Views\Shared\_EventsCalendar.cshtml" />
     <Content Include="Views\Shared\_MailChimpSignup.cshtml" />
+    <Content Include="public\scripts\vendor\moment-2.9.0.min.js.map">
+      <DependentUpon>moment-2.9.0.min.js</DependentUpon>
+    </Content>
     <None Include="Web.Alpha.config">
       <DependentUpon>Web.config</DependentUpon>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
