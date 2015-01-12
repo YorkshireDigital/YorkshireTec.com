@@ -1,7 +1,6 @@
 namespace YorkshireDigital.Web.Events.Modules
 {
     using Nancy;
-    using Nancy.Responses;
     using NHibernate;
     using YorkshireDigital.Data.Domain.Events;
     using YorkshireDigital.Data.Services;
@@ -43,6 +42,7 @@ namespace YorkshireDigital.Web.Events.Modules
                                 .WithView("_Event");
                 }
 
+                @ViewBag.Title = string.Format("{0} : YorkshireDigital", viewModel.Organiser);
                 return Negotiate.WithModel(viewModel)
                                 .WithStatusCode(HttpStatusCode.OK)
                                 .WithView("Event");

@@ -174,10 +174,11 @@
         var title = $('.calendar-event__title', this).text();
         loadEvent(id, title, true);
     }
-    var loadEvent = function (id, title, updateLoc) {
+    var loadEvent = function (id, title) {
         if ($('#' + id).length > 0) {
             $('#' + id).removeClass('is-hidden');
             $('body').addClass('no-scroll');
+            updateLocation(title + ' : YorkshireDigital', '/event/' + id);
         } else {
             $.ajax({
                 url: '/event/' + id,

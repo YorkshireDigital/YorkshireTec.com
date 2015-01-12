@@ -10,6 +10,7 @@ namespace YorkshireDigital.Web.Home.Modules
         {
             Get["/"] = _ =>
             {
+                ViewBag.Title = "YorkshireDigital";
                 return View["Home"];
             };
         }
