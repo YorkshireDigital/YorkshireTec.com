@@ -37,6 +37,7 @@
         $('#calendar-month').text(moment().format('MMMM'));
         renderClndr([], moment());
         loadEvents(from, to);
+        updateLocation('YorkshireDigital', '/');
     };
     var loadEvents = function(from, to) {
         //Add to event service
