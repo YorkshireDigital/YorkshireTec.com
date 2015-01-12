@@ -330,22 +330,21 @@
     for(j; j < l; j++) {
       // keep in mind that the events here already passed the month/year test.
       // now all we have to compare is the moment.date(), which returns the day of the month.
-      if(self.options.multiDayEvents) {
-        var start = monthEvents[j]._clndrStartDateObject;
-        var end = monthEvents[j]._clndrEndDateObject;
-        // if today is the same day as start or is after the start, and
-        // if today is the same day as the end or before the end ...
-        // woohoo semantics!
-        if( ( day.isSame(start, 'day') || day.isAfter(start, 'day') ) &&
-          ( day.isSame(end, 'day') || day.isBefore(end, 'day') ) ) {
-          eventsToday.push( monthEvents[j] );
+	  var event = monthEvents[j];
+      var start = event._clndrStartDateObject;
+      var end = event._clndrEndDateObject;
+
+      if (self.options.multiDayEvents && end.diff(start, 'day' > 0)) {
+        if (day.isSame(start, 'day') || day.isBetween(start, end) || day.isSame(end, 'day')) {
+          eventsToday.push(event);
         }
       } else {
-        if( monthEvents[j]._clndrDateObject.date() == day.date() ) {
-          eventsToday.push( monthEvents[j] );
+        if (day.isSame(start, 'day')) {
+          eventsToday.push(event);
         }
       }
     }
+
 
     var extraClasses = "";
 
