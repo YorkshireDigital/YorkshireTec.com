@@ -140,7 +140,7 @@
     var populateFilters = function (events) {
         _.each(events, function (e) {
             interests = _.union(interests, e.interests);
-            locations = _.union(locations, [e.region]);
+            locations = _.union(locations, e.region.split('|'));
         });
 
         interests = interests.sort();

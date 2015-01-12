@@ -51,28 +51,30 @@
             <% }); %>
         </header>
         <div class="days">
-            <% _.each(days, function(day) { 
-            @* This filters the events *@
-                day.filteredEvents = _.filter(day.events, function (evt) {
-                    var search = {
-                        interest: $(".js-filter-interests option:selected").val(),
-                        location: $(".js-filter-location option:selected").val()
-                    }
-                    var match = true;
-                    if (search.interest !== "") {
-                        if (!_.any(evt.interests, function (interest) {
-                            return interest === search.interest;
-                        })) {
-                            match = false;
-                        }
-                    }
-                    if (search.location !== "") {
-                        if (evt.region !== search.location) {
-                            match = false;
-                        }
-                    }
-                    return match;
-                }); %>
+            <% _.each(days, function(day) {
+                @* This filters the events *@
+	            day.filteredEvents = _.filter(day.events, function (evt) {
+		            var search = {
+			            interest: $(".js-filter-interests option:selected").val(),
+			            location: $(".js-filter-location option:selected").val()
+		            }
+		            var match = true;
+		            if (search.interest !== "") {
+			            if (!_.any(evt.interests, function (interest) {
+				            return interest === search.interest;
+			            })) {
+				            match = false;
+			            }
+		            }
+		            if (search.location !== "") {
+		            if (!_.any(evt.region.split("|"), function (region) {
+				            return region === search.location;
+			            })) {
+				            match = false;
+			            }
+		            }
+		            return match;
+	            }); %>
             <div class="<%= day.classes %> <% if (day.filteredEvents.length > 3){ %>day__many<% } %>">
                 <div class="day-label">
                     <span class="day-label__name"><%= moment(day.date).format('ddd') %></span>
