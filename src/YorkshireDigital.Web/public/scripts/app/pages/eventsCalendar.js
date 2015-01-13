@@ -178,7 +178,9 @@
         if ($('#' + id).length > 0) {
             $('#' + id).removeClass('is-hidden');
             $('body').addClass('no-scroll');
-            updateLocation(title + ' : YorkshireDigital', '/event/' + id);
+            if (title) {
+                updateLocation(title + ' : YorkshireDigital', '/event/' + id);
+            }
         } else {
             $.ajax({
                 url: '/event/' + id,
