@@ -12,6 +12,7 @@ namespace YorkshireDigital.Web.Infrastructure
     using NHibernate.Context;
     using YorkshireDigital.Data.NHibernate;
     using YorkshireDigital.Data.Services;
+    using YorkshireTec.Api.Infrastructure.Models;
 
     public class Bootstrapper : DefaultNancyBootstrapper
     {
@@ -50,6 +51,8 @@ namespace YorkshireDigital.Web.Infrastructure
         protected override void RequestStartup(TinyIoCContainer container, IPipelines pipelines, NancyContext context)
         {
             base.RequestStartup(container, pipelines, context);
+
+            context.ViewBag.Beta = new FeaturesModel().Beta;
 
             StaticConfiguration.DisableErrorTraces = false;
         }

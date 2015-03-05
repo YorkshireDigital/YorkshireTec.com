@@ -307,7 +307,7 @@
     <Content Include="public\scripts\vendor\moment-2.9.0.min.js.map">
       <DependentUpon>moment-2.9.0.min.js</DependentUpon>
     </Content>
-    <Content Include="Views\Shared\_BannerLayout.cshtml" />
+    <Content Include="Views\Shared\_HeroLayout.cshtml" />
     <None Include="Web.Alpha.config">
       <DependentUpon>Web.config</DependentUpon>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -355,6 +355,7 @@
     <Compile Include="Infrastructure\Helpers\MarkdownHelper.cs" />
     <Compile Include="Infrastructure\Helpers\SlackHelper.cs" />
     <Compile Include="Infrastructure\Models\ErrorViewModel.cs" />
+    <Compile Include="Infrastructure\Models\FeaturesModel.cs" />
     <Compile Include="Infrastructure\Models\FieldErrorViewModel.cs" />
     <Compile Include="Infrastructure\NancyExtensions.cs" />
     <Compile Include="Infrastructure\Responses\SitemapResponse.cs" />

@@ -1,5 +1,7 @@
 ﻿@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<dynamic>
-
+@{
+    bool beta;
+}
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -36,8 +38,10 @@
     <noscript><link href="/public/styles/icons.fallback.css" rel="stylesheet"></noscript>
 </head>
     <body id="home">
-        
-        @Html.Partial("Shared/_BetaBanner")
+        @if (bool.TryParse(ViewBag.beta, out beta) && beta)
+        {
+            @Html.Partial("Shared/_BetaBanner")
+        }
         @RenderBody()
         <!-- JavaScript Includes -->
 
