@@ -21,6 +21,10 @@ namespace YorkshireDigital.Web.MailingList.Modules
                 return Negotiate.WithModel(viewModel)
                     .WithView("Archive");
             };
+
+            Get["/confirmation"] = _ => View["Confirmation"];
+
+            Get["/subscribed"] = _ => View["Confirmation"];
         }
     }
 }
