@@ -6,19 +6,20 @@ namespace YorkshireDigital.Web.MailingList.Modules
     using YorkshireDigital.Web.Infrastructure.Helpers;
     using YorkshireDigital.Web.MailingList.ViewModels;
 
-    public class ArchiveNewsletterModule : BaseModule
+    public class MailingListModule : BaseModule
     {
-        public ArchiveNewsletterModule(ISessionFactory sessionFactory)
-            : base(sessionFactory, "mailinglist/archive")
+        public MailingListModule(ISessionFactory sessionFactory)
+            : base(sessionFactory, "mailinglist")
         {
-            Get["/"] = _ =>
+            Get["/archive"] = _ =>
             {
                 var viewModel = new ArchiveNewsletterViewModel
                 {
                     Archives = MailChimpHelper.GetPastCampaigns()
                 };
 
-                return Negotiate.WithModel(viewModel);
+                return Negotiate.WithModel(viewModel)
+                    .WithView("Archive");
             };
         }
     }

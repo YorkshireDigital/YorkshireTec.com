@@ -1,24 +1,9 @@
 ﻿@{
-    Layout = "Shared/_Layout.cshtml";
+    Layout = "Shared/_HeroLayout.cshtml";
 }
 @inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<dynamic>
 
-<div class="page-content">
-
-    <header class="site-header">
-        <div class="layout-constrained">
-
-            <div class="site-header__contact inline-items">
-                <a href="http://www.twitter.com/yorksdigital" class="inline-items__item">&commat;YorksDigital</a>
-                <a href="mailto:info@yorkshiredigital.com" class="inline-items__item">info@yorkshiredigital.com</a>
-            </div>
-
-            <div class="logo-site">
-            </div>
-
-        </div>
-    </header>
-
+@section Hero {
     <section class="hero">
         <div class="layout-constrained">
             <h1 class="hero__title">Bringing Yorkshire's Digital Community Together</h1>
@@ -27,7 +12,10 @@
             </p>
         </div>
     </section>
+}
 
+<div class="page-content">
+    
     <section class="layout-constrained">
         
         @Html.Partial("Shared/_EventsCalendar")
@@ -44,10 +32,6 @@
             </div>
         </div>
     </section>
-    <footer class="site-footer" role="contentinfo">
-        <small>© 2014 YorkshireDigital</small>
-        <small>Hosted by <a href="http://www.brightbox.com" target="_blank">Brightbox</a> in Yorkshire</small>
-    </footer>
 
 </div>
 

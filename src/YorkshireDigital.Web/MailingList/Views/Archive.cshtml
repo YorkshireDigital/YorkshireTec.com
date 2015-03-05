@@ -1,0 +1,10 @@
+﻿@{
+    Layout = "Shared/_HeroLayout.cshtml";
+}
+
+@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<YorkshireDigital.Web.MailingList.ViewModels.ArchiveNewsletterViewModel>
+<h2>Newsletter Archives</h2>
+@foreach (var issue in Model.Archives)
+{
+    <p><a href="@issue.Link" target="_blank" title="@issue.Title">@issue.Title</a> - @issue.SentOn.ToString("MMMM yyyy")</p>
+}
