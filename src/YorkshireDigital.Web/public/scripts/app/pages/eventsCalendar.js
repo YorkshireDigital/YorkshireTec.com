@@ -218,5 +218,6 @@
     var updateLocation = function(pageTitle, path) {
         document.title = pageTitle;
         window.history.pushState({ "html": document.documentElement.innerHTML, "pageTitle": pageTitle, "path": path }, "", path);
+        ga('send', 'pageview');
     };
 }());
