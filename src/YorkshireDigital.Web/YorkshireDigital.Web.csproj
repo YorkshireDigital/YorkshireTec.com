@@ -309,26 +309,26 @@
       <DependentUpon>moment-2.9.0.min.js</DependentUpon>
     </Content>
     <Content Include="Views\Shared\_HeroLayout.cshtml" />
-    <None Include="Web.Alpha.config">
+    <Content Include="Web.Alpha.config">
       <DependentUpon>Web.config</DependentUpon>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Web.Beta.config">
+    </Content>
+    <Content Include="Web.Beta.config">
       <DependentUpon>Web.config</DependentUpon>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Web.Debug.config">
+    </Content>
+    <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Web.Live.config">
+    </Content>
+    <Content Include="Web.Live.config">
       <DependentUpon>Web.config</DependentUpon>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Web.Release.config">
+    </Content>
+    <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    </Content>
     <Content Include="YorkshireDigital.Web.nuspec" />
     <Content Include="Events\Views\_Event.cshtml" />
   </ItemGroup>
