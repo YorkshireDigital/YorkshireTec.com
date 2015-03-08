@@ -6,13 +6,12 @@
   <metadata>
     <id>YorkshireDigital.Web</id>
     <version>1.2.3</version>
-    <authors>Macs Dickinson</authors>
-    <description>Api for www.yorkshiredigital.com</description>
+    <authors>Macs Dickinson, Lynden Oliver</authors>
+    <owners>YorkshireDigital</owners>
+    <copywrite>YorkshireDigital Copyright 2015</copywrite>
+    <description>Nuget package of the website for www.yorkshiredigital.com</description>
     <language>en-GB</language>
     <projectUrl>http://www.yorkshiredigital.com/</projectUrl>
     <licenseUrl>http://www.yorkshiredigital.com/license</licenseUrl>
   </metadata>
-  <files>
-    <file src="**\*.*" />
-  </files>
 </package>
