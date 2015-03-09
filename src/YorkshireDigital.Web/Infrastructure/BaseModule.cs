@@ -54,7 +54,7 @@
             var result = BindAndValidateModel(out model);
             if (result.IsValid) return result;
 
-            var errorModel = new ErrorViewModel();
+            var errorModel = new ErrorViewModel(result.Errors);
             errorResponse = Negotiate.WithStatusCode(HttpStatusCode.BadRequest)
                 .WithModel(errorModel);
             return result;
