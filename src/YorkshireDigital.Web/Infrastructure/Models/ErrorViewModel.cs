@@ -6,11 +6,21 @@
 
     public class ErrorViewModel
     {
-        public FieldErrorViewModel[] Errors { get; set; }
+        public List<FieldErrorViewModel> Errors { get; set; }
 
         public ErrorViewModel(IEnumerable<KeyValuePair<string, IList<ModelValidationError>>> errors)
         {
-            Errors = errors.Select(x => new FieldErrorViewModel(x.Key, x.Value)).ToArray();
+            Errors = errors.Select(x => new FieldErrorViewModel(x.Key, x.Value)).ToList();
+        }
+
+        public ErrorViewModel()
+        {
+            Errors = new List<FieldErrorViewModel>();
+        }
+
+        public void AddError(string field, IList<ModelValidationError> errors)
+        {
+            
         }
     }
 }

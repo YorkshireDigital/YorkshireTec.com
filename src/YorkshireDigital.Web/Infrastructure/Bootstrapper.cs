@@ -36,8 +36,8 @@ namespace YorkshireDigital.Web.Infrastructure
 
             Conventions.ViewLocationConventions.Add((viewName, model, context) => string.Concat(context.ModuleName, "/Views/", viewName));
             Conventions.ViewLocationConventions.Add((viewName, model, context) => string.Concat(context.ModuleName.Pluralize(false), "/Views/", viewName));
-            Conventions.ViewLocationConventions.Add((viewName, model, context) => string.Concat(context.ModulePath, "/Views/", viewName));
-            Conventions.ViewLocationConventions.Add((viewName, model, context) => string.Concat(context.ModulePath.Split('/').First(), "/Views/", viewName));
+            Conventions.ViewLocationConventions.Add((viewName, model, context) => string.Concat(context.ModulePath.TrimStart('/'), "/Views/", viewName));
+            Conventions.ViewLocationConventions.Add((viewName, model, context) => string.Concat(context.ModulePath.TrimStart('/').Split('/')[0], "/Views/", viewName));
 
             Conventions.StaticContentsConventions.Add(StaticContentConventionBuilder.AddDirectory("public"));
         }
@@ -47,6 +47,8 @@ namespace YorkshireDigital.Web.Infrastructure
             base.ConfigureRequestContainer(container, context);
             
             CreateSession(container);
+
+            container.Register<IUserMapper, UserMapper>();
         }
 
         protected override void RequestStartup(TinyIoCContainer container, IPipelines pipelines, NancyContext context)

@@ -20,7 +20,8 @@ namespace YorkshireDigital.Web.Events.Modules
             {
                 dynamic errorResponse;
                 CalendarSearchModel model;
-                if (!BindAndValidateModel(out model, out errorResponse)) return errorResponse;
+                var result = BindAndValidateModel(out model, out errorResponse);
+                if (!result.IsValid) return errorResponse;
 
                 DateTime? from = null;
                 if (!string.IsNullOrEmpty(model.From))

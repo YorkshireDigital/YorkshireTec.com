@@ -120,6 +120,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Helpers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.Razor.2.0.30506.0\lib\net40\System.Web.Razor.dll</HintPath>
@@ -138,6 +139,7 @@
     <Content Include="public\scripts\app\pages\betaBanner.js" />
     <Content Include="public\scripts\app\pages\event.js" />
     <Content Include="public\scripts\app\pages\eventsCalendar.js" />
+    <Content Include="public\scripts\app\validation.js" />
     <Content Include="public\scripts\fastclick.js" />
     <Content Include="public\scripts\fastclick.min.js" />
     <Content Include="public\scripts\grunticon.loader.js" />
@@ -155,6 +157,7 @@
     </Content>
     <Content Include="MailingList\Views\Archive.cshtml" />
     <Content Include="MailingList\Views\Confirmation.cshtml" />
+    <Content Include="Account\Views\SignIn.cshtml" />
     <None Include="public\scripts\vendor\jquery-2.1.1.intellisense.js" />
     <Content Include="public\scripts\vendor\jquery-2.1.1.intellisense.min.js" />
     <Content Include="public\scripts\vendor\jquery-2.1.1.js" />
@@ -343,6 +346,9 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Account\Modules\AccountSignInModule.cs" />
+    <Compile Include="Account\Validation\AccountSignInViewModelValidator.cs" />
+    <Compile Include="Account\ViewModels\AccountSignInViewModel.cs" />
     <Compile Include="Events\Modules\EventsModule.cs" />
     <Compile Include="Events\Validation\CalendarSearchModelValidator.cs" />
     <Compile Include="Events\ViewModels\CalendarSearchModel.cs" />
@@ -357,6 +363,7 @@
     <Compile Include="Infrastructure\Bootstrapper.cs" />
     <Compile Include="Infrastructure\BaseModule.cs" />
     <Compile Include="Infrastructure\Extensions.cs" />
+    <Compile Include="Infrastructure\Helpers\HtmlHelper.cs" />
     <Compile Include="Infrastructure\Helpers\MailChimpHelper.cs" />
     <Compile Include="Infrastructure\Helpers\MarkdownHelper.cs" />
     <Compile Include="Infrastructure\Helpers\SlackHelper.cs" />
@@ -367,6 +374,8 @@
     <Compile Include="Infrastructure\Responses\SitemapResponse.cs" />
     <Compile Include="Infrastructure\SecurityHooks.cs" />
     <Compile Include="Infrastructure\Startup.cs" />
+    <Compile Include="Infrastructure\UserIdentity.cs" />
+    <Compile Include="Infrastructure\UserMapper.cs" />
     <Compile Include="MailingList\Modules\MailingListModule.cs" />
     <Compile Include="MailingList\ViewModels\ArchiveNewsletterViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
