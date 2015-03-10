@@ -168,6 +168,7 @@
     <Content Include="MailingList\Views\Confirmation.cshtml" />
     <Content Include="Account\Views\SignIn.cshtml" />
     <Content Include="Account\Views\Register.cshtml" />
+    <Content Include="Account\Views\Index.cshtml" />
     <None Include="public\scripts\vendor\jquery-2.1.1.intellisense.js" />
     <Content Include="public\scripts\vendor\jquery-2.1.1.intellisense.min.js" />
     <Content Include="public\scripts\vendor\jquery-2.1.1.js" />
@@ -356,12 +357,16 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Account\Modules\AccountModule.cs" />
     <Compile Include="Account\Modules\AccountRegisterModule.cs" />
     <Compile Include="Account\Modules\AccountSignInModule.cs" />
     <Compile Include="Account\Validation\AccountRegisterViewModelValidator.cs" />
     <Compile Include="Account\Validation\AccountSignInViewModelValidator.cs" />
     <Compile Include="Account\ViewModels\AccountRegisterViewModel.cs" />
     <Compile Include="Account\ViewModels\AccountSignInViewModel.cs" />
+    <Compile Include="Account\ViewModels\AccountViewModel.cs" />
+    <Compile Include="Account\ViewModels\ProviderListViewModel.cs" />
+    <Compile Include="Account\ViewModels\ProviderViewModel.cs" />
     <Compile Include="Events\Modules\EventsModule.cs" />
     <Compile Include="Events\Validation\CalendarSearchModelValidator.cs" />
     <Compile Include="Events\ViewModels\CalendarSearchModel.cs" />

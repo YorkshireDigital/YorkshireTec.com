@@ -3,7 +3,6 @@
     using Nancy;
     using Nancy.Authentication.Forms;
     using NHibernate;
-    using Slack.Webhooks;
     using YorkshireDigital.Data.Services;
     using YorkshireDigital.Web.Account.ViewModels;
     using YorkshireDigital.Web.Infrastructure;
