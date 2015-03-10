@@ -2,60 +2,81 @@
 {
     using System.Collections.Generic;
     using System.Configuration;
-    using System.Net.Http;
-    using System.Text;
-    using System.Threading.Tasks;
-    using Nancy.Json;
+    using Slack.Webhooks;
 
     public class SlackHelper
     {
-        private static readonly string ApiKey = ConfigurationManager.AppSettings["Slack_ApiKey"];
-        private static readonly string Project = ConfigurationManager.AppSettings["Slack_Project"];
         private static readonly bool Enabled = bool.Parse(ConfigurationManager.AppSettings["Slack_Enabled"]);
+        private static readonly string WebHookUrl = ConfigurationManager.AppSettings["Slack_Webhook_Url"];
 
-        public static void PostToSlack(SlackUpdate slackUpdate)
+        public static void PostToSlack(SlackMessage slackUpdate)
         {
-            var result = PostToSlackAsync(slackUpdate).Result;
+            if (Enabled)
+            {
+                var slackClient = new SlackClient(WebHookUrl);
+
+                slackClient.Post(slackUpdate);
+            }
         }
 
-        public static async Task<bool> PostToSlackAsync(SlackUpdate slackUpdate)
+        public static void PostNewUserUpdate(string username, string name, string email, bool mailingList, string webaddress)
         {
-            if (!Enabled) return false;
+            var updateText = string.Format("{0} just signed up at {1}. Go {0}!", name, webaddress);
 
-            var client = new HttpClient();
+            var slackMessage = new SlackMessage
+            {
+                Channel = "#notifications",
+                IconEmoji = ":yorks:",
+                Username = "New User",
+                Text = updateText
+            };
 
-            var jsonString = new JavaScriptSerializer().Serialize(slackUpdate);
+            var slackAttachment = new SlackAttachment
+            {
+                Fallback = string.Format("New user <{0}/users/{1}|{2} user profile> created", webaddress, username, name),
+                Text = string.Format("New user <{0}/users/{1}|{2} user profile> created", webaddress, username, name),
+                Color = "#b9306a",
+                Fields = new List<SlackField>
+                {
+                    new SlackField { Title = "Name", Value = name },
+                    new SlackField { Title = "Email", Value = email },
+                    new SlackField { Title = "Subscribed to mailing list?", Value = mailingList.ToString() },
+                }
+            };
+            slackMessage.Attachments = new List<SlackAttachment> { slackAttachment };
 
-            // Get the response.
-            await client.PostAsync(string.Format("https://{0}.slack.com/services/hooks/incoming-webhook?token={1}", Project, ApiKey),
-                new StringContent(jsonString, Encoding.UTF8, "application/json"));
-
-            return true;
+            PostToSlack(slackMessage);
         }
-    }
 
-    public class SlackUpdate
-    {
-        public string channel { get; set; }
-        public string username { get; set; }
-        public string icon_emoji { get; set; }
-        public string text { get; set; }
-        public bool unfurl_links { get; set; }
-        public SlackAttachment[] Attachments { get; set; }
-    }
+        public static void PostFeedbackUpdate(string details, string slackUpdate)
+        {
+            var slackMessage = new SlackMessage
+            {
+                Channel = "#feedback",
+                Username = "Bug Report",
+                IconEmoji = ":bug:"
+            };
 
-    public class SlackAttachment
-    {
-        public string Fallback { get; set; }
-        public string Pretext { get; set; }
-        public string Color { get; set; }
-        public SlackAttachmentField[] Fields { get; set; }
-    }
+            var slackAttachment = new SlackAttachment
+            {
+                Fallback = details,
+                PreText = slackUpdate,
+                Color = "#D00000",
+                Fields = new List<SlackField>
+                        {
+                            new SlackField
+                            {
+                                Title = "Details",
+                                Value = details,
+                                Short = false
+                            }
 
-    public class SlackAttachmentField
-    {
-        public string Title { get; set; }
-        public string Value { get; set; }
-        public bool Short { get; set; }
+                        }
+            };
+
+            slackMessage.Attachments = new List<SlackAttachment> { slackAttachment };
+
+            PostToSlack(slackMessage);
+        }
     }
 }

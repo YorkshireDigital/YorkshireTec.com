@@ -1,7 +1,9 @@
 namespace YorkshireDigital.Web.Feedback.Modules
 {
+    using System.Collections.Generic;
     using Nancy;
     using Nancy.ModelBinding;
+    using Slack.Webhooks;
     using YorkshireDigital.Web.Feedback.Models;
     using YorkshireDigital.Web.Infrastructure.Helpers;
 
@@ -13,31 +15,7 @@ namespace YorkshireDigital.Web.Feedback.Modules
             {
                 var model = this.Bind<FeedbackPostModel>();
 
-                var update = new SlackUpdate
-                {
-                    channel = "#feedback",
-                    username = "Bug Report",
-                    icon_emoji = ":bug:",
-                    unfurl_links = true,
-                    Attachments = new [] {  new SlackAttachment
-                    {
-                        Fallback = model.Details,
-                        Pretext = model.SlackUpdate,
-                        Color = "#D00000",
-                        Fields = new[]
-                        {
-                            new SlackAttachmentField
-                            {
-                                Title = "Details",
-                                Value = model.Details,
-                                Short = false
-                            }
-                            
-                        }
-                    } }
-                };
-
-                SlackHelper.PostToSlackAsync(update);
+                SlackHelper.PostFeedbackUpdate(model.Details, model.SlackUpdate);
 
                 return true;
             };

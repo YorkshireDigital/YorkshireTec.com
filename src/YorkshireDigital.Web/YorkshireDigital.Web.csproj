@@ -107,8 +107,15 @@
     <Reference Include="Owin">
       <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
     </Reference>
+    <Reference Include="RestSharp, Version=104.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\RestSharp.104.4.0\lib\net4\RestSharp.dll</HintPath>
+    </Reference>
     <Reference Include="ServiceStack.Text">
       <HintPath>..\packages\ServiceStack.Text.3.9.71\lib\net35\ServiceStack.Text.dll</HintPath>
+    </Reference>
+    <Reference Include="Slack.Webhooks">
+      <HintPath>..\packages\Slack.Webhooks.0.1.2\lib\net40\Slack.Webhooks.dll</HintPath>
     </Reference>
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Web.DynamicData" />
@@ -160,6 +167,7 @@
     <Content Include="MailingList\Views\Archive.cshtml" />
     <Content Include="MailingList\Views\Confirmation.cshtml" />
     <Content Include="Account\Views\SignIn.cshtml" />
+    <Content Include="Account\Views\Register.cshtml" />
     <None Include="public\scripts\vendor\jquery-2.1.1.intellisense.js" />
     <Content Include="public\scripts\vendor\jquery-2.1.1.intellisense.min.js" />
     <Content Include="public\scripts\vendor\jquery-2.1.1.js" />
@@ -348,8 +356,11 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Account\Modules\AccountRegisterModule.cs" />
     <Compile Include="Account\Modules\AccountSignInModule.cs" />
+    <Compile Include="Account\Validation\AccountRegisterViewModelValidator.cs" />
     <Compile Include="Account\Validation\AccountSignInViewModelValidator.cs" />
+    <Compile Include="Account\ViewModels\AccountRegisterViewModel.cs" />
     <Compile Include="Account\ViewModels\AccountSignInViewModel.cs" />
     <Compile Include="Events\Modules\EventsModule.cs" />
     <Compile Include="Events\Validation\CalendarSearchModelValidator.cs" />
