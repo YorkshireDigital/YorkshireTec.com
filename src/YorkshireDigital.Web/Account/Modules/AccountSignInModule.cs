@@ -4,8 +4,6 @@
     using System.Web.Helpers;
     using Nancy;
     using Nancy.Authentication.Forms;
-    using Nancy.ModelBinding;
-    using Nancy.Validation;
     using NHibernate;
     using YorkshireDigital.Data.Services;
     using YorkshireDigital.Web.Account.ViewModels;
