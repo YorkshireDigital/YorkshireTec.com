@@ -23,7 +23,8 @@
                 IsAdmin = false,
                 Validated = false,
                 Name = Name,
-                MailingListState = MailingList ? MailingListState.PendingSubscribe : MailingListState.Unsubscribed
+                MailingListState = MailingList ? MailingListState.PendingSubscribe : MailingListState.Unsubscribed,
+                MailingListEmail = MailingList ? Email : string.Empty
             };
         }
     }

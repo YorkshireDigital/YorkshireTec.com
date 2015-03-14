@@ -149,6 +149,7 @@
     <Content Include="packages.config" />
     <Content Include="public\content\logo-hey-stac.jpg" />
     <Content Include="public\scripts\app\ajaxCsrf.js" />
+    <Content Include="public\scripts\app\pages\account-mailinglist.js" />
     <Content Include="public\scripts\app\pages\betaBanner.js" />
     <Content Include="public\scripts\app\pages\event.js" />
     <Content Include="public\scripts\app\pages\eventsCalendar.js" />
@@ -404,7 +405,9 @@
     <Compile Include="Infrastructure\UserIdentity.cs" />
     <Compile Include="Infrastructure\UserMapper.cs" />
     <Compile Include="MailingList\Modules\MailingListModule.cs" />
+    <Compile Include="MailingList\Validation\MailingListAjaxPostModelValidator.cs" />
     <Compile Include="MailingList\ViewModels\ArchiveNewsletterViewModel.cs" />
+    <Compile Include="MailingList\ViewModels\MailingListAjaxPostModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

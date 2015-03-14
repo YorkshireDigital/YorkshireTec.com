@@ -14,6 +14,7 @@
         public virtual string Password { get; set; }
         public virtual string Name { get; set; }
         public virtual string Email { get; set; }
+        public virtual string MailingListEmail { get; set; }
         public virtual GenderType Gender { get; set; }
         public virtual string Locale { get; set; }
         public virtual string Picture { get; set; }
