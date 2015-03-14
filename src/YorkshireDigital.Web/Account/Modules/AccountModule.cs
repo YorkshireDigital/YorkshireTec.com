@@ -28,16 +28,7 @@
 
             Post[""] = _ =>
             {
-                #region CSRF
-                try
-                {
-                    this.ValidateCsrfToken();
-                }
-                catch (CsrfValidationException)
-                {
-                    return Response.AsText("Csrf Token not valid.").WithStatusCode(HttpStatusCode.Forbidden);
-                }
-                #endregion
+                this.ValidateCsrfToken();
 
                 AccountViewModel viewModel;
                 var result = BindAndValidateModel(out viewModel);
