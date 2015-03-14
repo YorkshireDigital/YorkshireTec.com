@@ -1,4 +1,4 @@
-﻿namespace YorkshireTec.Api.Infrastructure.Models
+﻿namespace YorkshireDigital.Web.Infrastructure.Models
 {
     using System.Configuration;
 

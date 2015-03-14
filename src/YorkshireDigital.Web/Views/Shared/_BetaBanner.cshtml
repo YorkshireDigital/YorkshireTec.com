@@ -12,6 +12,7 @@
                 <span class="sub-info">Not got a Trello account? <a id="showSlackForm">Contact us directly</a>.</span>
             </div>
             <div id="raise-on-slack" class="layout-stacked" style="display: none;">
+                @Html.AntiForgeryToken()
                 <div class="form-group">
                     <label for="raise-on-slack-name">
                         Name

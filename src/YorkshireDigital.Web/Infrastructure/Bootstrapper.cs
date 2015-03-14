@@ -1,7 +1,6 @@
 namespace YorkshireDigital.Web.Infrastructure
 {
     using System.Configuration;
-    using System.Linq;
     using Humanizer;
     using Nancy;
     using Nancy.Authentication.Forms;
@@ -15,7 +14,7 @@ namespace YorkshireDigital.Web.Infrastructure
     using NHibernate.Context;
     using YorkshireDigital.Data.NHibernate;
     using YorkshireDigital.Data.Services;
-    using YorkshireTec.Api.Infrastructure.Models;
+    using YorkshireDigital.Web.Infrastructure.Models;
 
     public class Bootstrapper : DefaultNancyBootstrapper
     {

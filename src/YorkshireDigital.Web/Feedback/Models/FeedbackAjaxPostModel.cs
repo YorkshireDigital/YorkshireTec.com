@@ -1,6 +1,8 @@
 ﻿namespace YorkshireDigital.Web.Feedback.Models
 {
-    public class FeedbackPostModel
+    using YorkshireDigital.Web.Infrastructure.Models;
+
+    public class FeedbackAjaxPostModel : BaseAjaxPostModel
     {
         public string Name { get; set; }
         public string Contact { get; set; }

@@ -51,12 +51,16 @@
             valid = false;
         }
         if (valid) {
-            $.ajax({
+            $('#raise-on-slack').ajaxCsrf({
                 url: "/feedback/raise",
                 type: "POST",
                 data: issue
             })
-            .done(function (data) {
+            .done(function () {
+                $('.notification__title').css({
+                    opacity: 1,
+                    display: 'none'
+                });
                 $('.notification__title').after('<span class="notification__feedback">Thank you for your feedback ' + issue.name + '. We\'ll be in touch soon.</span>');
                 $('.feedback-panel').slideUp();
 

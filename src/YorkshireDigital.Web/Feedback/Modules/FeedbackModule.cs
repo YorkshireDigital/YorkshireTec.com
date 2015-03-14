@@ -1,19 +1,21 @@
 namespace YorkshireDigital.Web.Feedback.Modules
 {
-    using System.Collections.Generic;
-    using Nancy;
     using Nancy.ModelBinding;
-    using Slack.Webhooks;
+    using NHibernate;
     using YorkshireDigital.Web.Feedback.Models;
+    using YorkshireDigital.Web.Infrastructure;
     using YorkshireDigital.Web.Infrastructure.Helpers;
 
-    public class FeedbackModule : NancyModule
+    public class FeedbackModule : BaseModule
     {
-        public FeedbackModule() : base("feedback/")
+        public FeedbackModule(ISessionFactory sessionFactory)
+            : base(sessionFactory, "feedback/")
         {
             Post["/raise"] = _ =>
             {
-                var model = this.Bind<FeedbackPostModel>();
+                var model = this.Bind<FeedbackAjaxPostModel>();
+
+                AjaxValidateCsrfToken(model);
 
                 SlackHelper.PostFeedbackUpdate(model.Details, model.SlackUpdate);
 

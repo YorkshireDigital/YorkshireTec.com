@@ -148,6 +148,7 @@
   <ItemGroup>
     <Content Include="packages.config" />
     <Content Include="public\content\logo-hey-stac.jpg" />
+    <Content Include="public\scripts\app\ajaxCsrf.js" />
     <Content Include="public\scripts\app\pages\betaBanner.js" />
     <Content Include="public\scripts\app\pages\event.js" />
     <Content Include="public\scripts\app\pages\eventsCalendar.js" />
@@ -382,7 +383,7 @@
     <Compile Include="Events\ViewModels\EventDetailsModel.cs" />
     <Compile Include="Events\ViewModels\TalkDetailModel.cs" />
     <Compile Include="Events\Modules\EventModule.cs" />
-    <Compile Include="Feedback\Models\FeedbackPostModel.cs" />
+    <Compile Include="Feedback\Models\FeedbackAjaxPostModel.cs" />
     <Compile Include="Feedback\Modules\FeedbackModule.cs" />
     <Compile Include="Home\Modules\HomeModule.cs" />
     <Compile Include="Infrastructure\Bootstrapper.cs" />
@@ -392,6 +393,7 @@
     <Compile Include="Infrastructure\Helpers\MailChimpHelper.cs" />
     <Compile Include="Infrastructure\Helpers\MarkdownHelper.cs" />
     <Compile Include="Infrastructure\Helpers\SlackHelper.cs" />
+    <Compile Include="Infrastructure\Models\BaseAjaxPostModel.cs" />
     <Compile Include="Infrastructure\Models\ErrorViewModel.cs" />
     <Compile Include="Infrastructure\Models\FeaturesModel.cs" />
     <Compile Include="Infrastructure\Models\FieldErrorViewModel.cs" />

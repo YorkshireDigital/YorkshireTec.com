@@ -5,6 +5,7 @@
     using System.Linq;
     using Nancy;
     using Nancy.ModelBinding;
+    using Nancy.Security;
     using Nancy.Validation;
     using NHibernate;
     using YorkshireDigital.Web.Infrastructure.Models;
@@ -102,6 +103,13 @@
             {
                 AddError(error.Key, error.Value);
             }
+        }
+
+        internal void AjaxValidateCsrfToken<T>(T model) where T : BaseAjaxPostModel
+        {
+            Request.Form[CsrfToken.DEFAULT_CSRF_KEY] = model.CsrfToken;
+
+            this.ValidateCsrfToken();
         }
     }
 }
