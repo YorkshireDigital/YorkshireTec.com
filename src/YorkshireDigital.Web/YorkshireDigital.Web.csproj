@@ -21,6 +21,7 @@
     <IISExpressUseClassicPipelineMode />
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
+    <MvcBuildViews>false</MvcBuildViews>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -30,6 +31,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <MvcBuildViews>false</MvcBuildViews>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -38,6 +40,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <MvcBuildViews>false</MvcBuildViews>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AntiXssLibrary">
@@ -169,6 +172,7 @@
     <Content Include="Account\Views\SignIn.cshtml" />
     <Content Include="Account\Views\Register.cshtml" />
     <Content Include="Account\Views\Index.cshtml" />
+    <Content Include="Account\Views\Welcome.cshtml" />
     <None Include="public\scripts\vendor\jquery-2.1.1.intellisense.js" />
     <Content Include="public\scripts\vendor\jquery-2.1.1.intellisense.min.js" />
     <Content Include="public\scripts\vendor\jquery-2.1.1.js" />
@@ -361,11 +365,13 @@
     <Compile Include="Account\Modules\AccountModule.cs" />
     <Compile Include="Account\Modules\AccountRegisterModule.cs" />
     <Compile Include="Account\Modules\AccountSignInModule.cs" />
+    <Compile Include="Account\Modules\AccountWelcomeModule.cs" />
     <Compile Include="Account\Validation\AccountRegisterViewModelValidator.cs" />
     <Compile Include="Account\Validation\AccountSignInViewModelValidator.cs" />
     <Compile Include="Account\ViewModels\AccountRegisterViewModel.cs" />
     <Compile Include="Account\ViewModels\AccountSignInViewModel.cs" />
     <Compile Include="Account\ViewModels\AccountViewModel.cs" />
+    <Compile Include="Account\ViewModels\AccountWelcomeViewModel.cs" />
     <Compile Include="Account\ViewModels\ProviderListViewModel.cs" />
     <Compile Include="Account\ViewModels\ProviderViewModel.cs" />
     <Compile Include="Events\Modules\EventsModule.cs" />

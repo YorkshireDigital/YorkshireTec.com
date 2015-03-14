@@ -1,0 +1,58 @@
+﻿@{
+    Layout = "Shared/_HeroLayout.cshtml";
+}
+@using YorkshireDigital.Web.Infrastructure.Helpers
+@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<YorkshireDigital.Web.Account.ViewModels.AccountWelcomeViewModel>
+@section Hero {
+    <section class="hero">
+        <div class="layout-constrained">
+            <h1 class="hero__title">Welcome to Yorkshire!</h1>
+        </div>
+    </section>
+}
+
+<p>Now that you're here why not check out our <a href="~/" title="Calendar of events">calendar of events</a> and <a href="/mailinglist/archive" title="Newsletter Archive">past newsletter issues</a>.</p>
+@if (!Model.OnMailingList)
+{
+    <div id="mailchimp-wrapper">
+        <p>There's plenty more to come. Why no sign up to our newsletter to keep up to date about all things Yorkshire Digital!</p>
+        <div class="ui form segment" id="joinMailingList">
+            <input type="hidden" name="UserId" id="UserId" value="@Model.UserId" />
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" placeholder="joe.bloggs@sharklasers.com" name="email" value="@Model.Email" required>
+                @Html.ValidationMessageFor("Email")
+            </div>
+            <div class="clear"><a name="subscribe" id="mc-subscribe" class="input-full btn ">Sign me up</a></div>
+        </div>
+    </div>
+}
+
+@section Scripts
+{
+    <script type="text/javascript">
+        $(function() {
+            $('#mc-subscribe').click(function () {
+                $('#joinMailingList').addClass('loading');
+                var userId = $('#UserId').val();
+                var email = $('#email').val();
+
+                var request = $.ajax({
+                    url: "mailinglist/subscribe",
+                    type: "POST",
+                    data: { userId: userId, email: email },
+                    dataType: "html"
+                });
+
+                request.done(function () {
+                    $("#mailchimp-wrapper").html("<h3>Awesome, see you soon</h3>");
+                });
+
+                request.fail(function () {
+                    $('#joinMailingList').removeClass('loading');
+                    $('#joinMailingList').append('<div class="ui error message show "><div class="ui list divided"><div class="item">Uh oh! Looks like there was a problem.</div></div></div>');
+                });
+            });
+        });
+    </script>
+}
