@@ -14,50 +14,42 @@
     </section>
 }
 
-<div class="page-content">
+<div class="island island--horizontal-break">
+    <div class="panel-one">
+        <form method="POST" data-parsley-validate>
+            <h2>Don't have an account? <a href="account/register">Register</a></h2>
 
-    <section class="layout-constrained">
+            <h3>Log In</h3>
 
-        <div class="island island--horizontal-break">
-            <div class="panel-one">
-                <form method="POST" data-parsley-validate>
-                    <h2>Don't have an account? <a href="account/register">Register</a></h2>
-
-                    <h3>Log In</h3>
-
-                    <div class="form-group">
-                        <label>Username or Email</label>
-                        <input type="text" placeholder="Username" name="username" class="input-full field" value="@Model.Username" required>
-                        @Html.ValidationMessageFor("Username")
-                    </div>
-
-                    <div class="form-group">
-                        <label>Password</label>
-                        <input type="password" name="password" class="input-full field" value="@Model.Password" required>
-                        @Html.ValidationMessageFor("Password")
-                    </div>
-
-                    <div class="form-group">
-                        <input type="checkbox" name="RememberMe" class="field" id="RemeberMe" checked="@Model.RememberMe">
-                        <label for="RemeberMe">Remember Me?</label>
-                    </div>
-
-                    @Html.ValidationSummary()
-
-                    <input type="submit" class="btn btn--primary btn--full" value="Login" />
-                </form>
+            <div class="form-group">
+                <label>Username or Email</label>
+                <input type="text" placeholder="Username" name="username" class="input-full field" value="@Model.Username" required>
+                @Html.ValidationMessageFor("Username")
             </div>
-            <div class="panel-two">
-                <h3>Or log in with one of these providers</h3>
-                <input type="submit" class="btn btn--full" value="Twitter" style="background-color: #55acee;" />
-                <input type="submit" class="btn btn--full" value="Facebook" style="background-color: #3b5998;" />
-                <input type="submit" class="btn btn--full" value="LinkedIn" style="background-color: #0976b4;" />
-                <input type="submit" class="btn btn--full" value="Meetup" style="background-color: #e0393e;">
-                <input type="submit" class="btn btn--full" value="StackOverflow" style="background-color: #fe7a15;" />
-                <input type="submit" class="btn btn--full" value="Github" style="background-color: #333333;" />
+
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" name="password" class="input-full field" value="@Model.Password" required>
+                @Html.ValidationMessageFor("Password")
             </div>
-        </div>
 
-    </section>
+            <div class="form-group">
+                <input type="checkbox" name="RememberMe" class="field" id="RemeberMe" checked="@Model.RememberMe">
+                <label for="RemeberMe">Remember Me?</label>
+            </div>
 
+            @Html.ValidationSummary()
+
+            <input type="submit" class="btn btn--primary btn--full" value="Login" />
+        </form>
+    </div>
+    <div class="panel-two">
+        <h3>Or log in with one of these providers</h3>
+        <input type="submit" class="btn btn--full" value="Twitter" style="background-color: #55acee;" />
+        <input type="submit" class="btn btn--full" value="Facebook" style="background-color: #3b5998;" />
+        <input type="submit" class="btn btn--full" value="LinkedIn" style="background-color: #0976b4;" />
+        <input type="submit" class="btn btn--full" value="Meetup" style="background-color: #e0393e;">
+        <input type="submit" class="btn btn--full" value="StackOverflow" style="background-color: #fe7a15;" />
+        <input type="submit" class="btn btn--full" value="Github" style="background-color: #333333;" />
+    </div>
 </div>

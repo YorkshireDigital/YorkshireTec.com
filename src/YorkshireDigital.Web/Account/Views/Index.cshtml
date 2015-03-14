@@ -6,96 +6,88 @@
 @section Hero {
 }
 
-<div class="page-content">
+<div class="island island--horizontal-break">
+    <div class="panel-one">
+        <form method="POST" data-parsley-validate>
+            <input type="hidden" name="Id" id="Id" value="@Model.Id" />
+            <h2>Account Details</h2>
 
-    <section class="layout-constrained">
-
-        <div class="island island--horizontal-break">
-            <div class="panel-one">
-                <form method="POST" data-parsley-validate>
-                    <input type="hidden" name="Id" id="Id" value="@Model.Id" />
-                    <h2>Account Details</h2>
-
-                    <div class="form-group">
-                        <label>Username or Email</label>
-                        <input type="text" placeholder="Username" name="username" class="input-full field" value="@Model.Username" required>
-                        @Html.ValidationMessageFor("Username")
-                    </div>
-
-                    <div class="form-group">
-                        <label>Name</label>
-                        <input type="text" name="name" class="input-full field" value="@Model.Name" required>
-                        @Html.ValidationMessageFor("Name")
-                    </div>
-
-                    <div class="form-group">
-                        <label>Email</label>
-                        <input type="email" name="email" class="input-full field" value="@Model.Email" required>
-                        @Html.ValidationMessageFor("Email")
-                    </div>
-
-                    @Html.ValidationSummary()
-
-                    <input type="submit" class="btn btn--primary btn--full" value="Update" />
-                </form>
-                <div class="form-actions" id="mailingList">
-                    @{
-                        switch (Model.MailingListState)
-                        {
-                            case 0:
-                                <a id="subscribe" class="btn btn--primary btn--full">Subscribe to mailing list</a>
-                                break;
-                            case 1:
-                                <a id="subscribe" class="btn btn--secondary btn--full">Resend mailing list confirmation</a>
-                                break;
-                            case 2:
-                                <a id="unsubscribe">Unsubscribe from mailing list</a>
-                                break;
-                            case 3:
-                                <a id="unsubscribe">Resend Unsubscribe mailing list confirmation</a>
-                                break;
-                        }
-                    }
-                </div>
-
+            <div class="form-group">
+                <label>Username or Email</label>
+                <input type="text" placeholder="Username" name="username" class="input-full field" value="@Model.Username" required>
+                @Html.ValidationMessageFor("Username")
             </div>
-            <div class="panel-two">
-                <h4>Linked Accounts</h4>
-                @foreach (var provider in Model.Providers)
-                {
-                    <div class="item">
-                        <span title="@provider.Name" class="fluid ui @provider.Name button">@@@provider.Username - @provider.Name</span>
-                    </div>
-                }
-                @if (!Model.Providers.HasTwitter)
-                {
-                    <div class="item">
-                        <a href="~/authentication/redirect/twitter" title="Twitter" class="btn btn--full" style="background-color: #55acee;">Link to Twitter</a>
-                    </div>
-                }
-                @if (!Model.Providers.HasFacebook)
-                {
-                    <div class="item">
-                        <a href="~/authentication/redirect/facebook" title="Facebook" class="btn btn--full" style="background-color: #3b5998;">Link to Facebook</a>
-                    </div>
-                }
-                @if (!Model.Providers.HasLinkedIn)
-                {
-                    <div class="item">
-                        <a href="~/authentication/redirect/linkedin" title="LinkedIn" class="btn btn--full" style="background-color: #0976b4;">Link to LinkedIn</a>
-                    </div>
-                }
-                @if (!Model.Providers.HasGoogle)
-                {
-                    <div class="item">
-                        <a href="~/authentication/redirect/google" title="Google" class="btn btn--full" style="background-color: #e0393e;">Link to Google</a>
-                    </div>
-                }
+
+            <div class="form-group">
+                <label>Name</label>
+                <input type="text" name="name" class="input-full field" value="@Model.Name" required>
+                @Html.ValidationMessageFor("Name")
             </div>
+
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" name="email" class="input-full field" value="@Model.Email" required>
+                @Html.ValidationMessageFor("Email")
+            </div>
+
+            @Html.ValidationSummary()
+
+            <input type="submit" class="btn btn--primary btn--full" value="Update" />
+        </form>
+        <div class="form-actions" id="mailingList">
+            @{
+                switch (Model.MailingListState)
+                {
+                    case 0:
+                        <a id="subscribe" class="btn btn--primary btn--full">Subscribe to mailing list</a>
+                        break;
+                    case 1:
+                        <a id="subscribe" class="btn btn--secondary btn--full">Resend mailing list confirmation</a>
+                        break;
+                    case 2:
+                        <a id="unsubscribe">Unsubscribe from mailing list</a>
+                        break;
+                    case 3:
+                        <a id="unsubscribe">Resend Unsubscribe mailing list confirmation</a>
+                        break;
+                }
+            }
         </div>
 
-    </section>
-
+    </div>
+    <div class="panel-two">
+        <h4>Linked Accounts</h4>
+        @foreach (var provider in Model.Providers)
+        {
+            <div class="item">
+                <span title="@provider.Name" class="fluid ui @provider.Name button">@@@provider.Username - @provider.Name</span>
+            </div>
+        }
+        @if (!Model.Providers.HasTwitter)
+        {
+            <div class="item">
+                <a href="~/authentication/redirect/twitter" title="Twitter" class="btn btn--full" style="background-color: #55acee;">Link to Twitter</a>
+            </div>
+        }
+        @if (!Model.Providers.HasFacebook)
+        {
+            <div class="item">
+                <a href="~/authentication/redirect/facebook" title="Facebook" class="btn btn--full" style="background-color: #3b5998;">Link to Facebook</a>
+            </div>
+        }
+        @if (!Model.Providers.HasLinkedIn)
+        {
+            <div class="item">
+                <a href="~/authentication/redirect/linkedin" title="LinkedIn" class="btn btn--full" style="background-color: #0976b4;">Link to LinkedIn</a>
+            </div>
+        }
+        @if (!Model.Providers.HasGoogle)
+        {
+            <div class="item">
+                <a href="~/authentication/redirect/google" title="Google" class="btn btn--full" style="background-color: #e0393e;">Link to Google</a>
+            </div>
+        }
+    </div>
 </div>
 
 @section Scripts
