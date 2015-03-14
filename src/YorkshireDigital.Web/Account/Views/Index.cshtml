@@ -9,6 +9,7 @@
 <div class="island island--horizontal-break">
     <div class="panel-one">
         <form method="POST" data-parsley-validate>
+            @Html.AntiForgeryToken()
             <input type="hidden" name="Id" id="Id" value="@Model.Id" />
             <h2>Account Details</h2>
 

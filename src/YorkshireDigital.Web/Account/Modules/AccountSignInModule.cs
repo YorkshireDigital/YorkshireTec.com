@@ -4,6 +4,7 @@
     using System.Web.Helpers;
     using Nancy;
     using Nancy.Authentication.Forms;
+    using Nancy.Security;
     using NHibernate;
     using YorkshireDigital.Data.Services;
     using YorkshireDigital.Web.Account.ViewModels;
@@ -25,6 +26,17 @@
 
             Post["/"] = _ =>
             {
+                #region CSRF
+                try
+                {
+                    this.ValidateCsrfToken();
+                }
+                catch (CsrfValidationException)
+                {
+                    return Response.AsText("Csrf Token not valid.").WithStatusCode(HttpStatusCode.Forbidden);
+                }
+                #endregion
+
                 AccountSignInViewModel viewModel;
                 var result = BindAndValidateModel(out viewModel);
 

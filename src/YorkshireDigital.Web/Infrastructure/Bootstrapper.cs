@@ -9,6 +9,7 @@ namespace YorkshireDigital.Web.Infrastructure
     using Nancy.Conventions;
     using Nancy.Cryptography;
     using Nancy.Diagnostics;
+    using Nancy.Security;
     using Nancy.TinyIoc;
     using NHibernate;
     using NHibernate.Context;
@@ -34,10 +35,7 @@ namespace YorkshireDigital.Web.Infrastructure
                 NHibernateSessionFactoryProvider.BuildSessionFactory(
                     ConfigurationManager.ConnectionStrings["Database"].ConnectionString));
 
-            Conventions.ViewLocationConventions.Add((viewName, model, context) => string.Concat(context.ModuleName, "/Views/", viewName));
-            Conventions.ViewLocationConventions.Add((viewName, model, context) => string.Concat(context.ModuleName.Pluralize(false), "/Views/", viewName));
-            Conventions.ViewLocationConventions.Add((viewName, model, context) => string.Concat(context.ModulePath.TrimStart('/'), "/Views/", viewName));
-            Conventions.ViewLocationConventions.Add((viewName, model, context) => string.Concat(context.ModulePath.TrimStart('/').Split('/')[0], "/Views/", viewName));
+            ConfigureViewLocations();
 
             Conventions.StaticContentsConventions.Add(StaticContentConventionBuilder.AddDirectory("public"));
         }
@@ -58,6 +56,8 @@ namespace YorkshireDigital.Web.Infrastructure
             context.ViewBag.Beta = new FeaturesModel().Beta;
 
             StaticConfiguration.DisableErrorTraces = false;
+
+            #region Cryto
 
             var cryptographyConfiguration =
                 new CryptographyConfiguration(
@@ -82,6 +82,8 @@ namespace YorkshireDigital.Web.Infrastructure
                 UserMapper = container.Resolve<IUserMapper>(),
             };
             FormsAuthentication.Enable(pipelines, formsAuthConfiguration);
+
+            #endregion
         }
 
         protected override void ApplicationStartup(TinyIoCContainer container, IPipelines pipelines)
@@ -89,6 +91,8 @@ namespace YorkshireDigital.Web.Infrastructure
             base.ApplicationStartup(container, pipelines);
 
             ConfigureNHibernateSessionPerRequest(container, pipelines);
+
+            Csrf.Enable(pipelines);
 
             // TODO: Handle Errors
             // pipelines.OnError += InvalidOrderOperationHandler;
@@ -141,5 +145,13 @@ namespace YorkshireDigital.Web.Infrastructure
             return null;
         }
         #endregion
+
+        private void ConfigureViewLocations()
+        {
+            Conventions.ViewLocationConventions.Add((viewName, model, context) => string.Concat(context.ModuleName, "/Views/", viewName));
+            Conventions.ViewLocationConventions.Add((viewName, model, context) => string.Concat(context.ModuleName.Pluralize(false), "/Views/", viewName));
+            Conventions.ViewLocationConventions.Add((viewName, model, context) => string.Concat(context.ModulePath.TrimStart('/'), "/Views/", viewName));
+            Conventions.ViewLocationConventions.Add((viewName, model, context) => string.Concat(context.ModulePath.TrimStart('/').Split('/')[0], "/Views/", viewName));
+        }
     }
 }

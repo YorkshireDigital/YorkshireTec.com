@@ -17,6 +17,8 @@
 <div class="island island--horizontal-break">
     <div class="panel-one">
         <form method="POST" data-parsley-validate>
+            @Html.AntiForgeryToken()
+
             <h2>Don't have an account? <a href="account/register">Register</a></h2>
 
             <h3>Log In</h3>
