@@ -8,11 +8,15 @@
     });
 
     var showFeedbackPanel = function () {
-        $('.notification__title').fadeOut();
+        $('.notification__title').animate({
+          opacity: 0
+        });
         $('.feedback-panel').slideDown();
     };
     var hideFeedbackPanel = function () {
-        $('.notification__title').fadeIn();
+        $('.notification__title').animate({
+          opacity: 1
+        });
         $('.feedback-panel').slideUp();
     };
     var showTrelloForm = function () {
