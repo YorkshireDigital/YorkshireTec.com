@@ -357,6 +357,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Account\Modules\AccountSignOutModule.cs" />
     <Compile Include="Account\Modules\AccountModule.cs" />
     <Compile Include="Account\Modules\AccountRegisterModule.cs" />
     <Compile Include="Account\Modules\AccountSignInModule.cs" />
