@@ -14,25 +14,19 @@
     </section>
 }
 
-<div class="page-content">
-    
-    <section class="layout-constrained">
         
-        @Html.Partial("Shared/_EventsCalendar")
+@Html.Partial("Shared/_EventsCalendar")
 
-        <div class="island island--horizontal-break">
-            <div class="panel-one">
-                @Html.Partial("Shared/_MailChimpSignup")
-            </div>
-            <div class="panel-two">
-                <h3>Know an event we've not got?</h3>
-                <p>
-                    If you run or know of any meetups/events in Yorkshire we have not listed, please <a href="mailto:info@yorkshiredigital.com">let us know</a>.
-                </p>
-            </div>
-        </div>
-    </section>
-
+<div class="island island--horizontal-break">
+    <div class="panel-one">
+        @Html.Partial("Shared/_MailChimpSignup")
+    </div>
+    <div class="panel-two">
+        <h3>Know an event we've not got?</h3>
+        <p>
+            If you run or know of any meetups/events in Yorkshire we have not listed, please <a href="mailto:info@yorkshiredigital.com">let us know</a>.
+        </p>
+    </div>
 </div>
 
 @section Scripts
