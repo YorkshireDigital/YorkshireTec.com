@@ -16,14 +16,14 @@
 {
     <div id="mailchimp-wrapper">
         <p>There's plenty more to come. Why no sign up to our newsletter to keep up to date about all things Yorkshire Digital!</p>
-        <div class="ui form segment" id="joinMailingList">
+        <div class="" id="joinMailingList">
             <input type="hidden" name="UserId" id="UserId" value="@Model.UserId" />
             <div class="form-group">
                 <label>Email</label>
                 <input type="email" placeholder="joe.bloggs@sharklasers.com" name="email" value="@Model.Email" required>
                 @Html.ValidationMessageFor("Email")
             </div>
-            <div class="clear"><a name="subscribe" id="mc-subscribe" class="input-full btn ">Sign me up</a></div>
+            <a name="subscribe" id="mc-subscribe" class="input-full btn btn--primary">Sign me up</a>
         </div>
     </div>
 }
@@ -31,8 +31,9 @@
 @section Scripts
 {
     <script type="text/javascript">
-        $(function() {
+        $(function () {
             $('#mc-subscribe').click(function () {
+                $('.error', '#mailchimp-wrapper').remove();
                 $('#joinMailingList').addClass('loading');
                 var userId = $('#UserId').val();
                 var email = $('#email').val();
@@ -50,7 +51,7 @@
 
                 request.fail(function () {
                     $('#joinMailingList').removeClass('loading');
-                    $('#joinMailingList').append('<div class="ui error message show "><div class="ui list divided"><div class="item">Uh oh! Looks like there was a problem.</div></div></div>');
+                    $('#joinMailingList').append('<div class="error">Uh oh! Looks like there was a problem.</div>');
                 });
             });
         });
