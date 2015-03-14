@@ -78,7 +78,7 @@ namespace YorkshireDigital.Web.Infrastructure
             var formsAuthConfiguration = new FormsAuthenticationConfiguration
             {
                 CryptographyConfiguration = cryptographyConfiguration,
-                RedirectUrl = "~/account/log-in",
+                RedirectUrl = "~/account/sign-in",
                 UserMapper = container.Resolve<IUserMapper>(),
             };
             FormsAuthentication.Enable(pipelines, formsAuthConfiguration);
