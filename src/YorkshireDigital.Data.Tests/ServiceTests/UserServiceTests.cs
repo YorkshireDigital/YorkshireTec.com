@@ -109,5 +109,22 @@
             result.Name.ShouldAllBeEquivalentTo(user.Name);
             result.Username.ShouldAllBeEquivalentTo(user.Username);
         }
+
+        [Test]
+        public void GetUserByEmail_ReturnsCorrectUser()
+        {
+            // Arrange
+            var user = new User { Username = "UnitTest", Name = "Unit Test", Email = "existing@email.com" };
+            Session.SaveOrUpdate(user);
+
+            // Act
+            var result = service.GetUserByEmail(user.Email);
+
+            // Assert
+            result.Id.ShouldBeEquivalentTo(user.Id);
+            result.Email.ShouldBeEquivalentTo(user.Email);
+            result.Name.ShouldBeEquivalentTo(user.Name);
+            result.Username.ShouldBeEquivalentTo(user.Username);
+        }
     }
 }

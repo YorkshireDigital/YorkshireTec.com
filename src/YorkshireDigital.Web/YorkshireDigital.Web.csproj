@@ -407,6 +407,8 @@
     <Compile Include="MailingList\Modules\MailingListModule.cs" />
     <Compile Include="MailingList\Validation\MailingListAjaxPostModelValidator.cs" />
     <Compile Include="MailingList\ViewModels\ArchiveNewsletterViewModel.cs" />
+    <Compile Include="MailingList\ViewModels\MailChimpWebHookType.cs" />
+    <Compile Include="MailingList\ViewModels\MailChimpWebHookPostModel.cs" />
     <Compile Include="MailingList\ViewModels\MailingListAjaxPostModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

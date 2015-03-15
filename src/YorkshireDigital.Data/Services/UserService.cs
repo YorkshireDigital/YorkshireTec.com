@@ -67,5 +67,11 @@ namespace YorkshireDigital.Data.Services
         {
             return session.Get<User>(id);
         }
+
+        public User GetUserByEmail(string email)
+        {
+            return session.QueryOver<User>().Where(x => x.Email == email)
+                .SingleOrDefault();
+        }
     }
 }
