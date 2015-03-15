@@ -4,7 +4,6 @@ namespace YorkshireDigital.Web.MailingList.Modules
     using System.Collections.Generic;
     using Nancy;
     using NHibernate;
-    using YorkshireDigital.Data.Domain.Account;
     using YorkshireDigital.Data.Domain.Account.Enums;
     using YorkshireDigital.Data.Services;
     using YorkshireDigital.Web.Infrastructure;
@@ -36,7 +35,7 @@ namespace YorkshireDigital.Web.MailingList.Modules
             Post["/unsubscribe"] = _ => ManageMailingListSubscription(false);
 
             Post["/webhooks"] = _ => ProcessWebHooks();
-            Get["/webhooks"] = _ => ProcessWebHooks();
+            Get["/webhooks"] = _ => Response.AsText("Ok").WithStatusCode(HttpStatusCode.OK);
         }
 
         private Response ProcessWebHooks()
