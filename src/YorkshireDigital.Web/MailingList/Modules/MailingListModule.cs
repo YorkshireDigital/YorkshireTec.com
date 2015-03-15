@@ -49,14 +49,17 @@ namespace YorkshireDigital.Web.MailingList.Modules
             switch (model.Type)
             {
                 case MailChimpWebHookType.subscribe:
-                    ProcessSubscribeWebhook(model.Data);
+                    ProcessSubscribeWebhook(model.Data, true);
+                    break;
+                case MailChimpWebHookType.unsubscribe:
+                    ProcessSubscribeWebhook(model.Data, false);
                     break;
             }
 
             return HttpStatusCode.OK;
         }
 
-        private void ProcessSubscribeWebhook(IReadOnlyDictionary<string, object> data)
+        private void ProcessSubscribeWebhook(IReadOnlyDictionary<string, object> data, bool subscribe)
         {
             var userService = new UserService(RequestSession);
 
@@ -66,7 +69,7 @@ namespace YorkshireDigital.Web.MailingList.Modules
             if (user == null) return;
             
             user.MailingListEmail = email;
-            user.MailingListState = MailingListState.Subscribed;
+            user.MailingListState = subscribe ? MailingListState.Subscribed : MailingListState.Unsubscribed;
 
             userService.SaveUser(user);
         }
