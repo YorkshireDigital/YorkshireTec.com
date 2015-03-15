@@ -97,6 +97,9 @@
     <Reference Include="Nancy.Owin">
       <HintPath>..\packages\Nancy.Owin.0.23.2\lib\net40\Nancy.Owin.dll</HintPath>
     </Reference>
+    <Reference Include="Nancy.SimpleAuthentication">
+      <HintPath>..\packages\Nancy.SimpleAuthentication.0.3.14\lib\net40\Nancy.SimpleAuthentication.dll</HintPath>
+    </Reference>
     <Reference Include="Nancy.Validation.FluentValidation, Version=0.22.2.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Nancy.Validation.FluentValidation.0.23.2\lib\net40\Nancy.Validation.FluentValidation.dll</HintPath>
@@ -116,6 +119,10 @@
     </Reference>
     <Reference Include="ServiceStack.Text">
       <HintPath>..\packages\ServiceStack.Text.3.9.71\lib\net35\ServiceStack.Text.dll</HintPath>
+    </Reference>
+    <Reference Include="SimpleAuthentication.Core, Version=0.3.14.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\SimpleAuthentication.Core.0.3.14\lib\net40\SimpleAuthentication.Core.dll</HintPath>
     </Reference>
     <Reference Include="Slack.Webhooks">
       <HintPath>..\packages\Slack.Webhooks.0.1.2\lib\net40\Slack.Webhooks.dll</HintPath>
@@ -387,6 +394,7 @@
     <Compile Include="Feedback\Models\FeedbackAjaxPostModel.cs" />
     <Compile Include="Feedback\Modules\FeedbackModule.cs" />
     <Compile Include="Home\Modules\HomeModule.cs" />
+    <Compile Include="Infrastructure\AuthenticationCallbackProvider.cs" />
     <Compile Include="Infrastructure\Bootstrapper.cs" />
     <Compile Include="Infrastructure\BaseModule.cs" />
     <Compile Include="Infrastructure\Extensions.cs" />

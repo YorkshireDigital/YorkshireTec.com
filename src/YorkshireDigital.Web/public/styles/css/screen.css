@@ -1995,3 +1995,12 @@ hr {
 
 /*	=PLACE YOUR TEMPORARY STYLES BELOW HERE
 ------------------------------------------------------------*/
+.btn.twitter {
+  background-color: #55acee; }
+.btn.facebook {
+  background-color: #3b5998; }
+.btn.linkedin {
+  background-color: #0976b4; }
+.btn.meetup {
+  background-color: #e0393e; }
+

@@ -5,6 +5,7 @@ namespace YorkshireDigital.Data.Services
 {
     using System;
     using System.Linq;
+    using global::NHibernate.Linq;
     using YorkshireDigital.Data.Domain.Account;
 
     public class UserService
@@ -30,8 +31,10 @@ namespace YorkshireDigital.Data.Services
 
         public User GetUser(string username)
         {
-            return LinqExtensionMethods.Query<User>(session).FirstOrDefault(x => x.Username != null && x.Username == username
-                || x.Email != null && x.Email == username);
+            return session.Query<User>()
+                          .Fetch(x => x.Providers)
+                          .FirstOrDefault(x => x.Username != null && x.Username == username
+                                            || x.Email != null && x.Email == username);
         }
 
         public User GetUserByIdentity(string providerName, string username)
@@ -61,6 +64,7 @@ namespace YorkshireDigital.Data.Services
             {
                 user.Providers.Add(provider);
             }
+            session.Save(user);
         }
         
         public User GetUserById(Guid id)

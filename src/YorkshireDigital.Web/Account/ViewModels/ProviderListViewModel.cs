@@ -21,9 +21,9 @@ namespace YorkshireDigital.Web.Account.ViewModels
             get { return this.Any(x => x.Name == "linkedin"); }
         }
 
-        public bool HasGoogle
+        public bool HasMeetup
         {
-            get { return this.Any(x => x.Name == "google"); }
+            get { return this.Any(x => x.Name == "meetup"); }
         }
     }
 }
