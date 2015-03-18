@@ -29,8 +29,12 @@
                 }
 
             }).fail(function (response) {
+                $('p.error-message', '#mailchimp-wrapper').remove();
+                $('p.success-message', '#mailchimp-wrapper').remove();
                 $('form').removeClass('loading');
-                $('#mailchimp-wrapper').append('<p class="error error-message">Error: ' + response.message + '</p>');
+                if (response.responseJSON) {
+                    $('#mailchimp-wrapper').append('<p class="error error-message">Error: ' + response.responseJSON.message + '</p>');
+                }
             });
 
         } else {

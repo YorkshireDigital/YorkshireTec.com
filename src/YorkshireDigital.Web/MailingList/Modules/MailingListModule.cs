@@ -78,19 +78,18 @@ namespace YorkshireDigital.Web.MailingList.Modules
             MailingListAjaxPostModel model;
             var result = BindAndValidateModel(out model);
 
-            AjaxValidateCsrfToken(model);
-
-            if (!result.IsValid)
-                return Response.AsJson(new {message = "Request failed validation"})
-                               .WithStatusCode(HttpStatusCode.BadRequest);
-
-            var userService = new UserService(RequestSession);
-            var user = userService.GetUser(Context.CurrentUser.UserName);
-
-            user.MailingListEmail = model.Email;
-
             try
             {
+                AjaxValidateCsrfToken(model);
+
+                if (!result.IsValid)
+                    return Response.AsJson(new { message = "Request failed validation" })
+                                   .WithStatusCode(HttpStatusCode.BadRequest);
+
+                var userService = new UserService(RequestSession);
+                var user = userService.GetUser(Context.CurrentUser.UserName);
+
+                user.MailingListEmail = model.Email;
                 if (subscribe)
                 {
                     user.MailingListState = MailingListState.PendingSubscribe;
@@ -101,13 +100,13 @@ namespace YorkshireDigital.Web.MailingList.Modules
                     user.MailingListState = MailingListState.PendingUnsubscribe;
                     MailChimpHelper.Unsubscribe(model.Email, user.Name, user.Twitter, string.Empty);
                 }
+
+                userService.SaveUser(user);
             }
             catch (Exception ex)
             {
-                return Response.AsJson(ex.Message).WithStatusCode(HttpStatusCode.InternalServerError);
+                return Response.AsJson(new { message = ex.Message }).WithStatusCode(HttpStatusCode.BadRequest);
             }
-
-            userService.SaveUser(user);
 
             return Response.AsJson(new { message =  "Confirmation email sent."}).WithStatusCode(HttpStatusCode.OK);
         }
