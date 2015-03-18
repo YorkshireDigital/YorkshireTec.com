@@ -11,9 +11,12 @@
     {
         private static readonly string ApiKey = ConfigurationManager.AppSettings["MailChimp_ApiKey"];
         private static readonly string ListId = ConfigurationManager.AppSettings["MailChimp_ListId"];
+        private static readonly bool MailChimpEnabled = bool.Parse(ConfigurationManager.AppSettings["Feature:MailChimp"]);
 
         public static void AddSubscriber(string email, string name, string twitter, string company)
         {
+            if (!MailChimpEnabled) return;
+            
             var mailChimp = new MailChimpManager(ApiKey);
             var emailParam = new EmailParameter
             {
@@ -25,6 +28,8 @@
 
         public static void Unsubscribe(string email, string name, string twitter, string empty)
         {
+            if (!MailChimpEnabled) return;
+            
             var mailChimp = new MailChimpManager(ApiKey);
             var emailParam = new EmailParameter
             {
@@ -35,18 +40,22 @@
 
         public static bool IsEmailRegistered(string email)
         {
+            if (!MailChimpEnabled) return false;
+
             var mailChimp = new MailChimpManager(ApiKey);
             var emailParam = new EmailParameter
             {
                 Email = email
             };
-            var results = mailChimp.GetMemberInfo(ListId, new List<EmailParameter> {emailParam});
+            var results = mailChimp.GetMemberInfo(ListId, new List<EmailParameter> { emailParam });
 
             return results.Data.Count > 0;
         }
 
         public static List<MailChimpCampaign> GetPastCampaigns()
         {
+            if (!MailChimpEnabled) return new List<MailChimpCampaign>();
+            
             var mailChimp = new MailChimpManager(ApiKey);
 
             var result = mailChimp.GetCampaigns();
