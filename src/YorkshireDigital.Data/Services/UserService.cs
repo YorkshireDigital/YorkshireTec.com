@@ -1,5 +1,4 @@
 ﻿using ISession = NHibernate.ISession;
-using LinqExtensionMethods = NHibernate.Linq.LinqExtensionMethods;
 
 namespace YorkshireDigital.Data.Services
 {
@@ -7,6 +6,8 @@ namespace YorkshireDigital.Data.Services
     using System.Linq;
     using global::NHibernate.Linq;
     using YorkshireDigital.Data.Domain.Account;
+    using YorkshireDigital.Data.Domain.Account.Enums;
+    using YorkshireDigital.Data.Helpers;
 
     public class UserService
     {
@@ -44,6 +45,12 @@ namespace YorkshireDigital.Data.Services
 
         public User SaveUser(User user)
         {
+            if (MailChimpHelper.IsEmailRegistered(user.Email))
+            {
+                user.MailingListState = MailingListState.Subscribed;
+                user.MailingListEmail = user.Email;
+            }
+
             session.Save(user);
 
             return user;

@@ -5,9 +5,9 @@ namespace YorkshireDigital.Web.MailingList.Modules
     using Nancy;
     using NHibernate;
     using YorkshireDigital.Data.Domain.Account.Enums;
+    using YorkshireDigital.Data.Helpers;
     using YorkshireDigital.Data.Services;
     using YorkshireDigital.Web.Infrastructure;
-    using YorkshireDigital.Web.Infrastructure.Helpers;
     using YorkshireDigital.Web.MailingList.ViewModels;
 
     public class MailingListModule : BaseModule

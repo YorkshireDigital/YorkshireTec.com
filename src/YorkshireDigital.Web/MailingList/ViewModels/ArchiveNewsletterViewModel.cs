@@ -1,7 +1,7 @@
 ﻿namespace YorkshireDigital.Web.MailingList.ViewModels
 {
     using System.Collections.Generic;
-    using YorkshireDigital.Web.Infrastructure.Helpers;
+    using YorkshireDigital.Data.Helpers;
 
     public class ArchiveNewsletterViewModel
     {

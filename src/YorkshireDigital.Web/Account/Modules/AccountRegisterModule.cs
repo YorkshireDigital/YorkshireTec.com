@@ -5,6 +5,7 @@
     using Nancy.Security;
     using NHibernate;
     using YorkshireDigital.Data.Domain.Account.Enums;
+    using YorkshireDigital.Data.Helpers;
     using YorkshireDigital.Data.Services;
     using YorkshireDigital.Web.Account.ViewModels;
     using YorkshireDigital.Web.Infrastructure;
@@ -39,21 +40,13 @@
                         if (!userService.EmailAlreadyRegistered(viewModel.Email))
                         {
                             var user = userService.SaveUser(viewModel.ToUser());
-                            
-                            if (MailChimpHelper.IsEmailRegistered(viewModel.Email))
+
+                            if (viewModel.MailingList && user.MailingListState == MailingListState.Unsubscribed)
                             {
-                                user.MailingListState = MailingListState.Subscribed;
-                                user.MailingListEmail = viewModel.Email;
-                            }
-                            else
-                            {
-                                if (viewModel.MailingList)
-                                {
-                                    MailChimpHelper.AddSubscriber(viewModel.Email, viewModel.Name, string.Empty, string.Empty);
-                                }
+                                MailChimpHelper.AddSubscriber(viewModel.Email, viewModel.Name, string.Empty, string.Empty);
                             }
 
-                            SlackHelper.PostNewUserUpdate(viewModel.Username, viewModel.Name, viewModel.Email, viewModel.MailingList, Context.Request.Url.SiteBase);
+                            SlackHelper.PostNewUserUpdate(viewModel.Username, viewModel.Name, viewModel.Email, user.MailingListState != MailingListState.Unsubscribed, Context.Request.Url.SiteBase);
                             return this.LoginAndRedirect(user.Id, null, "~/account/welcome");
                         }
                         AddError("Email", "This email is already registered");

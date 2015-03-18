@@ -1,4 +1,4 @@
-﻿namespace YorkshireDigital.Web.Infrastructure.Helpers
+﻿namespace YorkshireDigital.Data.Helpers
 {
     using System;
     using System.Collections.Generic;
