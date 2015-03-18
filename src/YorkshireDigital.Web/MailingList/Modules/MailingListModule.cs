@@ -40,17 +40,18 @@ namespace YorkshireDigital.Web.MailingList.Modules
 
         private Response ProcessWebHooks()
         {
-            MailChimpWebHookPostModel model;
-            var result = BindAndValidateModel(out model);
+            var model = new MailChimpWebHookPostModel();
+            
+            var result = model.PopulateData(Request.Form);
 
-            if (!result.IsValid) return HttpStatusCode.OK;
+            if (!result) return HttpStatusCode.OK;
             
             switch (model.Type)
             {
-                case MailChimpWebHookType.subscribe:
+                case MailChimpWebHookType.Subscribe:
                     ProcessSubscribeWebhook(model.Data, true);
                     break;
-                case MailChimpWebHookType.unsubscribe:
+                case MailChimpWebHookType.Unsubscribe:
                     ProcessSubscribeWebhook(model.Data, false);
                     break;
             }
@@ -58,11 +59,11 @@ namespace YorkshireDigital.Web.MailingList.Modules
             return HttpStatusCode.OK;
         }
 
-        private void ProcessSubscribeWebhook(IReadOnlyDictionary<string, object> data, bool subscribe)
+        private void ProcessSubscribeWebhook(Dictionary<string, object> data, bool subscribe)
         {
             var userService = new UserService(RequestSession);
 
-            var email = data["Email"].ToString();
+            var email = data["email"].ToString();
             var user = userService.GetUserByEmail(email);
 
             if (user == null) return;

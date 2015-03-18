@@ -2,10 +2,10 @@
 {
     public enum MailChimpWebHookType
     {
-        subscribe,
-        unsubscribe,
-        profile,
-        upemail,
-        campaign
+        Subscribe,
+        Unsubscribe,
+        Profile,
+        Upemail,
+        Campaign
     }
 }
