@@ -25,7 +25,8 @@
                     $('#mc-subscribe').removeClass('btn--primary');
                     $('#mc-subscribe').addClass('btn--secondary');
                 } else {
-                    $('#mc-unsubscribe').text('Resend Unsubscribe mailing list confirmation');
+                    $('#mailingList').append('<a id="mc-subscribe" class="btn btn--primary btn--full">Subscribe to mailing list</a>');
+                    $('#mc-unsubscribe').remove();
                 }
 
             }).fail(function (response) {
