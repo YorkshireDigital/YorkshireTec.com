@@ -1,6 +1,7 @@
 ﻿namespace YorkshireDigital.Web.Infrastructure.Handlers
 {
     using System;
+    using System.Configuration;
     using Nancy;
     using Nancy.ErrorHandling;
     using Nancy.Responses.Negotiation;
@@ -40,11 +41,16 @@
                 SentryHelper.LogException(new Exception("An unexpected error occurred."));
             }
 
+            bool displayDetails;
+            var result = bool.TryParse(ConfigurationManager.AppSettings["Errors_DisplayDetails"], out displayDetails);
+
+            displayDetails = displayDetails && result;
+
             response.WithModel(new ErrorPageViewModel
             {
                 Title = "Sorry, something went wrong",
                 Summary = error == null ? "An unexpected error occurred." : error.ErrorMessage,
-                Details = error == null ? null : error.FullException
+                Details = error == null || !displayDetails ? null :  error.FullException
             }).WithStatusCode(statusCode)
               .WithView("Error");
 
