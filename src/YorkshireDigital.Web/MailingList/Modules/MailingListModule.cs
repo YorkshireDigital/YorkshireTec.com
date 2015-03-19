@@ -2,6 +2,7 @@ namespace YorkshireDigital.Web.MailingList.Modules
 {
     using System;
     using System.Collections.Generic;
+    using System.Configuration;
     using Nancy;
     using NHibernate;
     using YorkshireDigital.Data.Domain.Account.Enums;
@@ -12,9 +13,12 @@ namespace YorkshireDigital.Web.MailingList.Modules
 
     public class MailingListModule : BaseModule
     {
+        private static readonly string ServerKey = ConfigurationManager.AppSettings["MailChimp_ServerKey"];
+
         public MailingListModule(ISessionFactory sessionFactory)
             : base(sessionFactory, "mailinglist")
         {
+
             Get["/archive"] = _ =>
             {
                 var viewModel = new ArchiveNewsletterViewModel
@@ -34,12 +38,23 @@ namespace YorkshireDigital.Web.MailingList.Modules
 
             Post["/unsubscribe"] = _ => ManageMailingListSubscription(false);
 
-            Post["/webhooks"] = _ => ProcessWebHooks();
-            Get["/webhooks"] = _ => Response.AsText("Ok").WithStatusCode(HttpStatusCode.OK);
+            Post["/webhooks/{key}"] = parameters => ProcessWebHooks(parameters);
+            Get["/webhooks/{key}"] = _ =>
+            {
+                var key = _.Key;
+
+                return key != ServerKey 
+                    ? Response.AsText("Invalid Key").WithStatusCode(400) 
+                    : Response.AsText("Ok").WithStatusCode(HttpStatusCode.OK);
+            };
         }
 
-        private Response ProcessWebHooks()
+        private Response ProcessWebHooks(dynamic parameters)
         {
+            var key = parameters.Key;
+
+            if (key != ServerKey) return Response.AsText("Invalid Key").WithStatusCode(400);
+
             var model = new MailChimpWebHookPostModel();
             
             var result = model.PopulateData(Request.Form);
