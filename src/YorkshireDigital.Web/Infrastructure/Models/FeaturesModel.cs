@@ -2,16 +2,14 @@
 {
     using System.Configuration;
 
-    public class FeaturesModel
+    public static class FeaturesModel
     {
-        public bool Calendar { get; set; }
-        public bool Beta { get; set; }
-
-        public FeaturesModel()
-        {
-            Calendar = IsFeatureEnabled("Calendar");
-            Beta = IsFeatureEnabled("Beta");
-        }
+        public static bool Calendar { get { return IsFeatureEnabled("Calendar"); } }
+        public static bool Account { get { return IsFeatureEnabled("Account"); } }
+        public static bool Beta { get { return IsFeatureEnabled("Beta"); } }
+        public static bool MailChimp { get { return IsFeatureEnabled("MailChimp"); } }
+        public static bool Slack { get { return IsFeatureEnabled("Slack"); } }
+        public static bool Sentry { get { return IsFeatureEnabled("Sentry"); } }
 
         private static bool IsFeatureEnabled(string feature)
         {

@@ -52,7 +52,7 @@ namespace YorkshireDigital.Web.Infrastructure
         {
             base.RequestStartup(container, pipelines, context);
 
-            context.ViewBag.Beta = new FeaturesModel().Beta;
+            context.ViewBag.Beta = FeaturesModel.Beta;
 
             StaticConfiguration.DisableErrorTraces = false;
 

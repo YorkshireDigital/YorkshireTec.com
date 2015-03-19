@@ -28,9 +28,6 @@
 
                 return new SitemapResponse(events, "http://www.yorkshiredigital.com/");
             };
-
-            Get["/bad"] = _ => Response.AsText("Something bad happend").WithStatusCode(HttpStatusCode.InternalServerError);
-            Get["/buggy"] = _ => { throw new DivideByZeroException(); };
         }
 
 

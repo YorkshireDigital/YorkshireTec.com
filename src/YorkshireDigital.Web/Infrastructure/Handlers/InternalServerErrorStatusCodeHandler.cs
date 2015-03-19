@@ -4,6 +4,7 @@
     using Nancy;
     using Nancy.ErrorHandling;
     using Nancy.Responses.Negotiation;
+    using YorkshireDigital.Web.Infrastructure.Helpers;
     using YorkshireDigital.Web.Infrastructure.Models;
 
     public class InternalServerErrorStatusCodeHandler : IStatusCodeHandler
@@ -28,7 +29,15 @@
             if (context.Items.ContainsKey("OnErrorException"))
             {
                 var exception = context.Items["OnErrorException"] as Exception;
-                error = new Error {ErrorMessage = exception.Message, FullException = exception.ToString()};
+                if (exception != null)
+                {
+                    error = new Error { ErrorMessage = exception.Message, FullException = exception.ToString() };
+                    SentryHelper.LogException(exception);
+                }
+            }
+            else
+            {
+                SentryHelper.LogException(new Exception("An unexpected error occurred."));
             }
 
             response.WithModel(new ErrorPageViewModel
@@ -36,9 +45,8 @@
                 Title = "Sorry, something went wrong",
                 Summary = error == null ? "An unexpected error occurred." : error.ErrorMessage,
                 Details = error == null ? null : error.FullException
-            })
-                .WithStatusCode(statusCode)
-                .WithView("Error");
+            }).WithStatusCode(statusCode)
+              .WithView("Error");
 
             var errorresponse = responseNegotiator.NegotiateResponse(response, context);
 

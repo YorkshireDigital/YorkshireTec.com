@@ -3,10 +3,11 @@
     using System.Collections.Generic;
     using System.Configuration;
     using Slack.Webhooks;
+    using YorkshireDigital.Web.Infrastructure.Models;
 
     public class SlackHelper
     {
-        private static readonly bool Enabled = bool.Parse(ConfigurationManager.AppSettings["Slack_Enabled"]);
+        private static readonly bool Enabled = FeaturesModel.Slack;
         private static readonly string WebHookUrl = ConfigurationManager.AppSettings["Slack_Webhook_Url"];
 
         public static void PostToSlack(SlackMessage slackUpdate)
