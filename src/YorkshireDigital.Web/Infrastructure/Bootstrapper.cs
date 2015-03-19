@@ -93,8 +93,11 @@ namespace YorkshireDigital.Web.Infrastructure
 
             Csrf.Enable(pipelines);
 
-            // TODO: Handle Errors
-            // pipelines.OnError += InvalidOrderOperationHandler;
+            pipelines.OnError += (ctx, exception) =>
+            {
+                ctx.Items.Add("OnErrorException", exception);
+                return null;
+            };
         }
 
         #region NHibernate Session Setup

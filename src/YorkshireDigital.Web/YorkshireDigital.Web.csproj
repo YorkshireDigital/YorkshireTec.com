@@ -87,7 +87,7 @@
     <Reference Include="MySql.Data">
       <HintPath>..\packages\MySql.Data.6.9.3\lib\net45\MySql.Data.dll</HintPath>
     </Reference>
-    <Reference Include="Nancy, Version=0.22.2.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Nancy, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Nancy.1.1\lib\net40\Nancy.dll</HintPath>
     </Reference>
@@ -362,6 +362,7 @@
     </Content>
     <Content Include="YorkshireDigital.Web.nuspec" />
     <Content Include="Events\Views\_Event.cshtml" />
+    <Content Include="Views\Error.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Web.config">
@@ -398,10 +399,13 @@
     <Compile Include="Infrastructure\Bootstrapper.cs" />
     <Compile Include="Infrastructure\BaseModule.cs" />
     <Compile Include="Infrastructure\Extensions.cs" />
+    <Compile Include="Infrastructure\Handlers\InternalServerErrorStatusCodeHandler.cs" />
     <Compile Include="Infrastructure\Helpers\HtmlHelper.cs" />
     <Compile Include="Infrastructure\Helpers\MarkdownHelper.cs" />
     <Compile Include="Infrastructure\Helpers\SlackHelper.cs" />
     <Compile Include="Infrastructure\Models\BaseAjaxPostModel.cs" />
+    <Compile Include="Infrastructure\Models\Error.cs" />
+    <Compile Include="Infrastructure\Models\ErrorPageViewModel.cs" />
     <Compile Include="Infrastructure\Models\ErrorViewModel.cs" />
     <Compile Include="Infrastructure\Models\FeaturesModel.cs" />
     <Compile Include="Infrastructure\Models\FieldErrorViewModel.cs" />
