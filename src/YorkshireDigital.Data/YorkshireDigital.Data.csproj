@@ -98,8 +98,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Domain\Account\Enums\MailingListState.cs" />
+    <Compile Include="Domain\Account\Enums\UserRoles.cs" />
     <Compile Include="Domain\Account\Provider.cs" />
     <Compile Include="Domain\Account\User.cs" />
+    <Compile Include="Domain\Account\UserRole.cs" />
     <Compile Include="Domain\Events\Category.cs" />
     <Compile Include="Domain\Events\Event.cs" />
     <Compile Include="Domain\Events\Interest.cs" />

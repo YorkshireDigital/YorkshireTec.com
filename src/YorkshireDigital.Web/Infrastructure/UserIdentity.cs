@@ -11,5 +11,10 @@
         public string Email { get; set; }
         public string UserId { get; set; }
         public string ImageUrl { get; set; }
+
+        public UserIdentity()
+        {
+            Claims = new List<string>();
+        }
     }
 }

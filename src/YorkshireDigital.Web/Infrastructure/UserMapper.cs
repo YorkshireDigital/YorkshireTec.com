@@ -1,6 +1,8 @@
 ﻿namespace YorkshireDigital.Web.Infrastructure
 {
     using System;
+    using System.Collections.Generic;
+    using System.Linq;
     using Nancy;
     using Nancy.Authentication.Forms;
     using Nancy.Security;
@@ -20,7 +22,26 @@
         {
             var userRecord = session.Get<User>(identifier);
 
-            return userRecord == null ? null : new UserIdentity { UserName = userRecord.Username, FriendlyName = userRecord.Name, UserId = userRecord.Id.ToString(), Email = userRecord.Email};
+            if (userRecord == null) return null;
+
+            var userIdentity = new UserIdentity
+            {
+                UserName = userRecord.Username,
+                FriendlyName = userRecord.Name,
+                UserId = userRecord.Id.ToString(),
+                Email = userRecord.Email
+            };
+
+            var claims = new List<string>();
+
+            if (userRecord.Roles.Any())
+            {
+                claims.AddRange(userRecord.Roles.SelectMany(x => x.Claims).Distinct());
+            }
+
+            userIdentity.Claims = claims;
+
+            return userIdentity;
         }
     }
 }

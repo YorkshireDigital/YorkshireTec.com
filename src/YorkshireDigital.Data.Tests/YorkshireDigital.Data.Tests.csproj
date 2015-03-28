@@ -125,6 +125,7 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="DomainTests\UserTests.cs" />
     <Compile Include="Helpers\InMemorySessionFactoryProvider.cs" />
     <Compile Include="InfrastructureTests\AuthenticationCallbackProviderTests.cs" />
     <Compile Include="ServiceTests\EventServiceTests.cs" />
