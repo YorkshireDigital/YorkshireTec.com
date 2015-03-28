@@ -370,6 +370,7 @@
     <Content Include="YorkshireDigital.Web.nuspec" />
     <Content Include="Events\Views\_Event.cshtml" />
     <Content Include="Views\Error.cshtml" />
+    <Content Include="Views\PageNotFound.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Web.config">
@@ -407,6 +408,7 @@
     <Compile Include="Infrastructure\BaseModule.cs" />
     <Compile Include="Infrastructure\Extensions.cs" />
     <Compile Include="Infrastructure\Handlers\InternalServerErrorStatusCodeHandler.cs" />
+    <Compile Include="Infrastructure\Handlers\NotFoundErrorStatusCodeHandler.cs" />
     <Compile Include="Infrastructure\Helpers\HtmlHelper.cs" />
     <Compile Include="Infrastructure\Helpers\MarkdownHelper.cs" />
     <Compile Include="Infrastructure\Helpers\SentryHelper.cs" />
@@ -417,6 +419,7 @@
     <Compile Include="Infrastructure\Models\ErrorViewModel.cs" />
     <Compile Include="Infrastructure\Models\FeaturesModel.cs" />
     <Compile Include="Infrastructure\Models\FieldErrorViewModel.cs" />
+    <Compile Include="Infrastructure\Models\PageNotFoundViewModel.cs" />
     <Compile Include="Infrastructure\NancyExtensions.cs" />
     <Compile Include="Infrastructure\Responses\SitemapResponse.cs" />
     <Compile Include="Infrastructure\SecurityHooks.cs" />

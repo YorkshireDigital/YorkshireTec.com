@@ -1,0 +1,10 @@
+﻿@{
+    Layout = "Shared/_HeroLayout.cshtml";
+}
+@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<YorkshireDigital.Web.Infrastructure.Models.PageNotFoundViewModel>
+
+<h2>
+    @Model.Title
+</h2>
+<h4>We have been notified of the error.</h4>
+<p>Error: @Model.Summary</p>
