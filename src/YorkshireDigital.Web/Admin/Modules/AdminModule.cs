@@ -8,6 +8,8 @@
     {
         public AdminModule(ISessionFactory sessionFactory) : base(sessionFactory, "admin")
         {
+            this.RequiresFeature("Account");
+            this.RequiresAuthentication();
             this.RequiresClaims(new [] { "Admin" });
 
             Get["/"] = _ => View["Index"];

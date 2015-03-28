@@ -1,0 +1,9 @@
+﻿@{
+    Layout = "Shared/_HeroLayout.cshtml";
+}
+@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<YorkshireDigital.Web.Infrastructure.Models.ForbiddenViewModel>
+
+<h2>
+    @Model.Title
+</h2>
+<h4>@Model.Summary</h4>
