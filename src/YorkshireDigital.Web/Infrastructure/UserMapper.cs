@@ -36,7 +36,7 @@
 
             if (userRecord.Roles.Any())
             {
-                claims.AddRange(userRecord.Roles.SelectMany(x => x.Claims).Distinct());
+                claims.AddRange(userRecord.Roles.SelectMany(x => x.Claims.Split('|')).Distinct());
             }
 
             userIdentity.Claims = claims;

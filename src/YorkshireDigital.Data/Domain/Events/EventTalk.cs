@@ -8,5 +8,7 @@
         public virtual string Speaker { get; set; }
         public virtual string Link { get; set; }
         // TODO: public virtual IList<User> Speakers { get; set; }
+
+        public virtual Event Event { get; set; }
     }
 }

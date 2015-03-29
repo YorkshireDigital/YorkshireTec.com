@@ -17,9 +17,10 @@
         public virtual GenderType Gender { get; set; }
         public virtual string Locale { get; set; }
         public virtual string Picture { get; set; }
-        public virtual IList<Provider> Providers { get; set; }
         public virtual bool Validated { get; set; }
         public virtual MailingListState MailingListState { get; set; }
+
+        public virtual IList<Provider> Providers { get; set; }
         public virtual IList<UserRole> Roles { get; set; }
 
 

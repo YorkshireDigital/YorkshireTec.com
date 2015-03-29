@@ -1,24 +1,21 @@
 ﻿using CallSessionContext = NHibernate.Context.CallSessionContext;
 using Configuration = NHibernate.Cfg.Configuration;
 using ISessionFactory = NHibernate.ISessionFactory;
-using SchemaUpdate = NHibernate.Tool.hbm2ddl.SchemaUpdate;
 
 namespace YorkshireDigital.Data.NHibernate
 {
-    using System;
     using FluentNHibernate.Automapping;
     using FluentNHibernate.Cfg;
     using FluentNHibernate.Cfg.Db;
     using FluentNHibernate.Conventions.Helpers;
     using YorkshireDigital.Data.Domain.Account;
-    using YorkshireDigital.Data.Domain.Events;
 
     public class NHibernateSessionFactoryProvider
     {
         public static ISessionFactory BuildSessionFactory(string connectionString)
         {
             return GetConfiguration(connectionString)
-                .ExposeConfiguration(cfg => new SchemaUpdate(cfg).Execute(false, true))
+                //.ExposeConfiguration(cfg => new SchemaUpdate(cfg).Execute(false, true))
                 .BuildSessionFactory();
         }
 
@@ -41,7 +38,9 @@ namespace YorkshireDigital.Data.NHibernate
         {
             return Fluently.Configure()
                 .Database(MsSqlConfiguration.MsSql2012.ConnectionString(connectionString))
-                .Mappings(m => m.AutoMappings.Add(CreateAutomappings))
+                .Mappings(m => m.FluentMappings.AddFromAssemblyOf<NHibernateSessionFactoryProvider>()
+                                .Conventions.Add(ForeignKey.EndsWith("Id"))
+                                .Conventions.Add<CascadeConvention>())
                 .CurrentSessionContext<CallSessionContext>();
         }
 
@@ -49,7 +48,9 @@ namespace YorkshireDigital.Data.NHibernate
         {
             return Fluently.Configure()
                 .Database(SQLiteConfiguration.Standard.InMemory())
-                .Mappings(m => m.AutoMappings.Add(CreateAutomappings))
+                .Mappings(m => m.FluentMappings.AddFromAssemblyOf<NHibernateSessionFactoryProvider>()
+                                .Conventions.Add(ForeignKey.EndsWith("Id"))
+                                .Conventions.Add<CascadeConvention>())
                 .CurrentSessionContext<CallSessionContext>();
         }
 
