@@ -10,7 +10,8 @@
     [Picture]          NVARCHAR (255)   NULL,
     [Validated]        BIT              NULL,
     [MailingListState] NVARCHAR (255)   NULL,
-    [IsAdmin]          BIT              NULL,
     PRIMARY KEY CLUSTERED ([Id] ASC)
 );
+
+
 

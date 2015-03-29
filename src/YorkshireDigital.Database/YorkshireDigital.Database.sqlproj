@@ -57,20 +57,30 @@
   <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
   <ItemGroup>
     <Folder Include="Properties" />
-    <Folder Include="Tables" />
+    <Folder Include="Data" />
+    <Folder Include="dbo\" />
+    <Folder Include="dbo\Tables\" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="Tables\CategoriesToEvents.sql" />
-    <Build Include="Tables\Category.sql" />
-    <Build Include="Tables\Claims.sql" />
-    <Build Include="Tables\ContactLink.sql" />
-    <Build Include="Tables\EventsToInterests.sql" />
-    <Build Include="Tables\Interest.sql" />
-    <Build Include="Tables\Provider.sql" />
-    <Build Include="Tables\User.sql" />
-    <Build Include="Tables\UserRole.sql" />
-    <Build Include="Tables\Event.sql" />
-    <Build Include="Tables\EventTalk.sql" />
-    <Build Include="Tables\Organisation.sql" />
+    <Build Include="dbo\Tables\CategoriesToEvents.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="Script.PostDeployment.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Data\Roles.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="dbo\Tables\Category.sql" />
+    <Build Include="dbo\Tables\ContactLink.sql" />
+    <Build Include="dbo\Tables\Event.sql" />
+    <Build Include="dbo\Tables\EventsToInterests.sql" />
+    <Build Include="dbo\Tables\EventTalk.sql" />
+    <Build Include="dbo\Tables\Interest.sql" />
+    <Build Include="dbo\Tables\Organisation.sql" />
+    <Build Include="dbo\Tables\Provider.sql" />
+    <Build Include="dbo\Tables\User.sql" />
+    <Build Include="dbo\Tables\UserRole.sql" />
+    <Build Include="dbo\Tables\UserRoleToUser.sql" />
   </ItemGroup>
 </Project>

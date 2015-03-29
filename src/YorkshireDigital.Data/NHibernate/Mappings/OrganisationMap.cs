@@ -12,11 +12,11 @@
             Map(x => x.Name);
             Map(x => x.ShortName);
             Map(x => x.Headline)
-                .CustomSqlType("varchar(10000)")
-                .Length(10000);
+                .CustomSqlType("varchar(8000)")
+                .Length(8000);
             Map(x => x.About)
-                .CustomSqlType("varchar(10000)")
-                .Length(10000);
+                .CustomSqlType("varchar(8000)")
+                .Length(8000);
             Map(x => x.Colour);
             Map(x => x.Logo);
             Map(x => x.Photo);

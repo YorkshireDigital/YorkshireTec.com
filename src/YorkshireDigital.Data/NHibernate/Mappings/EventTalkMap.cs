@@ -11,8 +11,8 @@
 
             Map(x => x.Title);
             Map(x => x.Synopsis)
-                .CustomSqlType("varchar(10000)")
-                .Length(10000);
+                .CustomSqlType("varchar(8000)")
+                .Length(8000);
             Map(x => x.Speaker);
             Map(x => x.Link);
 
