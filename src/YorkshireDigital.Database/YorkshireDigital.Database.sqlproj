@@ -8,7 +8,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectVersion>4.1</ProjectVersion>
     <ProjectGuid>{ec4b9410-7848-4c4e-819b-210f6006ba90}</ProjectGuid>
-    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql120DatabaseSchemaProvider</DSP>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql110DatabaseSchemaProvider</DSP>
     <OutputType>Database</OutputType>
     <RootPath>
     </RootPath>
@@ -38,7 +38,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <OutputPath>bin\Debug\</OutputPath>
     <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
-    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -69,5 +69,8 @@
     <Build Include="Tables\Provider.sql" />
     <Build Include="Tables\User.sql" />
     <Build Include="Tables\UserRole.sql" />
+    <Build Include="Tables\Event.sql" />
+    <Build Include="Tables\EventTalk.sql" />
+    <Build Include="Tables\Organisation.sql" />
   </ItemGroup>
 </Project>
