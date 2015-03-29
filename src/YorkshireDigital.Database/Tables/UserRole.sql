@@ -1,0 +1,8 @@
+﻿CREATE TABLE [dbo].[UserRole] (
+    [Id]     INT              IDENTITY (1, 1) NOT NULL,
+    [Role]   NVARCHAR (255)   NULL,
+    [UserId] UNIQUEIDENTIFIER NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [FK297C0BDEE58B1CE6] FOREIGN KEY ([UserId]) REFERENCES [dbo].[User] ([Id])
+);
+
