@@ -8,6 +8,7 @@
     {
         public void Override(AutoMapping<EventTalk> mapping)
         {
+            mapping.Table("EventTalk");
             mapping.Id(x => x.Id).UniqueKey("Id").GeneratedBy.Identity();
             mapping.Map(x => x.Synopsis)
                 .CustomSqlType("varchar(10000)")

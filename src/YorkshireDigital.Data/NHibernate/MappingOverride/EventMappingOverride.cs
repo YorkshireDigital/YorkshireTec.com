@@ -10,8 +10,11 @@ namespace YorkshireDigital.Data.NHibernate.MappingOverride
     {
         public void Override(AutoMapping<Event> mapping)
         {
+            mapping.Table("Event");
             mapping.Id(x => x.UniqueName)
                 .UniqueKey("UniqueName");
+            mapping.Map(x => x.End)
+                .Column("[End]");
             mapping.Map(x => x.Photo)
                 .CustomType<BinaryBlobType>();
             mapping.Map(x => x.Title)

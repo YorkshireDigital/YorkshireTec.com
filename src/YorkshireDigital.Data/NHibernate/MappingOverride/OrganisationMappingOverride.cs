@@ -8,6 +8,8 @@
     {
         public void Override(AutoMapping<Organisation> mapping)
         {
+            mapping.Table("Organisation");
+
             mapping.Map(x => x.Headline)
                 .CustomSqlType("varchar(10000)")
                 .Length(10000);

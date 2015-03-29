@@ -28,7 +28,8 @@ namespace YorkshireDigital.Data.NHibernate
             var sessionFactory = GetInMemoryConfiguration()
                 .ExposeConfiguration(cfg =>
                 {
-                    new SchemaUpdate(cfg).Execute(false, true);
+                    // Remove comment to auto upgrade the database.
+                    // new SchemaUpdate(cfg).Execute(false, true);
                     config = cfg;
                 })
                 .BuildSessionFactory();
@@ -39,8 +40,7 @@ namespace YorkshireDigital.Data.NHibernate
         public static FluentConfiguration GetConfiguration(string connectionString)
         {
             return Fluently.Configure()
-                .Database(MySQLConfiguration.Standard
-                    .ConnectionString(connectionString))
+                .Database(MsSqlConfiguration.MsSql2012.ConnectionString(connectionString))
                 .Mappings(m => m.AutoMappings.Add(CreateAutomappings))
                 .CurrentSessionContext<CallSessionContext>();
         }
