@@ -1,4 +1,4 @@
-﻿namespace YorkshireDigital.Web.Tests.ModuleTests
+namespace YorkshireDigital.Web.Tests.Events.Modules
 {
     using System;
     using System.Collections.Generic;
@@ -12,12 +12,12 @@
     using Nancy.Validation.FluentValidation;
     using NHibernate;
     using NUnit.Framework;
+    using YorkshireDigital.Data.Domain.Events;
+    using YorkshireDigital.Data.Services;
     using YorkshireDigital.Web.Events.Modules;
     using YorkshireDigital.Web.Events.Validation;
     using YorkshireDigital.Web.Events.ViewModels;
     using YorkshireDigital.Web.Infrastructure.Models;
-    using YorkshireDigital.Data.Domain.Events;
-    using YorkshireDigital.Data.Services;
 
     [TestFixture]
     public class EventsModuleTests

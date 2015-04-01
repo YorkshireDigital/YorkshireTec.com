@@ -9,7 +9,19 @@ namespace YorkshireDigital.Data.Services
     using YorkshireDigital.Data.Domain.Account.Enums;
     using YorkshireDigital.Data.Helpers;
 
-    public class UserService
+    public interface IUserService
+    {
+        bool UsernameAvailable(string username);
+        bool EmailAlreadyRegistered(string email);
+        User GetUser(string username);
+        User GetUserByIdentity(string providerName, string username);
+        User SaveUser(User user);
+        void LinkIdentity(Provider provider, User user);
+        User GetUserById(Guid id);
+        User GetUserByEmail(string email);
+    }
+
+    public class UserService : IUserService
     {
         private readonly ISession session;
 

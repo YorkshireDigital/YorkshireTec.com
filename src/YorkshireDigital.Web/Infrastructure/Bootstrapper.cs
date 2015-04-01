@@ -128,6 +128,7 @@ namespace YorkshireDigital.Web.Infrastructure
             requestSession.BeginTransaction();
 
             container.Register<IEventService>(new EventService(requestSession));
+            container.Register<IUserService>(new UserService(requestSession));
 
             return null;
         }

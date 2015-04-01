@@ -23,6 +23,20 @@
             hash.ShouldBeEquivalentTo("2828aa29899722b35a2f191d34ef9b3ce695e0e6eeec47deb46d588d70c7cb56");
         }
 
+        [Test]
+        public void DiscourseHelper_GetNonceFromPayload_ReturnsExpectedNonce()
+        {
+            // Arrange
+            var payload = "bm9uY2U9Y2I2ODI1MWVlZmI1MjExZTU4YzAwZmYxMzk1ZjBjMGI=\n";
+            IDiscourseHelper discourseHelper = new DiscourseHelper(secret);
+
+            // Act
+            var nonce = discourseHelper.GetNonceFromPayload(payload);
+
+            // Assert
+            nonce.ShouldBeEquivalentTo("cb68251eefb5211e58c00ff1395f0c0b");
+        }
+
         [TestCase("2828aa29899722b35a2f191d34ef9b3ce695e0e6eeec47deb46d588d70c7cb56", true)]
         [TestCase("2828aa29899722b35a2f191d34ef9b3ce695e0e6eeec47deb46d588d70c7cb5", false)]
         public void DiscourseHelper_ValidatePayloadSignature_ReturnsTrueIfSignatureIsValid(string signature, bool expected)

@@ -1,4 +1,4 @@
-﻿namespace YorkshireDigital.Web.Tests.ModuleTests
+namespace YorkshireDigital.Web.Tests.Events.Modules
 {
     using System;
     using System.Collections.Generic;
@@ -9,9 +9,9 @@
     using Nancy.Testing;
     using NHibernate;
     using NUnit.Framework;
-    using YorkshireDigital.Web.Events.Modules;
     using YorkshireDigital.Data.Domain.Events;
     using YorkshireDigital.Data.Domain.Organisations;
+    using YorkshireDigital.Web.Events.Modules;
 
     [TestFixture, Ignore("This doesn't work because I'm injecting the session factory which isn't that mockable. Needs revising")]
     public class EventModuleTests

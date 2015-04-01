@@ -104,9 +104,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Account\Modules\AccountSsoModuleTests.cs" />
     <Compile Include="ApiViewFactory.cs" />
-    <Compile Include="ModuleTests\EventsModuleTests.cs" />
-    <Compile Include="ModuleTests\EventModuleTests.cs" />
+    <Compile Include="Events\Modules\EventModuleTests.cs" />
+    <Compile Include="Events\Modules\EventsModuleTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
