@@ -127,6 +127,7 @@
   <ItemGroup>
     <Compile Include="DomainTests\UserTests.cs" />
     <Compile Include="Helpers\InMemorySessionFactoryProvider.cs" />
+    <Compile Include="HelperTests\DiscourseHelperTests.cs" />
     <Compile Include="InfrastructureTests\AuthenticationCallbackProviderTests.cs" />
     <Compile Include="ServiceTests\EventServiceTests.cs" />
     <Compile Include="ServiceTests\InMemoryFixtureBase.cs" />
