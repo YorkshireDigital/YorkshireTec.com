@@ -19,6 +19,7 @@
             Map(x => x.Picture);
             Map(x => x.Validated);
             Map(x => x.MailingListState);
+            Map(x => x.DisabledOn);
 
             HasMany(x => x.Providers)
                 .Cascade.All();

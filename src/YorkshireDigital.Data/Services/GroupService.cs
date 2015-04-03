@@ -45,7 +45,7 @@
             session.SaveOrUpdate(group);
 
             return group;
-        }
+        } 
 
         public IList<Group> GetActiveGroups()
         {

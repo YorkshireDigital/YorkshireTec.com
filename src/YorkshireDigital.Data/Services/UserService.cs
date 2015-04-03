@@ -3,10 +3,12 @@
 namespace YorkshireDigital.Data.Services
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using global::NHibernate.Linq;
     using YorkshireDigital.Data.Domain.Account;
     using YorkshireDigital.Data.Domain.Account.Enums;
+    using YorkshireDigital.Data.Exceptions;
     using YorkshireDigital.Data.Helpers;
 
     public interface IUserService
@@ -19,6 +21,8 @@ namespace YorkshireDigital.Data.Services
         void LinkIdentity(Provider provider, User user);
         User GetUserById(Guid id);
         User GetUserByEmail(string email);
+        IList<User> GetActiveUsers();
+        User Disable(Guid username);
     }
 
     public class UserService : IUserService
@@ -63,6 +67,8 @@ namespace YorkshireDigital.Data.Services
                 user.MailingListEmail = user.Email;
             }
 
+            user.LastEditedOn = DateTime.UtcNow;
+
             session.Save(user);
 
             return user;
@@ -95,6 +101,27 @@ namespace YorkshireDigital.Data.Services
         {
             return session.QueryOver<User>().Where(x => x.Email == email)
                 .SingleOrDefault();
+        }
+
+        public IList<User> GetActiveUsers()
+        {
+            return session.QueryOver<User>()
+                .Where(x => x.DisabledOn == null)
+                .List();
+        }
+
+        public User Disable(Guid userId)
+        {
+            var user = session.Get<User>(userId);
+
+            if (user == null)
+                throw new UserNotFoundException(string.Format("No user found with id {0}", userId));
+
+            user.DisabledOn = DateTime.UtcNow;
+
+            session.SaveOrUpdate(user);
+
+            return user;
         }
     }
 }

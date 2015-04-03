@@ -110,6 +110,7 @@
     <Compile Include="Domain\Organisations\Enums\ContactLinkType.cs" />
     <Compile Include="Domain\Organisations\Group.cs" />
     <Compile Include="Exceptions\GroupNotFoundException.cs" />
+    <Compile Include="Exceptions\UserNotFoundException.cs" />
     <Compile Include="Helpers\DiscourseHelper.cs" />
     <Compile Include="Helpers\MailChimpHelper.cs" />
     <Compile Include="NHibernate\AutomappingConfiguration.cs" />

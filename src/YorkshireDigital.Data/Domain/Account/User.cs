@@ -19,7 +19,9 @@
         public virtual string Picture { get; set; }
         public virtual bool Validated { get; set; }
         public virtual MailingListState MailingListState { get; set; }
-
+        
+        public virtual DateTime LastEditedOn { get; set; }
+        public virtual DateTime? DisabledOn { get; set; }
         public virtual IList<Provider> Providers { get; set; }
         public virtual IList<UserRole> Roles { get; set; }
 
@@ -33,7 +35,11 @@
         public virtual bool IsAdmin
         {
             get { return Roles.Any(x => x.Role == UserRoles.Admin); }
-            set { }
+        }
+
+        public virtual bool IsDisabled
+        {
+            get { return DisabledOn.HasValue; }
         }
 
         public virtual string Twitter
