@@ -59,6 +59,7 @@
                 Id = "test-group-1",
                 Name = "Test Group 1"
             };
+            var saveStart = DateTime.UtcNow;
 
             // Act
             groupService.Save(group);
@@ -67,6 +68,7 @@
             // Assert
             result.Id.ShouldBeEquivalentTo("test-group-1");
             result.Name.ShouldBeEquivalentTo("Test Group 1");
+            result.LastEditedOn.Should().BeOnOrAfter(saveStart);
         }
 
         [Test]
@@ -76,11 +78,13 @@
             var group = new Group
             {
                 Id = "test-group-1",
-                Name = "Test Group 1"
+                Name = "Test Group 1",
+                LastEditedOn = DateTime.UtcNow.AddDays(-1)
             };
             Session.Save(group);
-
             group.Name = "New Name";
+            var saveStart = DateTime.UtcNow;
+
             // Act
             groupService.Save(group);
             var result = Session.Load<Group>("test-group-1");
@@ -88,6 +92,7 @@
             // Assert
             result.Id.ShouldBeEquivalentTo("test-group-1");
             result.Name.ShouldBeEquivalentTo("New Name");
+            result.LastEditedOn.Should().BeOnOrAfter(saveStart);
         }
 
         [Test]

@@ -30,6 +30,7 @@
 
         public Group Save(Group @group)
         {
+            @group.LastEditedOn = DateTime.UtcNow;
             session.SaveOrUpdate(@group);
             
             return @group;

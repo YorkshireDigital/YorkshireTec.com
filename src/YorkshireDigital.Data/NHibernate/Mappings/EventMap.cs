@@ -24,6 +24,7 @@
             Map(x => x.Region);
             Map(x => x.Price);
             Map(x => x.Photo).CustomType<BinaryBlobType>();
+            Map(x => x.LastEditedOn);
             Map(x => x.DeletedOn);
 
             References(x => x.Group);
