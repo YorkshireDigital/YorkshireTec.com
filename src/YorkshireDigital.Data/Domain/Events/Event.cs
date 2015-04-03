@@ -19,6 +19,10 @@
         public virtual IList<Category> Categories { get; set; }
         public virtual IList<Interest> Interests { get; set; }
         public virtual IList<EventTalk> Talks { get; set; }
+        public virtual DateTime LastEditedOn { get; set; }
+        public virtual DateTime? DeletedOn { get; set; }
+
+        public virtual bool IsDeleted { get { return DeletedOn.HasValue; } }
 
         // TODO: public virtual IList<User> Attendees { get; set; }
     }

@@ -4,15 +4,15 @@ namespace YorkshireDigital.Data.Tests.InMemoryTests.Services
     using System.Collections.Generic;
     using System.Linq;
     using FluentAssertions;
-    using global::NHibernate.Linq;
     using NUnit.Framework;
     using YorkshireDigital.Data.Domain.Events;
+    using YorkshireDigital.Data.Exceptions;
     using YorkshireDigital.Data.Services;
 
     [TestFixture]
     public class EventServiceTests : InMemoryFixtureBase
     {
-        private EventService service;
+        private IEventService service;
 
         [SetUp]
         public void SetUp()
@@ -21,7 +21,7 @@ namespace YorkshireDigital.Data.Tests.InMemoryTests.Services
         }
 
         [Test]
-        public void EventService_SaveEvent_SavesEvent()
+        public void SaveEvent_SavesEvent()
         {
             // Arrange
             var myEvent = new Event
@@ -29,39 +29,44 @@ namespace YorkshireDigital.Data.Tests.InMemoryTests.Services
                 UniqueName = "1",
                 Title = string.Format("Test Event {0}", DateTime.Now.ToString("yyyyMMddhhmmssss")),
             };
+            var saveStart = DateTime.UtcNow;
 
             // Act
             service.Save(myEvent);
-            var events = LinqExtensionMethods.Query<Event>(Session).Select(x => x);
+            var result = Session.Get<Event>("1");
 
             // Assert
-            events.Count().ShouldBeEquivalentTo(1);
-            events.First().Title.ShouldBeEquivalentTo(myEvent.Title);
+            result.Title.ShouldBeEquivalentTo(myEvent.Title);
+            result.UniqueName.ShouldBeEquivalentTo("1");
+            result.LastEditedOn.Should().BeOnOrAfter(saveStart);
         }
 
         [Test]
-        public void EventService_SaveEvent_UpdatesEvent()
+        public void SaveEvent_UpdatesEvent()
         {
             // Arrange
             var myEvent = new Event
             {
                 UniqueName = "1",
                 Title = string.Format("Test Event {0}", DateTime.Now.ToString("yyyyMMddhhmmssss")),
+                LastEditedOn = DateTime.UtcNow.AddDays(-1)
             };
             Session.Save(myEvent);
             myEvent.Title = string.Format("Updated Event {0}", DateTime.Now.ToString("yyyyMMddhhmmssss"));
+            var saveStart = DateTime.UtcNow;
 
             // Act
             service.Save(myEvent);
-            var events = LinqExtensionMethods.Query<Event>(Session).Select(x => x);
+            var result = Session.Get<Event>("1");
 
             // Assert
-            events.Count().ShouldBeEquivalentTo(1);
-            events.First().Title.ShouldBeEquivalentTo(myEvent.Title);
+            result.Title.ShouldBeEquivalentTo(myEvent.Title);
+            result.UniqueName.ShouldBeEquivalentTo("1");
+            result.LastEditedOn.Should().BeOnOrAfter(saveStart);
         }
 
         [Test]
-        public void EventService_Get_ReturnsEvent()
+        public void Get_ReturnsEvent()
         {
             // Arrange
             var myEvent = new Event
@@ -79,7 +84,7 @@ namespace YorkshireDigital.Data.Tests.InMemoryTests.Services
         }
 
         [Test]
-        public void EventService_Delete_RemovesEvent()
+        public void Delete_MarksEventAsDeleted_WhenEventExists()
         {
             // Arrange
             var myEvent = new Event
@@ -90,15 +95,27 @@ namespace YorkshireDigital.Data.Tests.InMemoryTests.Services
             Session.Save(myEvent);
 
             // Act
-            service.Delete(myEvent);
-            var events = LinqExtensionMethods.Query<Event>(Session).Select(x => x);
+            service.Delete("1");
+            var result = Session.Get<Event>("1");
 
             // Assert
-            events.Count().ShouldBeEquivalentTo(0);
+            result.IsDeleted.Should().BeTrue();
         }
 
         [Test]
-        public void EventService_GetWithinRange_ReturnsExpectedEvents()
+        [ExpectedException(typeof(EventNotFoundException), ExpectedMessage = "No event found with unique name 1")]
+        public void Delete_ThrowException_WhenNoEventExists()
+        {
+            // Arrange
+
+            // Act
+            service.Delete("1");
+
+            // Assert
+        }
+
+        [Test]
+        public void GetWithinRange_ReturnsExpectedEvents()
         {
             // Arrange
             for (int i = 1; i < 4; i++)
@@ -120,7 +137,7 @@ namespace YorkshireDigital.Data.Tests.InMemoryTests.Services
         }
 
         [Test]
-        public void EventService_Query_with_no_constraints_returns_all_events()
+        public void Query_with_no_constraints_returns_all_events()
         {
             // Arrange
             Session.Save(new Event
@@ -144,7 +161,7 @@ namespace YorkshireDigital.Data.Tests.InMemoryTests.Services
         }
 
         [Test]
-        public void EventService_Query_with_filtered_from_returns_filtered_events()
+        public void Query_with_filtered_from_returns_filtered_events()
         {
             // Arrange
             Session.Save(new Event
@@ -169,7 +186,7 @@ namespace YorkshireDigital.Data.Tests.InMemoryTests.Services
         }
 
         [Test]
-        public void EventService_Query_with_filtered_to_returns_filtered_events()
+        public void Query_with_filtered_to_returns_filtered_events()
         {
             // Arrange
             Session.Save(new Event
@@ -195,7 +212,7 @@ namespace YorkshireDigital.Data.Tests.InMemoryTests.Services
 
         [TestCase("Development", "1", "3")]
         [TestCase("Design", "2", "3")]
-        public void EventService_Query_with_filtered_interests_returns_filtered_events(string interest, string expectedId1, string expectedId2)
+        public void Query_with_filtered_interests_returns_filtered_events(string interest, string expectedId1, string expectedId2)
         {
             // Arrange
             Session.Save(new Event
@@ -224,7 +241,7 @@ namespace YorkshireDigital.Data.Tests.InMemoryTests.Services
         }
 
         [Test]
-        public void EventService_Query_with_multiple_interests_returns_all_events_containing_one_or_more()
+        public void Query_with_multiple_interests_returns_all_events_containing_one_or_more()
         {
             // Arrange
             Session.Save(new Event
@@ -254,7 +271,7 @@ namespace YorkshireDigital.Data.Tests.InMemoryTests.Services
 
         [TestCase("Leeds", "1")]
         [TestCase("Sheffield", "2")]
-        public void EventService_Query_with_filtered_location_returns_filtered_events(string location, string expectedId)
+        public void Query_with_filtered_location_returns_filtered_events(string location, string expectedId)
         {
             // Arrange
             Session.Save(new Event
@@ -277,7 +294,7 @@ namespace YorkshireDigital.Data.Tests.InMemoryTests.Services
         }
 
         [Test]
-        public void EventService_Query_with_multiple_locations_returns_all_locations()
+        public void Query_with_multiple_locations_returns_all_locations()
         {
             // Arrange
             Session.Save(new Event
@@ -306,7 +323,7 @@ namespace YorkshireDigital.Data.Tests.InMemoryTests.Services
         }
 
         [Test]
-        public void EventService_Query_with_take_only_returns_specified_amount()
+        public void Query_with_take_only_returns_specified_amount()
         {
             // Arrange
             for (int i = 0; i < 100; i++)
@@ -322,7 +339,7 @@ namespace YorkshireDigital.Data.Tests.InMemoryTests.Services
         }
 
         [Test]
-        public void EventService_Query_with_take_only_returns_all_if_less_than_take_value()
+        public void Query_with_take_only_returns_all_if_less_than_take_value()
         {
             // Arrange
             for (int i = 0; i < 10; i++)
@@ -338,7 +355,7 @@ namespace YorkshireDigital.Data.Tests.InMemoryTests.Services
         }
 
         [Test]
-        public void EventService_Query_with_skip_only_returns_events_after_skip()
+        public void Query_with_skip_only_returns_events_after_skip()
         {
             // Arrange
             for (int i = 0; i < 100; i++)
@@ -352,6 +369,41 @@ namespace YorkshireDigital.Data.Tests.InMemoryTests.Services
             // Assert
             result.Count().ShouldBeEquivalentTo(75);
             result[0].UniqueName.ShouldBeEquivalentTo("25");
+        }
+
+        [Test]
+        public void Query_DoesNotIncludeDeletedEvents_ByDefault()
+        {
+            // Arrange
+            Session.Save(new Event { UniqueName = "1" });
+            Session.Save(new Event { UniqueName = "2", DeletedOn = DateTime.UtcNow});
+            Session.Save(new Event { UniqueName = "3" });
+
+            // Act
+            var result = service.Query(null, null, new string[0], new string[0], null, null);
+
+            // Assert
+            result.Count().ShouldBeEquivalentTo(2);
+            result[0].UniqueName.ShouldBeEquivalentTo("1");
+            result[1].UniqueName.ShouldBeEquivalentTo("3");
+        }
+
+        [Test]
+        public void Query_DoesIncludeDeletedEvents_WhenSpecified()
+        {
+            // Arrange
+            Session.Save(new Event { UniqueName = "1" });
+            Session.Save(new Event { UniqueName = "2", DeletedOn = DateTime.UtcNow });
+            Session.Save(new Event { UniqueName = "3" });
+
+            // Act
+            var result = service.Query(null, null, new string[0], new string[0], null, null, true);
+
+            // Assert
+            result.Count().ShouldBeEquivalentTo(3);
+            result[0].UniqueName.ShouldBeEquivalentTo("1");
+            result[1].UniqueName.ShouldBeEquivalentTo("2");
+            result[2].UniqueName.ShouldBeEquivalentTo("3");
         }
     }
 }

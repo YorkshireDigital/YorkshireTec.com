@@ -42,7 +42,7 @@ namespace YorkshireDigital.Web.Tests.Events.Modules
             A.CallTo(
                 () =>
                     service.Query(A<DateTime?>.Ignored, A<DateTime?>.Ignored, A<string[]>.Ignored, A<string[]>.Ignored,
-                        A<int?>.Ignored, A<int?>.Ignored))
+                        A<int?>.Ignored, A<int?>.Ignored, A<bool>.Ignored))
                 .Returns(_eventList);
 
             #endregion

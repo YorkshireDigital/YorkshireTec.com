@@ -109,6 +109,7 @@
     <Compile Include="Domain\Organisations\ContactLink.cs" />
     <Compile Include="Domain\Organisations\Enums\ContactLinkType.cs" />
     <Compile Include="Domain\Organisations\Group.cs" />
+    <Compile Include="Exceptions\EventNotFoundException.cs" />
     <Compile Include="Exceptions\GroupNotFoundException.cs" />
     <Compile Include="Exceptions\UserNotFoundException.cs" />
     <Compile Include="Helpers\DiscourseHelper.cs" />

@@ -6,14 +6,15 @@
     using global::NHibernate;
     using global::NHibernate.Linq;
     using YorkshireDigital.Data.Domain.Events;
+    using YorkshireDigital.Data.Exceptions;
 
     public interface IEventService
     {
         void Save(Event myEvent);
         Event Get(string uniqueName);
-        void Delete(Event eventToDelete);
+        void Delete(string eventId);
         List<Event> GetWithinRange(DateTime from, DateTime to);
-        List<Event> Query(DateTime? from, DateTime? to, string[] interests, string[] locations, int? skip, int? take);
+        List<Event> Query(DateTime? from, DateTime? to, string[] interests, string[] locations, int? skip, int? take, bool includeDeleted = false);
     }
 
     public class EventService : IEventService
@@ -25,9 +26,10 @@
             this.session = session;
         }
 
-        public void Save(Event myEvent)
+        public void Save(Event eventToSave)
         {
-            session.SaveOrUpdate(myEvent);
+            eventToSave.LastEditedOn = DateTime.UtcNow;
+            session.SaveOrUpdate(eventToSave);
         }
 
         public Event Get(string uniqueName)
@@ -38,20 +40,29 @@
                 .SingleOrDefault();
         }
 
-        public void Delete(Event eventToDelete)
+        public void Delete(string eventId)
         {
-            session.Delete(eventToDelete);
+            var eventToDelete = session.Get<Event>(eventId);
+            if (eventToDelete == null)
+                throw new EventNotFoundException(string.Format("No event found with unique name {0}", eventId));
+
+            eventToDelete.DeletedOn = DateTime.UtcNow;
+            session.SaveOrUpdate(eventToDelete);
         }
 
         public List<Event> GetWithinRange(DateTime from, DateTime to)
         {
-            return LinqExtensionMethods.Query<Event>(session).Where(x => x.Start >= from && x.Start <= to).ToList();
+            return session.Query<Event>().Where(x => x.Start >= from && x.Start <= to).ToList();
         }
 
-        public List<Event> Query(DateTime? from, DateTime? to, string[] interests, string[] locations, int? skip, int? take)
+        public List<Event> Query(DateTime? from, DateTime? to, string[] interests, string[] locations, int? skip, int? take, bool includeDeleted = false)
         {
-            var query = LinqExtensionMethods.Query<Event>(session);
+            var query = session.Query<Event>();
 
+            if (!includeDeleted)
+            {
+                query = query.Where(x => x.DeletedOn == null);
+            }
             if (from.HasValue)
             {
                 query = query.Where(x => x.Start >= from.Value);
