@@ -1,7 +1,6 @@
 namespace YorkshireDigital.Web.Events.Modules
 {
     using Nancy;
-    using NHibernate;
     using YorkshireDigital.Data.Domain.Events;
     using YorkshireDigital.Data.Services;
     using YorkshireDigital.Web.Events.ViewModels;
@@ -9,11 +8,9 @@ namespace YorkshireDigital.Web.Events.Modules
 
     public class EventModule : BaseModule
     {
-        public EventModule(ISessionFactory sessionFactory)
-            : base(sessionFactory, "event")
+        public EventModule(IEventService eventService)
+            : base("event")
         {
-            var service = new EventService(RequestSession);
-
             Get["/{id?}"] = p =>
             {
                 var id = p.id;
@@ -23,7 +20,7 @@ namespace YorkshireDigital.Web.Events.Modules
                     return Negotiate.WithStatusCode(HttpStatusCode.NotFound);
                 }
 
-                Event model = service.Get(id);
+                Event model = eventService.Get(id);
 
                 if (model == null)
                 {

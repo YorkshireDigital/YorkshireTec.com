@@ -1,15 +1,14 @@
 namespace YorkshireDigital.Web.Feedback.Modules
 {
     using Nancy.ModelBinding;
-    using NHibernate;
     using YorkshireDigital.Web.Feedback.Models;
     using YorkshireDigital.Web.Infrastructure;
     using YorkshireDigital.Web.Infrastructure.Helpers;
 
     public class FeedbackModule : BaseModule
     {
-        public FeedbackModule(ISessionFactory sessionFactory)
-            : base(sessionFactory, "feedback/")
+        public FeedbackModule()
+            : base("feedback/")
         {
             Post["/raise"] = _ =>
             {

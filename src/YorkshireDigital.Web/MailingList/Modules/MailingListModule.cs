@@ -4,7 +4,6 @@ namespace YorkshireDigital.Web.MailingList.Modules
     using System.Collections.Generic;
     using System.Configuration;
     using Nancy;
-    using NHibernate;
     using YorkshireDigital.Data.Domain.Account.Enums;
     using YorkshireDigital.Data.Helpers;
     using YorkshireDigital.Data.Services;
@@ -13,11 +12,13 @@ namespace YorkshireDigital.Web.MailingList.Modules
 
     public class MailingListModule : BaseModule
     {
+        private readonly IUserService userService;
         private static readonly string ServerKey = ConfigurationManager.AppSettings["MailChimp_ServerKey"];
 
-        public MailingListModule(ISessionFactory sessionFactory)
-            : base(sessionFactory, "mailinglist")
+        public MailingListModule(IUserService userService)
+            : base("mailinglist")
         {
+            this.userService = userService;
 
             Get["/archive"] = _ =>
             {
@@ -76,8 +77,6 @@ namespace YorkshireDigital.Web.MailingList.Modules
 
         private void ProcessSubscribeWebhook(Dictionary<string, object> data, bool subscribe)
         {
-            var userService = new UserService(RequestSession);
-
             var email = data["email"].ToString();
             var user = userService.GetUserByEmail(email);
 
@@ -102,7 +101,6 @@ namespace YorkshireDigital.Web.MailingList.Modules
                     return Response.AsJson(new { message = "Request failed validation" })
                                    .WithStatusCode(HttpStatusCode.BadRequest);
 
-                var userService = new UserService(RequestSession);
                 var user = userService.GetUser(Context.CurrentUser.UserName);
 
                 user.MailingListEmail = model.Email;

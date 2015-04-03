@@ -5,15 +5,14 @@
     using Nancy;
     using Nancy.Authentication.Forms;
     using Nancy.Security;
-    using NHibernate;
     using YorkshireDigital.Data.Services;
     using YorkshireDigital.Web.Account.ViewModels;
     using YorkshireDigital.Web.Infrastructure;
 
     public class AccountSignInModule : BaseModule
     {
-        public AccountSignInModule(ISessionFactory sessionFactory)
-            : base(sessionFactory, "account/sign-in")
+        public AccountSignInModule(IUserService userService)
+            : base("account/sign-in")
         {
             this.RequiresFeature("Account");
 
@@ -40,8 +39,6 @@
 
                 if (result.IsValid)
                 {
-                    var userService = new UserService(RequestSession);
-
                     var user = userService.GetUser(viewModel.Username);
 
                     if (user != null && user.Password != null)

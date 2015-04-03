@@ -1,12 +1,11 @@
 ﻿namespace YorkshireDigital.Web.Admin.Modules
 {
     using Nancy.Security;
-    using NHibernate;
     using YorkshireDigital.Web.Infrastructure;
 
     public class AdminModule : BaseModule
     {
-        public AdminModule(ISessionFactory sessionFactory) : base(sessionFactory, "admin")
+        public AdminModule() : base("admin")
         {
             this.RequiresFeature("Account");
             this.RequiresAuthentication();

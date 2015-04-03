@@ -3,7 +3,6 @@
     using Nancy;
     using Nancy.Authentication.Forms;
     using Nancy.Security;
-    using NHibernate;
     using YorkshireDigital.Data.Domain.Account.Enums;
     using YorkshireDigital.Data.Helpers;
     using YorkshireDigital.Data.Services;
@@ -13,8 +12,8 @@
 
     public class AccountRegisterModule : BaseModule
     {
-        public AccountRegisterModule(ISessionFactory sessionFactory)
-            : base(sessionFactory, "account/register")
+        public AccountRegisterModule(IUserService userService)
+            : base("account/register")
         {
             this.RequiresFeature("Account");
             Get["/"] = _ =>
@@ -33,8 +32,6 @@
 
                 if (result.IsValid)
                 {
-                    var userService = new UserService(RequestSession);
-
                     if (userService.UsernameAvailable(viewModel.Username))
                     {
                         if (!userService.EmailAlreadyRegistered(viewModel.Email))

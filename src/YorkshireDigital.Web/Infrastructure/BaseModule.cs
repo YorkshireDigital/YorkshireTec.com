@@ -7,34 +7,28 @@
     using Nancy.ModelBinding;
     using Nancy.Security;
     using Nancy.Validation;
-    using NHibernate;
     using YorkshireDigital.Web.Infrastructure.Models;
     using YorkshireDigital.Web.Infrastructure.Responses;
     using YorkshireDigital.Data.Services;
 
     public class BaseModule : NancyModule
     {
-        internal ISession RequestSession;
 
-        public BaseModule(ISessionFactory sessionFactory)
+        public BaseModule(IEventService eventService)
         {
-            RequestSession = sessionFactory.GetCurrentSession();
-
-            var service = new EventService(RequestSession);
-
             Get["/sitemap"] = _ =>
             {
-                var events = service.GetWithinRange(DateTime.MinValue, DateTime.MaxValue);
+                var events = eventService.GetWithinRange(DateTime.MinValue, DateTime.MaxValue);
 
                 return new SitemapResponse(events, "http://www.yorkshiredigital.com/");
             };
         }
 
 
-        public BaseModule(ISessionFactory sessionFactory, string modulePath)
+        public BaseModule(string modulePath)
             : base(string.Format("/{0}", modulePath))
         {
-            RequestSession = sessionFactory.GetCurrentSession();
+            
         }
 
         internal ModelValidationResult BindAndValidateModel<T>(out T model)

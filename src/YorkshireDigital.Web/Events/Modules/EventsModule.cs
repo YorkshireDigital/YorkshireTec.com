@@ -5,7 +5,6 @@ namespace YorkshireDigital.Web.Events.Modules
     using System.Linq;
     using AutoMapper;
     using Nancy;
-    using NHibernate;
     using YorkshireDigital.Web.Events.ViewModels;
     using YorkshireDigital.Web.Infrastructure;
     using YorkshireDigital.Data.Domain.Events;
@@ -13,8 +12,8 @@ namespace YorkshireDigital.Web.Events.Modules
 
     public class EventsModule : BaseModule
     {
-        public EventsModule(ISessionFactory sessionFactory, IEventService service)
-            : base(sessionFactory, "/events")
+        public EventsModule(IEventService service)
+            : base("/events")
         {
             Get["/"] = _ =>
             {
