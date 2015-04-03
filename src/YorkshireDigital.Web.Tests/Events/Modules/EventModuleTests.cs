@@ -44,7 +44,7 @@ namespace YorkshireDigital.Web.Tests.Events.Modules
         public void Get_request_with_valid_id_should_return_200()
         {
             // Arrange
-            _eventList.Add(new Event { UniqueName = "1", Interests = new Interest[0], Start = DateTime.Now, End = DateTime.Now, Organisation = new Organisation()});
+            _eventList.Add(new Event { UniqueName = "1", Interests = new Interest[0], Start = DateTime.Now, End = DateTime.Now, Group = new Group()});
 
             // Act
             var result = _browser.Get("/event/1", with =>

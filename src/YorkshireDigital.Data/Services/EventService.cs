@@ -25,7 +25,7 @@
         {
             return session.Query<Event>()
                 .Where(x => x.UniqueName == uniqueName)
-                .Fetch(x => x.Organisation)
+                .Fetch(x => x.Group)
                 .SingleOrDefault();
         }
 

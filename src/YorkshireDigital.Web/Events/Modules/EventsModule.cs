@@ -40,9 +40,9 @@ namespace YorkshireDigital.Web.Events.Modules
                     .ForMember(dest => dest.Start, opt => opt.MapFrom(src => src.Start.ToString("yyyy-MM-dd")))
                     .ForMember(dest => dest.End, opt => opt.MapFrom(src => src.End.ToString("yyyy-MM-dd")))
                     .ForMember(dest => dest.Interests, opt => opt.MapFrom(src => src.Interests.Select(x => x.Name).Distinct().ToArray()))
-                    .ForMember(dest => dest.Colour, opt => opt.MapFrom(src => src.Organisation.Colour))
-                    .ForMember(dest => dest.Title, opt => opt.MapFrom(src => src.Organisation.Name))
-                    .ForMember(dest => dest.ShortTitle, opt => opt.MapFrom(src => src.Organisation.ShortName));
+                    .ForMember(dest => dest.Colour, opt => opt.MapFrom(src => src.Group.Colour))
+                    .ForMember(dest => dest.Title, opt => opt.MapFrom(src => src.Group.Name))
+                    .ForMember(dest => dest.ShortTitle, opt => opt.MapFrom(src => src.Group.ShortName));
 
                 var viewModel = events.Select(Mapper.DynamicMap<CalendarEventModel>).ToList();
 

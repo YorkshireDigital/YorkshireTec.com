@@ -1,4 +1,4 @@
-﻿CREATE TABLE [dbo].[Organisation] (
+﻿CREATE TABLE [dbo].[Group] (
     [Id]        NVARCHAR (255)  NOT NULL,
     [Name]      NVARCHAR (255)  NULL,
     [ShortName] NVARCHAR (255)  NULL,

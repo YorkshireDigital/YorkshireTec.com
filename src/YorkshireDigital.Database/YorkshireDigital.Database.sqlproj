@@ -81,7 +81,7 @@
     <Build Include="dbo\Tables\EventsToInterests.sql" />
     <Build Include="dbo\Tables\EventTalk.sql" />
     <Build Include="dbo\Tables\Interest.sql" />
-    <Build Include="dbo\Tables\Organisation.sql" />
+    <Build Include="dbo\Tables\Group.sql" />
     <Build Include="dbo\Tables\Provider.sql" />
     <Build Include="dbo\Tables\User.sql" />
     <Build Include="dbo\Tables\UserRole.sql" />

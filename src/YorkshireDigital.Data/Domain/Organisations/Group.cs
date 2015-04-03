@@ -3,7 +3,7 @@
     using System.Collections.Generic;
     using YorkshireDigital.Data.Domain.Events;
 
-    public class Organisation
+    public class Group
     {
         public virtual string Id { get; set; }
         public virtual string Name { get; set; }

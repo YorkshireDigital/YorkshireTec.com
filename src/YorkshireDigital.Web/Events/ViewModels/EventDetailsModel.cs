@@ -24,21 +24,21 @@
 
         public EventDetailsModel(Event e)
         {
-            Organiser = e.Organisation.Name;
-            OrganiserShortName = e.Organisation.ShortName;
+            Organiser = e.Group.Name;
+            OrganiserShortName = e.Group.ShortName;
             Title = e.Title;
             Synopsis = e.Synopsis.MarkdownToHtml();
-            Colour = e.Organisation.Colour;
+            Colour = e.Group.Colour;
             Start = e.Start.ToString("yyyy-MM-dd");
             StartFormat = e.Start.ToLyndensFancyFormat();
             Location = e.Location;
             UniqueName = e.UniqueName;
-            ContactLinks = e.Organisation.ContactLinks.Select(x => new ContactLinkModel(x)).ToArray();
-            Website = e.Organisation.Website.IndexOf("http://", System.StringComparison.Ordinal) == -1
-                        ? string.Format("http://{0}", e.Organisation.Website)
-                        : e.Organisation.Website; ;
-            Headline = e.Organisation.Headline;
-            About = e.Organisation.About.MarkdownToHtml();
+            ContactLinks = e.Group.ContactLinks.Select(x => new ContactLinkModel(x)).ToArray();
+            Website = e.Group.Website.IndexOf("http://", System.StringComparison.Ordinal) == -1
+                        ? string.Format("http://{0}", e.Group.Website)
+                        : e.Group.Website; ;
+            Headline = e.Group.Headline;
+            About = e.Group.About.MarkdownToHtml();
             Talks = e.Talks.Select(x => new TalkDetailModel(x)).ToArray();
         }
     }

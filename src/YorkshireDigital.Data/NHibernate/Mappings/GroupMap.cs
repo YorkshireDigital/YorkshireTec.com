@@ -3,10 +3,12 @@
     using FluentNHibernate.Mapping;
     using YorkshireDigital.Data.Domain.Organisations;
 
-    public class OrganisationMap : ClassMap<Organisation>
+    public class GroupMap : ClassMap<Group>
     {
-        public OrganisationMap()
+        public GroupMap()
         {
+            Table("[Group]");
+
             Id(x => x.Id).GeneratedBy.Assigned();
 
             Map(x => x.Name);

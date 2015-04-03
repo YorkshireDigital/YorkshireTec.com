@@ -7,7 +7,7 @@
     public class Event
     {
         public virtual string UniqueName { get; set; }
-        public virtual Organisation Organisation { get; set; }
+        public virtual Group Group { get; set; }
         public virtual string Title { get; set; }
         public virtual string Synopsis { get; set; }
         public virtual DateTime Start { get; set; }

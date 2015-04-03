@@ -108,7 +108,7 @@
     <Compile Include="Domain\Events\EventTalk.cs" />
     <Compile Include="Domain\Organisations\ContactLink.cs" />
     <Compile Include="Domain\Organisations\Enums\ContactLinkType.cs" />
-    <Compile Include="Domain\Organisations\Organisation.cs" />
+    <Compile Include="Domain\Organisations\Group.cs" />
     <Compile Include="Helpers\DiscourseHelper.cs" />
     <Compile Include="Helpers\MailChimpHelper.cs" />
     <Compile Include="NHibernate\AutomappingConfiguration.cs" />
@@ -118,7 +118,7 @@
     <Compile Include="NHibernate\Mappings\EventMap.cs" />
     <Compile Include="NHibernate\Mappings\EventTalkMap.cs" />
     <Compile Include="NHibernate\Mappings\InterestMap.cs" />
-    <Compile Include="NHibernate\Mappings\OrganisationMap.cs" />
+    <Compile Include="NHibernate\Mappings\GroupMap.cs" />
     <Compile Include="NHibernate\Mappings\ProviderMap.cs" />
     <Compile Include="NHibernate\Mappings\UserMap.cs" />
     <Compile Include="NHibernate\Mappings\UserRoleMap.cs" />

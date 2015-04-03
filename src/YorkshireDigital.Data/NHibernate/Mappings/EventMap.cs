@@ -25,7 +25,7 @@
             Map(x => x.Price);
             Map(x => x.Photo).CustomType<BinaryBlobType>();
 
-            References(x => x.Organisation);
+            References(x => x.Group);
 
             HasManyToMany(x => x.Categories);
             HasManyToMany(x => x.Interests);
