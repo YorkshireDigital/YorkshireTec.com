@@ -1,4 +1,4 @@
-﻿namespace YorkshireDigital.Data.Tests.Helpers
+﻿namespace YorkshireDigital.Data.Tests.InMemoryTests
 {
     using global::NHibernate;
     using NUnit.Framework;

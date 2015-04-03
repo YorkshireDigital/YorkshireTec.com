@@ -1,5 +1,6 @@
 ﻿namespace YorkshireDigital.Data.Domain.Organisations
 {
+    using System;
     using System.Collections.Generic;
     using YorkshireDigital.Data.Domain.Events;
 
@@ -16,5 +17,9 @@
         public virtual byte[] Logo { get; set; }
         public virtual byte[] Photo { get; set; }
         public virtual string Website { get; set; }
+        public virtual DateTime LastEdited { get; set; }
+        public virtual DateTime? DeletedOn { get; set; }
+
+        public virtual bool IsDeleted { get { return DeletedOn.HasValue; } }
     }
 }
