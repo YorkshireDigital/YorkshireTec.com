@@ -1,4 +1,4 @@
-﻿namespace YorkshireDigital.Data.Tests.DomainTests
+namespace YorkshireDigital.Data.Tests.Domain.Account
 {
     using FluentAssertions;
     using NUnit.Framework;

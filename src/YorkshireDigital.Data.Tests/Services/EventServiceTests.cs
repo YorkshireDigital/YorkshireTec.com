@@ -1,14 +1,14 @@
-﻿using LinqExtensionMethods = NHibernate.Linq.LinqExtensionMethods;
-
-namespace YorkshireDigital.Data.Tests.ServiceTests
+namespace YorkshireDigital.Data.Tests.Services
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using FluentAssertions;
+    using global::NHibernate.Linq;
     using NUnit.Framework;
     using YorkshireDigital.Data.Domain.Events;
     using YorkshireDigital.Data.Services;
+    using YorkshireDigital.Data.Tests.Helpers;
 
     [TestFixture]
     public class EventServiceTests : InMemoryFixtureBase

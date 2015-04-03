@@ -125,15 +125,15 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
-    <Compile Include="DomainTests\UserTests.cs" />
+    <Compile Include="Domain\Account\UserTests.cs" />
     <Compile Include="Helpers\InMemorySessionFactoryProvider.cs" />
     <Compile Include="HelperTests\DiscourseHelperTests.cs" />
     <Compile Include="InfrastructureTests\AuthenticationCallbackProviderTests.cs" />
-    <Compile Include="ServiceTests\EventServiceTests.cs" />
-    <Compile Include="ServiceTests\InMemoryFixtureBase.cs" />
-    <Compile Include="ServiceTests\InMemorySetUpFixture.cs" />
+    <Compile Include="Services\EventServiceTests.cs" />
+    <Compile Include="Helpers\InMemoryFixtureBase.cs" />
+    <Compile Include="Helpers\InMemorySetUpFixture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ServiceTests\UserServiceTests.cs" />
+    <Compile Include="Services\UserServiceTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
