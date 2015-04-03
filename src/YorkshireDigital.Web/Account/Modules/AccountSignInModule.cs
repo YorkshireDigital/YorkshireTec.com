@@ -19,6 +19,13 @@
 
             Get["/"] = _ =>
             {
+                if (Context.CurrentUser.IsAuthenticated())
+                {
+                    var user = Context.CurrentUser as UserIdentity;
+
+                    if (user != null) return this.LoginAndRedirect(Guid.Parse(user.UserId), null, "~/account");
+                }
+
                 var model = new AccountSignInViewModel();
                 @ViewBag.Title = "Sign In : YorkshireDigital";
                 return View["SignIn", model];
