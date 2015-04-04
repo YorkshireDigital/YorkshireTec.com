@@ -8,6 +8,8 @@
     [Region]         NVARCHAR (255)  NULL,
     [Price]          DECIMAL (19, 5) NULL,
     [Photo]          VARBINARY (MAX) NULL,
+    [LastEditedOn]  DATETIME         NULL,
+    [DeletedOn]     DATETIME         NULL,
     [GroupId] NVARCHAR (255)  NULL,
     PRIMARY KEY CLUSTERED ([UniqueName] ASC),
     CONSTRAINT [FKABF0877E453DFDE3] FOREIGN KEY ([GroupId]) REFERENCES [dbo].[Group] ([Id])
