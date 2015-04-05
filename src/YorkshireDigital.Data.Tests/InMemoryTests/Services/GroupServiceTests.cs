@@ -159,5 +159,63 @@
             groups[0].Id.ShouldBeEquivalentTo("test-group-1");
             groups[1].Id.ShouldBeEquivalentTo("test-group-3");
         }
+
+        [Test]
+        public void GetActiveGroups_Returns20Groups_WhenNoTakeIsSpecified()
+        {
+            // Arrange
+
+            for (int i = 0; i < 100; i++)
+            {
+                var group = new Group { Id = string.Format("test-group-{0}", i), Name = "Test Group" };
+                Session.Save(group);
+            }
+
+            // Act
+            var groups = groupService.GetActiveGroups();
+
+            // Assert
+            groups.Count.ShouldBeEquivalentTo(20);
+        }
+
+        [TestCase(10)]
+        [TestCase(20)]
+        [TestCase(30)]
+        [TestCase(40)]
+        public void GetActiveGroups_ReturnsCorrectAmountOfGroups_WhenTakeIsSpecified(int take)
+        {
+            // Arrange
+
+            for (int i = 0; i < 100; i++)
+            {
+                var group = new Group { Id = string.Format("test-group-{0}", i), Name = "Test Group" };
+                Session.Save(group);
+            }
+
+            // Act
+            var groups = groupService.GetActiveGroups(take);
+
+            // Assert
+            groups.Count.ShouldBeEquivalentTo(take);
+        }
+
+        [Test]
+        public void GetActiveGroups_ReturnsGroupsAfterSkip_WhenSkipIsSpecified()
+        {
+            // Arrange
+
+            for (int i = 0; i < 100; i++)
+            {
+                var group = new Group { Id = string.Format("test-group-{0}", i), Name = "Test Group" };
+                Session.Save(group);
+            }
+
+            // Act
+            var groups = groupService.GetActiveGroups(30, 30);
+
+            // Assert
+            groups.Count.ShouldBeEquivalentTo(30);
+            groups[0].Id.ShouldBeEquivalentTo("test-group-30");
+        }
     }
 }

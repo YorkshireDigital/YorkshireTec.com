@@ -11,7 +11,7 @@
         Group Get(string id);
         Group Save(Group group);
         Group Delete(string id);
-        IList<Group> GetActiveGroups();
+        IList<Group> GetActiveGroups(int take = 20, int skip = 0);
     }
 
     public class GroupService : IGroupService
@@ -48,10 +48,12 @@
             return group;
         } 
 
-        public IList<Group> GetActiveGroups()
+        public IList<Group> GetActiveGroups(int take = 20, int skip = 0)
         {
             return session.QueryOver<Group>()
                 .Where(x => x.DeletedOn == null)
+                .Skip(skip)
+                .Take(take)
                 .List();
         }
     }
