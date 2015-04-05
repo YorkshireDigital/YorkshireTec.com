@@ -193,5 +193,60 @@ namespace YorkshireDigital.Data.Tests.InMemoryTests.Services
             users[0].Username.ShouldBeEquivalentTo("User1");
             users[1].Username.ShouldBeEquivalentTo("User3");
         }
+
+        [Test]
+        public void ListActiveUsers_Returns20Users_WhenNoTakeIsSpecified()
+        {
+            // Arrange
+            for (int i = 0; i < 100; i++)
+            {
+                var user = new User { Username = string.Format("User{0}", i), Name = string.Format("User {0}", i), Email = string.Format("user{0}@email.com", i) };
+                Session.SaveOrUpdate(user);
+            }
+
+            // Act
+            var users = service.GetActiveUsers();
+
+            // Assert
+            users.Count.ShouldBeEquivalentTo(20);
+        }
+
+        [TestCase(10)]
+        [TestCase(20)]
+        [TestCase(30)]
+        [TestCase(40)]
+        public void ListActiveUsers_ReturnsCorrectAmountOfUsers_WhenTakeIsSpecified(int take)
+        {
+            // Arrange
+            for (int i = 0; i < 100; i++)
+            {
+                var user = new User { Username = string.Format("User{0}", i), Name = string.Format("User {0}", i), Email = string.Format("user{0}@email.com", i) };
+                Session.SaveOrUpdate(user);
+            }
+
+            // Act
+            var users = service.GetActiveUsers(take);
+
+            // Assert
+            users.Count.ShouldBeEquivalentTo(take);
+        }
+
+        [Test]
+        public void ListActiveUsers_ReturnsUsersAfterSkip_WhenSkipIsSpecified()
+        {
+            // Arrange
+            for (int i = 0; i < 100; i++)
+            {
+                var user = new User { Username = string.Format("User{0}", i), Name = string.Format("User {0}", i), Email = string.Format("user{0}@email.com", i) };
+                Session.SaveOrUpdate(user);
+            }
+
+            // Act
+            var users = service.GetActiveUsers(30, 30);
+
+            // Assert
+            users.Count.ShouldBeEquivalentTo(30);
+            users[0].Username.ShouldAllBeEquivalentTo("User30");
+        }
     }
 }

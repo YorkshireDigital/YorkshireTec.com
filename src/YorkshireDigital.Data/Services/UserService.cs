@@ -5,6 +5,7 @@ namespace YorkshireDigital.Data.Services
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using global::NHibernate.Hql.Ast.ANTLR;
     using global::NHibernate.Linq;
     using YorkshireDigital.Data.Domain.Account;
     using YorkshireDigital.Data.Domain.Account.Enums;
@@ -21,7 +22,7 @@ namespace YorkshireDigital.Data.Services
         void LinkIdentity(Provider provider, User user);
         User GetUserById(Guid id);
         User GetUserByEmail(string email);
-        IList<User> GetActiveUsers();
+        IList<User> GetActiveUsers(int take = 20, int skip = 0);
         User Disable(Guid username);
     }
 
@@ -103,10 +104,12 @@ namespace YorkshireDigital.Data.Services
                 .SingleOrDefault();
         }
 
-        public IList<User> GetActiveUsers()
+        public IList<User> GetActiveUsers(int take = 20, int skip = 0)
         {
             return session.QueryOver<User>()
                 .Where(x => x.DisabledOn == null)
+                .Skip(skip)
+                .Take(take)
                 .List();
         }
 
