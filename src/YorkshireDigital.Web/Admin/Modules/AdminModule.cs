@@ -1,6 +1,5 @@
 ﻿namespace YorkshireDigital.Web.Admin.Modules
 {
-    using System;
     using System.Data.SqlTypes;
     using Nancy;
     using Nancy.Security;

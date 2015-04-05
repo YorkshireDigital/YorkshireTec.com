@@ -196,6 +196,9 @@
     <Content Include="Admin\Views\_GroupList.cshtml" />
     <Content Include="Admin\Views\_UsersList.cshtml" />
     <Content Include="Admin\Views\_UserList.cshtml" />
+    <Content Include="Admin\Views\NewUser.cshtml" />
+    <Content Include="Admin\Views\NewEvent.cshtml" />
+    <Content Include="Admin\Views\NewGroup.cshtml" />
     <None Include="public\scripts\vendor\jquery-2.1.1.intellisense.js" />
     <Content Include="public\scripts\vendor\jquery-2.1.1.intellisense.min.js" />
     <Content Include="public\scripts\vendor\jquery-2.1.1.js" />
@@ -401,11 +404,17 @@
     <Compile Include="Account\ViewModels\AccountWelcomeViewModel.cs" />
     <Compile Include="Account\ViewModels\ProviderListViewModel.cs" />
     <Compile Include="Account\ViewModels\ProviderViewModel.cs" />
+    <Compile Include="Admin\Modules\AdminAddEventModule.cs" />
+    <Compile Include="Admin\Modules\AdminAddGroupModule.cs" />
+    <Compile Include="Admin\Modules\AdminAddUserModule.cs" />
+    <Compile Include="Admin\ViewModels\AdminEventViewModel.cs" />
+    <Compile Include="Admin\ViewModels\AdminGroupViewModel.cs" />
     <Compile Include="Admin\Modules\AdminModule.cs" />
     <Compile Include="Admin\ViewModels\AdminEventListViewModel.cs" />
     <Compile Include="Admin\ViewModels\AdminGroupListViewModel.cs" />
     <Compile Include="Admin\ViewModels\AdminIndexViewModel.cs" />
     <Compile Include="Admin\ViewModels\AdminUserListViewModel.cs" />
+    <Compile Include="Admin\ViewModels\AdminUserViewModel.cs" />
     <Compile Include="Events\Modules\EventsModule.cs" />
     <Compile Include="Events\Validation\CalendarSearchModelValidator.cs" />
     <Compile Include="Events\ViewModels\CalendarSearchModel.cs" />
