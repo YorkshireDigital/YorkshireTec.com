@@ -396,6 +396,10 @@
     <Compile Include="Account\ViewModels\ProviderListViewModel.cs" />
     <Compile Include="Account\ViewModels\ProviderViewModel.cs" />
     <Compile Include="Admin\Modules\AdminModule.cs" />
+    <Compile Include="Admin\ViewModels\AdminEventListViewModel.cs" />
+    <Compile Include="Admin\ViewModels\AdminGroupListViewModel.cs" />
+    <Compile Include="Admin\ViewModels\AdminIndexViewModel.cs" />
+    <Compile Include="Admin\ViewModels\AdminUserListViewModel.cs" />
     <Compile Include="Events\Modules\EventsModule.cs" />
     <Compile Include="Events\Validation\CalendarSearchModelValidator.cs" />
     <Compile Include="Events\ViewModels\CalendarSearchModel.cs" />
