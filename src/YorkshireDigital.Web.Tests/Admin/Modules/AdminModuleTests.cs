@@ -72,7 +72,7 @@
             model.Users[1].Username.ShouldBeEquivalentTo("User2");
             model.Users[1].Name.ShouldBeEquivalentTo("User 2");
             model.Users[1].Email.ShouldBeEquivalentTo("user2@email.com");
-            model.Users[1].MailingListState.ShouldBeEquivalentTo(MailingListState.Subscribed);
+            model.Users[1].MailingListState.ShouldBeEquivalentTo("Subscribed");
         }
 
         [Test]
