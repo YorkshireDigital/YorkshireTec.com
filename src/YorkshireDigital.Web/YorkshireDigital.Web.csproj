@@ -165,7 +165,7 @@
     <Content Include="public\scripts\app\ajaxCsrf.js" />
     <Content Include="public\scripts\app\pages\account-mailinglist.js" />
     <Content Include="public\scripts\app\pages\betaBanner.js" />
-    <Content Include="public\scripts\app\pages\event.js" />
+    <Content Include="public\scripts\app\pages\tabs.js" />
     <Content Include="public\scripts\app\pages\eventsCalendar.js" />
     <Content Include="public\scripts\app\validation.js" />
     <Content Include="public\scripts\fastclick.js" />
@@ -190,6 +190,12 @@
     <Content Include="Account\Views\Index.cshtml" />
     <Content Include="Account\Views\Welcome.cshtml" />
     <Content Include="Admin\Views\Index.cshtml" />
+    <Content Include="Admin\Views\_EventsList.cshtml" />
+    <Content Include="Admin\Views\_EventList.cshtml" />
+    <Content Include="Admin\Views\_GroupsList.cshtml" />
+    <Content Include="Admin\Views\_GroupList.cshtml" />
+    <Content Include="Admin\Views\_UsersList.cshtml" />
+    <Content Include="Admin\Views\_UserList.cshtml" />
     <None Include="public\scripts\vendor\jquery-2.1.1.intellisense.js" />
     <Content Include="public\scripts\vendor\jquery-2.1.1.intellisense.min.js" />
     <Content Include="public\scripts\vendor\jquery-2.1.1.js" />

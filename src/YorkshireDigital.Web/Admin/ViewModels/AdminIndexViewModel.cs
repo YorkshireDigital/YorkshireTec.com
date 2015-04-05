@@ -15,7 +15,7 @@
         public IList<AdminEventListViewModel> FutureEvents { get; set; }
         public IList<AdminEventListViewModel> PastEvents { get; set; }
 
-        public AdminIndexViewModel(IEnumerable<User> users, List<Event> events, IList<Group> groups)
+        public AdminIndexViewModel(IEnumerable<User> users, IEnumerable<Event> events, IEnumerable<Group> groups)
         {
             Users = new List<AdminUserListViewModel>();
             Groups = new List<AdminGroupListViewModel>();

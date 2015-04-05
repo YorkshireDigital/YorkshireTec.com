@@ -1,0 +1,9 @@
+﻿@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<YorkshireDigital.Web.Admin.ViewModels.AdminEventListViewModel>
+
+<tr>
+    <td>@Model.UniqueName</td>
+    <td>@Model.Title</td>
+    <td>@Model.Start.ToLocalTime().ToString("g")</td>
+    <td>@Model.Region</td>
+    <td>@Model.GroupName</td>
+</tr>

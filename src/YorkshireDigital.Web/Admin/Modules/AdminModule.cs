@@ -1,6 +1,7 @@
 ﻿namespace YorkshireDigital.Web.Admin.Modules
 {
     using System;
+    using System.Data.SqlTypes;
     using Nancy;
     using Nancy.Security;
     using YorkshireDigital.Data.Services;
@@ -18,7 +19,7 @@
             Get["/"] = _ =>
             {
                 var users = userService.GetActiveUsers(20, 0);
-                var events = eventService.Query(DateTime.MinValue, DateTime.MaxValue, new string[0], new string[0], 0, 20);
+                var events = eventService.Query(SqlDateTime.MinValue.Value, SqlDateTime.MaxValue.Value, new string[0], new string[0], 0, 20);
                 var groups = groupService.GetActiveGroups(20, 0);
 
                 return Negotiate.WithModel(new AdminIndexViewModel(users, events, groups))

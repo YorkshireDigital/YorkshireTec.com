@@ -1,0 +1,15 @@
+﻿@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<System.Collections.Generic.List<YorkshireDigital.Web.Admin.ViewModels.AdminEventListViewModel>>
+
+<table class="event-table">
+    <tr>
+        <td>Slug</td>
+        <td>Title</td>
+        <td>Start</td>
+        <td>Region</td>
+        <td>Group</td>
+    </tr>
+    @foreach (var @event in Model)
+    {
+        @Html.Partial("_EventList", @event);
+    }
+</table>
