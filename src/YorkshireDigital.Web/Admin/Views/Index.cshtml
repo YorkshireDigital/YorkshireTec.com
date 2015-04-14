@@ -19,7 +19,7 @@
         <div id="tab-futureEvents" class="tab-pane tab-pane--current">
             @Html.Partial("_EventsList", Model.FutureEvents)
             <div class="form-actions">
-                <a href="~/admin/add-event" class="btn btn--primary">New Event</a>
+                <a href="~/admin/event" class="btn btn--primary">New Event</a>
             </div>
         </div>
         <div id="tab-pastEvents" class="tab-pane">
@@ -28,13 +28,13 @@
         <div id="tab-groups" class="tab-pane">
             @Html.Partial("_GroupsList", Model.Groups)
             <div class="form-actions">
-                <a href="~/admin/add-group" class="btn btn--primary">New Group</a>
+                <a href="~/admin/group" class="btn btn--primary">New Group</a>
             </div>
         </div>
         <div id="tab-users" class="tab-pane">
             @Html.Partial("_UsersList", Model.Users)
             <div class="form-actions">
-                <a href="~/admin/add-user" class="btn btn--primary">New User</a>
+                <a href="~/admin/user" class="btn btn--primary">Invite User</a>
             </div>
         </div>
     </div>

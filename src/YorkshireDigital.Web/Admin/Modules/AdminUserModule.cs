@@ -3,15 +3,15 @@
     using Nancy.Security;
     using YorkshireDigital.Web.Infrastructure;
 
-    public class AdminAddUserModule : BaseModule
+    public class AdminUserModule : BaseModule
     {
-        public AdminAddUserModule()
-            : base("admin/add-user")
+        public AdminUserModule()
+            : base("admin/user")
         {
             this.RequiresAuthentication();
             this.RequiresClaims(new[] { "Admin" });
 
-            Get["/"] = _ => View["NewUser"];
+            Get["/"] = _ => View["User"];
         }
     }
 }

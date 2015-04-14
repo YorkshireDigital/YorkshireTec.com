@@ -3,15 +3,15 @@
     using Nancy.Security;
     using YorkshireDigital.Web.Infrastructure;
 
-    public class AdminAddGroupModule : BaseModule
+    public class AdminEventModule : BaseModule
     {
-        public AdminAddGroupModule() 
-            : base("admin/add-group")
+        public AdminEventModule()
+            : base("admin/event")
         {
             this.RequiresAuthentication();
             this.RequiresClaims(new[] { "Admin" });
 
-            Get["/"] = _ => View["NewGroup"];
+            Get["/"] = _ => View["Event"];
         }
     }
 }

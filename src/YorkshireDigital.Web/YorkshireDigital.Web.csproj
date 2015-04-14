@@ -196,9 +196,9 @@
     <Content Include="Admin\Views\_GroupList.cshtml" />
     <Content Include="Admin\Views\_UsersList.cshtml" />
     <Content Include="Admin\Views\_UserList.cshtml" />
-    <Content Include="Admin\Views\NewUser.cshtml" />
-    <Content Include="Admin\Views\NewEvent.cshtml" />
-    <Content Include="Admin\Views\NewGroup.cshtml" />
+    <Content Include="Admin\Views\User.cshtml" />
+    <Content Include="Admin\Views\Event.cshtml" />
+    <Content Include="Admin\Views\Group.cshtml" />
     <None Include="public\scripts\vendor\jquery-2.1.1.intellisense.js" />
     <Content Include="public\scripts\vendor\jquery-2.1.1.intellisense.min.js" />
     <Content Include="public\scripts\vendor\jquery-2.1.1.js" />
@@ -404,9 +404,9 @@
     <Compile Include="Account\ViewModels\AccountWelcomeViewModel.cs" />
     <Compile Include="Account\ViewModels\ProviderListViewModel.cs" />
     <Compile Include="Account\ViewModels\ProviderViewModel.cs" />
-    <Compile Include="Admin\Modules\AdminAddEventModule.cs" />
-    <Compile Include="Admin\Modules\AdminAddGroupModule.cs" />
-    <Compile Include="Admin\Modules\AdminAddUserModule.cs" />
+    <Compile Include="Admin\Modules\AdminEventModule.cs" />
+    <Compile Include="Admin\Modules\AdminGroupModule.cs" />
+    <Compile Include="Admin\Modules\AdminUserModule.cs" />
     <Compile Include="Admin\ViewModels\AdminEventViewModel.cs" />
     <Compile Include="Admin\ViewModels\AdminGroupViewModel.cs" />
     <Compile Include="Admin\Modules\AdminModule.cs" />
