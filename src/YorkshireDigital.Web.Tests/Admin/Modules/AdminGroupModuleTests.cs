@@ -1,10 +1,13 @@
 ﻿namespace YorkshireDigital.Web.Tests.Admin.Modules
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using FakeItEasy;
     using FluentAssertions;
     using Nancy;
+    using Nancy.Cryptography;
+    using Nancy.Security;
     using Nancy.Testing;
     using NUnit.Framework;
     using YorkshireDigital.Data.Domain.Organisations;
@@ -19,11 +22,26 @@
     {
         private IGroupService groupService;
         private Browser browser;
+        private string csrfToken;
 
         [SetUp]
         public void SetUp()
         {
             groupService = A.Fake<IGroupService>();
+
+            var cryptographyConfiguration = CryptographyConfiguration.Default;
+
+            var objectSerializer = new DefaultObjectSerializer();
+            var csrfStartup = new CsrfApplicationStartup(cryptographyConfiguration, objectSerializer, new DefaultCsrfTokenValidator(cryptographyConfiguration));
+
+            var token = new CsrfToken
+            {
+                CreatedDate = DateTime.Now,
+            };
+            token.CreateRandomBytes();
+            token.CreateHmac(cryptographyConfiguration.HmacProvider);
+
+            csrfToken = new DefaultObjectSerializer().Serialize(token);
 
             browser = new Browser(with =>
             {
@@ -38,6 +56,9 @@
                         ctx.Items.Add("OnErrorException", exception);
                         return null;
                     };
+                    csrfStartup.Initialize(pipelines);
+                    Csrf.Enable(pipelines);
+                    
                 });
                 with.StatusCodeHandler<InternalServerErrorStatusCodeHandler>();
             });
@@ -116,6 +137,8 @@
                 with.FormValue("About", "This is a new group");
                 with.FormValue("Colour", "#FFFF00");
                 with.FormValue("Headline", "New group for testing");
+                with.Cookie(CsrfToken.DEFAULT_CSRF_KEY, csrfToken);
+                with.FormValue(CsrfToken.DEFAULT_CSRF_KEY, csrfToken);
             });
             var model = response.GetModel<AdminGroupViewModel>();
 
@@ -141,7 +164,12 @@
                 });
 
             // Act
-            var response = browser.Post("/admin/group/", with => with.HttpRequest());
+            var response = browser.Post("/admin/group/", with =>
+            {
+                with.HttpRequest();
+                with.Cookie(CsrfToken.DEFAULT_CSRF_KEY, csrfToken);
+                with.FormValue(CsrfToken.DEFAULT_CSRF_KEY, csrfToken);
+            });
 
             // Assert
             response.StatusCode.ShouldBeEquivalentTo(HttpStatusCode.BadRequest);
@@ -180,6 +208,8 @@
                 with.FormValue("About", "This is an updated group");
                 with.FormValue("Colour", "#00FF00");
                 with.FormValue("Headline", "Updated group for testing");
+                with.Cookie(CsrfToken.DEFAULT_CSRF_KEY, csrfToken);
+                with.FormValue(CsrfToken.DEFAULT_CSRF_KEY, csrfToken);
             });
             var model = response.GetModel<AdminGroupViewModel>();
 
@@ -202,7 +232,12 @@
                 .Returns(null);
 
             // Act
-            var response = browser.Put("/admin/group/invalid-group", with => with.HttpRequest());
+            var response = browser.Put("/admin/group/invalid-group", with =>
+            {
+                with.HttpRequest();
+                with.Cookie(CsrfToken.DEFAULT_CSRF_KEY, csrfToken);
+                with.FormValue(CsrfToken.DEFAULT_CSRF_KEY, csrfToken);
+            });
 
             // Assert
             response.StatusCode.ShouldBeEquivalentTo(HttpStatusCode.NotFound);

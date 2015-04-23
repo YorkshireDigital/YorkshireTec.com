@@ -38,6 +38,8 @@
 
             Post["/"] = _ =>
             {
+                this.ValidateCsrfToken();
+
                 AdminGroupViewModel model;
                 var result = BindAndValidateModel(out model);
 
@@ -67,6 +69,8 @@
             };
             Put["/{groupId}"] = _ =>
             {
+                this.ValidateCsrfToken();
+
                 string groupId = _.groupId.ToString();
                 AdminGroupViewModel model;
                 var result = BindAndValidateModel(out model);
