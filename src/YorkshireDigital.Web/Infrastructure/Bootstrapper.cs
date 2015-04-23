@@ -30,20 +30,27 @@ namespace YorkshireDigital.Web.Infrastructure
         {
             base.ConfigureApplicationContainer(container);
 
-            container.Register(
-                NHibernateSessionFactoryProvider.BuildSessionFactory(
-                    ConfigurationManager.ConnectionStrings["Database"].ConnectionString));
-
             ConfigureViewLocations();
 
             Conventions.StaticContentsConventions.Add(StaticContentConventionBuilder.AddDirectory("public"));
         }
 
+        protected override void ApplicationStartup(TinyIoCContainer container, IPipelines pipelines)
+        {
+            base.ApplicationStartup(container, pipelines);
+
+            Csrf.Enable(pipelines);
+        }
+
         protected override void ConfigureRequestContainer(TinyIoCContainer container, NancyContext context)
         {
             base.ConfigureRequestContainer(container, context);
-            
-            CreateSession(container);
+
+            var sessionFactory = NHibernateSessionFactoryProvider.BuildSessionFactory(ConfigurationManager.ConnectionStrings["Database"].ConnectionString);
+
+            container.Register(sessionFactory);
+
+            CreateSession(container, sessionFactory);
 
             container.Register<IUserMapper, UserMapper>();
         }
@@ -83,16 +90,8 @@ namespace YorkshireDigital.Web.Infrastructure
             FormsAuthentication.Enable(pipelines, formsAuthConfiguration);
 
             #endregion
-        }
-
-        protected override void ApplicationStartup(TinyIoCContainer container, IPipelines pipelines)
-        {
-            base.ApplicationStartup(container, pipelines);
 
             ConfigureNHibernateSessionPerRequest(container, pipelines);
-
-            Csrf.Enable(pipelines);
-
             pipelines.OnError += (ctx, exception) =>
             {
                 ctx.Items.Add("OnErrorException", exception);
@@ -102,27 +101,14 @@ namespace YorkshireDigital.Web.Infrastructure
 
         #region NHibernate Session Setup
 
-        private static void ConfigureNHibernateSessionPerRequest(TinyIoCContainer container, IPipelines pipelines)
+        private void ConfigureNHibernateSessionPerRequest(TinyIoCContainer container, IPipelines pipelines)
         {
-            pipelines.BeforeRequest += ctx => CreateSession(container);
             pipelines.AfterRequest += ctx => CommitSession(container);
             pipelines.OnError += (ctx, ex) => RollbackSession(container);
         }
 
-        private static Response RollbackSession(TinyIoCContainer container)
+        private static void CreateSession(TinyIoCContainer container, ISessionFactory sessionFactory)
         {
-            var sessionFactory = container.Resolve<ISessionFactory>();
-            if (!CurrentSessionContext.HasBind(sessionFactory)) return null;
-            var requestSession = sessionFactory.GetCurrentSession();
-            requestSession.Transaction.Rollback();
-            CurrentSessionContext.Unbind(sessionFactory);
-            requestSession.Dispose();
-            return null;
-        }
-        
-        private static Response CreateSession(TinyIoCContainer container)
-        {
-            var sessionFactory = container.Resolve<ISessionFactory>();
             var requestSession = sessionFactory.OpenSession();
             CurrentSessionContext.Bind(requestSession);
             requestSession.BeginTransaction();
@@ -130,7 +116,16 @@ namespace YorkshireDigital.Web.Infrastructure
             container.Register<IEventService>(new EventService(requestSession));
             container.Register<IUserService>(new UserService(requestSession));
             container.Register<IGroupService>(new GroupService(requestSession));
+        }
 
+        private Response RollbackSession(TinyIoCContainer container)
+        {
+            var sessionFactory = container.Resolve<ISessionFactory>();
+            if (!CurrentSessionContext.HasBind(sessionFactory)) return null;
+            var requestSession = sessionFactory.GetCurrentSession();
+            requestSession.Transaction.Rollback();
+            CurrentSessionContext.Unbind(sessionFactory);
+            requestSession.Dispose();
             return null;
         }
 
@@ -148,6 +143,7 @@ namespace YorkshireDigital.Web.Infrastructure
             requestSession.Dispose();
             return null;
         }
+
         #endregion
 
         private void ConfigureViewLocations()

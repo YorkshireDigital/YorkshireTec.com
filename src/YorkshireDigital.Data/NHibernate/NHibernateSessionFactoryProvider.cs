@@ -4,12 +4,9 @@ using ISessionFactory = NHibernate.ISessionFactory;
 
 namespace YorkshireDigital.Data.NHibernate
 {
-    using FluentNHibernate.Automapping;
     using FluentNHibernate.Cfg;
     using FluentNHibernate.Cfg.Db;
     using FluentNHibernate.Conventions.Helpers;
-    using global::NHibernate.Tool.hbm2ddl;
-    using YorkshireDigital.Data.Domain.Account;
 
     public class NHibernateSessionFactoryProvider
     {
