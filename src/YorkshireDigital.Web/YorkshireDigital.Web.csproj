@@ -200,6 +200,7 @@
     <Content Include="Admin\Views\Event.cshtml" />
     <Content Include="Admin\Views\Group.cshtml" />
     <Content Include="Admin\Views\NewGroup.cshtml" />
+    <Content Include="Admin\Views\_Group.cshtml" />
     <None Include="public\scripts\vendor\jquery-2.1.1.intellisense.js" />
     <Content Include="public\scripts\vendor\jquery-2.1.1.intellisense.min.js" />
     <Content Include="public\scripts\vendor\jquery-2.1.1.js" />
