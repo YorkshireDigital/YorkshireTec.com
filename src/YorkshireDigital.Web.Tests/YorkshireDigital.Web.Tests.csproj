@@ -109,8 +109,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Account\Modules\AccountSsoModuleTests.cs" />
+    <Compile Include="Admin\Modules\AdminEventModuleTests.cs" />
     <Compile Include="Admin\Modules\AdminGroupModuleTests.cs" />
     <Compile Include="Admin\Modules\AdminModuleTests.cs" />
+    <Compile Include="Admin\ViewModels\AdminEventViewModelTests.cs" />
     <Compile Include="Admin\ViewModels\AdminGroupViewModelTests.cs" />
     <Compile Include="ApiViewFactory.cs" />
     <Compile Include="Events\Modules\EventModuleTests.cs" />
