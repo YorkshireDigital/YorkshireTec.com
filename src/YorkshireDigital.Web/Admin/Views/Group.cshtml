@@ -4,6 +4,8 @@
 @using YorkshireDigital.Web.Infrastructure.Helpers
 @inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<YorkshireDigital.Web.Admin.ViewModels.AdminGroupViewModel>
 
+<a href="/admin">Back to Admin</a>
+
 <h2>Edit <span id="group-name">@Model.Name</span></h2>
 
 <form method="POST" data-parsley-validate>
