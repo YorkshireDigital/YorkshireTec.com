@@ -1,6 +1,5 @@
 ﻿namespace YorkshireDigital.Web.Admin.Modules
 {
-    using System;
     using Nancy;
     using Nancy.Security;
     using YorkshireDigital.Data.Services;
@@ -67,7 +66,8 @@
                                 .WithView("Group")
                                 .WithStatusCode(HttpStatusCode.Created);
             };
-            Put["/{groupId}"] = _ =>
+
+            Post["/{groupId}"] = _ =>
             {
                 this.ValidateCsrfToken();
 

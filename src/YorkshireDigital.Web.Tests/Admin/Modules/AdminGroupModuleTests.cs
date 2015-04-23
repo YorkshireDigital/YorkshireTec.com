@@ -184,7 +184,7 @@
         // TODO: Test validation
 
         [Test]
-        public void PutRequest_WithGroupId_UpdatesGroup()
+        public void PostRequest_WithGroupId_UpdatesGroup()
         {
             // Arrange
             A.CallTo(() => groupService.Get("existing-group"))
@@ -199,7 +199,7 @@
                 });
 
             // Act
-            var response = browser.Put("/admin/group/existing-group", with =>
+            var response = browser.Post("/admin/group/existing-group", with =>
             {
                 with.HttpRequest();
                 with.FormValue("Id", "existing-group");
@@ -225,14 +225,14 @@
         }
 
         [Test]
-        public void PutRequest_WithInvalidGroupId_Returns404()
+        public void PostRequest_WithInvalidGroupId_Returns404()
         {
             // Arrange
             A.CallTo(() => groupService.Get("invalid-group"))
                 .Returns(null);
 
             // Act
-            var response = browser.Put("/admin/group/invalid-group", with =>
+            var response = browser.Post("/admin/group/invalid-group", with =>
             {
                 with.HttpRequest();
                 with.Cookie(CsrfToken.DEFAULT_CSRF_KEY, csrfToken);

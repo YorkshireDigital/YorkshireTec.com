@@ -1,6 +1,15 @@
 ﻿@{
     Layout = "Shared/_HeroLayout.cshtml";
 }
+@using YorkshireDigital.Web.Infrastructure.Helpers
 @inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<YorkshireDigital.Web.Admin.ViewModels.AdminGroupViewModel>
 
-<h2>New Group</h2>
+<h2>Edit <span id="group-name">@Model.Name</span></h2>
+
+<form method="POST" data-parsley-validate>
+    @Html.Partial("_Group", Model)
+
+    @Html.ValidationSummary()
+
+    <input type="submit" class="btn btn--primary btn--full" value="Update" />
+</form>
