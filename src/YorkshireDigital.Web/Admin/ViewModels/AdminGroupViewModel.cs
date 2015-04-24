@@ -11,6 +11,7 @@
         public string About { get; set; }
         public string Colour { get; set; }
         public string Headline { get; set; }
+        public string Website { get; set; }
 
         public static AdminGroupViewModel FromDomain(Group @group)
         {

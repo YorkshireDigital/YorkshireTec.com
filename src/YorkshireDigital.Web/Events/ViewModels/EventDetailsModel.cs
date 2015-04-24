@@ -34,12 +34,24 @@
             Location = e.Location;
             UniqueName = e.UniqueName;
             ContactLinks = e.Group.ContactLinks.Select(x => new ContactLinkModel(x)).ToArray();
-            Website = e.Group.Website.IndexOf("http://", System.StringComparison.Ordinal) == -1
-                        ? string.Format("http://{0}", e.Group.Website)
-                        : e.Group.Website; ;
+            SetWebsite(e.Group.Website);
             Headline = e.Group.Headline;
             About = e.Group.About.MarkdownToHtml();
             Talks = e.Talks.Select(x => new TalkDetailModel(x)).ToArray();
+        }
+
+        private void SetWebsite(string website)
+        {
+            if (string.IsNullOrEmpty(website))
+            {
+                Website = string.Empty;
+            }
+            else
+            {
+                Website = website.IndexOf("http://", System.StringComparison.Ordinal) == -1
+                ? string.Format("http://{0}", website)
+                : website;
+            }
         }
     }
 }

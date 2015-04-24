@@ -27,13 +27,19 @@
 </div>
 
 <div class="form-group">
+    <label>Headline</label>
+    <input type="text" placeholder="e.g. Monthly meetup for Clojure enthusiast in Bradford." name="headline" class="input-full field" value="@Model.Headline" required />
+    @Html.ValidationMessageFor("Headline")
+</div>
+
+<div class="form-group">
     <label>Brand Colour</label>
     <input type="text" placeholder="e.g. #b9306a or red" name="colour" class="input-full field" value="@Model.Colour" required pattern="^(#[a-fA-F0-9]{3,6}|[a-zA-z]+|rgb\([\d,]+\))$" />
     @Html.ValidationMessageFor("Colour")
 </div>
 
 <div class="form-group">
-    <label>Headline</label>
-    <input type="text" placeholder="e.g. Monthly meetup for Clojure enthusiast in Bradford." name="headline" class="input-full field" value="@Model.Headline" required />
-    @Html.ValidationMessageFor("Headline")
+    <label>Website</label>
+    <input type="text" placeholder="e.g. www.bradforclojure.com" name="website" class="input-full field" value="@Model.Website" required />
+    @Html.ValidationMessageFor("Website")
 </div>

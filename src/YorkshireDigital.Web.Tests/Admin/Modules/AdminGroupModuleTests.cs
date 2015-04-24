@@ -90,7 +90,8 @@
                     ShortName = "EXT",
                     About = "This is an existing group",
                     Colour = "#FF00FF",
-                    Headline = "Existing group for testing"
+                    Headline = "Existing group for testing",
+                    Website = "www.existing.com"
                 });
 
             // Act
@@ -105,6 +106,7 @@
             model.About.ShouldBeEquivalentTo("This is an existing group");
             model.Colour.ShouldBeEquivalentTo("#FF00FF");
             model.Headline.ShouldBeEquivalentTo("Existing group for testing");
+            model.Website.ShouldBeEquivalentTo("www.existing.com");
         }
 
         [Test]
