@@ -1,8 +1,17 @@
 ﻿@{
     Layout = "Shared/_HeroLayout.cshtml";
 }
+@using YorkshireDigital.Web.Infrastructure.Helpers
 @inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<YorkshireDigital.Web.Admin.ViewModels.AdminEventViewModel>
 
 <a href="/admin">Back to Admin</a>
 
-<h2>New Event</h2>
+<h2>Edit <span id="event-name">@Model.Title</span></h2>
+
+<form method="POST" data-parsley-validate>
+    @Html.Partial("_Event", Model)
+
+    @Html.ValidationSummary()
+
+    <input type="submit" class="btn btn--primary btn--full" value="Update" />
+</form>
