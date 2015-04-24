@@ -7,10 +7,10 @@
     using Nancy.Authentication.Forms;
     using Nancy.SimpleAuthentication;
     using NHibernate;
+    using YorkshireDigital.Data.Domain.Account;
+    using YorkshireDigital.Data.NHibernate;
+    using YorkshireDigital.Data.Services;
     using YorkshireTec.Api.Infrastructure.Helpers;
-    using YorkshireTec.Data.Domain.Account;
-    using YorkshireTec.Data.NHibernate;
-    using YorkshireTec.Data.Services;
 
     public class AuthenticationCallbackProvider : IAuthenticationCallbackProvider
     {

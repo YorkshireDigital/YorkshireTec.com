@@ -7,9 +7,9 @@
     using Nancy.ModelBinding;
     using Nancy.Validation;
     using NHibernate;
+    using YorkshireDigital.Data.Services;
     using YorkshireTec.Api.Account.ViewModels;
     using YorkshireTec.Api.Infrastructure;
-    using YorkshireTec.Data.Services;
 
     public class AccountLoginModule : BaseModule
     {

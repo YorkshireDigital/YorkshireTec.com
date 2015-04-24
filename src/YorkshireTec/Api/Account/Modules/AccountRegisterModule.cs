@@ -5,10 +5,10 @@
     using Nancy.ModelBinding;
     using Nancy.Validation;
     using NHibernate;
+    using YorkshireDigital.Data.Services;
     using YorkshireTec.Api.Account.ViewModels;
     using YorkshireTec.Api.Infrastructure;
     using YorkshireTec.Api.Infrastructure.Helpers;
-    using YorkshireTec.Data.Services;
 
     public class AccountRegisterModule : BaseModule
     {

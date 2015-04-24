@@ -1,0 +1,94 @@
+﻿@using System.Linq
+@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<YorkshireDigital.Web.Events.ViewModels.EventDetailsModel>
+
+<section class="modal" id="@Model.UniqueName">
+    <a href="/" class="modal__close icn-m icn_close js-event__close" data-id="@Model.UniqueName"><span class="icn__content">Close</span></a>
+
+    <article class="event">
+        <header class="event__hero" style="background: @Model.Colour;">
+            <div class="layout-constrained">
+                <span class="event__time">@Html.Raw(Model.StartFormat)</span>
+                <h1 class="event__title">@Model.Organiser</h1>
+                <h2 class="event__strapline">@Model.Title</h2>
+            </div>
+        </header>
+
+        <div class="event__body">
+            <div class="layout-constrained">
+
+                <nav class="nav-tabs">
+                    <ul class="tab-list">
+                        <li class="tab-list__item tab-list__item--current"><a for="#tab-event" class="tab-list__link">This Event</a></li>
+                        @if (!string.IsNullOrEmpty(Model.About))
+                        {
+                            <li class="tab-list__item">
+                                <a for="#tab-about" class="tab-list__link">
+                                    About
+                                    <span class="tab-list__link__title">@Model.Organiser</span>
+                                    <span class="tab-list__link__title-short">@Model.OrganiserShortName</span>
+                                </a>
+                            </li>
+                        }
+                        @*<li class="tab-list__item" ng-show="@Model.PastEvent"><a href="#" class="tab-list__link">Past Events</a></li>*@
+                    </ul>
+                </nav>
+                <div class="tab-panes">
+                    <div id="tab-event" class="tab-pane tab-pane--current">
+                        <aside class="tab-pane__secondary">
+                            <h3>Where</h3>
+                            <p class="calendar-event__location">@Model.Location</p>
+                            <h3>Contact</h3>
+                            <a href="@Model.Website" class="calendar-event__website" target="_blank">@Model.Website</a>
+                        </aside>
+
+                        <div class="tab-pane__primary">
+                            @Html.Raw(Model.Synopsis)
+                            @if (@Model.Talks.Any())
+                            {
+                                <div id="event-talks">
+                                    <h3>Speakers</h3>
+                                    @foreach (var talk in Model.Talks)
+                                    {
+                                        <div class="event-talk">
+                                            @if (!string.IsNullOrEmpty(talk.SpeakerLink))
+                                            {
+                                                <h4>
+                                                    <a href="@talk.SpeakerLink" target="_blank" title="@talk.Speaker">@talk.Speaker</a>
+                                                </h4>
+                                            }
+                                            else
+                                            {
+                                                <h4>@talk.Speaker</h4>
+                                            }
+                                            @if (!string.IsNullOrEmpty(talk.Title))
+                                            {
+                                                <h5>@talk.Title</h5>
+                                            }
+                                            @if (!string.IsNullOrEmpty(talk.Synopsis))
+                                            {
+                                                <span>@Html.Raw(talk.Synopsis)</span>
+                                            }
+                                        </div>
+                                    }
+                                </div>
+                            }
+
+                        </div>
+
+                    </div>
+                    @if (!string.IsNullOrEmpty(@Model.About))
+                    {
+                        <div id="tab-about" class="tab-pane">
+                            <div class="tab-pane__primary">
+                                <h3>@Model.Headline</h3>
+                                <p>
+                                    @Html.Raw(Model.About)
+                                </p>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </article>
+</section>

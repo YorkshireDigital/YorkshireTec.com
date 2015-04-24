@@ -1,0 +1,46 @@
+﻿@{
+    Layout = "Shared/_HeroLayout.cshtml";
+}
+@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<dynamic>
+
+@section Hero {
+    <section class="hero">
+        <div class="layout-constrained">
+            <h1 class="hero__title">Bringing Yorkshire's Digital Community Together</h1>
+            <p class="hero__intro">
+                A hub for Yorkshire’s digital community, to see whats going on, find new connections and share knowledge.
+            </p>
+        </div>
+    </section>
+}
+
+        
+@Html.Partial("Shared/_EventsCalendar")
+
+<div class="island island--horizontal-break">
+    <div class="panel-one">
+        @Html.Partial("Shared/_MailChimpSignup")
+    </div>
+    <div class="panel-two">
+        <h3>Know an event we've not got?</h3>
+        <p>
+            If you run or know of any meetups/events in Yorkshire we have not listed, please <a href="mailto:info@yorkshiredigital.com">let us know</a>.
+        </p>
+    </div>
+</div>
+
+@section Scripts
+{    
+    <script type="text/javascript">
+        $(document).on('click', '#copy-link', function () {
+            $(this).closest('.form-group').addClass('is-hidden');
+            $('#copy-input').removeClass('is-hidden');
+            $('#copy-input').click();
+
+            $('#copy-input input').get(0).setSelectionRange(0, $('#copy-input input').val().length);
+        });
+    </script>
+
+    <script type="text/javascript" src="/public/scripts/app/pages/event.js"></script>
+    <script type="text/javascript" src="/public/scripts/app/pages/eventsCalendar.js"></script>
+}

@@ -1,0 +1,456 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{16A213D9-3B08-4C73-956E-C2C067B871E0}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>YorkshireDigital.Web</RootNamespace>
+    <AssemblyName>YorkshireDigital.Web</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AntiXssLibrary">
+      <HintPath>..\packages\AntiXSS.4.3.0\lib\net40\AntiXssLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper">
+      <HintPath>..\packages\AutoMapper.3.2.1\lib\net40\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper.Net4">
+      <HintPath>..\packages\AutoMapper.3.2.1\lib\net40\AutoMapper.Net4.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentValidation">
+      <HintPath>..\packages\FluentValidation.5.4.0.0\lib\Net40\FluentValidation.dll</HintPath>
+    </Reference>
+    <Reference Include="HtmlSanitizationLibrary">
+      <HintPath>..\packages\AntiXSS.4.3.0\lib\net40\HtmlSanitizationLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="Humanizer">
+      <HintPath>..\packages\Humanizer.1.32.0\lib\portable-win+net40+sl50+wp8+wpa81\Humanizer.dll</HintPath>
+    </Reference>
+    <Reference Include="Iesi.Collections">
+      <HintPath>..\packages\Iesi.Collections.3.2.0.4000\lib\Net35\Iesi.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="MailChimp">
+      <HintPath>..\packages\MailChimp.NET.1.1.0.1\lib\net40\MailChimp.dll</HintPath>
+    </Reference>
+    <Reference Include="MarkdownSharp">
+      <HintPath>..\packages\MarkdownSharp.1.13.0.0\lib\35\MarkdownSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Owin, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Owin.3.0.0\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.HttpListener">
+      <HintPath>..\packages\Microsoft.Owin.Host.HttpListener.3.0.0\lib\net45\Microsoft.Owin.Host.HttpListener.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.2.1.0\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Hosting">
+      <HintPath>..\packages\Microsoft.Owin.Hosting.3.0.0\lib\net45\Microsoft.Owin.Hosting.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data">
+      <HintPath>..\packages\MySql.Data.6.9.3\lib\net45\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Nancy">
+      <HintPath>..\packages\Nancy.0.23.2\lib\net40\Nancy.dll</HintPath>
+    </Reference>
+    <Reference Include="Nancy.Owin">
+      <HintPath>..\packages\Nancy.Owin.0.23.2\lib\net40\Nancy.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Nancy.Validation.FluentValidation, Version=0.22.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Nancy.Validation.FluentValidation.0.23.2\lib\net40\Nancy.Validation.FluentValidation.dll</HintPath>
+    </Reference>
+    <Reference Include="Nancy.ViewEngines.Razor">
+      <HintPath>..\packages\Nancy.Viewengines.Razor.0.23.2\lib\net40\Nancy.ViewEngines.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate">
+      <HintPath>..\packages\NHibernate.3.3.1.4000\lib\Net35\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Text">
+      <HintPath>..\packages\ServiceStack.Text.3.9.71\lib\net35\ServiceStack.Text.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.2.0.30506.0\lib\net40\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+    <Content Include="public\content\logo-hey-stac.jpg" />
+    <Content Include="public\scripts\app\pages\betaBanner.js" />
+    <Content Include="public\scripts\app\pages\event.js" />
+    <Content Include="public\scripts\app\pages\eventsCalendar.js" />
+    <Content Include="public\scripts\fastclick.js" />
+    <Content Include="public\scripts\fastclick.min.js" />
+    <Content Include="public\scripts\grunticon.loader.js" />
+    <Content Include="public\scripts\grunticon.loader.min.js" />
+    <Content Include="public\scripts\main.js" />
+    <Content Include="public\scripts\main.min.js" />
+    <Content Include="public\scripts\vendor\clndr.js" />
+    <Content Include="public\scripts\vendor\clndr.min.js">
+      <DependentUpon>clndr.js</DependentUpon>
+    </Content>
+    <Content Include="public\scripts\vendor\jquery-1.10.2.min.js" />
+    <Content Include="Events\Views\Event.cshtml" />
+    <Content Include="public\scripts\vendor\clndr.min.js.map">
+      <DependentUpon>clndr.min.js</DependentUpon>
+    </Content>
+    <Content Include="MailingList\Views\Archive.cshtml" />
+    <Content Include="MailingList\Views\Confirmation.cshtml" />
+    <None Include="public\scripts\vendor\jquery-2.1.1.intellisense.js" />
+    <Content Include="public\scripts\vendor\jquery-2.1.1.intellisense.min.js" />
+    <Content Include="public\scripts\vendor\jquery-2.1.1.js" />
+    <Content Include="public\scripts\vendor\jquery-2.1.1.min.js" />
+    <Content Include="public\scripts\vendor\mailchimp.js" />
+    <Content Include="public\scripts\vendor\mailchimp.min.js" />
+    <Content Include="public\scripts\vendor\modernizr-2.6.2.min.js" />
+    <Content Include="public\scripts\vendor\moment-2.9.0.js" />
+    <Content Include="public\scripts\vendor\moment-2.9.0.min.js">
+      <DependentUpon>moment-2.9.0.js</DependentUpon>
+    </Content>
+    <Content Include="public\scripts\vendor\underscore.js" />
+    <Content Include="public\scripts\vendor\underscore.min.js" />
+    <Content Include="public\styles\css\icons.data.png.css" />
+    <Content Include="public\styles\css\icons.data.png.min.css" />
+    <Content Include="public\styles\css\icons.data.svg.css" />
+    <Content Include="public\styles\css\icons.data.svg.min.css" />
+    <Content Include="public\styles\css\icons.fallback.css" />
+    <Content Include="public\styles\css\icons.fallback.min.css" />
+    <Content Include="public\styles\css\screen.css" />
+    <Content Include="public\styles\css\screen.min.css" />
+    <Content Include="public\styles\img\bg-homepage-banner.jpg" />
+    <Content Include="public\styles\img\bg-homepage-hero.jpg" />
+    <Content Include="public\styles\img\icons.data.svg.css" />
+    <Content Include="public\styles\img\icons.data.svg.min.css" />
+    <Content Include="public\styles\img\logo-yorkshiredigital-reversed-block.svg" />
+    <Content Include="public\styles\img\logo-yorkshiredigital-reversed.png" />
+    <Content Include="public\styles\img\logo-yorkshiredigital-reversed.svg" />
+    <Content Include="public\styles\img\sprite-global.svg" />
+    <Content Include="public\styles\png\icn_close.png" />
+    <Content Include="public\styles\png\icn_facebook.png" />
+    <Content Include="public\styles\png\icn_google_plus.png" />
+    <Content Include="public\styles\png\icn_instagram.png" />
+    <Content Include="public\styles\png\icn_twitter.png" />
+    <Content Include="public\styles\source\icn_close.svg" />
+    <Content Include="public\styles\source\icn_facebook.svg" />
+    <Content Include="public\styles\source\icn_google_plus.svg" />
+    <Content Include="public\styles\source\icn_instagram.svg" />
+    <Content Include="public\styles\source\icn_twitter.svg" />
+    <Content Include="public\styles\source\preview.html" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Home\Views\Home.cshtml" />
+    <Content Include="public\scripts\vendor\jquery-2.1.1.min.map" />
+    <Content Include="public\scripts\vendor\version.json" />
+    <Content Include="public\styles\fonts\2AB2F4_0_0.eot" />
+    <Content Include="public\styles\fonts\2AB2F4_0_0.ttf" />
+    <Content Include="public\styles\fonts\2AB2F4_0_0.woff" />
+    <Content Include="public\styles\fonts\2AB2F4_1_0.eot" />
+    <Content Include="public\styles\fonts\2AB2F4_1_0.ttf" />
+    <Content Include="public\styles\fonts\2AB2F4_1_0.woff" />
+    <Content Include="public\styles\fonts\2AB2F4_2_0.eot" />
+    <Content Include="public\styles\fonts\2AB2F4_2_0.ttf" />
+    <Content Include="public\styles\fonts\2AB2F4_2_0.woff" />
+    <Content Include="public\styles\fonts\2AB2F4_3_0.eot" />
+    <Content Include="public\styles\fonts\2AB2F4_3_0.ttf" />
+    <Content Include="public\styles\fonts\2AB2F4_3_0.woff" />
+    <Content Include="public\styles\img\Thumbs.db" />
+    <Content Include="public\styles\sass\.sass-cache\019dd356801ccc3b5208cc7ced7a74482a85c753\_compass.scssc" />
+    <Content Include="public\styles\sass\.sass-cache\0b88278dbc92632f622b4b0ba4562d1fdc501a5e\_css3.scssc" />
+    <Content Include="public\styles\sass\.sass-cache\0b88278dbc92632f622b4b0ba4562d1fdc501a5e\_support.scssc" />
+    <Content Include="public\styles\sass\.sass-cache\0b88278dbc92632f622b4b0ba4562d1fdc501a5e\_typography.scssc" />
+    <Content Include="public\styles\sass\.sass-cache\0b88278dbc92632f622b4b0ba4562d1fdc501a5e\_utilities.scssc" />
+    <Content Include="public\styles\sass\.sass-cache\1d275a04c9f98b003085431642c10cb5d1e29a86\_links.scssc" />
+    <Content Include="public\styles\sass\.sass-cache\1d275a04c9f98b003085431642c10cb5d1e29a86\_lists.scssc" />
+    <Content Include="public\styles\sass\.sass-cache\1d275a04c9f98b003085431642c10cb5d1e29a86\_text.scssc" />
+    <Content Include="public\styles\sass\.sass-cache\1d275a04c9f98b003085431642c10cb5d1e29a86\_units.scssc" />
+    <Content Include="public\styles\sass\.sass-cache\1d275a04c9f98b003085431642c10cb5d1e29a86\_vertical_rhythm.scssc" />
+    <Content Include="public\styles\sass\.sass-cache\3c3561dcd36576592fafc835e168df0c7066efae\_hover-link.scssc" />
+    <Content Include="public\styles\sass\.sass-cache\3c3561dcd36576592fafc835e168df0c7066efae\_link-colors.scssc" />
+    <Content Include="public\styles\sass\.sass-cache\3c3561dcd36576592fafc835e168df0c7066efae\_unstyled-link.scssc" />
+    <Content Include="public\styles\sass\.sass-cache\524abd9fc0c3177e852f3517ff93f2ec98b9cdb6\_clearfix.scssc" />
+    <Content Include="public\styles\sass\.sass-cache\524abd9fc0c3177e852f3517ff93f2ec98b9cdb6\_float.scssc" />
+    <Content Include="public\styles\sass\.sass-cache\524abd9fc0c3177e852f3517ff93f2ec98b9cdb6\_hacks.scssc" />
+    <Content Include="public\styles\sass\.sass-cache\524abd9fc0c3177e852f3517ff93f2ec98b9cdb6\_min.scssc" />
+    <Content Include="public\styles\sass\.sass-cache\524abd9fc0c3177e852f3517ff93f2ec98b9cdb6\_reset.scssc" />
+    <Content Include="public\styles\sass\.sass-cache\524abd9fc0c3177e852f3517ff93f2ec98b9cdb6\_tag-cloud.scssc" />
+    <Content Include="public\styles\sass\.sass-cache\5fbac29251415caf1b212635710bd4b959a59281\_brightness.scssc" />
+    <Content Include="public\styles\sass\.sass-cache\5fbac29251415caf1b212635710bd4b959a59281\_contrast.scssc" />
+    <Content Include="public\styles\sass\.sass-cache\8cb15723aec60b4207be6cf171b47f53e67ab678\_utilities.scssc" />
+    <Content Include="public\styles\sass\.sass-cache\aa8fdca7c0e9b401abe439aef13f3a840cbcc91e\_color.scssc" />
+    <Content Include="public\styles\sass\.sass-cache\aa8fdca7c0e9b401abe439aef13f3a840cbcc91e\_general.scssc" />
+    <Content Include="public\styles\sass\.sass-cache\aa8fdca7c0e9b401abe439aef13f3a840cbcc91e\_sprites.scssc" />
+    <Content Include="public\styles\sass\.sass-cache\aa8fdca7c0e9b401abe439aef13f3a840cbcc91e\_tables.scssc" />
+    <Content Include="public\styles\sass\.sass-cache\bad004434ac2bea3ed7b0d0d09d198b96b9ba687\_alternating-rows-and-columns.scssc" />
+    <Content Include="public\styles\sass\.sass-cache\bad004434ac2bea3ed7b0d0d09d198b96b9ba687\_borders.scssc" />
+    <Content Include="public\styles\sass\.sass-cache\bad004434ac2bea3ed7b0d0d09d198b96b9ba687\_scaffolding.scssc" />
+    <Content Include="public\styles\sass\.sass-cache\bd6e30c873a4d853c1e860b19dec89b762cb7d7d\_grid-background.scssc" />
+    <Content Include="public\styles\sass\.sass-cache\c5078ee56b9ec1873b3852a5e6a07b2702ebbc2b\_ellipsis.scssc" />
+    <Content Include="public\styles\sass\.sass-cache\c5078ee56b9ec1873b3852a5e6a07b2702ebbc2b\_force-wrap.scssc" />
+    <Content Include="public\styles\sass\.sass-cache\c5078ee56b9ec1873b3852a5e6a07b2702ebbc2b\_nowrap.scssc" />
+    <Content Include="public\styles\sass\.sass-cache\c5078ee56b9ec1873b3852a5e6a07b2702ebbc2b\_replacement.scssc" />
+    <Content Include="public\styles\sass\.sass-cache\d23f033085b0b014d7035283a391add99261ca15\_base.scssc" />
+    <Content Include="public\styles\sass\.sass-cache\d23f033085b0b014d7035283a391add99261ca15\_sprite-img.scssc" />
+    <Content Include="public\styles\sass\.sass-cache\de1c52c88388dc0e27baffd24824e5ddb947a25f\_base.scssc" />
+    <Content Include="public\styles\sass\.sass-cache\de1c52c88388dc0e27baffd24824e5ddb947a25f\_beta.scssc" />
+    <Content Include="public\styles\sass\.sass-cache\de1c52c88388dc0e27baffd24824e5ddb947a25f\_buttons.scssc" />
+    <Content Include="public\styles\sass\.sass-cache\de1c52c88388dc0e27baffd24824e5ddb947a25f\_calendar.scssc" />
+    <Content Include="public\styles\sass\.sass-cache\de1c52c88388dc0e27baffd24824e5ddb947a25f\_events.scssc" />
+    <Content Include="public\styles\sass\.sass-cache\de1c52c88388dc0e27baffd24824e5ddb947a25f\_forms.scssc" />
+    <Content Include="public\styles\sass\.sass-cache\de1c52c88388dc0e27baffd24824e5ddb947a25f\_icons.scssc" />
+    <Content Include="public\styles\sass\.sass-cache\de1c52c88388dc0e27baffd24824e5ddb947a25f\_island.scssc" />
+    <Content Include="public\styles\sass\.sass-cache\de1c52c88388dc0e27baffd24824e5ddb947a25f\_loading.scssc" />
+    <Content Include="public\styles\sass\.sass-cache\de1c52c88388dc0e27baffd24824e5ddb947a25f\_modal.scssc" />
+    <Content Include="public\styles\sass\.sass-cache\de1c52c88388dc0e27baffd24824e5ddb947a25f\_navigation.scssc" />
+    <Content Include="public\styles\sass\.sass-cache\de1c52c88388dc0e27baffd24824e5ddb947a25f\_normalize.scssc" />
+    <Content Include="public\styles\sass\.sass-cache\de1c52c88388dc0e27baffd24824e5ddb947a25f\_notifications.scssc" />
+    <Content Include="public\styles\sass\.sass-cache\de1c52c88388dc0e27baffd24824e5ddb947a25f\_temp.scssc" />
+    <Content Include="public\styles\sass\.sass-cache\de1c52c88388dc0e27baffd24824e5ddb947a25f\_typography.scssc" />
+    <Content Include="public\styles\sass\.sass-cache\f130509e3f15302ae402c7fc90387f289df5d847\_animation.scssc" />
+    <Content Include="public\styles\sass\.sass-cache\f130509e3f15302ae402c7fc90387f289df5d847\_appearance.scssc" />
+    <Content Include="public\styles\sass\.sass-cache\f130509e3f15302ae402c7fc90387f289df5d847\_background-clip.scssc" />
+    <Content Include="public\styles\sass\.sass-cache\f130509e3f15302ae402c7fc90387f289df5d847\_background-origin.scssc" />
+    <Content Include="public\styles\sass\.sass-cache\f130509e3f15302ae402c7fc90387f289df5d847\_background-size.scssc" />
+    <Content Include="public\styles\sass\.sass-cache\f130509e3f15302ae402c7fc90387f289df5d847\_border-radius.scssc" />
+    <Content Include="public\styles\sass\.sass-cache\f130509e3f15302ae402c7fc90387f289df5d847\_box-shadow.scssc" />
+    <Content Include="public\styles\sass\.sass-cache\f130509e3f15302ae402c7fc90387f289df5d847\_box-sizing.scssc" />
+    <Content Include="public\styles\sass\.sass-cache\f130509e3f15302ae402c7fc90387f289df5d847\_columns.scssc" />
+    <Content Include="public\styles\sass\.sass-cache\f130509e3f15302ae402c7fc90387f289df5d847\_deprecated-support.scssc" />
+    <Content Include="public\styles\sass\.sass-cache\f130509e3f15302ae402c7fc90387f289df5d847\_filter.scssc" />
+    <Content Include="public\styles\sass\.sass-cache\f130509e3f15302ae402c7fc90387f289df5d847\_flexbox.scssc" />
+    <Content Include="public\styles\sass\.sass-cache\f130509e3f15302ae402c7fc90387f289df5d847\_font-face.scssc" />
+    <Content Include="public\styles\sass\.sass-cache\f130509e3f15302ae402c7fc90387f289df5d847\_hyphenation.scssc" />
+    <Content Include="public\styles\sass\.sass-cache\f130509e3f15302ae402c7fc90387f289df5d847\_images.scssc" />
+    <Content Include="public\styles\sass\.sass-cache\f130509e3f15302ae402c7fc90387f289df5d847\_inline-block.scssc" />
+    <Content Include="public\styles\sass\.sass-cache\f130509e3f15302ae402c7fc90387f289df5d847\_opacity.scssc" />
+    <Content Include="public\styles\sass\.sass-cache\f130509e3f15302ae402c7fc90387f289df5d847\_regions.scssc" />
+    <Content Include="public\styles\sass\.sass-cache\f130509e3f15302ae402c7fc90387f289df5d847\_text-shadow.scssc" />
+    <Content Include="public\styles\sass\.sass-cache\f130509e3f15302ae402c7fc90387f289df5d847\_transform.scssc" />
+    <Content Include="public\styles\sass\.sass-cache\f130509e3f15302ae402c7fc90387f289df5d847\_transition.scssc" />
+    <Content Include="public\styles\sass\.sass-cache\f130509e3f15302ae402c7fc90387f289df5d847\_user-interface.scssc" />
+    <Content Include="public\styles\sass\.sass-cache\f139fa216393f147e8f1083c2da51da329569d95\_bullets.scssc" />
+    <Content Include="public\styles\sass\.sass-cache\f139fa216393f147e8f1083c2da51da329569d95\_horizontal-list.scssc" />
+    <Content Include="public\styles\sass\.sass-cache\f139fa216393f147e8f1083c2da51da329569d95\_inline-block-list.scssc" />
+    <Content Include="public\styles\sass\.sass-cache\f139fa216393f147e8f1083c2da51da329569d95\_inline-list.scssc" />
+    <Content Include="public\styles\sass\.sass-cache\f42d5de5e632e27b5bd840c83211544350194262\screen.scssc" />
+    <Content Include="public\styles\sass\partials\_base.scss" />
+    <Content Include="public\styles\sass\partials\_buttons.scss" />
+    <Content Include="public\styles\sass\partials\_calendar.scss" />
+    <Content Include="public\styles\sass\partials\_events.scss" />
+    <Content Include="public\styles\sass\partials\_forms.scss" />
+    <Content Include="public\styles\sass\partials\_icons.scss" />
+    <Content Include="public\styles\sass\partials\_island.scss" />
+    <Content Include="public\styles\sass\partials\_loading.scss" />
+    <Content Include="public\styles\sass\partials\_modal.scss" />
+    <Content Include="public\styles\sass\partials\_navigation.scss" />
+    <Content Include="public\styles\sass\partials\_normalize.scss" />
+    <Content Include="public\styles\sass\partials\_notifications.scss" />
+    <Content Include="public\styles\sass\partials\_sample.scss" />
+    <Content Include="public\styles\sass\partials\_temp.scss" />
+    <Content Include="public\styles\sass\partials\_typography.scss" />
+    <Content Include="public\styles\sass\screen.scss" />
+    <Content Include="Views\Shared\_BetaBanner.cshtml" />
+    <Content Include="Views\Shared\_EventsCalendar.cshtml" />
+    <Content Include="Views\Shared\_MailChimpSignup.cshtml" />
+    <Content Include="public\scripts\vendor\moment-2.9.0.min.js.map">
+      <DependentUpon>moment-2.9.0.min.js</DependentUpon>
+    </Content>
+    <Content Include="Views\Shared\_HeroLayout.cshtml" />
+    <Content Include="Web.Alpha.config">
+      <DependentUpon>Web.config</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Web.Beta.config">
+      <DependentUpon>Web.config</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Web.Live.config">
+      <DependentUpon>Web.config</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="YorkshireDigital.Web.nuspec" />
+    <Content Include="Events\Views\_Event.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Events\Modules\EventsModule.cs" />
+    <Compile Include="Events\Validation\CalendarSearchModelValidator.cs" />
+    <Compile Include="Events\ViewModels\CalendarSearchModel.cs" />
+    <Compile Include="Events\ViewModels\CalendarEventModel.cs" />
+    <Compile Include="Events\ViewModels\ContactLinkModel.cs" />
+    <Compile Include="Events\ViewModels\EventDetailsModel.cs" />
+    <Compile Include="Events\ViewModels\TalkDetailModel.cs" />
+    <Compile Include="Events\Modules\EventModule.cs" />
+    <Compile Include="Feedback\Models\FeedbackPostModel.cs" />
+    <Compile Include="Feedback\Modules\FeedbackModule.cs" />
+    <Compile Include="Home\Modules\HomeModule.cs" />
+    <Compile Include="Infrastructure\Bootstrapper.cs" />
+    <Compile Include="Infrastructure\BaseModule.cs" />
+    <Compile Include="Infrastructure\Extensions.cs" />
+    <Compile Include="Infrastructure\Helpers\MailChimpHelper.cs" />
+    <Compile Include="Infrastructure\Helpers\MarkdownHelper.cs" />
+    <Compile Include="Infrastructure\Helpers\SlackHelper.cs" />
+    <Compile Include="Infrastructure\Models\ErrorViewModel.cs" />
+    <Compile Include="Infrastructure\Models\FeaturesModel.cs" />
+    <Compile Include="Infrastructure\Models\FieldErrorViewModel.cs" />
+    <Compile Include="Infrastructure\NancyExtensions.cs" />
+    <Compile Include="Infrastructure\Responses\SitemapResponse.cs" />
+    <Compile Include="Infrastructure\SecurityHooks.cs" />
+    <Compile Include="Infrastructure\Startup.cs" />
+    <Compile Include="MailingList\Modules\MailingListModule.cs" />
+    <Compile Include="MailingList\ViewModels\ArchiveNewsletterViewModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\YorkshireDigital.Data\YorkshireDigital.Data.csproj">
+      <Project>{DE2ABF67-373C-41A8-83E0-D9B522221157}</Project>
+      <Name>YorkshireDigital.Data</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Alpha|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Beta|AnyCPU'">
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Live|AnyCPU'">
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>49838</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:61140/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+          <servers defaultServer="SelfHostServer">
+            <server name="SelfHostServer" exePath="" cmdArgs="" url="http://localhost:61140/" workingDir="" />
+          </servers>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Import Project="..\packages\AutoMapper.3.2.1\tools\AutoMapper.targets" Condition="Exists('..\packages\AutoMapper.3.2.1\tools\AutoMapper.targets')" />
+  <Import Project="..\packages\OctoPack.3.0.31\tools\OctoPack.targets" Condition="Exists('..\packages\OctoPack.3.0.31\tools\OctoPack.targets')" />
+  <Target Name="EnsureOctoPackImported" BeforeTargets="BeforeBuild" Condition="'$(OctoPackImported)' == ''">
+    <Error Condition="!Exists('..\packages\OctoPack.3.0.31\tools\OctoPack.targets') And ('$(RunOctoPack)' != '' And $(RunOctoPack))" Text="You are trying to build with OctoPack, but the NuGet targets file that OctoPack depends on is not available on this computer. This is probably because the OctoPack package has not been committed to source control, or NuGet Package Restore is not enabled. Please enable NuGet Package Restore to download them. For more information, see http://go.microsoft.com/fwlink/?LinkID=317567." HelpKeyword="BCLBUILD2001" />
+    <Error Condition="Exists('..\packages\OctoPack.3.0.31\tools\OctoPack.targets') And ('$(RunOctoPack)' != '' And $(RunOctoPack))" Text="OctoPack cannot be run because NuGet packages were restored prior to the build running, and the targets file was unavailable when the build started. Please build the project again to include these packages in the build. You may also need to make sure that your build server does not delete packages prior to each build. For more information, see http://go.microsoft.com/fwlink/?LinkID=317568." HelpKeyword="BCLBUILD2002" />
+  </Target>
+  <PropertyGroup>
+    <PostBuildEvent>
+if $(ConfigurationName) == Debug (
+xcopy /s /y /R "$(SolutionDir)packages\Nancy.Viewengines.Razor.0.23.2\BuildProviders\Nancy.ViewEngines.Razor.BuildProviders.dll" "$(ProjectDir)bin\"
+xcopy /s /y /R "$(SolutionDir)packages\Nancy.Viewengines.Razor.0.23.2\lib\Net40\Nancy.ViewEngines.Razor.dll" "$(ProjectDir)bin\"
+)</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

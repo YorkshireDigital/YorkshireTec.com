@@ -1,0 +1,39 @@
+﻿@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<dynamic>
+<div class="notification notification--info notification--global" id="beta-banner">
+    <div class="layout-constrained">
+        <span class="notification__title">Welcome to the beta, we may have hidden a few bugs! Found one? <a id="showFeedbackPanel">Let us know</a></span>
+
+        <div class="feedback-panel" style="display: none;">
+            <a id="hideFeedbackPanel" class="modal__close icn-m icn_close"><span class="icn__content">Close</span></a>
+            <h2>Congratulations, you found one!</h2>
+            <p>Sometimes things go wrong, that's why we've tried to make it as easy as possible for you to tell us about it.</p>
+            <div id="raise-on-trello">
+                <a href="https://trello.com/c/zokl9MEa/2-new-issues" target="_blank" id="authorize-trello" class="btn btn--primary">Raise the issue on Trello</a>
+                <span class="sub-info">Not got a Trello account? <a id="showSlackForm">Contact us directly</a>.</span>
+            </div>
+            <div id="raise-on-slack" class="layout-stacked" style="display: none;">
+                <div class="form-group">
+                    <label for="raise-on-slack-name">
+                        Name
+                    </label>
+                    <input type="text" placeholder="Joe Bloggs" class="input-full field" id="raise-on-slack-name">
+                </div>
+                <div class="form-group">
+                    <label for="raise-on-slack-contact">
+                        Contact
+                    </label>
+                    <input type="text" placeholder="Email or &commat;Twitter" data-ng-model="reportedIssue.contact" class="input-full field" id="raise-on-slack-contact">
+                </div>
+                <div class="form-group">
+                    <label for="raise-on-slack-details">
+                        Details
+                    </label>
+                    <textarea id="raise-on-slack-details" class="input-full field" data-ng-model="reportedIssue.details" placeholder="Tell us about the issue."></textarea>
+                </div>
+                <ul id="js-slack-feedback"></ul>
+                <input type="submit" value="Submit" class="btn btn--primary btn--full" id="raiseOnSlack">
+                <span class="sub-info">Alternatively, you can <a id="showTrelloForm">raise a Trello card</a>.</span>
+            </div>
+        </div>
+    </div>
+</div>

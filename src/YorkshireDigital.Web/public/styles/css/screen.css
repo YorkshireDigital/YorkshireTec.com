@@ -1,4 +1,4 @@
-@charset "UTF-8";
+﻿@charset "UTF-8";
 /*
 *
 *	These styles have been created from personal experience and also influenced by a 
@@ -398,22 +398,25 @@ table {
 --------------------------------------------------------------------*/
 /*  =GLOBAL MIXINS
 --------------------------------------------------------------------*/
+/* =FONT SIZES
+--------------------------------------------------------------------*/
 /*  =GLOBAL USE STYLES
 --------------------------------------------------------------------*/
-.group:before, .nav-primary ul:before, .clndr-filters:before, .days:before,
+.group:before, .nav-primary ul:before, .clndr-filters:before, .days:before, .island--horizontal-break:before,
 .group:after,
 .nav-primary ul:after,
 .clndr-filters:after,
-.days:after {
+.days:after,
+.island--horizontal-break:after {
   content: "";
   display: table;
 }
 
-.group:after, .nav-primary ul:after, .clndr-filters:after, .days:after {
+.group:after, .nav-primary ul:after, .clndr-filters:after, .days:after, .island--horizontal-break:after {
   clear: both;
 }
 
-.group, .nav-primary ul, .clndr-filters, .days {
+.group, .nav-primary ul, .clndr-filters, .days, .island--horizontal-break {
   zoom: 1;
 }
 
@@ -455,7 +458,7 @@ table {
  * Licensed pageviews: 100,000
  * Webfonts copyright: Copyright (c) Olivier Gourvat - Mostardesign Studio, 2013. All rights reserved.
  * 
- * © 2014 MyFonts Inc
+ * ┬® 2014 MyFonts Inc
 */
 /* @import must be at top of file, otherwise CSS will not work */
 @font-face {
@@ -485,8 +488,8 @@ html {
   color: #303d4a;
 }
 
-h1, .alpha, .event__strapline,
-h2, .beta,
+h1, .alpha,
+h2, .beta, .event__strapline,
 h3, .gamma, .tab-list__link,
 h4, .delta,
 h5, .epsilon {
@@ -494,69 +497,119 @@ h5, .epsilon {
   font-weight: 500;
   color: #50575D;
 }
-h1 a, .alpha a, .event__strapline a,
-h2 a, .beta a,
+h1 a, .alpha a,
+h2 a, .beta a, .event__strapline a,
 h3 a, .gamma a, .tab-list__link a,
 h4 a, .delta a,
 h5 a, .epsilon a {
   color: #b9306a;
   text-decoration: none;
 }
-h1 a:hover, .alpha a:hover, .event__strapline a:hover,
-h2 a:hover, .beta a:hover,
+h1 a:hover, .alpha a:hover,
+h2 a:hover, .beta a:hover, .event__strapline a:hover,
 h3 a:hover, .gamma a:hover, .tab-list__link a:hover,
 h4 a:hover, .delta a:hover,
 h5 a:hover, .epsilon a:hover {
   text-decoration: underline;
 }
 
-h1, .alpha, .event__strapline {
+h1, .alpha {
   font-size: 30px;
   font-size: 1.875rem;
+  line-height: 1.6;
   line-height: 1.4;
   margin: 0 0 .25em 0;
 }
-@media (max-width: 37.5em) {
-  h1, .alpha, .event__strapline {
+@media (max-width: 65.625em) {
+  h1, .alpha {
     font-size: 26px;
     font-size: 1.625rem;
+    line-height: 1.84615;
+  }
+}
+@media (max-width: 43.75em) {
+  h1, .alpha {
+    font-size: 20px;
+    font-size: 1.25rem;
+    line-height: 1.2;
   }
 }
 
-h2, .beta {
+h2, .beta, .event__strapline {
   font-size: 26px;
   font-size: 1.625rem;
+  line-height: 1.84615;
   margin: 0 0 .3846em 0;
 }
-@media (max-width: 37.5em) {
-  h2, .beta {
+@media (max-width: 65.625em) {
+  h2, .beta, .event__strapline {
     font-size: 20px;
     font-size: 1.25rem;
+    line-height: 1.2;
+  }
+}
+@media (max-width: 43.75em) {
+  h2, .beta, .event__strapline {
+    font-size: 18px;
+    font-size: 1.125rem;
+    line-height: 1.33333;
   }
 }
 
 h3, .gamma, .tab-list__link {
   font-size: 20px;
   font-size: 1.25rem;
+  line-height: 1.2;
   margin: 0 0 .3em 0;
+}
+@media (max-width: 65.625em) {
+  h3, .gamma, .tab-list__link {
+    font-size: 18px;
+    font-size: 1.125rem;
+    line-height: 1.33333;
+  }
+}
+@media (max-width: 43.75em) {
+  h3, .gamma, .tab-list__link {
+    font-size: 16px;
+    font-size: 1rem;
+    line-height: 1.5;
+  }
 }
 
 h4, .delta {
   font-size: 18px;
   font-size: 1.125rem;
+  line-height: 1.33333;
   margin: 0 0 .5em 0;
+}
+@media (max-width: 65.625em) {
+  h4, .delta {
+    font-size: 16px;
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+}
+@media (max-width: 43.75em) {
+  h4, .delta {
+    font-size: 14px;
+    font-size: 0.875rem;
+    line-height: 1.71429;
+  }
 }
 
 h5, .epsilon {
   font-size: 16px;
   font-size: 1rem;
+  line-height: 1.5;
   font-weight: 600;
   margin: 0 0 .5em 0;
 }
 
 h6, .zeta {
-  font-size: 16px;
-  font-size: 1rem;
+  font-size: 14px;
+  font-size: 0.875rem;
+  line-height: 1.71429;
   margin: 0 0 .5em 0;
 }
 
@@ -571,8 +624,9 @@ h6, .zeta {
 }
 
 .intro {
-  font-size: 20px;
-  font-size: 1.25rem;
+  font-size: 1.25px;
+  font-size: 0.07813rem;
+  line-height: 19.2;
 }
 
 p,
@@ -587,75 +641,92 @@ a {
 }
 a:hover {
   text-decoration: underline;
+  cursor: pointer;
 }
 
 /*  =HYPER SIZING
 --------------------------------------------------------------------*/
-.tera, .event__title {
+.giga {
   font-size: 44px;
   font-size: 2.75rem;
+  line-height: 1.09091;
 }
-@media (max-width: 37.5em) {
-  .tera, .event__title {
-    font-size: 20px;
-    font-size: 1.25rem;
+@media (max-width: 65.625em) {
+  .giga {
+    font-size: 40px;
+    font-size: 2.5rem;
+    line-height: 1.2;
   }
 }
-@media (max-width: 56.25em) {
-  .tera, .event__title {
-    font-size: 20px;
-    font-size: 1.25rem;
-  }
-}
-
-.giga {
-  font-size: 40px;
-  font-size: 2.5rem;
-}
-@media (max-width: 56.25em) {
+@media (max-width: 43.75em) {
   .giga {
     font-size: 34px;
     font-size: 2.125rem;
-  }
-}
-@media (max-width: 37.5em) {
-  .giga {
-    font-size: 30px;
-    font-size: 1.875rem;
+    line-height: 1.41176;
   }
 }
 
-.mega, .hero__title, .hero__intro {
-  font-size: 34px;
-  font-size: 2.125rem;
+.mega {
+  font-size: 40px;
+  font-size: 2.5rem;
+  line-height: 1.2;
 }
-@media (max-width: 56.25em) {
-  .mega, .hero__title, .hero__intro {
-    font-size: 30px;
-    font-size: 1.875rem;
+@media (max-width: 65.625em) {
+  .mega {
+    font-size: 34px;
+    font-size: 2.125rem;
+    line-height: 1.41176;
   }
 }
-@media (max-width: 37.5em) {
-  .mega, .hero__title, .hero__intro {
+@media (max-width: 43.75em) {
+  .mega {
+    font-size: 30px;
+    font-size: 1.875rem;
+    line-height: 1.6;
+  }
+}
+
+.kilo, .event__title, .hero__title {
+  font-size: 34px;
+  font-size: 2.125rem;
+  line-height: 1.41176;
+}
+@media (max-width: 65.625em) {
+  .kilo, .event__title, .hero__title {
+    font-size: 30px;
+    font-size: 1.875rem;
+    line-height: 1.6;
+  }
+}
+@media (max-width: 43.75em) {
+  .kilo, .event__title, .hero__title {
     font-size: 26px;
     font-size: 1.625rem;
+    line-height: 1.84615;
   }
 }
 
 /*  =SUB SIZING
 --------------------------------------------------------------------*/
 .milli {
-  font-size: 14.4px;
-  font-size: 0.9rem;
+  font-size: 14px;
+  font-size: 0.875rem;
+  line-height: 1.71429;
 }
 
 .micro {
   font-size: 12px;
   font-size: 0.75rem;
+  line-height: 2;
 }
 
-.alrightsanslight, .last-month .day-label,
-.next-month .day-label {
+.nano {
+  font-size: 10px;
+  font-size: 0.625rem;
+  line-height: 2.4;
+}
+
+.alrightsanslight {
   font-family: "Alright Sans Light";
   font-style: normal;
   font-weight: normal;
@@ -667,7 +738,7 @@ a:hover {
   font-weight: normal;
 }
 
-.alrightsansregular, select, .header-day, .day-label {
+.alrightsansregular {
   font-family: "Alright Sans";
   font-style: normal;
   font-weight: normal;
@@ -695,6 +766,9 @@ a:hover {
 }
 .btn:hover {
   background: #992857;
+}
+.btn:link {
+  text-decoration: none;
 }
 
 /*  =BUTTON STATE VARIANTS
@@ -784,12 +858,18 @@ a:hover {
   transition: background 0.2s;
 }
 
+.btn--hollow {
+  background: transparent;
+}
+.btn--hollow:hover {
+  background: transparent;
+}
+
 /*  =BUTTON SIZE VARIANTS
 --------------------------------------------------------------------*/
 .btn--xs {
-  font-size: 16px;
-  font-size: 1rem;
-  font-weight: 500;
+  font-family: "Alright Sans Light", arial, sans-serif;
+  font-weight: 300;
   padding: 0 .5em;
 }
 
@@ -940,6 +1020,10 @@ a:hover {
   border-bottom: 1px solid #ddd;
 }
 
+.tab-panes {
+  margin-bottom: 2em;
+}
+
 .tab-list {
   margin: 0;
   padding: 0;
@@ -948,6 +1032,7 @@ a:hover {
 
 .tab-list__item {
   display: inline-block;
+  margin-bottom: -1px;
   border: solid transparent;
   border-width: 0 0 1px 0;
 }
@@ -961,6 +1046,7 @@ a:hover {
   margin: 0;
   font-family: MetronicProRegular, arial, sans-serif;
   color: #525252;
+  cursor: pointer;
 }
 .tab-list__link:hover {
   text-decoration: none;
@@ -978,6 +1064,19 @@ a:hover {
   display: block;
 }
 
+.tab-list__link__title-short {
+  display: none;
+}
+
+@media (max-width: 43.75em) {
+  .tab-list__link__title-short {
+    display: inline-block;
+  }
+
+  .tab-list__link__title {
+    display: none;
+  }
+}
 /*	=FORM GROUPING 
 --------------------------------------------------------------------*/
 .form-group {
@@ -988,6 +1087,7 @@ a:hover {
 .layout-stacked .label {
   margin-bottom: 0.375em;
   display: block;
+  text-align: left;
 }
 
 .form-actions {
@@ -997,9 +1097,10 @@ a:hover {
 /*	=FORM LABELS
 --------------------------------------------------------------------*/
 .sub-info {
-  font-size: 14.208px;
-  font-size: 0.888rem;
-  font-family: "Alright Sans Light";
+  font-size: 14px;
+  font-size: 0.875rem;
+  line-height: 1.71429;
+  font-family: "Alright Sans Light", arial, sans-serif;
   display: block;
   padding: 1em 0;
   color: #737373;
@@ -1057,7 +1158,7 @@ textarea:focus {
 .input-xl {
   width: 350px;
 }
-@media (max-width: 37.5em) {
+@media (max-width: 43.75em) {
   .input-xl {
     width: 100%;
   }
@@ -1190,12 +1291,13 @@ textarea {
   padding-top: .25em;
 }
 .clndr-nav .month {
+  line-height: 2;
   text-align: center;
 }
 
 .clndr-controls__nav {
-  font-size: 28.8px;
-  font-size: 1.8rem;
+  font-size: 26px;
+  font-size: 1.625rem;
   -moz-border-radius: 2em;
   -webkit-border-radius: 2em;
   border-radius: 2em;
@@ -1239,13 +1341,18 @@ textarea {
   overflow: hidden;
   border-bottom: 1px solid #F1F1F1;
 }
+@media (max-width: 43.75em) {
+  .clndr-header {
+    display: none;
+  }
+}
 
 .header-day {
   width: 14.2857%;
   float: left;
   padding: 1%;
 }
-@media (max-width: 37.5em) {
+@media (max-width: 43.75em) {
   .header-day {
     padding: 0;
     text-align: center;
@@ -1255,7 +1362,7 @@ textarea {
 .header-day__sm {
   display: none;
 }
-@media (max-width: 37.5em) {
+@media (max-width: 43.75em) {
   .header-day__sm {
     display: block;
   }
@@ -1264,12 +1371,12 @@ textarea {
 .header-day__md {
   display: none;
 }
-@media (max-width: 56.25em) {
+@media (max-width: 65.625em) {
   .header-day__md {
     display: block;
   }
 }
-@media (max-width: 37.5em) {
+@media (max-width: 43.75em) {
   .header-day__md {
     display: none;
   }
@@ -1278,17 +1385,19 @@ textarea {
 .header-day__lg {
   display: block;
 }
-@media (max-width: 56.25em) {
+@media (max-width: 65.625em) {
   .header-day__lg {
     display: none;
   }
 }
 
+/*	=DAYS
+--------------------------------------------------------------------*/
 .days {
   border: solid #E9E9E9;
   border-width: 0 0 0 1px;
 }
-@media (max-width: 37.5em) {
+@media (max-width: 43.75em) {
   .days {
     border-width: 0;
   }
@@ -1296,22 +1405,62 @@ textarea {
 
 .day {
   width: 14.2857%;
-  height: 7em;
+  height: 6.75em;
   float: left;
   padding: 1%;
   border: solid #E9E9E9;
   border-width: 0 1px 1px 0;
 }
-@media (max-width: 37.5em) {
+@media (max-width: 43.75em) {
   .day {
-    height: 3em;
-    text-align: center;
+    float: none;
+    width: 100%;
+    padding: 2%;
+    height: auto;
     border-width: 0 0 1px 0;
   }
 }
 
 .day-label {
   display: block;
+  vertical-align: top;
+}
+@media (max-width: 43.75em) {
+  .day-label {
+    width: 20%;
+    max-width: 4em;
+    display: inline-block;
+  }
+}
+
+.day-label__name {
+  display: none;
+  width: 60%;
+  min-width: 2.5em;
+  color: #999;
+  font-size: 12px;
+  font-size: 0.75rem;
+  line-height: 2;
+}
+@media (max-width: 43.75em) {
+  .day-label__name {
+    display: inline-block;
+  }
+}
+
+.day-label__number {
+  display: inline-block;
+  width: 20%;
+}
+
+/*	=EVENTS
+--------------------------------------------------------------------*/
+@media (max-width: 43.75em) {
+  .events-list {
+    width: 77%;
+    display: inline-block;
+    padding-left: 1em;
+  }
 }
 
 .today {
@@ -1326,13 +1475,10 @@ textarea {
   color: #D4D4D4;
   background: #F9F9F9;
 }
-
-.event-listing {
-  display: none;
-}
-@media (max-width: 75em) {
-  .event-listing {
-    display: block;
+@media (max-width: 43.75em) {
+  .last-month,
+  .next-month {
+    display: none;
   }
 }
 
@@ -1340,67 +1486,99 @@ textarea {
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
   border-radius: 3px;
-  min-width: 8px;
-  min-height: 8px;
   margin-bottom: .125em;
   padding: 0 5%;
   color: #fff;
   text-align: center;
-  line-height: 1.25;
+  line-height: 1.5;
   background: #5A9BA0;
   cursor: pointer;
+  font-size: 12px;
+  font-size: 0.75rem;
 }
-@media (max-width: 37.5em) {
+
+.calendar-event a {
+    color: #fff;
+    text-decoration: none;
+}
+
+@media (max-width: 43.75em) {
   .calendar-event {
-    display: inline-block;
+    display: block;
+    line-height: 2.5;
+    margin-bottom: .25em;
+  }
+  .calendar-event:last-child {
+    margin-bottom: 0;
   }
 }
 
-.calendar-event__full-details {
+.event-item {
   display: none;
-}
-
-.calendar-event--expanded {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 100;
-  padding: 2em;
-  background: #fff !important;
-  border: 2px solid #ddd;
-  border-radius: 0;
-}
-.calendar-event--expanded .calendar-event__title {
-  font-size: 48px;
-  font-size: 3rem;
-  font-family: MetronicProRegular;
-  color: #333;
-}
-.calendar-event--expanded .calendar-event__strapline {
-  font-size: 25.6px;
-  font-size: 1.6rem;
-  color: #0f767e;
-}
-.calendar-event--expanded .calendar-event__full-details {
-  display: block;
-  color: #333;
 }
 
 .calendar-event__short-title {
   display: none;
-  font-size: 12.8px;
-  font-size: 0.8rem;
 }
 
-.calendar-event__title {
-  font-size: 12.8px;
-  font-size: 0.8rem;
+.event__long .calendar-event__short-title {
+  display: block;
 }
-@media (max-width: 56.25em) {
+.event__long .calendar-event__title {
+  display: none;
+}
+
+@media (max-width: 43.75em) {
+  .calendar-event__short-title {
+    display: none !important;
+  }
+}
+
+@media (max-width: 43.75em) {
+  .calendar-event__title {
+    display: block !important;
+  }
+}
+
+@media (max-width: 65.625em) {
   .calendar-event__title {
     display: none;
+  }
+
+  .calendar-event__short-title {
+    display: block;
+  }
+}
+.day__many .calendar-event {
+  float: left;
+  width: 49%;
+  margin-right: .25em;
+  margin-right: 2%;
+}
+.day__many .calendar-event:nth-child(even) {
+  margin-right: 0;
+}
+@media (max-width: 43.75em) {
+  .day__many .calendar-event {
+    float: none;
+    display: block;
+    width: 100%;
+  }
+}
+.day__many .calendar-event__short-title {
+  display: block;
+}
+@media (max-width: 43.75em) {
+  .day__many .calendar-event__short-title {
+    display: none;
+  }
+}
+.day__many .calendar-event__title {
+  display: none;
+}
+@media (max-width: 43.75em) {
+  .day__many .calendar-event__title {
+    display: block !important;
   }
 }
 
@@ -1409,13 +1587,19 @@ textarea {
 }
 
 .island--horizontal-break {
-  margin: 1.5em 0;
+  margin: 2em 0 0;
+  padding-top: 2em;
   border: solid #ddd;
   border-width: 2px 0;
-  text-align: center;
 }
 .island--horizontal-break p:last-child {
   margin: 0;
+}
+@media (max-width: 43.75em) {
+  .island--horizontal-break {
+    padding-right: 0;
+    padding-left: 0;
+  }
 }
 
 /*	=EVENT STYLES
@@ -1423,6 +1607,12 @@ textarea {
 .event__hero {
   padding: 9em 0 2em;
   color: #fff;
+  background: #b9306a;
+}
+@media (max-width: 43.75em) {
+  .event__hero {
+    padding: 5em 0 2em;
+  }
 }
 
 .event__title,
@@ -1438,16 +1628,19 @@ textarea {
 }
 
 .event__time {
-  font-size: 22.4px;
-  font-size: 1.4rem;
+  font-size: 26px;
+  font-size: 1.625rem;
+  line-height: 1.84615;
   line-height: 2;
   float: right;
 }
-@media (max-width: 37.5em) {
+@media (max-width: 43.75em) {
   .event__time {
-    float: none;
+    font-size: 20px;
+    font-size: 1.25rem;
+    line-height: 1.2;
     display: block;
-    text-align: center;
+    float: none;
   }
 }
 
@@ -1458,12 +1651,27 @@ textarea {
 .tab-pane__primary {
   max-width: 50%;
 }
+@media (max-width: 43.75em) {
+  .tab-pane__primary {
+    max-width: 100%;
+  }
+}
 
 .tab-pane__secondary {
   float: right;
   width: 40%;
   padding-left: 3em;
-  border-left: 1px solid #ddd;
+  border: solid #ddd;
+  border-width: 0 0 0 1px;
+}
+@media (max-width: 43.75em) {
+  .tab-pane__secondary {
+    float: none;
+    width: 100%;
+    padding: 0 0 2em 0;
+    margin-bottom: 2em;
+    border-width: 0 0 1px 0;
+  }
 }
 
 /*	=MODAL
@@ -1471,9 +1679,12 @@ textarea {
 .no-scroll {
   overflow: hidden;
 }
+.no-scroll .page-content {
+  display: none;
+}
 
 .modal {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   bottom: 0;
@@ -1481,6 +1692,11 @@ textarea {
   width: 100%;
   background: #fff;
   overflow-y: auto;
+  -webkit-transform: translateZ(1px);
+  -moz-transform: translateZ(1px);
+  -o-transform: translateZ(1px);
+  transform: translateZ(1px);
+  -webkit-overflow-scrolling: touch;
 }
 
 .modal__close {
@@ -1492,6 +1708,85 @@ textarea {
 }
 .modal__close:hover {
   opacity: 1;
+}
+@media (max-width: 43.75em) {
+  .modal__close {
+    top: 1em;
+    right: 1em;
+  }
+}
+
+/*	=NOTIFICATIONS
+--------------------------------------------------------------------*/
+.notification {
+  padding: .75em 0;
+  text-align: center;
+  color: #fff;
+}
+
+/*	=STATES
+--------------------------------------------------------------------*/
+.notification--info {
+  color: #CDD4DB;
+  background: #435260;
+}
+.notification--info a {
+  color: #fff;
+  text-decoration: underline;
+}
+
+/*	=CONTENT
+--------------------------------------------------------------------*/
+.notification__title {
+  font-size: 14px;
+  font-size: 0.875rem;
+  line-height: 1.71429;
+  line-height: 1;
+}
+
+.notification__body {
+  font-size: 14px;
+  font-size: 0.875rem;
+  line-height: 1.71429;
+}
+.notification__body p:last-child {
+  margin: 0;
+}
+
+/*	=LOADING
+--------------------------------------------------------------------*/
+.loading__item {
+  position: relative;
+}
+
+.loading-item__overlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid #ddd;
+}
+.loading-item__overlay .hide {
+  display: none;
+}
+
+.loading-item__feedback {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -77px;
+  margin-top: -37px;
+  text-align: center;
+}
+.loading-item__feedback h3 {
+  color: #b9306a;
+}
+@media (max-width: 43.75em) {
+  .loading-item__feedback {
+    top: 5%;
+  }
 }
 
 /*  =BASE
@@ -1513,14 +1808,35 @@ body {
   padding: 0 2em;
   margin: 0 auto;
 }
-@media (max-width: 37.5em) {
+@media (max-width: 43.75em) {
   .layout-constrained {
-    padding: 0 .5em;
+    padding: 0 1em;
   }
 }
 
 .clndr {
   margin-bottom: 2em;
+}
+
+.panel-one {
+  float: left;
+}
+
+.panel-two {
+  float: right;
+}
+
+.panel-one,
+.panel-two {
+  width: 45%;
+}
+@media (max-width: 43.75em) {
+  .panel-one,
+  .panel-two {
+    width: 100%;
+    float: none;
+    margin-bottom: 1em;
+  }
 }
 
 /*  =HEADER
@@ -1529,7 +1845,7 @@ body {
   padding-top: 1em;
   padding-bottom: 1em;
 }
-@media (max-width: 37.5em) {
+@media (max-width: 43.75em) {
   .site-header {
     text-align: center;
   }
@@ -1539,7 +1855,7 @@ body {
   float: right;
   line-height: 3.4;
 }
-@media (max-width: 37.5em) {
+@media (max-width: 43.75em) {
   .site-header__contact {
     float: none;
     line-height: 1.5;
@@ -1575,7 +1891,7 @@ body {
   color: #fff;
   text-align: center;
 }
-@media (max-width: 37.5em) {
+@media (max-width: 43.75em) {
   .hero {
     padding: 2.5em 0 1em;
     margin-bottom: 1.5em;
@@ -1591,11 +1907,13 @@ body {
   margin: 0 auto;
   font-size: 20px;
   font-size: 1.25rem;
+  line-height: 1.2;
 }
-@media (max-width: 37.5em) {
+@media (max-width: 43.75em) {
   .hero__intro {
-    font-size: 16px;
-    font-size: 1rem;
+    font-size: 18px;
+    font-size: 1.125rem;
+    line-height: 1.33333;
   }
 }
 
@@ -1617,12 +1935,12 @@ body {
   padding: 9.75em 2.5em 2em 2.5em;
   background: white;
 }
-@media (max-width: 56.25em) {
+@media (max-width: 65.625em) {
   .sign-up {
     width: 50%;
   }
 }
-@media (max-width: 37.5em) {
+@media (max-width: 43.75em) {
   .sign-up {
     width: 100%;
     position: static;
@@ -1633,20 +1951,33 @@ body {
 /*  =FOOTER
 --------------------------------------------------------------------*/
 footer[role="contentinfo"] {
-  padding-top: 1em;
-  margin-top: 3em;
-  border-top: 1px solid #ddd;
+  margin: 2em 0;
   text-align: center;
   color: #767676;
 }
-@media (max-width: 37.5em) {
+@media (max-width: 43.75em) {
   footer[role="contentinfo"] {
     margin-top: 1.5em;
   }
 }
 
+/*  =FEEDBACK PANEL
+	 Ths needs to be refactored when its not midnight!
+--------------------------------------------------------------------*/
+.feedback-panel {
+  max-width: 450px;
+  margin: 0 auto;
+  padding-top: 3em;
+}
+.feedback-panel h2 {
+  color: #fff;
+}
+.feedback-panel .sub-info {
+  color: #CDD4DB;
+}
+
 /*  =GENERAL UI ELEMENTS
-------------------------------------------------------------*/
+--------------------------------------------------------------------*/
 hr {
   height: 1px;
   margin: 1em 0;

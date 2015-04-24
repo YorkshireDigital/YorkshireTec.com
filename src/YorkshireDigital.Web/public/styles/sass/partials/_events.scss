@@ -4,6 +4,12 @@
 .event__hero {
 	padding: 9em 0 2em;
 	color: #fff;
+	background: $accent-primary;
+
+	@include breakpoint(viewport-s) {
+		padding: 5em 0 2em;
+	}
+
 }
 
 .event__title,
@@ -13,25 +19,25 @@
 }
 
 .event__title {
-	@extend .tera;
+	@extend .kilo;
 }
 
 .event__strapline {
-	@extend .alpha;
+	@extend .beta;
 	max-width: 26em;
 	font-family: "MetronicProAir", sans-serif;
 	font-weight: 400;
 }
 
 .event__time {
-	@include font-size(1.4);
+	@include font-size($h2-size);
 	line-height: 2;
 	float: right;
 
 	@include breakpoint(viewport-s) {
-		float: none;
+		@include font-size($h3-size);
 		display: block;
-		text-align: center;
+		float: none;
 	}
 }
 
@@ -41,11 +47,26 @@
 
 .tab-pane__primary {
 	max-width: 50%;
+
+	@include breakpoint(viewport-s) {
+		max-width: 100%;
+	}
+
 }
 
 .tab-pane__secondary {
 	float: right;
 	width: 40%;
 	padding-left: 3em;
-	border-left: 1px solid #ddd;
+	border: solid #ddd;
+	border-width: 0 0 0 1px;
+
+	@include breakpoint(viewport-s) {
+		float: none;
+		width: 100%;
+		padding: 0 0 2em 0;
+		margin-bottom: 2em;
+		border-width: 0 0 1px 0;
+	}
+
 }

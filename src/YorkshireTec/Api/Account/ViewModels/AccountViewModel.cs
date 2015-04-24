@@ -3,7 +3,7 @@
     using System;
     using System.Linq;
     using FluentValidation;
-    using YorkshireTec.Data.Domain.Account;
+    using YorkshireDigital.Data.Domain.Account;
 
     public class AccountViewModel
     {
