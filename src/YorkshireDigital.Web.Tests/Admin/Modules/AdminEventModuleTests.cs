@@ -80,6 +80,8 @@
             // Assert
             response.GetViewName().ShouldBeEquivalentTo("NewEvent");
             model.UniqueName.ShouldBeEquivalentTo(null);
+            model.Start.ShouldBeEquivalentTo(DateTime.Today);
+            model.End.ShouldBeEquivalentTo(DateTime.Today);
         }
 
         [Test]

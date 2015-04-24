@@ -22,15 +22,19 @@
 
             Get[""] = _ =>
             {
+                var model = new AdminEventViewModel
+                {
+                    Start = DateTime.Today,
+                    End = DateTime.Today
+                };
+
                 var groupId = Request.Query["groupId"];
 
                 if (groupId == null)
                 {
-                    return Negotiate.WithModel(new AdminEventViewModel())
+                    return Negotiate.WithModel(model)
                             .WithView("NewEvent");
                 }
-
-                var model = new AdminEventViewModel();
 
                 var group = groupService.Get(groupId);
                 if (group == null)
