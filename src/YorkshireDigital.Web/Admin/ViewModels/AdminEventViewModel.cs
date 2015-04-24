@@ -15,6 +15,8 @@
         public string Region { get; set; }
         public decimal Price { get; set; }
         public byte[] Photo { get; set; }
+        public string GroupName { get; set; }
+        public string GroupId { get; set; }
 
         public static AdminEventViewModel FromDomain(Event @event)
         {

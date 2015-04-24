@@ -9,11 +9,13 @@
     public class AdminEventModule : BaseModule
     {
         private readonly IEventService eventService;
+        private readonly IGroupService groupService;
 
-        public AdminEventModule(IEventService eventService)
+        public AdminEventModule(IEventService eventService, IGroupService groupService)
             : base("admin/event")
         {
             this.eventService = eventService;
+            this.groupService = groupService;
             this.RequiresAuthentication();
             this.RequiresClaims(new[] { "Admin" });
 
@@ -50,9 +52,7 @@
                                 .WithStatusCode(HttpStatusCode.BadRequest);
                 }
 
-                var @event = model.ToDomain();
-
-                var existing = eventService.Get(@event.UniqueName);
+                var existing = eventService.Get(model.UniqueName);
                 if (existing != null)
                 {
                     AddError("UniqueName", "An event already exists with this unique name.");
@@ -60,6 +60,19 @@
                                 .WithView("NewEvent")
                                 .WithStatusCode(HttpStatusCode.BadRequest);
                 }
+
+                var @event = model.ToDomain();
+
+                var group = groupService.Get(model.GroupId);
+                if (group == null)
+                {
+                    AddError("GroupId", "No group exists with this id.");
+                    return Negotiate.WithModel(model)
+                                .WithView("NewEvent")
+                                .WithStatusCode(HttpStatusCode.BadRequest);
+                }
+
+                @event.Group = group;
 
                 eventService.Save(@event);
 

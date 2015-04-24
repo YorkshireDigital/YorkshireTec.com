@@ -11,6 +11,7 @@
     using Nancy.Testing;
     using NUnit.Framework;
     using YorkshireDigital.Data.Domain.Events;
+    using YorkshireDigital.Data.Domain.Organisations;
     using YorkshireDigital.Data.Services;
     using YorkshireDigital.Web.Admin.Modules;
     using YorkshireDigital.Web.Admin.ViewModels;
@@ -20,7 +21,7 @@
     [TestFixture]
     public class AdminEventModuleTests
     {
-        //private IGroupService groupService;
+        private IGroupService groupService;
         private IEventService eventService;
         private Browser browser;
         private string csrfToken;
@@ -28,7 +29,7 @@
         [SetUp]
         public void SetUp()
         {
-            //groupService = A.Fake<IGroupService>();
+            groupService = A.Fake<IGroupService>();
             eventService = A.Fake<IEventService>();
 
             var cryptographyConfiguration = CryptographyConfiguration.Default;
@@ -49,7 +50,7 @@
             {
                 with.Module<AdminEventModule>();
                 with.ViewFactory<ApiViewFactory>();
-                //with.Dependency(groupService);
+                with.Dependency(groupService);
                 with.Dependency(eventService);
                 with.RequestStartup((container, pipelines, context) =>
                 {
@@ -98,7 +99,12 @@
                     End = end,
                     Location = "Venue X",
                     Region = "Leeds",
-                    Price = 1.2m
+                    Price = 1.2m,
+                    Group = new Group
+                    {
+                        Id = "existing-group",
+                        Name = "Existing Group"
+                    }
                 });
 
             // Act
@@ -115,6 +121,8 @@
             model.Location.ShouldBeEquivalentTo("Venue X");
             model.Region.ShouldBeEquivalentTo("Leeds");
             model.Price.ShouldBeEquivalentTo(1.2m);
+            model.GroupName.ShouldBeEquivalentTo("Existing Group");
+            model.GroupId.ShouldBeEquivalentTo("existing-group");
         }
 
         [Test]
@@ -136,6 +144,12 @@
             // Arrange
             A.CallTo(() => eventService.Get("new-event"))
                 .Returns(null);
+            A.CallTo(() => groupService.Get("existing-group"))
+                .Returns(new Group
+                {
+                    Id = "existing-group",
+                    Name = "Existing Group"
+                });
             var start = DateTime.UtcNow.AddHours(-1);
             var end = DateTime.UtcNow.AddHours(1);
 
@@ -151,6 +165,7 @@
                 with.FormValue("Location", "Venue X");
                 with.FormValue("Region", "Leeds");
                 with.FormValue("Price", "1.2");
+                with.FormValue("GroupId", "existing-group");
                 with.Cookie(CsrfToken.DEFAULT_CSRF_KEY, csrfToken);
                 with.FormValue(CsrfToken.DEFAULT_CSRF_KEY, csrfToken);
             });
@@ -167,6 +182,8 @@
             model.Location.ShouldBeEquivalentTo("Venue X");
             model.Region.ShouldBeEquivalentTo("Leeds");
             model.Price.ShouldBeEquivalentTo(1.2m);
+            model.GroupId.ShouldBeEquivalentTo("existing-group");
+            model.GroupName.ShouldBeEquivalentTo("Existing Group");
         }
 
         [Test]
@@ -183,6 +200,7 @@
             var response = browser.Post("/admin/event/", with =>
             {
                 with.HttpRequest();
+                with.FormValue("UniqueName", "existing-event");
                 with.Cookie(CsrfToken.DEFAULT_CSRF_KEY, csrfToken);
                 with.FormValue(CsrfToken.DEFAULT_CSRF_KEY, csrfToken);
             });
@@ -195,6 +213,35 @@
 
             errors["UniqueName"].Count.ShouldBeEquivalentTo(1);
             errors["UniqueName"].First().ShouldBeEquivalentTo("An event already exists with this unique name.");
+        }
+
+        [Test]
+        public void PostRequest_WithInvalidGroupId_ReturnsAnError()
+        {
+            // Arrange
+            A.CallTo(() => eventService.Get("new-event"))
+                .Returns(null);
+            A.CallTo(() => groupService.Get("invalid-group"))
+                .Returns(null);
+
+            // Act
+            var response = browser.Post("/admin/event/", with =>
+            {
+                with.HttpRequest();
+                with.FormValue("UniqueName", "new-event");
+                with.FormValue("GroupId", "invalid-group");
+                with.Cookie(CsrfToken.DEFAULT_CSRF_KEY, csrfToken);
+                with.FormValue(CsrfToken.DEFAULT_CSRF_KEY, csrfToken);
+            });
+
+            // Assert
+            response.StatusCode.ShouldBeEquivalentTo(HttpStatusCode.BadRequest);
+
+            var errors = response.Context.ViewBag["Errors"].Value as IDictionary<string, List<string>>;
+            Assert.NotNull(errors);
+
+            errors["GroupId"].Count.ShouldBeEquivalentTo(1);
+            errors["GroupId"].First().ShouldBeEquivalentTo("No group exists with this id.");
         }
 
         // TODO: Test validation

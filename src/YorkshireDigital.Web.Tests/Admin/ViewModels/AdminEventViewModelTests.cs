@@ -4,6 +4,7 @@
     using FluentAssertions;
     using NUnit.Framework;
     using YorkshireDigital.Data.Domain.Events;
+    using YorkshireDigital.Data.Domain.Organisations;
     using YorkshireDigital.Web.Admin.ViewModels;
 
     public class AdminEventViewModelTests
@@ -23,7 +24,12 @@
                 End = end,
                 Location = "Venue X",
                 Region = "Leeds",
-                Price = 1.2m
+                Price = 1.2m,
+                Group = new Group
+                {
+                    Id = "existing-group",
+                    Name = "Existing Group"
+                }
             };
 
             // Act
@@ -38,6 +44,8 @@
             viewModel.Location.ShouldBeEquivalentTo("Venue X");
             viewModel.Region.ShouldBeEquivalentTo("Leeds");
             viewModel.Price.ShouldBeEquivalentTo(1.2m);
+            viewModel.GroupName.ShouldBeEquivalentTo("Existing Group");
+            viewModel.GroupId.ShouldBeEquivalentTo("existing-group");
         }
 
         [Test]
