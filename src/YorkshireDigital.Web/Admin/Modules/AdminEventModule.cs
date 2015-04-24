@@ -1,5 +1,6 @@
 ﻿namespace YorkshireDigital.Web.Admin.Modules
 {
+    using System;
     using Nancy;
     using Nancy.Security;
     using YorkshireDigital.Data.Services;
@@ -19,8 +20,33 @@
             this.RequiresAuthentication();
             this.RequiresClaims(new[] { "Admin" });
 
-            Get["/"] = _ => Negotiate.WithModel(new AdminEventViewModel())
-                                     .WithView("NewEvent");
+            Get[""] = _ =>
+            {
+                var groupId = Request.Query["groupId"];
+
+                if (groupId == null)
+                {
+                    return Negotiate.WithModel(new AdminEventViewModel())
+                            .WithView("NewEvent");
+                }
+
+                var model = new AdminEventViewModel();
+
+                var group = groupService.Get(groupId);
+                if (group == null)
+                {
+                    AddError("GroupId", "No group exists with this id.");
+                    return Negotiate.WithModel(model)
+                                .WithView("NewEvent")
+                                .WithStatusCode(HttpStatusCode.BadRequest);
+                }
+                model.UniqueName = string.Format("{0}-{1}-{2}", groupId, DateTime.Now.ToString("MMM").ToLower(),
+                    @DateTime.Now.ToString("yyyy"));
+                model.GroupId = groupId;
+
+                return Negotiate.WithModel(model)
+                    .WithView("NewEvent");
+            };
 
             Get["/{eventId}"] = _ =>
             {

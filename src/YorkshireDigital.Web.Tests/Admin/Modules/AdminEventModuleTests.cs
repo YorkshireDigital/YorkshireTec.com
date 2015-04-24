@@ -83,6 +83,59 @@
         }
 
         [Test]
+        public void GetRequest_WithGroupId_ReturnsViewWithNewEventModel_WithGroupIdPopulated()
+        {
+            // Arrange
+            A.CallTo(() => groupService.Get("existing-group"))
+                .Returns(new Group
+                {
+                    Id = "existing-group",
+                    Name = "Existing Group"
+                });
+
+            // Act
+            var response = browser.Get("/admin/event", with =>
+            {
+                with.HttpRequest();
+                with.Query("groupId", "existing-group");
+            });
+            
+            var model = response.GetModel<AdminEventViewModel>();
+
+            // Assert
+            response.GetViewName().ShouldBeEquivalentTo("NewEvent");
+            model.GroupId.ShouldBeEquivalentTo("existing-group");
+            model.UniqueName.ShouldBeEquivalentTo(string.Format("existing-group-{0}-{1}", DateTime.Now.ToString("MMM").ToLower(), @DateTime.Now.ToString("yyyy")));
+        }
+
+        [Test]
+        public void GetRequest_WithInvalidGroupId_ReturnsViewWithNewEventModel_WithGroupIdError()
+        {
+            // Arrange
+            A.CallTo(() => groupService.Get("invalid-group"))
+                .Returns(null);
+
+            // Act
+            var response = browser.Get("/admin/event", with =>
+            {
+                with.HttpRequest();
+                with.Query("groupId", "invalid-group");
+            });
+            var model = response.GetModel<AdminEventViewModel>();
+
+            // Assert
+            response.GetViewName().ShouldBeEquivalentTo("NewEvent");
+            model.UniqueName.ShouldBeEquivalentTo(null);
+            model.GroupId.ShouldBeEquivalentTo(null);
+
+            var errors = response.Context.ViewBag["Errors"].Value as IDictionary<string, List<string>>;
+            Assert.NotNull(errors);
+
+            errors["GroupId"].Count.ShouldBeEquivalentTo(1);
+            errors["GroupId"].First().ShouldBeEquivalentTo("No group exists with this id.");
+        }
+
+        [Test]
         public void GetRequest_WithValidEventId_ReturnsViewWithEventDetails()
         {
             // Arrange

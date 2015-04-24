@@ -11,7 +11,7 @@
 
 <div class="form-group">
     <label>Event Url</label>
-    <input type="text" placeholder="e.g. bradford-clojure-@DateTime.Now.ToString("MMM")-@DateTime.Now.ToString("yyyy")" name="uniqueName" class="input-full field" value="@Model.UniqueName" required pattern="^[a-zA-Z0-9-]+$" />
+    <input type="text" placeholder="e.g. bradford-clojure-@DateTime.Now.ToString("MMM").ToLower()-@DateTime.Now.ToString("yyyy")" name="uniqueName" class="input-full field" value="@Model.UniqueName" required pattern="^[a-zA-Z0-9-]+$" />
     @Html.ValidationMessageFor("UniqueName")
 </div>
 
