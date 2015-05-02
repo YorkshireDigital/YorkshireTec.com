@@ -17,7 +17,7 @@
         public virtual byte[] Logo { get; set; }
         public virtual byte[] Photo { get; set; }
         public virtual string Website { get; set; }
-        public virtual DateTime LastEditedOn { get; set; }
+        public virtual DateTime? LastEditedOn { get; set; }
         public virtual DateTime? DeletedOn { get; set; }
 
         public virtual bool IsDeleted { get { return DeletedOn.HasValue; } }

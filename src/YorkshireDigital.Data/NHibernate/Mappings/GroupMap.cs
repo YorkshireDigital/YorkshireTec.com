@@ -23,6 +23,7 @@
             Map(x => x.Logo);
             Map(x => x.Photo);
             Map(x => x.Website);
+            Map(x => x.LastEditedOn);
             Map(x => x.DeletedOn);
 
             HasMany(x => x.ContactLinks)
