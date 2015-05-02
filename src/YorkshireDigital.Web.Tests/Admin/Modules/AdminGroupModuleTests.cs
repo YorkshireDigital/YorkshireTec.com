@@ -10,6 +10,7 @@
     using Nancy.Security;
     using Nancy.Testing;
     using NUnit.Framework;
+    using YorkshireDigital.Data.Domain.Account;
     using YorkshireDigital.Data.Domain.Organisations;
     using YorkshireDigital.Data.Services;
     using YorkshireDigital.Web.Admin.Modules;
@@ -21,14 +22,17 @@
     public class AdminGroupModuleTests
     {
         private IGroupService groupService;
+        private IUserService userService;
         private Browser browser;
         private string csrfToken;
+        private User adminUser;
 
         [SetUp]
         public void SetUp()
         {
+            userService = A.Fake<IUserService>();
             groupService = A.Fake<IGroupService>();
-
+            
             var cryptographyConfiguration = CryptographyConfiguration.Default;
 
             var objectSerializer = new DefaultObjectSerializer();
@@ -43,14 +47,21 @@
 
             csrfToken = new DefaultObjectSerializer().Serialize(token);
 
+            adminUser = new User
+            {
+                Id = Guid.NewGuid(),
+                Username = "admin"
+            };
+
             browser = new Browser(with =>
             {
                 with.Module<AdminGroupModule>();
                 with.ViewFactory<ApiViewFactory>();
                 with.Dependency(groupService);
+                with.Dependency(userService);
                 with.RequestStartup((container, pipelines, context) =>
                 {
-                    context.CurrentUser = new UserIdentity { UserName = "admin", Claims = new[] { "Admin" } };
+                    context.CurrentUser = new UserIdentity { UserId = adminUser.Id.ToString(), UserName = adminUser.Username, Claims = new[] { "Admin" } };
                     pipelines.OnError += (ctx, exception) =>
                     {
                         ctx.Items.Add("OnErrorException", exception);
@@ -128,7 +139,8 @@
             // Arrange
             A.CallTo(() => groupService.Get("new-group"))
                 .Returns(null);
-
+            A.CallTo(() => userService.GetUser("admin"))
+                .Returns(adminUser);
             // Act
             var response = browser.Post("/admin/group/", with =>
             {
@@ -146,7 +158,7 @@
 
             // Assert
             response.StatusCode.ShouldBeEquivalentTo(HttpStatusCode.Created);
-            A.CallTo(() => groupService.Save(A<Group>.Ignored)).MustHaveHappened();
+            A.CallTo(() => groupService.Save(A<Group>.Ignored, adminUser)).MustHaveHappened();
             model.Id.ShouldBeEquivalentTo("new-group");
             model.Name.ShouldBeEquivalentTo("New Group");
             model.ShortName.ShouldBeEquivalentTo("New");
@@ -199,6 +211,8 @@
                     Colour = "#FF00FF",
                     Headline = "Existing group for testing"
                 });
+            A.CallTo(() => userService.GetUser("admin"))
+                .Returns(adminUser);
 
             // Act
             var response = browser.Post("/admin/group/existing-group", with =>
@@ -217,7 +231,7 @@
 
             // Assert
             response.StatusCode.ShouldBeEquivalentTo(HttpStatusCode.OK);
-            A.CallTo(() => groupService.Save(A<Group>.Ignored)).MustHaveHappened();
+            A.CallTo(() => groupService.Save(A<Group>.Ignored, adminUser)).MustHaveHappened();
             model.Id.ShouldBeEquivalentTo("existing-group");
             model.Name.ShouldBeEquivalentTo("Updated Group");
             model.ShortName.ShouldBeEquivalentTo("UPD");

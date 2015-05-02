@@ -3,6 +3,7 @@
     using System;
     using FluentAssertions;
     using NUnit.Framework;
+    using YorkshireDigital.Data.Domain.Account;
     using YorkshireDigital.Data.Domain.Organisations;
     using YorkshireDigital.Data.Exceptions;
     using YorkshireDigital.Data.Services;
@@ -62,13 +63,43 @@
             var saveStart = DateTime.UtcNow;
 
             // Act
-            groupService.Save(group);
+            groupService.Save(@group, null);
             var result = Session.Load<Group>("test-group-1");
 
             // Assert
             result.Id.ShouldBeEquivalentTo("test-group-1");
             result.Name.ShouldBeEquivalentTo("Test Group 1");
             result.LastEditedOn.Should().BeOnOrAfter(saveStart);
+            result.LastEditedBy.Should().BeNull();
+        }
+
+        [Test]
+        public void Save_SetsLastEditedBy_WhenUserIsSpecified()
+        {
+            // Arrange
+            var group = new Group
+            {
+                Id = "test-group-1",
+                Name = "Test Group 1"
+            };
+            var user = new User
+            {
+                Id = Guid.NewGuid(),
+                Username = "test-user"
+            };
+            Session.Save(user);
+            var saveStart = DateTime.UtcNow;
+
+            // Act
+            groupService.Save(group, user);
+            var result = Session.Load<Group>("test-group-1");
+
+            // Assert
+            result.Id.ShouldBeEquivalentTo("test-group-1");
+            result.Name.ShouldBeEquivalentTo("Test Group 1");
+            result.LastEditedOn.Should().BeOnOrAfter(saveStart);
+            result.LastEditedBy.Id.ShouldBeEquivalentTo(user.Id);
+            result.LastEditedBy.Username.ShouldBeEquivalentTo("test-user");
         }
 
         [Test]
@@ -86,7 +117,7 @@
             var saveStart = DateTime.UtcNow;
 
             // Act
-            groupService.Save(group);
+            groupService.Save(@group, null);
             var result = Session.Load<Group>("test-group-1");
 
             // Assert

@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using YorkshireDigital.Data.Domain.Account;
     using YorkshireDigital.Data.Domain.Events;
 
     public class Group
@@ -18,6 +19,7 @@
         public virtual byte[] Photo { get; set; }
         public virtual string Website { get; set; }
         public virtual DateTime? LastEditedOn { get; set; }
+        public virtual User LastEditedBy { get; set; }
         public virtual DateTime? DeletedOn { get; set; }
 
         public virtual bool IsDeleted { get { return DeletedOn.HasValue; } }

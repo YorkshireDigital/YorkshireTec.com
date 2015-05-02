@@ -9,11 +9,13 @@
     public class AdminGroupModule : BaseModule
     {
         private readonly IGroupService groupService;
+        private readonly IUserService userService;
 
-        public AdminGroupModule(IGroupService groupService) 
+        public AdminGroupModule(IGroupService groupService, IUserService userService) 
             : base("admin/group")
         {
             this.groupService = groupService;
+            this.userService = userService;
             this.RequiresAuthentication();
             this.RequiresClaims(new[] { "Admin" });
 
@@ -60,7 +62,9 @@
                                 .WithStatusCode(HttpStatusCode.BadRequest);
                 }
 
-                groupService.Save(group);
+                var currentUser = userService.GetUser(Context.CurrentUser.UserName);
+
+                groupService.Save(group, currentUser);
 
                 return Negotiate.WithModel(AdminGroupViewModel.FromDomain(group))
                                 .WithView("Group")
@@ -97,7 +101,9 @@
 
                 model.UpdateDomain(group);
 
-                groupService.Save(group);
+                var currentUser = userService.GetUser(Context.CurrentUser.UserName);
+
+                groupService.Save(group, currentUser);
 
                 return Negotiate.WithModel(AdminGroupViewModel.FromDomain(group))
                                 .WithView("Group")

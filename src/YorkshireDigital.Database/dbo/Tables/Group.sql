@@ -10,7 +10,9 @@
     [Website]   NVARCHAR (255)  NULL,
     [LastEditedOn]  DATETIME    NULL,
     [DeletedOn] DATETIME        NULL,
-    PRIMARY KEY CLUSTERED ([Id] ASC)
+    [LastEditedById] UNIQUEIDENTIFIER NULL, 
+    PRIMARY KEY CLUSTERED ([Id] ASC), 
+    CONSTRAINT [FK_Group_User] FOREIGN KEY ([LastEditedById]) REFERENCES [User]([Id])
 );
 
 

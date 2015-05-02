@@ -24,6 +24,7 @@
             Map(x => x.Photo);
             Map(x => x.Website);
             Map(x => x.LastEditedOn);
+            References(x => x.LastEditedBy);
             Map(x => x.DeletedOn);
 
             HasMany(x => x.ContactLinks)

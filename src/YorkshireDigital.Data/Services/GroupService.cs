@@ -3,13 +3,14 @@
     using System;
     using System.Collections.Generic;
     using global::NHibernate;
+    using YorkshireDigital.Data.Domain.Account;
     using YorkshireDigital.Data.Domain.Organisations;
     using YorkshireDigital.Data.Exceptions;
 
     public interface IGroupService
     {
         Group Get(string id);
-        Group Save(Group group);
+        Group Save(Group group, User lastEditedBy);
         Group Delete(string id);
         IList<Group> GetActiveGroups(int take = 20, int skip = 0);
     }
@@ -28,9 +29,11 @@
             return session.Get<Group>(id);
         }
 
-        public Group Save(Group @group)
+        public Group Save(Group @group, User lastEditedBy)
         {
             @group.LastEditedOn = DateTime.UtcNow;
+            @group.LastEditedBy = lastEditedBy;
+
             session.SaveOrUpdate(@group);
             
             return @group;
