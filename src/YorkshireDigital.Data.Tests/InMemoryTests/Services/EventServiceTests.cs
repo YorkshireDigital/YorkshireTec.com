@@ -187,9 +187,20 @@ namespace YorkshireDigital.Data.Tests.InMemoryTests.Services
         }
 
         [Test]
-        public void Query_WithNoConstraints_DoesNotIncludeThoseWithDeletedGroups()
+        public void Query_WithNoConstraints_DoesNotIncludeEventsAfterGroupWasDeleted()
         {
             // Arrange
+            Session.Save(new Event
+            {
+                UniqueName = "0",
+                Title = "Event 0",
+                Start = DateTime.Now.AddDays(-1),
+                Group = new Group
+                {
+                    Id = "test-group-1",
+                    DeletedOn = DateTime.Now
+                }
+            });
             Session.Save(new Event
             {
                 UniqueName = "1",
@@ -197,7 +208,7 @@ namespace YorkshireDigital.Data.Tests.InMemoryTests.Services
                 Start = DateTime.Now.AddDays(1),
                 Group = new Group
                 {
-                    Id = "test-group",
+                    Id = "test-group-2",
                     DeletedOn = DateTime.Now
                 }
             });
@@ -212,7 +223,9 @@ namespace YorkshireDigital.Data.Tests.InMemoryTests.Services
             var result = service.Query(null, null, new string[0], new string[0], null, null);
 
             // Assert
-            result.Count().ShouldBeEquivalentTo(1);
+            result.Count().ShouldBeEquivalentTo(2);
+            result[0].Title.ShouldBeEquivalentTo("Event 0");
+            result[1].Title.ShouldBeEquivalentTo("Event 2");
         }
 
         [Test]

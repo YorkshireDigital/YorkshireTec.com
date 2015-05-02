@@ -62,7 +62,7 @@
             if (!includeDeleted)
             {
                 query = query.Where(x => x.DeletedOn == null);
-                query = query.Where(x => x.Group == null || x.Group.DeletedOn == null);
+                query = query.Where(x => x.Group == null || x.Group.DeletedOn == null || (x.Group.DeletedOn.HasValue && x.Group.DeletedOn.Value > x.Start));
             }
             if (from.HasValue)
             {
