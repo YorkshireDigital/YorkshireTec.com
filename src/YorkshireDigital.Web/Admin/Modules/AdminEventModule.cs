@@ -11,12 +11,14 @@
     {
         private readonly IEventService eventService;
         private readonly IGroupService groupService;
+        private readonly IUserService userService;
 
-        public AdminEventModule(IEventService eventService, IGroupService groupService)
+        public AdminEventModule(IEventService eventService, IGroupService groupService, IUserService userService)
             : base("admin/event")
         {
             this.eventService = eventService;
             this.groupService = groupService;
+            this.userService = userService;
             this.RequiresAuthentication();
             this.RequiresClaims(new[] { "Admin" });
 
@@ -103,8 +105,9 @@
                 }
 
                 @event.Group = group;
-
-                eventService.Save(@event);
+                var currentUser = userService.GetUser(Context.CurrentUser.UserName);
+                
+                eventService.Save(@event, currentUser);
 
                 return Negotiate.WithModel(AdminEventViewModel.FromDomain(@event))
                                 .WithView("Event")
@@ -141,8 +144,9 @@
                 //}
 
                 model.UpdateDomain(@event);
-
-                eventService.Save(@event);
+                var currentUser = userService.GetUser(Context.CurrentUser.UserName);
+                
+                eventService.Save(@event, currentUser);
 
                 return Negotiate.WithModel(AdminEventViewModel.FromDomain(@event))
                                 .WithView("Event")
@@ -162,7 +166,8 @@
                     return HttpStatusCode.NotFound;
                 }
 
-                eventService.Delete(eventId);
+                var currentUser = userService.GetUser(Context.CurrentUser.UserName);
+                eventService.Delete(eventId, currentUser);
 
                 return Response.AsRedirect("admin")
                                 .WithStatusCode(HttpStatusCode.OK);

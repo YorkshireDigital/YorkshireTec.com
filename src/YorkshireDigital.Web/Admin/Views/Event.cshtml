@@ -15,3 +15,24 @@
 
     <input type="submit" class="btn btn--primary btn--full" value="Update" />
 </form>
+<br />
+<input type="submit" class="btn btn--negative btn--full" id="delete-event" data-event-id="@Model.UniqueName" value="Delete" />
+@section Scripts
+{
+    <script type="text/javascript">
+        $(function () {
+            $(document).on('click', '#delete-event', function (e) {
+                e.preventDefault();
+                if (confirm('Are you sure?')) {
+                    var id = $(this).data('event-id');
+                    $.ajax({
+                        type: 'DELETE',
+                        url: '/admin/event/' + id
+                    }).done(function () {
+                        window.location.href = '/admin';
+                    });
+                }
+            });
+        });
+    </script>
+}

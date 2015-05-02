@@ -5,6 +5,7 @@ namespace YorkshireDigital.Data.Tests.InMemoryTests.Services
     using System.Linq;
     using FluentAssertions;
     using NUnit.Framework;
+    using YorkshireDigital.Data.Domain.Account;
     using YorkshireDigital.Data.Domain.Events;
     using YorkshireDigital.Data.Domain.Organisations;
     using YorkshireDigital.Data.Exceptions;
@@ -30,16 +31,23 @@ namespace YorkshireDigital.Data.Tests.InMemoryTests.Services
                 UniqueName = "1",
                 Title = string.Format("Test Event {0}", DateTime.Now.ToString("yyyyMMddhhmmssss")),
             };
+            var user = new User
+            {
+                Id = Guid.NewGuid(),
+                Username = "test-user"
+            };
+            Session.Save(user);
             var saveStart = DateTime.UtcNow;
 
             // Act
-            service.Save(myEvent);
+            service.Save(myEvent, user);
             var result = Session.Get<Event>("1");
 
             // Assert
             result.Title.ShouldBeEquivalentTo(myEvent.Title);
             result.UniqueName.ShouldBeEquivalentTo("1");
             result.LastEditedOn.Should().BeOnOrAfter(saveStart);
+            result.LastEditedBy.ShouldBeEquivalentTo(user);
         }
 
         [Test]
@@ -50,20 +58,28 @@ namespace YorkshireDigital.Data.Tests.InMemoryTests.Services
             {
                 UniqueName = "1",
                 Title = string.Format("Test Event {0}", DateTime.Now.ToString("yyyyMMddhhmmssss")),
-                LastEditedOn = DateTime.UtcNow.AddDays(-1)
+                LastEditedOn = DateTime.UtcNow.AddDays(-1),
+                LastEditedBy = null
             };
             Session.Save(myEvent);
+            var user = new User
+            {
+                Id = Guid.NewGuid(),
+                Username = "test-user"
+            };
+            Session.Save(user);
             myEvent.Title = string.Format("Updated Event {0}", DateTime.Now.ToString("yyyyMMddhhmmssss"));
             var saveStart = DateTime.UtcNow;
 
             // Act
-            service.Save(myEvent);
+            service.Save(myEvent, user);
             var result = Session.Get<Event>("1");
 
             // Assert
             result.Title.ShouldBeEquivalentTo(myEvent.Title);
             result.UniqueName.ShouldBeEquivalentTo("1");
             result.LastEditedOn.Should().BeOnOrAfter(saveStart);
+            result.LastEditedBy.ShouldBeEquivalentTo(user);
         }
 
         [Test]
@@ -88,6 +104,12 @@ namespace YorkshireDigital.Data.Tests.InMemoryTests.Services
         public void Delete_MarksEventAsDeleted_WhenEventExists()
         {
             // Arrange
+            var user = new User
+            {
+                Id = Guid.NewGuid(),
+                Username = "test-user"
+            };
+            Session.Save(user);
             var myEvent = new Event
             {
                 UniqueName = "1",
@@ -96,11 +118,12 @@ namespace YorkshireDigital.Data.Tests.InMemoryTests.Services
             Session.Save(myEvent);
 
             // Act
-            service.Delete("1");
+            service.Delete("1", user);
             var result = Session.Get<Event>("1");
 
             // Assert
             result.IsDeleted.Should().BeTrue();
+            result.DeletedBy.ShouldBeEquivalentTo(user);
         }
 
         [Test]
@@ -110,7 +133,7 @@ namespace YorkshireDigital.Data.Tests.InMemoryTests.Services
             // Arrange
 
             // Act
-            service.Delete("1");
+            service.Delete("1", null);
 
             // Assert
         }

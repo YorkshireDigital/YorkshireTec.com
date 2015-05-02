@@ -10,6 +10,7 @@
     using Nancy.Security;
     using Nancy.Testing;
     using NUnit.Framework;
+    using YorkshireDigital.Data.Domain.Account;
     using YorkshireDigital.Data.Domain.Events;
     using YorkshireDigital.Data.Domain.Organisations;
     using YorkshireDigital.Data.Services;
@@ -23,12 +24,15 @@
     {
         private IGroupService groupService;
         private IEventService eventService;
+        private IUserService userService;
         private Browser browser;
         private string csrfToken;
+        private User adminUser;
 
         [SetUp]
         public void SetUp()
         {
+            userService = A.Fake<IUserService>();
             groupService = A.Fake<IGroupService>();
             eventService = A.Fake<IEventService>();
 
@@ -46,15 +50,22 @@
 
             csrfToken = new DefaultObjectSerializer().Serialize(token);
 
+            adminUser = new User
+            {
+                Id = Guid.NewGuid(),
+                Username = "admin"
+            };
+
             browser = new Browser(with =>
             {
                 with.Module<AdminEventModule>();
                 with.ViewFactory<ApiViewFactory>();
                 with.Dependency(groupService);
                 with.Dependency(eventService);
+                with.Dependency(userService);
                 with.RequestStartup((container, pipelines, context) =>
                 {
-                    context.CurrentUser = new UserIdentity { UserName = "admin", Claims = new[] { "Admin" } };
+                    context.CurrentUser = new UserIdentity { UserId = adminUser.Id.ToString(), UserName = adminUser.Username, Claims = new[] { "Admin" } };
                     pipelines.OnError += (ctx, exception) =>
                     {
                         ctx.Items.Add("OnErrorException", exception);
@@ -205,6 +216,8 @@
                     Id = "existing-group",
                     Name = "Existing Group"
                 });
+            A.CallTo(() => userService.GetUser("admin"))
+                .Returns(adminUser);
             var start = DateTime.UtcNow.AddHours(-1);
             var end = DateTime.UtcNow.AddHours(1);
 
@@ -228,7 +241,7 @@
 
             // Assert
             response.StatusCode.ShouldBeEquivalentTo(HttpStatusCode.Created);
-            A.CallTo(() => eventService.Save(A<Event>.Ignored)).MustHaveHappened();
+            A.CallTo(() => eventService.Save(A<Event>.Ignored, adminUser)).MustHaveHappened();
             model.UniqueName.ShouldBeEquivalentTo("new-event");
             model.Title.ShouldBeEquivalentTo("New Event");
             model.Synopsis.ShouldBeEquivalentTo("New event details");
@@ -319,6 +332,8 @@
                     Region = "Leeds",
                     Price = 1.2m
                 });
+            A.CallTo(() => userService.GetUser("admin"))
+                .Returns(adminUser);
 
             // Act
             var response = browser.Post("/admin/event/existing-event", with =>
@@ -339,7 +354,7 @@
 
             // Assert
             response.StatusCode.ShouldBeEquivalentTo(HttpStatusCode.OK);
-            A.CallTo(() => eventService.Save(A<Event>.Ignored)).MustHaveHappened();
+            A.CallTo(() => eventService.Save(A<Event>.Ignored, adminUser)).MustHaveHappened();
             model.UniqueName.ShouldBeEquivalentTo("existing-event");
             model.Title.ShouldBeEquivalentTo("Updated Event");
             model.Synopsis.ShouldBeEquivalentTo("Updated event details");
@@ -378,13 +393,15 @@
                 {
                     UniqueName = "existing-event",
                 });
+            A.CallTo(() => userService.GetUser("admin"))
+                .Returns(adminUser);
 
             // Act
             var response = browser.Delete("/admin/event/existing-event", with => with.HttpRequest());
 
             // Assert
             response.StatusCode.ShouldBeEquivalentTo(HttpStatusCode.OK);
-            A.CallTo(() => eventService.Delete("existing-event")).MustHaveHappened();
+            A.CallTo(() => eventService.Delete("existing-event", adminUser)).MustHaveHappened();
         }
 
         [Test]

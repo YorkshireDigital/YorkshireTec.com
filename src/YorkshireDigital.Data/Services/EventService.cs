@@ -5,14 +5,15 @@
     using System.Linq;
     using global::NHibernate;
     using global::NHibernate.Linq;
+    using YorkshireDigital.Data.Domain.Account;
     using YorkshireDigital.Data.Domain.Events;
     using YorkshireDigital.Data.Exceptions;
 
     public interface IEventService
     {
-        void Save(Event myEvent);
+        void Save(Event myEvent, User user);
         Event Get(string uniqueName);
-        void Delete(string eventId);
+        void Delete(string eventId, User user);
         List<Event> GetWithinRange(DateTime from, DateTime to);
         List<Event> Query(DateTime? from, DateTime? to, string[] interests, string[] locations, int? skip, int? take, bool includeDeleted = false);
     }
@@ -26,9 +27,10 @@
             this.session = session;
         }
 
-        public void Save(Event eventToSave)
+        public void Save(Event eventToSave, User user)
         {
             eventToSave.LastEditedOn = DateTime.UtcNow;
+            eventToSave.LastEditedBy = user;
             session.SaveOrUpdate(eventToSave);
         }
 
@@ -40,13 +42,15 @@
                 .SingleOrDefault();
         }
 
-        public void Delete(string eventId)
+        public void Delete(string eventId, User user)
         {
             var eventToDelete = session.Get<Event>(eventId);
             if (eventToDelete == null)
                 throw new EventNotFoundException(string.Format("No event found with unique name {0}", eventId));
 
             eventToDelete.DeletedOn = DateTime.UtcNow;
+            eventToDelete.DeletedBy = user;
+
             session.SaveOrUpdate(eventToDelete);
         }
 

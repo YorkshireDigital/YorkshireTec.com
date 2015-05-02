@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using YorkshireDigital.Data.Domain.Account;
     using YorkshireDigital.Data.Domain.Organisations;
 
     public class Event
@@ -20,7 +21,9 @@
         public virtual IList<Interest> Interests { get; set; }
         public virtual IList<EventTalk> Talks { get; set; }
         public virtual DateTime LastEditedOn { get; set; }
+        public virtual User LastEditedBy { get; set; }
         public virtual DateTime? DeletedOn { get; set; }
+        public virtual User DeletedBy { get; set; }
 
         public virtual bool IsDeleted { get { return DeletedOn.HasValue; } }
 
