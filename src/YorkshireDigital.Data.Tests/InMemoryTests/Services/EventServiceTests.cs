@@ -30,6 +30,7 @@ namespace YorkshireDigital.Data.Tests.InMemoryTests.Services
             {
                 UniqueName = "1",
                 Title = string.Format("Test Event {0}", DateTime.Now.ToString("yyyyMMddhhmmssss")),
+                Interests = new[] { new Interest { Name = "Development" }, new Interest { Name = "Design" } }
             };
             var user = new User
             {
@@ -48,6 +49,9 @@ namespace YorkshireDigital.Data.Tests.InMemoryTests.Services
             result.UniqueName.ShouldBeEquivalentTo("1");
             result.LastEditedOn.Should().BeOnOrAfter(saveStart);
             result.LastEditedBy.ShouldBeEquivalentTo(user);
+            result.Interests.Count.ShouldBeEquivalentTo(2);
+            result.Interests[0].Name.ShouldBeEquivalentTo("Development");
+            result.Interests[1].Name.ShouldBeEquivalentTo("Design");
         }
 
         [Test]
@@ -59,7 +63,8 @@ namespace YorkshireDigital.Data.Tests.InMemoryTests.Services
                 UniqueName = "1",
                 Title = string.Format("Test Event {0}", DateTime.Now.ToString("yyyyMMddhhmmssss")),
                 LastEditedOn = DateTime.UtcNow.AddDays(-1),
-                LastEditedBy = null
+                LastEditedBy = null,
+                Interests = new[] { new Interest { Name = "Development" } }
             };
             Session.Save(myEvent);
             var user = new User
@@ -69,6 +74,7 @@ namespace YorkshireDigital.Data.Tests.InMemoryTests.Services
             };
             Session.Save(user);
             myEvent.Title = string.Format("Updated Event {0}", DateTime.Now.ToString("yyyyMMddhhmmssss"));
+            myEvent.Interests = new[] {new Interest {Name = "Design"}};
             var saveStart = DateTime.UtcNow;
 
             // Act
@@ -80,6 +86,8 @@ namespace YorkshireDigital.Data.Tests.InMemoryTests.Services
             result.UniqueName.ShouldBeEquivalentTo("1");
             result.LastEditedOn.Should().BeOnOrAfter(saveStart);
             result.LastEditedBy.ShouldBeEquivalentTo(user);
+            result.Interests.Count.ShouldBeEquivalentTo(1);
+            result.Interests[0].Name.ShouldBeEquivalentTo("Design");
         }
 
         [Test]

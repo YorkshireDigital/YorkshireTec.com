@@ -96,8 +96,7 @@
                                 .WithStatusCode(HttpStatusCode.BadRequest);
                 }
 
-                var interests = eventService.GetInterests();
-                model.AvailableInterests = interests.Select(x => AdminInterestViewModel.FromDomain(x, new List<Interest>())).ToList();
+                var selectedInterests = GetSelectedInterests(eventService, model);
 
                 var existing = eventService.Get(model.UniqueName);
                 if (existing != null)
@@ -109,6 +108,7 @@
                 }
 
                 var @event = model.ToDomain();
+                @event.Interests = selectedInterests;
 
                 var group = groupService.Get(model.GroupId);
                 if (group == null)
@@ -155,7 +155,11 @@
                 //    throw new Exception("");
                 //}
 
+                var selectedInterests = GetSelectedInterests(eventService, model);
+
                 model.UpdateDomain(@event);
+                @event.Interests = selectedInterests;
+
                 var currentUser = userService.GetUser(Context.CurrentUser.UserName);
                 
                 eventService.Save(@event, currentUser);
@@ -182,6 +186,16 @@
                 return Response.AsRedirect("admin")
                                 .WithStatusCode(HttpStatusCode.OK);
             };
+        }
+
+        private static List<Interest> GetSelectedInterests(IEventService eventService, AdminEventViewModel model)
+        {
+            var interests = eventService.GetInterests();
+
+            var selectedInterestIds = string.IsNullOrEmpty(model.Interests) ? new int[0] : model.Interests.Split(',').Select(int.Parse).ToArray();
+            var selectedInterests = interests.Where(i => selectedInterestIds.Contains(i.Id)).ToList();
+            model.AvailableInterests = interests.Select(x => AdminInterestViewModel.FromDomain(x, selectedInterests)).ToList();
+            return selectedInterests;
         }
     }
 }

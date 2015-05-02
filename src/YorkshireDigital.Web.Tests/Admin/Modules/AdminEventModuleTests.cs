@@ -252,6 +252,12 @@
                 });
             A.CallTo(() => userService.GetUser("admin"))
                 .Returns(adminUser);
+            A.CallTo(() => eventService.GetInterests())
+                .Returns(new List<Interest>
+                {
+                    new Interest { Id = 1, Name = "Development"},
+                    new Interest { Id = 2, Name = "Design"}
+                });
             var start = DateTime.UtcNow.AddHours(-1);
             var end = DateTime.UtcNow.AddHours(1);
 
@@ -268,6 +274,7 @@
                 with.FormValue("Region", "Leeds");
                 with.FormValue("Price", "1.2");
                 with.FormValue("GroupId", "existing-group");
+                with.FormValue("Interests", "1,2");
                 with.Cookie(CsrfToken.DEFAULT_CSRF_KEY, csrfToken);
                 with.FormValue(CsrfToken.DEFAULT_CSRF_KEY, csrfToken);
             });
