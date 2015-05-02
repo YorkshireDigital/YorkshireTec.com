@@ -1,6 +1,8 @@
 ﻿namespace YorkshireDigital.Web.Admin.ViewModels
 {
     using System;
+    using System.Collections.Generic;
+    using System.Web.UI.WebControls;
     using AutoMapper;
     using YorkshireDigital.Data.Domain.Events;
 
@@ -17,6 +19,14 @@
         public byte[] Photo { get; set; }
         public string GroupName { get; set; }
         public string GroupId { get; set; }
+        public string Interests { get; set; }
+
+        public List<AdminInterestViewModel> AvailableInterests { get; set; }
+
+        public AdminEventViewModel()
+        {
+            AvailableInterests = new List<AdminInterestViewModel>();
+        }
 
         public static AdminEventViewModel FromDomain(Event @event)
         {

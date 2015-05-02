@@ -417,6 +417,7 @@
     <Compile Include="Admin\ViewModels\AdminEventListViewModel.cs" />
     <Compile Include="Admin\ViewModels\AdminGroupListViewModel.cs" />
     <Compile Include="Admin\ViewModels\AdminIndexViewModel.cs" />
+    <Compile Include="Admin\ViewModels\AdminInterestViewModel.cs" />
     <Compile Include="Admin\ViewModels\AdminUserListViewModel.cs" />
     <Compile Include="Admin\ViewModels\AdminUserViewModel.cs" />
     <Compile Include="Events\Modules\EventsModule.cs" />

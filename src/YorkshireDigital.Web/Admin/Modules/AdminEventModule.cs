@@ -1,8 +1,11 @@
 ﻿namespace YorkshireDigital.Web.Admin.Modules
 {
     using System;
+    using System.Linq;
+    using System.Web.UI.WebControls;
     using Nancy;
     using Nancy.Security;
+    using NHibernate.Linq;
     using YorkshireDigital.Data.Services;
     using YorkshireDigital.Web.Admin.ViewModels;
     using YorkshireDigital.Web.Infrastructure;
@@ -24,10 +27,13 @@
 
             Get[""] = _ =>
             {
+                var interests = eventService.GetInterests();
+
                 var model = new AdminEventViewModel
                 {
                     Start = DateTime.Today,
-                    End = DateTime.Today
+                    End = DateTime.Today,
+                    AvailableInterests = interests.Select(AdminInterestViewModel.FromDomain).ToList()
                 };
 
                 var groupId = Request.Query["groupId"];
@@ -64,8 +70,12 @@
                 {
                     return HttpStatusCode.NotFound;
                 }
+                
+                var model = AdminEventViewModel.FromDomain(@event);
+                var interests = eventService.GetInterests();
+                model.AvailableInterests = interests.Select(AdminInterestViewModel.FromDomain).ToList();
 
-                return Negotiate.WithModel(AdminEventViewModel.FromDomain(@event))
+                return Negotiate.WithModel(model)
                                 .WithView("Event");
 
             };
@@ -83,6 +93,9 @@
                                 .WithView("NewEvent")
                                 .WithStatusCode(HttpStatusCode.BadRequest);
                 }
+
+                var interests = eventService.GetInterests();
+                model.AvailableInterests = interests.Select(AdminInterestViewModel.FromDomain).ToList();
 
                 var existing = eventService.Get(model.UniqueName);
                 if (existing != null)
@@ -109,10 +122,7 @@
                 
                 eventService.Save(@event, currentUser);
 
-                return Negotiate.WithModel(AdminEventViewModel.FromDomain(@event))
-                                .WithView("Event")
-                                .WithStatusCode(HttpStatusCode.Created);
-
+                return Response.AsRedirect("/admin/event/" + @event.UniqueName);
             };
 
             Post["/{eventId}"] = _ =>
@@ -148,9 +158,7 @@
                 
                 eventService.Save(@event, currentUser);
 
-                return Negotiate.WithModel(AdminEventViewModel.FromDomain(@event))
-                                .WithView("Event")
-                                .WithStatusCode(HttpStatusCode.OK);
+                return Response.AsRedirect("/admin/event/" + @event.UniqueName);
             };
 
             Delete["/"] = _ => HttpStatusCode.NotFound;

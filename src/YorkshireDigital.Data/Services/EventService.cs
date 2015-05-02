@@ -16,6 +16,7 @@
         void Delete(string eventId, User user);
         List<Event> GetWithinRange(DateTime from, DateTime to);
         List<Event> Query(DateTime? from, DateTime? to, string[] interests, string[] locations, int? skip, int? take, bool includeDeleted = false);
+        List<Interest> GetInterests();
     }
 
     public class EventService : IEventService
@@ -94,6 +95,11 @@
             }
 
             return query.ToList();
+        }
+
+        public List<Interest> GetInterests()
+        {
+            return session.Query<Interest>().ToList();
         }
     }
 }

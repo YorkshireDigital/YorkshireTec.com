@@ -83,6 +83,12 @@
         public void GetRequest_NoParameters_ReturnsViewWithNewEventModel()
         {
             // Arrange
+            A.CallTo(() => eventService.GetInterests())
+                .Returns(new List<Interest>
+                {
+                    new Interest { Id = 1, Name = "Development"},
+                    new Interest { Id = 2, Name = "Design"}
+                });
 
             // Act
             var response = browser.Get("/admin/event", with => with.HttpRequest());
@@ -93,6 +99,9 @@
             model.UniqueName.ShouldBeEquivalentTo(null);
             model.Start.ShouldBeEquivalentTo(DateTime.Today);
             model.End.ShouldBeEquivalentTo(DateTime.Today);
+            model.AvailableInterests.Count.ShouldBeEquivalentTo(2);
+            model.AvailableInterests[0].Name.ShouldBeEquivalentTo("Development");
+            model.AvailableInterests[1].Name.ShouldBeEquivalentTo("Design");
         }
 
         [Test]
@@ -104,6 +113,12 @@
                 {
                     Id = "existing-group",
                     Name = "Existing Group"
+                });
+            A.CallTo(() => eventService.GetInterests())
+                .Returns(new List<Interest>
+                {
+                    new Interest { Id = 1, Name = "Development"},
+                    new Interest { Id = 2, Name = "Design"}
                 });
 
             // Act
@@ -119,6 +134,9 @@
             response.GetViewName().ShouldBeEquivalentTo("NewEvent");
             model.GroupId.ShouldBeEquivalentTo("existing-group");
             model.UniqueName.ShouldBeEquivalentTo(string.Format("existing-group-{0}-{1}", DateTime.Now.ToString("MMM").ToLower(), @DateTime.Now.ToString("yyyy")));
+            model.AvailableInterests.Count.ShouldBeEquivalentTo(2);
+            model.AvailableInterests[0].Name.ShouldBeEquivalentTo("Development");
+            model.AvailableInterests[1].Name.ShouldBeEquivalentTo("Design");
         }
 
         [Test]
@@ -237,21 +255,9 @@
                 with.Cookie(CsrfToken.DEFAULT_CSRF_KEY, csrfToken);
                 with.FormValue(CsrfToken.DEFAULT_CSRF_KEY, csrfToken);
             });
-            var model = response.GetModel<AdminEventViewModel>();
 
             // Assert
-            response.StatusCode.ShouldBeEquivalentTo(HttpStatusCode.Created);
             A.CallTo(() => eventService.Save(A<Event>.Ignored, adminUser)).MustHaveHappened();
-            model.UniqueName.ShouldBeEquivalentTo("new-event");
-            model.Title.ShouldBeEquivalentTo("New Event");
-            model.Synopsis.ShouldBeEquivalentTo("New event details");
-            model.Start.ShouldBeEquivalentTo(DateTime.Parse(start.ToString("yyyy-MM-dd hh:mm")));
-            model.End.ShouldBeEquivalentTo(DateTime.Parse(end.ToString("yyyy-MM-dd hh:mm")));
-            model.Location.ShouldBeEquivalentTo("Venue X");
-            model.Region.ShouldBeEquivalentTo("Leeds");
-            model.Price.ShouldBeEquivalentTo(1.2m);
-            model.GroupId.ShouldBeEquivalentTo("existing-group");
-            model.GroupName.ShouldBeEquivalentTo("Existing Group");
         }
 
         [Test]
@@ -318,8 +324,6 @@
         public void PostRequest_WithEventId_UpdatesEvent()
         {
             // Arrange
-            var start = DateTime.UtcNow.AddHours(-1);
-            var end = DateTime.UtcNow.AddHours(1);
             A.CallTo(() => eventService.Get("existing-event"))
                 .Returns(new Event
                 {
@@ -342,27 +346,17 @@
                 with.FormValue("UniqueName", "existing-event");
                 with.FormValue("Title", "Updated Event");
                 with.FormValue("Synopsis", "Updated event details");
-                with.FormValue("Start", start.ToString("yyyy-MM-dd hh:mm"));
-                with.FormValue("End", end.ToString("yyyy-MM-dd hh:mm"));
+                with.FormValue("Start", "2015-01-02 12:00");
+                with.FormValue("End", "2015-01-02 13:00");
                 with.FormValue("Location", "Venue Y");
                 with.FormValue("Region", "York");
                 with.FormValue("Price", "2.2");
                 with.Cookie(CsrfToken.DEFAULT_CSRF_KEY, csrfToken);
                 with.FormValue(CsrfToken.DEFAULT_CSRF_KEY, csrfToken);
             });
-            var model = response.GetModel<AdminEventViewModel>();
 
             // Assert
-            response.StatusCode.ShouldBeEquivalentTo(HttpStatusCode.OK);
             A.CallTo(() => eventService.Save(A<Event>.Ignored, adminUser)).MustHaveHappened();
-            model.UniqueName.ShouldBeEquivalentTo("existing-event");
-            model.Title.ShouldBeEquivalentTo("Updated Event");
-            model.Synopsis.ShouldBeEquivalentTo("Updated event details");
-            model.Start.ShouldBeEquivalentTo(DateTime.Parse(start.ToString("yyyy-MM-dd hh:mm")));
-            model.End.ShouldBeEquivalentTo(DateTime.Parse(end.ToString("yyyy-MM-dd hh:mm")));
-            model.Location.ShouldBeEquivalentTo("Venue Y");
-            model.Region.ShouldBeEquivalentTo("York");
-            model.Price.ShouldBeEquivalentTo(2.2m);
         }
 
         [Test]

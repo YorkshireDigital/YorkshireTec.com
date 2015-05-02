@@ -496,5 +496,31 @@ namespace YorkshireDigital.Data.Tests.InMemoryTests.Services
             result[1].UniqueName.ShouldBeEquivalentTo("2");
             result[2].UniqueName.ShouldBeEquivalentTo("3");
         }
+
+        [Test]
+        public void GetInterests_ReturnsAllInterests()
+        {
+            // Arrange
+            var interest1 = new Interest
+            {
+                Id = 1,
+                Name = "Development"
+            };
+            var interest2 = new Interest
+            {
+                Id = 1,
+                Name = "Design"
+            };
+            Session.Save(interest1);
+            Session.Save(interest2);
+
+            // Act
+            var interests = service.GetInterests();
+
+            // Assert
+            interests.Count.ShouldBeEquivalentTo(2);
+            interests[0].Name.ShouldBeEquivalentTo("Development");
+            interests[1].Name.ShouldBeEquivalentTo("Design");
+        }
     }
 }

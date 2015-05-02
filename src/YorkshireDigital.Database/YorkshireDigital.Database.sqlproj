@@ -73,6 +73,7 @@
     <None Include="Data\UserRole.sql" />
     <None Include="Data\User.sql" />
     <None Include="YorkshireDigital.Database.nuspec" />
+    <None Include="Data\Interest.sql" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\Category.sql" />

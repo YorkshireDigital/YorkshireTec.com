@@ -52,6 +52,17 @@
 </div>
 
 <div class="form-group">
+    <label>Interests</label>
+    <select name="interests" multiple class="input-full field">
+        @foreach (var item in Model.AvailableInterests)
+        {
+            <option value="@item.Id" @(item.Selected ? "selected" : string.Empty)>@item.Name</option>
+        }
+    </select>
+    @Html.ValidationMessageFor("AvailableInterests")
+</div>
+
+<div class="form-group">
     <label>Group Id</label>
     <input type="text" placeholder="e.g. bradford-clojure" name="groupId" class="input-full field" value="@Model.GroupId" required />
     @Html.ValidationMessageFor("GroupId")

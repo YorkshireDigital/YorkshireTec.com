@@ -12,3 +12,4 @@ Post-Deployment Script Template
 :r .\Data\UserRole.sql
 :r .\Data\User.sql
 :r .\Data\UserRoleToUser.sql
+:r .\Data\Interest.sql
