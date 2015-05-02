@@ -26,6 +26,7 @@
             Map(x => x.LastEditedOn);
             References(x => x.LastEditedBy);
             Map(x => x.DeletedOn);
+            References(x => x.DeletedBy);
 
             HasMany(x => x.ContactLinks)
                 .Cascade.All();

@@ -123,7 +123,9 @@
                     return HttpStatusCode.NotFound;
                 }
 
-                groupService.Delete(groupId);
+                var currentUser = userService.GetUser(Context.CurrentUser.UserName);
+
+                groupService.Delete(groupId, currentUser);
 
                 return Response.AsRedirect("admin")
                                 .WithStatusCode(HttpStatusCode.OK);

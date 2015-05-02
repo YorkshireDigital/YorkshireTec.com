@@ -268,13 +268,15 @@
                 {
                     Id = "existing-group",
                 });
+            A.CallTo(() => userService.GetUser("admin"))
+                .Returns(adminUser);
 
             // Act
             var response = browser.Delete("/admin/group/existing-group", with => with.HttpRequest());
 
             // Assert
             response.StatusCode.ShouldBeEquivalentTo(HttpStatusCode.OK);
-            A.CallTo(() => groupService.Delete("existing-group")).MustHaveHappened();
+            A.CallTo(() => groupService.Delete("existing-group", adminUser)).MustHaveHappened();
         }
 
         [Test]

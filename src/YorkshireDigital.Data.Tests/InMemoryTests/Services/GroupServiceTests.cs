@@ -130,15 +130,22 @@
         public void Delete_MarksGroupAsDeleted_WhereGroupExists()
         {
             // Arrange
+            var user = new User
+            {
+                Id = Guid.NewGuid(),
+                Username = "test-user"
+            };
+            Session.Save(user);
             var group = new Group { Id = "test-group-1", Name = "Test Group 1" };
             Session.Save(group);
 
             // Act
-            groupService.Delete("test-group-1");
+            groupService.Delete("test-group-1", user);
             var result = Session.Load<Group>("test-group-1");
 
             // Assert
             result.IsDeleted.Should().BeTrue();
+            result.DeletedBy.Username.ShouldBeEquivalentTo("test-user");
         }
 
         [Test]
@@ -148,7 +155,7 @@
             // Arrange
 
             // Act
-            groupService.Delete("test-group-1");
+            groupService.Delete("test-group-1", null);
             
             // Assert
         }
