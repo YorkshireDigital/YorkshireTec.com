@@ -1,11 +1,13 @@
 ﻿namespace YorkshireDigital.Web.Admin.Modules
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Web.UI.WebControls;
     using Nancy;
     using Nancy.Security;
     using NHibernate.Linq;
+    using YorkshireDigital.Data.Domain.Events;
     using YorkshireDigital.Data.Services;
     using YorkshireDigital.Web.Admin.ViewModels;
     using YorkshireDigital.Web.Infrastructure;
@@ -33,7 +35,7 @@
                 {
                     Start = DateTime.Today,
                     End = DateTime.Today,
-                    AvailableInterests = interests.Select(AdminInterestViewModel.FromDomain).ToList()
+                    AvailableInterests = interests.Select(x => AdminInterestViewModel.FromDomain(x, new List<Interest>())).ToList()
                 };
 
                 var groupId = Request.Query["groupId"];
@@ -73,7 +75,7 @@
                 
                 var model = AdminEventViewModel.FromDomain(@event);
                 var interests = eventService.GetInterests();
-                model.AvailableInterests = interests.Select(AdminInterestViewModel.FromDomain).ToList();
+                model.AvailableInterests = interests.Select(x => AdminInterestViewModel.FromDomain(x, @event.Interests)).ToList();
 
                 return Negotiate.WithModel(model)
                                 .WithView("Event");
@@ -95,7 +97,7 @@
                 }
 
                 var interests = eventService.GetInterests();
-                model.AvailableInterests = interests.Select(AdminInterestViewModel.FromDomain).ToList();
+                model.AvailableInterests = interests.Select(x => AdminInterestViewModel.FromDomain(x, new List<Interest>())).ToList();
 
                 var existing = eventService.Get(model.UniqueName);
                 if (existing != null)

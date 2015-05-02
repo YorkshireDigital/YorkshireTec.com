@@ -173,6 +173,13 @@
             var start = DateTime.UtcNow.AddHours(-1);
             var end = DateTime.UtcNow.AddHours(1);
 
+            A.CallTo(() => eventService.GetInterests())
+                .Returns(new List<Interest>
+                {
+                    new Interest { Id = 1, Name = "Development"},
+                    new Interest { Id = 2, Name = "Design"}
+                });
+
             A.CallTo(() => eventService.Get("existing-event"))
                 .Returns(new Event
                 {
@@ -188,6 +195,10 @@
                     {
                         Id = "existing-group",
                         Name = "Existing Group"
+                    },
+                    Interests = new List<Interest>
+                    {
+                        new Interest {Id = 1, Name = "Development"}
                     }
                 });
 
@@ -207,6 +218,11 @@
             model.Price.ShouldBeEquivalentTo(1.2m);
             model.GroupName.ShouldBeEquivalentTo("Existing Group");
             model.GroupId.ShouldBeEquivalentTo("existing-group");
+            model.AvailableInterests.Count.ShouldBeEquivalentTo(2);
+            model.AvailableInterests[0].Name.ShouldBeEquivalentTo("Development");
+            model.AvailableInterests[0].Selected.Should().BeTrue();
+            model.AvailableInterests[1].Name.ShouldBeEquivalentTo("Design");
+            model.AvailableInterests[1].Selected.Should().BeFalse();
         }
 
         [Test]

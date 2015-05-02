@@ -114,6 +114,7 @@
     <Compile Include="Admin\Modules\AdminModuleTests.cs" />
     <Compile Include="Admin\ViewModels\AdminEventViewModelTests.cs" />
     <Compile Include="Admin\ViewModels\AdminGroupViewModelTests.cs" />
+    <Compile Include="Admin\ViewModels\AdminInterestViewModelTests.cs" />
     <Compile Include="ApiViewFactory.cs" />
     <Compile Include="Events\Modules\EventModuleTests.cs" />
     <Compile Include="Events\Modules\EventsModuleTests.cs" />
