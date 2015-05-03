@@ -33,6 +33,25 @@
                     });
                 }
             });
+
+            var updateSynopsisHtml = function() {
+                var markdown = $('.js-synopsis').val();
+                var html = marked(markdown);
+                $('#synopsis-html').html(html);
+            };
+
+            updateSynopsisHtml();
+            $(document).on('change', '.js-synopsis', updateSynopsisHtml);
+            $(document).on('click', '#preview-synopsis', function (e) {
+                e.preventDefault();
+                $('#synopsis-edit').hide();
+                $('#synopsis-preview').show();
+            });
+            $(document).on('click', '#edit-synopsis', function (e) {
+                e.preventDefault();
+                $('#synopsis-preview').hide();
+                $('#synopsis-edit').show();
+            });
         });
     </script>
     <script type="text/javascript" src="/public/scripts/vendor/chosen.jquery.min.js"></script>
