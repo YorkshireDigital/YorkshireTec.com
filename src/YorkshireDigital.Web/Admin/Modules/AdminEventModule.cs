@@ -161,6 +161,17 @@
                 var @event = model.ToDomain();
                 @event.Interests = selectedInterests;
 
+                var group = groupService.Get(model.GroupId);
+                if (group == null)
+                {
+                    AddError("GroupId", "No group exists with this id.");
+                    return Negotiate.WithModel(model)
+                                .WithView("NewEvent")
+                                .WithStatusCode(HttpStatusCode.BadRequest);
+                }
+
+                @event.Group = group;
+
                 var currentUser = userService.GetUser(Context.CurrentUser.UserName);
 
                 eventService.Save(@event, currentUser);
