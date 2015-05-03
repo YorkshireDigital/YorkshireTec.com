@@ -39,7 +39,7 @@
         }
 
     });
-    $('textarea', '.markdown-editor').change(function() {
+    $(document).on('change', 'div.markdown-editor textarea', function (e) {
         var $editor = $(this).parent('.markdown-editor');
         var $preview = $('.markdown-preview', $editor);
 
