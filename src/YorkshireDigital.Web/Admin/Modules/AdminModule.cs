@@ -17,6 +17,9 @@
 
             Get["/"] = _ =>
             {
+                string tab = Request.Query["tab"];
+                ViewBag.Tab = tab ?? "Events";
+
                 var users = userService.GetActiveUsers(20, 0);
                 var events = eventService.Query(SqlDateTime.MinValue.Value, SqlDateTime.MaxValue.Value, new string[0], new string[0], 0, 20);
                 var groups = groupService.GetActiveGroups(20, 0);

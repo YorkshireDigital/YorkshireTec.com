@@ -166,6 +166,7 @@
     <Content Include="public\scripts\app\markdown-editor.js" />
     <Content Include="public\scripts\app\pages\account-mailinglist.js" />
     <Content Include="public\scripts\app\pages\betaBanner.js" />
+    <Content Include="public\scripts\app\pages\event-admin.js" />
     <Content Include="public\scripts\app\pages\tabs.js" />
     <Content Include="public\scripts\app\pages\eventsCalendar.js" />
     <Content Include="public\scripts\app\validation.js" />
