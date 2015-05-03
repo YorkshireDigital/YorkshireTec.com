@@ -15,18 +15,10 @@
     @Html.ValidationMessageFor("UniqueName")
 </div>
 
-<div class="form-group" id="synopsis-edit">
+<div class="form-group markdown-editor" id="synopsis-edit">
     <label>Synopsis (markdown)</label>
-    <textarea placeholder="Tell us about the event" name="synopsis" class="input-full field js-synopsis" required style="height: 350px;">@Model.Synopsis</textarea>
+    <textarea placeholder="Tell us about the event" name="synopsis" class="input-full field js-synopsis" required >@Model.Synopsis</textarea>
     @Html.ValidationMessageFor("Synopsis")
-    <a href="#" id="preview-synopsis">Preview</a>
-    <a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet" target="_black" style="float: right;">Markdown Help</a>
-</div>
-
-<div class="form-group" id="synopsis-preview" style="display: none;">
-    <label>Synopsis (preview)</label>
-    <div id="synopsis-html" style="padding: .5em;  border: 1px solid #ccc; -moz-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px; height: 350px; overflow-y: scroll;"></div>
-    <a href="#" id="edit-synopsis">Edit</a>
 </div>
 
 <div class="form-group">
