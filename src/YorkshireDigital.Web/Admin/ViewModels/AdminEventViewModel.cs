@@ -21,10 +21,12 @@
         public string Interests { get; set; }
 
         public List<AdminInterestViewModel> AvailableInterests { get; set; }
+        public List<AdminEventTalkViewModel> Talks { get; set; }
 
         public AdminEventViewModel()
         {
             AvailableInterests = new List<AdminInterestViewModel>();
+            Talks = new List<AdminEventTalkViewModel>();
         }
 
         public static AdminEventViewModel FromDomain(Event @event)

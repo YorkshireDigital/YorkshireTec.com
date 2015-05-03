@@ -5,6 +5,7 @@
     using System.Linq;
     using System.Web.UI.WebControls;
     using Nancy;
+    using Nancy.ModelBinding;
     using Nancy.Security;
     using NHibernate.Linq;
     using YorkshireDigital.Data.Domain.Events;
@@ -35,7 +36,8 @@
                 {
                     Start = DateTime.Today,
                     End = DateTime.Today,
-                    AvailableInterests = interests.Select(x => AdminInterestViewModel.FromDomain(x, new List<Interest>())).ToList()
+                    AvailableInterests = interests.Select(x => AdminInterestViewModel.FromDomain(x, new List<Interest>())).ToList(),
+                    Talks = new List<AdminEventTalkViewModel> { new AdminEventTalkViewModel() }
                 };
 
                 var groupId = Request.Query["groupId"];
@@ -134,10 +136,9 @@
                 string eventId = _.eventId.ToString();
                 AdminEventViewModel model;
                 var result = BindAndValidateModel(out model);
+                model.Talks = this.Bind();
 
-                var @event = eventService.Get(eventId);
-
-                if (@event == null)
+                if (!eventService.EventExists(eventId))
                 {
                     return HttpStatusCode.NotFound;
                 }
@@ -157,11 +158,11 @@
 
                 var selectedInterests = GetSelectedInterests(eventService, model);
 
-                model.UpdateDomain(@event);
+                var @event = model.ToDomain();
                 @event.Interests = selectedInterests;
 
                 var currentUser = userService.GetUser(Context.CurrentUser.UserName);
-                
+
                 eventService.Save(@event, currentUser);
 
                 return Response.AsRedirect("/admin/event/" + @event.UniqueName);

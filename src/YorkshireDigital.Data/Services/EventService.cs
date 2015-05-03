@@ -17,6 +17,7 @@
         List<Event> GetWithinRange(DateTime from, DateTime to);
         List<Event> Query(DateTime? from, DateTime? to, string[] interests, string[] locations, int? skip, int? take, bool includeDeleted = false);
         List<Interest> GetInterests();
+        bool EventExists(string eventId);
     }
 
     public class EventService : IEventService
@@ -32,6 +33,7 @@
         {
             eventToSave.LastEditedOn = DateTime.UtcNow;
             eventToSave.LastEditedBy = user;
+
             session.SaveOrUpdate(eventToSave);
         }
 
@@ -100,6 +102,19 @@
         public List<Interest> GetInterests()
         {
             return session.Query<Interest>().ToList();
+        }
+
+        public bool EventExists(string eventId)
+        {
+            var @event = Get(eventId);
+
+            if (@event == null)
+            {
+                return false;
+            }
+
+            session.Evict(@event);
+            return true;
         }
     }
 }

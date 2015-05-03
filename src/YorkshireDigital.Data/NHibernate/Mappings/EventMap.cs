@@ -34,7 +34,8 @@
             HasManyToMany(x => x.Categories);
             HasManyToMany(x => x.Interests);
 
-            HasMany(x => x.Talks);
+            HasMany(x => x.Talks)
+                .Cascade.All();
         }
     }
 }

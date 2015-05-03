@@ -102,6 +102,7 @@
             model.AvailableInterests.Count.ShouldBeEquivalentTo(2);
             model.AvailableInterests[0].Name.ShouldBeEquivalentTo("Development");
             model.AvailableInterests[1].Name.ShouldBeEquivalentTo("Design");
+            model.Talks.Count.ShouldBeEquivalentTo(1);
         }
 
         [Test]
@@ -199,6 +200,10 @@
                     Interests = new List<Interest>
                     {
                         new Interest {Id = 1, Name = "Development"}
+                    },
+                    Talks = new List<EventTalk>
+                    {
+                        new EventTalk { Id = 1, Link = "http://google.com", Speaker = "Bob", Title = "Super talk", Synopsis = "Super talk details"}
                     }
                 });
 
@@ -223,6 +228,12 @@
             model.AvailableInterests[0].Selected.Should().BeTrue();
             model.AvailableInterests[1].Name.ShouldBeEquivalentTo("Design");
             model.AvailableInterests[1].Selected.Should().BeFalse();
+            model.Talks.Count.ShouldBeEquivalentTo(1);
+            model.Talks[0].Id.ShouldBeEquivalentTo(1);
+            model.Talks[0].Link.ShouldBeEquivalentTo("http://google.com");
+            model.Talks[0].Speaker.ShouldBeEquivalentTo("Bob");
+            model.Talks[0].Title.ShouldBeEquivalentTo("Super talk");
+            model.Talks[0].Synopsis.ShouldBeEquivalentTo("Super talk details");
         }
 
         [Test]
@@ -347,18 +358,8 @@
         public void PostRequest_WithEventId_UpdatesEvent()
         {
             // Arrange
-            A.CallTo(() => eventService.Get("existing-event"))
-                .Returns(new Event
-                {
-                    UniqueName = "existing-event",
-                    Title = "Existing Event",
-                    Synopsis = "Existing event details",
-                    Start = DateTime.UtcNow,
-                    End = DateTime.UtcNow,
-                    Location = "Venue X",
-                    Region = "Leeds",
-                    Price = 1.2m
-                });
+            A.CallTo(() => eventService.EventExists(A<string>.Ignored))
+                .Returns(true);
             A.CallTo(() => userService.GetUser("admin"))
                 .Returns(adminUser);
 

@@ -163,6 +163,7 @@
     <Content Include="packages.config" />
     <Content Include="public\content\logo-hey-stac.jpg" />
     <Content Include="public\scripts\app\ajaxCsrf.js" />
+    <Content Include="public\scripts\app\markdown-editor.js" />
     <Content Include="public\scripts\app\pages\account-mailinglist.js" />
     <Content Include="public\scripts\app\pages\betaBanner.js" />
     <Content Include="public\scripts\app\pages\tabs.js" />
@@ -207,6 +208,9 @@
     <Content Include="Admin\Views\_Group.cshtml" />
     <Content Include="Admin\Views\NewEvent.cshtml" />
     <Content Include="Admin\Views\_Event.cshtml" />
+    <Content Include="public\scripts\main.min.js.map">
+      <DependentUpon>main.min.js</DependentUpon>
+    </Content>
     <None Include="public\scripts\vendor\jquery-2.1.1.intellisense.js" />
     <Content Include="public\scripts\vendor\jquery-2.1.1.intellisense.min.js" />
     <Content Include="public\scripts\vendor\jquery-2.1.1.js" />
@@ -415,6 +419,7 @@
     <Compile Include="Admin\Modules\AdminEventModule.cs" />
     <Compile Include="Admin\Modules\AdminGroupModule.cs" />
     <Compile Include="Admin\Modules\AdminUserModule.cs" />
+    <Compile Include="Admin\ViewModels\AdminEventTalkViewModel.cs" />
     <Compile Include="Admin\ViewModels\AdminEventViewModel.cs" />
     <Compile Include="Admin\ViewModels\AdminGroupViewModel.cs" />
     <Compile Include="Admin\Modules\AdminModule.cs" />

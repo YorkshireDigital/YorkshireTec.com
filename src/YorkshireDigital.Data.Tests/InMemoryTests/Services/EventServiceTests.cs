@@ -30,7 +30,8 @@ namespace YorkshireDigital.Data.Tests.InMemoryTests.Services
             {
                 UniqueName = "1",
                 Title = string.Format("Test Event {0}", DateTime.Now.ToString("yyyyMMddhhmmssss")),
-                Interests = new[] { new Interest { Name = "Development" }, new Interest { Name = "Design" } }
+                Interests = new[] { new Interest { Name = "Development" }, new Interest { Name = "Design" } },
+                Talks = new []{ new EventTalk { Id = 1, Title = "Super talk", } }
             };
             var user = new User
             {
@@ -52,6 +53,9 @@ namespace YorkshireDigital.Data.Tests.InMemoryTests.Services
             result.Interests.Count.ShouldBeEquivalentTo(2);
             result.Interests[0].Name.ShouldBeEquivalentTo("Development");
             result.Interests[1].Name.ShouldBeEquivalentTo("Design");
+            result.Talks.Count.ShouldBeEquivalentTo(1);
+            result.Talks[0].Id.ShouldBeEquivalentTo(1);
+            result.Talks[0].Title.ShouldBeEquivalentTo("Super talk");
         }
 
         [Test]
@@ -74,6 +78,7 @@ namespace YorkshireDigital.Data.Tests.InMemoryTests.Services
             };
             Session.Save(user);
             myEvent.Title = string.Format("Updated Event {0}", DateTime.Now.ToString("yyyyMMddhhmmssss"));
+            myEvent.Interests = new[] {new Interest {Name = "Design"}};
             myEvent.Interests = new[] {new Interest {Name = "Design"}};
             var saveStart = DateTime.UtcNow;
 
@@ -529,6 +534,31 @@ namespace YorkshireDigital.Data.Tests.InMemoryTests.Services
             interests.Count.ShouldBeEquivalentTo(2);
             interests[0].Name.ShouldBeEquivalentTo("Development");
             interests[1].Name.ShouldBeEquivalentTo("Design");
+        }
+
+        [Test]
+        public void EventExists_IfEventExists_ReturnsTrue()
+        {
+            // Arrange
+            Session.Save(new Event { UniqueName = "1" });
+
+            // Act
+            var result = service.EventExists("1");
+
+            // Assert
+            result.Should().BeTrue();
+        }
+
+        [Test]
+        public void EventExists_IfEventNotExists_ReturnsFalse()
+        {
+            // Arrange
+
+            // Act
+            var result = service.EventExists("1");
+
+            // Assert
+            result.Should().BeFalse();
         }
     }
 }
