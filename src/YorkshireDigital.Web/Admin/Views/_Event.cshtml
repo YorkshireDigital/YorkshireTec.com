@@ -53,7 +53,7 @@
 
 <div class="form-group">
     <label>Interests</label>
-    <select name="interests" multiple class="input-full field">
+    <select name="interests" multiple class="input-full field no-expand chosen-select">
         @foreach (var item in Model.AvailableInterests)
         {
             <option value="@item.Id" @(item.Selected ? "selected" : string.Empty)>@item.Name</option>

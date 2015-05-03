@@ -1200,6 +1200,12 @@ select {
   margin: .2em;
 }
 
+    select.no-expand {
+        width: 100%;
+        max-width: 100%;
+        min-width: 100%;
+    }
+
 /* This hides native dropdown button arrow in IE */
 select::-ms-expand {
   display: none;

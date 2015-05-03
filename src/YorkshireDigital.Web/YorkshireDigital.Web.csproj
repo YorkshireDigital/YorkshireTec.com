@@ -174,6 +174,10 @@
     <Content Include="public\scripts\grunticon.loader.min.js" />
     <Content Include="public\scripts\main.js" />
     <Content Include="public\scripts\main.min.js" />
+    <Content Include="public\scripts\vendor\chosen-sprite%402x.png" />
+    <Content Include="public\scripts\vendor\chosen-sprite.png" />
+    <Content Include="public\scripts\vendor\chosen.jquery.min.js" />
+    <Content Include="public\scripts\vendor\chosen.min.css" />
     <Content Include="public\scripts\vendor\clndr.js" />
     <Content Include="public\scripts\vendor\clndr.min.js">
       <DependentUpon>clndr.js</DependentUpon>
