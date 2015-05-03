@@ -63,28 +63,58 @@
     @Html.ValidationMessageFor("AvailableInterests")
 </div>
 <h2>Talks</h2>
-@foreach (var talk in Model.Talks.Select((value, i) => new { i, value }))
-{
-    <fieldset>
-        <input type="hidden" name="Id[@talk.i]" value="@talk.value.Id" />
-        <div class="form-group">
-            <label>Title</label>
-            <input type="text" name="Title[@talk.i]" class="input-full field" value="@talk.value.Title" />
+<a href='#' class="js-add-talk btn btn--positive">Add Talk</a>
+<div class="js-talks-wrapper">
+    <div class="js-talk-template is-hidden">
+        <fieldset>
+            <input type="hidden" name="Id[index]" value="" />
+            <span>Id[index]</span>
+            <div class="form-group">
+                <label>Title</label>
+                <input type="text" name="Title[index]" class="input-full field" value="" />
+            </div>
+            <div class="form-group">
+                <label>Speaker</label>
+                <input type="text" name="Speaker[index]" class="input-full field" value="" />
+            </div>
+            <div class="form-group">
+                <label>Link</label>
+                <input type="text" placeholder="http://twitter.com/speaker" name="Link[index]" class="input-full field" value="" />
+            </div>
+            <div class="form-group markdown-editor" id="synopsis-edit">
+                <label>Synopsis (markdown)</label>
+                <textarea placeholder="Tell us about the talk" name="Synopsis[index]" class="input-full field js-synopsis"></textarea>
+            </div>
+            <a href='#' class="js-remove-talk btn btn--negative">Remove Talk</a>
+        </fieldset>
+    </div>
+    @foreach (var talk in Model.Talks.Select((value, i) => new { i, value }))
+    {
+        <div class="js-talk-wrapper">
+            <fieldset>
+                <input type="hidden" name="Id[@talk.i]" value="@talk.value.Id" />
+                <span>Id[@talk.i]</span>
+                <div class="form-group">
+                    <label>Title</label>
+                    <input type="text" name="Title[@talk.i]" class="input-full field" value="@talk.value.Title" />
+                </div>
+                <div class="form-group">
+                    <label>Speaker</label>
+                    <input type="text" name="Speaker[@talk.i]" class="input-full field" value="@talk.value.Speaker" />
+                </div>
+                <div class="form-group">
+                    <label>Link</label>
+                    <input type="text" placeholder="http://twitter.com/speaker" name="Link[@talk.i]" class="input-full field" value="@talk.value.Link" />
+                </div>
+                <div class="form-group markdown-editor" id="synopsis-edit">
+                    <label>Synopsis (markdown)</label>
+                    <textarea placeholder="Tell us about the talk" name="Synopsis[@talk.i]" class="input-full field js-synopsis" required>@talk.value.Synopsis</textarea>
+                </div>
+                <a href='#' class="js-remove-talk btn btn--negative">Remove Talk</a>
+            </fieldset>
         </div>
-        <div class="form-group">
-            <label>Speaker</label>
-            <input type="text" name="Speaker[@talk.i]" class="input-full field" value="@talk.value.Speaker" />
-        </div>
-        <div class="form-group">
-            <label>Link</label>
-            <input type="text" placeholder="http://twitter.com/speaker" name="Link[@talk.i]" class="input-full field" value="@talk.value.Link" />
-        </div>
-        <div class="form-group markdown-editor" id="synopsis-edit">
-            <label>Synopsis (markdown)</label>
-            <textarea placeholder="Tell us about the talk" name="Synopsis[@talk.i]" class="input-full field js-synopsis" required>@talk.value.Synopsis</textarea>
-        </div>
-    </fieldset>
-}
+    }
+</div>
 
 <div class="form-group">
     <label>Group Id</label>
