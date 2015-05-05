@@ -24,6 +24,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YorkshireDigital.Web.Tests"
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "YorkshireDigital.Database", "YorkshireDigital.Database\YorkshireDigital.Database.sqlproj", "{EC4B9410-7848-4C4E-819B-210F6006BA90}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ApiWrappers", "ApiWrappers", "{7D065D25-6B05-4582-A86D-6757E2D6A9E6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YorkshireDigital.MeetupApi", "YorkshireDigital.MeetupApi\YorkshireDigital.MeetupApi.csproj", "{0496202E-DB70-401A-A41A-12B5D0D5D78A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Alpha|Any CPU = Alpha|Any CPU
@@ -126,6 +130,20 @@ Global
 		{EC4B9410-7848-4C4E-819B-210F6006BA90}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EC4B9410-7848-4C4E-819B-210F6006BA90}.Release|Any CPU.Build.0 = Release|Any CPU
 		{EC4B9410-7848-4C4E-819B-210F6006BA90}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{0496202E-DB70-401A-A41A-12B5D0D5D78A}.Alpha|Any CPU.ActiveCfg = Release|Any CPU
+		{0496202E-DB70-401A-A41A-12B5D0D5D78A}.Alpha|Any CPU.Build.0 = Release|Any CPU
+		{0496202E-DB70-401A-A41A-12B5D0D5D78A}.Beta|Any CPU.ActiveCfg = Release|Any CPU
+		{0496202E-DB70-401A-A41A-12B5D0D5D78A}.Beta|Any CPU.Build.0 = Release|Any CPU
+		{0496202E-DB70-401A-A41A-12B5D0D5D78A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0496202E-DB70-401A-A41A-12B5D0D5D78A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0496202E-DB70-401A-A41A-12B5D0D5D78A}.Live|Any CPU.ActiveCfg = Release|Any CPU
+		{0496202E-DB70-401A-A41A-12B5D0D5D78A}.Live|Any CPU.Build.0 = Release|Any CPU
+		{0496202E-DB70-401A-A41A-12B5D0D5D78A}.MonoDebug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0496202E-DB70-401A-A41A-12B5D0D5D78A}.MonoDebug|Any CPU.Build.0 = Debug|Any CPU
+		{0496202E-DB70-401A-A41A-12B5D0D5D78A}.MonoRelease|Any CPU.ActiveCfg = Release|Any CPU
+		{0496202E-DB70-401A-A41A-12B5D0D5D78A}.MonoRelease|Any CPU.Build.0 = Release|Any CPU
+		{0496202E-DB70-401A-A41A-12B5D0D5D78A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0496202E-DB70-401A-A41A-12B5D0D5D78A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -133,5 +151,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{3AAEE183-2234-422D-9DA4-C16A524FBB61} = {C5B3EDAD-DCDF-4368-8C3C-A2E5BEDC4773}
 		{4FA8843B-F27B-4632-9B6D-5D7359D77072} = {C5B3EDAD-DCDF-4368-8C3C-A2E5BEDC4773}
+		{0496202E-DB70-401A-A41A-12B5D0D5D78A} = {7D065D25-6B05-4582-A86D-6757E2D6A9E6}
 	EndGlobalSection
 EndGlobal
