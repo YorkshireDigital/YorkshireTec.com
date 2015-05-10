@@ -6,12 +6,13 @@
 /* Partials */
 @import "partials/normalize"; 	// Edited version of Nicolas Galaghers Normalise
 @import "partials/base.scss";	// Global variables, global mixins & global styles such as clearfix
-@import "partials/typography";	// Global typographys settings such as hN header stack 
+@import "partials/typography";	// Global typographys settings such as hN header stack
 @import "partials/buttons";		// Button variations
 @import "partials/navigation";	// Navigation such as global nav, sub nav and tabs etc
 @import "partials/forms";		// Global form styles
 @import "partials/calendar";	// Calendar styles
 @import "partials/island";		// Block based layout elements
+@import "partials/card";		// Card content styles
 
 /*  =BASE
 ------------------------------------------------------------*/
@@ -31,7 +32,7 @@ body {
     min-width: 300px;
     max-width: 1200px;
     padding: 0 2em;
-    margin: 0 auto; 
+    margin: 0 auto;
 
     @include breakpoint(viewport-s) {
         padding: 0 .5em;
@@ -39,11 +40,11 @@ body {
 }
 
 .layout-constrained {
-	@extend %layout; 
+	@extend %layout;
 }
 
 .clndr {
-	margin-bottom: 2em;	
+	margin-bottom: 2em;
 }
 
 /*  =HERO BLOCK
@@ -75,7 +76,7 @@ body {
 	height: 177px;
 	margin: 0 3em 1.5em 0;
 	background: url(../img/logo-yorkshiredigital-reversed.svg) 0 100% no-repeat;
-	
+
 	.no-svg & {
 		background-image: url(../img/logo-yorkshiredigital-reversed.png);
 	}
