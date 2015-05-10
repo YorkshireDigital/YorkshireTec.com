@@ -1,6 +1,6 @@
 // Button style variant mixin
 @mixin button($btn-bg: $accent-primary) {
-	background: $btn-bg; 
+	background: $btn-bg;
 	border-color: darken( $btn-bg, 8% );
 	@include single-transition(background, .2s);
 
@@ -51,6 +51,12 @@
 	@include button($accent-negative);
 }
 
+// Social variations
+.btn--twitter {
+	@include button(#55acee);
+}
+
+
 /*  =BUTTON SIZE VARIANTS
 --------------------------------------------------------------------*/
 .btn--xs {
@@ -100,14 +106,14 @@
 		width: 4em;
 		cursor: pointer;
 		border: 1px solid darken($accent-primary, 5%);
-		
+
 		&:after {
 			position: absolute;
 			top: 50%;
 			left: 50%;
 			content: "";
 			border-top: 8px solid #fff;
-			border-right: 5px solid transparent;			
+			border-right: 5px solid transparent;
 			border-left: 5px solid transparent;
 			margin: -4px 0 0 -5px;
 		}

@@ -1,4 +1,4 @@
-/*	=FORM GROUPING 
+/*	=FORM GROUPING
 --------------------------------------------------------------------*/
 .form-group {
 	@include rhythm(margin-bottom, .75);
@@ -43,7 +43,7 @@ input[type="number"],
 input[type="date"],
 select,
 textarea {
-	padding: .5em;
+	padding: .66666em;
 	border: 1px solid #ccc;
 	@include border-radius(3px);
 

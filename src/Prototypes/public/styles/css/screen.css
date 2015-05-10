@@ -418,6 +418,101 @@ table {
   left: -9999px;
 }
 
+/*  =HELPER STYLES
+--------------------------------------------------------------------*/
+.flush {
+  margin: 0 !important;
+}
+
+.flush--top {
+  margin-top: 0 !important;
+}
+
+.flush--right {
+  margin-right: 0 !important;
+}
+
+.flush--bottom {
+  margin-bottom: 0 !important;
+}
+
+.flush--left {
+  margin-left: 0 !important;
+}
+
+.flush--ends {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+.flush--sides {
+  margin-right: 0 !important;
+  margin-left: 0 !important;
+}
+
+/**
+ * Add/remove margins
+ */
+.push {
+  margin: 1em !important;
+}
+
+.push--top {
+  margin-top: 1em !important;
+}
+
+.push--right {
+  margin-right: 1em !important;
+}
+
+.push--bottom {
+  margin-bottom: 1em !important;
+}
+
+.push--left {
+  margin-left: 1em !important;
+}
+
+.push--ends {
+  margin-top: 1em !important;
+  margin-bottom: 1em !important;
+}
+
+.push--sides {
+  margin-right: 1em !important;
+  margin-left: 1em !important;
+}
+
+.push-half {
+  margin: 0.5em !important;
+}
+
+.push-half--top {
+  margin-top: 0.5em !important;
+}
+
+.push-half--right {
+  margin-right: 0.5em !important;
+}
+
+.push-half--bottom {
+  margin-bottom: 0.5em !important;
+}
+
+.push-half--left {
+  margin-left: 0.5em !important;
+}
+
+.push-half--ends {
+  margin-top: 0.5em !important;
+  margin-bottom: 0.5em !important;
+}
+
+.push-half--sides {
+  margin-right: 0.5em !important;
+  margin-left: 0.5em !important;
+}
+
 /*	=METRONIC PRO WEBFONT LICENCING AND LINKS
 --------------------------------------------------------------------*/
 /**
@@ -579,10 +674,11 @@ pre {
 }
 
 a {
-  color: #b9306a;
+  color: #78B2B8;
+  text-decoration: none;
 }
 a:hover {
-  text-decoration: none;
+  text-decoration: underline;
 }
 
 .alrightsanslight, .last-month .day-label,
@@ -671,16 +767,16 @@ a:hover {
 }
 
 .btn--tertiary {
-  background: #0f767e;
-  border-color: #0b545a;
+  background: #78B2B8;
+  border-color: #5da3aa;
   -moz-transition: background 0.2s;
   -o-transition: background 0.2s;
   -webkit-transition: background 0.2s;
   transition: background 0.2s;
 }
 .btn--tertiary:hover, .btn--tertiary:focus {
-  background: #0b545a;
-  border-color: #0b545a;
+  background: #5da3aa;
+  border-color: #5da3aa;
   -moz-transition: background 0.2s;
   -o-transition: background 0.2s;
   -webkit-transition: background 0.2s;
@@ -715,6 +811,23 @@ a:hover {
 .btn--negative:hover, .btn--negative:focus {
   background: #9a3333;
   border-color: #9a3333;
+  -moz-transition: background 0.2s;
+  -o-transition: background 0.2s;
+  -webkit-transition: background 0.2s;
+  transition: background 0.2s;
+}
+
+.btn--twitter {
+  background: #55acee;
+  border-color: #309aea;
+  -moz-transition: background 0.2s;
+  -o-transition: background 0.2s;
+  -webkit-transition: background 0.2s;
+  transition: background 0.2s;
+}
+.btn--twitter:hover, .btn--twitter:focus {
+  background: #309aea;
+  border-color: #309aea;
   -moz-transition: background 0.2s;
   -o-transition: background 0.2s;
   -webkit-transition: background 0.2s;
@@ -846,7 +959,7 @@ a:hover {
   color: #565656;
 }
 
-/*	=FORM GROUPING 
+/*	=FORM GROUPING
 --------------------------------------------------------------------*/
 .form-group {
   margin-bottom: 1.125em;
@@ -889,7 +1002,7 @@ input[type="number"],
 input[type="date"],
 select,
 textarea {
-  padding: .5em;
+  padding: .66666em;
   border: 1px solid #ccc;
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
@@ -903,7 +1016,7 @@ input[type="number"]:focus,
 input[type="date"]:focus,
 select:focus,
 textarea:focus {
-  outline: 2px solid #0e7279;
+  outline: 2px solid #75b0b6;
 }
 
 .input-xs {
@@ -1079,7 +1192,7 @@ textarea {
   border: 2px solid #505776;
 }
 .clndr-controls__nav:hover {
-  border-color: #0a4b50;
+  border-color: #579ea6;
 }
 
 .clndr-previous-button {
@@ -1181,7 +1294,7 @@ textarea {
   background: #F7F7F7;
 }
 .today .day-label {
-  color: #0f767e;
+  color: #78B2B8;
 }
 
 .last-month,
@@ -1243,7 +1356,7 @@ textarea {
 .calendar-event--expanded .calendar-event__strapline {
   font-size: 25.6px;
   font-size: 1.6rem;
-  color: #0f767e;
+  color: #78B2B8;
 }
 .calendar-event--expanded .calendar-event__full-details {
   display: block;
@@ -1266,6 +1379,8 @@ textarea {
   }
 }
 
+/*	=BASE ISLAND STYLES
+--------------------------------------------------------------------*/
 .island {
   padding: 1em;
 }
@@ -1278,6 +1393,21 @@ textarea {
 }
 .island--horizontal-break p:last-child {
   margin: 0;
+}
+
+/*	=INPUT ISLAND
+--------------------------------------------------------------------*/
+.island-input {
+  padding: .6666em;
+  background: #F7F7F7;
+  border: 1px solid #F0EEEE;
+  transition: all 0.2s ease;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+}
+.island-input:hover {
+  background: #f2f2f2;
 }
 
 /*  =CARD BASE STYLES
@@ -1297,6 +1427,20 @@ textarea {
 .card__actions {
   padding: .5em;
   background: #ddd;
+}
+
+/*	=BASE DIVIDE STYLES
+--------------------------------------------------------------------*/
+.divide {
+  margin: 2em 0;
+  text-align: center;
+  border-top: 1px solid #ddd;
+  line-height: 0;
+}
+
+.divide__label {
+  padding: 0 1em;
+  background: #fff;
 }
 
 /*  =BASE
@@ -1320,7 +1464,7 @@ body {
 }
 @media (max-width: 37.5em) {
   .layout-constrained {
-    padding: 0 .5em;
+    padding: 0 .6666666em;
   }
 }
 
@@ -1385,7 +1529,7 @@ body {
 
 /*  =FOOTER
 --------------------------------------------------------------------*/
-footer[role="contentinfo"] {
+.site-footer {
   padding-top: 1em;
   margin-top: 3em;
   border-top: 1px solid #ddd;
@@ -1393,8 +1537,14 @@ footer[role="contentinfo"] {
   color: #767676;
 }
 @media (max-width: 37.5em) {
-  footer[role="contentinfo"] {
+  .site-footer {
     margin-top: 1.5em;
+  }
+}
+
+@media (max-width: 37.5em) {
+  .site-footer__item {
+    display: block;
   }
 }
 

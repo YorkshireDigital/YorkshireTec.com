@@ -1,3 +1,6 @@
+/*	=BASE ISLAND STYLES
+--------------------------------------------------------------------*/
+
 .island {
 	padding: 1em;
 }
@@ -11,5 +14,23 @@
 	p:last-child {
 		margin: 0;
 	}
-	
+
+}
+
+
+/*	=INPUT ISLAND
+--------------------------------------------------------------------*/
+
+.island-input {
+	padding: .6666em;
+	background: #F7F7F7;
+	border: 1px solid #F0EEEE;
+	transition: all $base-transition;
+	@include border-radius();
+
+
+	&:hover {
+		background: darken(#F7F7F7, 2%);
+	}
+
 }

@@ -3,21 +3,28 @@
 // Emphasis colour values
 $accent-primary: #b9306a;                       // Primary accent such as headers
 $accent-secondary: #303d4a;                     // Secondary accent such as secondary call to actions
-$accent-tertiary: #0f767e;                      // YD Green
-$accent-quaternary: #D19C02;                    // 
+$accent-tertiary: #78B2B8;                      // YD Green
+$accent-quaternary: #D19C02;                    //
 $accent-positive: #29A25E;                      // Use for positive action backgrounds such as selecting actions
 $accent-negative: #B93D3D;                      // Use for negative action backgrounds such as delete actions
 $accent-neutral: #C08211;                       // Use for neutral backgrounds such as an information notification that requires no action
 
-$font-general: "Alright Sans Light", arial, sans-serif;               // Standard fontstack for the site     
+$font-general: "Alright Sans Light", arial, sans-serif;               // Standard fontstack for the site
 
 // Baseline spacing values
 $base-font-size: 16;                            // Pixel value for the base font size
 $base-line-height: 24;                          // Baseline value, all margins and padding should total as a multiple of this
 
+$base-spacing-unit: 1em;
+$half-spacing-unit: $base-spacing-unit / 2;
+
+
 // Vertical rhythm calculation values
 $primary-border-width: 1 / $base-font-size ;    // Used as a value to subract the containers border from vertical rhythm
 $rhythm-unit-one: 1.5;                          // Single rhythm unit based on $base-line-height
+
+// Animation and transitions
+$base-transition: .2s ease;
 
 /*  =GLOBAL MIXINS
 --------------------------------------------------------------------*/
@@ -26,7 +33,7 @@ $rhythm-unit-one: 1.5;                          // Single rhythm unit based on $
   // Is there an unit defined? If not dont output anything
   @if $unit == 0 {
   }
-  // Add the property to the selector and the specified value e.g. 1 padding unit 
+  // Add the property to the selector and the specified value e.g. 1 padding unit
   @else if $border == "" {
     #{$property}: $unit * $rhythm-unit-one + em;
   }
@@ -74,7 +81,7 @@ $rhythm-unit-one: 1.5;                          // Single rhythm unit based on $
 
 // Baseline grid  overlay
 @mixin baseline-overlay($baseline-value: 24) {
-  
+
 	&:after {
 		position: absolute;
 		z-index: 1;
@@ -84,7 +91,7 @@ $rhythm-unit-one: 1.5;                          // Single rhythm unit based on $
 		left: 0;
 		pointer-events: none;
 		content: "";
-		background: url(http://basehold.it/i/#{$baseline-value}) 0 0 repeat; // 26px baseline 
+		background: url(http://basehold.it/i/#{$baseline-value}) 0 0 repeat; // 26px baseline
 	}
 }
 
@@ -95,7 +102,7 @@ $rhythm-unit-one: 1.5;                          // Single rhythm unit based on $
 .group:after {
     content: "";
     display: table;
-} 
+}
 
 .group:after {
   clear: both;
