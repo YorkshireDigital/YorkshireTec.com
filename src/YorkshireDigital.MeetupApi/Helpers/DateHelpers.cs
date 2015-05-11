@@ -17,8 +17,7 @@
         {
             var type = typeof(T);
             var memInfo = type.GetMember(member);
-            var attributes = memInfo[0].GetCustomAttributes(typeof(DescriptionAttribute),
-                false);
+            var attributes = memInfo[0].GetCustomAttributes(typeof(DescriptionAttribute), false);
             return ((DescriptionAttribute)attributes[0]).Description;
         }
     }

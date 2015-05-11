@@ -1,6 +1,5 @@
 ﻿namespace YorkshireDigital.MeetupApi
 {
-    using System.Collections.Generic;
     using Newtonsoft.Json;
     using RestSharp;
     using YorkshireDigital.MeetupApi.Models;
@@ -24,6 +23,8 @@
 
         protected ApiResponse<T> Execute<T>(RestRequest request)
         {
+            request.AddParameter("key", ApiKey);
+
             var response = Client.Execute(request);
             var json = response.Content;
 

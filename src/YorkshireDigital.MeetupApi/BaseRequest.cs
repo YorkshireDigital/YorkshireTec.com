@@ -1,7 +1,7 @@
 ﻿namespace YorkshireDigital.MeetupApi
 {
+    using System.ComponentModel;
     using RestSharp;
-    using YorkshireDigital.MeetupApi.Helpers;
 
     public class BaseRequest
     {
@@ -23,10 +23,12 @@
 
             foreach (var property in properties)
             {
-                if (!string.IsNullOrEmpty(property.GetValue(this, null).ToString()))
-                {
-                    restRequest.AddParameter(this.GetDescriptionValue(property.Name), property.GetValue(this, null).ToString());
-                }
+                var value = property.GetValue(this, null);
+
+                if (string.IsNullOrEmpty(value.ToString())) continue;
+
+                var attributes = property.GetCustomAttributes(typeof(DescriptionAttribute), false);
+                restRequest.AddParameter(((DescriptionAttribute)attributes[0]).Description, value.ToString());
             }
 
             return restRequest;
