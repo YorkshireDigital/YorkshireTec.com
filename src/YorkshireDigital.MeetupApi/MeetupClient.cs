@@ -3,12 +3,14 @@
     using RestSharp;
     using YorkshireDigital.MeetupApi.Groups;
 
-    public interface IMeetup
+    public interface IMeetupClient
     {
+        IGroupsClient Groups { get; set; }
+
         //List<Event> GetEvents(string meetupName);
     }
 
-    public class MeetupClient : IMeetup
+    public class MeetupClient : IMeetupClient
     {
         public MeetupClient(string apiKey)
         {
@@ -20,7 +22,7 @@
             Groups = new GroupsClient(restClient);
         }
 
-        public GroupsClient Groups { get; set; }
+        public IGroupsClient Groups { get; set; }
 
         //public List<Event> GetEvents(string meetupName)
         //{

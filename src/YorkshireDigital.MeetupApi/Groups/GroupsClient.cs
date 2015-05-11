@@ -5,7 +5,12 @@
     using YorkshireDigital.MeetupApi.Groups.Requests;
     using YorkshireDigital.MeetupApi.Models;
 
-    public class GroupsClient : BaseClient
+    public interface IGroupsClient
+    {
+        ApiResponse<List<Group>> Get(GroupsRequest request);
+    }
+
+    public class GroupsClient : BaseClient, IGroupsClient
     {
         #region ctor
         public GroupsClient(string apiKey) : base(apiKey)

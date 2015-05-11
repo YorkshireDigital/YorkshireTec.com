@@ -70,6 +70,9 @@
     <Reference Include="EntityFramework.SqlServer">
       <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="FakeItEasy">
+      <HintPath>..\packages\FakeItEasy.1.24.0\lib\net40\FakeItEasy.dll</HintPath>
+    </Reference>
     <Reference Include="FluentAssertions">
       <HintPath>..\packages\FluentAssertions.2.2.0.0\lib\net45\FluentAssertions.dll</HintPath>
     </Reference>
@@ -132,6 +135,7 @@
     <Compile Include="InMemoryTests\Services\EventServiceTests.cs" />
     <Compile Include="InMemoryTests\InMemoryFixtureBase.cs" />
     <Compile Include="InMemoryTests\InMemorySetUpFixture.cs" />
+    <Compile Include="InMemoryTests\Services\MeetupServiceTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="InMemoryTests\Services\GroupServiceTests.cs" />
     <Compile Include="InMemoryTests\Services\UserServiceTests.cs" />
@@ -144,6 +148,10 @@
     <ProjectReference Include="..\YorkshireDigital.Data\YorkshireDigital.Data.csproj">
       <Project>{DE2ABF67-373C-41A8-83E0-D9B522221157}</Project>
       <Name>YorkshireDigital.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\YorkshireDigital.MeetupApi\YorkshireDigital.MeetupApi.csproj">
+      <Project>{0496202E-DB70-401A-A41A-12B5D0D5D78A}</Project>
+      <Name>YorkshireDigital.MeetupApi</Name>
     </ProjectReference>
     <ProjectReference Include="..\YorkshireTec\YorkshireTec.Old.csproj">
       <Project>{0C73D291-C0E7-4D7A-9942-16E8619A7B00}</Project>
