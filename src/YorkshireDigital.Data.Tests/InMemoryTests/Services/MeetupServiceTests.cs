@@ -150,6 +150,13 @@
 
             // Assert
             result.MeetupId.ShouldBeEquivalentTo(12345);
+            // TODO : Check that the task has been created
+            // result.NewEventSyncTaskId.Should().BeGreaterThan(0);
+            // A.CallTo(() => client.Create(A<Job>.That.Matches(x => job.Class.Name == "NewEventSyncTask" 
+            //                                                    && job.Method.Name == "Execute" 
+            //                                                    && job.Arguments[0] == "test" 
+            //                                                    && job.Arguments[1] == 12345)))
+            //      .MustHaveHappened();
         }
     }
 }

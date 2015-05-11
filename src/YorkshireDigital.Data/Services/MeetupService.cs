@@ -43,6 +43,11 @@
             }
 
             @group.MeetupId = meetupGroup.Id;
+            
+            // TODO: Create New event sync background task
+
+            // var id = BackgroundJob.Enqueue<NewEventSyncTask>(x => x.Execute(@group.Id, meetupGroup.Id), Cron.Hourly);
+            // @group.NewEventSyncTaskId = id;
         }
     }
 }
