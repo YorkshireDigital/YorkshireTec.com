@@ -7,7 +7,7 @@ namespace YorkshireDigital.Data.Tests.InMemoryTests.Services
     using NUnit.Framework;
     using YorkshireDigital.Data.Domain.Account;
     using YorkshireDigital.Data.Domain.Events;
-    using YorkshireDigital.Data.Domain.Organisations;
+    using YorkshireDigital.Data.Domain.Group;
     using YorkshireDigital.Data.Exceptions;
     using YorkshireDigital.Data.Services;
 

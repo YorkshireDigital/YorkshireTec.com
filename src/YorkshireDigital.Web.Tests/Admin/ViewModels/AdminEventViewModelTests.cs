@@ -5,7 +5,7 @@
     using FluentAssertions;
     using NUnit.Framework;
     using YorkshireDigital.Data.Domain.Events;
-    using YorkshireDigital.Data.Domain.Organisations;
+    using YorkshireDigital.Data.Domain.Group;
     using YorkshireDigital.Web.Admin.ViewModels;
 
     public class AdminEventViewModelTests

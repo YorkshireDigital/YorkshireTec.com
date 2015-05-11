@@ -1,4 +1,4 @@
-﻿namespace YorkshireDigital.Data.Domain.Organisations.Enums
+﻿namespace YorkshireDigital.Data.Domain.Group.Enums
 {
     public enum ContactLinkType
     {

@@ -1,7 +1,7 @@
 ﻿namespace YorkshireDigital.Data.NHibernate.Mappings
 {
     using FluentNHibernate.Mapping;
-    using YorkshireDigital.Data.Domain.Organisations;
+    using YorkshireDigital.Data.Domain.Group;
 
     public class GroupMap : ClassMap<Group>
     {

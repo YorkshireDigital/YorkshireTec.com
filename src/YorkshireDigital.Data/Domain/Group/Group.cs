@@ -1,4 +1,4 @@
-﻿namespace YorkshireDigital.Data.Domain.Organisations
+﻿namespace YorkshireDigital.Data.Domain.Group
 {
     using System;
     using System.Collections.Generic;

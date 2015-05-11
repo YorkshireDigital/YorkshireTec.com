@@ -1,7 +1,7 @@
 ﻿namespace YorkshireDigital.Web.Admin.ViewModels
 {
     using AutoMapper;
-    using YorkshireDigital.Data.Domain.Organisations;
+    using YorkshireDigital.Data.Domain.Group;
 
     public class AdminGroupViewModel
     {

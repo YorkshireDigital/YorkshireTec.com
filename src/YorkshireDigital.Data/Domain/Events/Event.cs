@@ -3,7 +3,7 @@
     using System;
     using System.Collections.Generic;
     using YorkshireDigital.Data.Domain.Account;
-    using YorkshireDigital.Data.Domain.Organisations;
+    using YorkshireDigital.Data.Domain.Group;
 
     public class Event
     {
