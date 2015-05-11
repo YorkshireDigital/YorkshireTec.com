@@ -1,8 +1,8 @@
-﻿namespace YorkshireDigital.MeetupApi.Responses
+﻿namespace YorkshireDigital.MeetupApi.Models
 {
     using Newtonsoft.Json;
 
-    public class MeetupVenueResponse
+    public class Venue
     {
         public string Country { get; set; }
         public string City { get; set; }

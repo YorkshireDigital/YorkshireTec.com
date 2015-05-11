@@ -1,14 +1,14 @@
-﻿namespace YorkshireDigital.MeetupApi.Responses
+﻿namespace YorkshireDigital.MeetupApi.Models
 {
     using System;
     using Newtonsoft.Json;
     using YorkshireDigital.MeetupApi.Helpers;
 
-    public class MeetupEventResponse
+    public class Event
     {
         [JsonProperty(PropertyName = "utc_offset")]
         public int UtcOffset { get; set; }
-        public MeetupVenueResponse Venue { get; set; }
+        public Venue Venue { get; set; }
         [JsonProperty(PropertyName = "rsvp_limit")]
         public int RsvpLimit { get; set; }
         public int Headcount { get; set; }
@@ -27,7 +27,7 @@
         public string Id { get; set; }
         public double Time { get; set; }
         public double Updated { get; set; }
-        public MeetupGroupResponse Group { get; set; }
+        public Group Group { get; set; }
         public string Status { get; set; }
         public int? Duration { get; set; }
 

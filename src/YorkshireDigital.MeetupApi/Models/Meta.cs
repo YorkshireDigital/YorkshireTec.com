@@ -1,10 +1,10 @@
-﻿namespace YorkshireDigital.MeetupApi.Responses
+﻿namespace YorkshireDigital.MeetupApi.Models
 {
     using System;
     using Newtonsoft.Json;
     using YorkshireDigital.MeetupApi.Helpers;
 
-    public class MeetupMeta
+    public class Meta
     {
         public string Next { get; set; }
         public string Method { get; set; }
