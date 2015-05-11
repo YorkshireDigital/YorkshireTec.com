@@ -455,6 +455,7 @@
     <Compile Include="Infrastructure\Handlers\ForbiddenStatusCodeHandler.cs" />
     <Compile Include="Infrastructure\Handlers\InternalServerErrorStatusCodeHandler.cs" />
     <Compile Include="Infrastructure\Handlers\NotFoundErrorStatusCodeHandler.cs" />
+    <Compile Include="Infrastructure\HangfireContainerJobActivator.cs" />
     <Compile Include="Infrastructure\Helpers\HtmlHelper.cs" />
     <Compile Include="Infrastructure\Helpers\MarkdownHelper.cs" />
     <Compile Include="Infrastructure\Helpers\SentryHelper.cs" />

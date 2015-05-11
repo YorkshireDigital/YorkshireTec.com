@@ -1,6 +1,7 @@
 namespace YorkshireDigital.Web.Infrastructure
 {
     using System.Configuration;
+    using Hangfire;
     using Humanizer;
     using Nancy;
     using Nancy.Authentication.Forms;
@@ -38,6 +39,8 @@ namespace YorkshireDigital.Web.Infrastructure
         protected override void ApplicationStartup(TinyIoCContainer container, IPipelines pipelines)
         {
             base.ApplicationStartup(container, pipelines);
+
+            GlobalConfiguration.Configuration.UseActivator(new HangfireContainerJobActivator(container));
 
             Csrf.Enable(pipelines);
         }
