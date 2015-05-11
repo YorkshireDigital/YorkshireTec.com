@@ -3,6 +3,7 @@
     using System.Linq;
     using YorkshireDigital.MeetupApi;
     using YorkshireDigital.MeetupApi.Groups.Requests;
+    using YorkshireDigital.MeetupApi.Models;
 
     public class MeetupService
     {
@@ -17,9 +18,18 @@
         {
             var request = new GroupsRequest {GroupUrlName = groupName};
 
-            var results = meetupClient.Groups.Get(request);
+            var response = meetupClient.Groups.Get(request);
 
-            return results.Results.Any();
+            return response.Results.Any();
+        }
+
+        public Group GetGroup(string groupName)
+        {
+            var request = new GroupsRequest { GroupUrlName = groupName };
+
+            var response = meetupClient.Groups.Get(request);
+
+            return response.Results.SingleOrDefault();
         }
     }
 }
