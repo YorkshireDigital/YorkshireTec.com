@@ -6,13 +6,14 @@
     using FluentAssertions;
     using NUnit.Framework;
     using YorkshireDigital.Data.Services;
+    using Domain = YorkshireDigital.Data.Domain;
     using YorkshireDigital.MeetupApi;
     using YorkshireDigital.MeetupApi.Groups;
     using YorkshireDigital.MeetupApi.Groups.Requests;
     using YorkshireDigital.MeetupApi.Models;
 
     [TestFixture]
-    public class MeetupServiceTests
+    public class MeetupServiceTests : InMemoryFixtureBase
     {
         private MeetupClient meetupClient;
         private MeetupService service;
@@ -122,6 +123,33 @@
             service.GetGroup("test-group");
 
             // Assert
+        }
+
+        [Test]
+        public void LinkGroup_WhenGroupExists_AddsMeetupInformationToGroup()
+        {
+            // Arrange
+            A.CallTo(() => meetupClient.Groups.Get(A<GroupsRequest>.Ignored))
+                .Returns(new ApiResponse<List<Group>>
+                {
+                    Results = new List<Group>
+                    {
+                        new Group{ Id = 12345, Name = "Test Group", UrlName = "test-group"}
+                    }
+                });
+            var group = new Domain.Group.Group
+            {
+                Id = "test",
+                Name = "Test Group",
+            };
+            Session.Save(group);
+            
+            // Act
+            service.LinkGroup(group, "test-group");
+            var result = Session.Get<Domain.Group.Group>("test");
+
+            // Assert
+            result.MeetupId.ShouldBeEquivalentTo(12345);
         }
     }
 }

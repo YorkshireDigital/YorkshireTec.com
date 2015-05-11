@@ -1,5 +1,6 @@
 ﻿namespace YorkshireDigital.Data.Services
 {
+    using System;
     using System.Linq;
     using YorkshireDigital.MeetupApi;
     using YorkshireDigital.MeetupApi.Groups.Requests;
@@ -30,6 +31,18 @@
             var response = meetupClient.Groups.Get(request);
 
             return response.Results.SingleOrDefault();
+        }
+
+        public void LinkGroup(Domain.Group.Group @group, string groupName)
+        {
+            var meetupGroup = GetGroup(groupName);
+
+            if (meetupGroup == null)
+            {
+                throw new Exception(string.Format("No group found with name {0}", groupName));
+            }
+
+            @group.MeetupId = meetupGroup.Id;
         }
     }
 }

@@ -12,6 +12,7 @@
     [DeletedOn] DATETIME        NULL,
     [LastEditedById] UNIQUEIDENTIFIER NULL, 
     [DeletedById]	 UNIQUEIDENTIFIER NULL, 
+    [MeetupId]	INT			NULL, 
     PRIMARY KEY CLUSTERED ([Id] ASC), 
     CONSTRAINT [FK_Group_User_Edited] FOREIGN KEY ([LastEditedById]) REFERENCES [User]([Id]),
     CONSTRAINT [FK_Group_User_Deleted] FOREIGN KEY ([DeletedById]) REFERENCES [User]([Id])

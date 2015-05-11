@@ -28,6 +28,8 @@
             Map(x => x.DeletedOn);
             References(x => x.DeletedBy);
 
+            Map(x => x.MeetupId);
+
             HasMany(x => x.ContactLinks)
                 .Cascade.All();
             HasMany(x => x.Events)

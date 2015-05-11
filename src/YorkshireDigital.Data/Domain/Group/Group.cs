@@ -24,5 +24,8 @@
         public virtual User DeletedBy { get; set; }
 
         public virtual bool IsDeleted { get { return DeletedOn.HasValue; } }
+
+        // Meetup.com integration
+        public virtual int MeetupId { get; set; }
     }
 }
