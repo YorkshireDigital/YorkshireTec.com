@@ -66,7 +66,7 @@ h5, .epsilon {
 }
 
 h1, .alpha {
-    @include font-size(1.875); // 30px equivalent
+    @include font-size(1.625); // 26px equivalent
     line-height: 1.3;
     margin: 0 0 .4em 0;
 
@@ -103,6 +103,25 @@ h5, .epsilon {
 h6, .zeta {
     @include font-size(1);
     margin: 0 0 .5em 0;
+}
+
+/*  =SIZING HELPER CLASSES
+--------------------------------------------------------------------*/
+
+/**
+ * A series of classes for setting massive type; for use in heroes, mastheads,
+ * promos, etc.
+ */
+.giga{
+    @include font-size(3);
+}
+
+.mega{
+    @include font-size(2);
+}
+
+.kilo{
+    @include font-size(1.875); // 30px equivalent
 }
 
 .milli {

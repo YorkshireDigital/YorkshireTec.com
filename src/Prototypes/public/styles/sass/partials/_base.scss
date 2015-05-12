@@ -15,8 +15,7 @@ $font-general: "Alright Sans Light", arial, sans-serif;               // Standar
 $base-font-size: 16;                            // Pixel value for the base font size
 $base-line-height: 24;                          // Baseline value, all margins and padding should total as a multiple of this
 
-$base-spacing-unit: 1em;
-$half-spacing-unit: $base-spacing-unit / 2;
+
 
 
 // Vertical rhythm calculation values
@@ -25,6 +24,17 @@ $rhythm-unit-one: 1.5;                          // Single rhythm unit based on $
 
 // Animation and transitions
 $base-transition: .2s ease;
+
+/*  =SPACING
+--------------------------------------------------------------------*/
+
+$base-spacing-unit: 1em;
+$double-spacing-unit: $base-spacing-unit*2;
+$two-thirds-spacing-unit: $base-spacing-unit * 0.6666;
+$half-spacing-unit: $base-spacing-unit / 2;
+$third-spacing-unit: $base-spacing-unit / 3;
+$quarter-spacing-unit: $base-spacing-unit / 4;
+
 
 /*  =GLOBAL MIXINS
 --------------------------------------------------------------------*/
@@ -62,12 +72,6 @@ $base-transition: .2s ease;
   @else if $point == $point { // Option to use custom breakpoints should the content require
     @media (max-width: $point)    { @content; }
   }
-}
-
-// Give pixel values for older browsers
-@mixin font-size($sizeValue: 1.6) {
-  font-size: ($sizeValue * 16) + px;
-  font-size: $sizeValue + rem;
 }
 
 // Image sprite background position mixin with png fallback for older browsers

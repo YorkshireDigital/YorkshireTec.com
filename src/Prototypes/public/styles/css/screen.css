@@ -387,6 +387,8 @@ table {
 
 /*  =GLOBAL VARIABLES
 --------------------------------------------------------------------*/
+/*  =SPACING
+--------------------------------------------------------------------*/
 /*  =GLOBAL MIXINS
 --------------------------------------------------------------------*/
 /*  =GLOBAL USE STYLES
@@ -418,6 +420,8 @@ table {
   left: -9999px;
 }
 
+/*  =FONT SIZING MIXIN
+--------------------------------------------------------------------*/
 /*  =HELPER STYLES
 --------------------------------------------------------------------*/
 .flush {
@@ -513,6 +517,171 @@ table {
   margin-left: 0.5em !important;
 }
 
+/**
+ * Add/remove floats
+ */
+.float--right {
+  float: right !important;
+}
+
+.float--left {
+  float: left !important;
+}
+
+.float--none {
+  float: none !important;
+}
+
+.flush {
+  margin: 0 !important;
+}
+
+.flush--top {
+  margin-top: 0 !important;
+}
+
+.flush--right {
+  margin-right: 0 !important;
+}
+
+.flush--bottom {
+  margin-bottom: 0 !important;
+}
+
+.flush--left {
+  margin-left: 0 !important;
+}
+
+.flush--ends {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+.flush--sides {
+  margin-right: 0 !important;
+  margin-left: 0 !important;
+}
+
+/**
+ * Add/remove paddings
+ */
+.soft {
+  padding: 1em !important;
+}
+
+.soft--top {
+  padding-top: 1em !important;
+}
+
+.soft--right {
+  padding-right: 1em !important;
+}
+
+.soft--bottom {
+  padding-bottom: 1em !important;
+}
+
+.soft--left {
+  padding-left: 1em !important;
+}
+
+.soft--ends {
+  padding-top: 1em !important;
+  padding-bottom: 1em !important;
+}
+
+.soft--sides {
+  padding-right: 1em !important;
+  padding-left: 1em !important;
+}
+
+.soft-half {
+  padding: 0.5em !important;
+}
+
+.soft-half--top {
+  padding-top: 0.5em !important;
+}
+
+.soft-half--right {
+  padding-right: 0.5em !important;
+}
+
+.soft-half--bottom {
+  padding-bottom: 0.5em !important;
+}
+
+.soft-half--left {
+  padding-left: 0.5em !important;
+}
+
+.soft-half--ends {
+  padding-top: 0.5em !important;
+  padding-bottom: 0.5em !important;
+}
+
+.soft-half--sides {
+  padding-right: 0.5em !important;
+  padding-left: 0.5em !important;
+}
+
+.hard {
+  padding: 0 !important;
+}
+
+.hard--top {
+  padding-top: 0 !important;
+}
+
+.hard--right {
+  padding-right: 0 !important;
+}
+
+.hard--bottom {
+  padding-bottom: 0 !important;
+}
+
+.hard--left {
+  padding-left: 0 !important;
+}
+
+.hard--ends {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+.hard--sides {
+  padding-right: 0 !important;
+  padding-left: 0 !important;
+}
+
+/**
+ * Pull items full width of `.island` parents.
+ */
+.full-bleed {
+  margin-right: -1em !important;
+  margin-left: -1em !important;
+}
+.islet .full-bleed {
+  margin-right: -0.5em !important;
+  margin-left: -0.5em !important;
+}
+
+/**
+ * Text alignment
+ */
+.text--left {
+  text-align: left  !important;
+}
+
+.text--center {
+  text-align: center !important;
+}
+
+.text--right {
+  text-align: right !important;
+}
+
 /*	=METRONIC PRO WEBFONT LICENCING AND LINKS
 --------------------------------------------------------------------*/
 /**
@@ -597,8 +766,8 @@ h5 a:hover, .epsilon a:hover {
 }
 
 h1, .alpha {
-  font-size: 30px;
-  font-size: 1.875rem;
+  font-size: 26px;
+  font-size: 1.625rem;
   line-height: 1.3;
   margin: 0 0 .4em 0;
 }
@@ -644,6 +813,27 @@ h6, .zeta {
   font-size: 16px;
   font-size: 1rem;
   margin: 0 0 .5em 0;
+}
+
+/*  =SIZING HELPER CLASSES
+--------------------------------------------------------------------*/
+/**
+ * A series of classes for setting massive type; for use in heroes, mastheads,
+ * promos, etc.
+ */
+.giga {
+  font-size: 48px;
+  font-size: 3rem;
+}
+
+.mega {
+  font-size: 32px;
+  font-size: 2rem;
+}
+
+.kilo {
+  font-size: 30px;
+  font-size: 1.875rem;
 }
 
 .milli {
@@ -962,17 +1152,13 @@ a:hover {
 /*	=FORM GROUPING
 --------------------------------------------------------------------*/
 .form-group {
-  margin-bottom: 1.125em;
+  margin-bottom: 1em;
 }
 
 .layout-stacked label,
 .layout-stacked .label {
-  margin-bottom: 0.375em;
+  margin-bottom: 0.5em;
   display: block;
-}
-
-.form-actions {
-  margin-top: 1.5em;
 }
 
 /*	=FORM LABELS
@@ -1002,7 +1188,7 @@ input[type="number"],
 input[type="date"],
 select,
 textarea {
-  padding: .66666em;
+  padding: 0.6666em;
   border: 1px solid #ccc;
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
@@ -1054,6 +1240,25 @@ textarea.input-xxl {
 
 .input-full {
   width: 100%;
+}
+
+input[type=checkbox] {
+  margin-right: 0.25em;
+}
+
+/*	=INPUT ISLAND
+--------------------------------------------------------------------*/
+.island-input {
+  padding: 0.6666em;
+  background: #F7F7F7;
+  border: 1px solid #F0EEEE;
+  transition: all 0.2s ease;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+}
+.island-input:hover {
+  background: #f2f2f2;
 }
 
 /*	=SELECT STYLE
@@ -1383,6 +1588,13 @@ textarea {
 --------------------------------------------------------------------*/
 .island {
   padding: 1em;
+  background: #F4F4F4;
+  border: solid #E9E9E9;
+  border-width: 1px;
+}
+
+.island--full-bleed {
+  border-width: 1px 0;
 }
 
 .island--horizontal-break {
@@ -1395,19 +1607,14 @@ textarea {
   margin: 0;
 }
 
-/*	=INPUT ISLAND
+/*	=SPACING
 --------------------------------------------------------------------*/
-.island-input {
-  padding: .6666em;
-  background: #F7F7F7;
-  border: 1px solid #F0EEEE;
-  transition: all 0.2s ease;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  border-radius: 5px;
+.island--medium {
+  padding: 1.5em;
 }
-.island-input:hover {
-  background: #f2f2f2;
+
+.island--large {
+  padding: 2em;
 }
 
 /*  =CARD BASE STYLES
@@ -1468,6 +1675,10 @@ body {
   }
 }
 
+.layout-constrained--narrow {
+  max-width: 480px;
+}
+
 .clndr {
   margin-bottom: 2em;
 }
@@ -1494,15 +1705,8 @@ body {
 }
 
 .logo-site {
-  float: left;
-  width: 25%;
+  width: 100%;
   max-width: 300px;
-  height: 177px;
-  margin: 0 3em 1.5em 0;
-  background: url(../img/logo-yorkshiredigital-reversed.svg) 0 100% no-repeat;
-}
-.no-svg .logo-site {
-  background-image: url(../img/logo-yorkshiredigital-reversed.png);
 }
 
 /*  =SIGN UP BLOCK
@@ -1527,25 +1731,35 @@ body {
   }
 }
 
+/*  =HEADER
+--------------------------------------------------------------------*/
+.header-site {
+  padding-top: 1em;
+  padding-bottom: 1em;
+  text-align: center;
+}
+@media (max-width: 37.5em) {
+  .header-site {
+    text-align: center;
+  }
+}
+
 /*  =FOOTER
 --------------------------------------------------------------------*/
-.site-footer {
-  padding-top: 1em;
-  margin-top: 3em;
-  border-top: 1px solid #ddd;
+.footer-site {
+  padding: 2em 0;
   text-align: center;
   color: #767676;
 }
 @media (max-width: 37.5em) {
-  .site-footer {
-    margin-top: 1.5em;
+  .footer-site {
+    padding-top: 1em 0;
   }
 }
 
-@media (max-width: 37.5em) {
-  .site-footer__item {
-    display: block;
-  }
+.footer-site__item {
+  display: block;
+  margin-bottom: 0.5em;
 }
 
 /*  =GENERAL UI ELEMENTS

@@ -1,24 +1,23 @@
 /*	=FORM GROUPING
 --------------------------------------------------------------------*/
+
 .form-group {
-	@include rhythm(margin-bottom, .75);
+	margin-bottom: $base-spacing-unit;
 }
 
 .layout-stacked {
 
 	label,
 	.label {
-		@include rhythm(margin-bottom, .25);
+		margin-bottom: $half-spacing-unit;
 		display: block;
 	}
 }
 
-.form-actions {
-	margin-top: 1.5em;
-}
 
 /*	=FORM LABELS
 --------------------------------------------------------------------*/
+
 .sub-info {
 	@include font-size(.888);
 	font-family: "Alright Sans Light";
@@ -35,6 +34,7 @@
 
 /*	=INPUT STYLES & SIZES
 --------------------------------------------------------------------*/
+
 input[type="text"],
 input[type="email"],
 input[type="tel"],
@@ -43,7 +43,7 @@ input[type="number"],
 input[type="date"],
 select,
 textarea {
-	padding: .66666em;
+	padding: $two-thirds-spacing-unit;
 	border: 1px solid #ccc;
 	@include border-radius(3px);
 
@@ -86,6 +86,27 @@ textarea.input-xxl  {
 
 .input-full {
 	width: 100%;
+}
+
+input[type=checkbox] {
+	margin-right: $quarter-spacing-unit;
+}
+
+
+/*	=INPUT ISLAND
+--------------------------------------------------------------------*/
+
+.island-input {
+	padding: $two-thirds-spacing-unit;
+	background: #F7F7F7;
+	border: 1px solid #F0EEEE;
+	transition: all $base-transition;
+	@include border-radius();
+
+	&:hover {
+		background: darken(#F7F7F7, 2%);
+	}
+
 }
 
 
@@ -169,6 +190,7 @@ select:-moz-focusring {
 
 /*	=VALIDATION
 --------------------------------------------------------------------*/
+
 .input-validation-error {
 	background: lighten($accent-negative, 45%);
 	border-color: $accent-negative !important;
@@ -183,6 +205,7 @@ select:-moz-focusring {
 
 /*	=DEVICE SPECIFIC
 --------------------------------------------------------------------*/
+
 input[type="text"],
 input[type="number"],
 input[type="email"],

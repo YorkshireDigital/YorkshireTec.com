@@ -2,8 +2,15 @@
 --------------------------------------------------------------------*/
 
 .island {
-	padding: 1em;
+	padding: $base-spacing-unit;
+	background: #F4F4F4;
+	border: solid #E9E9E9;
+	border-width: 1px;
 }
+
+	.island--full-bleed {
+		border-width: 1px 0;
+	}
 
 .island--horizontal-break {
 	margin: 1.5em 0;
@@ -18,19 +25,13 @@
 }
 
 
-/*	=INPUT ISLAND
+/*	=SPACING
 --------------------------------------------------------------------*/
 
-.island-input {
-	padding: .6666em;
-	background: #F7F7F7;
-	border: 1px solid #F0EEEE;
-	transition: all $base-transition;
-	@include border-radius();
+.island--medium {
+	padding: $base-spacing-unit*1.5; 
+}
 
-
-	&:hover {
-		background: darken(#F7F7F7, 2%);
-	}
-
+.island--large {
+	padding: $base-spacing-unit*2;
 }
