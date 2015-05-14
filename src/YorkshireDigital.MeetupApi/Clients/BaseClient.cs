@@ -1,8 +1,9 @@
-﻿namespace YorkshireDigital.MeetupApi
+﻿namespace YorkshireDigital.MeetupApi.Clients
 {
     using Newtonsoft.Json;
     using RestSharp;
     using YorkshireDigital.MeetupApi.Models;
+    using YorkshireDigital.MeetupApi.Requests;
 
     public class BaseClient
     {
@@ -31,6 +32,14 @@
             var content = JsonConvert.DeserializeObject<ApiResponse<T>>(json);
 
             return content;
+        }
+
+
+        public ApiResponse<T> Get<T>(BaseRequest request)
+        {
+            var restRequest = request.ToRestRequest();
+
+            return Execute<T>(restRequest);
         }
     }
 }

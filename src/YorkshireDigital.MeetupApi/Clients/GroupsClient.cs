@@ -1,9 +1,9 @@
-﻿namespace YorkshireDigital.MeetupApi.Groups
+﻿namespace YorkshireDigital.MeetupApi.Clients
 {
     using System.Collections.Generic;
     using RestSharp;
-    using YorkshireDigital.MeetupApi.Groups.Requests;
     using YorkshireDigital.MeetupApi.Models;
+    using YorkshireDigital.MeetupApi.Requests;
 
     public interface IGroupsClient
     {
@@ -24,9 +24,7 @@
 
         public ApiResponse<List<Group>> Get(GroupsRequest request)
         {
-            var restRequest = request.ToRestRequest();
-
-            return Execute<List<Group>>(restRequest);
+            return Get<List<Group>>(request);
         }
     }
 }

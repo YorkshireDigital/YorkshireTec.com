@@ -1,15 +1,15 @@
-﻿namespace YorkshireDigital.MeetupApi.Tests
+namespace YorkshireDigital.MeetupApi.Tests.Requests
 {
-    using FluentAssertions;
     using NUnit.Framework;
     using RestSharp;
-    using YorkshireDigital.MeetupApi.Groups.Requests;
+    using YorkshireDigital.MeetupApi.Requests;
+    using FluentAssertions;
 
     [TestFixture]
-    public class RequestTests
+    public class GroupsRequestTests
     {
         [Test]
-        public void GroupsRequest_WithGroupUrlNameSpecified_CreatesRestRequestWithGroupNameParameter()
+        public void GroupsRequest_GroupUrlName_MapsCorrectly()
         {
             // Arrange
             var request = new GroupsRequest {GroupUrlName = "Test-Name"};

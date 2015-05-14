@@ -2,9 +2,9 @@
 {
     using System;
     using System.Linq;
-    using YorkshireDigital.MeetupApi;
-    using YorkshireDigital.MeetupApi.Groups.Requests;
+    using YorkshireDigital.MeetupApi.Clients;
     using YorkshireDigital.MeetupApi.Models;
+    using YorkshireDigital.MeetupApi.Requests;
 
     public class MeetupService
     {

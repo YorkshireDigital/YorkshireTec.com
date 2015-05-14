@@ -1,10 +1,11 @@
-namespace YorkshireDigital.MeetupApi.Tests.Groups
+namespace YorkshireDigital.MeetupApi.Tests.Clients
 {
     using FakeItEasy;
     using FluentAssertions;
     using NUnit.Framework;
     using RestSharp;
-    using YorkshireDigital.MeetupApi.Groups.Requests;
+    using YorkshireDigital.MeetupApi.Clients;
+    using YorkshireDigital.MeetupApi.Requests;
 
     [TestFixture]
     public class GroupsClientTests

@@ -6,10 +6,9 @@
     using FluentAssertions;
     using NUnit.Framework;
     using YorkshireDigital.Data.Services;
+    using YorkshireDigital.MeetupApi.Clients;
+    using YorkshireDigital.MeetupApi.Requests;
     using Domain = YorkshireDigital.Data.Domain;
-    using YorkshireDigital.MeetupApi;
-    using YorkshireDigital.MeetupApi.Groups;
-    using YorkshireDigital.MeetupApi.Groups.Requests;
     using YorkshireDigital.MeetupApi.Models;
 
     [TestFixture]

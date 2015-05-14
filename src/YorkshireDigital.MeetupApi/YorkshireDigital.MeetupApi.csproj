@@ -48,12 +48,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BaseClient.cs" />
-    <Compile Include="BaseRequest.cs" />
-    <Compile Include="Groups\GroupsClient.cs" />
-    <Compile Include="Groups\Requests\GroupsRequest.cs" />
+    <Compile Include="Clients\BaseClient.cs" />
+    <Compile Include="Requests\BaseRequest.cs" />
+    <Compile Include="Clients\EventsClient.cs" />
+    <Compile Include="Clients\GroupsClient.cs" />
+    <Compile Include="Requests\Enum\EventStatus.cs" />
+    <Compile Include="Requests\EventsRequest.cs" />
+    <Compile Include="Requests\GroupsRequest.cs" />
     <Compile Include="Helpers\DateHelpers.cs" />
-    <Compile Include="MeetupClient.cs" />
+    <Compile Include="Clients\MeetupClient.cs" />
     <Compile Include="Models\GroupPhoto.cs" />
     <Compile Include="Models\Topic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

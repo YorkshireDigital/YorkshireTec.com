@@ -1,7 +1,6 @@
-﻿namespace YorkshireDigital.MeetupApi
+﻿namespace YorkshireDigital.MeetupApi.Clients
 {
     using RestSharp;
-    using YorkshireDigital.MeetupApi.Groups;
 
     public interface IMeetupClient
     {
@@ -15,14 +14,17 @@
         public MeetupClient(string apiKey)
         {
             Groups = new GroupsClient(apiKey);
+            Events = new EventsClient(apiKey);
         }
 
         public MeetupClient(IRestClient restClient)
         {
             Groups = new GroupsClient(restClient);
+            Events = new EventsClient(restClient);
         }
 
         public IGroupsClient Groups { get; set; }
+        public IEventsClient Events { get; set; }
 
         //public List<Event> GetEvents(string meetupName)
         //{

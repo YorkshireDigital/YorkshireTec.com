@@ -1,7 +1,8 @@
-﻿namespace YorkshireDigital.MeetupApi
+﻿namespace YorkshireDigital.MeetupApi.Requests
 {
     using System.ComponentModel;
     using RestSharp;
+    using YorkshireDigital.MeetupApi.Requests.Enum;
 
     public class BaseRequest
     {
@@ -25,10 +26,21 @@
             {
                 var value = property.GetValue(this, null);
 
-                if (string.IsNullOrEmpty(value.ToString())) continue;
+                if (value == null || string.IsNullOrEmpty(value.ToString())) continue;
+
+                if (value is int && (int)value == 0) continue;
+                if (value is System.Enum && (int)value == 0) continue;
 
                 var attributes = property.GetCustomAttributes(typeof(DescriptionAttribute), false);
-                restRequest.AddParameter(((DescriptionAttribute)attributes[0]).Description, value.ToString());
+
+                if (value is EventStatus)
+                {
+                    restRequest.AddParameter(((DescriptionAttribute)attributes[0]).Description, value.ToString().ToLower());
+                }
+                else
+                {
+                    restRequest.AddParameter(((DescriptionAttribute)attributes[0]).Description, value.ToString());
+                }
             }
 
             return restRequest;

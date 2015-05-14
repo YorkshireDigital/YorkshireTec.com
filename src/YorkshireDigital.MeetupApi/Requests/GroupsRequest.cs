@@ -1,4 +1,4 @@
-﻿namespace YorkshireDigital.MeetupApi.Groups.Requests
+﻿namespace YorkshireDigital.MeetupApi.Requests
 {
     using System.ComponentModel;
     using RestSharp;

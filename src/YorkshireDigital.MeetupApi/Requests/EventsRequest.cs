@@ -1,0 +1,25 @@
+﻿namespace YorkshireDigital.MeetupApi.Requests
+{
+    using System.ComponentModel;
+    using RestSharp;
+    using YorkshireDigital.MeetupApi.Requests.Enum;
+
+    public class EventsRequest : BaseRequest
+    {
+        public EventsRequest()
+            : base("events", Method.GET)
+        {
+        }
+
+        [Description("event_id")]
+        public int EventId { get; set; }
+        [Description("group_domain")]
+        public string GroupDomain { get; set; }
+        [Description("group_id")]
+        public int GroupId { get; set; }
+        [Description("group_urlname")]
+        public string GroupUrlName { get; set; }
+        [Description("status")]
+        public EventStatus Status { get; set; }
+    }
+}
