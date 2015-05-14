@@ -285,7 +285,7 @@ namespace YorkshireDigital.MeetupApi.Tests.Clients
             Event @event = result.Results[0];
 
             // Assert
-            @event.UtcOffset.ShouldBeEquivalentTo(3600001);
+            @event.UtcOffset.ShouldBeEquivalentTo(3600000);
   
             @event.Venue.Country.ShouldBeEquivalentTo("gb");
             @event.Venue.City.ShouldBeEquivalentTo("Leeds");
