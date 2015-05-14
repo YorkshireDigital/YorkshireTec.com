@@ -24,6 +24,7 @@
         public virtual User LastEditedBy { get; set; }
         public virtual DateTime? DeletedOn { get; set; }
         public virtual User DeletedBy { get; set; }
+        public virtual string MeetupId { get; set; }
 
         public virtual bool IsDeleted { get { return DeletedOn.HasValue; } }
 

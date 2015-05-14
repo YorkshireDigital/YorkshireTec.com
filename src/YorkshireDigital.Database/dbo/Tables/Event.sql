@@ -13,6 +13,7 @@
     [GroupId] NVARCHAR (255)  NULL,
     [LastEditedById] UNIQUEIDENTIFIER NULL, 
     [DeletedById]	 UNIQUEIDENTIFIER NULL, 
+    [MeetupId]	INT			NULL, 
     PRIMARY KEY CLUSTERED ([UniqueName] ASC),
     CONSTRAINT [FKABF0877E453DFDE3] FOREIGN KEY ([GroupId]) REFERENCES [dbo].[Group] ([Id]),
     CONSTRAINT [FK_Event_User_Edited] FOREIGN KEY ([LastEditedById]) REFERENCES [User]([Id]),
