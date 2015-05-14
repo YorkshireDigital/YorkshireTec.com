@@ -387,6 +387,8 @@ table {
 
 /*  =GLOBAL VARIABLES
 --------------------------------------------------------------------*/
+/*  =SPACING
+--------------------------------------------------------------------*/
 /*  =GLOBAL MIXINS
 --------------------------------------------------------------------*/
 /*  =GLOBAL USE STYLES
@@ -418,34 +420,296 @@ table {
   left: -9999px;
 }
 
+/*  =FONT SIZING MIXIN
+--------------------------------------------------------------------*/
+/*  =HELPER STYLES
+--------------------------------------------------------------------*/
+.flush {
+  margin: 0 !important;
+}
+
+.flush--top {
+  margin-top: 0 !important;
+}
+
+.flush--right {
+  margin-right: 0 !important;
+}
+
+.flush--bottom {
+  margin-bottom: 0 !important;
+}
+
+.flush--left {
+  margin-left: 0 !important;
+}
+
+.flush--ends {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+.flush--sides {
+  margin-right: 0 !important;
+  margin-left: 0 !important;
+}
+
+/**
+ * Add/remove margins
+ */
+.push {
+  margin: 1em !important;
+}
+
+.push--top {
+  margin-top: 1em !important;
+}
+
+.push--right {
+  margin-right: 1em !important;
+}
+
+.push--bottom {
+  margin-bottom: 1em !important;
+}
+
+.push--left {
+  margin-left: 1em !important;
+}
+
+.push--ends {
+  margin-top: 1em !important;
+  margin-bottom: 1em !important;
+}
+
+.push--sides {
+  margin-right: 1em !important;
+  margin-left: 1em !important;
+}
+
+.push-half {
+  margin: 0.5em !important;
+}
+
+.push-half--top {
+  margin-top: 0.5em !important;
+}
+
+.push-half--right {
+  margin-right: 0.5em !important;
+}
+
+.push-half--bottom {
+  margin-bottom: 0.5em !important;
+}
+
+.push-half--left {
+  margin-left: 0.5em !important;
+}
+
+.push-half--ends {
+  margin-top: 0.5em !important;
+  margin-bottom: 0.5em !important;
+}
+
+.push-half--sides {
+  margin-right: 0.5em !important;
+  margin-left: 0.5em !important;
+}
+
+/**
+ * Add/remove floats
+ */
+.float--right {
+  float: right !important;
+}
+
+.float--left {
+  float: left !important;
+}
+
+.float--none {
+  float: none !important;
+}
+
+.flush {
+  margin: 0 !important;
+}
+
+.flush--top {
+  margin-top: 0 !important;
+}
+
+.flush--right {
+  margin-right: 0 !important;
+}
+
+.flush--bottom {
+  margin-bottom: 0 !important;
+}
+
+.flush--left {
+  margin-left: 0 !important;
+}
+
+.flush--ends {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+.flush--sides {
+  margin-right: 0 !important;
+  margin-left: 0 !important;
+}
+
+/**
+ * Add/remove paddings
+ */
+.soft {
+  padding: 1em !important;
+}
+
+.soft--top {
+  padding-top: 1em !important;
+}
+
+.soft--right {
+  padding-right: 1em !important;
+}
+
+.soft--bottom {
+  padding-bottom: 1em !important;
+}
+
+.soft--left {
+  padding-left: 1em !important;
+}
+
+.soft--ends {
+  padding-top: 1em !important;
+  padding-bottom: 1em !important;
+}
+
+.soft--sides {
+  padding-right: 1em !important;
+  padding-left: 1em !important;
+}
+
+.soft-half {
+  padding: 0.5em !important;
+}
+
+.soft-half--top {
+  padding-top: 0.5em !important;
+}
+
+.soft-half--right {
+  padding-right: 0.5em !important;
+}
+
+.soft-half--bottom {
+  padding-bottom: 0.5em !important;
+}
+
+.soft-half--left {
+  padding-left: 0.5em !important;
+}
+
+.soft-half--ends {
+  padding-top: 0.5em !important;
+  padding-bottom: 0.5em !important;
+}
+
+.soft-half--sides {
+  padding-right: 0.5em !important;
+  padding-left: 0.5em !important;
+}
+
+.hard {
+  padding: 0 !important;
+}
+
+.hard--top {
+  padding-top: 0 !important;
+}
+
+.hard--right {
+  padding-right: 0 !important;
+}
+
+.hard--bottom {
+  padding-bottom: 0 !important;
+}
+
+.hard--left {
+  padding-left: 0 !important;
+}
+
+.hard--ends {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+.hard--sides {
+  padding-right: 0 !important;
+  padding-left: 0 !important;
+}
+
+/**
+ * Pull items full width of `.island` parents.
+ */
+.full-bleed {
+  margin-right: -1em !important;
+  margin-left: -1em !important;
+}
+.islet .full-bleed {
+  margin-right: -0.5em !important;
+  margin-left: -0.5em !important;
+}
+
+/**
+ * Text alignment
+ */
+.text--left {
+  text-align: left  !important;
+}
+
+.text--center {
+  text-align: center !important;
+}
+
+.text--right {
+  text-align: right !important;
+}
+
 /*	=METRONIC PRO WEBFONT LICENCING AND LINKS
 --------------------------------------------------------------------*/
 /**
  * @license
  * MyFonts Webfont Build ID 2798324, 2014-04-21T13:45:17-0400
- * 
+ *
  * The fonts listed in this notice are subject to the End User License
- * Agreement(s) entered into by the website owner. All other parties are 
+ * Agreement(s) entered into by the website owner. All other parties are
  * explicitly restricted from using the Licensed Webfonts(s).
- * 
+ *
  * You may obtain a valid license at the URLs below.
- * 
+ *
  * Webfont: Metronic Pro Air by Mostardesign
  * URL: http://www.myfonts.com/fonts/mostardesign/metronic-pro/air/
- * 
+ *
  * Webfont: Metronic Pro Light by Mostardesign
  * URL: http://www.myfonts.com/fonts/mostardesign/metronic-pro/light/
- * 
+ *
  * Webfont: Metronic Pro Regular by Mostardesign
  * URL: http://www.myfonts.com/fonts/mostardesign/metronic-pro/regular/
- * 
+ *
  * Webfont: Metronic Pro SemiBold by Mostardesign
  * URL: http://www.myfonts.com/fonts/mostardesign/metronic-pro/semibold/
- * 
+ *
  * License: http://www.myfonts.com/viewlicense?type=web&buildid=2798324
  * Licensed pageviews: 100,000
  * Webfonts copyright: Copyright (c) Olivier Gourvat - Mostardesign Studio, 2013. All rights reserved.
- * 
+ *
  * © 2014 MyFonts Inc
 */
 /* @import must be at top of file, otherwise CSS will not work */
@@ -476,101 +740,105 @@ html {
   color: #303d4a;
 }
 
-h1,
-.alpha,
-h2,
-.beta,
-h3,
-.gamma,
-h4,
-.delta,
-h5,
-.epsilon {
+h1, .alpha,
+h2, .beta,
+h3, .gamma,
+h4, .delta,
+h5, .epsilon {
   font-family: MetronicProRegular;
   font-weight: 500;
   color: #50575D;
 }
-h1 a,
-.alpha a,
-h2 a,
-.beta a,
-h3 a,
-.gamma a,
-h4 a,
-.delta a,
-h5 a,
-.epsilon a {
+h1 a, .alpha a,
+h2 a, .beta a,
+h3 a, .gamma a,
+h4 a, .delta a,
+h5 a, .epsilon a {
   color: #b9306a;
   text-decoration: none;
 }
-h1 a:hover,
-.alpha a:hover,
-h2 a:hover,
-.beta a:hover,
-h3 a:hover,
-.gamma a:hover,
-h4 a:hover,
-.delta a:hover,
-h5 a:hover,
-.epsilon a:hover {
+h1 a:hover, .alpha a:hover,
+h2 a:hover, .beta a:hover,
+h3 a:hover, .gamma a:hover,
+h4 a:hover, .delta a:hover,
+h5 a:hover, .epsilon a:hover {
   text-decoration: underline;
 }
 
-h1,
-.alpha {
-  font-size: 30px;
-  font-size: 1.875rem;
+h1, .alpha {
+  font-size: 26px;
+  font-size: 1.625rem;
   line-height: 1.3;
   margin: 0 0 .4em 0;
 }
 @media (max-width: 37.5em) {
-  h1,
-  .alpha {
+  h1, .alpha {
     font-size: 26px;
     font-size: 1.625rem;
   }
 }
 
-h2,
-.beta {
+h2, .beta {
   font-size: 26px;
   font-size: 1.625rem;
   margin: 0 0 .3846em 0;
 }
 @media (max-width: 37.5em) {
-  h2,
-  .beta {
+  h2, .beta {
     font-size: 20px;
     font-size: 1.25rem;
   }
 }
 
-h3,
-.gamma {
+h3, .gamma {
   font-size: 20px;
   font-size: 1.25rem;
   margin: 0 0 .3em 0;
 }
 
-h4,
-.delta {
+h4, .delta {
   font-size: 18px;
   font-size: 1.125rem;
   margin: 0 0 .5em 0;
 }
 
-h5,
-.epsilon {
+h5, .epsilon {
   font-size: 16px;
   font-size: 1rem;
   font-weight: 600;
   margin: 0 0 .5em 0;
 }
 
-h6,
-.zeta {
+h6, .zeta {
   font-size: 16px;
   font-size: 1rem;
+  margin: 0 0 .5em 0;
+}
+
+/*  =SIZING HELPER CLASSES
+--------------------------------------------------------------------*/
+/**
+ * A series of classes for setting massive type; for use in heroes, mastheads,
+ * promos, etc.
+ */
+.giga {
+  font-size: 48px;
+  font-size: 3rem;
+}
+
+.mega {
+  font-size: 32px;
+  font-size: 2rem;
+}
+
+.kilo {
+  font-size: 30px;
+  font-size: 1.875rem;
+}
+
+.milli {
+  font-size: 14px;
+  font-size: 0.875rem;
   margin: 0 0 .5em 0;
 }
 
@@ -596,10 +864,11 @@ pre {
 }
 
 a {
-  color: #b9306a;
+  color: #78B2B8;
+  text-decoration: none;
 }
 a:hover {
-  text-decoration: none;
+  text-decoration: underline;
 }
 
 .alrightsanslight, .last-month .day-label,
@@ -625,6 +894,12 @@ a:hover {
   font-family: "Alright Sans";
   font-style: italic;
   font-weight: normal;
+}
+
+/*	=EMPHASIS MODIFIERS
+--------------------------------------------------------------------*/
+.subtle {
+  color: #949494;
 }
 
 .btn {
@@ -682,16 +957,16 @@ a:hover {
 }
 
 .btn--tertiary {
-  background: #0f767e;
-  border-color: #0b545a;
+  background: #78B2B8;
+  border-color: #5da3aa;
   -moz-transition: background 0.2s;
   -o-transition: background 0.2s;
   -webkit-transition: background 0.2s;
   transition: background 0.2s;
 }
 .btn--tertiary:hover, .btn--tertiary:focus {
-  background: #0b545a;
-  border-color: #0b545a;
+  background: #5da3aa;
+  border-color: #5da3aa;
   -moz-transition: background 0.2s;
   -o-transition: background 0.2s;
   -webkit-transition: background 0.2s;
@@ -726,6 +1001,23 @@ a:hover {
 .btn--negative:hover, .btn--negative:focus {
   background: #9a3333;
   border-color: #9a3333;
+  -moz-transition: background 0.2s;
+  -o-transition: background 0.2s;
+  -webkit-transition: background 0.2s;
+  transition: background 0.2s;
+}
+
+.btn--twitter {
+  background: #55acee;
+  border-color: #309aea;
+  -moz-transition: background 0.2s;
+  -o-transition: background 0.2s;
+  -webkit-transition: background 0.2s;
+  transition: background 0.2s;
+}
+.btn--twitter:hover, .btn--twitter:focus {
+  background: #309aea;
+  border-color: #309aea;
   -moz-transition: background 0.2s;
   -o-transition: background 0.2s;
   -webkit-transition: background 0.2s;
@@ -857,20 +1149,16 @@ a:hover {
   color: #565656;
 }
 
-/*	=FORM GROUPING 
+/*	=FORM GROUPING
 --------------------------------------------------------------------*/
 .form-group {
-  margin-bottom: 1.125em;
+  margin-bottom: 1em;
 }
 
 .layout-stacked label,
 .layout-stacked .label {
-  margin-bottom: 0.375em;
+  margin-bottom: 0.5em;
   display: block;
-}
-
-.form-actions {
-  margin-top: 1.5em;
 }
 
 /*	=FORM LABELS
@@ -900,7 +1188,7 @@ input[type="number"],
 input[type="date"],
 select,
 textarea {
-  padding: .5em;
+  padding: 0.6666em;
   border: 1px solid #ccc;
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
@@ -914,7 +1202,7 @@ input[type="number"]:focus,
 input[type="date"]:focus,
 select:focus,
 textarea:focus {
-  outline: 2px solid #0e7279;
+  outline: 2px solid #75b0b6;
 }
 
 .input-xs {
@@ -952,6 +1240,25 @@ textarea.input-xxl {
 
 .input-full {
   width: 100%;
+}
+
+input[type=checkbox] {
+  margin-right: 0.25em;
+}
+
+/*	=INPUT ISLAND
+--------------------------------------------------------------------*/
+.island-input {
+  padding: 0.6666em;
+  background: #F7F7F7;
+  border: 1px solid #F0EEEE;
+  transition: all 0.2s ease;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+}
+.island-input:hover {
+  background: #f2f2f2;
 }
 
 /*	=SELECT STYLE
@@ -1090,7 +1397,7 @@ textarea {
   border: 2px solid #505776;
 }
 .clndr-controls__nav:hover {
-  border-color: #0a4b50;
+  border-color: #579ea6;
 }
 
 .clndr-previous-button {
@@ -1148,11 +1455,6 @@ textarea {
     display: block;
   }
 }
-@media (max-width: 37.5em) {
-  .header-day__md {
-    display: none;
-  }
-}
 
 .header-day__lg {
   display: block;
@@ -1183,8 +1485,8 @@ textarea {
 }
 @media (max-width: 37.5em) {
   .day {
-    height: 3em;
-    text-align: center;
+    float: none;
+    width: 100%;
     border-width: 0 0 1px 0;
   }
 }
@@ -1197,7 +1499,7 @@ textarea {
   background: #F7F7F7;
 }
 .today .day-label {
-  color: #0f767e;
+  color: #78B2B8;
 }
 
 .last-month,
@@ -1259,7 +1561,7 @@ textarea {
 .calendar-event--expanded .calendar-event__strapline {
   font-size: 25.6px;
   font-size: 1.6rem;
-  color: #0f767e;
+  color: #78B2B8;
 }
 .calendar-event--expanded .calendar-event__full-details {
   display: block;
@@ -1282,8 +1584,17 @@ textarea {
   }
 }
 
+/*	=BASE ISLAND STYLES
+--------------------------------------------------------------------*/
 .island {
   padding: 1em;
+  background: #F4F4F4;
+  border: solid #E9E9E9;
+  border-width: 1px;
+}
+
+.island--full-bleed {
+  border-width: 1px 0;
 }
 
 .island--horizontal-break {
@@ -1294,6 +1605,49 @@ textarea {
 }
 .island--horizontal-break p:last-child {
   margin: 0;
+}
+
+/*	=SPACING
+--------------------------------------------------------------------*/
+.island--medium {
+  padding: 1.5em;
+}
+
+.island--large {
+  padding: 2em;
+}
+
+/*  =CARD BASE STYLES
+--------------------------------------------------------------------*/
+.card-list .card {
+  margin-bottom: .5em;
+}
+
+.card {
+  border: 1px solid #ddd;
+}
+
+.card__body {
+  padding: 1em;
+}
+
+.card__actions {
+  padding: .5em;
+  background: #ddd;
+}
+
+/*	=BASE DIVIDE STYLES
+--------------------------------------------------------------------*/
+.divide {
+  margin: 2em 0;
+  text-align: center;
+  border-top: 1px solid #ddd;
+  line-height: 0;
+}
+
+.divide__label {
+  padding: 0 1em;
+  background: #fff;
 }
 
 /*  =BASE
@@ -1317,8 +1671,12 @@ body {
 }
 @media (max-width: 37.5em) {
   .layout-constrained {
-    padding: 0 .5em;
+    padding: 0 .6666666em;
   }
+}
+
+.layout-constrained--narrow {
+  max-width: 480px;
 }
 
 .clndr {
@@ -1347,15 +1705,8 @@ body {
 }
 
 .logo-site {
-  float: left;
-  width: 25%;
+  width: 100%;
   max-width: 300px;
-  height: 177px;
-  margin: 0 3em 1.5em 0;
-  background: url(../img/logo-yorkshiredigital-reversed.svg) 0 100% no-repeat;
-}
-.no-svg .logo-site {
-  background-image: url(../img/logo-yorkshiredigital-reversed.png);
 }
 
 /*  =SIGN UP BLOCK
@@ -1380,19 +1731,35 @@ body {
   }
 }
 
+/*  =HEADER
+--------------------------------------------------------------------*/
+.header-site {
+  padding-top: 1em;
+  padding-bottom: 1em;
+  text-align: center;
+}
+@media (max-width: 37.5em) {
+  .header-site {
+    text-align: center;
+  }
+}
+
 /*  =FOOTER
 --------------------------------------------------------------------*/
-footer[role="contentinfo"] {
-  padding-top: 1em;
-  margin-top: 3em;
-  border-top: 1px solid #ddd;
+.footer-site {
+  padding: 2em 0;
   text-align: center;
   color: #767676;
 }
 @media (max-width: 37.5em) {
-  footer[role="contentinfo"] {
-    margin-top: 1.5em;
+  .footer-site {
+    padding-top: 1em 0;
   }
+}
+
+.footer-site__item {
+  display: block;
+  margin-bottom: 0.5em;
 }
 
 /*  =GENERAL UI ELEMENTS

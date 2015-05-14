@@ -1,0 +1,46 @@
+{% layout "layout-narrow" %}
+{% block title %}Sign In - Bringing Yorkshires digital community together{% endblock %}
+{% block content %}
+	<section>
+		<div class="layout-constrained layout-constrained--narrow layout-stacked">
+			<h2>Sign in&#8230;</h2>
+            <button class="btn btn--twitter btn--full" type="button">Sign in with Twitter <span class="icn icn-twitter"></span> </button>
+
+            <div class="divide">
+                <span class="divide__label">Or</span>
+            </div>
+
+			<div class="form-group">
+				<label class="is-offscreen" for="firstName">Username</label>
+				<input type="text" id="userName" class="input-full" placeholder="Username" />
+			</div>
+
+			<div class="form-group">
+				<label class="is-offscreen" for="emailAddress">Password</label>
+				<input type="password" id="password" class="input-full" placeholder="Password" />
+			</div>
+
+            <div class="form-group">
+                <label class="island-input flush--bottom" for="remember-me">
+                    <input type="checkbox" id="remember-me" name="remember-me" value="">
+                    Remember me
+                </label>
+            </div>
+
+			<div class="form-actions text--center push--bottom">
+				<button class="btn btn--primary btn--full push--bottom" type="button">Sign In</button>
+                <a href="#">Forgotten your password?</a>
+            </div>
+
+		</div>
+
+        <div class="island island--medium island--full-bleed text--center">
+            Don't have an account? <a href="#">Sign up</a>
+        </div>
+
+		<footer class="footer-site layout-constrained" role="contentinfo">
+			<small class="footer-site__item">© 2015 YorkshireDigital</small>
+            <small class="footer-site__item">Hosted by <a href="https://www.brightbox.com">Brighbox</a> in Yorkshire</small>
+		</footer>
+	</section>
+{% endblock %}

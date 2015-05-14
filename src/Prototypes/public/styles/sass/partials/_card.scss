@@ -1,0 +1,24 @@
+/*  =CARD BASE STYLES
+--------------------------------------------------------------------*/
+
+.card-list {
+
+    .card {
+        margin-bottom: .5em;
+    }
+
+}
+
+.card {
+
+    border: 1px solid #ddd;
+}
+
+    .card__body {
+        padding: 1em;
+    }
+
+    .card__actions {
+        padding: .5em;
+        background: #ddd;
+    }

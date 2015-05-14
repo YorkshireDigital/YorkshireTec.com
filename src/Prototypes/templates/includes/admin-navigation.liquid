@@ -1,0 +1,6 @@
+<nav class="nav-primary">
+	<ul>
+		<li {% if mixture.url == "admin" %}class="current"{% endif %}><a href="/admin">Dashboard</a></li>
+		<li {% if mixture.url == "admin/events" %}class="current"{% endif %}><a href="/admin/events">Events</a></li>
+	</ul>
+</nav>
