@@ -5,6 +5,7 @@
     public interface IMeetupClient
     {
         IGroupsClient Groups { get; set; }
+        IEventsClient Events { get; set; }
 
         //List<Event> GetEvents(string meetupName);
     }

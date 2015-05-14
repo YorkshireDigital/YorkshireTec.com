@@ -8,6 +8,7 @@
     using YorkshireDigital.Data.Services;
     using YorkshireDigital.MeetupApi.Clients;
     using YorkshireDigital.MeetupApi.Requests;
+    using YorkshireDigital.MeetupApi.Requests.Enum;
     using Domain = YorkshireDigital.Data.Domain;
     using YorkshireDigital.MeetupApi.Models;
 
@@ -22,7 +23,8 @@
         {
             meetupClient = new MeetupClient("test")
             {
-                Groups = A.Fake<IGroupsClient>()
+                Groups = A.Fake<IGroupsClient>(),
+                Events = A.Fake<IEventsClient>()
             };
             service = new MeetupService(meetupClient);
         }
@@ -156,6 +158,88 @@
             //                                                    && job.Arguments[0] == "test" 
             //                                                    && job.Arguments[1] == 12345)))
             //      .MustHaveHappened();
+        }
+
+        [Test]
+        public void GetUpcomingEventsForGroup_ReturnsEvents()
+        {
+            // Arrange
+            A.CallTo(() => meetupClient.Events.Get(A<EventsRequest>.Ignored))
+                .Returns(new ApiResponse<List<Event>>
+                {
+                    Results = new List<Event>
+                    {
+                        new Event{ Name = "Test Event", Id = "test-event"}
+                    }
+                });
+
+            // Act
+            var result = service.GetUpcomingEventsForGroup(12345);
+
+            // Assert
+            result.Count.ShouldBeEquivalentTo(1);
+            result[0].Name.ShouldBeEquivalentTo("Test Event");
+            result[0].Id.ShouldBeEquivalentTo("test-event");
+        }
+
+        [Test]
+        public void GetEvent_WhenEventExists_ReturnsEvent()
+        {
+            // Arrange
+            A.CallTo(() => meetupClient.Events.Get(A<EventsRequest>.Ignored))
+                .Returns(new ApiResponse<List<Event>>
+                {
+                    Results = new List<Event>
+                    {
+                        new Event{ Name = "Test Event", Id = "test-event"}
+                    }
+                });
+
+            // Act
+            var result = service.GetEvent(12345);
+
+            // Assert
+            result.Name.ShouldBeEquivalentTo("Test Event");
+            result.Id.ShouldBeEquivalentTo("test-event");
+        }
+
+        [Test]
+        public void GetEvent_WhenNoEventExists_ReturnsNull()
+        {
+            // Arrange
+            A.CallTo(() => meetupClient.Events.Get(A<EventsRequest>.Ignored))
+                .Returns(new ApiResponse<List<Event>>
+                {
+                    Results = new List<Event>()
+                });
+
+            // Act
+            var result = service.GetEvent(12345);
+
+            // Assert
+            result.Should().BeNull();
+        }
+
+        [Test]
+        [ExpectedException(typeof(InvalidOperationException), ExpectedMessage = "Sequence contains more than one element")]
+        public void GetEvent_WhenMultipleEventExists_ReturnsNull()
+        {
+            // Arrange
+            A.CallTo(() => meetupClient.Events.Get(A<EventsRequest>.Ignored))
+                .Returns(new ApiResponse<List<Event>>
+                {
+                    Results = new List<Event>
+                    {
+                        new Event{ Name = "Test Event", Id = "test-event"},
+                        new Event{ Name = "Test Event", Id = "test-event-1"}
+                    }
+                });
+
+            // Act
+            var result = service.GetEvent(12345);
+
+            // Assert
+            result.Should().BeNull();
         }
     }
 }
