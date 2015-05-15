@@ -1252,6 +1252,10 @@ input[type=checkbox] {
   padding: 0.6666em;
   background: #F7F7F7;
   border: 1px solid #F0EEEE;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   transition: all 0.2s ease;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;

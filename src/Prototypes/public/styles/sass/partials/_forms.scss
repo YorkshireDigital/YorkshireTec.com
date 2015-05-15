@@ -100,6 +100,10 @@ input[type=checkbox] {
 	padding: $two-thirds-spacing-unit;
 	background: #F7F7F7;
 	border: 1px solid #F0EEEE;
+	-webkit-user-select: none;
+  	-moz-user-select: none;    
+  	-ms-user-select: none;
+	user-select: none;
 	transition: all $base-transition;
 	@include border-radius();
 
