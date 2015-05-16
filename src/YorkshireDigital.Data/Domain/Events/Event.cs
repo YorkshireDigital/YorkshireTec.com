@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using YorkshireDigital.Data.Domain.Account;
     using YorkshireDigital.Data.Domain.Group;
 
@@ -42,6 +43,36 @@
 
             Location = meetupEvent.Venue.Address1;
             Region = meetupEvent.Venue.City;
+        }
+
+        public static Event FromMeetupGroup(MeetupApi.Models.Event upcomingEvent)
+        {
+            var newEvent = new Event
+            {
+                MeetupId = upcomingEvent.Id,
+                DeletedBy = null,
+                DeletedOn = null,
+                End = upcomingEvent.Duration.HasValue
+                    ? upcomingEvent.StartDate.AddMilliseconds(upcomingEvent.Duration.Value)
+                    : upcomingEvent.StartDate,
+                Start = upcomingEvent.StartDate
+            };
+
+            if (upcomingEvent.Group != null)
+            {
+                newEvent.Interests = upcomingEvent.Group.Topics.Select(x => new Interest { Name = x.Name }).ToList();
+                newEvent.Categories = new List<Category> { new Category { Name = upcomingEvent.Group.Category.Name } };
+            }
+            if (upcomingEvent.Venue != null)
+            {
+                newEvent.Location = upcomingEvent.Venue.Address1;
+                newEvent.Region = upcomingEvent.Venue.City;
+            }
+
+            newEvent.LastEditedOn = DateTime.UtcNow;
+            newEvent.Synopsis = upcomingEvent.Description;
+            newEvent.Title = upcomingEvent.Name;
+            return newEvent;
         }
     }
 }

@@ -142,6 +142,7 @@
     <Compile Include="Services\MeetupService.cs" />
     <Compile Include="Services\UserService.cs" />
     <Compile Include="Tasks\EventSyncTask.cs" />
+    <Compile Include="Tasks\GroupSyncTask.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

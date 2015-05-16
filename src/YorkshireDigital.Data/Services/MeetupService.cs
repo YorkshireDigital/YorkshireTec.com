@@ -11,6 +11,7 @@
     using YorkshireDigital.MeetupApi.Requests.Enum;
     using Category = YorkshireDigital.Data.Domain.Events.Category;
     using Event = YorkshireDigital.MeetupApi.Models.Event;
+    using System.Linq.Expressions;
 
     public interface IMeetupService
     {
@@ -21,6 +22,7 @@
         Event GetEvent(string eventId);
         void SyncEvents(Domain.Group.Group @group);
         void RemoveJobIfExists(string jobId);
+        void AddOrUpdateJob(string recurringJobId, Expression<Action> methodCall, Func<string> cronExpression);
     }
 
     public class MeetupService : IMeetupService
@@ -97,7 +99,7 @@
 
             foreach (var upcomingEvent in upcomingEvents)
             {
-                if (@group.Events.Any(x => x.MeetupId.ToString() == upcomingEvent.Id)) continue;
+                if (@group.Events.Any(x => x.MeetupId == upcomingEvent.Id)) continue;
 
                 var newEvent = new Domain.Events.Event
                 {
@@ -132,6 +134,11 @@
         public void RemoveJobIfExists(string jobId)
         {
             RecurringJob.RemoveIfExists(jobId);
+        }
+
+        public void AddOrUpdateJob(string recurringJobId, Expression<Action> methodCall, Func<string> cronExpression)
+        {
+            RecurringJob.AddOrUpdate(recurringJobId, methodCall, cronExpression);
         }
     }
 }

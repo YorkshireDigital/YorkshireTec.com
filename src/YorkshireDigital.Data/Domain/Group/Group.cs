@@ -27,5 +27,11 @@
 
         // Meetup.com integration
         public virtual int MeetupId { get; set; }
+
+        public Group()
+        {
+            ContactLinks = new List<ContactLink>();
+            Events = new List<Event>();
+        }
     }
 }

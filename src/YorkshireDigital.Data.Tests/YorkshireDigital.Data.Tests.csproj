@@ -152,6 +152,7 @@
     <Compile Include="InMemoryTests\Services\GroupServiceTests.cs" />
     <Compile Include="InMemoryTests\Services\UserServiceTests.cs" />
     <Compile Include="Tasks\EventSyncTaskTests.cs" />
+    <Compile Include="Tasks\GroupSyncTaskTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

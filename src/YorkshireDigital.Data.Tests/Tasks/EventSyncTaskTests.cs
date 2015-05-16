@@ -2,7 +2,6 @@
 {
     using System;
     using FakeItEasy;
-    using Hangfire;
     using NUnit.Framework;
     using YorkshireDigital.Data.Domain.Account;
     using YorkshireDigital.Data.Services;
