@@ -3,7 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using YorkshireDigital.Data.Domain.Account;
+    using Hangfire;
     using YorkshireDigital.Data.Domain.Events;
     using YorkshireDigital.MeetupApi.Clients;
     using YorkshireDigital.MeetupApi.Models;
@@ -12,7 +12,18 @@
     using Category = YorkshireDigital.Data.Domain.Events.Category;
     using Event = YorkshireDigital.MeetupApi.Models.Event;
 
-    public class MeetupService
+    public interface IMeetupService
+    {
+        bool GroupExists(string groupName);
+        Group GetGroup(string groupName);
+        void LinkGroup(Domain.Group.Group @group, string groupName);
+        List<Event> GetUpcomingEventsForGroup(int groupId);
+        Event GetEvent(string eventId);
+        void SyncEvents(Domain.Group.Group @group);
+        void RemoveJobIfExists(string jobId);
+    }
+
+    public class MeetupService : IMeetupService
     {
         private readonly IMeetupClient meetupClient;
 
@@ -68,7 +79,7 @@
             return response.Results;
         }
 
-        public Event GetEvent(int eventId)
+        public Event GetEvent(string eventId)
         {
             var request = new EventsRequest
             {
@@ -86,7 +97,7 @@
 
             foreach (var upcomingEvent in upcomingEvents)
             {
-                if (@group.Events.Any(x => x.MeetupId == upcomingEvent.Id)) continue;
+                if (@group.Events.Any(x => x.MeetupId.ToString() == upcomingEvent.Id)) continue;
 
                 var newEvent = new Domain.Events.Event
                 {
@@ -111,11 +122,16 @@
 
             foreach (var @event in @group.Events.ToList())
             {
-                if (@event.Start > DateTime.UtcNow && upcomingEvents.All(x => x.Id != @event.MeetupId))
+                if (@event.Start > DateTime.UtcNow && upcomingEvents.All(x => x.Id != @event.MeetupId.ToString()))
                 {
                     @group.Events.Remove(@event);
                 }
             }
+        }
+
+        public void RemoveJobIfExists(string jobId)
+        {
+            RecurringJob.RemoveIfExists(jobId);
         }
     }
 }

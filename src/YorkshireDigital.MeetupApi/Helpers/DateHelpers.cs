@@ -8,9 +8,17 @@
         public static DateTime MeetupTimeStampToDateTime(double unixTimeStamp)
         {
             // Timestamp is milliseconds past epoch
-            var epoch = new DateTime(1970, 1, 1, 0, 0, 0, 0, System.DateTimeKind.Utc);
-            epoch = epoch.AddMilliseconds(unixTimeStamp).ToLocalTime();
+            var epoch = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
+            epoch = epoch.AddMilliseconds(unixTimeStamp);
             return epoch;
+        }
+        public static double DateTimeToMeetupTimeStamp(DateTime date)
+        {
+            var timespan = (date - new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc));
+
+            var meetupTimestamp = timespan.TotalMilliseconds;
+
+            return meetupTimestamp;
         }
 
         public static string GetDescriptionValue<T>(this T model, string member)

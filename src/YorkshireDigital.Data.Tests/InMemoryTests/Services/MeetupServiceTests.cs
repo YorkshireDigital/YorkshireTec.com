@@ -195,7 +195,7 @@
                 });
 
             // Act
-            var result = service.GetEvent(12345);
+            var result = service.GetEvent("12345");
 
             // Assert
             result.Name.ShouldBeEquivalentTo("Test Event");
@@ -213,7 +213,7 @@
                 });
 
             // Act
-            var result = service.GetEvent(12345);
+            var result = service.GetEvent("12345");
 
             // Assert
             result.Should().BeNull();
@@ -235,7 +235,7 @@
                 });
 
             // Act
-            var result = service.GetEvent(12345);
+            var result = service.GetEvent("12345");
 
             // Assert
             result.Should().BeNull();

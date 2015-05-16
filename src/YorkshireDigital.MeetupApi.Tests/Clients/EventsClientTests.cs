@@ -281,7 +281,7 @@ namespace YorkshireDigital.MeetupApi.Tests.Clients
 
             // Act
 
-            var result = meetup.Events.Get(new EventsRequest { EventId = 12345 });
+            var result = meetup.Events.Get(new EventsRequest { EventId = "12345" });
             Event @event = result.Results[0];
 
             // Assert

@@ -12,7 +12,7 @@
         }
 
         [Description("event_id")]
-        public int EventId { get; set; }
+        public string EventId { get; set; }
         [Description("group_domain")]
         public string GroupDomain { get; set; }
         [Description("group_id")]

@@ -13,7 +13,7 @@
         public void EventsRequest_EventId_MapsCorrectly()
         {
             // Arrange
-            var request = new EventsRequest { EventId = 12345 };
+            var request = new EventsRequest { EventId = "12345" };
 
             // Act
             var restRequest = request.ToRestRequest();

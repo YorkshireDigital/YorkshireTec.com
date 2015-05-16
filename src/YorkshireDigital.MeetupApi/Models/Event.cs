@@ -46,6 +46,13 @@
                 return DateHelpers.MeetupTimeStampToDateTime(Time);
             }
         }
+        public DateTime EndDate
+        {
+            get
+            {
+                return StartDate.AddMilliseconds(Duration ?? 0);
+            }
+        }
         public DateTime UpdatedDate
         {
             get

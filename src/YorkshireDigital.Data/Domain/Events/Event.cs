@@ -25,9 +25,23 @@
         public virtual DateTime? DeletedOn { get; set; }
         public virtual User DeletedBy { get; set; }
         public virtual string MeetupId { get; set; }
+        public virtual string EventSyncJobId { get; set; }
 
         public virtual bool IsDeleted { get { return DeletedOn.HasValue; } }
 
         // TODO: public virtual IList<User> Attendees { get; set; }
+
+        public virtual void UpdateFromMeetup(MeetupApi.Models.Event meetupEvent)
+        {
+            Title = meetupEvent.Name;
+            Synopsis = meetupEvent.Description;
+            Start = meetupEvent.StartDate;
+            End = meetupEvent.EndDate;
+            
+            if (meetupEvent.Venue == null) return;
+
+            Location = meetupEvent.Venue.Address1;
+            Region = meetupEvent.Venue.City;
+        }
     }
 }
