@@ -4,12 +4,10 @@
     using System.Collections.Generic;
     using System.Linq;
     using Hangfire;
-    using YorkshireDigital.Data.Domain.Events;
     using YorkshireDigital.MeetupApi.Clients;
     using YorkshireDigital.MeetupApi.Models;
     using YorkshireDigital.MeetupApi.Requests;
     using YorkshireDigital.MeetupApi.Requests.Enum;
-    using Category = YorkshireDigital.Data.Domain.Events.Category;
     using Event = YorkshireDigital.MeetupApi.Models.Event;
     using System.Linq.Expressions;
 
@@ -20,7 +18,6 @@
         void LinkGroup(Domain.Group.Group @group, string groupName);
         List<Event> GetUpcomingEventsForGroup(int groupId);
         Event GetEvent(string eventId);
-        void SyncEvents(Domain.Group.Group @group);
         void RemoveJobIfExists(string jobId);
         void AddOrUpdateJob(string recurringJobId, Expression<Action> methodCall, Func<string> cronExpression);
     }
@@ -91,44 +88,6 @@
             var response = meetupClient.Events.Get(request);
 
             return response.Results.SingleOrDefault();
-        }
-
-        public void SyncEvents(Domain.Group.Group @group)
-        {
-            var upcomingEvents = GetUpcomingEventsForGroup(@group.MeetupId);
-
-            foreach (var upcomingEvent in upcomingEvents)
-            {
-                if (@group.Events.Any(x => x.MeetupId == upcomingEvent.Id)) continue;
-
-                var newEvent = new Domain.Events.Event
-                {
-                    Categories = new List<Category> {new Category {Name = upcomingEvent.Group.Category.Name}},
-                    DeletedBy = null,
-                    DeletedOn = null,
-                    End =
-                        upcomingEvent.Duration.HasValue
-                            ? upcomingEvent.StartDate.AddMilliseconds(upcomingEvent.Duration.Value)
-                            : upcomingEvent.StartDate,
-                    Start = upcomingEvent.StartDate,
-                    Group = @group,
-                    Interests = upcomingEvent.Group.Topics.Select(x => new Interest {Name = x.Name}).ToList(),
-                    Location = upcomingEvent.Venue.Address1,
-                    Region = upcomingEvent.Venue.City,
-                    LastEditedOn = DateTime.UtcNow,
-                    Synopsis = upcomingEvent.Description,
-                    Title = upcomingEvent.Name
-                };
-                @group.Events.Add(newEvent);
-            }
-
-            foreach (var @event in @group.Events.ToList())
-            {
-                if (@event.Start > DateTime.UtcNow && upcomingEvents.All(x => x.Id != @event.MeetupId.ToString()))
-                {
-                    @group.Events.Remove(@event);
-                }
-            }
         }
 
         public void RemoveJobIfExists(string jobId)
