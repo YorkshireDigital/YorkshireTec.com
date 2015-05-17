@@ -57,7 +57,7 @@
                 group.GroupSyncId = string.Format("{0}-groupSync", @group.Id);
 
                 meetupService.AddOrUpdateJob<GroupSyncTask>(group.GroupSyncId, x => x.Execute(groupId), Cron.Hourly);
-
+                meetupService.Trigger(group.GroupSyncId);
 
                 var currentUser = userService.GetUser(Context.CurrentUser.UserName);
                 groupService.Save(group, currentUser);

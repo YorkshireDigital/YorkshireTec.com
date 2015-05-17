@@ -21,6 +21,7 @@
         Event GetEvent(string eventId);
         void RemoveJobIfExists(string jobId);
         void AddOrUpdateJob<T>(string recurringJobId, Expression<Action<T>> methodCall, Func<string> cronExpression);
+        void Trigger(string groupSyncId);
     }
 
     public class MeetupService : IMeetupService
@@ -94,6 +95,11 @@
         public void RemoveJobIfExists(string jobId)
         {
             RecurringJob.RemoveIfExists(jobId);
+        }
+
+        public void Trigger(string jobId)
+        {
+            RecurringJob.Trigger(jobId);
         }
 
         public void AddOrUpdateJob<T>(string recurringJobId, Expression<Action<T>> methodCall, Func<string> cronExpression)
