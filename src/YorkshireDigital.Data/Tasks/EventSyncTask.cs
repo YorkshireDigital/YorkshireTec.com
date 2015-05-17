@@ -7,12 +7,12 @@
     using YorkshireDigital.Data.Services;
     using YorkshireDigital.MeetupApi.Clients;
 
-    public class EventSyncTask
+    public class EventSyncTask : IDisposable
     {
         private readonly IEventService eventService;
         private readonly IMeetupService meetupService;
         private readonly IUserService userService;
-        private ISession session;
+        private readonly ISession session;
 
         public EventSyncTask()
         {
@@ -22,6 +22,8 @@
             userService = new UserService(session);
             eventService = new EventService(session);
             meetupService = new MeetupService(new MeetupClient(ConfigurationManager.AppSettings["Meetup_ApiKey"]));
+
+            session.BeginTransaction();
         }
 
         public EventSyncTask(IEventService eventService, IMeetupService meetupService, IUserService userService)
@@ -33,8 +35,6 @@
 
         public void Execute(string eventId)
         {
-            session.BeginTransaction();
-
             var @event = eventService.Get(eventId);
 
             var system = userService.GetUser("system");
@@ -61,8 +61,12 @@
             @event.UpdateFromMeetup(meetupEvent);
 
             eventService.Save(@event, system);
+        }
 
+        public void Dispose()
+        {
             session.Transaction.Commit();
+            session.Dispose();
         }
     }
 }

@@ -27,6 +27,8 @@
             eventService = new EventService(session);
             meetupService = new MeetupService(new MeetupClient(ConfigurationManager.AppSettings["Meetup_ApiKey"]));
             groupService = new GroupService(session);
+
+            session.BeginTransaction();
         }
 
         public GroupSyncTask(IGroupService groupService, IMeetupService meetupService, IEventService eventService, IUserService userService)
@@ -39,8 +41,6 @@
 
         public void Execute(string groupId)
         {
-            session.BeginTransaction();
-
             var group = groupService.Get(groupId);
             var system = userService.GetUser("system");
 
@@ -76,12 +76,11 @@
                     eventService.Delete(@event.UniqueName, system);
                 }
             }
-
-            session.Transaction.Commit();
         }
 
         public void Dispose()
         {
+            session.Transaction.Commit();
             session.Dispose();
         }
     }
