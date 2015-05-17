@@ -1,13 +1,28 @@
 ﻿namespace YorkshireDigital.Data.Tasks
 {
     using System;
+    using System.Configuration;
+    using global::NHibernate;
+    using YorkshireDigital.Data.NHibernate;
     using YorkshireDigital.Data.Services;
+    using YorkshireDigital.MeetupApi.Clients;
 
     public class EventSyncTask
     {
         private readonly IEventService eventService;
         private readonly IMeetupService meetupService;
         private readonly IUserService userService;
+        private ISession session;
+
+        public EventSyncTask()
+        {
+            var sessionFactory = NHibernateSessionFactoryProvider.BuildSessionFactory(ConfigurationManager.ConnectionStrings["Database"].ConnectionString);
+            session = sessionFactory.OpenSession();
+
+            userService = new UserService(session);
+            eventService = new EventService(session);
+            meetupService = new MeetupService(new MeetupClient(ConfigurationManager.AppSettings["Meetup_ApiKey"]));
+        }
 
         public EventSyncTask(IEventService eventService, IMeetupService meetupService, IUserService userService)
         {
@@ -18,6 +33,8 @@
 
         public void Execute(string eventId)
         {
+            session.BeginTransaction();
+
             var @event = eventService.Get(eventId);
 
             var system = userService.GetUser("system");
@@ -44,6 +61,8 @@
             @event.UpdateFromMeetup(meetupEvent);
 
             eventService.Save(@event, system);
+
+            session.Transaction.Commit();
         }
     }
 }

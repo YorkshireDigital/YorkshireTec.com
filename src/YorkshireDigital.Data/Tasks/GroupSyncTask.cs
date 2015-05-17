@@ -1,17 +1,33 @@
 ﻿namespace YorkshireDigital.Data.Tasks
 {
     using System;
+    using System.Configuration;
     using System.Linq;
+    using global::NHibernate;
     using Hangfire;
     using YorkshireDigital.Data.Domain.Events;
+    using YorkshireDigital.Data.NHibernate;
     using YorkshireDigital.Data.Services;
+    using YorkshireDigital.MeetupApi.Clients;
 
-    public class GroupSyncTask
+    public class GroupSyncTask : IDisposable
     {
         private readonly IUserService userService;
         private readonly IEventService eventService;
         private readonly IMeetupService meetupService;
         private readonly IGroupService groupService;
+        private readonly ISession session;
+
+        public GroupSyncTask()
+        {
+            var sessionFactory = NHibernateSessionFactoryProvider.BuildSessionFactory(ConfigurationManager.ConnectionStrings["Database"].ConnectionString);
+            session = sessionFactory.OpenSession();
+
+            userService = new UserService(session);
+            eventService = new EventService(session);
+            meetupService = new MeetupService(new MeetupClient(ConfigurationManager.AppSettings["Meetup_ApiKey"]));
+            groupService = new GroupService(session);
+        }
 
         public GroupSyncTask(IGroupService groupService, IMeetupService meetupService, IEventService eventService, IUserService userService)
         {
@@ -23,6 +39,8 @@
 
         public void Execute(string groupId)
         {
+            session.BeginTransaction();
+
             var group = groupService.Get(groupId);
             var system = userService.GetUser("system");
 
@@ -58,6 +76,13 @@
                     eventService.Delete(@event.UniqueName, system);
                 }
             }
+
+            session.Transaction.Commit();
+        }
+
+        public void Dispose()
+        {
+            session.Dispose();
         }
     }
 }

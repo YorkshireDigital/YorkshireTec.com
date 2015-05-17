@@ -42,6 +42,9 @@ namespace YorkshireDigital.Web.Infrastructure
         {
             base.ApplicationStartup(container, pipelines);
 
+            var sessionFactory = NHibernateSessionFactoryProvider.BuildSessionFactory(ConfigurationManager.ConnectionStrings["Database"].ConnectionString);
+            container.Register(sessionFactory);
+
             Csrf.Enable(pipelines);
         }
 
@@ -49,9 +52,7 @@ namespace YorkshireDigital.Web.Infrastructure
         {
             base.ConfigureRequestContainer(container, context);
 
-            var sessionFactory = NHibernateSessionFactoryProvider.BuildSessionFactory(ConfigurationManager.ConnectionStrings["Database"].ConnectionString);
-
-            container.Register(sessionFactory);
+            var sessionFactory = container.Resolve<ISessionFactory>();
 
             CreateSession(container, sessionFactory);
 
@@ -125,10 +126,9 @@ namespace YorkshireDigital.Web.Infrastructure
             container.Register<IUserService>(userService);
             container.Register<IGroupService>(groupService);
             container.Register<IMeetupService>(metupService);
-            container.Register(new GroupSyncTask(groupService, metupService, eventService, userService));
-            container.Register(new EventSyncTask(eventService, metupService, userService));
+            //container.Register<IEventSyncTask>(new EventSyncTask(eventService, metupService, userService));
 
-            GlobalConfiguration.Configuration.UseActivator(new HangfireContainerJobActivator(container));
+            //GlobalConfiguration.Configuration.UseActivator(new HangfireContainerJobActivator(container));
         }
 
         private Response RollbackSession(TinyIoCContainer container)
