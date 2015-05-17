@@ -63,6 +63,7 @@ namespace YorkshireDigital.Web.Infrastructure
             base.RequestStartup(container, pipelines, context);
 
             context.ViewBag.Beta = FeaturesModel.Beta;
+            context.ViewBag.GoogleAnalytics = FeaturesModel.GoogleAnalytics;
 
             StaticConfiguration.DisableErrorTraces = false;
 
