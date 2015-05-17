@@ -60,8 +60,14 @@
 
             if (upcomingEvent.Group != null)
             {
-                newEvent.Interests = upcomingEvent.Group.Topics.Select(x => new Interest { Name = x.Name }).ToList();
-                newEvent.Categories = new List<Category> { new Category { Name = upcomingEvent.Group.Category.Name } };
+                if (upcomingEvent.Group.Topics != null)
+                {
+                    newEvent.Interests = upcomingEvent.Group.Topics.Select(x => new Interest { Name = x.Name }).ToList();
+                }
+                if (upcomingEvent.Group.Category != null)
+                {
+                    newEvent.Categories = new List<Category> {new Category {Name = upcomingEvent.Group.Category.Name}};
+                }
             }
             if (upcomingEvent.Venue != null)
             {
