@@ -62,7 +62,7 @@
 
             // Assert
             A.CallTo(() => eventService.Save(A<Data.Domain.Events.Event>.Ignored, A<User>.Ignored)).MustHaveHappened();
-            A.CallTo(() => meetupService.AddOrUpdateJob("test-group-12345", A<Expression<Action>>.Ignored, A<Func<string>>.Ignored)).MustHaveHappened();
+            A.CallTo(() => meetupService.AddOrUpdateJob<EventSyncTask>("test-group-12345", A<Expression<Action<EventSyncTask>>>.Ignored, A<Func<string>>.Ignored)).MustHaveHappened();
         }
 
         [Test]
@@ -100,7 +100,7 @@
 
             // Assert
             A.CallTo(() => eventService.Save(A<Data.Domain.Events.Event>.Ignored, A<User>.Ignored)).MustNotHaveHappened();
-            A.CallTo(() => meetupService.AddOrUpdateJob(A<string>.Ignored, A<Expression<Action>>.Ignored, A <Func<string>>.Ignored)).MustNotHaveHappened();
+            A.CallTo(() => meetupService.AddOrUpdateJob<EventSyncTask>("test-group-12345", A<Expression<Action<EventSyncTask>>>.Ignored, A<Func<string>>.Ignored)).MustNotHaveHappened();
         }
 
         [Test]
@@ -127,7 +127,7 @@
 
             // Assert
             A.CallTo(() => eventService.Delete("Test-Event", A<User>.Ignored)).MustHaveHappened();
-            A.CallTo(() => meetupService.AddOrUpdateJob("test-group-12345", A<Expression<Action>>.Ignored, A<Func<string>>.Ignored)).MustNotHaveHappened();
+            A.CallTo(() => meetupService.AddOrUpdateJob<EventSyncTask>("test-group-12345", A<Expression<Action<EventSyncTask>>>.Ignored, A<Func<string>>.Ignored)).MustNotHaveHappened();
         }
 
         [Test]
@@ -153,7 +153,7 @@
 
             // Assert
             A.CallTo(() => eventService.Delete("Test-Event", A<User>.Ignored)).MustNotHaveHappened();
-            A.CallTo(() => meetupService.AddOrUpdateJob("test-group-12345", A<Expression<Action>>.Ignored, A<Func<string>>.Ignored)).MustNotHaveHappened();
+            A.CallTo(() => meetupService.AddOrUpdateJob<EventSyncTask>("test-group-12345", A<Expression<Action<EventSyncTask>>>.Ignored, A<Func<string>>.Ignored)).MustNotHaveHappened();
         }
     }
 }

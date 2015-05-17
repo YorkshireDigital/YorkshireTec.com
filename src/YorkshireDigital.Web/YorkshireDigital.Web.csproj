@@ -168,6 +168,7 @@
   <ItemGroup>
     <Content Include="packages.config" />
     <Content Include="public\content\logo-hey-stac.jpg" />
+    <Content Include="public\content\logo-meetup.png" />
     <Content Include="public\scripts\app\ajaxCsrf.js" />
     <Content Include="public\scripts\app\markdown-editor.js" />
     <Content Include="public\scripts\app\pages\account-mailinglist.js" />
@@ -218,6 +219,7 @@
     <Content Include="public\scripts\main.min.js.map">
       <DependentUpon>main.min.js</DependentUpon>
     </Content>
+    <Content Include="Admin\Views\GroupIntegrations.cshtml" />
     <None Include="public\scripts\vendor\jquery-2.1.1.intellisense.js" />
     <Content Include="public\scripts\vendor\jquery-2.1.1.intellisense.min.js" />
     <Content Include="public\scripts\vendor\jquery-2.1.1.js" />
@@ -424,10 +426,12 @@
     <Compile Include="Account\ViewModels\ProviderListViewModel.cs" />
     <Compile Include="Account\ViewModels\ProviderViewModel.cs" />
     <Compile Include="Admin\Modules\AdminEventModule.cs" />
+    <Compile Include="Admin\Modules\AdminGroupIntegrationsModule.cs" />
     <Compile Include="Admin\Modules\AdminGroupModule.cs" />
     <Compile Include="Admin\Modules\AdminUserModule.cs" />
     <Compile Include="Admin\ViewModels\AdminEventTalkViewModel.cs" />
     <Compile Include="Admin\ViewModels\AdminEventViewModel.cs" />
+    <Compile Include="Admin\ViewModels\AdminGroupIntegrationsViewModel.cs" />
     <Compile Include="Admin\ViewModels\AdminGroupViewModel.cs" />
     <Compile Include="Admin\Modules\AdminModule.cs" />
     <Compile Include="Admin\ViewModels\AdminEventListViewModel.cs" />
@@ -485,6 +489,10 @@
     <ProjectReference Include="..\YorkshireDigital.Data\YorkshireDigital.Data.csproj">
       <Project>{DE2ABF67-373C-41A8-83E0-D9B522221157}</Project>
       <Name>YorkshireDigital.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\YorkshireDigital.MeetupApi\YorkshireDigital.MeetupApi.csproj">
+      <Project>{0496202E-DB70-401A-A41A-12B5D0D5D78A}</Project>
+      <Name>YorkshireDigital.MeetupApi</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

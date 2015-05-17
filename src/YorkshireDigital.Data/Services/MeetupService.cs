@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using Hangfire;
+    using Hangfire.Common;
     using YorkshireDigital.MeetupApi.Clients;
     using YorkshireDigital.MeetupApi.Models;
     using YorkshireDigital.MeetupApi.Requests;
@@ -19,7 +20,7 @@
         List<Event> GetUpcomingEventsForGroup(int groupId);
         Event GetEvent(string eventId);
         void RemoveJobIfExists(string jobId);
-        void AddOrUpdateJob(string recurringJobId, Expression<Action> methodCall, Func<string> cronExpression);
+        void AddOrUpdateJob<T>(string recurringJobId, Expression<Action<T>> methodCall, Func<string> cronExpression);
     }
 
     public class MeetupService : IMeetupService
@@ -95,9 +96,9 @@
             RecurringJob.RemoveIfExists(jobId);
         }
 
-        public void AddOrUpdateJob(string recurringJobId, Expression<Action> methodCall, Func<string> cronExpression)
+        public void AddOrUpdateJob<T>(string recurringJobId, Expression<Action<T>> methodCall, Func<string> cronExpression)
         {
-            RecurringJob.AddOrUpdate(recurringJobId, methodCall, cronExpression);
+            RecurringJob.AddOrUpdate<T>(recurringJobId, methodCall, cronExpression);
         }
     }
 }

@@ -46,9 +46,7 @@
 
                 eventService.Save(newEvent, system);
 
-                var updateTask = new EventSyncTask(eventService, meetupService, userService);
-
-                meetupService.AddOrUpdateJob(newEvent.UniqueName, () => updateTask.Execute(newEvent.UniqueName), Cron.Hourly);
+                meetupService.AddOrUpdateJob<EventSyncTask>(newEvent.UniqueName, x => x.Execute(newEvent.UniqueName), Cron.Hourly);
             }
 
             // Delete future events that are no longer on meetup

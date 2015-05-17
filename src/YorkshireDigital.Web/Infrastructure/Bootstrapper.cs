@@ -15,6 +15,8 @@ namespace YorkshireDigital.Web.Infrastructure
     using NHibernate.Context;
     using YorkshireDigital.Data.NHibernate;
     using YorkshireDigital.Data.Services;
+    using YorkshireDigital.Data.Tasks;
+    using YorkshireDigital.MeetupApi.Clients;
     using YorkshireDigital.Web.Infrastructure.Models;
 
     public class Bootstrapper : DefaultNancyBootstrapper
@@ -39,8 +41,6 @@ namespace YorkshireDigital.Web.Infrastructure
         protected override void ApplicationStartup(TinyIoCContainer container, IPipelines pipelines)
         {
             base.ApplicationStartup(container, pipelines);
-
-            GlobalConfiguration.Configuration.UseActivator(new HangfireContainerJobActivator(container));
 
             Csrf.Enable(pipelines);
         }
@@ -116,10 +116,19 @@ namespace YorkshireDigital.Web.Infrastructure
             var requestSession = sessionFactory.OpenSession();
             CurrentSessionContext.Bind(requestSession);
             requestSession.BeginTransaction();
+            var groupService = new GroupService(requestSession);
+            var eventService = new EventService(requestSession);
+            var userService = new UserService(requestSession);
+            var metupService = new MeetupService(new MeetupClient(ConfigurationManager.AppSettings["Meetup_ApiKey"]));
 
-            container.Register<IEventService>(new EventService(requestSession));
-            container.Register<IUserService>(new UserService(requestSession));
-            container.Register<IGroupService>(new GroupService(requestSession));
+            container.Register<IEventService>(eventService);
+            container.Register<IUserService>(userService);
+            container.Register<IGroupService>(groupService);
+            container.Register<IMeetupService>(metupService);
+            container.Register(new GroupSyncTask(groupService, metupService, eventService, userService));
+            container.Register(new EventSyncTask(eventService, metupService, userService));
+
+            GlobalConfiguration.Configuration.UseActivator(new HangfireContainerJobActivator(container));
         }
 
         private Response RollbackSession(TinyIoCContainer container)
