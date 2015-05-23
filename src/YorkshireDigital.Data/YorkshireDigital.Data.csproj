@@ -119,6 +119,7 @@
     <Compile Include="Domain\Group\ContactLink.cs" />
     <Compile Include="Domain\Group\Enums\ContactLinkType.cs" />
     <Compile Include="Domain\Group\Group.cs" />
+    <Compile Include="Domain\Shared\TextFormat.cs" />
     <Compile Include="Exceptions\EventNotFoundException.cs" />
     <Compile Include="Exceptions\GroupNotFoundException.cs" />
     <Compile Include="Exceptions\UserNotFoundException.cs" />

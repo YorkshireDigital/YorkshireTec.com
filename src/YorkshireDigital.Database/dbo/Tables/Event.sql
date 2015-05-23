@@ -2,6 +2,7 @@
     [UniqueName]     NVARCHAR (255)  NOT NULL,
     [Title]          VARCHAR (1000)  NULL,
     [Synopsis]       VARCHAR (8000)  NULL,
+    [SynopsisFormat] VARCHAR (50)	 NULL,
     [Start]          DATETIME        NULL,
     [End]            DATETIME        NULL,
     [Location]       NVARCHAR (255)  NULL,

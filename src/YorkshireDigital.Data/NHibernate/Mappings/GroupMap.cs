@@ -19,6 +19,7 @@
             Map(x => x.About)
                 .CustomSqlType("varchar(8000)")
                 .Length(8000);
+            Map(x => x.AboutFormat);
             Map(x => x.Colour);
             Map(x => x.Logo);
             Map(x => x.Photo);

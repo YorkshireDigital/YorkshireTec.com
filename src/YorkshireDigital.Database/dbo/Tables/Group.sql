@@ -4,6 +4,7 @@
     [ShortName] NVARCHAR (255)  NULL,
     [Headline]  VARCHAR (8000)  NULL,
     [About]     VARCHAR (8000)  NULL,
+    [AboutFormat]NVARCHAR (50)	NULL,
     [Colour]    NVARCHAR (255)  NULL,
     [Logo]      VARBINARY (MAX) NULL,
     [Photo]     VARBINARY (MAX) NULL,

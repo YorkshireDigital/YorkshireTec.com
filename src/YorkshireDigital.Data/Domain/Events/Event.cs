@@ -5,6 +5,7 @@
     using System.Linq;
     using YorkshireDigital.Data.Domain.Account;
     using YorkshireDigital.Data.Domain.Group;
+    using YorkshireDigital.Data.Domain.Shared;
 
     public class Event
     {
@@ -12,6 +13,7 @@
         public virtual Group Group { get; set; }
         public virtual string Title { get; set; }
         public virtual string Synopsis { get; set; }
+        public virtual TextFormat SynopsisFormat { get; set; }
         public virtual DateTime Start { get; set; }
         public virtual DateTime End { get; set; }
         public virtual string Location { get; set; }
@@ -36,6 +38,7 @@
         {
             Title = meetupEvent.Name;
             Synopsis = meetupEvent.Description;
+            SynopsisFormat = TextFormat.Html;
             Start = meetupEvent.StartDate;
             End = meetupEvent.EndDate;
             
@@ -77,6 +80,7 @@
 
             newEvent.LastEditedOn = DateTime.UtcNow;
             newEvent.Synopsis = upcomingEvent.Description;
+            newEvent.SynopsisFormat = TextFormat.Html;
             newEvent.Title = upcomingEvent.Name;
             return newEvent;
         }
