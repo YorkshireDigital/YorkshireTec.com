@@ -13,6 +13,7 @@
     [LastEditedById] UNIQUEIDENTIFIER NULL, 
     [DeletedById]	 UNIQUEIDENTIFIER NULL, 
     [MeetupId]	INT			NULL, 
+	[MeetupUrlName] NVARCHAR (255)	NULL, 
     [GroupSyncId]	NVARCHAR (255)	NULL, 
     PRIMARY KEY CLUSTERED ([Id] ASC), 
     CONSTRAINT [FK_Group_User_Edited] FOREIGN KEY ([LastEditedById]) REFERENCES [User]([Id]),

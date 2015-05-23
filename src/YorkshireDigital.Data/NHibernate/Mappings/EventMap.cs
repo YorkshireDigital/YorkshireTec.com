@@ -27,6 +27,7 @@
             Map(x => x.LastEditedOn);
             References(x => x.LastEditedBy);
             Map(x => x.MeetupId);
+            Map(x => x.EventSyncJobId);
             Map(x => x.DeletedOn);
             References(x => x.DeletedBy);
 

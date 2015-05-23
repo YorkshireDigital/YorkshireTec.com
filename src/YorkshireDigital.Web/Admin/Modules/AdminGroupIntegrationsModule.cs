@@ -1,5 +1,6 @@
 ﻿namespace YorkshireDigital.Web.Admin.Modules
 {
+    using System.Linq;
     using Hangfire;
     using Nancy;
     using Nancy.ModelBinding;
@@ -54,6 +55,7 @@
 
                 var group = groupService.Get(groupId);
                 group.MeetupId = meetupGroup.Id;
+                group.MeetupUrlName = viewModel.MeetupUrlName;
                 group.GroupSyncId = string.Format("{0}-groupSync", @group.Id);
 
                 meetupService.AddOrUpdateJob<GroupSyncTask>(group.GroupSyncId, x => x.Execute(groupId), Cron.Hourly);
@@ -74,6 +76,31 @@
                 var exists = meetupService.GroupExists(viewModel.MeetupUrlName);
 
                 return exists;
+            };
+
+
+            Delete["/{groupId}/integrations/"] = _ =>
+            {
+                string groupId = _.groupId.ToString();
+
+                var group = groupService.Get(groupId);
+
+                meetupService.RemoveJobIfExists(group.GroupSyncId);
+
+                foreach (var @event in @group.Events.Where(@event => !string.IsNullOrEmpty(@event.EventSyncJobId)))
+                {
+                    meetupService.RemoveJobIfExists(@event.EventSyncJobId);
+                    @event.EventSyncJobId = null;
+                }
+
+                group.GroupSyncId = null;
+                group.MeetupId = 0;
+                group.MeetupUrlName = null;
+
+                var currentUser = userService.GetUser(Context.CurrentUser.UserName);
+                groupService.Save(group, currentUser);
+
+                return HttpStatusCode.OK;
             };
         }
     }

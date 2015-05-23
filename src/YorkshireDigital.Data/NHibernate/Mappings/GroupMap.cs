@@ -29,6 +29,7 @@
             References(x => x.DeletedBy);
 
             Map(x => x.MeetupId);
+            Map(x => x.MeetupUrlName);
             Map(x => x.GroupSyncId);
 
             HasMany(x => x.ContactLinks)

@@ -53,18 +53,30 @@
 
             foreach (var upcomingEvent in upcomingEvents)
             {
+                Event @event;
                 // Don't do anything if the event has already been created
-                if (@group.Events.Any(x => x.MeetupId == upcomingEvent.Id)) continue;
+                if (@group.Events.All(x => x.MeetupId != upcomingEvent.Id))
+                {
+                    @event = Event.FromMeetupGroup(upcomingEvent);
+                    @event.UniqueName = string.Format("{0}-{1}", @group.Id, upcomingEvent.Id);
+                    @event.Group = group;
 
-                var newEvent = Event.FromMeetupGroup(upcomingEvent);
-                newEvent.UniqueName = string.Format("{0}-{1}", @group.Id, upcomingEvent.Id);
-                newEvent.Group = group;
+                    group.Events.Add(@event);
 
-                group.Events.Add(newEvent);
+                    eventService.Save(@event, system);
+                }
+                else
+                {
+                    @event = @group.Events.Single(x => x.MeetupId == upcomingEvent.Id);
+                }
 
-                eventService.Save(newEvent, system);
+                if (string.IsNullOrEmpty(@event.EventSyncJobId))
+                {
+                    meetupService.AddOrUpdateJob<EventSyncTask>(@event.UniqueName, x => x.Execute(@event.UniqueName), Cron.Hourly);
+                    @event.EventSyncJobId = @event.UniqueName;
 
-                meetupService.AddOrUpdateJob<EventSyncTask>(newEvent.UniqueName, x => x.Execute(newEvent.UniqueName), Cron.Hourly);
+                    eventService.Save(@event, system);
+                }
             }
 
             // Delete future events that are no longer on meetup
