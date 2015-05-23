@@ -66,7 +66,7 @@
         }
 
         [Test]
-        public void Execute_DoesNotCreateEvent_WhenEventExists()
+        public void Execute_DoesNotCreateEvent_WhenEventExistsWithJob()
         {
             // Arrange
             A.CallTo(() => groupService.Get("test-group"))
@@ -78,7 +78,8 @@
                     {
                         new Data.Domain.Events.Event
                         {
-                            MeetupId = "54321"
+                            MeetupId = "54321",
+                            EventSyncJobId = "12334"
                         }
                     }
                 });
@@ -101,6 +102,45 @@
             // Assert
             A.CallTo(() => eventService.Save(A<Data.Domain.Events.Event>.Ignored, A<User>.Ignored)).MustNotHaveHappened();
             A.CallTo(() => meetupService.AddOrUpdateJob<EventSyncTask>("test-group-12345", A<Expression<Action<EventSyncTask>>>.Ignored, A<Func<string>>.Ignored)).MustNotHaveHappened();
+        }
+
+        [Test]
+        public void Execute_CreatesJob_WhenEventExistsWithoutJob()
+        {
+            // Arrange
+            A.CallTo(() => groupService.Get("test-group"))
+                .Returns(new Data.Domain.Group.Group
+                {
+                    Id = "test-group",
+                    MeetupId = 12345,
+                    Events = new List<Data.Domain.Events.Event>
+                    {
+                        new Data.Domain.Events.Event
+                        {
+                            UniqueName = "test-group-12345",
+                            MeetupId = "54321"
+                        }
+                    }
+                });
+
+            A.CallTo(() => meetupService.GetUpcomingEventsForGroup(12345))
+                .Returns(new List<Event>
+                {
+                    new Event
+                    {
+                        Id = "54321",
+                        Name = "Existing Event",
+                        Description = "Existing details.",
+                        Updated = DateHelpers.DateTimeToMeetupTimeStamp(DateTime.UtcNow)
+                    }
+                });
+
+            // Act
+            task.Execute("test-group");
+
+            // Assert
+            A.CallTo(() => eventService.Save(A<Data.Domain.Events.Event>.Ignored, A<User>.Ignored)).MustHaveHappened();
+            A.CallTo(() => meetupService.AddOrUpdateJob<EventSyncTask>("test-group-12345", A<Expression<Action<EventSyncTask>>>.Ignored, A<Func<string>>.Ignored)).MustHaveHappened();
         }
 
         [Test]
