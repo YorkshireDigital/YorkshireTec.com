@@ -32,8 +32,6 @@ namespace YorkshireTec.Api.Infrastructure
         // For more information https://github.com/NancyFx/Nancy/wiki/Bootstrapper
         protected override void ConfigureApplicationContainer(TinyIoCContainer container)
         {
-            error
-
             base.ConfigureApplicationContainer(container);
 
             var inMemoryDb = bool.Parse(ConfigurationManager.AppSettings["Database:InMemory"]);
