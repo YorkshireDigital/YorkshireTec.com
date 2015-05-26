@@ -6,8 +6,7 @@
     {
         IGroupsClient Groups { get; set; }
         IEventsClient Events { get; set; }
-
-        //List<Event> GetEvents(string meetupName);
+        IProfileClient Profile { get; set; }
     }
 
     public class MeetupClient : IMeetupClient
@@ -16,29 +15,18 @@
         {
             Groups = new GroupsClient(apiKey);
             Events = new EventsClient(apiKey);
+            Profile = new ProfileClient(apiKey);
         }
 
         public MeetupClient(IRestClient restClient)
         {
             Groups = new GroupsClient(restClient);
             Events = new EventsClient(restClient);
+            Profile = new ProfileClient(restClient);
         }
 
         public IGroupsClient Groups { get; set; }
         public IEventsClient Events { get; set; }
-
-        //public List<Event> GetEvents(string meetupName)
-        //{
-        //    var request = new RestRequest("events", Method.GET);
-        //    request.AddParameter("group_urlname", meetupName);
-        //    request.AddParameter("key", apiKey);
-            
-        //    var response = client.Execute(request);
-        //    var json = response.Content;
-
-        //    var content = JsonConvert.DeserializeObject<ApiResponse<>>(json);
-
-        //    return content.Results;
-        //}
+        public IProfileClient Profile { get; set; }
     }
 }

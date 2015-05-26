@@ -49,6 +49,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Clients\BaseClient.cs" />
+    <Compile Include="Clients\ProfileClient.cs" />
+    <Compile Include="Models\Photo.cs" />
+    <Compile Include="Models\Profile.cs" />
     <Compile Include="Requests\BaseRequest.cs" />
     <Compile Include="Clients\EventsClient.cs" />
     <Compile Include="Clients\GroupsClient.cs" />
@@ -67,6 +70,7 @@
     <Compile Include="Models\Venue.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Organizer.cs" />
+    <Compile Include="Requests\ProfileCreateRequest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -1,11 +1,10 @@
 ﻿namespace YorkshireDigital.MeetupApi.Requests
 {
     using System.ComponentModel;
-    using RestSharp;
 
     public class GroupsRequest : BaseRequest
     {
-        public GroupsRequest() : base("groups", Method.GET)
+        public GroupsRequest() : base("groups")
         {
             
         }

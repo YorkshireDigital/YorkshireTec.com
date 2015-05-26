@@ -16,12 +16,12 @@
             var request = new EventsRequest { EventId = "12345" };
 
             // Act
-            var restRequest = request.ToRestRequest();
+            var restRequest = request.ToRestRequest(Method.GET, "api-key");
 
             // Assert
-            restRequest.Parameters.Count.ShouldBeEquivalentTo(1);
-            restRequest.Parameters[0].Name.ShouldBeEquivalentTo("event_id");
-            restRequest.Parameters[0].Value.ShouldBeEquivalentTo(12345);
+            restRequest.Parameters.Count.ShouldBeEquivalentTo(2);
+            restRequest.Parameters[1].Name.ShouldBeEquivalentTo("event_id");
+            restRequest.Parameters[1].Value.ShouldBeEquivalentTo(12345);
             restRequest.Method.ShouldBeEquivalentTo(Method.GET);
             restRequest.Resource.ShouldBeEquivalentTo("events");
         }
@@ -33,12 +33,12 @@
             var request = new EventsRequest { GroupId = 12345 };
 
             // Act
-            var restRequest = request.ToRestRequest();
+            var restRequest = request.ToRestRequest(Method.GET, "api-key");
 
             // Assert
-            restRequest.Parameters.Count.ShouldBeEquivalentTo(1);
-            restRequest.Parameters[0].Name.ShouldBeEquivalentTo("group_id");
-            restRequest.Parameters[0].Value.ShouldBeEquivalentTo(12345);
+            restRequest.Parameters.Count.ShouldBeEquivalentTo(2);
+            restRequest.Parameters[1].Name.ShouldBeEquivalentTo("group_id");
+            restRequest.Parameters[1].Value.ShouldBeEquivalentTo(12345);
             restRequest.Method.ShouldBeEquivalentTo(Method.GET);
             restRequest.Resource.ShouldBeEquivalentTo("events");
         }
@@ -50,12 +50,12 @@
             var request = new EventsRequest { GroupDomain = "Test-Domain" };
 
             // Act
-            var restRequest = request.ToRestRequest();
+            var restRequest = request.ToRestRequest(Method.GET, "api-key");
 
             // Assert
-            restRequest.Parameters.Count.ShouldBeEquivalentTo(1);
-            restRequest.Parameters[0].Name.ShouldBeEquivalentTo("group_domain");
-            restRequest.Parameters[0].Value.ShouldBeEquivalentTo("Test-Domain");
+            restRequest.Parameters.Count.ShouldBeEquivalentTo(2);
+            restRequest.Parameters[1].Name.ShouldBeEquivalentTo("group_domain");
+            restRequest.Parameters[1].Value.ShouldBeEquivalentTo("Test-Domain");
             restRequest.Method.ShouldBeEquivalentTo(Method.GET);
             restRequest.Resource.ShouldBeEquivalentTo("events");
         }
@@ -67,12 +67,12 @@
             var request = new EventsRequest { GroupUrlName = "Test-Name" };
 
             // Act
-            var restRequest = request.ToRestRequest();
+            var restRequest = request.ToRestRequest(Method.GET, "api-key");
 
             // Assert
-            restRequest.Parameters.Count.ShouldBeEquivalentTo(1);
-            restRequest.Parameters[0].Name.ShouldBeEquivalentTo("group_urlname");
-            restRequest.Parameters[0].Value.ShouldBeEquivalentTo("Test-Name");
+            restRequest.Parameters.Count.ShouldBeEquivalentTo(2);
+            restRequest.Parameters[1].Name.ShouldBeEquivalentTo("group_urlname");
+            restRequest.Parameters[1].Value.ShouldBeEquivalentTo("Test-Name");
             restRequest.Method.ShouldBeEquivalentTo(Method.GET);
             restRequest.Resource.ShouldBeEquivalentTo("events");
         }
@@ -84,12 +84,12 @@
             var request = new EventsRequest { Status = EventStatus.Proposed };
 
             // Act
-            var restRequest = request.ToRestRequest();
+            var restRequest = request.ToRestRequest(Method.GET, "api-key");
 
             // Assert
-            restRequest.Parameters.Count.ShouldBeEquivalentTo(1);
-            restRequest.Parameters[0].Name.ShouldBeEquivalentTo("status");
-            restRequest.Parameters[0].Value.ShouldBeEquivalentTo("proposed");
+            restRequest.Parameters.Count.ShouldBeEquivalentTo(2);
+            restRequest.Parameters[1].Name.ShouldBeEquivalentTo("status");
+            restRequest.Parameters[1].Value.ShouldBeEquivalentTo("proposed");
             restRequest.Method.ShouldBeEquivalentTo(Method.GET);
             restRequest.Resource.ShouldBeEquivalentTo("events");
         }

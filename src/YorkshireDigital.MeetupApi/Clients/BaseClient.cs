@@ -24,8 +24,6 @@
 
         protected ApiResponse<T> Execute<T>(RestRequest request)
         {
-            request.AddParameter("key", ApiKey);
-
             var response = Client.Execute(request);
             var json = response.Content;
 
@@ -34,10 +32,9 @@
             return content;
         }
 
-
         public ApiResponse<T> Get<T>(BaseRequest request)
         {
-            var restRequest = request.ToRestRequest();
+            var restRequest = request.ToRestRequest(Method.GET, ApiKey);
 
             return Execute<T>(restRequest);
         }

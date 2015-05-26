@@ -1,13 +1,12 @@
 ﻿namespace YorkshireDigital.MeetupApi.Requests
 {
     using System.ComponentModel;
-    using RestSharp;
     using YorkshireDigital.MeetupApi.Requests.Enum;
 
     public class EventsRequest : BaseRequest
     {
         public EventsRequest()
-            : base("events", Method.GET)
+            : base("events")
         {
         }
 

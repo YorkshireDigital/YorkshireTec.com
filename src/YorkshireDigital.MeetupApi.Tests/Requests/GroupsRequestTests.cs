@@ -15,12 +15,12 @@ namespace YorkshireDigital.MeetupApi.Tests.Requests
             var request = new GroupsRequest {GroupUrlName = "Test-Name"};
 
             // Act
-            var restRequest = request.ToRestRequest();
+            var restRequest = request.ToRestRequest(Method.GET, "api-key");
 
             // Assert
-            restRequest.Parameters.Count.ShouldBeEquivalentTo(1);
-            restRequest.Parameters[0].Name.ShouldBeEquivalentTo("group_urlname");
-            restRequest.Parameters[0].Value.ShouldBeEquivalentTo("Test-Name");
+            restRequest.Parameters.Count.ShouldBeEquivalentTo(2);
+            restRequest.Parameters[1].Name.ShouldBeEquivalentTo("group_urlname");
+            restRequest.Parameters[1].Value.ShouldBeEquivalentTo("Test-Name");
             restRequest.Method.ShouldBeEquivalentTo(Method.GET);
             restRequest.Resource.ShouldBeEquivalentTo("groups");
         }
