@@ -59,6 +59,21 @@
                 case Method.POST:
                     restRequest.AddJsonBody(requestProperties);
                     break;
+                case Method.DELETE:
+                    var endPoint = restRequest.Resource;
+                    foreach (var requestProperty in requestProperties)
+                    {
+                        if (requestProperty.Key == "key")
+                        {
+                            restRequest.AddParameter(requestProperty.Key, requestProperty.Value);
+                        }
+                        else
+                        {
+                            endPoint = endPoint.Replace(string.Format(":{0}", requestProperty.Key), requestProperty.Value);
+                        }
+                        restRequest.Resource = endPoint;
+                    }
+                    break;
                 case Method.GET:
                 default:
                     foreach (var requestProperty in requestProperties)

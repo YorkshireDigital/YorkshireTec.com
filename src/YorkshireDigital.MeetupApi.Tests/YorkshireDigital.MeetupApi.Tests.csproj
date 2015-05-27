@@ -75,6 +75,7 @@
     <Compile Include="Requests\EventsRequestTests.cs" />
     <Compile Include="Requests\GroupsRequestTests.cs" />
     <Compile Include="Requests\ProfileCreateRequestTests.cs" />
+    <Compile Include="Requests\ProfileDeleteRequestTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

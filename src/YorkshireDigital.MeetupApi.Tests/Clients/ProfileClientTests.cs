@@ -6,12 +6,27 @@
     using RestSharp;
     using YorkshireDigital.MeetupApi.Clients;
     using YorkshireDigital.MeetupApi.Helpers;
-    using YorkshireDigital.MeetupApi.Models;
     using YorkshireDigital.MeetupApi.Requests;
 
     [TestFixture]
     public class ProfileClientTests
     {
+        private static string DeleteProfileSuccessResponse()
+        {
+            return @"{
+    'message': 'member is removed from group'
+}";
+        }
+
+        private static string DeleteProfileNotFoundResponse()
+        {
+            return @"{
+    'details': 'The resource you have requested can not be found',
+    'code': 'not_found',
+    'problem': 'Not Found'
+}";
+        }
+
         private static string CreateProfileResponse()
         {
             return
@@ -56,10 +71,9 @@
                 .Returns(response);
 
             // Act
-
             var profile = meetup.Profile.Create(new ProfileCreateRequest {GroupId = "12345"});
 
-            // Asset
+            // Assert
             profile.MemberId.ShouldBeEquivalentTo(187831112);
             profile.ProfileUrl.ShouldBeEquivalentTo("http://www.meetup.com/Leeds-Sharp/members/187831112/");
             profile.Created.ShouldBeEquivalentTo(1432669683000);
@@ -87,16 +101,39 @@
         }
 
         [Test]
-        public void Delete_WithValidGroupAndMemberId_Returns200()
+        public void Delete_WithValidGroupAndMemberId_ReturnsTrue()
         {
             // Arrange
+            var client = A.Fake<IRestClient>();
+            var meetup = new MeetupClient(client);
+            var response = new RestResponse { Content = DeleteProfileSuccessResponse() };
+
+            A.CallTo(() => client.Execute(A<IRestRequest>.Ignored))
+                .Returns(response);
 
             // Act
+            bool deleted = meetup.Profile.Delete(new ProfileDeleteRequest { GroupId = "12345", MemberId = "12345" });
 
-            // Asset
-
+            // Assert
+            deleted.Should().BeTrue();
         }
 
+        [Test]
+        public void Delete_WithNotFoundGroupAndMemberId_ReturnsFalse()
+        {
+            // Arrange
+            var client = A.Fake<IRestClient>();
+            var meetup = new MeetupClient(client);
+            var response = new RestResponse { Content = DeleteProfileNotFoundResponse() };
 
+            A.CallTo(() => client.Execute(A<IRestRequest>.Ignored))
+                .Returns(response);
+
+            // Act
+            bool deleted = meetup.Profile.Delete(new ProfileDeleteRequest { GroupId = "12345", MemberId = "12345" });
+
+            // Assert
+            deleted.Should().BeFalse();
+        }
     }
 }

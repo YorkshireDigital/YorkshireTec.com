@@ -71,6 +71,7 @@
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Organizer.cs" />
     <Compile Include="Requests\ProfileCreateRequest.cs" />
+    <Compile Include="Requests\ProfileDeleteRequest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
