@@ -23,7 +23,8 @@
             meetupClient = new MeetupClient("test")
             {
                 Groups = A.Fake<IGroupsClient>(),
-                Events = A.Fake<IEventsClient>()
+                Events = A.Fake<IEventsClient>(),
+                Profile = A.Fake<IProfileClient>()
             };
             service = new MeetupService(meetupClient);
         }
@@ -239,6 +240,34 @@
 
             // Assert
             result.Should().BeNull();
+        }
+
+        [Test]
+        public void JoinGroup_WhenGroupExists_ReturnsProfile()
+        {
+            // Arrange
+            A.CallTo(() => meetupClient.Profile.Create(A<ProfileCreateRequest>.Ignored))
+                .Returns(new Profile { MemberId = 67890 });
+
+            // Act
+            Profile result = service.JoinGroup("12345", new Dictionary<int, string>());
+
+            // Assert
+            result.MemberId.ShouldBeEquivalentTo(67890);
+        }
+
+        [Test]
+        public void LeaveGroup_WhenGroupExists_ReturnsTrue()
+        {
+            // Arrange
+            A.CallTo(() => meetupClient.Profile.Delete(A<ProfileDeleteRequest>.Ignored))
+                .Returns(true);
+
+            // Act
+            bool result = service.LeaveGroup("12345", "67890");
+
+            // Assert
+            result.Should().BeTrue();
         }
     }
 }

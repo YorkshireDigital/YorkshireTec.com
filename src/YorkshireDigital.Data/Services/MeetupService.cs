@@ -106,5 +106,30 @@
         {
             RecurringJob.AddOrUpdate<T>(recurringJobId, methodCall, cronExpression);
         }
+
+        public Profile JoinGroup(string groupId, Dictionary<int, string> answers)
+        {
+            var request = new ProfileCreateRequest
+            {
+                GroupId = groupId,
+                Intro = "",
+                SiteName = "YorkshireDigital",
+                SiteUrl = "http://www.yorkshiredigital.com",
+                Answers = answers
+            };
+
+            return meetupClient.Profile.Create(request);
+        }
+
+        public bool LeaveGroup(string groupId, string memberId)
+        {
+            var request = new ProfileDeleteRequest
+            {
+                GroupId = groupId, 
+                MemberId = memberId
+            };
+
+            return meetupClient.Profile.Delete(request);
+        }
     }
 }
