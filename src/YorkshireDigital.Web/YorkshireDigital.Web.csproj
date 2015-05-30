@@ -241,6 +241,7 @@
     <Content Include="public\styles\css\icons.fallback.min.css" />
     <Content Include="public\styles\css\screen.css" />
     <Content Include="public\styles\css\screen.min.css" />
+    <Content Include="public\styles\css\slightly-better-tables.css" />
     <Content Include="public\styles\img\bg-homepage-banner.jpg" />
     <Content Include="public\styles\img\bg-homepage-hero.jpg" />
     <Content Include="public\styles\img\icons.data.svg.css" />

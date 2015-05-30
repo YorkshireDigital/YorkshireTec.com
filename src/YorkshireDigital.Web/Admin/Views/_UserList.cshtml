@@ -1,7 +1,7 @@
 ﻿@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<YorkshireDigital.Web.Admin.ViewModels.AdminUserListViewModel>
-<tr>
-    <td>@Model.Username</td>
-    <td>@Model.Name</td>
-    <td>@Model.Email</td>
-    <td>@Model.MailingListState</td>
-</tr>
+<div class="row">
+    <div class="cell">@Model.Username</div>
+    <div class="cell">@Model.Name</div>
+    <div class="cell">@Model.Email</div>
+    <div class="cell">@Model.MailingListState</div>
+</div>
