@@ -32,12 +32,12 @@
                 Groups.Add(Mapper.DynamicMap<AdminGroupListViewModel>(@group));
             }
 
-            foreach (var @event in events.Where(x => x.Start < DateTime.UtcNow))
+            foreach (var @event in events.Where(x => x.Start < DateTime.UtcNow).OrderByDescending(x => x.Start))
             {
                 PastEvents.Add(Mapper.DynamicMap<AdminEventListViewModel>(@event));
             }
 
-            foreach (var @event in events.Where(x => x.Start >= DateTime.UtcNow))
+            foreach (var @event in events.Where(x => x.Start >= DateTime.UtcNow).OrderBy(x => x.Start))
             {
                 FutureEvents.Add(Mapper.DynamicMap<AdminEventListViewModel>(@event));
             }
