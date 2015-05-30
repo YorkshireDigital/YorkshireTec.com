@@ -5,6 +5,7 @@
     <div class="cell">@Model.Id</div>
     <div class="cell">@Model.Name</div>
     <div class="cell">@Model.ShortName</div>
+    <div class="cell">@if(Model.MeetupId > 0){<img src="/public/content/meetup.png" alt="meetup.com"/> }</div>
     <div class="cell"><a href="/admin/group/@Model.Id">Edit</a></div>
     <div class="cell"><a href="/admin/event?groupid=@Model.Id">Add Event</a></div>
 </div>

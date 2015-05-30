@@ -169,6 +169,7 @@
     <Content Include="packages.config" />
     <Content Include="public\content\logo-hey-stac.jpg" />
     <Content Include="public\content\logo-meetup.png" />
+    <Content Include="public\content\meetup.png" />
     <Content Include="public\scripts\app\ajaxCsrf.js" />
     <Content Include="public\scripts\app\markdown-editor.js" />
     <Content Include="public\scripts\app\pages\account-mailinglist.js" />
