@@ -32,6 +32,7 @@
             Map(x => x.MeetupId);
             Map(x => x.MeetupUrlName);
             Map(x => x.GroupSyncId);
+            Map(x => x.MeetupProfileId);
 
             HasMany(x => x.ContactLinks)
                 .Cascade.All();

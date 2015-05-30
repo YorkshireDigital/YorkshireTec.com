@@ -1,5 +1,6 @@
 ﻿namespace YorkshireDigital.Web.Admin.Modules
 {
+    using System.Collections.Generic;
     using System.Linq;
     using Hangfire;
     using Nancy;
@@ -51,11 +52,14 @@
                                 .WithStatusCode(HttpStatusCode.BadRequest);
                 }
 
+                var profile = meetupService.JoinGroup(meetupGroup.Id.ToString(), new Dictionary<int, string>());
+
                 string groupId = _.groupId.ToString();
 
                 var group = groupService.Get(groupId);
                 group.MeetupId = meetupGroup.Id;
                 group.MeetupUrlName = viewModel.MeetupUrlName;
+                group.MeetupProfileId = profile.MemberId;
                 group.GroupSyncId = string.Format("{0}-groupSync", @group.Id);
 
                 meetupService.AddOrUpdateJob<GroupSyncTask>(group.GroupSyncId, x => x.Execute(groupId), Cron.Hourly);
@@ -92,9 +96,12 @@
                     meetupService.RemoveJobIfExists(@event.EventSyncJobId);
                     @event.EventSyncJobId = null;
                 }
+                
+                meetupService.LeaveGroup(group.MeetupId.ToString(), group.MeetupProfileId.ToString());
 
                 group.GroupSyncId = null;
                 group.MeetupId = 0;
+                group.MeetupProfileId = 0;
                 group.MeetupUrlName = null;
 
                 var currentUser = userService.GetUser(Context.CurrentUser.UserName);

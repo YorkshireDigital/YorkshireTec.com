@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using System.ComponentModel;
+    using Newtonsoft.Json;
     using RestSharp;
 
     public class BaseRequest
@@ -57,7 +58,11 @@
             switch (method)
             {
                 case Method.POST:
-                    restRequest.AddJsonBody(requestProperties);
+                    foreach (var requestProperty in requestProperties)
+                    {
+                        restRequest.AddParameter(requestProperty.Key, requestProperty.Value);
+                    }
+                    restRequest.AddHeader("Content-Type", "multipart/form-data");
                     break;
                 case Method.DELETE:
                     var endPoint = restRequest.Resource;

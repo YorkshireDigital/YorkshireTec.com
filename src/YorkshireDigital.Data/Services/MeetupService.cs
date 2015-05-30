@@ -4,7 +4,6 @@
     using System.Collections.Generic;
     using System.Linq;
     using Hangfire;
-    using Hangfire.Common;
     using YorkshireDigital.MeetupApi.Clients;
     using YorkshireDigital.MeetupApi.Models;
     using YorkshireDigital.MeetupApi.Requests;
@@ -22,6 +21,8 @@
         void RemoveJobIfExists(string jobId);
         void AddOrUpdateJob<T>(string recurringJobId, Expression<Action<T>> methodCall, Func<string> cronExpression);
         void Trigger(string groupSyncId);
+        Profile JoinGroup(string groupId, Dictionary<int, string> answers);
+        bool LeaveGroup(string groupId, string memberId);
     }
 
     public class MeetupService : IMeetupService

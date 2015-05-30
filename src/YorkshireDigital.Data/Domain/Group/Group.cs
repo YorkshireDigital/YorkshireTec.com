@@ -31,6 +31,7 @@
         public virtual int MeetupId { get; set; }
         public virtual string GroupSyncId { get; set; }
         public virtual string MeetupUrlName { get; set; }
+        public virtual int MeetupProfileId { get; set; }
 
         public Group()
         {
