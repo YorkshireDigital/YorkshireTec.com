@@ -120,12 +120,10 @@ namespace YorkshireDigital.Web.Infrastructure
             var groupService = new GroupService(requestSession);
             var eventService = new EventService(requestSession);
             var userService = new UserService(requestSession);
-            var metupService = new MeetupService(new MeetupClient(ConfigurationManager.AppSettings["Meetup_ApiKey"]));
 
             container.Register<IEventService>(eventService);
             container.Register<IUserService>(userService);
             container.Register<IGroupService>(groupService);
-            container.Register<IMeetupService>(metupService);
             //container.Register<IEventSyncTask>(new EventSyncTask(eventService, metupService, userService));
 
             //GlobalConfiguration.Configuration.UseActivator(new HangfireContainerJobActivator(container));

@@ -13,7 +13,7 @@
     public class GroupsClient : BaseClient, IGroupsClient
     {
         #region ctor
-        public GroupsClient(string apiKey) : base(apiKey)
+        public GroupsClient(string apiKey, string memberId) : base(apiKey, memberId)
         {
         }
 

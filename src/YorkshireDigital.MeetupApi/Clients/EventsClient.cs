@@ -13,7 +13,8 @@
     public class EventsClient : BaseClient, IEventsClient
     {
         #region ctor
-        public EventsClient(string apiKey) : base(apiKey)
+        public EventsClient(string apiKey, string memberId)
+            : base(apiKey, memberId)
         {
         }
 

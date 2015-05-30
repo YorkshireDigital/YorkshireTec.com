@@ -11,11 +11,11 @@
 
     public class MeetupClient : IMeetupClient
     {
-        public MeetupClient(string apiKey)
+        public MeetupClient(string apiKey, string memberId)
         {
-            Groups = new GroupsClient(apiKey);
-            Events = new EventsClient(apiKey);
-            Profile = new ProfileClient(apiKey);
+            Groups = new GroupsClient(apiKey, memberId);
+            Events = new EventsClient(apiKey, memberId);
+            Profile = new ProfileClient(apiKey, memberId);
         }
 
         public MeetupClient(IRestClient restClient)

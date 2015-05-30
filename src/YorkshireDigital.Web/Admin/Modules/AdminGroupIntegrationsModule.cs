@@ -1,6 +1,7 @@
 ﻿namespace YorkshireDigital.Web.Admin.Modules
 {
     using System.Collections.Generic;
+    using System.Configuration;
     using System.Linq;
     using Hangfire;
     using Nancy;
@@ -8,16 +9,22 @@
     using Nancy.Security;
     using YorkshireDigital.Data.Services;
     using YorkshireDigital.Data.Tasks;
+    using YorkshireDigital.MeetupApi.Clients;
     using YorkshireDigital.Web.Admin.ViewModels;
     using YorkshireDigital.Web.Infrastructure;
 
     public class AdminGroupIntegrationsModule : BaseModule
     {
-        public AdminGroupIntegrationsModule(IGroupService groupService, IMeetupService meetupService, IUserService userService)
+        public AdminGroupIntegrationsModule(IGroupService groupService, IUserService userService)
             : base("admin/group")
         {
             this.RequiresAuthentication();
             this.RequiresClaims(new[] { "Admin" });
+
+            var apiKey = ConfigurationManager.AppSettings["Meetup_Bot_ApiKey"];
+            var memberId = ConfigurationManager.AppSettings["Meetup_Bot_MemberId"];
+
+            var meetupService = new MeetupService(new MeetupClient(apiKey, memberId));
 
             Get["/{groupId}/integrations"] = _ =>
             {
@@ -52,14 +59,13 @@
                                 .WithStatusCode(HttpStatusCode.BadRequest);
                 }
 
-                var profile = meetupService.JoinGroup(meetupGroup.Id.ToString(), new Dictionary<int, string>());
+                meetupService.JoinGroup(meetupGroup.Id.ToString(), new Dictionary<int, string>());
 
                 string groupId = _.groupId.ToString();
 
                 var group = groupService.Get(groupId);
                 group.MeetupId = meetupGroup.Id;
                 group.MeetupUrlName = viewModel.MeetupUrlName;
-                group.MeetupProfileId = profile.MemberId;
                 group.GroupSyncId = string.Format("{0}-groupSync", @group.Id);
 
                 meetupService.AddOrUpdateJob<GroupSyncTask>(group.GroupSyncId, x => x.Execute(groupId), Cron.Hourly);
@@ -97,11 +103,10 @@
                     @event.EventSyncJobId = null;
                 }
                 
-                meetupService.LeaveGroup(group.MeetupId.ToString(), group.MeetupProfileId.ToString());
+                meetupService.LeaveGroup(group.MeetupId.ToString());
 
                 group.GroupSyncId = null;
                 group.MeetupId = 0;
-                group.MeetupProfileId = 0;
                 group.MeetupUrlName = null;
 
                 var currentUser = userService.GetUser(Context.CurrentUser.UserName);

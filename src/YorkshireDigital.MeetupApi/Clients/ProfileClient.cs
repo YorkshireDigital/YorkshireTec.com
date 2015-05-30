@@ -14,7 +14,8 @@
 
     public class ProfileClient : BaseClient, IProfileClient
     {
-        public ProfileClient(string apiKey) : base(apiKey)
+        public ProfileClient(string apiKey, string memberId)
+            : base(apiKey, memberId)
         {
         }
 
@@ -36,6 +37,8 @@
 
         public bool Delete(ProfileDeleteRequest profileDeleteRequest)
         {
+            profileDeleteRequest.MemberId = MemberId;
+
             var restRequest = profileDeleteRequest.ToRestRequest(Method.DELETE, ApiKey);
 
             var response = Client.Execute(restRequest);

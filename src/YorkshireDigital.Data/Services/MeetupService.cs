@@ -22,7 +22,7 @@
         void AddOrUpdateJob<T>(string recurringJobId, Expression<Action<T>> methodCall, Func<string> cronExpression);
         void Trigger(string groupSyncId);
         Profile JoinGroup(string groupId, Dictionary<int, string> answers);
-        bool LeaveGroup(string groupId, string memberId);
+        bool LeaveGroup(string groupId);
     }
 
     public class MeetupService : IMeetupService
@@ -122,12 +122,11 @@
             return meetupClient.Profile.Create(request);
         }
 
-        public bool LeaveGroup(string groupId, string memberId)
+        public bool LeaveGroup(string groupId)
         {
             var request = new ProfileDeleteRequest
             {
-                GroupId = groupId, 
-                MemberId = memberId
+                GroupId = groupId
             };
 
             return meetupClient.Profile.Delete(request);

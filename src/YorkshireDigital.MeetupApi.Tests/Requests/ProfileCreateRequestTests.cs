@@ -19,10 +19,13 @@
             RestRequest restRequest = request.ToRestRequest(Method.POST, "api-key");
 
             // Assert
-            restRequest.Parameters.Count.ShouldBeEquivalentTo(1);
-            restRequest.Parameters[0].Type.ShouldBeEquivalentTo(ParameterType.RequestBody);
-            restRequest.Parameters[0].Name.ShouldBeEquivalentTo("application/json");
-            restRequest.Parameters[0].Value.ShouldBeEquivalentTo("{\"key\":\"api-key\",\"group_id\":\"12345\"}");
+            restRequest.Parameters.Count.ShouldBeEquivalentTo(3);
+            restRequest.Parameters[0].Type.ShouldBeEquivalentTo(ParameterType.GetOrPost);
+            restRequest.Parameters[0].Name.ShouldBeEquivalentTo("key");
+            restRequest.Parameters[0].Value.ShouldBeEquivalentTo("api-key");
+            restRequest.Parameters[1].Type.ShouldBeEquivalentTo(ParameterType.GetOrPost);
+            restRequest.Parameters[1].Name.ShouldBeEquivalentTo("group_id");
+            restRequest.Parameters[1].Value.ShouldBeEquivalentTo("12345");
             restRequest.Method.ShouldBeEquivalentTo(Method.POST);
             restRequest.Resource.ShouldBeEquivalentTo("profile");
         }
@@ -38,10 +41,13 @@
 
             // Assert
 
-            restRequest.Parameters.Count.ShouldBeEquivalentTo(1);
-            restRequest.Parameters[0].Type.ShouldBeEquivalentTo(ParameterType.RequestBody);
-            restRequest.Parameters[0].Name.ShouldBeEquivalentTo("application/json");
-            restRequest.Parameters[0].Value.ShouldBeEquivalentTo("{\"key\":\"api-key\",\"group_urlname\":\"Test-Group\"}");
+            restRequest.Parameters.Count.ShouldBeEquivalentTo(3);
+            restRequest.Parameters[0].Type.ShouldBeEquivalentTo(ParameterType.GetOrPost);
+            restRequest.Parameters[0].Name.ShouldBeEquivalentTo("key");
+            restRequest.Parameters[0].Value.ShouldBeEquivalentTo("api-key");
+            restRequest.Parameters[1].Type.ShouldBeEquivalentTo(ParameterType.GetOrPost);
+            restRequest.Parameters[1].Name.ShouldBeEquivalentTo("group_urlname");
+            restRequest.Parameters[1].Value.ShouldBeEquivalentTo("Test-Group");
             restRequest.Method.ShouldBeEquivalentTo(Method.POST);
             restRequest.Resource.ShouldBeEquivalentTo("profile");
         }
@@ -57,10 +63,16 @@
 
             // Assert
 
-            restRequest.Parameters.Count.ShouldBeEquivalentTo(1);
-            restRequest.Parameters[0].Type.ShouldBeEquivalentTo(ParameterType.RequestBody);
-            restRequest.Parameters[0].Name.ShouldBeEquivalentTo("application/json");
-            restRequest.Parameters[0].Value.ShouldBeEquivalentTo("{\"key\":\"api-key\",\"answer_123\":\"test answer 1\",\"answer_125\":\"test answer 2\"}");
+            restRequest.Parameters.Count.ShouldBeEquivalentTo(4);
+            restRequest.Parameters[0].Type.ShouldBeEquivalentTo(ParameterType.GetOrPost);
+            restRequest.Parameters[0].Name.ShouldBeEquivalentTo("key");
+            restRequest.Parameters[0].Value.ShouldBeEquivalentTo("api-key");
+            restRequest.Parameters[1].Type.ShouldBeEquivalentTo(ParameterType.GetOrPost);
+            restRequest.Parameters[1].Name.ShouldBeEquivalentTo("answer_123");
+            restRequest.Parameters[1].Value.ShouldBeEquivalentTo("test answer 1");
+            restRequest.Parameters[2].Type.ShouldBeEquivalentTo(ParameterType.GetOrPost);
+            restRequest.Parameters[2].Name.ShouldBeEquivalentTo("answer_125");
+            restRequest.Parameters[2].Value.ShouldBeEquivalentTo("test answer 2");
             restRequest.Method.ShouldBeEquivalentTo(Method.POST);
             restRequest.Resource.ShouldBeEquivalentTo("profile");
         }
@@ -76,10 +88,13 @@
 
             // Assert
 
-            restRequest.Parameters.Count.ShouldBeEquivalentTo(1);
-            restRequest.Parameters[0].Type.ShouldBeEquivalentTo(ParameterType.RequestBody);
-            restRequest.Parameters[0].Name.ShouldBeEquivalentTo("application/json");
-            restRequest.Parameters[0].Value.ShouldBeEquivalentTo("{\"key\":\"api-key\",\"intro\":\"Test intro\"}");
+            restRequest.Parameters.Count.ShouldBeEquivalentTo(3);
+            restRequest.Parameters[0].Type.ShouldBeEquivalentTo(ParameterType.GetOrPost);
+            restRequest.Parameters[0].Name.ShouldBeEquivalentTo("key");
+            restRequest.Parameters[0].Value.ShouldBeEquivalentTo("api-key");
+            restRequest.Parameters[1].Type.ShouldBeEquivalentTo(ParameterType.GetOrPost);
+            restRequest.Parameters[1].Name.ShouldBeEquivalentTo("intro");
+            restRequest.Parameters[1].Value.ShouldBeEquivalentTo("Test intro");
             restRequest.Method.ShouldBeEquivalentTo(Method.POST);
             restRequest.Resource.ShouldBeEquivalentTo("profile");
         }
@@ -95,10 +110,13 @@
 
             // Assert
 
-            restRequest.Parameters.Count.ShouldBeEquivalentTo(1);
-            restRequest.Parameters[0].Type.ShouldBeEquivalentTo(ParameterType.RequestBody);
-            restRequest.Parameters[0].Name.ShouldBeEquivalentTo("application/json");
-            restRequest.Parameters[0].Value.ShouldBeEquivalentTo("{\"key\":\"api-key\",\"site_name\":\"YorkshireDigital\"}");
+            restRequest.Parameters.Count.ShouldBeEquivalentTo(3);
+            restRequest.Parameters[0].Type.ShouldBeEquivalentTo(ParameterType.GetOrPost);
+            restRequest.Parameters[0].Name.ShouldBeEquivalentTo("key");
+            restRequest.Parameters[0].Value.ShouldBeEquivalentTo("api-key");
+            restRequest.Parameters[1].Type.ShouldBeEquivalentTo(ParameterType.GetOrPost);
+            restRequest.Parameters[1].Name.ShouldBeEquivalentTo("site_name");
+            restRequest.Parameters[1].Value.ShouldBeEquivalentTo("YorkshireDigital");
             restRequest.Method.ShouldBeEquivalentTo(Method.POST);
             restRequest.Resource.ShouldBeEquivalentTo("profile");
         }
@@ -114,10 +132,13 @@
 
             // Assert
 
-            restRequest.Parameters.Count.ShouldBeEquivalentTo(1);
-            restRequest.Parameters[0].Type.ShouldBeEquivalentTo(ParameterType.RequestBody);
-            restRequest.Parameters[0].Name.ShouldBeEquivalentTo("application/json");
-            restRequest.Parameters[0].Value.ShouldBeEquivalentTo("{\"key\":\"api-key\",\"site_url\":\"www.yorkshiredigital.com\"}");
+            restRequest.Parameters.Count.ShouldBeEquivalentTo(3);
+            restRequest.Parameters[0].Type.ShouldBeEquivalentTo(ParameterType.GetOrPost);
+            restRequest.Parameters[0].Name.ShouldBeEquivalentTo("key");
+            restRequest.Parameters[0].Value.ShouldBeEquivalentTo("api-key");
+            restRequest.Parameters[1].Type.ShouldBeEquivalentTo(ParameterType.GetOrPost);
+            restRequest.Parameters[1].Name.ShouldBeEquivalentTo("site_url");
+            restRequest.Parameters[1].Value.ShouldBeEquivalentTo("www.yorkshiredigital.com");
             restRequest.Method.ShouldBeEquivalentTo(Method.POST);
             restRequest.Resource.ShouldBeEquivalentTo("profile");
         }
@@ -133,10 +154,16 @@
 
             // Assert
 
-            restRequest.Parameters.Count.ShouldBeEquivalentTo(1);
-            restRequest.Parameters[0].Type.ShouldBeEquivalentTo(ParameterType.RequestBody);
-            restRequest.Parameters[0].Name.ShouldBeEquivalentTo("application/json");
-            restRequest.Parameters[0].Value.ShouldBeEquivalentTo("{\"key\":\"api-key\",\"group_id\":\"12345\",\"group_urlname\":\"Test-Group\"}");
+            restRequest.Parameters.Count.ShouldBeEquivalentTo(4);
+            restRequest.Parameters[0].Type.ShouldBeEquivalentTo(ParameterType.GetOrPost);
+            restRequest.Parameters[0].Name.ShouldBeEquivalentTo("key");
+            restRequest.Parameters[0].Value.ShouldBeEquivalentTo("api-key");
+            restRequest.Parameters[1].Type.ShouldBeEquivalentTo(ParameterType.GetOrPost);
+            restRequest.Parameters[1].Name.ShouldBeEquivalentTo("group_id");
+            restRequest.Parameters[1].Value.ShouldBeEquivalentTo("12345");
+            restRequest.Parameters[2].Type.ShouldBeEquivalentTo(ParameterType.GetOrPost);
+            restRequest.Parameters[2].Name.ShouldBeEquivalentTo("group_urlname");
+            restRequest.Parameters[2].Value.ShouldBeEquivalentTo("Test-Group");
             restRequest.Method.ShouldBeEquivalentTo(Method.POST);
             restRequest.Resource.ShouldBeEquivalentTo("profile");
         }

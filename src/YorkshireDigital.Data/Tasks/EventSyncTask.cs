@@ -21,7 +21,7 @@
 
             userService = new UserService(session);
             eventService = new EventService(session);
-            meetupService = new MeetupService(new MeetupClient(ConfigurationManager.AppSettings["Meetup_ApiKey"]));
+            meetupService = new MeetupService(new MeetupClient(ConfigurationManager.AppSettings["Meetup_Bot_ApiKey"], ConfigurationManager.AppSettings["Meetup_Bot_MemberId"]));
 
             session.BeginTransaction();
         }

@@ -9,11 +9,13 @@
     {
         private const string ApiRoot = @"http://api.meetup.com/2/";
         internal readonly string ApiKey;
+        internal readonly string MemberId;
         internal readonly IRestClient Client;
 
-        public BaseClient(string apiKey)
+        public BaseClient(string apiKey, string memberId)
         {
             ApiKey = apiKey;
+            MemberId = memberId;
             Client = new RestClient(ApiRoot);
         }
 

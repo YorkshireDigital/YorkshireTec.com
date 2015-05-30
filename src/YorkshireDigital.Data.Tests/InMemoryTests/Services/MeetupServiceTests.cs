@@ -20,7 +20,7 @@
         [SetUp]
         public void Setup()
         {
-            meetupClient = new MeetupClient("test")
+            meetupClient = new MeetupClient("test", "12345")
             {
                 Groups = A.Fake<IGroupsClient>(),
                 Events = A.Fake<IEventsClient>(),
@@ -264,7 +264,7 @@
                 .Returns(true);
 
             // Act
-            bool result = service.LeaveGroup("12345", "67890");
+            bool result = service.LeaveGroup("12345");
 
             // Assert
             result.Should().BeTrue();
