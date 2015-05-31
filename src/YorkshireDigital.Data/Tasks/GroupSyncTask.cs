@@ -82,7 +82,7 @@
             // Delete future events that are no longer on meetup
             foreach (var @event in @group.Events.ToList())
             {
-                if (@event.Start > DateTime.UtcNow && upcomingEvents.All(x => x.Id != @event.MeetupId.ToString()))
+                if (@event.Start > DateTime.UtcNow && upcomingEvents.All(x => string.IsNullOrEmpty(@event.MeetupId) || x.Id != @event.MeetupId.ToString()))
                 {
                     @group.Events.Remove(@event);
                     eventService.Delete(@event.UniqueName, system);
