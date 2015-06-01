@@ -22,7 +22,6 @@
                 Username = Username,
                 Password = Crypto.HashPassword(Password),
                 Email = Email,
-                IsAdmin = false,
                 Validated = false,
                 Name = Name,
                 MailingListState = MailingList ? MailingListState.PendingSubscribe : MailingListState.Unsubscribed

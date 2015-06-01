@@ -1,6 +1,7 @@
 ﻿namespace YorkshireDigital.Web.Events.ViewModels
 {
     using System.Linq;
+    using YorkshireDigital.Data.Domain.Shared;
     using YorkshireDigital.Web.Infrastructure;
     using YorkshireDigital.Data.Domain.Events;
     using YorkshireDigital.Web.Infrastructure.Helpers;
@@ -24,22 +25,34 @@
 
         public EventDetailsModel(Event e)
         {
-            Organiser = e.Organisation.Name;
-            OrganiserShortName = e.Organisation.ShortName;
+            Organiser = e.Group.Name;
+            OrganiserShortName = e.Group.ShortName;
             Title = e.Title;
-            Synopsis = e.Synopsis.MarkdownToHtml();
-            Colour = e.Organisation.Colour;
+            Synopsis = e.SynopsisFormat == TextFormat.Html ? e.Synopsis : e.Synopsis.MarkdownToHtml();
+            Colour = e.Group.Colour;
             Start = e.Start.ToString("yyyy-MM-dd");
             StartFormat = e.Start.ToLyndensFancyFormat();
             Location = e.Location;
             UniqueName = e.UniqueName;
-            ContactLinks = e.Organisation.ContactLinks.Select(x => new ContactLinkModel(x)).ToArray();
-            Website = e.Organisation.Website.IndexOf("http://", System.StringComparison.Ordinal) == -1
-                        ? string.Format("http://{0}", e.Organisation.Website)
-                        : e.Organisation.Website; ;
-            Headline = e.Organisation.Headline;
-            About = e.Organisation.About.MarkdownToHtml();
+            ContactLinks = e.Group.ContactLinks.Select(x => new ContactLinkModel(x)).ToArray();
+            SetWebsite(e.Group.Website);
+            Headline = e.Group.Headline;
+            About = e.Group.AboutFormat == TextFormat.Html ? e.Group.About : e.Group.About.MarkdownToHtml();
             Talks = e.Talks.Select(x => new TalkDetailModel(x)).ToArray();
+        }
+
+        private void SetWebsite(string website)
+        {
+            if (string.IsNullOrEmpty(website))
+            {
+                Website = string.Empty;
+            }
+            else
+            {
+                Website = website.IndexOf("http://", System.StringComparison.Ordinal) == -1
+                ? string.Format("http://{0}", website)
+                : website;
+            }
         }
     }
 }

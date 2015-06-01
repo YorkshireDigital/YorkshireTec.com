@@ -1,0 +1,14 @@
+﻿@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<System.Collections.Generic.List<YorkshireDigital.Web.Admin.ViewModels.AdminUserListViewModel>>
+
+<div class="table">
+    <div class="row header blue">
+        <div class="cell">Username</div>
+        <div class="cell">Name</div>
+        <div class="cell">Email</div>
+        <div class="cell">Mailing List</div>
+    </div>
+    @foreach (var user in Model)
+    {
+        @Html.Partial("_UserList", user);
+    }
+</div>

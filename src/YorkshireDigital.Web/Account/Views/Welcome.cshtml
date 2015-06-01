@@ -1,0 +1,36 @@
+﻿@{
+    Layout = "Shared/_HeroLayout.cshtml";
+}
+@using YorkshireDigital.Web.Infrastructure.Helpers
+@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<YorkshireDigital.Web.Account.ViewModels.AccountWelcomeViewModel>
+@section Hero {
+    <section class="hero">
+        <div class="layout-constrained">
+            <h1 class="hero__title">Welcome to Yorkshire!</h1>
+        </div>
+    </section>
+}
+
+<p>Now that you're here why not check out our <a href="~/" title="Calendar of events">calendar of events</a> and <a href="/mailinglist/archive" title="Newsletter Archive">past newsletter issues</a>.</p>
+<p>Or why not <a href="http://forum.yorkshiredigital.com/">join the discussion on our forum</a></p>
+@if (!Model.OnMailingList)
+{
+    <div id="mailchimp-wrapper">
+        @Html.AntiForgeryToken()
+        <p>There's plenty more to come. Why no sign up to our newsletter to keep up to date about all things Yorkshire Digital!</p>
+        <div id="joinMailingList">
+            <input type="hidden" name="UserId" id="UserId" value="@Model.UserId" />
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" placeholder="joe.bloggs@sharklasers.com" name="email" id="email" value="@Model.Email" required>
+                @Html.ValidationMessageFor("Email")
+            </div>
+            <a name="subscribe" id="mc-subscribe" class="input-full btn btn--primary">Sign me up</a>
+        </div>
+    </div>
+}
+
+@section Scripts
+{
+    <script type="text/javascript" src="/public/scripts/app/pages/account-mailinglist.js"></script>
+}

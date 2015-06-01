@@ -70,11 +70,17 @@
     <Reference Include="EntityFramework.SqlServer">
       <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="FakeItEasy">
+      <HintPath>..\packages\FakeItEasy.1.24.0\lib\net40\FakeItEasy.dll</HintPath>
+    </Reference>
     <Reference Include="FluentAssertions">
       <HintPath>..\packages\FluentAssertions.2.2.0.0\lib\net45\FluentAssertions.dll</HintPath>
     </Reference>
     <Reference Include="FluentNHibernate">
       <HintPath>..\packages\FluentNHibernate.1.4.0.0\lib\net35\FluentNHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="Hangfire.Core">
+      <HintPath>..\packages\Hangfire.Core.1.4.1\lib\net45\Hangfire.Core.dll</HintPath>
     </Reference>
     <Reference Include="Iesi.Collections">
       <HintPath>..\packages\Iesi.Collections.3.2.0.4000\lib\Net35\Iesi.Collections.dll</HintPath>
@@ -85,14 +91,22 @@
     <Reference Include="Nancy.SimpleAuthentication">
       <HintPath>..\packages\Nancy.SimpleAuthentication.0.3.12\lib\net40\Nancy.SimpleAuthentication.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.5.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="NHibernate">
       <HintPath>..\packages\NHibernate.3.3.1.4000\lib\Net35\NHibernate.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
     </Reference>
-    <Reference Include="RestSharp">
-      <HintPath>..\packages\RestSharp.104.1\lib\net4\RestSharp.dll</HintPath>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="RestSharp, Version=105.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\RestSharp.105.1.0\lib\net45\RestSharp.dll</HintPath>
     </Reference>
     <Reference Include="SimpleAuthentication.Core, Version=0.3.9.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -125,13 +139,20 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
-    <Compile Include="Helpers\InMemorySessionFactoryProvider.cs" />
+    <Compile Include="Domain\Account\UserTests.cs" />
+    <Compile Include="Domain\Events\EventTests.cs" />
+    <Compile Include="InMemoryTests\InMemorySessionFactoryProvider.cs" />
+    <Compile Include="HelperTests\DiscourseHelperTests.cs" />
     <Compile Include="InfrastructureTests\AuthenticationCallbackProviderTests.cs" />
-    <Compile Include="ServiceTests\EventServiceTests.cs" />
-    <Compile Include="ServiceTests\InMemoryFixtureBase.cs" />
-    <Compile Include="ServiceTests\InMemorySetUpFixture.cs" />
+    <Compile Include="InMemoryTests\Services\EventServiceTests.cs" />
+    <Compile Include="InMemoryTests\InMemoryFixtureBase.cs" />
+    <Compile Include="InMemoryTests\InMemorySetUpFixture.cs" />
+    <Compile Include="InMemoryTests\Services\MeetupServiceTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ServiceTests\UserServiceTests.cs" />
+    <Compile Include="InMemoryTests\Services\GroupServiceTests.cs" />
+    <Compile Include="InMemoryTests\Services\UserServiceTests.cs" />
+    <Compile Include="Tasks\EventSyncTaskTests.cs" />
+    <Compile Include="Tasks\GroupSyncTaskTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -141,6 +162,10 @@
     <ProjectReference Include="..\YorkshireDigital.Data\YorkshireDigital.Data.csproj">
       <Project>{DE2ABF67-373C-41A8-83E0-D9B522221157}</Project>
       <Name>YorkshireDigital.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\YorkshireDigital.MeetupApi\YorkshireDigital.MeetupApi.csproj">
+      <Project>{0496202E-DB70-401A-A41A-12B5D0D5D78A}</Project>
+      <Name>YorkshireDigital.MeetupApi</Name>
     </ProjectReference>
     <ProjectReference Include="..\YorkshireTec\YorkshireTec.Old.csproj">
       <Project>{0C73D291-C0E7-4D7A-9942-16E8619A7B00}</Project>

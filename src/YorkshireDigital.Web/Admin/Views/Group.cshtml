@@ -1,0 +1,42 @@
+﻿@{
+    Layout = "Shared/_HeroLayout.cshtml";
+}
+@using YorkshireDigital.Web.Infrastructure.Helpers
+@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<YorkshireDigital.Web.Admin.ViewModels.AdminGroupViewModel>
+
+<a href="/admin?tab=Groups">Back to Admin</a>
+
+<h2>Edit <span id="group-name">@Model.Name</span></h2>
+
+<form method="POST" data-parsley-validate>
+    @Html.Partial("_Group", Model)
+
+    @Html.ValidationSummary()
+
+    <div class="form-group integrations">
+        <a href="admin/group/@Model.Id/integrations" class="btn btn--tertiary btn--full">Edit Integrations</a>
+    </div>
+
+    <input type="submit" class="btn btn--primary btn--full" value="Update" />
+</form>
+<br />
+<input type="submit" class="btn btn--negative btn--full" id="delete-group" data-group-id="@Model.Id" value="Delete" />
+@section Scripts
+{
+    <script type="text/javascript">
+        $(function () {
+            $(document).on('click', '#delete-group', function (e) {
+                e.preventDefault();
+                if (confirm('Are you sure?')) {
+                    var id = $(this).data('group-id');
+                    $.ajax({
+                        type: 'DELETE',
+                        url: '/admin/group/' + id
+                    }).done(function () {
+                        window.location.href = '/admin';
+                    });
+                }
+            });
+        });
+    </script>   
+}

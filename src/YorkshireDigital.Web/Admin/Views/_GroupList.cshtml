@@ -1,0 +1,11 @@
+﻿@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<YorkshireDigital.Web.Admin.ViewModels.AdminGroupListViewModel>
+
+
+<div class="row">
+    <div class="cell" style="border-left: 5px solid @Model.Colour;">@Model.Id</div>
+    <div class="cell">@Model.Name</div>
+    <div class="cell">@Model.ShortName</div>
+    <div class="cell">@if(Model.MeetupId > 0){<img src="/public/content/meetup.png" alt="meetup.com"/> }</div>
+    <div class="cell"><a href="/admin/group/@Model.Id">Edit</a></div>
+    <div class="cell"><a href="/admin/event?groupid=@Model.Id">Add Event</a></div>
+</div>

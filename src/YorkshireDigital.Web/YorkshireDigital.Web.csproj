@@ -21,6 +21,7 @@
     <IISExpressUseClassicPipelineMode />
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
+    <MvcBuildViews>false</MvcBuildViews>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -30,6 +31,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <MvcBuildViews>false</MvcBuildViews>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -38,6 +40,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <MvcBuildViews>false</MvcBuildViews>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AntiXssLibrary">
@@ -51,6 +54,12 @@
     </Reference>
     <Reference Include="FluentValidation">
       <HintPath>..\packages\FluentValidation.5.4.0.0\lib\Net40\FluentValidation.dll</HintPath>
+    </Reference>
+    <Reference Include="Hangfire.Core">
+      <HintPath>..\packages\Hangfire.Core.1.4.1\lib\net45\Hangfire.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Hangfire.SqlServer">
+      <HintPath>..\packages\Hangfire.SqlServer.1.4.1\lib\net45\Hangfire.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="HtmlSanitizationLibrary">
       <HintPath>..\packages\AntiXSS.4.3.0\lib\net40\HtmlSanitizationLibrary.dll</HintPath>
@@ -75,8 +84,9 @@
     <Reference Include="Microsoft.Owin.Host.HttpListener">
       <HintPath>..\packages\Microsoft.Owin.Host.HttpListener.3.0.0\lib\net45\Microsoft.Owin.Host.HttpListener.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Owin.Host.SystemWeb">
-      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.2.1.0\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.3.0.0\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Owin.Hosting">
       <HintPath>..\packages\Microsoft.Owin.Hosting.3.0.0\lib\net45\Microsoft.Owin.Hosting.dll</HintPath>
@@ -84,11 +94,18 @@
     <Reference Include="MySql.Data">
       <HintPath>..\packages\MySql.Data.6.9.3\lib\net45\MySql.Data.dll</HintPath>
     </Reference>
-    <Reference Include="Nancy">
-      <HintPath>..\packages\Nancy.0.23.2\lib\net40\Nancy.dll</HintPath>
+    <Reference Include="Nancy, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\references\Nancy.dll</HintPath>
+    </Reference>
+    <Reference Include="Nancy.Authentication.Forms">
+      <HintPath>..\packages\Nancy.Authentication.Forms.1.1\lib\net40\Nancy.Authentication.Forms.dll</HintPath>
     </Reference>
     <Reference Include="Nancy.Owin">
       <HintPath>..\packages\Nancy.Owin.0.23.2\lib\net40\Nancy.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Nancy.SimpleAuthentication">
+      <HintPath>..\packages\Nancy.SimpleAuthentication.0.3.14\lib\net40\Nancy.SimpleAuthentication.dll</HintPath>
     </Reference>
     <Reference Include="Nancy.Validation.FluentValidation, Version=0.22.2.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -97,14 +114,31 @@
     <Reference Include="Nancy.ViewEngines.Razor">
       <HintPath>..\packages\Nancy.Viewengines.Razor.0.23.2\lib\net40\Nancy.ViewEngines.Razor.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="NHibernate">
       <HintPath>..\packages\NHibernate.3.3.1.4000\lib\Net35\NHibernate.dll</HintPath>
     </Reference>
     <Reference Include="Owin">
       <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
     </Reference>
+    <Reference Include="RestSharp">
+      <HintPath>..\packages\RestSharp.105.1.0\lib\net45\RestSharp.dll</HintPath>
+    </Reference>
     <Reference Include="ServiceStack.Text">
       <HintPath>..\packages\ServiceStack.Text.3.9.71\lib\net35\ServiceStack.Text.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpRaven">
+      <HintPath>..\packages\SharpRaven.1.4.4\lib\net45\SharpRaven.dll</HintPath>
+    </Reference>
+    <Reference Include="SimpleAuthentication.Core, Version=0.3.14.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\SimpleAuthentication.Core.0.3.14\lib\net40\SimpleAuthentication.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Slack.Webhooks">
+      <HintPath>..\packages\Slack.Webhooks.0.1.2\lib\net40\Slack.Webhooks.dll</HintPath>
     </Reference>
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Web.DynamicData" />
@@ -116,6 +150,9 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Helpers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.Razor.2.0.30506.0\lib\net40\System.Web.Razor.dll</HintPath>
@@ -131,15 +168,26 @@
   <ItemGroup>
     <Content Include="packages.config" />
     <Content Include="public\content\logo-hey-stac.jpg" />
+    <Content Include="public\content\logo-meetup.png" />
+    <Content Include="public\content\meetup.png" />
+    <Content Include="public\scripts\app\ajaxCsrf.js" />
+    <Content Include="public\scripts\app\markdown-editor.js" />
+    <Content Include="public\scripts\app\pages\account-mailinglist.js" />
     <Content Include="public\scripts\app\pages\betaBanner.js" />
-    <Content Include="public\scripts\app\pages\event.js" />
+    <Content Include="public\scripts\app\pages\event-admin.js" />
+    <Content Include="public\scripts\app\pages\tabs.js" />
     <Content Include="public\scripts\app\pages\eventsCalendar.js" />
+    <Content Include="public\scripts\app\validation.js" />
     <Content Include="public\scripts\fastclick.js" />
     <Content Include="public\scripts\fastclick.min.js" />
     <Content Include="public\scripts\grunticon.loader.js" />
     <Content Include="public\scripts\grunticon.loader.min.js" />
     <Content Include="public\scripts\main.js" />
     <Content Include="public\scripts\main.min.js" />
+    <Content Include="public\scripts\vendor\chosen-sprite%402x.png" />
+    <Content Include="public\scripts\vendor\chosen-sprite.png" />
+    <Content Include="public\scripts\vendor\chosen.jquery.min.js" />
+    <Content Include="public\scripts\vendor\chosen.min.css" />
     <Content Include="public\scripts\vendor\clndr.js" />
     <Content Include="public\scripts\vendor\clndr.min.js">
       <DependentUpon>clndr.js</DependentUpon>
@@ -151,6 +199,28 @@
     </Content>
     <Content Include="MailingList\Views\Archive.cshtml" />
     <Content Include="MailingList\Views\Confirmation.cshtml" />
+    <Content Include="Account\Views\SignIn.cshtml" />
+    <Content Include="Account\Views\Register.cshtml" />
+    <Content Include="Account\Views\Index.cshtml" />
+    <Content Include="Account\Views\Welcome.cshtml" />
+    <Content Include="Admin\Views\Index.cshtml" />
+    <Content Include="Admin\Views\_EventsList.cshtml" />
+    <Content Include="Admin\Views\_EventList.cshtml" />
+    <Content Include="Admin\Views\_GroupsList.cshtml" />
+    <Content Include="Admin\Views\_GroupList.cshtml" />
+    <Content Include="Admin\Views\_UsersList.cshtml" />
+    <Content Include="Admin\Views\_UserList.cshtml" />
+    <Content Include="Admin\Views\User.cshtml" />
+    <Content Include="Admin\Views\Event.cshtml" />
+    <Content Include="Admin\Views\Group.cshtml" />
+    <Content Include="Admin\Views\NewGroup.cshtml" />
+    <Content Include="Admin\Views\_Group.cshtml" />
+    <Content Include="Admin\Views\NewEvent.cshtml" />
+    <Content Include="Admin\Views\_Event.cshtml" />
+    <Content Include="public\scripts\main.min.js.map">
+      <DependentUpon>main.min.js</DependentUpon>
+    </Content>
+    <Content Include="Admin\Views\GroupIntegrations.cshtml" />
     <None Include="public\scripts\vendor\jquery-2.1.1.intellisense.js" />
     <Content Include="public\scripts\vendor\jquery-2.1.1.intellisense.min.js" />
     <Content Include="public\scripts\vendor\jquery-2.1.1.js" />
@@ -172,6 +242,7 @@
     <Content Include="public\styles\css\icons.fallback.min.css" />
     <Content Include="public\styles\css\screen.css" />
     <Content Include="public\styles\css\screen.min.css" />
+    <Content Include="public\styles\css\slightly-better-tables.css" />
     <Content Include="public\styles\img\bg-homepage-banner.jpg" />
     <Content Include="public\styles\img\bg-homepage-hero.jpg" />
     <Content Include="public\styles\img\icons.data.svg.css" />
@@ -331,6 +402,9 @@
     </Content>
     <Content Include="YorkshireDigital.Web.nuspec" />
     <Content Include="Events\Views\_Event.cshtml" />
+    <Content Include="Views\Error.cshtml" />
+    <Content Include="Views\PageNotFound.cshtml" />
+    <Content Include="Views\Forbidden.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Web.config">
@@ -339,6 +413,35 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Account\Modules\AccountSignOutModule.cs" />
+    <Compile Include="Account\Modules\AccountModule.cs" />
+    <Compile Include="Account\Modules\AccountRegisterModule.cs" />
+    <Compile Include="Account\Modules\AccountSignInModule.cs" />
+    <Compile Include="Account\Modules\AccountSSOModule.cs" />
+    <Compile Include="Account\Modules\AccountWelcomeModule.cs" />
+    <Compile Include="Account\Validation\AccountRegisterViewModelValidator.cs" />
+    <Compile Include="Account\Validation\AccountSignInViewModelValidator.cs" />
+    <Compile Include="Account\ViewModels\AccountRegisterViewModel.cs" />
+    <Compile Include="Account\ViewModels\AccountSignInViewModel.cs" />
+    <Compile Include="Account\ViewModels\AccountViewModel.cs" />
+    <Compile Include="Account\ViewModels\AccountWelcomeViewModel.cs" />
+    <Compile Include="Account\ViewModels\ProviderListViewModel.cs" />
+    <Compile Include="Account\ViewModels\ProviderViewModel.cs" />
+    <Compile Include="Admin\Modules\AdminEventModule.cs" />
+    <Compile Include="Admin\Modules\AdminGroupIntegrationsModule.cs" />
+    <Compile Include="Admin\Modules\AdminGroupModule.cs" />
+    <Compile Include="Admin\Modules\AdminUserModule.cs" />
+    <Compile Include="Admin\ViewModels\AdminEventTalkViewModel.cs" />
+    <Compile Include="Admin\ViewModels\AdminEventViewModel.cs" />
+    <Compile Include="Admin\ViewModels\AdminGroupIntegrationsViewModel.cs" />
+    <Compile Include="Admin\ViewModels\AdminGroupViewModel.cs" />
+    <Compile Include="Admin\Modules\AdminModule.cs" />
+    <Compile Include="Admin\ViewModels\AdminEventListViewModel.cs" />
+    <Compile Include="Admin\ViewModels\AdminGroupListViewModel.cs" />
+    <Compile Include="Admin\ViewModels\AdminIndexViewModel.cs" />
+    <Compile Include="Admin\ViewModels\AdminInterestViewModel.cs" />
+    <Compile Include="Admin\ViewModels\AdminUserListViewModel.cs" />
+    <Compile Include="Admin\ViewModels\AdminUserViewModel.cs" />
     <Compile Include="Events\Modules\EventsModule.cs" />
     <Compile Include="Events\Validation\CalendarSearchModelValidator.cs" />
     <Compile Include="Events\ViewModels\CalendarSearchModel.cs" />
@@ -347,30 +450,51 @@
     <Compile Include="Events\ViewModels\EventDetailsModel.cs" />
     <Compile Include="Events\ViewModels\TalkDetailModel.cs" />
     <Compile Include="Events\Modules\EventModule.cs" />
-    <Compile Include="Feedback\Models\FeedbackPostModel.cs" />
+    <Compile Include="Feedback\Models\FeedbackAjaxPostModel.cs" />
     <Compile Include="Feedback\Modules\FeedbackModule.cs" />
     <Compile Include="Home\Modules\HomeModule.cs" />
+    <Compile Include="Infrastructure\AuthenticationCallbackProvider.cs" />
     <Compile Include="Infrastructure\Bootstrapper.cs" />
     <Compile Include="Infrastructure\BaseModule.cs" />
     <Compile Include="Infrastructure\Extensions.cs" />
-    <Compile Include="Infrastructure\Helpers\MailChimpHelper.cs" />
+    <Compile Include="Infrastructure\Handlers\ForbiddenStatusCodeHandler.cs" />
+    <Compile Include="Infrastructure\Handlers\InternalServerErrorStatusCodeHandler.cs" />
+    <Compile Include="Infrastructure\Handlers\NotFoundErrorStatusCodeHandler.cs" />
+    <Compile Include="Infrastructure\HangfireContainerJobActivator.cs" />
+    <Compile Include="Infrastructure\Helpers\HtmlHelper.cs" />
     <Compile Include="Infrastructure\Helpers\MarkdownHelper.cs" />
+    <Compile Include="Infrastructure\Helpers\SentryHelper.cs" />
     <Compile Include="Infrastructure\Helpers\SlackHelper.cs" />
+    <Compile Include="Infrastructure\Models\BaseAjaxPostModel.cs" />
+    <Compile Include="Infrastructure\Models\Error.cs" />
+    <Compile Include="Infrastructure\Models\ErrorPageViewModel.cs" />
     <Compile Include="Infrastructure\Models\ErrorViewModel.cs" />
     <Compile Include="Infrastructure\Models\FeaturesModel.cs" />
     <Compile Include="Infrastructure\Models\FieldErrorViewModel.cs" />
+    <Compile Include="Infrastructure\Models\ForbiddenViewModel.cs" />
+    <Compile Include="Infrastructure\Models\PageNotFoundViewModel.cs" />
     <Compile Include="Infrastructure\NancyExtensions.cs" />
     <Compile Include="Infrastructure\Responses\SitemapResponse.cs" />
     <Compile Include="Infrastructure\SecurityHooks.cs" />
     <Compile Include="Infrastructure\Startup.cs" />
+    <Compile Include="Infrastructure\UserIdentity.cs" />
+    <Compile Include="Infrastructure\UserMapper.cs" />
     <Compile Include="MailingList\Modules\MailingListModule.cs" />
+    <Compile Include="MailingList\Validation\MailingListAjaxPostModelValidator.cs" />
     <Compile Include="MailingList\ViewModels\ArchiveNewsletterViewModel.cs" />
+    <Compile Include="MailingList\ViewModels\MailChimpWebHookType.cs" />
+    <Compile Include="MailingList\ViewModels\MailChimpWebHookPostModel.cs" />
+    <Compile Include="MailingList\ViewModels\MailingListAjaxPostModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\YorkshireDigital.Data\YorkshireDigital.Data.csproj">
       <Project>{DE2ABF67-373C-41A8-83E0-D9B522221157}</Project>
       <Name>YorkshireDigital.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\YorkshireDigital.MeetupApi\YorkshireDigital.MeetupApi.csproj">
+      <Project>{0496202E-DB70-401A-A41A-12B5D0D5D78A}</Project>
+      <Name>YorkshireDigital.MeetupApi</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

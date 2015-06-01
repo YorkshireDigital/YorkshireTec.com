@@ -1,0 +1,10 @@
+﻿@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<YorkshireDigital.Web.Admin.ViewModels.AdminEventListViewModel>
+
+<div class="row">
+    <div class="cell">@Model.UniqueName</div>
+    <div class="cell">@Model.Title</div>
+    <div class="cell">@Model.Start.ToLocalTime().ToString("g")</div>
+    <div class="cell">@Model.Region</div>
+    <div class="cell">@Model.GroupName</div>
+    <div class="cell"><a href="/admin/event/@Model.UniqueName">Edit</a></div>
+</div>

@@ -1,0 +1,46 @@
+﻿@{
+    Layout = "Shared/_HeroLayout.cshtml";
+}
+@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<YorkshireDigital.Web.Admin.ViewModels.AdminIndexViewModel>
+
+@section Hero {
+}
+
+<div class="event__body tab-container">
+    <nav class="nav-tabs">
+        <ul class="tab-list">
+            <li class="tab-list__item @(@ViewBag.Tab == "Events" ? "tab-list__item--current" : string.Empty)"><a for="#tab-futureEvents" class="tab-list__link" id="Events">Events</a></li>
+            <li class="tab-list__item @(@ViewBag.Tab == "PastEvents" ? "tab-list__item--current" : string.Empty)"><a for=" #tab-pastEvents" class="tab-list__link" id="PastEvents">Past Events</a></li>
+            <li class="tab-list__item @(@ViewBag.Tab == "Groups" ? "tab-list__item--current" : string.Empty)"><a for=" #tab-groups" class="tab-list__link" id="Groups">Groups</a></li>
+            <li class="tab-list__item @(@ViewBag.Tab == "Users" ? "tab-list__item--current" : string.Empty)"><a for=" #tab-users" class="tab-list__link" id="Users">Users</a></li>
+        </ul>
+    </nav>
+    <div class="tab-panes">
+        <div class="tab-pane @(@ViewBag.Tab == "Events" ? "tab-pane--current" : string.Empty)" id="tab-futureEvents">
+            @Html.Partial("_EventsList", Model.FutureEvents)
+            <div class="form-actions">
+                <a href="~/admin/event" class="btn btn--primary">New Event</a>
+            </div>
+        </div>
+        <div class="tab-pane @(@ViewBag.Tab == "PastEvents" ? "tab-pane--current" : string.Empty)" id="tab-pastEvents">
+            @Html.Partial("_EventsList", Model.PastEvents)
+        </div>
+        <div class="tab-pane @(@ViewBag.Tab == "Groups" ? "tab-pane--current" : string.Empty)" id="tab-groups">
+            @Html.Partial("_GroupsList", Model.Groups)
+            <div class="form-actions">
+                <a href="~/admin/group" class="btn btn--primary">New Group</a>
+            </div>
+        </div>
+        <div class="tab-pane @(@ViewBag.Tab == "Users" ? "tab-pane--current" : string.Empty)" id="tab-users">
+            @Html.Partial("_UsersList", Model.Users)
+            <div class="form-actions">
+                <a href="~/admin/user" class="btn btn--primary">Invite User</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script type="text/javascript" src="/public/scripts/app/pages/tabs.js"></script>
+}

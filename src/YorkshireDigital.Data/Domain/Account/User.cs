@@ -9,21 +9,37 @@
     public class User
     {
         public virtual Guid Id { get; set; }
-        public virtual bool IsAdmin { get; set; }
         public virtual string Username { get; set; }
         public virtual string Password { get; set; }
         public virtual string Name { get; set; }
         public virtual string Email { get; set; }
+        public virtual string MailingListEmail { get; set; }
         public virtual GenderType Gender { get; set; }
         public virtual string Locale { get; set; }
         public virtual string Picture { get; set; }
-        public virtual IList<Provider> Providers { get; set; }
         public virtual bool Validated { get; set; }
         public virtual MailingListState MailingListState { get; set; }
+        
+        public virtual DateTime LastEditedOn { get; set; }
+        public virtual DateTime? DisabledOn { get; set; }
+        public virtual IList<Provider> Providers { get; set; }
+        public virtual IList<UserRole> Roles { get; set; }
+
 
         public User()
         {
             Providers = new List<Provider>();
+            Roles = new List<UserRole>();
+        }
+
+        public virtual bool IsAdmin
+        {
+            get { return Roles.Any(x => x.Role == UserRoles.Admin); }
+        }
+
+        public virtual bool IsDisabled
+        {
+            get { return DisabledOn.HasValue; }
         }
 
         public virtual string Twitter

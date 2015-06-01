@@ -1,13 +1,32 @@
 ﻿using ISession = NHibernate.ISession;
-using LinqExtensionMethods = NHibernate.Linq.LinqExtensionMethods;
 
 namespace YorkshireDigital.Data.Services
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
+    using global::NHibernate.Hql.Ast.ANTLR;
+    using global::NHibernate.Linq;
     using YorkshireDigital.Data.Domain.Account;
+    using YorkshireDigital.Data.Domain.Account.Enums;
+    using YorkshireDigital.Data.Exceptions;
+    using YorkshireDigital.Data.Helpers;
 
-    public class UserService
+    public interface IUserService
+    {
+        bool UsernameAvailable(string username);
+        bool EmailAlreadyRegistered(string email);
+        User GetUser(string username);
+        User GetUserByIdentity(string providerName, string username);
+        User SaveUser(User user);
+        void LinkIdentity(Provider provider, User user);
+        User GetUserById(Guid id);
+        User GetUserByEmail(string email);
+        IList<User> GetActiveUsers(int take = 20, int skip = 0);
+        User Disable(Guid username);
+    }
+
+    public class UserService : IUserService
     {
         private readonly ISession session;
 
@@ -30,8 +49,10 @@ namespace YorkshireDigital.Data.Services
 
         public User GetUser(string username)
         {
-            return LinqExtensionMethods.Query<User>(session).FirstOrDefault(x => x.Username != null && x.Username == username
-                || x.Email != null && x.Email == username);
+            return session.Query<User>()
+                          .Fetch(x => x.Providers)
+                          .FirstOrDefault(x => x.Username != null && x.Username == username
+                                            || x.Email != null && x.Email == username);
         }
 
         public User GetUserByIdentity(string providerName, string username)
@@ -41,6 +62,14 @@ namespace YorkshireDigital.Data.Services
 
         public User SaveUser(User user)
         {
+            if (MailChimpHelper.IsEmailRegistered(user.Email))
+            {
+                user.MailingListState = MailingListState.Subscribed;
+                user.MailingListEmail = user.Email;
+            }
+
+            user.LastEditedOn = DateTime.UtcNow;
+
             session.Save(user);
 
             return user;
@@ -61,11 +90,41 @@ namespace YorkshireDigital.Data.Services
             {
                 user.Providers.Add(provider);
             }
+            session.Save(user);
         }
         
         public User GetUserById(Guid id)
         {
             return session.Get<User>(id);
+        }
+
+        public User GetUserByEmail(string email)
+        {
+            return session.QueryOver<User>().Where(x => x.Email == email)
+                .SingleOrDefault();
+        }
+
+        public IList<User> GetActiveUsers(int take = 20, int skip = 0)
+        {
+            return session.QueryOver<User>()
+                .Where(x => x.DisabledOn == null)
+                .Skip(skip)
+                .Take(take)
+                .List();
+        }
+
+        public User Disable(Guid userId)
+        {
+            var user = session.Get<User>(userId);
+
+            if (user == null)
+                throw new UserNotFoundException(string.Format("No user found with id {0}", userId));
+
+            user.DisabledOn = DateTime.UtcNow;
+
+            session.SaveOrUpdate(user);
+
+            return user;
         }
     }
 }

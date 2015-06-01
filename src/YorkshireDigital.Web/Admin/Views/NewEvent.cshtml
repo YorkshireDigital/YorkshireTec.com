@@ -1,0 +1,29 @@
+﻿@{
+    Layout = "Shared/_HeroLayout.cshtml";
+}
+@using YorkshireDigital.Web.Infrastructure.Helpers
+@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<YorkshireDigital.Web.Admin.ViewModels.AdminEventViewModel>
+
+<a href="/admin">Back to Admin</a>
+
+<h2>New Event</h2>
+
+<form method="POST" data-parsley-validate>
+    @Html.Partial("_Event", Model)
+
+    @Html.ValidationSummary()
+
+    <input type="submit" class="btn btn--primary btn--full" value="Create" />
+</form>
+@section Scripts
+{
+    <script type="text/javascript" src="/public/scripts/vendor/chosen.jquery.min.js"></script>
+    <script type="text/javascript" src="/public/scripts/app/pages/event-admin.js"></script>
+    <link rel="stylesheet" type="text/css" href="/public/scripts/vendor/chosen.min.css" />
+    <style type="text/css">
+        .js-talk-wrapper {
+            width: 33%;
+            display: inline-block;
+        }
+    </style>
+}

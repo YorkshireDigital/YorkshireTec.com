@@ -32,7 +32,7 @@
 
                     user.Email = viewModel.Email;
                     user.MailingListState = MailingListState.PendingSubscribe;
-                    
+
                     MailChimpHelper.AddSubscriber(user.Email, user.Name, user.Twitter, string.Empty);
 
                     userService.SaveUser(user);
@@ -54,7 +54,7 @@
 
                     user.Email = viewModel.Email;
                     user.MailingListState = MailingListState.PendingUnsubscribe;
-                   
+
                     MailChimpHelper.Unsubscribe(user.Email, user.Name, user.Twitter, string.Empty);
 
                     userService.SaveUser(user);

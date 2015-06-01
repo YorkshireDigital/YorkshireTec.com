@@ -1,0 +1,55 @@
+﻿@{
+    Layout = "Shared/_HeroLayout.cshtml";
+}
+@using YorkshireDigital.Web.Infrastructure.Helpers
+@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<YorkshireDigital.Web.Account.ViewModels.AccountSignInViewModel>
+@section Hero {
+    <section class="hero">
+        <div class="layout-constrained">
+            <h1 class="hero__title">Join Yorkshire's Digital Community</h1>
+            <p class="hero__intro">
+                Lorem Ipsum
+            </p>
+        </div>
+    </section>
+}
+
+<div class="island island--horizontal-break">
+    <div class="panel-one">
+        <form method="POST" data-parsley-validate>
+            @Html.AntiForgeryToken()
+
+            <h2>Don't have an account? <a href="account/register">Register</a></h2>
+
+            <h3>Log In</h3>
+
+            <div class="form-group">
+                <label>Username or Email</label>
+                <input type="text" placeholder="Username" name="username" class="input-full field" value="@Model.Username" required>
+                @Html.ValidationMessageFor("Username")
+            </div>
+
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" name="password" class="input-full field" value="@Model.Password" required>
+                @Html.ValidationMessageFor("Password")
+            </div>
+
+            <div class="form-group">
+                <input type="checkbox" name="RememberMe" class="field" id="RemeberMe" checked="@Model.RememberMe">
+                <label for="RemeberMe">Remember Me?</label>
+            </div>
+
+            @Html.ValidationSummary()
+
+            <input type="submit" class="btn btn--primary btn--full" value="Login" />
+        </form>
+    </div>
+    <div class="panel-two">
+        <h3>Or log in with one of these providers</h3>
+        <a href="~/authentication/redirect/twitter" title="Twitter" class="btn btn--full twitter">Twitter</a>
+        @*<a href="~/authentication/redirect/facebook" title="Facebook" class="btn btn--full facebook">Facebook</a>
+        <a href="~/authentication/redirect/linkedin" title="LinkedIn" class="btn btn--full linkedin">LinkedIn</a>
+        <a href="~/authentication/redirect/meetup" title="Meetup" class="btn btn--full meetup">Meetup</a>*@
+    </div>
+</div>

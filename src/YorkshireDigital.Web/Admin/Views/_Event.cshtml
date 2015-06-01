@@ -1,0 +1,121 @@
+﻿@using System
+@using System.Linq
+@using YorkshireDigital.Web.Infrastructure.Helpers
+@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<YorkshireDigital.Web.Admin.ViewModels.AdminEventViewModel>
+@Html.AntiForgeryToken()
+
+<div class="form-group">
+    <label>Event Title</label>
+    <input type="text" placeholder="e.g. @DateTime.Now.ToString("MMMM") Meetup" name="title" class="input-full field" value="@Model.Title" required />
+    @Html.ValidationMessageFor("Title")
+</div>
+
+<div class="form-group">
+    <label>Event Url</label>
+    <input type="text" placeholder="e.g. bradford-clojure-@DateTime.Now.ToString("MMM").ToLower()-@DateTime.Now.ToString("yyyy")" name="uniqueName" class="input-full field" value="@Model.UniqueName" required pattern="^[a-zA-Z0-9-]+$" />
+    @Html.ValidationMessageFor("UniqueName")
+</div>
+
+<div class="form-group markdown-editor" id="synopsis-edit">
+    <label>Synopsis (markdown)</label>
+    <textarea placeholder="Tell us about the event" name="synopsis" class="input-full field js-synopsis" required >@Model.Synopsis</textarea>
+    @Html.ValidationMessageFor("Synopsis")
+</div>
+
+<div class="form-group">
+    <label>Start</label>
+    <input type="text" placeholder="e.g. yyyy-mm-dd hh:mm" name="start" class="input-full field" value="@Model.Start.ToString("yyyy-MM-dd hh:mm")" required pattern="^\d{4}-\d{2}-\d{2} \d{2}:\d{2}$" />
+    @Html.ValidationMessageFor("Start")
+</div>
+
+<div class="form-group">
+    <label>End</label>
+    <input type="text" placeholder="e.g. yyyy-mm-dd hh:mm" name="end" class="input-full field" value="@Model.End.ToString("yyyy-MM-dd hh:mm")" required />
+    @Html.ValidationMessageFor("End")
+</div>
+
+<div class="form-group">
+    <label>Where is it?</label>
+    <input type="text" placeholder="e.g. Joe's Bar, Main Street, York" name="location" class="input-full field" value="@Model.Location" required />
+    @Html.ValidationMessageFor("Location")
+</div>
+
+<div class="form-group">
+    <label>Region</label>
+    <input type="text" placeholder="e.g. York" name="region" class="input-full field" value="@Model.Region" required />
+    @Html.ValidationMessageFor("Region")
+</div>
+
+<div class="form-group">
+    <label>Ticket Price</label>
+    <input type="text" placeholder="e.g. 10.50" name="price" class="input-full field" value="@Model.Price" required pattern="^\d+(\.\d+)?$" />
+    @Html.ValidationMessageFor("Price")
+</div>
+
+<div class="form-group">
+    <label>Interests</label>
+    <select name="interests" multiple class="input-full field no-expand chosen-select">
+        @foreach (var item in Model.AvailableInterests)
+        {
+            <option value="@item.Id" @(item.Selected ? "selected" : string.Empty)>@item.Name</option>
+        }
+    </select>
+    @Html.ValidationMessageFor("AvailableInterests")
+</div>
+<h2>Talks</h2>
+<a href='#' class="js-add-talk btn btn--positive">Add Talk</a>
+<div class="js-talks-wrapper">
+    <div class="js-talk-template is-hidden">
+        <fieldset>
+            <input type="hidden" name="Id[index]" value="" />
+            <div class="form-group">
+                <label>Title</label>
+                <input type="text" name="Title[index]" class="input-full field" value="" />
+            </div>
+            <div class="form-group">
+                <label>Speaker</label>
+                <input type="text" name="Speaker[index]" class="input-full field" value="" />
+            </div>
+            <div class="form-group">
+                <label>Link</label>
+                <input type="text" placeholder="http://twitter.com/speaker" name="Link[index]" class="input-full field" value="" />
+            </div>
+            <div class="form-group markdown-editor" id="synopsis-edit">
+                <label>Synopsis (markdown)</label>
+                <textarea placeholder="Tell us about the talk" name="Synopsis[index]" class="input-full field js-synopsis"></textarea>
+            </div>
+            <a href='#' class="js-remove-talk btn btn--negative">Remove Talk</a>
+        </fieldset>
+    </div>
+    @foreach (var talk in Model.Talks.Select((value, i) => new { i, value }))
+    {
+        <div class="js-talk-wrapper">
+            <fieldset>
+                <input type="hidden" name="Id[@talk.i]" value="@talk.value.Id" />
+                <div class="form-group">
+                    <label>Title</label>
+                    <input type="text" name="Title[@talk.i]" class="input-full field" value="@talk.value.Title" />
+                </div>
+                <div class="form-group">
+                    <label>Speaker</label>
+                    <input type="text" name="Speaker[@talk.i]" class="input-full field" value="@talk.value.Speaker" />
+                </div>
+                <div class="form-group">
+                    <label>Link</label>
+                    <input type="text" placeholder="http://twitter.com/speaker" name="Link[@talk.i]" class="input-full field" value="@talk.value.Link" />
+                </div>
+                <div class="form-group markdown-editor" id="synopsis-edit">
+                    <label>Synopsis (markdown)</label>
+                    <textarea placeholder="Tell us about the talk" name="Synopsis[@talk.i]" class="input-full field js-synopsis" required>@talk.value.Synopsis</textarea>
+                </div>
+                <a href='#' class="js-remove-talk btn btn--negative">Remove Talk</a>
+            </fieldset>
+        </div>
+    }
+</div>
+
+<div class="form-group">
+    <label>Group Id</label>
+    <input type="text" placeholder="e.g. bradford-clojure" name="groupId" class="input-full field" value="@Model.GroupId" required />
+    @Html.ValidationMessageFor("GroupId")
+</div>
