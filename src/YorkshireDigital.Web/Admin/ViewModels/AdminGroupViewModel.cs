@@ -1,7 +1,7 @@
 ﻿namespace YorkshireDigital.Web.Admin.ViewModels
 {
     using AutoMapper;
-    using YorkshireDigital.Data.Domain.Organisations;
+    using YorkshireDigital.Data.Domain.Group;
 
     public class AdminGroupViewModel
     {
@@ -12,6 +12,7 @@
         public string Colour { get; set; }
         public string Headline { get; set; }
         public string Website { get; set; }
+        public string MeetupId { get; set; }
 
         public static AdminGroupViewModel FromDomain(Group @group)
         {

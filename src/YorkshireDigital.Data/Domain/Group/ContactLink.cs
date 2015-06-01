@@ -1,6 +1,6 @@
-﻿namespace YorkshireDigital.Data.Domain.Organisations
+﻿namespace YorkshireDigital.Data.Domain.Group
 {
-    using YorkshireDigital.Data.Domain.Organisations.Enums;
+    using YorkshireDigital.Data.Domain.Group.Enums;
 
     public class ContactLink
     {

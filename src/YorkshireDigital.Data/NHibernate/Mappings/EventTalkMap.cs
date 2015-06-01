@@ -13,6 +13,7 @@
             Map(x => x.Synopsis)
                 .CustomSqlType("varchar(8000)")
                 .Length(8000);
+            Map(x => x.SynopsisFormat);
             Map(x => x.Speaker);
             Map(x => x.Link);
 

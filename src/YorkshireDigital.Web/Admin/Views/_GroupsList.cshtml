@@ -1,15 +1,16 @@
 ﻿@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<System.Collections.Generic.List<YorkshireDigital.Web.Admin.ViewModels.AdminGroupListViewModel>>
 
-<table class="group-table">
-    <tr>
-        <td>Slug</td>
-        <td>Name</td>
-        <td>Short Name</td>
-        <td></td>
-        <td></td>
-    </tr>
+<div class="table">
+    <div class="row header">
+        <div class="cell">Slug</div>
+        <div class="cell">Name</div>
+        <div class="cell">Short Name</div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+    </div>
     @foreach (var @group in Model)
     {
         @Html.Partial("_GroupList", @group);
     }
-</table>
+</div>

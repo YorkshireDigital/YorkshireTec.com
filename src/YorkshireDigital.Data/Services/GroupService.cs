@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using global::NHibernate;
     using YorkshireDigital.Data.Domain.Account;
-    using YorkshireDigital.Data.Domain.Organisations;
+    using YorkshireDigital.Data.Domain.Group;
     using YorkshireDigital.Data.Exceptions;
 
     public interface IGroupService

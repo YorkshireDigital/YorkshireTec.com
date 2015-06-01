@@ -1,6 +1,7 @@
 namespace YorkshireDigital.Web.Infrastructure
 {
     using System.Configuration;
+    using Hangfire;
     using Humanizer;
     using Nancy;
     using Nancy.Authentication.Forms;
@@ -14,6 +15,8 @@ namespace YorkshireDigital.Web.Infrastructure
     using NHibernate.Context;
     using YorkshireDigital.Data.NHibernate;
     using YorkshireDigital.Data.Services;
+    using YorkshireDigital.Data.Tasks;
+    using YorkshireDigital.MeetupApi.Clients;
     using YorkshireDigital.Web.Infrastructure.Models;
 
     public class Bootstrapper : DefaultNancyBootstrapper
@@ -39,6 +42,9 @@ namespace YorkshireDigital.Web.Infrastructure
         {
             base.ApplicationStartup(container, pipelines);
 
+            var sessionFactory = NHibernateSessionFactoryProvider.BuildSessionFactory(ConfigurationManager.ConnectionStrings["Database"].ConnectionString);
+            container.Register(sessionFactory);
+
             Csrf.Enable(pipelines);
         }
 
@@ -46,9 +52,7 @@ namespace YorkshireDigital.Web.Infrastructure
         {
             base.ConfigureRequestContainer(container, context);
 
-            var sessionFactory = NHibernateSessionFactoryProvider.BuildSessionFactory(ConfigurationManager.ConnectionStrings["Database"].ConnectionString);
-
-            container.Register(sessionFactory);
+            var sessionFactory = container.Resolve<ISessionFactory>();
 
             CreateSession(container, sessionFactory);
 
@@ -60,6 +64,7 @@ namespace YorkshireDigital.Web.Infrastructure
             base.RequestStartup(container, pipelines, context);
 
             context.ViewBag.Beta = FeaturesModel.Beta;
+            context.ViewBag.GoogleAnalytics = FeaturesModel.GoogleAnalytics;
 
             StaticConfiguration.DisableErrorTraces = false;
 
@@ -112,10 +117,16 @@ namespace YorkshireDigital.Web.Infrastructure
             var requestSession = sessionFactory.OpenSession();
             CurrentSessionContext.Bind(requestSession);
             requestSession.BeginTransaction();
+            var groupService = new GroupService(requestSession);
+            var eventService = new EventService(requestSession);
+            var userService = new UserService(requestSession);
 
-            container.Register<IEventService>(new EventService(requestSession));
-            container.Register<IUserService>(new UserService(requestSession));
-            container.Register<IGroupService>(new GroupService(requestSession));
+            container.Register<IEventService>(eventService);
+            container.Register<IUserService>(userService);
+            container.Register<IGroupService>(groupService);
+            //container.Register<IEventSyncTask>(new EventSyncTask(eventService, metupService, userService));
+
+            //GlobalConfiguration.Configuration.UseActivator(new HangfireContainerJobActivator(container));
         }
 
         private Response RollbackSession(TinyIoCContainer container)

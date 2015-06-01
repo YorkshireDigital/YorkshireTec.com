@@ -12,7 +12,7 @@
     using NUnit.Framework;
     using YorkshireDigital.Data.Domain.Account;
     using YorkshireDigital.Data.Domain.Events;
-    using YorkshireDigital.Data.Domain.Organisations;
+    using YorkshireDigital.Data.Domain.Group;
     using YorkshireDigital.Data.Services;
     using YorkshireDigital.Web.Admin.Modules;
     using YorkshireDigital.Web.Admin.ViewModels;
