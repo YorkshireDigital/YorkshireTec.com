@@ -21,12 +21,13 @@
         {
             var sessionFactory = NHibernateSessionFactoryProvider.BuildSessionFactory(ConfigurationManager.ConnectionStrings["Database"].ConnectionString);
             requestSession = sessionFactory.OpenSession();
-            requestSession.BeginTransaction();
+            
             userService = new UserService(requestSession);
         }
 
         public dynamic Process(NancyModule nancyModule, AuthenticateCallbackData model)
         {
+            requestSession.BeginTransaction();
             User loggedInUser = null;
             var returnUrl = GetReturnUrl(model.ReturnUrl);
 
