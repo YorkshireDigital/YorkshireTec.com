@@ -61,7 +61,7 @@
             var slackAttachment = new SlackAttachment
             {
                 Fallback = details,
-                PreText = slackUpdate,
+                Pretext = slackUpdate,
                 Color = "#D00000",
                 Fields = new List<SlackField>
                         {
