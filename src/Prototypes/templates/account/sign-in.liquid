@@ -10,27 +10,31 @@
                 <span class="divide__label">Or</span>
             </div>
 
-			<div class="form-group">
-				<label class="is-offscreen" for="firstName">Username</label>
-				<input type="text" id="userName" class="input-full" placeholder="Username" />
+			<button class="btn btn--primary btn--full push--double-bottom js-email-sign-in-btn" type="button">Sign in with email</button>
+
+			<div class="is-hidden js-email-sign-in-panel">
+				<div class="form-group">
+					<label class="is-offscreen" for="firstName">Username</label>
+					<input type="text" id="userName" class="input-full" placeholder="Username" />
+				</div>
+
+				<div class="form-group">
+					<label class="is-offscreen" for="emailAddress">Password</label>
+					<input type="password" id="password" class="input-full" placeholder="Password" />
+				</div>
+
+	            <div class="form-group">
+	                <label class="island-input flush--bottom" for="remember-me">
+	                    <input type="checkbox" id="remember-me" name="remember-me" value="">
+	                    Remember me
+	                </label>
+	            </div>
+
+				<div class="form-actions text--center push--bottom">
+					<button class="btn btn--primary btn--full push--bottom" type="button">Sign In</button>
+	                <a href="/account/forgotten-password">Forgotten your password?</a>
+	            </div>
 			</div>
-
-			<div class="form-group">
-				<label class="is-offscreen" for="emailAddress">Password</label>
-				<input type="password" id="password" class="input-full" placeholder="Password" />
-			</div>
-
-            <div class="form-group">
-                <label class="island-input flush--bottom" for="remember-me">
-                    <input type="checkbox" id="remember-me" name="remember-me" value="">
-                    Remember me
-                </label>
-            </div>
-
-			<div class="form-actions text--center push--bottom">
-				<button class="btn btn--primary btn--full push--bottom" type="button">Sign In</button>
-                <a href="/account/forgotten-password">Forgotten your password?</a>
-            </div>
 
 		</div>
 
@@ -44,3 +48,14 @@
 		</footer>
 	</section>
 {% endblock %}
+
+{% block pageScripts %}
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('.js-email-sign-in-btn').click(function() {
+				$('.js-email-sign-in-panel').toggleClass('is-hidden');
+				$(this).toggleClass('is-hidden');
+			});
+		});
+	</script>
+{% endblock%}
