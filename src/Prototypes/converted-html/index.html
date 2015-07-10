@@ -1,11 +1,8 @@
-<!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" > <!--<![endif]-->
+<!doctype html>
+<html>
     <head>
         <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
         <title>Bringing Yorkshires digital community together | YorkshireDigital</title>
         <meta name="description" content="A hub for the growing digital community in Yorkshire, where individuals, organisations and user groups of all skill sets can easily see whats going on, find new connections and share knowledge.">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,59 +10,229 @@
 		<!-- Font licence - Alright Sans from Webtype.com -->
         <link href="//cloud.webtype.com/css/e31ad4c6-6a40-47af-ad8d-a56030f15cf8.css" rel="stylesheet" type="text/css" />
 
-        <link href="public/styles/css/screen.min.css" rel="stylesheet" type="text/css" media="all"/>
-        <script src="public/scripts/vendor/modernizr-2.6.2.min.js"></script>
+        <link href="/public/styles/css/screen.min.css" rel="stylesheet" type="text/css" media="all"/>
+        <script src="/public/scripts/vendor/modernizr-2.6.2.min.js"></script>
     </head>
-    <body class="home">
+    <body>
+
+         
+
+        <header>
+    		<img src="/public/styles/img/logo-yd-landscape.svg" alt="YorkshireDigital Logo" />
+    	</header>
+
         
-	<section class="home-banner">
-		<div class="logo-site">
+
+	<header class="site-header">
+		<div class="layout-constrained">
+			<div class="logo-site">
+			</div>
+			<div class="hero">
+				<h1>Bringing Yorkshire's digital community together</h1>
+				<p>
+					YorkshireDigital is a hub for the growing digital community in Yorkshire, where individuals, organisations and user groups of all skill sets can easily see whats going on, find new connections and share knowledge.
+				</p>
+			</div>
 		</div>
-		<div class="hero">
-			<h1>Bringing Yorkshire's digital community together</h1>
+	</header>
+	
+
+	<section class="layout-constrained">
+
+		<h1>Hey, there's 13 events this month throughout Yorkshire!</h1>
+		<p>
+			The meetup scene is booming in the region and its only getting better! See all the upcoming events below, please <a href="mailto:info@yorkshiredigital.com">let us know</a> if you run or know events that are not listed.
+		</p>
+
+		<div class="calendar">
+			
+		</div>
+
+		<div class="island island--horizontal-break">
 			<p>
-				A hub for the growing digital community in Yorkshire, where individuals, organisations and user groups of all skill sets can easily see whats going on, find new connections and share knowledge.
-			</p>
-			<p>
-				If you run a meetup in Yorkshire and would like to get involved  <a href="mailto:info@yorkshiredigital.com">let us know</a>.
+				Do you run or know of any meetups/events in Yorkshire we have not listed? <a href="mailto:info@yorkshiredigital.com">let us know</a>.
 			</p>
 		</div>
+
 	</section>
-	<section class="sign-up layout-stacked">
-		<div class="js-pre-sign-up">
-			<h2>Want to know more?</h2>
-			<p>Sign up to our newsletter and be the first to hear when we launch.</p>
-			<div class="form-group">
-				<label for="firstName">First name</label>
-				<input type="text" id="firstName" class="input-full" />
-			</div>
-			<div class="form-group">
-				<label for="emailAddress">Email address</label>
-				<input type="text" id="emailAddress" class="input-full" />
-			</div>
-			<div class="form-actions">
-				<button class="btn btn--primary btn--full js-sign-up-btn" type="button">Sign up</button>
-			</div>
-			<span class="sub-info">Don't worry, we hate spam as much as you</span>
-		</div>
-		<div class="js-post-sign-up is-hidden">
-			<h3>Great, almost there</h3>
-			<p>You will receive an email shortly to confirm this subscription.</p>
-			<p>We will be launching soon, follow us on <a href="https://twitter.com/YorksDigital">Twitter</a> in the meantime to keep up to date with the latest news &amp; events.</p>
-			<hr />
-			<div class="island">
-				<h3>Help us spread the word</h3>
-				<p>Let people know about YorkshireDigital and help us to grow the community.</p>
-				<button class="btn btn--full btn--primary">Copy link</button>
-			</div>
-		</div>
-		<footer role="contentinfo">
-			<small>© 2014 YorkshireDigital</small>
-		</footer>			
-	</section>
+
+	<footer class="site-footer" role="contentinfo">
+		<small>© 2014 YorkshireDigital</small>
+		<small>Hosted by <a href="http://www.brightbox.com" target="_blank">Brightbox</a> in Yorkshire</small>
+	</footer>
+
+
+
+
+
+         
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
-        <script src="public/scripts/main.min.js"></script>
+        <script src="/public/scripts/main.min.js"></script>
+         
+
+  	<script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>
+	<script src="/public/scripts/moment-2.5.1.min.js"></script>
+	<script src="/public/scripts/clndr.min.js"></script>
+
+	<script type="text/javascript">
+
+	$(document).ready(function() {
+	  
+		// Lyndens JS to replace!
+		$(document).on('click', '.calendar-event', function() {
+			$(this).toggleClass('calendar-event--expanded');
+		});
+
+	});
+
+	
+
+
+
+	$(function() {
+	  var thisMonth = moment().format('YYYY-MM');
+
+		var eventArray = [
+		
+		{ 
+			startDate: "10-10-2014",
+			endDate: "10-13-2014",
+			title: "Hey!Stac",
+			shortTitle: "HS",
+			strapline: "Talking design, business and tech",
+			description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus debitis nihil necessitatibus fugit veniam quos, unde distinctio similique tempore voluptatem rem dicta officia quas repudiandae quaerat numquam, dolores minus. Odit.", 
+			brandingAccent: "#fe6f53"
+		},
+		
+		{ 
+			startDate: "10-21-2014",
+			endDate: "10-23-2014",
+			title: "NUX Leeds",
+			shortTitle: "NUX",
+			strapline: "An informal community for people interested in UX in the North of England",
+			description: "an informal community for people interested in usability, HCI, information design and all aspects of the user experience in the North of England.", 
+			brandingAccent: "#1AAA2B"
+		},
+		
+		{ 
+			startDate: "10-8-2014",
+			endDate: "10-8-2014",
+			title: "Leeds Data Thing",
+			shortTitle: "LDT",
+			strapline: "An informal community for people interested in UX in the North of England",
+			description: "Yorkshire Digital Conference", 
+			brandingAccent: "#cd007b"
+		},
+		
+		];
+
+		var calendar = $('.calendar').clndr({
+	    template: $('#template-calendar').html(),
+	    events: eventArray,
+	    multiDayEvents: {
+	      startDate: 'startDate',
+	      endDate: 'endDate'
+	    },
+	    startWithMonth: moment(),
+	    clickEvents: {
+	      click: function(target) {
+	        console.log(target);
+	      }
+	    },
+	    daysOfTheWeek: [
+	    '<span class="header-day__sm">S</span><span class="header-day__md">Sun</span><span class="header-day__lg">Sunday</span>',
+	    '<span class="header-day__sm">M</span><span class="header-day__md">Mon</span><span class="header-day__lg">Monday</span>',
+	    '<span class="header-day__sm">T</span><span class="header-day__md">Tue</span><span class="header-day__lg">Tuesday</span>',
+	    '<span class="header-day__sm">W</span><span class="header-day__md">Wed</span><span class="header-day__lg">Wednesday</span>',
+	    '<span class="header-day__sm">T</span><span class="header-day__md">Thu</span><span class="header-day__lg">Thursday</span>',
+	    '<span class="header-day__sm">F</span><span class="header-day__md">Fri</span><span class="header-day__lg">Friday</span>',
+	    '<span class="header-day__sm">S</span><span class="header-day__md">Sat</span><span class="header-day__lg">Saturday</span>'],
+	    forceSixRows: true
+	  });
+	});
+	</script>
+
+	
+	
+	<script type="text/template" id="template-calendar">
+
+		<div class="clndr-controls">
+
+			<div class="clndr-nav">
+				<div class="clndr-previous-button clndr-controls__nav">&lsaquo;</div>
+				<h2 class="month"><%= month %> <span class="viewport-s--hidden">Events</span></h2>
+				<div class="clndr-next-button clndr-controls__nav">&rsaquo;</div>
+				<!--<div class="clndr-today-button">Today</div>-->
+			</div>
+			
+			<div class="clndr-filters">
+				<label class="is-offscreen" for="interestFilter">Filter by interest</label>
+				<div class="clndr-contols__filter select-custom">
+					<select class="" name="" id="interestFilter">
+						<option value="">All interests</option>
+						<option value="">Design</option>
+						<option value="">Development</option>
+						<option value="">Marketing</option>
+					</select>
+				</div>
+				<label class="is-offscreen" for="locationFilter">Filter by location</label>
+				<div class="clndr-contols__filter select-custom">
+					<select class="" name="" id="locationFilter">
+						<option value="">All locations</option>
+						<option value="">Huddersfield</option>
+						<option value="">Leeds</option>
+						<option value="">Scarborough</option>
+						<option value="">Sheffield</option>
+						<option value="">York</option>
+					</select>
+				</div>
+			</div>
+
+		</div>
+		<div class="clndr-grid">
+			<div class="days-of-the-week">
+				<header class="clndr-header">
+				<% _.each(daysOfTheWeek, function(day) { %>
+				<div class="header-day"><%= day %></div>
+				<% }); %>
+				</header>
+
+				<div class="days">
+					<% _.each(days, function(day) { %>
+					<div class="<%= day.classes %>">
+					<span class="day-label"><%= day.day %></span>
+					<% _.each(day.events, function(event) { %>
+						<div class="calendar-event" style="background: <%= event.brandingAccent %>">
+							<span class="calendar-event__short-title"><%= event.shortTitle %></span>
+							<span class="calendar-event__title"><%= event.title %></span>
+							<div class="calendar-event__full-details"> 
+								<span class="calendar-event__strapline"><%= event.strapline %></span>
+								<div class="calendar-event__description"><%= event.description %></div>
+								<span class="calendar-event__location"><%= event.location %></span>
+							</div>
+						</div>
+					<% }); %>
+					</div>
+					<% }); %>
+				</div>
+			</div>
+		</div>
+		
+		<div class="event-listing">
+		  <div class="event-listing-title">EVENTS THIS MONTH</div>
+		  <% _.each(eventsThisMonth, function(event) { %>
+		      <div class="event-item">
+		        <div class="event-item-name"><%= event.title %></div>
+		        <div class="event-item-location"><%= event.description %></div>
+		        <div class="event-item-date"><%= event.startDate %></div>
+		      </div>
+		    <% }); %>
+		</div>
+		
+		
+	</script>
+
     </body>
 </html>
