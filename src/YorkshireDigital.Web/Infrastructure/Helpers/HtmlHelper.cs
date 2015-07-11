@@ -4,7 +4,6 @@
     using System.Linq;
     using System.Text;
     using Nancy.ViewEngines.Razor;
-    using YorkshireDigital.Web.Infrastructure.Models;
 
     public static class HtmlHelper
     {

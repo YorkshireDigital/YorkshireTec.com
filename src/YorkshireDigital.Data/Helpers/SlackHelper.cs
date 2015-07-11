@@ -1,9 +1,9 @@
-﻿namespace YorkshireDigital.Web.Infrastructure.Helpers
+﻿namespace YorkshireDigital.Data.Helpers
 {
+    using System;
     using System.Collections.Generic;
     using System.Configuration;
     using Slack.Webhooks;
-    using YorkshireDigital.Web.Infrastructure.Models;
 
     public class SlackHelper
     {
@@ -49,6 +49,38 @@
             PostToSlack(slackMessage);
         }
 
+        public static void PostNewEventUpdate(string webaddress, string eventId, string eventTitle, string createdBy, DateTime eventStart, string eventLocation, string eventGroup, string groupColour)
+        {
+            var updateText = string.Format("{0} just created the event {1} at {2}!", createdBy, eventTitle, webaddress);
+
+            var slackMessage = new SlackMessage
+            {
+                Channel = "#notifications",
+                IconEmoji = ":tada:",
+                Username = "New Event Created",
+                Text = updateText
+            };
+
+            var slackAttachment = new SlackAttachment
+            {
+                Fallback = string.Format("New event <{0}/event/{1}|{2}> created by {3}", webaddress, eventId, eventTitle, createdBy),
+                Text = string.Format("New event <{0}/event/{1}|{2}> created by {3}", webaddress, eventId, eventTitle, createdBy),
+                Color = string.IsNullOrEmpty(groupColour) ? "#b9306a" : groupColour,
+                Fields = new List<SlackField>
+                {
+                    new SlackField { Title = "Title", Value = eventTitle },
+                    new SlackField { Title = "Start", Value = eventStart.ToLocalTime().ToString("dd/MM/yyyy HH:mm") }
+                }
+            };
+            if (!string.IsNullOrEmpty(eventGroup))
+            {
+                slackAttachment.Fields.Add(new SlackField { Title = "Group", Value = eventGroup });
+            }
+            slackMessage.Attachments = new List<SlackAttachment> { slackAttachment };
+
+            PostToSlack(slackMessage);
+        }
+
         public static void PostFeedbackUpdate(string details, string slackUpdate)
         {
             var slackMessage = new SlackMessage
@@ -61,7 +93,7 @@
             var slackAttachment = new SlackAttachment
             {
                 Fallback = details,
-                PreText = slackUpdate,
+                Pretext = slackUpdate,
                 Color = "#D00000",
                 Fields = new List<SlackField>
                         {

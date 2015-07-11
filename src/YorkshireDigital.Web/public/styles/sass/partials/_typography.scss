@@ -4,35 +4,35 @@
 /**
  * @license
  * MyFonts Webfont Build ID 2798324, 2014-04-21T13:45:17-0400
- * 
+ *
  * The fonts listed in this notice are subject to the End User License
- * Agreement(s) entered into by the website owner. All other parties are 
+ * Agreement(s) entered into by the website owner. All other parties are
  * explicitly restricted from using the Licensed Webfonts(s).
- * 
+ *
  * You may obtain a valid license at the URLs below.
- * 
+ *
  * Webfont: Metronic Pro Air by Mostardesign
  * URL: http://www.myfonts.com/fonts/mostardesign/metronic-pro/air/
- * 
+ *
  * Webfont: Metronic Pro Light by Mostardesign
  * URL: http://www.myfonts.com/fonts/mostardesign/metronic-pro/light/
- * 
+ *
  * Webfont: Metronic Pro Regular by Mostardesign
  * URL: http://www.myfonts.com/fonts/mostardesign/metronic-pro/regular/
- * 
+ *
  * Webfont: Metronic Pro SemiBold by Mostardesign
  * URL: http://www.myfonts.com/fonts/mostardesign/metronic-pro/semibold/
- * 
+ *
  * License: http://www.myfonts.com/viewlicense?type=web&buildid=2798324
  * Licensed pageviews: 100,000
  * Webfonts copyright: Copyright (c) Olivier Gourvat - Mostardesign Studio, 2013. All rights reserved.
- * 
+ *
  * © 2014 MyFonts Inc
 */
 
 /* @import must be at top of file, otherwise CSS will not work */
 @import url("//hello.myfonts.net/count/2ab2f4");
-  
+
 @font-face {font-family: 'MetronicProAir';src: url('../fonts/2AB2F4_0_0.eot');src: url('../fonts/2AB2F4_0_0.eot?#iefix') format('embedded-opentype'),url('../fonts/2AB2F4_0_0.woff') format('woff'),url('../fonts/2AB2F4_0_0.ttf') format('truetype');}
 @font-face {font-family: 'MetronicProLight';src: url('../fonts/2AB2F4_1_0.eot');src: url('../fonts/2AB2F4_1_0.eot?#iefix') format('embedded-opentype'),url('../fonts/2AB2F4_1_0.woff') format('woff'),url('../fonts/2AB2F4_1_0.ttf') format('truetype');}
 @font-face {font-family: 'MetronicProRegular';src: url('../fonts/2AB2F4_2_0.eot');src: url('../fonts/2AB2F4_2_0.eot?#iefix') format('embedded-opentype'),url('../fonts/2AB2F4_2_0.woff') format('woff'),url('../fonts/2AB2F4_2_0.ttf') format('truetype');}
@@ -49,11 +49,10 @@ html {
 h1, .alpha,
 h2, .beta,
 h3, .gamma,
-h4, .delta, 
+h4, .delta,
 h5, .epsilon {
-	font-family: "MetronicProRegular", sans-serif;
+	font-family: MetronicProRegular;
     font-weight: 500;
-    color: #50575D;
 
     a {
         color: $accent-primary;
@@ -66,69 +65,66 @@ h5, .epsilon {
 }
 
 h1, .alpha {
-    @include font-size($h1-size); // 30px equivalent
-    line-height: 1.4;
-    margin: 0 0 .25em 0;
+    @include font-size(1.625); // 26px equivalent
+    line-height: 1.3;
+    margin: 0 0 .4em 0;
 
-    @include breakpoint(viewport-m) {
-		@include font-size($h2-size);
+    @include breakpoint(viewport-s) {
+		@include font-size(1.625);
 	}
-
-	@include breakpoint(viewport-s) {
-		@include font-size($h3-size);
-	}
-
 }
 
 h2, .beta {
-    @include font-size($h2-size); // 26px equivalent
+    @include font-size(1.625); // 26px equivalent
     margin: 0 0 .3846em 0;
 
-    @include breakpoint(viewport-m) {
-		@include font-size($h3-size);
+    @include breakpoint(viewport-s) {
+		@include font-size(1.25);
 	}
-
-	@include breakpoint(viewport-s) {
-		@include font-size($h4-size);
-	}
-
 }
 
 h3, .gamma {
-    @include font-size($h3-size); // 20px equivalent
+    @include font-size(1.25); // 20px equivalent
     margin: 0 0 .3em 0;
-
-    @include breakpoint(viewport-m) {
-		@include font-size($h4-size);
-	}
-
-	@include breakpoint(viewport-s) {
-		@include font-size($h5-size);
-	}
-
 }
 
 h4, .delta {
-    @include font-size($h4-size); // 18px equivalent
+    @include font-size(1.125); // 18px equivalent
     margin: 0 0 .5em 0;
-
-    @include breakpoint(viewport-m) {
-		@include font-size($h5-size);
-	}
-
-	@include breakpoint(viewport-s) {
-		@include font-size($h6-size);
-	}
-
 }
 
 h5, .epsilon {
-    @include font-size($h5-size); // 16px equivalent
+    @include font-size(1); // 16px equivalent
     font-weight: 600;
     margin: 0 0 .5em 0;
 }
+
 h6, .zeta {
-    @include font-size($h6-size);
+    @include font-size(1);
+    margin: 0 0 .5em 0;
+}
+
+/*  =SIZING HELPER CLASSES
+--------------------------------------------------------------------*/
+
+/**
+ * A series of classes for setting massive type; for use in heroes, mastheads,
+ * promos, etc.
+ */
+.giga{
+    @include font-size(3);
+}
+
+.mega{
+    @include font-size(2);
+}
+
+.kilo{
+    @include font-size(1.875); // 30px equivalent
+}
+
+.milli {
+    @include font-size(0.875);
     margin: 0 0 .5em 0;
 }
 
@@ -139,7 +135,6 @@ h6, .zeta {
     @include breakpoint(single) {
         margin-bottom: .5em;
     }
-
 }
 
 .intro {
@@ -158,66 +153,7 @@ a {
 
     &:hover {
         text-decoration: underline;
-        cursor: pointer;
     }
-
-}
-
-/*  =HYPER SIZING
---------------------------------------------------------------------*/
-
-.giga {
-	@include font-size($giga-size);
-
-	@include breakpoint(viewport-m) {
-		@include font-size($mega-size);
-	}
-
-	@include breakpoint(viewport-s) {
-		@include font-size($kilo-size);
-	}
-
-}
-
-.mega {
-	@include font-size($mega-size);
-
-	@include breakpoint(viewport-m) {
-		@include font-size($kilo-size);
-	}
-
-	@include breakpoint(viewport-s) {
-		@include font-size($h1-size);
-	}
-
-}
-
-.kilo {
-	@include font-size($kilo-size);
-
-	@include breakpoint(viewport-m) {
-		@include font-size($h1-size);
-	}
-
-	@include breakpoint(viewport-s) {
-		@include font-size($h2-size);
-	}
-
-}
-
-/*  =SUB SIZING
---------------------------------------------------------------------*/
-
-.milli {
-	@include font-size($milli-size);
-}
-
-.micro {
-	@include font-size($micro-size);
-}
-
-.nano {
-	@include font-size($nano-size);
 }
 
 
@@ -243,4 +179,12 @@ a {
   font-family: "Alright Sans";
   font-style: italic;
   font-weight: normal;
+}
+
+
+/*	=EMPHASIS MODIFIERS
+--------------------------------------------------------------------*/
+
+.subtle {
+    color: #949494;
 }

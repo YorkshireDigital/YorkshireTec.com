@@ -1,21 +1,73 @@
 ﻿@{
-    Layout = "Shared/_HeroLayout.cshtml";
+    Layout = "Shared/_LayoutNarrow.cshtml";
 }
 @using YorkshireDigital.Web.Infrastructure.Helpers
 @inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<YorkshireDigital.Web.Account.ViewModels.AccountRegisterViewModel>
-@section Hero {
-    <section class="hero">
-        <div class="layout-constrained">
-            <h1 class="hero__title">Join Yorkshire's Digital Community</h1>
-            <p class="hero__intro">
-                Lorem Ipsum
-            </p>
+
+<section>
+    <div class="layout-constrained layout-constrained--narrow layout-stacked">
+
+        <h2>Sign Up&#8230;</h2>
+        <a href="~/authentication/redirect/twitter" title="Twitter" class="btn btn--full btn--twitter">Sign up with Twitter <span class="icn icn-twitter"></span> </a>
+        @*<a href="~/authentication/redirect/facebook" title="Facebook" class="btn btn--full btn--facebook">Sign up with Facebook <span class="icn icn-facebook"></span> </a>
+        <a href="~/authentication/redirect/linkedin" title="LinkedIn" class="btn btn--full btn--linkedin">Sign up with LinkedIn <span class="icn icn-linkedin"></span> </a>
+        <a href="~/authentication/redirect/meetup" title="Meetup" class="btn btn--full btn--meetup">Sign up with Meetup <span class="icn icn-meetup"></span> </a>*@
+
+        <div class="js-primary-sign-up">
+            <div class="divide">
+                <span class="divide__label">Or</span>
+            </div>
+
+            <button class="btn btn--primary btn--full push--double-bottom js-email-sign-up-btn" type="button">Sign up with email</button>
         </div>
-    </section>
-}
 
+        <div class="is-hidden js-email-sign-up-panel">
+            <form method="POST" data-parsley-validate>
+                @Html.AntiForgeryToken()
+                <div class="form-group">
+                    <label for="name">First name</label>
+                    <input type="text" name="name" class="input-full" placeholder="Joe" value="@Model.Name" required>
+                    @Html.ValidationMessageFor("Name")
+                </div>
 
-<div class="island island--horizontal-break">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" placeholder="joebloggs" name="username" class="input-full" value="@Model.Username" required>
+                    @Html.ValidationMessageFor("Username")
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email address</label>
+                    <input type="email" placeholder="joe.bloggs@gmail.com" id="email" name="email" class="input-full" value="@Model.Email" required>
+                    @Html.ValidationMessageFor("Email")
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" name="password" id="password" class="input-full" value="@Model.Password" required data-parsley-minlength="6">
+                    @Html.ValidationMessageFor("Password")
+                </div>
+
+                <div class="form-group">
+                    <label for="passwordConfirmation">Confirm password</label>
+                    <input type="password" name="confirmPassword" class="input-full" value="@Model.ConfirmPassword" required data-parsley-equalto="#password">
+                    @Html.ValidationMessageFor("ConfirmPassword")
+                </div>
+
+                <div class="form-actions text--center push--bottom">
+                    <input type="submit" class="btn btn--primary btn--full push--bottom" value="Create account" />
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+    <div class="island island--medium island--full-bleed text--center">
+        Already have an account? <a href="/account/sign-in">Sign in</a>
+    </div>
+</section>
+
+@*<div class="island island--horizontal-break">
 <div class="panel-one">
     <form method="POST" data-parsley-validate>
         @Html.AntiForgeryToken()
@@ -65,9 +117,18 @@
 </div>
 <div class="panel-two">
     <h3>Or register with one of these providers</h3>
-    <a href="~/authentication/redirect/twitter" title="Twitter" class="btn btn--full twitter">Twitter</a>
-    @*<a href="~/authentication/redirect/facebook" title="Facebook" class="btn btn--full facebook">Facebook</a>
-    <a href="~/authentication/redirect/linkedin" title="LinkedIn" class="btn btn--full linkedin">LinkedIn</a>
-    <a href="~/authentication/redirect/meetup" title="Meetup" class="btn btn--full meetup">Meetup</a>*@
+    
 </div>
-</div>
+</div>*@
+
+@section Scripts
+{
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $(document).on('click', '.js-email-sign-up-btn', function() {
+                $('.js-email-sign-up-panel').toggleClass('is-hidden');
+                $(this).toggleClass('is-hidden');
+            });
+        });
+    </script>
+}

@@ -1,0 +1,130 @@
+﻿@{
+    Layout = "Shared/_HeroLayout.cshtml";
+}
+@using YorkshireDigital.Web.Infrastructure.Helpers
+@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<YorkshireDigital.Web.Admin.ViewModels.AdminGroupIntegrationsViewModel>
+
+<a href="/admin?tab=Groups">Admin</a> | 
+<a href="/admin/group/@Model.Id">@Model.Id</a>
+
+<h2><span id="group-name">@Model.Name</span> Integrations</h2>
+
+<p>Enable integrations to add more pizazz to your group.</p>
+
+
+<div class="integration-item" style="margin: 1em 0;">
+    <div class="integration-item--logo" style="display: inline-block; width: 33%">
+        <img src="/public/content/logo-meetup.png" alt="meetup logo" height="100" style="margin: 0 auto; display: block;" />
+    </div>
+    <div id="meetup" class="integration-item--text" style="display: @(Model.ShowMeetup ? "none" : "inline-block"); vertical-align: top; padding-left: 5px; width: 66%">
+        <h3>
+            Meetup.com
+            @if (Model.MeetupId > 0)
+            {
+                <span class='integration-item--enabled'> - Enabled</span>
+            }
+        </h3>
+        <p>Meetup integration enables automated event updates from meetup.com</p>
+        @if (Model.MeetupId == 0)
+        {
+            <a href="#" class="btn btn--positive btn--full js-show-integration">Enable</a>
+        }
+        else
+        {
+            <div class="form-group">
+                <input type="text" value="@Model.MeetupUrlName" readonly="readonly" class="input-full field" />
+            </div>
+            <a href="#" class="btn btn--negative btn--full js-delete-integration" data-group-id="@Model.Id">Remove</a>
+        }
+    </div>
+    <div class="integration-item--settings" style="display: @(Model.ShowMeetup ? "inline-block" : "none"); vertical-align: top; padding-left: 5px; width: 66%">
+        <form method="POST" data-parsley-validate>
+            @Html.AntiForgeryToken()
+            <h3>Meetup.com</h3>
+            <div class="form-group">
+                <label>Meetup Url Name</label>
+                <p>
+                    Find this by going to your meetup page and grabbing the name from the Url.
+                    For example, the Url name for <a href="http://www.meetup.com/@Model.Id/" target="_black">www.meetup.com/@Model.Id</a> is @Model.Id.
+                </p>
+                <input type="text" placeholder="e.g. @Model.Id" name="meetupUrlName" class="input-full field" id="meetupUrlName" value="@Model.MeetupUrlName" required data-group-id="@Model.Id" style='background-color: rgb(255, 194, 194);' />
+                @Html.ValidationMessageFor("MeetupUrlName")
+            </div>
+            <div class="form-group">
+                <input type="submit" class="btn btn--positive btn--full" value="Enable" />
+            </div>
+            <div class="form-group">
+                <a href="#" class="btn btn--negative btn--full js-cancel-integration">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script type="text/javascript">
+        $(function() {
+            var showIntegrationSettings = function(e) {
+                e.preventDefault();
+
+                var $parent = $(this).parent('.integration-item--text');
+                $parent.hide();
+                $parent.next().css('display', 'inline-block');
+            };
+            var hideIntegrationSettings = function(e) {
+                e.preventDefault();
+
+                var $parent = $(this).parents('.integration-item--settings');
+                $parent.hide();
+                $parent.prev().css('display', 'inline-block');
+            };
+            var validateMeetupUrlName = function(e) {
+                if (e) e.preventDefault();
+
+                var id = $(this).data('group-id');
+                var meetupUrlName = $(this).val();
+
+                $.ajax({
+                    type: 'GET',
+                    url: '/admin/group/' + id + '/integrations/validate-meetup',
+                    data: { 'MeetupUrlName': meetupUrlName },
+                    headers: {
+                        Accept: "application/json; charset=utf-8",
+                        "Content-Type": "application/json; charset=utf-8"
+                    }
+                }).done(function(d) {
+                    if (d) {
+                        $('#meetupUrlName').css('background-color', 'rgb(212, 255, 212)');
+                    } else {
+                        $('#meetupUrlName').css('background-color', 'rgb(255, 194, 194)');
+                    }
+                });
+            };
+            var deleteIntegration = function(e) {
+                if (e) e.preventDefault();
+
+                var id = $(this).data('group-id');
+                if (confirm("Are you sure?")) {
+                    $.ajax({
+                        type: 'DELETE',
+                        url: '/admin/group/' + id + '/integrations/',
+                        headers: {
+                            Accept: "application/json; charset=utf-8",
+                            "Content-Type": "application/json; charset=utf-8"
+                        }
+                    }).done(function(d) {
+                        $('.js-delete-integration').after('<a href="#" class="btn btn--positive btn--full js-show-integration">Enable</a>');
+                        $('.js-delete-integration').prev().remove();
+                        $('.js-delete-integration').remove();
+                        $('span.integration-item--enabled', '#meetup').hide();
+                    });
+                }
+            };
+
+            $(document).on('click', '.js-show-integration', showIntegrationSettings);
+            $(document).on('click', '.js-cancel-integration', hideIntegrationSettings);
+            $(document).on('change', '#meetupUrlName', validateMeetupUrlName);
+            $(document).on('click', '.js-delete-integration', deleteIntegration);
+        });
+    </script>
+}

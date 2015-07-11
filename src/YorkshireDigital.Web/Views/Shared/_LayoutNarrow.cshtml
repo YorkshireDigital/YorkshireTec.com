@@ -1,0 +1,20 @@
+﻿@using System
+@{
+    Layout = "Shared/_Layout.cshtml";
+}
+
+<header class="header-site layout-constrained layout-constrained--narrow">
+    <img class="logo-site" src="/public/styles/img/logo-yd-landscape.svg" alt="YorkshireDigital Logo" />
+</header>
+
+@RenderBody()
+
+<footer class="footer-site layout-constrained" role="contentinfo">
+    <small class="footer-site__item">© @DateTime.Now.ToString("yyyy") YorkshireDigital</small>
+    <small class="footer-site__item">Hosted by <a href="https://www.brightbox.com" target="_blank">Brighbox</a> in Yorkshire</small>
+</footer>
+
+@section Scripts
+{
+    @RenderSection("Scripts")
+}

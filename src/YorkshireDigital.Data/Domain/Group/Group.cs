@@ -1,9 +1,10 @@
-﻿namespace YorkshireDigital.Data.Domain.Organisations
+﻿namespace YorkshireDigital.Data.Domain.Group
 {
     using System;
     using System.Collections.Generic;
     using YorkshireDigital.Data.Domain.Account;
     using YorkshireDigital.Data.Domain.Events;
+    using YorkshireDigital.Data.Domain.Shared;
 
     public class Group
     {
@@ -12,6 +13,7 @@
         public virtual string ShortName { get; set; }
         public virtual string Headline { get; set; }
         public virtual string About { get; set; }
+        public virtual TextFormat AboutFormat { get; set; }
         public virtual string Colour { get; set; }
         public virtual IList<ContactLink> ContactLinks { get; set; }
         public virtual IList<Event> Events { get; set; }
@@ -24,5 +26,16 @@
         public virtual User DeletedBy { get; set; }
 
         public virtual bool IsDeleted { get { return DeletedOn.HasValue; } }
+
+        // Meetup.com integration
+        public virtual int MeetupId { get; set; }
+        public virtual string GroupSyncId { get; set; }
+        public virtual string MeetupUrlName { get; set; }
+
+        public Group()
+        {
+            ContactLinks = new List<ContactLink>();
+            Events = new List<Event>();
+        }
     }
 }

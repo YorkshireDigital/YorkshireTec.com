@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using AutoMapper;
     using YorkshireDigital.Data.Domain.Events;
+    using YorkshireDigital.Data.Domain.Shared;
 
     public class AdminEventViewModel
     {
@@ -31,17 +32,25 @@
 
         public static AdminEventViewModel FromDomain(Event @event)
         {
-            return Mapper.DynamicMap<Event, AdminEventViewModel>(@event);
+            var mapped = Mapper.DynamicMap<Event, AdminEventViewModel>(@event);
+            mapped.Start = @event.Start.ToLocalTime();
+            mapped.End = @event.End.ToLocalTime();
+            return mapped;
         }
 
         public Event ToDomain()
         {
-            return Mapper.DynamicMap<AdminEventViewModel, Event>(this);
+            var domain = Mapper.DynamicMap<AdminEventViewModel, Event>(this);
+            domain.SynopsisFormat = TextFormat.Markdown;
+            domain.Start = Start.ToUniversalTime();
+            domain.End = End.ToUniversalTime();
+            return domain;
         }
 
         public void UpdateDomain(Event @event)
         {
             Mapper.DynamicMap(this, @event);
+            @event.SynopsisFormat = TextFormat.Markdown;
         }
     }
 }

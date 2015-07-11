@@ -12,7 +12,7 @@
     using NUnit.Framework;
     using YorkshireDigital.Data.Domain.Account;
     using YorkshireDigital.Data.Domain.Events;
-    using YorkshireDigital.Data.Domain.Organisations;
+    using YorkshireDigital.Data.Domain.Group;
     using YorkshireDigital.Data.Services;
     using YorkshireDigital.Web.Admin.Modules;
     using YorkshireDigital.Web.Admin.ViewModels;
@@ -216,8 +216,8 @@
             model.UniqueName.ShouldBeEquivalentTo("existing-event");
             model.Title.ShouldBeEquivalentTo("Existing Event");
             model.Synopsis.ShouldBeEquivalentTo("Existing event details");
-            model.Start.ShouldBeEquivalentTo(start);
-            model.End.ShouldBeEquivalentTo(end);
+            model.Start.ShouldBeEquivalentTo(start.ToLocalTime());
+            model.End.ShouldBeEquivalentTo(end.ToLocalTime());
             model.Location.ShouldBeEquivalentTo("Venue X");
             model.Region.ShouldBeEquivalentTo("Leeds");
             model.Price.ShouldBeEquivalentTo(1.2m);

@@ -3,6 +3,7 @@
     using FluentNHibernate.Mapping;
     using global::NHibernate.Type;
     using YorkshireDigital.Data.Domain.Events;
+    using YorkshireDigital.Data.Domain.Shared;
 
     public class EventMap : ClassMap<Event>
     {
@@ -18,6 +19,7 @@
             Map(x => x.Synopsis)
                 .CustomSqlType("varchar(8000)")
                 .Length(8000);
+            Map(x => x.SynopsisFormat).CustomType<TextFormat>();
             Map(x => x.Start);
             Map(x => x.End).Column("[End]");
             Map(x => x.Location);
@@ -26,6 +28,8 @@
             Map(x => x.Photo).CustomType<BinaryBlobType>();
             Map(x => x.LastEditedOn);
             References(x => x.LastEditedBy);
+            Map(x => x.MeetupId);
+            Map(x => x.EventSyncJobId);
             Map(x => x.DeletedOn);
             References(x => x.DeletedBy);
 

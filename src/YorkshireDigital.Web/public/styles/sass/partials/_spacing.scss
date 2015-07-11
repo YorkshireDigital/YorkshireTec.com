@@ -1,0 +1,66 @@
+$base-line-height: 24px !default;
+$base-spacing-unit: $base-line-height !default;
+
+// Add spacing types
+$add-spacing-types: (
+    push: margin,
+    soft: padding
+) !default;
+
+// Remove spacing types
+$remove-spacing-types: (
+    flush: margin,
+    hard: padding
+) !default;
+
+// Spacing units
+$spacing-sizes: (
+    double     : $base-spacing-unit * 2,
+    two-thirds : $base-spacing-unit * 0.66666666,
+    half       : $base-spacing-unit / 2,
+    third      : $base-spacing-unit / 3,
+    quarter    : $base-spacing-unit / 4
+) !default;
+
+// Define sides spacing can be applied
+$sides: (
+    top     : top,
+    right   : right,
+    bottom  : bottom,
+    left    : left
+) !default;
+
+// Generate helper classes to remove spacing
+@each $spacing-type in map-keys($remove-spacing-types) {
+    .#{$spacing-type} {
+      #{map-get($remove-spacing-types, $spacing-type)} : 0!important;
+    }
+    @each $side in map-keys($sides) {
+      .#{$spacing-type}--#{$side} {
+        #{map-get($remove-spacing-types, $spacing-type)}-#{$side}: 0!important;
+      }
+    }
+}
+
+// Generate helper classes to add spacing
+@each $spacing-type in map-keys($add-spacing-types) {
+  .#{$spacing-type} {
+      #{map-get($add-spacing-types, $spacing-type)} : $base-spacing-unit!important;
+    }
+  @each $size in map-keys($spacing-sizes) {
+    .#{$spacing-type}--#{$size} {
+      #{map-get($add-spacing-types, $spacing-type)} : map-get($spacing-sizes, $size)!important;
+    }
+    @each $side in map-keys($sides) {
+      .#{$spacing-type}--#{$size}-#{$side} {
+        #{map-get($add-spacing-types, $spacing-type)}-#{$side}: map-get($spacing-sizes, $size)!important;
+      }
+    }
+  }
+}
+
+
+// @TODO Generate this...
+.push--bottom {
+    margin-bottom: $base-spacing-unit;
+}

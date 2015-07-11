@@ -9,6 +9,7 @@
     using NHibernate;
     using SimpleAuthentication.Core;
     using YorkshireDigital.Data.Domain.Account;
+    using YorkshireDigital.Data.Helpers;
     using YorkshireDigital.Data.NHibernate;
     using YorkshireDigital.Data.Services;
     using YorkshireDigital.Web.Infrastructure.Helpers;
@@ -21,12 +22,13 @@
         {
             var sessionFactory = NHibernateSessionFactoryProvider.BuildSessionFactory(ConfigurationManager.ConnectionStrings["Database"].ConnectionString);
             requestSession = sessionFactory.OpenSession();
-            requestSession.BeginTransaction();
+            
             userService = new UserService(requestSession);
         }
 
         public dynamic Process(NancyModule nancyModule, AuthenticateCallbackData model)
         {
+            requestSession.BeginTransaction();
             User loggedInUser = null;
             var returnUrl = GetReturnUrl(model.ReturnUrl);
 
