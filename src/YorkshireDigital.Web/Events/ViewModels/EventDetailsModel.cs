@@ -30,7 +30,7 @@
             Title = e.Title;
             Synopsis = e.SynopsisFormat == TextFormat.Html ? e.Synopsis : e.Synopsis.MarkdownToHtml();
             Colour = e.Group.Colour;
-            Start = e.Start.ToString("yyyy-MM-dd");
+            Start = e.Start.ToLocalTime().ToString("yyyy-MM-dd");
             StartFormat = e.Start.ToLyndensFancyFormat();
             Location = e.Location;
             UniqueName = e.UniqueName;
