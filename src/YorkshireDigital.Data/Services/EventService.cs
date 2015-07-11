@@ -33,7 +33,7 @@
 
         public void Save(Event eventToSave, User user)
         {
-            if (eventToSave.LastEditedBy == null)
+            if (!EventExists(eventToSave.UniqueName))
             {
                 var siteUrl = ConfigurationManager.AppSettings["SiteUrl"];
                 SlackHelper.PostNewEventUpdate(siteUrl, eventToSave.UniqueName,
