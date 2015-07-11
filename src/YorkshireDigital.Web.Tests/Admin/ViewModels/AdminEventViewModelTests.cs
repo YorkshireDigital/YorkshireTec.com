@@ -44,8 +44,8 @@
             viewModel.UniqueName.ShouldBeEquivalentTo("existing-event");
             viewModel.Title.ShouldBeEquivalentTo("Existing Event");
             viewModel.Synopsis.ShouldBeEquivalentTo("Existing event details");
-            viewModel.Start.ShouldBeEquivalentTo(start);
-            viewModel.End.ShouldBeEquivalentTo(end);
+            viewModel.Start.ShouldBeEquivalentTo(start.ToLocalTime());
+            viewModel.End.ShouldBeEquivalentTo(end.ToLocalTime());
             viewModel.Location.ShouldBeEquivalentTo("Venue X");
             viewModel.Region.ShouldBeEquivalentTo("Leeds");
             viewModel.Price.ShouldBeEquivalentTo(1.2m);

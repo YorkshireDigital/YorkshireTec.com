@@ -32,7 +32,10 @@
 
         public static AdminEventViewModel FromDomain(Event @event)
         {
-            return Mapper.DynamicMap<Event, AdminEventViewModel>(@event);
+            var mapped = Mapper.DynamicMap<Event, AdminEventViewModel>(@event);
+            mapped.Start = @event.Start.ToLocalTime();
+            mapped.End = @event.End.ToLocalTime();
+            return mapped;
         }
 
         public Event ToDomain()
