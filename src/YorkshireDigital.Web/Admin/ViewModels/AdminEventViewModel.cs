@@ -39,6 +39,8 @@
         {
             var domain = Mapper.DynamicMap<AdminEventViewModel, Event>(this);
             domain.SynopsisFormat = TextFormat.Markdown;
+            domain.Start = Start.ToUniversalTime();
+            domain.End = End.ToUniversalTime();
             return domain;
         }
 

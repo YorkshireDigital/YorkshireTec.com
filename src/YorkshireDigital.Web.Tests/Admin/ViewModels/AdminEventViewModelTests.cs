@@ -88,8 +88,8 @@
             domain.UniqueName.ShouldBeEquivalentTo("existing-event");
             domain.Title.ShouldBeEquivalentTo("Existing Event");
             domain.Synopsis.ShouldBeEquivalentTo("Existing event details");
-            domain.Start.ShouldBeEquivalentTo(start);
-            domain.End.ShouldBeEquivalentTo(end);
+            domain.Start.ShouldBeEquivalentTo(start.ToUniversalTime());
+            domain.End.ShouldBeEquivalentTo(end.ToUniversalTime());
             domain.Location.ShouldBeEquivalentTo("Venue X");
             domain.Region.ShouldBeEquivalentTo("Leeds");
             domain.Price.ShouldBeEquivalentTo(1.2m);
