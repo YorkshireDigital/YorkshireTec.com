@@ -830,7 +830,7 @@ h6, .zeta {
   font-size: 2rem;
 }
 
-.kilo {
+.kilo, .hero__title {
   font-size: 30px;
   font-size: 1.875rem;
 }
@@ -1938,30 +1938,119 @@ body {
   margin-bottom: 2em;
 }
 
-/*  =HERO BLOCK
---------------------------------------------------------------------*/
-.site-header {
-  padding: 3.5em 0 3em;
-  margin-bottom: 2em;
-  background: #b9306a;
-  border-bottom: 3px solid #A02257;
+.panel-one {
+  float: left;
 }
 
+.panel-two {
+  float: right;
+}
+
+.panel-one,
+.panel-two {
+  width: 45%;
+}
+@media (max-width: 37.5em) {
+  .panel-one,
+  .panel-two {
+    width: 100%;
+    float: none;
+    margin-bottom: 1em;
+  }
+}
+
+/*  =HERO BLOCK
+--------------------------------------------------------------------*/
 .hero {
+  padding: 5em 0 3em;
+  margin-bottom: 2.5em;
+  background: #b9306a url(../img/bg-homepage-hero.jpg) 0 0 no-repeat;
+  background-size: cover;
+  border-bottom: 4px solid #A02257;
+  color: #fff;
   text-align: center;
+}
+@media (max-width: 37.5em) {
+  .hero {
+    padding: 2.5em 0 1em;
+    margin-bottom: 1.5em;
+  }
+}
+
+.hero__title {
   color: #fff;
 }
-.hero h1 {
-  text-transform: uppercase;
-}
-.hero p {
+
+.hero__intro {
+  max-width: 35em;
+  margin: 0 auto;
   font-size: 20px;
   font-size: 1.25rem;
 }
+@media (max-width: 37.5em) {
+  .hero__intro {
+    font-size: 18px;
+    font-size: 1.125rem;
+  }
+}
+
+/*  =HEADER
+--------------------------------------------------------------------*/
+.site-header {
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
+@media (max-width: 37.5em) {
+  .site-header {
+    text-align: center;
+  }
+}
+
+.site-header__contact {
+  float: right;
+  line-height: 3.4;
+}
+@media (max-width: 37.5em) {
+  .site-header__contact {
+    float: none;
+    line-height: 1.5;
+    margin-bottom: 1em;
+  }
+}
+.site-header__contact a {
+  color: #394047;
+  text-decoration: none;
+}
+.site-header__contact a:hover {
+  text-decoration: underline;
+}
 
 .logo-site {
-  width: 100%;
-  max-width: 300px;
+  display: inline-block;
+  width: 230px;
+  height: 60px;
+  background: url(../img/sprite-global.svg) 0 0 no-repeat;
+}
+.no-svg .logo-site {
+  background-image: url(../img/logo-yorkshiredigital-reversed.png);
+}
+
+/*  =FOOTER
+--------------------------------------------------------------------*/
+.footer-site {
+  padding: 2em 0;
+  text-align: center;
+  color: #767676;
+}
+@media (max-width: 37.5em) {
+  .footer-site {
+    padding-top: 1em 0;
+  }
+}
+
+.footer-site__item {
+  display: block;
+  margin-bottom: 0.5em;
 }
 
 /*  =SIGN UP BLOCK
@@ -1984,37 +2073,6 @@ body {
     position: static;
     padding: 2em 1.5em;
   }
-}
-
-/*  =HEADER
---------------------------------------------------------------------*/
-.header-site {
-  padding-top: 1em;
-  padding-bottom: 1em;
-  text-align: center;
-}
-@media (max-width: 37.5em) {
-  .header-site {
-    text-align: center;
-  }
-}
-
-/*  =FOOTER
---------------------------------------------------------------------*/
-.footer-site {
-  padding: 2em 0;
-  text-align: center;
-  color: #767676;
-}
-@media (max-width: 37.5em) {
-  .footer-site {
-    padding-top: 1em 0;
-  }
-}
-
-.footer-site__item {
-  display: block;
-  margin-bottom: 0.5em;
 }
 
 /*  =GENERAL UI ELEMENTS
