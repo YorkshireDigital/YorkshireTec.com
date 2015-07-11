@@ -55,42 +55,124 @@ body {
 	margin-bottom: 2em;
 }
 
+.panel-one {
+	float: left;
+}
+
+.panel-two {
+	float: right;
+}
+
+.panel-one,
+.panel-two {
+	width: 45%;
+
+	@include breakpoint(viewport-s) {
+		width: 100%;
+		float: none;
+		margin-bottom: 1em;
+	}
+
+}
+
 /*  =HERO BLOCK
 --------------------------------------------------------------------*/
-.site-header {
-	padding: 3.5em 0 3em;
-	margin-bottom: 2em;
-	background: #b9306a;
-	border-bottom: 3px solid #A02257;
-}
 
 .hero {
-	text-align: center;
+	padding: 5em 0 3em;
+	margin-bottom: 2.5em;
+	background: #b9306a url(../img/bg-homepage-hero.jpg) 0 0 no-repeat;
+	background-size: cover;
+	border-bottom: 4px solid #A02257;
 	color: #fff;
+	text-align: center;
 
-	h1 {
-		text-transform: uppercase;
-	}
-
-	p {
-		@include font-size(1.25);
+	@include breakpoint(viewport-s) {
+		padding: 2.5em 0 1em;
+		margin-bottom: 1.5em;
 	}
 
 }
+
+	.hero__title {
+		@extend .kilo;
+		color: #fff;
+	}
+
+	.hero__intro {
+		max-width: 35em;
+		margin: 0 auto;
+		@include font-size($h3-size);
+
+		@include breakpoint(viewport-s) {
+			@include font-size($h4-size);
+		}
+
+	}
+
+
+
+/*  =HEADER
+--------------------------------------------------------------------*/
+
+.site-header {
+	padding-top: 1em;
+	padding-bottom: 1em;
+
+	@include breakpoint(viewport-s) {
+		text-align: center;
+	}
+
+}
+
+	.site-header__contact {
+		float: right;
+		line-height: 3.4;
+
+		@include breakpoint(viewport-s) {
+			float: none;
+			line-height: 1.5;
+			margin-bottom: 1em;
+		}
+
+		a {
+			color: #394047;
+			text-decoration: none;
+
+			&:hover {
+				text-decoration: underline;
+			}
+		}
+	}
 
 .logo-site {
-	//float: left;
-	//width: 25%;
-	width: 100%;
-	max-width: 300px;
-	//height: 177px;
-	//margin: 0 3em 1.5em 0;
-	//background: url(../img/logo-yorkshiredigital-reversed.svg) 0 100% no-repeat;
+	display: inline-block;
+	width: 230px;
+	height: 60px;
+	background: url(../img/sprite-global.svg) 0 0 no-repeat;
 
 	.no-svg & {
-		//background-image: url(../img/logo-yorkshiredigital-reversed.png);
+		background-image: url(../img/logo-yorkshiredigital-reversed.png);
 	}
 }
+
+/*  =FOOTER
+--------------------------------------------------------------------*/
+.footer-site {
+	padding: $double-spacing-unit 0;
+	text-align: center;
+	color: #767676;
+
+	@include breakpoint(viewport-s) {
+		padding-top: $base-spacing-unit 0;
+	}
+
+}
+
+	.footer-site__item {
+		display: block;
+		margin-bottom: $half-spacing-unit;
+	}
 
 
 /*  =SIGN UP BLOCK
@@ -112,39 +194,6 @@ body {
 		padding: 2em 1.5em;
 	}
 }
-
-
-/*  =HEADER
---------------------------------------------------------------------*/
-
-.header-site {
-	padding-top: $base-spacing-unit;
-	padding-bottom: $base-spacing-unit;
-	text-align: center;
-
-	@include breakpoint(viewport-s) {
-		text-align: center;
-	}
-
-}
-
-/*  =FOOTER
---------------------------------------------------------------------*/
-.footer-site {
-	padding: $double-spacing-unit 0;
-	text-align: center;
-	color: #767676;
-
-	@include breakpoint(viewport-s) {
-		padding-top: $base-spacing-unit 0;
-	}
-
-}
-
-	.footer-site__item {
-		display: block;
-		margin-bottom: $half-spacing-unit;
-	}
 
 
 /*  =GENERAL UI ELEMENTS
