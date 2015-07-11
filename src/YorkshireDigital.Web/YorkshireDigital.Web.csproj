@@ -476,12 +476,10 @@
     <Compile Include="Infrastructure\Helpers\HtmlHelper.cs" />
     <Compile Include="Infrastructure\Helpers\MarkdownHelper.cs" />
     <Compile Include="Infrastructure\Helpers\SentryHelper.cs" />
-    <Compile Include="Infrastructure\Helpers\SlackHelper.cs" />
     <Compile Include="Infrastructure\Models\BaseAjaxPostModel.cs" />
     <Compile Include="Infrastructure\Models\Error.cs" />
     <Compile Include="Infrastructure\Models\ErrorPageViewModel.cs" />
     <Compile Include="Infrastructure\Models\ErrorViewModel.cs" />
-    <Compile Include="Infrastructure\Models\FeaturesModel.cs" />
     <Compile Include="Infrastructure\Models\FieldErrorViewModel.cs" />
     <Compile Include="Infrastructure\Models\ForbiddenViewModel.cs" />
     <Compile Include="Infrastructure\Models\PageNotFoundViewModel.cs" />

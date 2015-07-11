@@ -9,6 +9,7 @@
     using NHibernate;
     using SimpleAuthentication.Core;
     using YorkshireDigital.Data.Domain.Account;
+    using YorkshireDigital.Data.Helpers;
     using YorkshireDigital.Data.NHibernate;
     using YorkshireDigital.Data.Services;
     using YorkshireDigital.Web.Infrastructure.Helpers;

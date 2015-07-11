@@ -1,6 +1,7 @@
 namespace YorkshireDigital.Web.Feedback.Modules
 {
     using Nancy.ModelBinding;
+    using YorkshireDigital.Data.Helpers;
     using YorkshireDigital.Web.Feedback.Models;
     using YorkshireDigital.Web.Infrastructure;
     using YorkshireDigital.Web.Infrastructure.Helpers;

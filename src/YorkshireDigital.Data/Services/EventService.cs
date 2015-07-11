@@ -2,12 +2,14 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Configuration;
     using System.Linq;
     using global::NHibernate;
     using global::NHibernate.Linq;
     using YorkshireDigital.Data.Domain.Account;
     using YorkshireDigital.Data.Domain.Events;
     using YorkshireDigital.Data.Exceptions;
+    using YorkshireDigital.Data.Helpers;
 
     public interface IEventService
     {
@@ -33,6 +35,11 @@
         {
             eventToSave.LastEditedOn = DateTime.UtcNow;
             eventToSave.LastEditedBy = user;
+            if (session.Get<Event>(eventToSave.UniqueName) == null)
+            {
+                var siteUrl = ConfigurationManager.AppSettings["SiteUrl"];
+                SlackHelper.PostNewEventUpdate(siteUrl, eventToSave.UniqueName, eventToSave.Title, user.Username, eventToSave.Start, eventToSave.Location, eventToSave.Group.Name);
+            }
 
             session.SaveOrUpdate(eventToSave);
         }
