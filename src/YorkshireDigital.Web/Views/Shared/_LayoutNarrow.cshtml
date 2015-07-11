@@ -1,4 +1,5 @@
-﻿@{
+﻿@using System
+@{
     Layout = "Shared/_Layout.cshtml";
 }
 
@@ -7,6 +8,11 @@
 </header>
 
 @RenderBody()
+
+<footer class="footer-site layout-constrained" role="contentinfo">
+    <small class="footer-site__item">© @DateTime.Now.ToString("yyyy") YorkshireDigital</small>
+    <small class="footer-site__item">Hosted by <a href="https://www.brightbox.com" target="_blank">Brighbox</a> in Yorkshire</small>
+</footer>
 
 @section Scripts
 {
