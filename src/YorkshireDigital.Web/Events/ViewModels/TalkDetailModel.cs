@@ -1,6 +1,7 @@
 ﻿namespace YorkshireDigital.Web.Events.ViewModels
 {
     using YorkshireDigital.Data.Domain.Events;
+    using YorkshireDigital.Data.Domain.Shared;
     using YorkshireDigital.Web.Infrastructure.Helpers;
 
     public class TalkDetailModel
@@ -10,7 +11,7 @@
             Speaker = talk.Speaker;
             SpeakerLink = talk.Link;
             Title = talk.Title;
-            Synopsis = talk.Synopsis.MarkdownToHtml();
+            Synopsis = talk.SynopsisFormat == TextFormat.Html ? talk.Synopsis : talk.Synopsis.MarkdownToHtml();
         }
 
         public string Speaker { get; set; }

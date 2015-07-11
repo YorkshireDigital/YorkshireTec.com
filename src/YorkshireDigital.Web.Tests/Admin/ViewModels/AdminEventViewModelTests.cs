@@ -5,7 +5,7 @@
     using FluentAssertions;
     using NUnit.Framework;
     using YorkshireDigital.Data.Domain.Events;
-    using YorkshireDigital.Data.Domain.Organisations;
+    using YorkshireDigital.Data.Domain.Group;
     using YorkshireDigital.Web.Admin.ViewModels;
 
     public class AdminEventViewModelTests
@@ -44,8 +44,8 @@
             viewModel.UniqueName.ShouldBeEquivalentTo("existing-event");
             viewModel.Title.ShouldBeEquivalentTo("Existing Event");
             viewModel.Synopsis.ShouldBeEquivalentTo("Existing event details");
-            viewModel.Start.ShouldBeEquivalentTo(start);
-            viewModel.End.ShouldBeEquivalentTo(end);
+            viewModel.Start.ShouldBeEquivalentTo(start.ToLocalTime());
+            viewModel.End.ShouldBeEquivalentTo(end.ToLocalTime());
             viewModel.Location.ShouldBeEquivalentTo("Venue X");
             viewModel.Region.ShouldBeEquivalentTo("Leeds");
             viewModel.Price.ShouldBeEquivalentTo(1.2m);
@@ -88,8 +88,8 @@
             domain.UniqueName.ShouldBeEquivalentTo("existing-event");
             domain.Title.ShouldBeEquivalentTo("Existing Event");
             domain.Synopsis.ShouldBeEquivalentTo("Existing event details");
-            domain.Start.ShouldBeEquivalentTo(start);
-            domain.End.ShouldBeEquivalentTo(end);
+            domain.Start.ShouldBeEquivalentTo(start.ToUniversalTime());
+            domain.End.ShouldBeEquivalentTo(end.ToUniversalTime());
             domain.Location.ShouldBeEquivalentTo("Venue X");
             domain.Region.ShouldBeEquivalentTo("Leeds");
             domain.Price.ShouldBeEquivalentTo(1.2m);

@@ -6,5 +6,6 @@
         public string Name { get; set; }
         public string ShortName { get; set; }
         public string Colour { get; set; }
+        public int MeetupId { get; set; }
     }
 }

@@ -1,6 +1,7 @@
 ﻿namespace YorkshireDigital.Web.Events.ViewModels
 {
     using System.Linq;
+    using YorkshireDigital.Data.Domain.Shared;
     using YorkshireDigital.Web.Infrastructure;
     using YorkshireDigital.Data.Domain.Events;
     using YorkshireDigital.Web.Infrastructure.Helpers;
@@ -27,16 +28,16 @@
             Organiser = e.Group.Name;
             OrganiserShortName = e.Group.ShortName;
             Title = e.Title;
-            Synopsis = e.Synopsis.MarkdownToHtml();
+            Synopsis = e.SynopsisFormat == TextFormat.Html ? e.Synopsis : e.Synopsis.MarkdownToHtml();
             Colour = e.Group.Colour;
-            Start = e.Start.ToString("yyyy-MM-dd");
+            Start = e.Start.ToLocalTime().ToString("yyyy-MM-dd");
             StartFormat = e.Start.ToLyndensFancyFormat();
             Location = e.Location;
             UniqueName = e.UniqueName;
             ContactLinks = e.Group.ContactLinks.Select(x => new ContactLinkModel(x)).ToArray();
             SetWebsite(e.Group.Website);
             Headline = e.Group.Headline;
-            About = e.Group.About.MarkdownToHtml();
+            About = e.Group.AboutFormat == TextFormat.Html ? e.Group.About : e.Group.About.MarkdownToHtml();
             Talks = e.Talks.Select(x => new TalkDetailModel(x)).ToArray();
         }
 

@@ -1,7 +1,7 @@
 ﻿namespace YorkshireDigital.Data.NHibernate.Mappings
 {
     using FluentNHibernate.Mapping;
-    using YorkshireDigital.Data.Domain.Organisations;
+    using YorkshireDigital.Data.Domain.Group;
 
     public class GroupMap : ClassMap<Group>
     {
@@ -19,6 +19,7 @@
             Map(x => x.About)
                 .CustomSqlType("varchar(8000)")
                 .Length(8000);
+            Map(x => x.AboutFormat);
             Map(x => x.Colour);
             Map(x => x.Logo);
             Map(x => x.Photo);
@@ -27,6 +28,10 @@
             References(x => x.LastEditedBy);
             Map(x => x.DeletedOn);
             References(x => x.DeletedBy);
+
+            Map(x => x.MeetupId);
+            Map(x => x.MeetupUrlName);
+            Map(x => x.GroupSyncId);
 
             HasMany(x => x.ContactLinks)
                 .Cascade.All();

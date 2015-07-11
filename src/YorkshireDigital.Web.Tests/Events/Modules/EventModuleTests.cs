@@ -10,7 +10,7 @@ namespace YorkshireDigital.Web.Tests.Events.Modules
     using NHibernate;
     using NUnit.Framework;
     using YorkshireDigital.Data.Domain.Events;
-    using YorkshireDigital.Data.Domain.Organisations;
+    using YorkshireDigital.Data.Domain.Group;
     using YorkshireDigital.Web.Events.Modules;
 
     [TestFixture, Ignore("This doesn't work because I'm injecting the session factory which isn't that mockable. Needs revising")]

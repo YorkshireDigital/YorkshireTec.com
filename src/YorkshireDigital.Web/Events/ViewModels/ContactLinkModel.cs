@@ -1,7 +1,7 @@
 ﻿namespace YorkshireDigital.Web.Events.ViewModels
 {
-    using YorkshireDigital.Data.Domain.Organisations;
-    using YorkshireDigital.Data.Domain.Organisations.Enums;
+    using YorkshireDigital.Data.Domain.Group;
+    using YorkshireDigital.Data.Domain.Group.Enums;
 
     public class ContactLinkModel
     {

@@ -41,6 +41,7 @@
         public static bool IsEmailRegistered(string email)
         {
             if (!MailChimpEnabled) return false;
+            if (string.IsNullOrEmpty(email)) return false;
 
             var mailChimp = new MailChimpManager(ApiKey);
             var emailParam = new EmailParameter
