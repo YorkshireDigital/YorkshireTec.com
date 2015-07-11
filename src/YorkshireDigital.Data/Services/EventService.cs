@@ -35,6 +35,7 @@
         {
             eventToSave.LastEditedOn = DateTime.UtcNow;
             eventToSave.LastEditedBy = user;
+
             if (session.Get<Event>(eventToSave.UniqueName) == null)
             {
                 var siteUrl = ConfigurationManager.AppSettings["SiteUrl"];
@@ -44,8 +45,7 @@
                     eventToSave.Group != null ? eventToSave.Group.Name : string.Empty,
                     eventToSave.Group != null ? eventToSave.Group.Colour : null);
             }
-
-            session.SaveOrUpdate(eventToSave);
+            session.Merge(eventToSave);
         }
 
         public Event Get(string uniqueName)
