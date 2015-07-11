@@ -747,7 +747,6 @@ h4, .delta,
 h5, .epsilon {
   font-family: MetronicProRegular;
   font-weight: 500;
-  color: #50575D;
 }
 h1 a, .alpha a,
 h2 a, .beta a,
@@ -1949,11 +1948,11 @@ body {
 }
 
 .hero {
-  margin-left: 30%;
+  text-align: center;
   color: #fff;
 }
 .hero h1 {
-  color: #fff;
+  text-transform: uppercase;
 }
 .hero p {
   font-size: 20px;

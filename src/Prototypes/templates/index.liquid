@@ -1,5 +1,5 @@
 {% model "events.json" %}
-{% block title %}Bringing Yorkshires digital community together{% endblock %} 
+{% block title %}Bringing Yorkshires digital community together{% endblock %}
 {% block content %}
 
 	<header class="site-header">
@@ -7,25 +7,18 @@
 			<div class="logo-site">
 			</div>
 			<div class="hero">
-				<h1>Bringing Yorkshire's digital community together</h1>
+				<h1>Bringing Yorkshire's Digital Community Together</h1>
+				<!-- <h1>27 Events across Yorkshire this month</h1> -->
 				<p>
-					YorkshireDigital is a hub for the growing digital community in Yorkshire, where individuals, organisations and user groups of all skill sets can easily see whats going on, find new connections and share knowledge.
+					There's 27 events this month, 30 job opportunities &amp; 6 projects.
 				</p>
 			</div>
 		</div>
 	</header>
-	
 
 	<section class="layout-constrained">
 
-		<h1>Hey, there's 13 events this month throughout Yorkshire!</h1>
-		<p>
-			The meetup scene is booming in the region and its only getting better! See all the upcoming events below, please <a href="mailto:info@yorkshiredigital.com">let us know</a> if you run or know events that are not listed.
-		</p>
-
-		<div class="calendar">
-			
-		</div>
+		<div class="calendar"></div>
 
 		<div class="island island--horizontal-break">
 			<p>
@@ -40,11 +33,9 @@
 		<small>Hosted by <a href="http://www.brightbox.com" target="_blank">Brightbox</a> in Yorkshire</small>
 	</footer>
 
-
-
 {% endblock %}
 
-{% block pageScripts %} 
+{% block pageScripts %}
 
   	<script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>
 	{{ "moment-2.5.1.js" | asset_url | script_tag }}
@@ -53,7 +44,7 @@
 	<script type="text/javascript">
 
 	$(document).ready(function() {
-	  
+
 		// Lyndens JS to replace!
 		$(document).on('click', '.calendar-event', function() {
 			$(this).toggleClass('calendar-event--expanded');
@@ -61,22 +52,18 @@
 
 	});
 
-	
-
-
-
 	$(function() {
 	  var thisMonth = moment().format('YYYY-MM');
 
 		var eventArray = [
 		{% for event in model.events %}
-		{ 
+		{
 			startDate: "{{ event.startDate }}",
 			endDate: "{{ event.endDate }}",
 			title: "{{ event.title }}",
 			shortTitle: "{{ event.shortTitle }}",
 			strapline: "{{ event.strapline }}",
-			description: "{{ event.description }}", 
+			description: "{{ event.description }}",
 			brandingAccent: "{{ event.brandingAccent }}"
 		},
 		{% endfor %}
@@ -108,8 +95,6 @@
 	});
 	</script>
 
-	
-	
 	<script type="text/template" id="template-calendar">
 
 		<div class="clndr-controls">
@@ -120,7 +105,7 @@
 				<div class="clndr-next-button clndr-controls__nav">&rsaquo;</div>
 				<!--<div class="clndr-today-button">Today</div>-->
 			</div>
-			
+
 			<div class="clndr-filters">
 				<label class="is-offscreen" for="interestFilter">Filter by interest</label>
 				<div class="clndr-contols__filter select-custom">
@@ -161,7 +146,7 @@
 						<div class="calendar-event" style="background: <%= event.brandingAccent %>">
 							<span class="calendar-event__short-title"><%= event.shortTitle %></span>
 							<span class="calendar-event__title"><%= event.title %></span>
-							<div class="calendar-event__full-details"> 
+							<div class="calendar-event__full-details">
 								<span class="calendar-event__strapline"><%= event.strapline %></span>
 								<div class="calendar-event__description"><%= event.description %></div>
 								<span class="calendar-event__location"><%= event.location %></span>
@@ -173,7 +158,7 @@
 				</div>
 			</div>
 		</div>
-		
+
 		<div class="event-listing">
 		  <div class="event-listing-title">EVENTS THIS MONTH</div>
 		  <% _.each(eventsThisMonth, function(event) { %>
@@ -184,7 +169,6 @@
 		      </div>
 		    <% }); %>
 		</div>
-		
-		
+
 	</script>
 {% endblock %}

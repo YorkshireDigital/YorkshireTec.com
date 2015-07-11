@@ -33,10 +33,10 @@
 	                <span class="divide__label">Or</span>
 	            </div>
 
-				<button class="btn btn--primary btn--full push--bottom" type="button">Sign up with email</button>
+				<button class="btn btn--primary btn--full push--double-bottom js-email-sign-up-btn" type="button">Sign up with email</button>
 			</div>
 
-			<div class="is-hidden js-secondary-sign-up">
+			<div class="is-hidden js-email-sign-up-panel">
 				<div class="form-group">
 					<label for="firstName">First name</label>
 					<input type="text" id="firstName" class="input-full" />
@@ -62,7 +62,6 @@
 	            </div>
 			</div>
 
-
 		</div>
 
         <div class="island island--medium island--full-bleed text--center">
@@ -81,6 +80,15 @@
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
         <script src="/public/scripts/main.min.js"></script>
-         
+        
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('.js-email-sign-up-btn').click(function() {
+				$('.js-email-sign-up-panel').toggleClass('is-hidden');
+				$(this).toggleClass('is-hidden');
+			});
+		});
+	</script>
+
     </body>
 </html>
