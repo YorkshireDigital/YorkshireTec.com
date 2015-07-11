@@ -7,7 +7,10 @@
 <section>
     <div class="layout-constrained layout-constrained--narrow layout-stacked">
         <h2>Sign in&#8230;</h2>
-        <button class="btn btn--twitter btn--full" type="button">Sign in with Twitter <span class="icn icn-twitter"></span> </button>
+        <a href="~/authentication/redirect/twitter" title="Twitter" class="btn btn--full btn--twitter">Sign in with Twitter <span class="icn icn-twitter"></span> </a>
+        @*<a href="~/authentication/redirect/facebook" title="Facebook" class="btn btn--full btn--facebook">Facebook</a>
+        <a href="~/authentication/redirect/linkedin" title="LinkedIn" class="btn btn--full btn--linkedin">LinkedIn</a>
+        <a href="~/authentication/redirect/meetup" title="Meetup" class="btn btn--full btn--meetup">Meetup</a>*@
 
         <div class="divide">
             <span class="divide__label">Or</span>
@@ -16,27 +19,32 @@
         <button class="btn btn--primary btn--full push--double-bottom js-email-sign-in-btn" type="button">Sign in with email</button>
 
         <div class="is-hidden js-email-sign-in-panel">
-            <div class="form-group">
-                <label class="is-offscreen" for="firstName">Username</label>
-                <input type="text" id="userName" class="input-full" placeholder="Username" />
-            </div>
+            <form method="POST" data-parsley-validate>
+                @Html.AntiForgeryToken()
+                <div class="form-group">
+                    <label class="is-offscreen" for="username">Username or Email</label>
+                    <input type="text" placeholder="Username or Email" name="username" class="input-full" value="@Model.Username" required>
+                    @Html.ValidationMessageFor("Username")
+                </div>
 
-            <div class="form-group">
-                <label class="is-offscreen" for="emailAddress">Password</label>
-                <input type="password" id="password" class="input-full" placeholder="Password" />
-            </div>
+                <div class="form-group">
+                    <label class="is-offscreen" for="password">Password</label>
+                    <input type="password" name="password" class="input-full" value="@Model.Password" required>
+                    @Html.ValidationMessageFor("Password")
+                </div>
 
-            <div class="form-group">
-                <label class="island-input flush--bottom" for="remember-me">
-                    <input type="checkbox" id="remember-me" name="remember-me" value="">
-                    Remember me
-                </label>
-            </div>
+                <div class="form-group">
+                    <label class="island-input flush--bottom" for="remeberMe">
+                        <input type="checkbox" name="RememberMe" id="remeberMe" checked="@Model.RememberMe">
+                        Remember me
+                    </label>
+                </div>
 
-            <div class="form-actions text--center push--bottom">
-                <button class="btn btn--primary btn--full push--bottom" type="button">Sign In</button>
-                <a href="/account/forgotten-password">Forgotten your password?</a>
-            </div>
+                <div class="form-actions text--center push--bottom">
+                    <input type="submit" class="btn btn--primary btn--full push--bottom" value="Sign In" />
+                    <a href="/account/forgotten-password">Forgotten your password?</a>
+                </div>
+            </form>
         </div>
 
     </div>
@@ -51,42 +59,14 @@
     </footer>
 </section>
 
-@*<div class="island island--horizontal-break">
-    <div class="panel-one">
-        <form method="POST" data-parsley-validate>
-            @Html.AntiForgeryToken()
-
-            <h2>Don't have an account? <a href="account/register">Register</a></h2>
-
-            <h3>Log In</h3>
-
-            <div class="form-group">
-                <label>Username or Email</label>
-                <input type="text" placeholder="Username" name="username" class="input-full field" value="@Model.Username" required>
-                @Html.ValidationMessageFor("Username")
-            </div>
-
-            <div class="form-group">
-                <label>Password</label>
-                <input type="password" name="password" class="input-full field" value="@Model.Password" required>
-                @Html.ValidationMessageFor("Password")
-            </div>
-
-            <div class="form-group">
-                <input type="checkbox" name="RememberMe" class="field" id="RemeberMe" checked="@Model.RememberMe">
-                <label for="RemeberMe">Remember Me?</label>
-            </div>
-
-            @Html.ValidationSummary()
-
-            <input type="submit" class="btn btn--primary btn--full" value="Login" />
-        </form>
-    </div>
-    <div class="panel-two">
-        <h3>Or log in with one of these providers</h3>
-        <a href="~/authentication/redirect/twitter" title="Twitter" class="btn btn--full twitter">Twitter</a>
-        <a href="~/authentication/redirect/facebook" title="Facebook" class="btn btn--full facebook">Facebook</a>
-        <a href="~/authentication/redirect/linkedin" title="LinkedIn" class="btn btn--full linkedin">LinkedIn</a>
-        <a href="~/authentication/redirect/meetup" title="Meetup" class="btn btn--full meetup">Meetup</a>
-    </div>
-</div>*@
+@section Scripts
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(document).on('click', '.js-email-sign-in-btn', function () {
+                $('.js-email-sign-in-panel').toggleClass('is-hidden');
+                $(this).toggleClass('is-hidden');
+            });
+        });
+    </script>
+}
