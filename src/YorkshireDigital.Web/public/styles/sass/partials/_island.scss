@@ -1,21 +1,37 @@
+/*	=BASE ISLAND STYLES
+--------------------------------------------------------------------*/
+
 .island {
-	padding: 1em;
+	padding: $base-spacing-unit;
+	background: #F4F4F4;
+	border: solid #E9E9E9;
+	border-width: 1px;
 }
 
+	.island--full-bleed {
+		border-width: 1px 0;
+	}
+
 .island--horizontal-break {
-	@extend .group;
-	margin: 2em 0 0;
-	padding-top: 2em;
+	margin: 1.5em 0;
 	border: solid #ddd;
 	border-width: 2px 0;
+	text-align: center;
 
 	p:last-child {
 		margin: 0;
 	}
 
-	@include breakpoint(viewport-s) {
-		padding-right: 0;
-		padding-left: 0;
-	}
-	
+}
+
+
+/*	=SPACING
+--------------------------------------------------------------------*/
+
+.island--medium {
+	padding: $base-spacing-unit*1.5; 
+}
+
+.island--large {
+	padding: $base-spacing-unit*2;
 }

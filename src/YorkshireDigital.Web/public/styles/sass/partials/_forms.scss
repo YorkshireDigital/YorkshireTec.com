@@ -1,28 +1,26 @@
-/*	=FORM GROUPING 
+/*	=FORM GROUPING
 --------------------------------------------------------------------*/
+
 .form-group {
-	@include rhythm(margin-bottom, .75);
+	margin-bottom: $base-spacing-unit;
 }
 
 .layout-stacked {
 
 	label,
 	.label {
-		@include rhythm(margin-bottom, .25);
+		margin-bottom: $half-spacing-unit;
 		display: block;
-		text-align: left;
 	}
 }
 
-.form-actions {
-	margin-top: 1.5em;
-}
 
 /*	=FORM LABELS
 --------------------------------------------------------------------*/
+
 .sub-info {
-	@include font-size($milli-size);
-	font-family: "Alright Sans Light", arial, sans-serif;
+	@include font-size(.888);
+	font-family: "Alright Sans Light";
 	display: block;
 	padding: 1em 0;
 	color: #737373;
@@ -36,6 +34,7 @@
 
 /*	=INPUT STYLES & SIZES
 --------------------------------------------------------------------*/
+
 input[type="text"],
 input[type="email"],
 input[type="tel"],
@@ -44,7 +43,7 @@ input[type="number"],
 input[type="date"],
 select,
 textarea {
-	padding: .5em;
+	padding: $two-thirds-spacing-unit;
 	border: 1px solid #ccc;
 	@include border-radius(3px);
 
@@ -89,6 +88,31 @@ textarea.input-xxl  {
 	width: 100%;
 }
 
+input[type=checkbox] {
+	margin-right: $quarter-spacing-unit;
+}
+
+
+/*	=INPUT ISLAND
+--------------------------------------------------------------------*/
+
+.island-input {
+	padding: $two-thirds-spacing-unit;
+	background: #F7F7F7;
+	border: 1px solid #F0EEEE;
+	-webkit-user-select: none;
+  	-moz-user-select: none;    
+  	-ms-user-select: none;
+	user-select: none;
+	transition: all $base-transition;
+	@include border-radius();
+
+	&:hover {
+		background: darken(#F7F7F7, 2%);
+	}
+
+}
+
 
 /*	=SELECT STYLE
 --------------------------------------------------------------------*/
@@ -105,6 +129,7 @@ select {
 	-moz-appearance: window;
 	text-indent: 0.01px;
 	text-overflow: "";
+	@extend .alrightsansregular;
 	background:none;
 	border: none;
 	color: #b9306a;
@@ -113,12 +138,6 @@ select {
 	padding: .4em 19% .4em .4em;
 	line-height:1.2;
 	margin:.2em;
-    
-    .no-expand {
-        width:100%;
-        max-width: 100%;
-        min-width: 100%;
-    }
 }
 
 /* This hides native dropdown button arrow in IE */
@@ -175,6 +194,7 @@ select:-moz-focusring {
 
 /*	=VALIDATION
 --------------------------------------------------------------------*/
+
 .input-validation-error {
 	background: lighten($accent-negative, 45%);
 	border-color: $accent-negative !important;
@@ -189,6 +209,7 @@ select:-moz-focusring {
 
 /*	=DEVICE SPECIFIC
 --------------------------------------------------------------------*/
+
 input[type="text"],
 input[type="number"],
 input[type="email"],

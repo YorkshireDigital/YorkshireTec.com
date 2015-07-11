@@ -18,14 +18,13 @@
 	padding-top: .25em;
 
 	.month {
-		line-height: 2;
 		text-align: center;
 	}
 
 }
 
 .clndr-controls__nav {
-	@include font-size($h2-size, false);
+	@include font-size(1.8);
 	@include border-radius(2em);
 	position: absolute;
 	top: 0;
@@ -39,6 +38,7 @@
 	border: 2px solid #505776;
 
 	&:hover {
+
 		border-color:  darken($accent-tertiary, 10%);
 	}
 
@@ -75,15 +75,10 @@
 .clndr-header {
 	overflow: hidden;
 	border-bottom: 1px solid #F1F1F1;
-
-	@include breakpoint(viewport-s) {
-		display: none;
-	}
 }
 
 .header-day {
-	//@extend .alrightsansregular;
-
+	@extend .alrightsansregular;
 	width: 14.2857%;
 	float: left;
 	padding: 1%;
@@ -112,7 +107,7 @@
 	}
 
 	@include breakpoint(viewport-s) {
-		display: none;
+		//display: none;
 	}
 }
 
@@ -124,9 +119,6 @@
 	}
 }
 
-/*	=DAYS
---------------------------------------------------------------------*/
-
 .days {
 	@extend .group;
 	border: solid #E9E9E9;
@@ -135,12 +127,11 @@
 	@include breakpoint(viewport-s) {
 		border-width: 0;
 	}
-
 }
 
 .day {
 	width: 14.2857%;
-	height: 6.75em;
+	height: 6em;
 	float: left;
 	padding: 1%;
 	border: solid #E9E9E9;
@@ -149,8 +140,6 @@
 	@include breakpoint(viewport-s) {
 		float: none;
 		width: 100%;
-		padding: 2%;
-		height: auto;
 		border-width: 0 0 1px 0;
 	}
 
@@ -158,46 +147,7 @@
 
 .day-label {
 	display: block;
-	vertical-align: top;
-
-	@include breakpoint(viewport-s) {
-		width: 20%;
-		max-width: 4em;
-		display: inline-block;
-	}
-
-}
-
-	.day-label__name {
-		display: none;
-		width: 60%;
-		min-width: 2.5em;
-		color: #999;
-		@include font-size($micro-size);
-
-		@include breakpoint(viewport-s) {
-			display: inline-block;
-		}
-
-	}
-
-	.day-label__number {
-		display: inline-block;
-		width: 20%;
-	}
-
-
-/*	=EVENTS
---------------------------------------------------------------------*/
-
-.events-list {
-
-	@include breakpoint(viewport-s) {
-		width: 77%;
-		display: inline-block;
-		padding-left: 1em;
-	}
-
+	@extend .alrightsansregular;
 }
 
 .today {
@@ -211,131 +161,89 @@
 
 .last-month,
 .next-month {
+	
 	color: #D4D4D4;
 	background: #F9F9F9;
-	
-	// Hide the days outside of the current month
-	@include breakpoint(viewport-s) {
-		display: none;
-	}
 
+	.day-label {
+		@extend .alrightsanslight;
+	}
+}
+
+.event-listing {
+	display: none;
+
+	@include breakpoint(viewport-l) {
+		display: block;
+	}
 }
 
 
-// Calendar event placed on the calendar grid
 .calendar-event {
 	@include border-radius(3px);
+	min-width: 8px;
+	min-height: 8px;
 	margin-bottom: .125em;
 	padding: 0 5%;
 	color: #fff;
 	text-align: center;
-	line-height: 1.5;
 	background: #5A9BA0;
 	cursor: pointer;
-	@include font-size($micro-size, false);
+	
 
 	@include breakpoint(viewport-s) {
-		display: block;
-		line-height: 2.5;
-		margin-bottom: .25em;
-
-		&:last-child {
-			margin-bottom: 0;
-		}
-
+		display: inline-block;
 	}
-
-    a {
-        color: #fff;
-        text-decoration: none;
-    }
 }
 
-// Not sure where these have come from, need to investigate
-.event-item {
+.calendar-event__full-details {
 	display: none;
 }
 
-.event__long {
-    .calendar-event__short-title {
-        display: block;
-    }
-    .calendar-event__title {
-        display: none;
-    }
+.calendar-event--expanded {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 100;
+	padding: 2em;
+	background: #fff !important;
+	border: 2px solid #ddd;
+	border-radius: 0;
+
+	.calendar-event__title {
+		@include font-size(3);
+		font-family: MetronicProRegular;
+		color: #333;
+	}
+
+	.calendar-event__strapline {
+		@include font-size(1.6);
+		color: $accent-tertiary;
+	}
+
+	.calendar-event__full-details {
+		display: block;
+		color: #333;
+	}
 }
 
 .calendar-event__short-title {
 	display: none;
+	@include font-size(.8);
 
 	@include breakpoint(viewport-s) {
-		display: none !important;
+		
 	}
-
 }
 
 .calendar-event__title {
 
-	@include breakpoint(viewport-s) {
-		display: block !important;
-	}
+	@include font-size(.8);
 
-}
-
-@include breakpoint(viewport-m) {
-
-	.calendar-event__title {
+	@include breakpoint(viewport-m) {
 		display: none;
 	}
-
-	.calendar-event__short-title  {
-		display: block;
-	}
-
-
 }
-
-.day__many {
-
-	.calendar-event {
-		float: left;
-		width: 49%;
-		margin-right: .25em;
-		margin-right: 2%;
-
-		&:nth-child(even) {
-			margin-right: 0;
-		}
-
-		@include breakpoint(viewport-s) {
-			float: none;
-			display: block;
-			width: 100%;
-		}
-
-	}
-
-	.calendar-event__short-title  {
-		display: block;
-
-		@include breakpoint(viewport-s) {
-			display: none;
-		}
-
-	}
-
-	.calendar-event__title {
-		display: none;
-
-		@include breakpoint(viewport-s) {
-			display: block !important;
-		}
-
-	}
-
-}
-
-
-
-
 
