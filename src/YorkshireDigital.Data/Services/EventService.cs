@@ -33,19 +33,19 @@
 
         public void Save(Event eventToSave, User user)
         {
-            eventToSave.LastEditedOn = DateTime.UtcNow;
-            eventToSave.LastEditedBy = user;
-
-            if (session.Get<Event>(eventToSave.UniqueName) == null)
+            if (eventToSave.LastEditedBy == null)
             {
                 var siteUrl = ConfigurationManager.AppSettings["SiteUrl"];
-                SlackHelper.PostNewEventUpdate(siteUrl, eventToSave.UniqueName, 
-                    eventToSave.Title, user.Username, eventToSave.Start, 
-                    eventToSave.Location, 
+                SlackHelper.PostNewEventUpdate(siteUrl, eventToSave.UniqueName,
+                    eventToSave.Title, user.Username, eventToSave.Start,
+                    eventToSave.Location,
                     eventToSave.Group != null ? eventToSave.Group.Name : string.Empty,
                     eventToSave.Group != null ? eventToSave.Group.Colour : null);
             }
-            session.Merge(eventToSave);
+
+            eventToSave.LastEditedOn = DateTime.UtcNow;
+            eventToSave.LastEditedBy = user;
+            session.SaveOrUpdate(eventToSave);
         }
 
         public Event Get(string uniqueName)
