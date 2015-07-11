@@ -120,6 +120,10 @@
     <Reference Include="SimpleAuthentication.Core">
       <HintPath>..\packages\SimpleAuthentication.Core.0.3.12\lib\net40\SimpleAuthentication.Core.dll</HintPath>
     </Reference>
+    <Reference Include="Slack.Webhooks, Version=0.1.4.20238, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Slack.Webhooks.0.1.4\lib\net40\Slack.Webhooks.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -148,11 +152,13 @@
     <Compile Include="Exceptions\UserNotFoundException.cs" />
     <Compile Include="Helpers\DateTimeExtension.cs" />
     <Compile Include="Helpers\DiscourseHelper.cs" />
+    <Compile Include="Helpers\FeaturesModel.cs" />
     <Compile Include="Helpers\MailChimpHelper.cs" />
     <Compile Include="Messages\EventSyncMessage.cs" />
     <Compile Include="Messages\GroupSyncMessage.cs" />
     <Compile Include="Messages\IHandleMessage.cs" />
     <Compile Include="Messages\TextMessage.cs" />
+    <Compile Include="Helpers\SlackHelper.cs" />
     <Compile Include="NHibernate\AutomappingConfiguration.cs" />
     <Compile Include="NHibernate\CascadeConvention.cs" />
     <Compile Include="NHibernate\Mappings\CategoryMap.cs" />

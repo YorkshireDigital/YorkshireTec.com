@@ -1,7 +1,6 @@
 namespace YorkshireDigital.Web.Infrastructure
 {
     using System.Configuration;
-    using Hangfire;
     using Humanizer;
     using Nancy;
     using Nancy.Authentication.Forms;
@@ -13,10 +12,9 @@ namespace YorkshireDigital.Web.Infrastructure
     using Nancy.TinyIoc;
     using NHibernate;
     using NHibernate.Context;
+    using YorkshireDigital.Data.Helpers;
     using YorkshireDigital.Data.NHibernate;
     using YorkshireDigital.Data.Services;
-    using YorkshireDigital.MeetupApi.Clients;
-    using YorkshireDigital.Web.Infrastructure.Models;
 
     public class Bootstrapper : DefaultNancyBootstrapper
     {

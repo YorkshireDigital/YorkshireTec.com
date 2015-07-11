@@ -1,4 +1,4 @@
-﻿namespace YorkshireDigital.Web.Infrastructure.Models
+﻿namespace YorkshireDigital.Data.Helpers
 {
     using System.Configuration;
 

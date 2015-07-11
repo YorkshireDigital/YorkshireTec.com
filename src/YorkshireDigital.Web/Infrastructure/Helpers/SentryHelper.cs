@@ -3,7 +3,7 @@
     using System;
     using System.Configuration;
     using SharpRaven;
-    using YorkshireDigital.Web.Infrastructure.Models;
+    using YorkshireDigital.Data.Helpers;
 
     public static class SentryHelper
     {
