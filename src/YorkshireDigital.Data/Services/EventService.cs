@@ -38,7 +38,11 @@
             if (session.Get<Event>(eventToSave.UniqueName) == null)
             {
                 var siteUrl = ConfigurationManager.AppSettings["SiteUrl"];
-                SlackHelper.PostNewEventUpdate(siteUrl, eventToSave.UniqueName, eventToSave.Title, user.Username, eventToSave.Start, eventToSave.Location, eventToSave.Group.Name);
+                SlackHelper.PostNewEventUpdate(siteUrl, eventToSave.UniqueName, 
+                    eventToSave.Title, user.Username, eventToSave.Start, 
+                    eventToSave.Location, 
+                    eventToSave.Group != null ? eventToSave.Group.Name : string.Empty,
+                    eventToSave.Group != null ? eventToSave.Group.Colour : null);
             }
 
             session.SaveOrUpdate(eventToSave);
