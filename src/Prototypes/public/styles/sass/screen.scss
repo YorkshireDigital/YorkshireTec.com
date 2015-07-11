@@ -102,10 +102,10 @@ body {
 	.hero__intro {
 		max-width: 35em;
 		margin: 0 auto;
-		@include font-size($h3-size);
+		@include font-size(1.25);
 
 		@include breakpoint(viewport-s) {
-			@include font-size($h4-size);
+			@include font-size(1.125);
 		}
 
 	}
