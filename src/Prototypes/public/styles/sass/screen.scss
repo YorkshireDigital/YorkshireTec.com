@@ -16,6 +16,7 @@
 @import "partials/island";		// Block based layout elements
 @import "partials/card";		// Card content styles
 @import "partials/divide";		// Dividing content with a label
+@import "partials/spacing";		// Spacing helper classes
 
 /*  =BASE
 ------------------------------------------------------------*/
@@ -64,11 +65,11 @@ body {
 }
 
 .hero {
- 	margin-left: 30%;
+	text-align: center;
 	color: #fff;
 
 	h1 {
-		color: #fff;
+		text-transform: uppercase;
 	}
 
 	p {

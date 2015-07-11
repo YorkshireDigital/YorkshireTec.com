@@ -1,0 +1,66 @@
+{% layout "layout-narrow" %}
+{% block title %}Sign In - Bringing Yorkshires digital community together{% endblock %}
+{% block content %}
+	<section>
+		<div class="layout-constrained layout-constrained--narrow layout-stacked">
+
+			<h2>Sign Up&#8230;</h2>
+            <button class="btn btn--twitter btn--full" type="button">Sign up with Twitter <span class="icn icn-twitter"></span> </button>
+
+			<div class="js-primary-sign-up">
+				<div class="divide">
+	                <span class="divide__label">Or</span>
+	            </div>
+
+				<button class="btn btn--primary btn--full push--double-bottom js-email-sign-up-btn" type="button">Sign up with email</button>
+			</div>
+
+			<div class="is-hidden js-email-sign-up-panel">
+				<div class="form-group">
+					<label for="firstName">First name</label>
+					<input type="text" id="firstName" class="input-full" />
+				</div>
+
+				<div class="form-group">
+					<label for="emailAddress">Email address</label>
+					<input type="email" id="emailAddress" class="input-full" />
+				</div>
+
+				<div class="form-group">
+					<label for="password">Password</label>
+					<input type="password" id="password" class="input-full" />
+				</div>
+
+				<div class="form-group">
+					<label for="passwordConfirmation">Confirm password</label>
+					<input type="password" id="passwordConfirmation" class="input-full" />
+				</div>
+
+				<div class="form-actions text--center push--bottom">
+					<button class="btn btn--primary btn--full push--bottom" type="button">Create account</button>
+	            </div>
+			</div>
+
+		</div>
+
+        <div class="island island--medium island--full-bleed text--center">
+            Already have an account? <a href="/account/sign-in">Sign in</a>
+        </div>
+
+		<footer class="footer-site layout-constrained" role="contentinfo">
+			<small class="footer-site__item">© 2015 YorkshireDigital</small>
+            <small class="footer-site__item">Hosted by <a href="https://www.brightbox.com">Brighbox</a> in Yorkshire</small>
+		</footer>
+	</section>
+{% endblock %}
+
+{% block pageScripts %}
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('.js-email-sign-up-btn').click(function() {
+				$('.js-email-sign-up-panel').toggleClass('is-hidden');
+				$(this).toggleClass('is-hidden');
+			});
+		});
+	</script>
+{% endblock%}
