@@ -115,6 +115,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Services.Client" />
     <Reference Include="System.Data.SQLite">
@@ -144,10 +145,14 @@
     <Compile Include="InMemoryTests\InMemorySessionFactoryProvider.cs" />
     <Compile Include="HelperTests\DiscourseHelperTests.cs" />
     <Compile Include="InfrastructureTests\AuthenticationCallbackProviderTests.cs" />
+    <Compile Include="IntegrationTests\Mapping\NHibernateMappingFixture.cs" />
     <Compile Include="InMemoryTests\Services\EventServiceTests.cs" />
     <Compile Include="InMemoryTests\InMemoryFixtureBase.cs" />
     <Compile Include="InMemoryTests\InMemorySetUpFixture.cs" />
     <Compile Include="InMemoryTests\Services\MeetupServiceTests.cs" />
+    <Compile Include="IntegrationTests\IntegrationFixtureBase.cs" />
+    <Compile Include="IntegrationTests\IntegrationSessionFactoryProvidor.cs" />
+    <Compile Include="IntegrationTests\IntegrationSetUpFixture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="InMemoryTests\Services\GroupServiceTests.cs" />
     <Compile Include="InMemoryTests\Services\UserServiceTests.cs" />
@@ -207,6 +212,9 @@
     </PropertyGroup>
     <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
   </Target>
+  <PropertyGroup>
+    <PostBuildEvent>xcopy /s /y "$(TargetDir)\..\..\..\YorkshireDigital.Database\$(OutDir)YorkshireDigital.Database_Create.sql" "$(TargetDir)"</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
