@@ -5,9 +5,9 @@
     using NUnit.Framework;
     using YorkshireDigital.Data.Domain.Account;
     using YorkshireDigital.Data.Services;
-    using YorkshireDigital.Data.Tasks;
     using YorkshireDigital.MeetupApi.Helpers;
     using Event = YorkshireDigital.Data.Domain.Events.Event;
+    using Hangfire.Tasks;
 
     [TestFixture]
     public class EventSyncTaskTests

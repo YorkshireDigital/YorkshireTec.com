@@ -22,6 +22,7 @@
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
     <MvcBuildViews>false</MvcBuildViews>
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -67,8 +68,9 @@
     <Reference Include="Humanizer">
       <HintPath>..\packages\Humanizer.1.32.0\lib\portable-win+net40+sl50+wp8+wpa81\Humanizer.dll</HintPath>
     </Reference>
-    <Reference Include="Iesi.Collections">
-      <HintPath>..\packages\Iesi.Collections.3.2.0.4000\lib\Net35\Iesi.Collections.dll</HintPath>
+    <Reference Include="Iesi.Collections, Version=4.0.0.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Iesi.Collections.4.0.0.4000\lib\net40\Iesi.Collections.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="MailChimp">
       <HintPath>..\packages\MailChimp.NET.1.1.0.1\lib\net40\MailChimp.dll</HintPath>
@@ -118,8 +120,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="NHibernate">
-      <HintPath>..\packages\NHibernate.3.3.1.4000\lib\Net35\NHibernate.dll</HintPath>
+    <Reference Include="NHibernate, Version=4.0.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <HintPath>..\packages\NHibernate.4.0.4.4000\lib\net40\NHibernate.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Owin">
       <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
@@ -460,7 +463,6 @@
     <Compile Include="Infrastructure\Handlers\ForbiddenStatusCodeHandler.cs" />
     <Compile Include="Infrastructure\Handlers\InternalServerErrorStatusCodeHandler.cs" />
     <Compile Include="Infrastructure\Handlers\NotFoundErrorStatusCodeHandler.cs" />
-    <Compile Include="Infrastructure\HangfireContainerJobActivator.cs" />
     <Compile Include="Infrastructure\Helpers\HtmlHelper.cs" />
     <Compile Include="Infrastructure\Helpers\MarkdownHelper.cs" />
     <Compile Include="Infrastructure\Helpers\SentryHelper.cs" />
@@ -491,6 +493,10 @@
     <ProjectReference Include="..\YorkshireDigital.Data\YorkshireDigital.Data.csproj">
       <Project>{DE2ABF67-373C-41A8-83E0-D9B522221157}</Project>
       <Name>YorkshireDigital.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\YorkshireDigital.Hangfire.Tasks\YorkshireDigital.Hangfire.Tasks.csproj">
+      <Project>{4e917fcc-c3f2-4c0e-9246-7563025e793a}</Project>
+      <Name>YorkshireDigital.Hangfire.Tasks</Name>
     </ProjectReference>
     <ProjectReference Include="..\YorkshireDigital.MeetupApi\YorkshireDigital.MeetupApi.csproj">
       <Project>{0496202E-DB70-401A-A41A-12B5D0D5D78A}</Project>

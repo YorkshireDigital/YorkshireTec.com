@@ -10,10 +10,8 @@ namespace YorkshireDigital.Web
     {
         public void Configuration(IAppBuilder app)
         {
-            GlobalConfiguration.Configuration.UseSqlServerStorage("Database");
-
-            app.UseHangfireDashboard();
-            app.UseHangfireServer();
+            GlobalConfiguration.Configuration.UseSqlServerStorage("Database.Hangfire");
+            
             app.UseNancy();
         }
     }

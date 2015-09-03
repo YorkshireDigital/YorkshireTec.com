@@ -15,7 +15,6 @@ namespace YorkshireDigital.Web.Infrastructure
     using NHibernate.Context;
     using YorkshireDigital.Data.NHibernate;
     using YorkshireDigital.Data.Services;
-    using YorkshireDigital.Data.Tasks;
     using YorkshireDigital.MeetupApi.Clients;
     using YorkshireDigital.Web.Infrastructure.Models;
 

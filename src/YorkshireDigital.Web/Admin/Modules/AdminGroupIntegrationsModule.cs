@@ -3,15 +3,15 @@
     using System.Collections.Generic;
     using System.Configuration;
     using System.Linq;
-    using Hangfire;
     using Nancy;
     using Nancy.ModelBinding;
     using Nancy.Security;
     using YorkshireDigital.Data.Services;
-    using YorkshireDigital.Data.Tasks;
     using YorkshireDigital.MeetupApi.Clients;
     using YorkshireDigital.Web.Admin.ViewModels;
     using YorkshireDigital.Web.Infrastructure;
+    using YorkshireDigital.Hangfire.Tasks;
+    using global::Hangfire;
 
     public class AdminGroupIntegrationsModule : BaseModule
     {

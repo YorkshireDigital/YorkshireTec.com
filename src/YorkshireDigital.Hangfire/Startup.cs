@@ -15,7 +15,7 @@ namespace YorkshireDigital.Hangfire
             app.UseErrorPage();
             app.UseWelcomePage("/");
 
-            GlobalConfiguration.Configuration.UseSqlServerStorage("Database", new SqlServerStorageOptions { QueuePollInterval = TimeSpan.FromSeconds(1) });
+            GlobalConfiguration.Configuration.UseSqlServerStorage("Database.Hangfire", new SqlServerStorageOptions { QueuePollInterval = TimeSpan.FromSeconds(1) });
 
             app.UseHangfireDashboard();
             app.UseHangfireServer();

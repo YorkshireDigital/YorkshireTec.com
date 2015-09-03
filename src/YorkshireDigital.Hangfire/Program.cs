@@ -9,7 +9,7 @@ namespace YorkshireDigital.Hangfire
 {
     class Program
     {
-        private const string Endpoint = "http://localhost:12346";
+        private const string Endpoint = "http://localhost:12347";
 
         static void Main()
         {

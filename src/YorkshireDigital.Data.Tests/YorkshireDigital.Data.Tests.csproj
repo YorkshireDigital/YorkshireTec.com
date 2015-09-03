@@ -82,8 +82,9 @@
     <Reference Include="Hangfire.Core">
       <HintPath>..\packages\Hangfire.Core.1.4.1\lib\net45\Hangfire.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Iesi.Collections">
-      <HintPath>..\packages\Iesi.Collections.3.2.0.4000\lib\Net35\Iesi.Collections.dll</HintPath>
+    <Reference Include="Iesi.Collections, Version=4.0.0.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Iesi.Collections.4.0.0.4000\lib\net40\Iesi.Collections.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Nancy">
       <HintPath>..\packages\Nancy.0.22.2\lib\net40\Nancy.dll</HintPath>
@@ -94,8 +95,9 @@
     <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.5.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="NHibernate">
-      <HintPath>..\packages\NHibernate.3.3.1.4000\lib\Net35\NHibernate.dll</HintPath>
+    <Reference Include="NHibernate, Version=4.0.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <HintPath>..\packages\NHibernate.4.0.4.4000\lib\net40\NHibernate.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
@@ -144,7 +146,6 @@
     <Compile Include="Domain\Events\EventTests.cs" />
     <Compile Include="InMemoryTests\InMemorySessionFactoryProvider.cs" />
     <Compile Include="HelperTests\DiscourseHelperTests.cs" />
-    <Compile Include="InfrastructureTests\AuthenticationCallbackProviderTests.cs" />
     <Compile Include="IntegrationTests\Mapping\NHibernateMappingFixture.cs" />
     <Compile Include="InMemoryTests\Services\EventServiceTests.cs" />
     <Compile Include="InMemoryTests\InMemoryFixtureBase.cs" />
@@ -168,13 +169,13 @@
       <Project>{DE2ABF67-373C-41A8-83E0-D9B522221157}</Project>
       <Name>YorkshireDigital.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\YorkshireDigital.Hangfire.Tasks\YorkshireDigital.Hangfire.Tasks.csproj">
+      <Project>{4e917fcc-c3f2-4c0e-9246-7563025e793a}</Project>
+      <Name>YorkshireDigital.Hangfire.Tasks</Name>
+    </ProjectReference>
     <ProjectReference Include="..\YorkshireDigital.MeetupApi\YorkshireDigital.MeetupApi.csproj">
       <Project>{0496202E-DB70-401A-A41A-12B5D0D5D78A}</Project>
       <Name>YorkshireDigital.MeetupApi</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\YorkshireTec\YorkshireTec.Old.csproj">
-      <Project>{0C73D291-C0E7-4D7A-9942-16E8619A7B00}</Project>
-      <Name>YorkshireTec.Old</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -184,6 +185,9 @@
     <Content Include="x86\SQLite.Interop.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="InfrastructureTests\" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

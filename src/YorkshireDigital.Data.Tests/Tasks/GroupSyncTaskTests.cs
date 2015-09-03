@@ -7,9 +7,9 @@
     using NUnit.Framework;
     using YorkshireDigital.Data.Domain.Account;
     using YorkshireDigital.Data.Services;
-    using YorkshireDigital.Data.Tasks;
     using YorkshireDigital.MeetupApi.Helpers;
     using YorkshireDigital.MeetupApi.Models;
+    using Hangfire.Tasks;
 
     [TestFixture]
     public class GroupSyncTaskTests
