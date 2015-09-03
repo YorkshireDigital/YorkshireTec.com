@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YorkshireTec.Old", "YorkshireTec\YorkshireTec.Old.csproj", "{0C73D291-C0E7-4D7A-9942-16E8619A7B00}"
 EndProject
@@ -29,6 +29,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YorkshireDigital.MeetupApi", "YorkshireDigital.MeetupApi\YorkshireDigital.MeetupApi.csproj", "{0496202E-DB70-401A-A41A-12B5D0D5D78A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YorkshireDigital.MeetupApi.Tests", "YorkshireDigital.MeetupApi.Tests\YorkshireDigital.MeetupApi.Tests.csproj", "{7B3BF3EB-BE1A-4FD9-AC40-44491355EB43}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YorkshireDigital.Hangfire", "YorkshireDigital.Hangfire\YorkshireDigital.Hangfire.csproj", "{CCD317DC-1D4B-4DB6-9E27-34E13B662F8E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -160,6 +162,20 @@ Global
 		{7B3BF3EB-BE1A-4FD9-AC40-44491355EB43}.MonoRelease|Any CPU.Build.0 = Release|Any CPU
 		{7B3BF3EB-BE1A-4FD9-AC40-44491355EB43}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7B3BF3EB-BE1A-4FD9-AC40-44491355EB43}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CCD317DC-1D4B-4DB6-9E27-34E13B662F8E}.Alpha|Any CPU.ActiveCfg = Release|Any CPU
+		{CCD317DC-1D4B-4DB6-9E27-34E13B662F8E}.Alpha|Any CPU.Build.0 = Release|Any CPU
+		{CCD317DC-1D4B-4DB6-9E27-34E13B662F8E}.Beta|Any CPU.ActiveCfg = Release|Any CPU
+		{CCD317DC-1D4B-4DB6-9E27-34E13B662F8E}.Beta|Any CPU.Build.0 = Release|Any CPU
+		{CCD317DC-1D4B-4DB6-9E27-34E13B662F8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CCD317DC-1D4B-4DB6-9E27-34E13B662F8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CCD317DC-1D4B-4DB6-9E27-34E13B662F8E}.Live|Any CPU.ActiveCfg = Release|Any CPU
+		{CCD317DC-1D4B-4DB6-9E27-34E13B662F8E}.Live|Any CPU.Build.0 = Release|Any CPU
+		{CCD317DC-1D4B-4DB6-9E27-34E13B662F8E}.MonoDebug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CCD317DC-1D4B-4DB6-9E27-34E13B662F8E}.MonoDebug|Any CPU.Build.0 = Debug|Any CPU
+		{CCD317DC-1D4B-4DB6-9E27-34E13B662F8E}.MonoRelease|Any CPU.ActiveCfg = Release|Any CPU
+		{CCD317DC-1D4B-4DB6-9E27-34E13B662F8E}.MonoRelease|Any CPU.Build.0 = Release|Any CPU
+		{CCD317DC-1D4B-4DB6-9E27-34E13B662F8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CCD317DC-1D4B-4DB6-9E27-34E13B662F8E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
