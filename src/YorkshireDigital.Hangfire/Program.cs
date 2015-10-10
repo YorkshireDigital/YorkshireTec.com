@@ -18,7 +18,7 @@ namespace YorkshireDigital.Hangfire
             HostFactory.Run(x =>
             {
                 Log.Logger = new LoggerConfiguration()
-                    .WriteTo.RollingFile(AppDomain.CurrentDomain.BaseDirectory + "\\logs\\app-{Date}.log")
+                    .WriteTo.RollingFile(AppDomain.CurrentDomain.BaseDirectory + "\\logs\\hangfire-{Date}.log")
                     .WriteTo.ColoredConsole()
                     .MinimumLevel.Information()
                     .CreateLogger();
