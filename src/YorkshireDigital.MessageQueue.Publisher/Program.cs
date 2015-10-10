@@ -14,7 +14,7 @@ namespace YorkshireDigital.MessageQueue.Publisher
                 Console.WriteLine("Enter a message. 'Quit' to quit.");
                 while ((input = Console.ReadLine()) != "Quit")
                 {
-                    bus.Publish(new TextMessage
+                    bus.Publish<IHandleMessage>(new TextMessage
                     {
                         Text = input
                     });
