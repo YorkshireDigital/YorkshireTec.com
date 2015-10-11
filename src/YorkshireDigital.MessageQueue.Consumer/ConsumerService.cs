@@ -1,6 +1,6 @@
 ﻿using EasyNetQ;
 using System;
-using YorkshireDigital.MessageQueue.Messages;
+using YorkshireDigital.Data.Messages;
 
 namespace YorkshireDigital.MessageQueue.Consumer
 {

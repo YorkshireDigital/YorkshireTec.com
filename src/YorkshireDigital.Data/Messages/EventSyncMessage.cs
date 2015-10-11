@@ -1,21 +1,26 @@
-﻿namespace YorkshireDigital.Hangfire.Tasks
-{
-    using System;
-    using System.Configuration;
-    using NHibernate;
-    using YorkshireDigital.Data.NHibernate;
-    using YorkshireDigital.Data.Services;
-    using YorkshireDigital.MeetupApi.Clients;
+﻿using NHibernate;
+using System;
+using System.Configuration;
+using YorkshireDigital.Data.NHibernate;
+using YorkshireDigital.Data.Services;
+using YorkshireDigital.MeetupApi.Clients;
 
-    public class EventSyncTask : IDisposable
+namespace YorkshireDigital.Data.Messages
+{
+    public class EventSyncMessage : IHandleMessage
     {
+        private string eventId;
+
         private readonly IEventService eventService;
         private readonly IMeetupService meetupService;
         private readonly IUserService userService;
+        private readonly IHangfireService hangfireService;
         private readonly ISession session;
 
-        public EventSyncTask()
+        public EventSyncMessage(string eventId)
         {
+            this.eventId = eventId;
+
             var sessionFactory = NHibernateSessionFactoryProvider.BuildSessionFactory(ConfigurationManager.ConnectionStrings["Database"].ConnectionString);
             session = sessionFactory.OpenSession();
 
@@ -26,14 +31,17 @@
             session.BeginTransaction();
         }
 
-        public EventSyncTask(IEventService eventService, IMeetupService meetupService, IUserService userService)
+        public EventSyncMessage(string eventId, IEventService eventService, IMeetupService meetupService, IUserService userService, IHangfireService hangfireService)
         {
+            this.eventId = eventId;
+
             this.eventService = eventService;
             this.meetupService = meetupService;
             this.userService = userService;
+            this.hangfireService = hangfireService;
         }
 
-        public void Execute(string eventId)
+        public void Handle()
         {
             var @event = eventService.Get(eventId);
 
@@ -41,7 +49,7 @@
 
             if (@event.End <= DateTime.UtcNow)
             {
-                meetupService.RemoveJobIfExists(@event.EventSyncJobId);
+                hangfireService.RemoveJobIfExists(@event.EventSyncJobId);
                 @event.EventSyncJobId = null;
                 eventService.Save(@event, system);
             }
@@ -61,12 +69,6 @@
             @event.UpdateFromMeetup(meetupEvent);
 
             eventService.Save(@event, system);
-        }
-
-        public void Dispose()
-        {
-            session.Transaction.Commit();
-            session.Dispose();
         }
     }
 }

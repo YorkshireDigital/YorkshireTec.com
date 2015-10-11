@@ -83,9 +83,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\YorkshireDigital.MessageQueue.Messages\YorkshireDigital.MessageQueue.Messages.csproj">
-      <Project>{34250034-c468-430b-9fef-22781d9965e0}</Project>
-      <Name>YorkshireDigital.MessageQueue.Messages</Name>
+    <ProjectReference Include="..\YorkshireDigital.Data\YorkshireDigital.Data.csproj">
+      <Project>{de2abf67-373c-41a8-83e0-d9b522221157}</Project>
+      <Name>YorkshireDigital.Data</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

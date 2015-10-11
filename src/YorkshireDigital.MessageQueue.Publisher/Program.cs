@@ -1,6 +1,6 @@
 ﻿using EasyNetQ;
 using System;
-using YorkshireDigital.MessageQueue.Messages;
+using YorkshireDigital.Data.Messages;
 
 namespace YorkshireDigital.MessageQueue.Publisher
 {
@@ -14,10 +14,7 @@ namespace YorkshireDigital.MessageQueue.Publisher
                 Console.WriteLine("Enter a message. 'Quit' to quit.");
                 while ((input = Console.ReadLine()) != "Quit")
                 {
-                    bus.Publish<IHandleMessage>(new TextMessage
-                    {
-                        Text = input
-                    });
+                    bus.Publish<IHandleMessage>(new TextMessage(input));
                 }
             }
         }

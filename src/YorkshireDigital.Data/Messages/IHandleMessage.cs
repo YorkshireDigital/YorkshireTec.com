@@ -1,4 +1,4 @@
-﻿namespace YorkshireDigital.MessageQueue.Messages
+﻿namespace YorkshireDigital.Data.Messages
 {
     public interface IHandleMessage
     {

@@ -3,13 +3,11 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using Hangfire;
     using YorkshireDigital.MeetupApi.Clients;
     using YorkshireDigital.MeetupApi.Models;
     using YorkshireDigital.MeetupApi.Requests;
     using YorkshireDigital.MeetupApi.Requests.Enum;
     using Event = YorkshireDigital.MeetupApi.Models.Event;
-    using System.Linq.Expressions;
 
     public interface IMeetupService
     {
@@ -18,9 +16,9 @@
         void LinkGroup(Domain.Group.Group @group, string groupName);
         List<Event> GetUpcomingEventsForGroup(int groupId);
         Event GetEvent(string eventId);
-        void RemoveJobIfExists(string jobId);
-        void AddOrUpdateJob<T>(string recurringJobId, Expression<Action<T>> methodCall, Func<string> cronExpression);
-        void Trigger(string groupSyncId);
+        //void RemoveJobIfExists(string jobId);
+        //void AddOrUpdateJob<T>(string recurringJobId, Expression<Action<T>> methodCall, Func<string> cronExpression);
+        //void Trigger(string groupSyncId);
         Profile JoinGroup(string groupId, Dictionary<int, string> answers);
         bool LeaveGroup(string groupId);
     }
@@ -91,21 +89,6 @@
             var response = meetupClient.Events.Get(request);
 
             return response.Results.SingleOrDefault();
-        }
-
-        public void RemoveJobIfExists(string jobId)
-        {
-            RecurringJob.RemoveIfExists(jobId);
-        }
-
-        public void Trigger(string jobId)
-        {
-            RecurringJob.Trigger(jobId);
-        }
-
-        public void AddOrUpdateJob<T>(string recurringJobId, Expression<Action<T>> methodCall, Func<string> cronExpression)
-        {
-            RecurringJob.AddOrUpdate<T>(recurringJobId, methodCall, cronExpression);
         }
 
         public Profile JoinGroup(string groupId, Dictionary<int, string> answers)

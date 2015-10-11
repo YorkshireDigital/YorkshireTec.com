@@ -1,21 +1,21 @@
-﻿namespace YorkshireDigital.Web.Admin.Modules
-{
-    using System.Collections.Generic;
-    using System.Configuration;
-    using System.Linq;
-    using Nancy;
-    using Nancy.ModelBinding;
-    using Nancy.Security;
-    using YorkshireDigital.Data.Services;
-    using YorkshireDigital.MeetupApi.Clients;
-    using YorkshireDigital.Web.Admin.ViewModels;
-    using YorkshireDigital.Web.Infrastructure;
-    using YorkshireDigital.Hangfire.Tasks;
-    using global::Hangfire;
+﻿using System.Collections.Generic;
+using System.Configuration;
+using System.Linq;
+using Nancy;
+using Nancy.ModelBinding;
+using Nancy.Security;
+using YorkshireDigital.Data.Services;
+using YorkshireDigital.MeetupApi.Clients;
+using YorkshireDigital.Web.Admin.ViewModels;
+using YorkshireDigital.Web.Infrastructure;
+using Hangfire;
+using YorkshireDigital.Data.Tasks;
 
+namespace YorkshireDigital.Web.Admin.Modules
+{
     public class AdminGroupIntegrationsModule : BaseModule
     {
-        public AdminGroupIntegrationsModule(IGroupService groupService, IUserService userService)
+        public AdminGroupIntegrationsModule(IGroupService groupService, IUserService userService, IHangfireService hangfireService)
             : base("admin/group")
         {
             this.RequiresAuthentication();
@@ -68,8 +68,8 @@
                 group.MeetupUrlName = viewModel.MeetupUrlName;
                 group.GroupSyncId = string.Format("{0}-groupSync", @group.Id);
 
-                meetupService.AddOrUpdateJob<GroupSyncTask>(group.GroupSyncId, x => x.Execute(groupId), Cron.Hourly);
-                meetupService.Trigger(group.GroupSyncId);
+                hangfireService.AddOrUpdateJob<GroupSyncTask>(group.GroupSyncId, x => x.Execute(groupId), Cron.Hourly);
+                hangfireService.Trigger(group.GroupSyncId);
 
                 var currentUser = userService.GetUser(Context.CurrentUser.UserName);
                 groupService.Save(group, currentUser);
@@ -95,11 +95,11 @@
 
                 var group = groupService.Get(groupId);
 
-                meetupService.RemoveJobIfExists(group.GroupSyncId);
+                hangfireService.RemoveJobIfExists(group.GroupSyncId);
 
                 foreach (var @event in @group.Events.Where(@event => !string.IsNullOrEmpty(@event.EventSyncJobId)))
                 {
-                    meetupService.RemoveJobIfExists(@event.EventSyncJobId);
+                    hangfireService.RemoveJobIfExists(@event.EventSyncJobId);
                     @event.EventSyncJobId = null;
                 }
                 

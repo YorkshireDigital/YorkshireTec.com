@@ -1,24 +1,28 @@
-﻿namespace YorkshireDigital.Hangfire.Tasks
-{
-    using System;
-    using System.Configuration;
-    using System.Linq;
-    using NHibernate;
-    using YorkshireDigital.Data.Domain.Events;
-    using YorkshireDigital.Data.NHibernate;
-    using YorkshireDigital.Data.Services;
-    using YorkshireDigital.MeetupApi.Clients;
-    using global::Hangfire;
+﻿using Hangfire;
+using NHibernate;
+using System;
+using System.Configuration;
+using System.Linq;
+using YorkshireDigital.Data.Domain.Events;
+using YorkshireDigital.Data.NHibernate;
+using YorkshireDigital.Data.Services;
+using YorkshireDigital.Data.Tasks;
+using YorkshireDigital.MeetupApi.Clients;
 
-    public class GroupSyncTask : IDisposable
+namespace YorkshireDigital.Data.Messages
+{
+    public class GroupSyncMessage : IHandleMessage
     {
-        private readonly IUserService userService;
         private readonly IEventService eventService;
         private readonly IMeetupService meetupService;
+        private readonly IUserService userService;
         private readonly IGroupService groupService;
+        private readonly IHangfireService hangfireService;
         private readonly ISession session;
 
-        public GroupSyncTask()
+        public string GroupId { get; set; }
+
+        public GroupSyncMessage()
         {
             var sessionFactory = NHibernateSessionFactoryProvider.BuildSessionFactory(ConfigurationManager.ConnectionStrings["Database"].ConnectionString);
             session = sessionFactory.OpenSession();
@@ -27,26 +31,34 @@
             eventService = new EventService(session);
             meetupService = new MeetupService(new MeetupClient(ConfigurationManager.AppSettings["Meetup_Bot_ApiKey"], ConfigurationManager.AppSettings["Meetup_Bot_MemberId"]));
             groupService = new GroupService(session);
+            hangfireService = new HangfireService();
 
             session.BeginTransaction();
         }
 
-        public GroupSyncTask(IGroupService groupService, IMeetupService meetupService, IEventService eventService, IUserService userService)
+        public GroupSyncMessage(string groupId)
+            : base()
         {
-            this.userService = userService;
-            this.eventService = eventService;
-            this.meetupService = meetupService;
-            this.groupService = groupService;
+            GroupId = groupId;
         }
 
-        public void Execute(string groupId)
+        public GroupSyncMessage(string groupId, IGroupService groupService, IMeetupService meetupService, IEventService eventService, IUserService userService, IHangfireService hangfireService) : this(groupId)
         {
-            var group = groupService.Get(groupId);
+            this.groupService = groupService;
+            this.meetupService = meetupService;
+            this.eventService = eventService;
+            this.userService = userService;
+            this.hangfireService = hangfireService;
+        }
+
+        public void Handle()
+        {
+            var group = groupService.Get(GroupId);
             var system = userService.GetUser("system");
 
             if (group == null)
             {
-                throw new Exception(string.Format("No group found with an ID of {0}", groupId));
+                throw new Exception(string.Format("No group found with an ID of {0}", GroupId));
             }
 
             var upcomingEvents = meetupService.GetUpcomingEventsForGroup(group.MeetupId);
@@ -55,7 +67,7 @@
             {
                 Event @event;
                 // Don't do anything if the event has already been created
-                if (@group.Events.All(x => x.MeetupId != upcomingEvent.Id))
+                if (group.Events.All(x => x.MeetupId != upcomingEvent.Id))
                 {
                     @event = Event.FromMeetupGroup(upcomingEvent);
                     @event.UniqueName = string.Format("{0}-{1}", @group.Id, upcomingEvent.Id);
@@ -72,7 +84,7 @@
 
                 if (string.IsNullOrEmpty(@event.EventSyncJobId))
                 {
-                    meetupService.AddOrUpdateJob<EventSyncTask>(@event.UniqueName, x => x.Execute(@event.UniqueName), Cron.Hourly);
+                    hangfireService.AddOrUpdateJob<EventSyncTask>(@event.UniqueName, x => x.Execute(@event.UniqueName), Cron.Hourly);
                     @event.EventSyncJobId = @event.UniqueName;
 
                     eventService.Save(@event, system);
@@ -88,12 +100,6 @@
                     eventService.Delete(@event.UniqueName, system);
                 }
             }
-        }
-
-        public void Dispose()
-        {
-            session.Transaction.Commit();
-            session.Dispose();
         }
     }
 }
