@@ -1,6 +1,7 @@
 ﻿using EasyNetQ;
 using System;
 using YorkshireDigital.Data.Messages;
+using YorkshireDigital.Data.Services;
 
 namespace YorkshireDigital.MessageQueue.Consumer
 {
@@ -20,16 +21,20 @@ namespace YorkshireDigital.MessageQueue.Consumer
 
         public void Start()
         {
-            bus.Subscribe<IHandleMessage>("IHandleMessage_subscription", msg =>
+            var meetupService = bus.Advanced.Container.Resolve<IMeetupService>();
+
+            bus.Subscribe<IHandleMeetupRequest>("IHandleMessage_subscription", msg =>
             {
                 Console.WriteLine("IHandleMessage Found of type " + msg.GetType());
-                msg.Handle();
+                msg.Handle(meetupService);
+                msg.Dispose();
             });
         }
 
         public void Stop()
         {
-            // any shutdown code needed
+            ((WindsorContainerWrapper)bus.Advanced.Container).Dispose();
+            bus.Dispose();
         }
     }
 }

@@ -29,7 +29,7 @@
             A.CallTo(() => userService.GetUser("system"))
                 .Returns(new User());
 
-            task = new EventSyncMessage("event-123", eventService, meetupService, userService, hangfireService);
+            task = new EventSyncMessage("event-123", eventService, userService, hangfireService);
         }
 
         [Test]
@@ -54,7 +54,7 @@
                 });
 
             // Act
-            task.Handle();
+            task.Handle(meetupService);
 
             // Assert
             A.CallTo(() => eventService.Save(A<Event>.Ignored, A<User>.Ignored)).MustHaveHappened();
@@ -82,7 +82,7 @@
                 });
 
             // Act
-            task.Handle();
+            task.Handle(meetupService);
 
             // Assert
             A.CallTo(() => eventService.Save(A<Event>.Ignored, A<User>.Ignored)).MustNotHaveHappened();
@@ -105,7 +105,7 @@
                 .Returns(null);
 
             // Act
-            task.Handle();
+            task.Handle(meetupService);
 
             // Assert
             A.CallTo(() => eventService.Delete("event-123", A<User>.Ignored)).MustHaveHappened();
@@ -120,7 +120,7 @@
                 .Returns(new Event { Title = "Test Event", Synopsis = "Initial details...", LastEditedOn = DateTime.Now, EventSyncJobId = "54321", End = DateTime.Now.AddHours(-1)});
 
             // Act
-            task.Handle();
+            task.Handle(meetupService);
 
             // Assert
             A.CallTo(() => hangfireService.RemoveJobIfExists("54321")).MustHaveHappened();

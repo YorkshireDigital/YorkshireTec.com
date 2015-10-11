@@ -1,8 +1,9 @@
 ﻿using System;
+using YorkshireDigital.Data.Services;
 
 namespace YorkshireDigital.Data.Messages
 {
-    public class TextMessage : IHandleMessage
+    public class TextMessage : IHandleMeetupRequest
     {
         public TextMessage(string input)
         {
@@ -11,7 +12,12 @@ namespace YorkshireDigital.Data.Messages
 
         public string Message { get; set; }
 
-        public void Handle()
+        public void Dispose()
+        {
+            
+        }
+
+        public void Handle(IMeetupService meetupService)
         {
             Console.WriteLine(Message);
         }

@@ -11,7 +11,7 @@ namespace YorkshireDigital.Data.Services
 
             using (var bus = RabbitHutch.CreateBus("host=localhost"))
             {
-                bus.Publish<IHandleMessage>(message);
+                bus.Publish<IHandleMeetupRequest>(message);
             }
         }
     }

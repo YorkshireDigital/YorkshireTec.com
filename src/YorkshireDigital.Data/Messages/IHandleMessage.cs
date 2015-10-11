@@ -1,7 +1,10 @@
-﻿namespace YorkshireDigital.Data.Messages
+﻿using System;
+using YorkshireDigital.Data.Services;
+
+namespace YorkshireDigital.Data.Messages
 {
-    public interface IHandleMessage
+    public interface IHandleMeetupRequest : IDisposable
     {
-        void Handle();
+        void Handle(IMeetupService meetupService);
     }
 }

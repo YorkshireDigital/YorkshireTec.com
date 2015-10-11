@@ -23,9 +23,7 @@ namespace YorkshireDigital.MessageQueue.Consumer
                     s.WhenStopped(tc =>
                     {
                         tc.Stop();
-                        // with Windsor you must _always_ release any components that you resolve.
                         container.Release(tc);
-                        // make sure the container is disposed
                         container.Dispose();
                     });
                 });

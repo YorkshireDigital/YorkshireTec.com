@@ -3,14 +3,12 @@ using System;
 using System.Configuration;
 using YorkshireDigital.Data.NHibernate;
 using YorkshireDigital.Data.Services;
-using YorkshireDigital.MeetupApi.Clients;
 
 namespace YorkshireDigital.Data.Messages
 {
-    public class EventSyncMessage : IHandleMessage
+    public class EventSyncMessage : IHandleMeetupRequest
     {
         private readonly IEventService eventService;
-        private readonly IMeetupService meetupService;
         private readonly IUserService userService;
         private readonly IHangfireService hangfireService;
         private readonly ISession session;
@@ -24,8 +22,9 @@ namespace YorkshireDigital.Data.Messages
 
             userService = new UserService(session);
             eventService = new EventService(session);
-            meetupService = new MeetupService(new MeetupClient(ConfigurationManager.AppSettings["Meetup_Bot_ApiKey"], ConfigurationManager.AppSettings["Meetup_Bot_MemberId"]));
             hangfireService = new HangfireService();
+
+            session.BeginTransaction();
         }
 
         public EventSyncMessage(string eventId) 
@@ -34,21 +33,21 @@ namespace YorkshireDigital.Data.Messages
             EventId = eventId;
         }
 
-        public EventSyncMessage(string eventId, IEventService eventService, IMeetupService meetupService, IUserService userService, IHangfireService hangfireService)
+        public EventSyncMessage(string eventId, IEventService eventService, IUserService userService, IHangfireService hangfireService)
         {
             EventId = eventId;
 
             this.eventService = eventService;
-            this.meetupService = meetupService;
             this.userService = userService;
             this.hangfireService = hangfireService;
         }
 
-        public void Handle()
+        public void Handle(IMeetupService meetupService)
         {
             
             Console.WriteLine("Processing Event Sync Message for EventID " + EventId);
-            using (var tran = session.BeginTransaction())
+
+            try
             {
                 var @event = eventService.Get(EventId);
 
@@ -56,9 +55,7 @@ namespace YorkshireDigital.Data.Messages
 
                 if (@event.End <= DateTime.UtcNow)
                 {
-                    hangfireService.RemoveJobIfExists(@event.EventSyncJobId);
-                    @event.EventSyncJobId = null;
-                    eventService.Save(@event, system);
+                    CancelEventSubscription(@event, system);
                 }
 
                 var meetupEvent = meetupService.GetEvent(@event.MeetupId);
@@ -70,18 +67,35 @@ namespace YorkshireDigital.Data.Messages
                     return;
                 }
 
-                // Don't update if meetup hasn't been updated
+                // Don't update if meetup hasn't been updated on meetup
                 if (meetupEvent.UpdatedDate <= @event.LastEditedOn) return;
 
+                // otherwise update the event
                 @event.UpdateFromMeetup(meetupEvent);
-
                 eventService.Save(@event, system);
-
-                tran.Commit();
+                
             }
-            session.Dispose();
+            catch (Exception ex)
+            {
+                Console.WriteLine("An error occurred while processing the event sync. Message: {0}", ex.Message);
+            }
 
             Console.WriteLine("Processing Complete");
+        }
+
+        private void CancelEventSubscription(Domain.Events.Event @event, Domain.Account.User system)
+        {
+            hangfireService.RemoveJobIfExists(@event.EventSyncJobId);
+            @event.EventSyncJobId = null;
+            eventService.Save(@event, system);
+        }
+
+        public void Dispose()
+        {
+            if (session != null)
+            {
+                session.Dispose();
+            }
         }
     }
 }

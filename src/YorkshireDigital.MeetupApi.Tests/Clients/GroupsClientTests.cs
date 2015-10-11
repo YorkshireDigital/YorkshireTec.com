@@ -130,6 +130,9 @@ namespace YorkshireDigital.MeetupApi.Tests.Clients
             var client = A.Fake<IRestClient>();
             var meetup = new MeetupClient(client);
             var response = new RestResponse { Content = TestGroupResponseFormat().Replace("{EVENTS}", TestGroupJson()) };
+            response.Headers.Add(new Parameter { Name = "X-RateLimit-Limit", Value = 30 });
+            response.Headers.Add(new Parameter { Name = "X-RateLimit-Remaining", Value = 30 });
+            response.Headers.Add(new Parameter { Name = "X-RateLimit-Reset", Value = 30 });
 
             A.CallTo(() => client.Execute(A<IRestRequest>.Ignored))
                 .Returns(response);

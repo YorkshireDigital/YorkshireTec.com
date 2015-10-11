@@ -1,6 +1,7 @@
 ﻿namespace YorkshireDigital.MeetupApi.Clients
 {
     using RestSharp;
+    using System.Configuration;
 
     public interface IMeetupClient
     {
@@ -11,6 +12,11 @@
 
     public class MeetupClient : IMeetupClient
     {
+        public MeetupClient() : this(ConfigurationManager.AppSettings["Meetup_Bot_ApiKey"], ConfigurationManager.AppSettings["Meetup_Bot_MemberId"])
+        {
+
+        }
+
         public MeetupClient(string apiKey, string memberId)
         {
             Groups = new GroupsClient(apiKey, memberId);

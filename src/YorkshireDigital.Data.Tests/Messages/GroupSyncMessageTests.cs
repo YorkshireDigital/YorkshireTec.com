@@ -33,7 +33,7 @@
             A.CallTo(() => userService.GetUser("system"))
                 .Returns(new User());
 
-            task = new GroupSyncMessage("test-group", groupService, meetupService, eventService, userService, hangfireService);
+            task = new GroupSyncMessage("test-group", groupService, eventService, userService, hangfireService);
         }
 
         [Test]
@@ -61,7 +61,7 @@
                 });
 
             // Act
-            task.Handle();
+            task.Handle(meetupService);
 
             // Assert
             A.CallTo(() => eventService.Save(A<Data.Domain.Events.Event>.Ignored, A<User>.Ignored)).MustHaveHappened();
@@ -100,7 +100,7 @@
                 });
 
             // Act
-            task.Handle();
+            task.Handle(meetupService);
 
             // Assert
             A.CallTo(() => eventService.Save(A<Data.Domain.Events.Event>.Ignored, A<User>.Ignored)).MustNotHaveHappened();
@@ -139,7 +139,7 @@
                 });
 
             // Act
-            task.Handle();
+            task.Handle(meetupService);
 
             // Assert
             A.CallTo(() => eventService.Save(A<Data.Domain.Events.Event>.Ignored, A<User>.Ignored)).MustHaveHappened();
@@ -166,7 +166,7 @@
                 {});
 
             // Act
-            task.Handle();
+            task.Handle(meetupService);
 
             // Assert
             A.CallTo(() => eventService.Delete("Test-Event", A<User>.Ignored)).MustHaveHappened();
@@ -192,7 +192,7 @@
                 .Returns(new List<Event> { });
 
             // Act
-            task.Handle();
+            task.Handle(meetupService);
 
             // Assert
             A.CallTo(() => eventService.Delete("Test-Event", A<User>.Ignored)).MustNotHaveHappened();

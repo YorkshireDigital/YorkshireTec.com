@@ -13,7 +13,7 @@ namespace YorkshireDigital.Data.Tasks
 
             using (var bus = RabbitHutch.CreateBus("host=localhost"))
             {
-                bus.Publish<IHandleMessage>(message);
+                bus.Publish<IHandleMeetupRequest>(message);
             }
             System.Console.WriteLine("Processing Complete");
         }
