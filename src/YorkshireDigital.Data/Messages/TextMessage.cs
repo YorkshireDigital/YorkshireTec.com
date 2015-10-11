@@ -4,11 +4,9 @@ namespace YorkshireDigital.Data.Messages
 {
     public class TextMessage : IHandleMessage
     {
-        private string input;
-
         public TextMessage(string input)
         {
-            this.input = input;
+            Message = input;
         }
 
         public string Message { get; set; }

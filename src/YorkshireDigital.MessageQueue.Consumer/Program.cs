@@ -1,6 +1,7 @@
 ﻿using Topshelf;
 using Castle.Windsor;
 using Castle.Windsor.Installer;
+using Hangfire;
 
 namespace YorkshireDigital.MessageQueue.Consumer
 {
@@ -15,7 +16,8 @@ namespace YorkshireDigital.MessageQueue.Consumer
             {
                 x.Service<IConsumerService>(s =>
                 {
-                    // resolve the root IVaultService service
+                    GlobalConfiguration.Configuration.UseSqlServerStorage("Database.Hangfire");
+                    
                     s.ConstructUsing(name => container.Resolve<IConsumerService>());
                     s.WhenStarted(tc => tc.Start());
                     s.WhenStopped(tc =>

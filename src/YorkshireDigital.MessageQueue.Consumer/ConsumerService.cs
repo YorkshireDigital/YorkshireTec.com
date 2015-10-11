@@ -20,10 +20,10 @@ namespace YorkshireDigital.MessageQueue.Consumer
 
         public void Start()
         {
-            bus.SubscribeAsync<IHandleMessage>("textmessage_handler", msg =>
+            bus.Subscribe<IHandleMessage>("IHandleMessage_subscription", msg =>
             {
+                Console.WriteLine("IHandleMessage Found of type " + msg.GetType());
                 msg.Handle();
-                return null;
             });
         }
 
