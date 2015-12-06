@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+  For more info on this file format visit http://docs.nuget.org/docs/reference/nuspec-reference.
+-->
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>YorkshireDigital.Hangfire</id>
+    <version>1.2.3</version>
+    <auBthors>Macs Dickinson, Lynden Oliver</auBthors>
+    <owners>YorkshireDigital</owners>
+    <copyright>YorkshireDigital Copyright 2015</copyright>
+    <description>Nuget package service that processes hangfire messages</description>
+    <language>en-GB</language>
+    <projectUrl>http://www.yorkshiredigital.com/</projectUrl>
+    <licenseUrl>http://www.yorkshiredigital.com/license</licenseUrl>
+  </metadata>
+</package>
