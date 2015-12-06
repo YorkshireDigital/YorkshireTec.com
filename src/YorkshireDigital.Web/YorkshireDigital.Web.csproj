@@ -60,13 +60,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\FluentValidation.5.6.2.0\lib\Net45\FluentValidation.dll</HintPath>
     </Reference>
-    <Reference Include="Hangfire.Core, Version=1.4.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Hangfire.Core.1.4.3\lib\net45\Hangfire.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Hangfire.SqlServer, Version=1.4.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Hangfire.SqlServer.1.4.3\lib\net45\Hangfire.SqlServer.dll</HintPath>
     <Reference Include="Hangfire.Core, Version=1.5.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Hangfire.Core.1.5.0\lib\net45\Hangfire.Core.dll</HintPath>
       <Private>True</Private>
@@ -82,9 +75,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Humanizer.1.37.0\lib\portable-win+net40+sl50+wp8+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Humanizer.dll</HintPath>
     </Reference>
-    <Reference Include="Iesi.Collections, Version=1.0.1.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Iesi.Collections.4.0.1.4000\lib\net40\Iesi.Collections.dll</HintPath>
     <Reference Include="Iesi.Collections, Version=4.0.0.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
       <HintPath>..\packages\Iesi.Collections.4.0.0.4000\lib\net40\Iesi.Collections.dll</HintPath>
       <Private>True</Private>
@@ -139,12 +129,6 @@
     <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="NHibernate, Version=4.0.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\NHibernate.4.0.3.4000\lib\net40\NHibernate.dll</HintPath>
-      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="NHibernate, Version=4.0.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
       <HintPath>..\packages\NHibernate.4.0.4.4000\lib\net40\NHibernate.dll</HintPath>
