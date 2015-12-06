@@ -6,7 +6,7 @@
   <metadata>
     <id>YorkshireDigital.Hangfire</id>
     <version>1.2.3</version>
-    <auBthors>Macs Dickinson, Lynden Oliver</auBthors>
+    <authors>Macs Dickinson, Lynden Oliver</authors>
     <owners>YorkshireDigital</owners>
     <copyright>YorkshireDigital Copyright 2015</copyright>
     <description>Nuget package service that processes hangfire messages</description>
