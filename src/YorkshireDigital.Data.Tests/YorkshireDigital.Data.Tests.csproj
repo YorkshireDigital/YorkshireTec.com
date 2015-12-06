@@ -217,7 +217,7 @@
     <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
   </Target>
   <PropertyGroup>
-    <PostBuildEvent>xcopy /s /y "$(TargetDir)..\..\..\YorkshireDigital.Database\$(OutDir)YorkshireDigital.Database_Create.sql" "$(TargetDir)"</PostBuildEvent>
+    <PostBuildEvent>%25systemroot%25\System32\xcopy /s /y "$(TargetDir)..\..\..\YorkshireDigital.Database\$(OutDir)YorkshireDigital.Database_Create.sql" "$(TargetDir)"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
