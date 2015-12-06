@@ -20,6 +20,7 @@
             Map(x => x.Validated);
             Map(x => x.MailingListState);
             Map(x => x.DisabledOn);
+            Map(x => x.LastEditedOn);
 
             HasMany(x => x.Providers)
                 .Cascade.All();

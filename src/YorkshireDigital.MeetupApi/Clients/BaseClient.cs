@@ -2,6 +2,9 @@
 {
     using Newtonsoft.Json;
     using RestSharp;
+    using System;
+    using System.Linq;
+    using System.Threading;
     using YorkshireDigital.MeetupApi.Models;
     using YorkshireDigital.MeetupApi.Requests;
 
@@ -11,6 +14,10 @@
         internal readonly string ApiKey;
         internal readonly string MemberId;
         internal readonly IRestClient Client;
+
+        private decimal RateLimit = 30;
+        private decimal RateLimitRemaining = 30;
+        private decimal RateLimitReset = 30;
 
         public BaseClient(string apiKey, string memberId)
         {
@@ -26,7 +33,18 @@
 
         protected ApiResponse<T> Execute<T>(RestRequest request)
         {
+            if (RateLimitRemaining < RateLimit / 2)
+            {
+                decimal secondsPerReqUntilReset = RateLimitReset / RateLimitRemaining;
+                Thread.Sleep(Convert.ToInt32(secondsPerReqUntilReset * 1000));
+            }
+
             var response = Client.Execute(request);
+
+            RateLimit = decimal.Parse(response.Headers.Single(x => x.Name == "X-RateLimit-Limit").Value.ToString());
+            RateLimitRemaining = decimal.Parse(response.Headers.Single(x => x.Name == "X-RateLimit-Remaining").Value.ToString());
+            RateLimitReset = decimal.Parse(response.Headers.Single(x => x.Name == "X-RateLimit-Reset").Value.ToString());
+
             var json = response.Content;
 
             var content = JsonConvert.DeserializeObject<ApiResponse<T>>(json);
