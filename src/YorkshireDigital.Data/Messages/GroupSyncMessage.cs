@@ -1,10 +1,8 @@
 ﻿using Hangfire;
 using NHibernate;
 using System;
-using System.Configuration;
 using System.Linq;
 using YorkshireDigital.Data.Domain.Events;
-using YorkshireDigital.Data.NHibernate;
 using YorkshireDigital.Data.Services;
 using YorkshireDigital.Data.Tasks;
 
@@ -12,25 +10,15 @@ namespace YorkshireDigital.Data.Messages
 {
     public class GroupSyncMessage : IHandleMeetupRequest
     {
-        private readonly IEventService eventService;
-        private readonly IUserService userService;
-        private readonly IGroupService groupService;
-        private readonly IHangfireService hangfireService;
-        private readonly ISession session;
+        private IEventService eventService;
+        private IUserService userService;
+        private IHangfireService hangfireService;
+        private IGroupService groupService;
 
         public string GroupId { get; set; }
 
         public GroupSyncMessage()
         {
-            var sessionFactory = NHibernateSessionFactoryProvider.BuildSessionFactory(ConfigurationManager.ConnectionStrings["Database"].ConnectionString);
-            session = sessionFactory.OpenSession();
-
-            userService = new UserService(session);
-            eventService = new EventService(session);
-            groupService = new GroupService(session);
-            hangfireService = new HangfireService();
-
-            session.BeginTransaction();
         }
 
         public GroupSyncMessage(string groupId)
@@ -41,16 +29,21 @@ namespace YorkshireDigital.Data.Messages
 
         public GroupSyncMessage(string groupId, IGroupService groupService, IEventService eventService, IUserService userService, IHangfireService hangfireService)
         {
-            GroupId = groupId;
-
             this.groupService = groupService;
             this.eventService = eventService;
             this.userService = userService;
             this.hangfireService = hangfireService;
+
+            GroupId = groupId;
         }
 
-        public void Handle(IMeetupService meetupService)
+        public void Handle(ISession session, IMeetupService meetupService)
         {
+            eventService = eventService ?? new EventService(session);
+            userService = userService ?? new UserService(session);
+            groupService = groupService ?? new GroupService(session);
+            hangfireService = hangfireService ?? new HangfireService();
+
             Console.WriteLine("Processing Group Sync Message for GroupID " + GroupId);
             
             var group = groupService.Get(GroupId);
@@ -58,7 +51,7 @@ namespace YorkshireDigital.Data.Messages
 
             if (group == null)
             {
-                throw new Exception(string.Format("No group found with an ID of {0}", GroupId));
+                throw new Exception($"No group found with an ID of {GroupId}");
             }
 
             var upcomingEvents = meetupService.GetUpcomingEventsForGroup(group.MeetupId);
@@ -70,7 +63,7 @@ namespace YorkshireDigital.Data.Messages
                 if (group.Events.All(x => x.MeetupId != upcomingEvent.Id))
                 {
                     @event = Event.FromMeetupGroup(upcomingEvent);
-                    @event.UniqueName = string.Format("{0}-{1}", @group.Id, upcomingEvent.Id);
+                    @event.UniqueName = $"{@group.Id}-{upcomingEvent.Id}";
                     @event.Group = group;
 
                     group.Events.Add(@event);
@@ -104,14 +97,6 @@ namespace YorkshireDigital.Data.Messages
             }
 
             Console.WriteLine("Processing Complete");
-        }
-
-        public void Dispose()
-        {
-            if (session != null)
-            {
-                session.Dispose();
-            }
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using NHibernate;
 using YorkshireDigital.Data.Services;
 
 namespace YorkshireDigital.Data.Messages
@@ -17,7 +18,7 @@ namespace YorkshireDigital.Data.Messages
             
         }
 
-        public void Handle(IMeetupService meetupService)
+        public void Handle(ISession session, IMeetupService meetupService)
         {
             Console.WriteLine(Message);
         }

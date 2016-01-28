@@ -1,30 +1,19 @@
 ﻿using NHibernate;
 using System;
-using System.Configuration;
-using YorkshireDigital.Data.NHibernate;
 using YorkshireDigital.Data.Services;
 
 namespace YorkshireDigital.Data.Messages
 {
     public class EventSyncMessage : IHandleMeetupRequest
     {
-        private readonly IEventService eventService;
-        private readonly IUserService userService;
-        private readonly IHangfireService hangfireService;
-        private readonly ISession session;
-        
+        private IEventService eventService;
+        private IUserService userService;
+        private IHangfireService hangfireService;
         public string EventId { get; set; }
 
         public EventSyncMessage()
         {
-            var sessionFactory = NHibernateSessionFactoryProvider.BuildSessionFactory(ConfigurationManager.ConnectionStrings["Database"].ConnectionString);
-            session = sessionFactory.OpenSession();
 
-            userService = new UserService(session);
-            eventService = new EventService(session);
-            hangfireService = new HangfireService();
-
-            session.BeginTransaction();
         }
 
         public EventSyncMessage(string eventId) 
@@ -35,16 +24,18 @@ namespace YorkshireDigital.Data.Messages
 
         public EventSyncMessage(string eventId, IEventService eventService, IUserService userService, IHangfireService hangfireService)
         {
-            EventId = eventId;
-
             this.eventService = eventService;
             this.userService = userService;
             this.hangfireService = hangfireService;
+            EventId = eventId;
         }
 
-        public void Handle(IMeetupService meetupService)
+        public void Handle(ISession session, IMeetupService meetupService)
         {
-            
+            eventService = eventService ?? new EventService(session);
+            userService = userService ?? new UserService(session);
+            hangfireService = hangfireService ??new HangfireService();
+
             Console.WriteLine("Processing Event Sync Message for EventID " + EventId);
 
             try
@@ -55,7 +46,9 @@ namespace YorkshireDigital.Data.Messages
 
                 if (@event.End <= DateTime.UtcNow)
                 {
-                    CancelEventSubscription(@event, system);
+                    hangfireService.RemoveJobIfExists(@event.EventSyncJobId);
+                    @event.EventSyncJobId = null;
+                    eventService.Save(@event, system);
                 }
 
                 var meetupEvent = meetupService.GetEvent(@event.MeetupId);
@@ -81,21 +74,6 @@ namespace YorkshireDigital.Data.Messages
             }
 
             Console.WriteLine("Processing Complete");
-        }
-
-        private void CancelEventSubscription(Domain.Events.Event @event, Domain.Account.User system)
-        {
-            hangfireService.RemoveJobIfExists(@event.EventSyncJobId);
-            @event.EventSyncJobId = null;
-            eventService.Save(@event, system);
-        }
-
-        public void Dispose()
-        {
-            if (session != null)
-            {
-                session.Dispose();
-            }
         }
     }
 }

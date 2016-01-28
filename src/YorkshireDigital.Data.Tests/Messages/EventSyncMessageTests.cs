@@ -1,4 +1,6 @@
-﻿namespace YorkshireDigital.Data.Tests.Tasks
+﻿using NHibernate;
+
+namespace YorkshireDigital.Data.Tests.Tasks
 {
     using System;
     using FakeItEasy;
@@ -16,6 +18,7 @@
         private IMeetupService meetupService;
         private IHangfireService hangfireService;
         private EventSyncMessage task;
+        private ISession session;
 
         [SetUp]
         public void SetUp()
@@ -23,6 +26,7 @@
             eventService = A.Fake<IEventService>();
             meetupService = A.Fake<IMeetupService>();
             hangfireService = A.Fake<IHangfireService>();
+            session = A.Fake<ISession>();
             var userService = A.Fake<IUserService>();
             
 
@@ -54,7 +58,7 @@
                 });
 
             // Act
-            task.Handle(meetupService);
+            task.Handle(session, meetupService);
 
             // Assert
             A.CallTo(() => eventService.Save(A<Event>.Ignored, A<User>.Ignored)).MustHaveHappened();
@@ -82,7 +86,7 @@
                 });
 
             // Act
-            task.Handle(meetupService);
+            task.Handle(session, meetupService);
 
             // Assert
             A.CallTo(() => eventService.Save(A<Event>.Ignored, A<User>.Ignored)).MustNotHaveHappened();
@@ -105,7 +109,7 @@
                 .Returns(null);
 
             // Act
-            task.Handle(meetupService);
+            task.Handle(session, meetupService);
 
             // Assert
             A.CallTo(() => eventService.Delete("event-123", A<User>.Ignored)).MustHaveHappened();
@@ -120,7 +124,7 @@
                 .Returns(new Event { Title = "Test Event", Synopsis = "Initial details...", LastEditedOn = DateTime.Now, EventSyncJobId = "54321", End = DateTime.Now.AddHours(-1)});
 
             // Act
-            task.Handle(meetupService);
+            task.Handle(session, meetupService);
 
             // Assert
             A.CallTo(() => hangfireService.RemoveJobIfExists("54321")).MustHaveHappened();

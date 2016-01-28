@@ -1,4 +1,6 @@
-﻿namespace YorkshireDigital.Data.Tests.Tasks
+﻿using NHibernate;
+
+namespace YorkshireDigital.Data.Tests.Tasks
 {
     using System;
     using System.Collections.Generic;
@@ -19,6 +21,7 @@
         private IMeetupService meetupService;
         private IEventService eventService;
         private IHangfireService hangfireService;
+        private ISession session;
         private GroupSyncMessage task;
 
         [SetUp]
@@ -29,6 +32,7 @@
             hangfireService = A.Fake<IHangfireService>();
             eventService = A.Fake<IEventService>();
             var userService = A.Fake<IUserService>();
+            session = A.Fake<ISession>();
 
             A.CallTo(() => userService.GetUser("system"))
                 .Returns(new User());
@@ -61,7 +65,7 @@
                 });
 
             // Act
-            task.Handle(meetupService);
+            task.Handle(session, meetupService);
 
             // Assert
             A.CallTo(() => eventService.Save(A<Data.Domain.Events.Event>.Ignored, A<User>.Ignored)).MustHaveHappened();
@@ -100,7 +104,7 @@
                 });
 
             // Act
-            task.Handle(meetupService);
+            task.Handle(session, meetupService);
 
             // Assert
             A.CallTo(() => eventService.Save(A<Data.Domain.Events.Event>.Ignored, A<User>.Ignored)).MustNotHaveHappened();
@@ -139,7 +143,7 @@
                 });
 
             // Act
-            task.Handle(meetupService);
+            task.Handle(session, meetupService);
 
             // Assert
             A.CallTo(() => eventService.Save(A<Data.Domain.Events.Event>.Ignored, A<User>.Ignored)).MustHaveHappened();
@@ -166,7 +170,7 @@
                 {});
 
             // Act
-            task.Handle(meetupService);
+            task.Handle(session, meetupService);
 
             // Assert
             A.CallTo(() => eventService.Delete("Test-Event", A<User>.Ignored)).MustHaveHappened();
@@ -192,7 +196,7 @@
                 .Returns(new List<Event> { });
 
             // Act
-            task.Handle(meetupService);
+            task.Handle(session, meetupService);
 
             // Assert
             A.CallTo(() => eventService.Delete("Test-Event", A<User>.Ignored)).MustNotHaveHappened();
