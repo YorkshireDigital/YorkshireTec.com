@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Configuration;
 using EasyNetQ;
+using Serilog;
 using YorkshireDigital.Data.Messages;
 
 namespace YorkshireDigital.Data.Tasks
@@ -15,7 +16,7 @@ namespace YorkshireDigital.Data.Tasks
                 throw new Exception("easynetq connection string is missing or empty");
             }
 
-            System.Console.WriteLine("Processing GroupSyncTask for GroupId " + groupId);
+            Log.Information("Processing GroupSyncTask for GroupId " + groupId);
 
             var message = new GroupSyncMessage(groupId);
 
@@ -23,7 +24,7 @@ namespace YorkshireDigital.Data.Tasks
             {
                 bus.Publish<IHandleMeetupRequest>(message);
             }
-            System.Console.WriteLine("Processing Complete");
+            Log.Information("Processing Complete");
         }
     }
 }

@@ -1,5 +1,8 @@
 ﻿using NHibernate;
 using System;
+using Serilog;
+using YorkshireDigital.Data.Domain.Events;
+using YorkshireDigital.Data.Exceptions;
 using YorkshireDigital.Data.Services;
 
 namespace YorkshireDigital.Data.Messages
@@ -36,11 +39,16 @@ namespace YorkshireDigital.Data.Messages
             userService = userService ?? new UserService(session);
             hangfireService = hangfireService ??new HangfireService();
 
-            Console.WriteLine("Processing Event Sync Message for EventID " + EventId);
+            Log.Information("Processing Event Sync Message for EventID " + EventId);
 
             try
             {
                 var @event = eventService.Get(EventId);
+
+                if (@event == null)
+                {
+                    throw new EventNotFoundException($"No Event exists with id {EventId}");
+                } 
 
                 var system = userService.GetUser("system");
 
@@ -70,10 +78,10 @@ namespace YorkshireDigital.Data.Messages
             }
             catch (Exception ex)
             {
-                Console.WriteLine("An error occurred while processing the event sync. Message: {0}", ex.Message);
+                Log.Error(ex, "An error occurred while processing the event sync. Message: {0}", ex.Message);
             }
 
-            Console.WriteLine("Processing Complete");
+            Log.Information("Processing Complete");
         }
     }
 }
