@@ -34,8 +34,8 @@
 
             var slackAttachment = new SlackAttachment
             {
-                Fallback = string.Format("New user <{0}/users/{1}|{2} user profile> created", webaddress, username, name),
-                Text = string.Format("New user <{0}/users/{1}|{2} user profile> created", webaddress, username, name),
+                Fallback = $"New user <{webaddress}/users/{username}|{name} user profile> created",
+                Text = $"New user <{webaddress}/users/{username}|{name} user profile> created",
                 Color = "#b9306a",
                 Fields = new List<SlackField>
                 {
@@ -51,7 +51,7 @@
 
         public static void PostNewEventUpdate(string webaddress, string eventId, string eventTitle, string createdBy, DateTime eventStart, string eventLocation, string eventGroup, string groupColour)
         {
-            var updateText = string.Format("{0} just created the event {1} at {2}!", createdBy, eventTitle, webaddress);
+            var updateText = $"{createdBy} just created the event {eventTitle} at {webaddress}!";
 
             var slackMessage = new SlackMessage
             {
@@ -63,8 +63,8 @@
 
             var slackAttachment = new SlackAttachment
             {
-                Fallback = string.Format("New event <{0}/event/{1}|{2}> created by {3}", webaddress, eventId, eventTitle, createdBy),
-                Text = string.Format("New event <{0}/event/{1}|{2}> created by {3}", webaddress, eventId, eventTitle, createdBy),
+                Fallback = $"New event <{webaddress}/event/{eventId}|{eventTitle}> created by {createdBy}",
+                Text = $"New event <{webaddress}/event/{eventId}|{eventTitle}> created by {createdBy}",
                 Color = string.IsNullOrEmpty(groupColour) ? "#b9306a" : groupColour,
                 Fields = new List<SlackField>
                 {
@@ -93,7 +93,7 @@
             var slackAttachment = new SlackAttachment
             {
                 Fallback = details,
-                PreText = slackUpdate,
+                Text = slackUpdate,
                 Color = "#D00000",
                 Fields = new List<SlackField>
                         {

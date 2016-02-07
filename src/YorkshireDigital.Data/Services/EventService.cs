@@ -40,7 +40,7 @@
                     eventToSave.Title, user.Username, eventToSave.Start,
                     eventToSave.Location,
                     eventToSave.Group != null ? eventToSave.Group.Name : string.Empty,
-                    eventToSave.Group != null ? eventToSave.Group.Colour : null);
+                    eventToSave.Group?.Colour);
             }
 
             eventToSave.LastEditedOn = DateTime.UtcNow;
