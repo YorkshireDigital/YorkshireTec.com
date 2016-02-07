@@ -1,4 +1,6 @@
-﻿namespace YorkshireDigital.Data.Services
+﻿using Serilog;
+
+namespace YorkshireDigital.Data.Services
 {
     using System;
     using System.Collections.Generic;
@@ -33,8 +35,9 @@
 
         public void Save(Event eventToSave, User user)
         {
-            if (!EventExists(eventToSave.UniqueName))
+            if (eventToSave.LastEditedBy == null)
             {
+                Log.Information("New event: " + eventToSave.Title);
                 var siteUrl = ConfigurationManager.AppSettings["SiteUrl"];
                 SlackHelper.PostNewEventUpdate(siteUrl, eventToSave.UniqueName,
                     eventToSave.Title, user.Username, eventToSave.Start,
@@ -60,7 +63,7 @@
         {
             var eventToDelete = session.Get<Event>(eventId);
             if (eventToDelete == null)
-                throw new EventNotFoundException(string.Format("No event found with unique name {0}", eventId));
+                throw new EventNotFoundException($"No event found with unique name {eventId}");
 
             eventToDelete.DeletedOn = DateTime.UtcNow;
             eventToDelete.DeletedBy = user;

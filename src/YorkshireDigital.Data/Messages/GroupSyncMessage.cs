@@ -61,17 +61,18 @@ namespace YorkshireDigital.Data.Messages
 
                 foreach (var upcomingEvent in upcomingEvents)
                 {
+                    Log.Information($"[{upcomingEvent.Id}] Processing...");
                     Event @event;
                     // Don't do anything if the event has already been created
                     if (group.Events.All(x => x.MeetupId != upcomingEvent.Id))
                     {
+                        Log.Information($"[{upcomingEvent.Id}] Adding event to group.");
+
                         @event = Event.FromMeetupGroup(upcomingEvent);
                         @event.UniqueName = $"{@group.Id}-{upcomingEvent.Id}";
                         @event.Group = group;
 
                         group.Events.Add(@event);
-
-                        eventService.Save(@event, system);
                     }
                     else
                     {
@@ -80,13 +81,14 @@ namespace YorkshireDigital.Data.Messages
 
                     if (string.IsNullOrEmpty(@event.EventSyncJobId))
                     {
+                        Log.Information($"[{upcomingEvent.Id}] Adding sync task.");
                         @event.EventSyncJobId = @event.UniqueName;
 
                         hangfireService.AddOrUpdateJob<EventSyncTask>(@event.UniqueName, x => x.Execute(@event.UniqueName), Cron.Hourly);
                         hangfireService.Trigger(@event.EventSyncJobId);
-
-                        eventService.Save(@event, system);
                     }
+
+                    eventService.Save(@event, system);
                 }
 
                 // Delete future events that are no longer on meetup
@@ -94,11 +96,11 @@ namespace YorkshireDigital.Data.Messages
                 {
                     if (@event.Start > DateTime.UtcNow && upcomingEvents.All(x => string.IsNullOrEmpty(@event.MeetupId) || x.Id != @event.MeetupId.ToString()))
                     {
+                        Log.Information($"[{@event.UniqueName}] Removing deleted event.");
                         @group.Events.Remove(@event);
                         eventService.Delete(@event.UniqueName, system);
                     }
                 }
-
             }
             catch (Exception ex)
             {

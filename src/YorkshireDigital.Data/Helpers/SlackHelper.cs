@@ -1,4 +1,6 @@
-﻿namespace YorkshireDigital.Data.Helpers
+﻿using Serilog;
+
+namespace YorkshireDigital.Data.Helpers
 {
     using System;
     using System.Collections.Generic;
@@ -17,6 +19,10 @@
                 var slackClient = new SlackClient(WebHookUrl);
 
                 slackClient.Post(slackUpdate);
+            }
+            else
+            {
+                Log.Information($"Slack disabled. Message suppressed: {slackUpdate.Text}");
             }
         }
 
