@@ -2,6 +2,7 @@
 using System;
 using System.Configuration;
 using NHibernate;
+using Serilog;
 using YorkshireDigital.Data.Messages;
 using YorkshireDigital.Data.NHibernate;
 using YorkshireDigital.Data.Services;
@@ -33,8 +34,12 @@ namespace YorkshireDigital.MessageQueue.Consumer
 
             bus.Subscribe<IHandleMeetupRequest>("IHandleMessage_subscription", msg =>
             {
-                Console.WriteLine("IHandleMessage Found of type " + msg.GetType());
-                msg.Handle(session, meetupService);
+                using (var transaction = session.BeginTransaction())
+                {
+                    Log.Information("IHandleMessage Found of type " + msg.GetType());
+                    msg.Handle(session, meetupService);
+                    transaction.Commit();
+                }
             });
         }
 
